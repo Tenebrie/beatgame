@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://ci21idu6kwex5"]
+
+[ext_resource type="Script" path="res://objects/PlayerCharacter/PlayerController.cs" id="1_2gcyd"]
+[ext_resource type="Script" path="res://objects/PlayerCharacter/PlayerMovement.cs" id="1_2j2tk"]
+[ext_resource type="Script" path="res://objects/PlayerCharacter/PlayerTargeting.cs" id="3_bvya7"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_moeg2"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ywbqj"]
+size = Vector3(0.20752, 0.499878, 0.215973)
+
+[node name="PlayerCharacter" type="Node3D"]
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+script = ExtResource("1_2gcyd")
+
+[node name="PlayerUnit" type="MeshInstance3D" parent="CharacterBody3D"]
+transform = Transform3D(0.2, 0, 0, 0, 0.5, 0, 0, 0, 0.2, 0, 0.252011, 0)
+mesh = SubResource("BoxMesh_moeg2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000244141, 0.250061, 0.00130759)
+shape = SubResource("BoxShape3D_ywbqj")
+
+[node name="MovementSystem" type="Node" parent="CharacterBody3D"]
+script = ExtResource("1_2j2tk")
+_mainCameraPath = NodePath("../../MainCamera")
+_baseCameraPath = NodePath("../../BaseCamera")
+
+[node name="TargetingSystem" type="Node" parent="CharacterBody3D"]
+script = ExtResource("3_bvya7")
+_mainCameraPath = NodePath("../../MainCamera")
+
+[node name="MainCamera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.234285, 0)
+current = true
+
+[node name="BaseCamera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.251438, 0)

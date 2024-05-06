@@ -1,0 +1,75 @@
+[gd_resource type="VisualShader" load_steps=7 format=3 uid="uid://si0nnmd167ny"]
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_72hkj"]
+default_input_values = [0, Vector3(0, 0, 0), 1, Vector3(0.5, 0.5, 0.5)]
+operator = 2
+
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_3233x"]
+parameter_name = "hover_highlight"
+qualifier = 2
+hint = 1
+default_value_enabled = true
+
+[sub_resource type="VisualShaderNodeColorConstant" id="VisualShaderNodeColorConstant_1hred"]
+constant = Color(0.827451, 0, 1, 1)
+
+[sub_resource type="VisualShaderNodeColorConstant" id="VisualShaderNodeColorConstant_bw3qa"]
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_npp7c"]
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_a3r4b"]
+operator = 2
+
+[resource]
+code = "shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_schlick_ggx;
+
+instance uniform float hover_highlight : hint_range(0, 1) = 0;
+
+
+
+void fragment() {
+// ColorConstant:6
+	vec4 n_out6p0 = vec4(1.000000, 1.000000, 1.000000, 1.000000);
+
+
+// FloatParameter:2
+	float n_out2p0 = hover_highlight;
+
+
+// VectorOp:9
+	vec3 n_out9p0 = vec3(n_out6p0.xyz) * vec3(n_out2p0);
+
+
+// VectorOp:10
+	vec3 n_in10p1 = vec3(0.50000, 0.50000, 0.50000);
+	vec3 n_out10p0 = n_out9p0 * n_in10p1;
+
+
+// ColorConstant:3
+	vec4 n_out3p0 = vec4(0.827451, 0.000000, 1.000000, 1.000000);
+
+
+// VectorOp:8
+	vec3 n_out8p0 = n_out10p0 + vec3(n_out3p0.xyz);
+
+
+// Output:0
+	ALBEDO = n_out8p0;
+
+
+}
+"
+nodes/fragment/2/node = SubResource("VisualShaderNodeFloatParameter_3233x")
+nodes/fragment/2/position = Vector2(-700, 120)
+nodes/fragment/3/node = SubResource("VisualShaderNodeColorConstant_1hred")
+nodes/fragment/3/position = Vector2(-160, 420)
+nodes/fragment/6/node = SubResource("VisualShaderNodeColorConstant_bw3qa")
+nodes/fragment/6/position = Vector2(-580, 20)
+nodes/fragment/8/node = SubResource("VisualShaderNodeVectorOp_npp7c")
+nodes/fragment/8/position = Vector2(100, 220)
+nodes/fragment/9/node = SubResource("VisualShaderNodeVectorOp_a3r4b")
+nodes/fragment/9/position = Vector2(-300, 100)
+nodes/fragment/10/node = SubResource("VisualShaderNodeVectorOp_72hkj")
+nodes/fragment/10/position = Vector2(-100, 180)
+nodes/fragment/connections = PackedInt32Array(3, 0, 8, 1, 8, 0, 0, 0, 10, 0, 8, 0, 9, 0, 10, 0, 6, 0, 9, 0, 2, 0, 9, 1)

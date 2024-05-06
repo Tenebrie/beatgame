@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://d4lr8x11fi1f4"]
+
+[ext_resource type="Material" uid="uid://eabnuc3ohw7m" path="res://elements/WaterSurface/WaterSurface.tres" id="1_0281w"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_jw3hj"]
+material = ExtResource("1_0281w")
+size = Vector2(1, 1)
+subdivide_width = 100
+subdivide_depth = 100
+
+[node name="Node3D" type="Node3D"]
+
+[node name="WaterSurface" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0.5)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="WaterSurface"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0136201, -0.00766039, -0.0138235)
+mesh = SubResource("PlaneMesh_jw3hj")
