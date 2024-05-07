@@ -1,8 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://bcrvev26qnfr0"]
+[gd_scene load_steps=13 format=3 uid="uid://bcrvev26qnfr0"]
 
 [ext_resource type="PackedScene" uid="uid://d4lr8x11fi1f4" path="res://elements/WaterSurface/WaterSurface.tscn" id="1_d3trf"]
 [ext_resource type="PackedScene" uid="uid://ci21idu6kwex5" path="res://objects/PlayerCharacter/PlayerCharacter.tscn" id="2_ofluo"]
 [ext_resource type="PackedScene" uid="uid://dd8hi213iqvva" path="res://objects/DummyEnemy/DummyEnemy.tscn" id="3_ae480"]
+[ext_resource type="PackedScene" uid="uid://ct45j83s2dkvg" path="res://ui/combat/CombatUI.tscn" id="4_ase0o"]
+[ext_resource type="PackedScene" uid="uid://sume7bhfxi3j" path="res://objects/DummyEnemy/JumpingDummyEnemy.tscn" id="5_yuojh"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_wv8tr"]
 
@@ -170,3 +172,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.47785, -0.00244141, -0.267
 
 [node name="DummyEnemy3" parent="." instance=ExtResource("3_ae480")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.98294, -0.00244129, -0.598593)
+
+[node name="CombatUI" parent="." instance=ExtResource("4_ase0o")]
+
+[node name="JumpingDummyEnemy" parent="." instance=ExtResource("5_yuojh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.9223, -0.0024409, -0.0870297)

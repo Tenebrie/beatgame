@@ -43,7 +43,7 @@ public partial class PlayerMovement : Node
 		if (@event.IsActionPressed("SoftCameraMove"))
 		{
 			softCameraMoving = true;
-			softCameraMoveStart = GetViewport().GetMousePosition();
+			softCameraMoveStart = GetWindow().GetMousePosition();
 		}
 		if (@event.IsActionReleased("SoftCameraMove"))
 		{
@@ -53,8 +53,7 @@ public partial class PlayerMovement : Node
 
 		if (@event.IsActionPressed("HardCameraMove"))
 		{
-			hardCameraMoving = true;
-			hardCameraMoveStart = GetViewport().GetMousePosition();
+			hardCameraMoveStart = GetWindow().GetMousePosition();
 			Input.MouseMode = Input.MouseModeEnum.Hidden;
 		}
 		if (@event.IsActionReleased("HardCameraMove"))
@@ -160,11 +159,16 @@ public partial class PlayerMovement : Node
 			inertia.Y = 0;
 			jumpCount = 0;
 		}
+
+		if (parent.Position.Y <= -20)
+		{
+			parent.Position = new Vector3(0, 1, 0);
+		}
 	}
 
 	private void ProcessCamera(double delta)
 	{
-		var mousePos = parent.GetViewport().GetMousePosition();
+		var mousePos = GetWindow().GetMousePosition();
 		if (Input.IsActionPressed("HardCameraMove"))
 		{
 			var mouseDelta = mousePos - hardCameraMoveStart;
@@ -179,7 +183,7 @@ public partial class PlayerMovement : Node
 
 		var snappingSpeed = hardCameraMoving ? 20 : 10;
 
-		baseCamera.Position = baseCamera.Position + (float)delta * snappingSpeed * (targetCameraPosition - baseCamera.Position);
+		baseCamera.Position += (float)delta * snappingSpeed * (targetCameraPosition - baseCamera.Position);
 
 		var verticalOffset = new Vector3(0, 0.5f, 0);
 		mainCamera.Position = baseCamera.Position;

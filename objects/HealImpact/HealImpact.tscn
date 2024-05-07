@@ -1,0 +1,110 @@
+[gd_scene load_steps=18 format=3 uid="uid://dtpt851lanhr3"]
+
+[ext_resource type="Script" path="res://objects/FireballProjectile/ProjectileImpact.cs" id="1_3sj7y"]
+[ext_resource type="Texture2D" uid="uid://545qqng27pu8" path="res://assets/particle-generic.png" id="2_pq8hi"]
+[ext_resource type="Texture2D" uid="uid://bfq8lmy0qmd5b" path="res://assets/fire-particle.tga" id="3_sjh81"]
+[ext_resource type="Texture2D" uid="uid://cmka5xq2n8u7g" path="res://assets/particle-emission.png" id="4_0el8c"]
+
+[sub_resource type="Curve" id="Curve_4cu2c"]
+max_value = 200.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.951852, 200), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_86hov"]
+curve = SubResource("Curve_4cu2c")
+
+[sub_resource type="Curve" id="Curve_emwy6"]
+min_value = -200.0
+max_value = 200.0
+_data = [Vector2(0, 32.9262), 0.0, 0.0, 0, 0, Vector2(0.16053, 1.16835), 0.0, 0.0, 0, 0, Vector2(1, -0.212418), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_703pc"]
+curve = SubResource("Curve_emwy6")
+
+[sub_resource type="Curve" id="Curve_d3qex"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0338733, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_5pejn"]
+curve = SubResource("Curve_d3qex")
+
+[sub_resource type="Curve" id="Curve_s7b7f"]
+max_value = 3.0
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.998527, 1.0324), 0.219737, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_h1cmy"]
+curve = SubResource("Curve_s7b7f")
+
+[sub_resource type="Curve" id="Curve_a728t"]
+max_value = 50.0
+_data = [Vector2(0, 39.299), 0.0, 0.0, 0, 0, Vector2(0.0972018, 2.70845), -5.32694, -5.32694, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_72f6w"]
+curve = SubResource("Curve_a728t")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_cu3mt"]
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.0
+direction = Vector3(0, 0, 0)
+spread = 180.0
+initial_velocity_min = 1.0
+initial_velocity_max = 1.0
+gravity = Vector3(0, -1, 0)
+linear_accel_max = 0.01
+radial_accel_max = 0.1
+radial_accel_curve = SubResource("CurveTexture_703pc")
+tangential_accel_min = 1.0
+tangential_accel_max = 1.0
+tangential_accel_curve = SubResource("CurveTexture_72f6w")
+damping_min = 7.0
+damping_max = 10.0
+scale_min = 0.1
+scale_max = 0.2
+scale_curve = SubResource("CurveTexture_5pejn")
+scale_over_velocity_max = 1.0
+scale_over_velocity_curve = SubResource("CurveTexture_h1cmy")
+anim_speed_curve = SubResource("CurveTexture_86hov")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_shnx2"]
+transparency = 1
+blend_mode = 1
+albedo_color = Color(0.0470588, 1, 0, 1)
+albedo_texture = ExtResource("2_pq8hi")
+emission_enabled = true
+emission = Color(0, 0.647059, 0, 1)
+emission_energy_multiplier = 0.32
+emission_texture = ExtResource("4_0el8c")
+rim_tint = 0.0
+detail_mask = ExtResource("3_sjh81")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_bplgv"]
+lightmap_size_hint = Vector2i(2, 2)
+material = SubResource("StandardMaterial3D_shnx2")
+size = Vector2(0.5, 0.5)
+orientation = 2
+
+[node name="HealImpact" type="Node3D"]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, 0)
+script = ExtResource("1_3sj7y")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+amount = 2000
+lifetime = 3.0
+explosiveness = 1.0
+randomness = 0.43
+fixed_fps = 60
+visibility_aabb = AABB(-2, -2, -2, 4, 4, 4)
+trail_lifetime = 10.0
+process_material = SubResource("ParticleProcessMaterial_cu3mt")
+draw_pass_1 = SubResource("PlaneMesh_bplgv")

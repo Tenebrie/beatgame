@@ -41,11 +41,23 @@ public partial class PlayerTargeting : Node
 
 	public override void _Input(InputEvent @event)
 	{
+		if (@event.IsActionPressed("ShiftCast1", exactMatch: true))
+		{
+			var scene = GD.Load<PackedScene>("res://objects/HealImpact/HealImpact.tscn");
+			var healImpact = scene.Instantiate() as ProjectileImpact;
+			GetTree().Root.AddChild(healImpact);
+			healImpact.GlobalPosition = GetParent<Node3D>().GlobalPosition + new Vector3(0, 0.5f, 0);
+
+			parent.hp.Restore(10);
+		}
+
 		if (targetedUnit == null)
 		{
 			return;
 		}
-		if (@event.IsActionPressed("Cast1"))
+
+		// TODO: Better casting please
+		if (@event.IsActionPressed("Cast1", exactMatch: true))
 		{
 			var scene = GD.Load<PackedScene>("res://objects/FireballProjectile/FireballProjectile.tscn");
 			var fireball = scene.Instantiate() as Projectile;

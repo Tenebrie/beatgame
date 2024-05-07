@@ -3,7 +3,7 @@ using System.Diagnostics;
 using Godot;
 namespace Project;
 
-public partial class ObjectTargeting
+public partial class ObjectTargeting : ComposableScript
 {
 	public bool isHovered = false;
 	public bool isTargeted = false;
@@ -12,22 +12,22 @@ public partial class ObjectTargeting
 	public TargetingCircle selectionModel = null;
 	public float selectionRadius = 1f;
 
-	private BaseUnit parent;
-	public void Ready(BaseUnit node)
+	public ObjectTargeting(BaseUnit parent) : base(parent) { }
+
+	public override void _Ready()
 	{
-		parent = node;
-		node.InputEvent += OnInputEvent;
-		node.MouseEntered += OnMouseEntered;
-		node.MouseExited += OnMouseExited;
-		SignalBus.GetInstance(parent).ObjectTargeted += OnObjectTargeted;
+		Parent.InputEvent += OnInputEvent;
+		Parent.MouseEntered += OnMouseEntered;
+		Parent.MouseExited += OnMouseExited;
+		SignalBus.GetInstance(Parent).ObjectTargeted += OnObjectTargeted;
 	}
 
-	public void ExitTree()
+	public override void _ExitTree()
 	{
-		SignalBus.GetInstance(parent).ObjectTargeted -= OnObjectTargeted;
+		SignalBus.GetInstance(Parent).ObjectTargeted -= OnObjectTargeted;
 	}
 
-	public void Process(double delta)
+	public override void _Process(double delta)
 	{
 		if (isHovered)
 		{
@@ -41,7 +41,7 @@ public partial class ObjectTargeting
 		}
 	}
 
-	public void _Input(InputEvent @event)
+	public override void _Input(InputEvent @event)
 	{
 		if (@event.IsActionPressed("MouseInteract") && !Input.IsActionPressed("HardCameraMove"))
 		{
@@ -51,7 +51,7 @@ public partial class ObjectTargeting
 
 	private void UpdateHoverHighlight()
 	{
-		var children = parent.GetChildren();
+		var children = Parent.GetChildren();
 		foreach (var child in children)
 		{
 			if (child is MeshInstance3D meshChild)
@@ -63,12 +63,12 @@ public partial class ObjectTargeting
 
 	private void OnObjectTargeted(BaseUnit unit)
 	{
-		SetTargeted(unit == parent);
+		SetTargeted(unit == Parent);
 	}
 
 	private void OnMouseEntered()
 	{
-		SignalBus.GetInstance(parent).EmitSignal(SignalBus.SignalName.ObjectHovered, parent);
+		SignalBus.GetInstance(Parent).EmitSignal(SignalBus.SignalName.ObjectHovered, Parent);
 		isHovered = true;
 		hoverHighlight = 1.0f;
 	}
@@ -91,13 +91,13 @@ public partial class ObjectTargeting
 		{
 			var scene = GD.Load<PackedScene>("res://objects/utils/TargetingCircle.tscn");
 			selectionModel = scene.Instantiate() as TargetingCircle;
-			selectionModel.SetAlliance(parent.alliance);
+			selectionModel.SetAlliance(Parent.alliance);
 			selectionModel.SetRadius(selectionRadius);
-			parent.AddChild(selectionModel);
+			Parent.AddChild(selectionModel);
 		}
 		else if (selectionModel != null)
 		{
-			parent.RemoveChild(selectionModel);
+			Parent.RemoveChild(selectionModel);
 			selectionModel.QueueFree();
 			selectionModel = null;
 		}
@@ -107,7 +107,7 @@ public partial class ObjectTargeting
 	{
 		if (@event.IsActionPressed("MouseInteract") && !Input.IsActionPressed("HardCameraMove"))
 		{
-			SignalBus.GetInstance(parent).EmitSignal(SignalBus.SignalName.ObjectTargeted, parent);
+			SignalBus.GetInstance(Parent).EmitSignal(SignalBus.SignalName.ObjectTargeted, Parent);
 		}
 	}
 }
