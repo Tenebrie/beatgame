@@ -21,7 +21,7 @@ public partial class Projectile : Node3D
 			emitter.Emitting = false;
 			Cleanup();
 
-			var scene = GD.Load<PackedScene>("res://objects/FireballProjectile/FireballProjectileImpact.tscn");
+			var scene = GD.Load<PackedScene>("res://effects/FireballProjectile/FireballProjectileImpact.tscn");
 			var impact = scene.Instantiate() as ProjectileImpact;
 			GetTree().Root.AddChild(impact);
 			impact.GlobalPosition = GlobalPosition;

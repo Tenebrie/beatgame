@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://dwcfa4po3yivl"]
 
-[ext_resource type="Script" path="res://objects/FireballProjectile/ProjectileImpact.cs" id="1_gxl6b"]
+[ext_resource type="Script" path="res://effects/FireballProjectile/ProjectileImpact.cs" id="1_gxl6b"]
 [ext_resource type="Texture2D" uid="uid://bwmw1fsyxe4nq" path="res://assets/fire-part.png" id="2_xn6yk"]
 [ext_resource type="Texture2D" uid="uid://bfq8lmy0qmd5b" path="res://assets/fire-particle.tga" id="3_bsc5u"]
 

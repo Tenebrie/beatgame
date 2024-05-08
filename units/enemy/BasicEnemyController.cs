@@ -4,7 +4,7 @@ public partial class BasicEnemyController : BaseUnit
 {
 	public BasicEnemyController()
 	{
-		alliance = Alliance.Enemy;
-		targeting.selectionRadius = 0.6f;
+		Alliance = UnitAlliance.Enemy;
+		Targetable.selectionRadius = 0.6f;
 	}
 }

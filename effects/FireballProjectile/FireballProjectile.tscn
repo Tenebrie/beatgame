@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bfq8lmy0qmd5b" path="res://assets/fire-particle.tga" id="1_0fy1o"]
 [ext_resource type="Texture2D" uid="uid://bwmw1fsyxe4nq" path="res://assets/fire-part.png" id="1_ldmnd"]
-[ext_resource type="Script" path="res://objects/FireballProjectile/Projectile.cs" id="1_r05pi"]
+[ext_resource type="Script" path="res://effects/FireballProjectile/Projectile.cs" id="1_r05pi"]
 
 [sub_resource type="Curve" id="Curve_4cu2c"]
 max_value = 200.0

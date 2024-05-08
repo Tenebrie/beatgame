@@ -1,9 +1,10 @@
+using System.Diagnostics;
 using Godot;
 
 namespace Project;
 public partial class CombatUI : Control
 {
-	ResourceBar HealthBar;
+	private ResourceBar HealthBar;
 	public override void _Ready()
 	{
 		HealthBar = GetNode<ResourceBar>("HealthBar");
@@ -14,9 +15,7 @@ public partial class CombatUI : Control
 	private void OnResourceChanged(BaseUnit unit, ObjectResourceType type, float value)
 	{
 		if (unit is not PlayerController)
-		{
 			return;
-		}
 
 		if (type == ObjectResourceType.Health)
 		{
@@ -27,9 +26,7 @@ public partial class CombatUI : Control
 	private void OnMaxResourceChanged(BaseUnit unit, ObjectResourceType type, float value)
 	{
 		if (unit is not PlayerController)
-		{
 			return;
-		}
 
 		if (type == ObjectResourceType.Health)
 		{

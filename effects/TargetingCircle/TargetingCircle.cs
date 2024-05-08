@@ -13,15 +13,15 @@ public partial class TargetingCircle : Node3D
 		decal = GetNode<Decal>(_decalPath);
 		Scale = new Vector3(radius, radius, radius);
 	}
-	public void SetAlliance(Alliance alliance)
+	public void SetAlliance(UnitAlliance alliance)
 	{
 		decal = GetNode<Decal>(_decalPath);
 		var color = new Color(255, 255, 0);
-		if (alliance == Alliance.Player)
+		if (alliance == UnitAlliance.Player)
 		{
 			color = new Color(0, 0, 255);
 		}
-		else if (alliance == Alliance.Enemy)
+		else if (alliance == UnitAlliance.Enemy)
 		{
 			color = new Color(255, 0, 0);
 		}

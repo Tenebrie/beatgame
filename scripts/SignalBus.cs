@@ -12,6 +12,11 @@ public partial class SignalBus : Node
 	[Signal]
 	public delegate void MaxResourceChangedEventHandler(BaseUnit unit, ObjectResourceType type, float value);
 
+	public static SignalBus GetInstance(ComposableScript node)
+	{
+		return node.Parent.GetNode<SignalBus>("/root/SignalBus");
+	}
+
 	public static SignalBus GetInstance(Node node)
 	{
 		return node.GetNode<SignalBus>("/root/SignalBus");

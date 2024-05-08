@@ -26,8 +26,6 @@ public class ObjectResource : ComposableScript
 
 	public override void _Ready()
 	{
-		Debug.WriteLine(current);
-		Debug.WriteLine(maximum);
 		SignalBus.GetInstance(Parent).EmitSignal(SignalBus.SignalName.ResourceChanged, Parent, Type.ToVariant(), current);
 		SignalBus.GetInstance(Parent).EmitSignal(SignalBus.SignalName.MaxResourceChanged, Parent, Type.ToVariant(), maximum);
 	}

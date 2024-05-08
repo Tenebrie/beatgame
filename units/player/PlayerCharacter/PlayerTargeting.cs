@@ -1,24 +1,21 @@
 using Godot;
-using System;
-using System.Diagnostics;
 
 namespace Project;
 
-public partial class PlayerTargeting : Node
+public partial class PlayerTargeting : ComposableScript
 {
-	[Export] public NodePath _mainCameraPath = null;
-
-	Camera3D mainCamera;
-	PlayerController parent;
+	new readonly PlayerController Parent;
 
 	public BaseUnit hoveredUnit;
 	public BaseUnit targetedUnit;
 
+	public PlayerTargeting(BaseUnit parent) : base(parent)
+	{
+		Parent = parent as PlayerController;
+	}
+
 	public override void _Ready()
 	{
-		parent = GetParent<PlayerController>();
-		mainCamera = GetNode<Camera3D>(_mainCameraPath);
-
 		SignalBus.GetInstance(this).ObjectHovered += OnObjectHovered;
 		SignalBus.GetInstance(this).ObjectTargeted += OnObjectTargeted;
 	}
@@ -43,12 +40,12 @@ public partial class PlayerTargeting : Node
 	{
 		if (@event.IsActionPressed("ShiftCast1", exactMatch: true))
 		{
-			var scene = GD.Load<PackedScene>("res://objects/HealImpact/HealImpact.tscn");
+			var scene = GD.Load<PackedScene>("res://effects/HealImpact/HealImpact.tscn");
 			var healImpact = scene.Instantiate() as ProjectileImpact;
 			GetTree().Root.AddChild(healImpact);
-			healImpact.GlobalPosition = GetParent<Node3D>().GlobalPosition + new Vector3(0, 0.5f, 0);
+			healImpact.GlobalPosition = GlobalPosition + new Vector3(0, 0.5f, 0);
 
-			parent.hp.Restore(10);
+			Parent.Health.Restore(10);
 		}
 
 		if (targetedUnit == null)
@@ -59,10 +56,10 @@ public partial class PlayerTargeting : Node
 		// TODO: Better casting please
 		if (@event.IsActionPressed("Cast1", exactMatch: true))
 		{
-			var scene = GD.Load<PackedScene>("res://objects/FireballProjectile/FireballProjectile.tscn");
+			var scene = GD.Load<PackedScene>("res://effects/FireballProjectile/FireballProjectile.tscn");
 			var fireball = scene.Instantiate() as Projectile;
 			GetTree().Root.AddChild(fireball);
-			fireball.GlobalPosition = GetParent<Node3D>().GlobalPosition + new Vector3(0, 0.5f, 0);
+			fireball.GlobalPosition = GlobalPosition + new Vector3(0, 0.5f, 0);
 			fireball.targetUnit = targetedUnit;
 		}
 	}

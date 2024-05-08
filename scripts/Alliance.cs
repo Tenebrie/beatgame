@@ -1,5 +1,5 @@
 namespace Project;
-public enum Alliance
+public enum UnitAlliance
 {
 	Player,
 	Neutral,

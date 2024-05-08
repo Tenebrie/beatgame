@@ -4,10 +4,10 @@ using System.Diagnostics;
 
 namespace Project;
 
-public partial class PlayerMovement : Node
+public partial class PlayerMovement : ComposableScript
 {
-	[Export] public NodePath _mainCameraPath = null;
-	[Export] public NodePath _baseCameraPath = null;
+	private NodePath _mainCameraPath = null;
+	private NodePath _baseCameraPath = null;
 
 	Camera3D mainCamera;
 
@@ -22,20 +22,21 @@ public partial class PlayerMovement : Node
 	float cameraDistance = 1.5f;
 	float cameraHeight = 1;
 
-	Vector3 inertia = new();
-
-	const float terminalVelocity = -30f;
-	float gravity = ProjectSettings.GetSetting("physics/3d/default_gravity").AsSingle();
-
 	float jumpCount = 0;
 
-	PlayerController parent;
+	new readonly PlayerController Parent;
+
+	public PlayerMovement(BaseUnit parent, NodePath mainCameraPath, NodePath baseCameraPath) : base(parent)
+	{
+		Parent = parent as PlayerController;
+		_mainCameraPath = mainCameraPath;
+		_baseCameraPath = baseCameraPath;
+	}
 
 	public override void _Ready()
 	{
-		parent = GetParent<PlayerController>();
-		mainCamera = GetNode<Camera3D>(_mainCameraPath);
-		baseCamera = GetNode<Camera3D>(_baseCameraPath);
+		mainCamera = Parent.GetNode<Camera3D>(_mainCameraPath);
+		baseCamera = Parent.GetNode<Camera3D>(_baseCameraPath);
 	}
 
 	public override void _Input(InputEvent @event)
@@ -73,15 +74,22 @@ public partial class PlayerMovement : Node
 
 		if (@event.IsActionPressed("Jump") && jumpCount < 2)
 		{
-			inertia.Y = 3f;
-			jumpCount += 1;
+			if (Parent.Grounded)
+			{
+				jumpCount = 1;
+				Parent.Velocity = new Vector3(Velocity.X, 3f, Velocity.Z);
+			}
+			else
+			{
+				jumpCount = 2;
+				Parent.Velocity = new Vector3(Velocity.X, 3.5f, Velocity.Z);
+			}
 		}
 	}
 
 	public override void _Process(double delta)
 	{
 		ProcessMovement(delta);
-		ProcessGravity(delta);
 		ProcessCamera(delta);
 	}
 
@@ -122,10 +130,10 @@ public partial class PlayerMovement : Node
 		}
 
 		var movementVector = new Vector2(movementRight, movementForward).Normalized() * movementSpeed;
-		var forwardVector = -parent.GlobalTransform.Basis.Z;
-		var rightVector = parent.GlobalTransform.Basis.X;
+		var forwardVector = -GlobalTransform.Basis.Z;
+		var rightVector = GlobalTransform.Basis.X;
 
-		parent.MoveAndCollide(new Vector3(
+		Parent.MoveAndCollide(new Vector3(
 			x: forwardVector.X * movementVector.Y + rightVector.X * movementVector.X,
 			y: 0,
 			z: forwardVector.Z * movementVector.Y + rightVector.Z * movementVector.X
@@ -134,35 +142,11 @@ public partial class PlayerMovement : Node
 		var rotationSpeed = 2;
 		if (Input.IsActionPressed("TurnLeft") && !Input.IsActionPressed("HardCameraMove"))
 		{
-			parent.Rotate(Vector3.Up, rotationSpeed * (float)delta);
+			Parent.Rotate(Vector3.Up, rotationSpeed * (float)delta);
 		}
 		if (Input.IsActionPressed("TurnRight") && !Input.IsActionPressed("HardCameraMove"))
 		{
-			parent.Rotate(Vector3.Up, -rotationSpeed * (float)delta);
-		}
-	}
-
-	private void ProcessGravity(double delta)
-	{
-		inertia.Y = Math.Max(terminalVelocity, inertia.Y - gravity * (float)delta);
-
-		var collision = parent.MoveAndCollide(new Vector3(
-			x: 0,
-			y: inertia.Y * (float)delta,
-			z: 0
-		));
-
-		var grounded = collision != null;
-
-		if (grounded)
-		{
-			inertia.Y = 0;
-			jumpCount = 0;
-		}
-
-		if (parent.Position.Y <= -20)
-		{
-			parent.Position = new Vector3(0, 1, 0);
+			Parent.Rotate(Vector3.Up, -rotationSpeed * (float)delta);
 		}
 	}
 
@@ -173,13 +157,13 @@ public partial class PlayerMovement : Node
 		{
 			var mouseDelta = mousePos - hardCameraMoveStart;
 			Input.WarpMouse(hardCameraMoveStart);
-			parent.Rotate(Vector3.Up, -mouseDelta.X / 500);
+			Parent.Rotate(Vector3.Up, -mouseDelta.X / 500);
 			cameraHeight = Math.Max(0, Math.Min(cameraHeight + mouseDelta.Y / 500, 3));
 		}
 
-		var forward = -parent.GlobalTransform.Basis.Z;
+		var forward = -Parent.GlobalTransform.Basis.Z;
 
-		var targetCameraPosition = parent.Position - forward * cameraDistance + new Vector3(0, cameraHeight, 0);
+		var targetCameraPosition = Position - forward * cameraDistance + new Vector3(0, cameraHeight, 0);
 
 		var snappingSpeed = hardCameraMoving ? 20 : 10;
 
@@ -187,6 +171,11 @@ public partial class PlayerMovement : Node
 
 		var verticalOffset = new Vector3(0, 0.5f, 0);
 		mainCamera.Position = baseCamera.Position;
-		mainCamera.LookAt(parent.Position + verticalOffset);
+		mainCamera.LookAt(Position + verticalOffset);
+	}
+
+	public void ResetJumpCount()
+	{
+		jumpCount = 0;
 	}
 }

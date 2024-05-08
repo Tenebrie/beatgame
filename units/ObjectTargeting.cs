@@ -3,7 +3,7 @@ using System.Diagnostics;
 using Godot;
 namespace Project;
 
-public partial class ObjectTargeting : ComposableScript
+public partial class ObjectTargetable : ComposableScript
 {
 	public bool isHovered = false;
 	public bool isTargeted = false;
@@ -12,7 +12,7 @@ public partial class ObjectTargeting : ComposableScript
 	public TargetingCircle selectionModel = null;
 	public float selectionRadius = 1f;
 
-	public ObjectTargeting(BaseUnit parent) : base(parent) { }
+	public ObjectTargetable(BaseUnit parent) : base(parent) { }
 
 	public override void _Ready()
 	{
@@ -89,9 +89,9 @@ public partial class ObjectTargeting : ComposableScript
 
 		if (targeted)
 		{
-			var scene = GD.Load<PackedScene>("res://objects/utils/TargetingCircle.tscn");
+			var scene = GD.Load<PackedScene>("res://effects/TargetingCircle/TargetingCircle.tscn");
 			selectionModel = scene.Instantiate() as TargetingCircle;
-			selectionModel.SetAlliance(Parent.alliance);
+			selectionModel.SetAlliance(Parent.Alliance);
 			selectionModel.SetRadius(selectionRadius);
 			Parent.AddChild(selectionModel);
 		}

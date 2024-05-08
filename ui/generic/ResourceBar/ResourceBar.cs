@@ -22,7 +22,7 @@ public partial class ResourceBar : Control
 		MaximumValueLabel = GetNode<Label>("MaximumLabel");
 	}
 
-	public void SetCurrent(float value)
+	public void  SetCurrent(float value)
 	{
 		CurrentValue = value;
 		PositiveGhostValue = Math.Min(PositiveGhostValue, CurrentValue);

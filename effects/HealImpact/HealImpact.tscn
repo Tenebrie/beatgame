@@ -1,9 +1,9 @@
 [gd_scene load_steps=18 format=3 uid="uid://dtpt851lanhr3"]
 
-[ext_resource type="Script" path="res://objects/FireballProjectile/ProjectileImpact.cs" id="1_3sj7y"]
-[ext_resource type="Texture2D" uid="uid://545qqng27pu8" path="res://assets/particle-generic.png" id="2_pq8hi"]
-[ext_resource type="Texture2D" uid="uid://bfq8lmy0qmd5b" path="res://assets/fire-particle.tga" id="3_sjh81"]
-[ext_resource type="Texture2D" uid="uid://cmka5xq2n8u7g" path="res://assets/particle-emission.png" id="4_0el8c"]
+[ext_resource type="Script" path="res://effects/FireballProjectile/ProjectileImpact.cs" id="1_87ksq"]
+[ext_resource type="Texture2D" uid="uid://545qqng27pu8" path="res://assets/particle-generic.png" id="2_im1ep"]
+[ext_resource type="Texture2D" uid="uid://bfq8lmy0qmd5b" path="res://assets/fire-particle.tga" id="3_307v6"]
+[ext_resource type="Texture2D" uid="uid://cmka5xq2n8u7g" path="res://assets/particle-emission.png" id="4_dua61"]
 
 [sub_resource type="Curve" id="Curve_4cu2c"]
 max_value = 200.0
@@ -75,13 +75,13 @@ anim_speed_curve = SubResource("CurveTexture_86hov")
 transparency = 1
 blend_mode = 1
 albedo_color = Color(0.0470588, 1, 0, 1)
-albedo_texture = ExtResource("2_pq8hi")
+albedo_texture = ExtResource("2_im1ep")
 emission_enabled = true
 emission = Color(0, 0.647059, 0, 1)
 emission_energy_multiplier = 0.32
-emission_texture = ExtResource("4_0el8c")
+emission_texture = ExtResource("4_dua61")
 rim_tint = 0.0
-detail_mask = ExtResource("3_sjh81")
+detail_mask = ExtResource("3_307v6")
 billboard_mode = 3
 billboard_keep_scale = true
 particles_anim_h_frames = 1
@@ -96,7 +96,7 @@ orientation = 2
 
 [node name="HealImpact" type="Node3D"]
 transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, 0)
-script = ExtResource("1_3sj7y")
+script = ExtResource("1_87ksq")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
 amount = 2000
