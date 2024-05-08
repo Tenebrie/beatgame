@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using Godot;
 
 namespace Project;
@@ -8,6 +9,7 @@ public partial class PlayerTargeting : ComposableScript
 
 	public BaseUnit hoveredUnit;
 	public BaseUnit targetedUnit;
+	Timer repeatCastTimer;
 
 	public PlayerTargeting(BaseUnit parent) : base(parent)
 	{
@@ -46,6 +48,8 @@ public partial class PlayerTargeting : ComposableScript
 			hoveredUnit = null;
 	}
 
+	// TODO: Refactor everything below this line
+
 	public override void _Input(InputEvent @event)
 	{
 		if (@event.IsActionPressed("ShiftCast1", exactMatch: true))
@@ -56,6 +60,29 @@ public partial class PlayerTargeting : ComposableScript
 			healImpact.GlobalPosition = GlobalPosition + new Vector3(0, 0.5f, 0);
 
 			Parent.Health.Restore(10);
+		}
+
+		if (@event.IsActionPressed("Cast2", exactMatch: true))
+		{
+			if (repeatCastTimer != null)
+			{
+				return;
+			}
+			repeatCastTimer = new Timer();
+			Parent.AddChild(repeatCastTimer);
+			repeatCastTimer.Timeout += OnRepeatCastTimer;
+			repeatCastTimer.WaitTime = 0.02;
+			repeatCastTimer.Start();
+		}
+		if (@event.IsActionReleased("Cast2", exactMatch: true))
+		{
+			if (repeatCastTimer == null)
+			{
+				return;
+			}
+			repeatCastTimer.Stop();
+			repeatCastTimer.QueueFree();
+			repeatCastTimer = null;
 		}
 
 		if (targetedUnit == null)
@@ -73,4 +100,17 @@ public partial class PlayerTargeting : ComposableScript
 			fireball.TargetUnit = targetedUnit;
 		}
 	}
+
+	private void OnRepeatCastTimer()
+	{
+		var scene = GD.Load<PackedScene>("res://effects/Flamethrower/FlamethrowerProjectile.tscn");
+		var fireball = scene.Instantiate() as TrueProjectile;
+		GetTree().Root.AddChild(fireball);
+		fireball.GlobalPosition = GlobalPosition + new Vector3(0, 0.5f, 0);
+		fireball.GlobalTransform = GlobalTransform;
+		fireball.Position = new Vector3(Position.X, Position.Y + 0.5f, Position.Z);
+		fireball.Alliance = UnitAlliance.Player;
+	}
+
+	// (this curly brace is fine)
 }

@@ -8,7 +8,7 @@ namespace Project;
 
 public abstract partial class BaseUnit : BaseComposable
 {
-	public String FriendlyName = "Unnamed unit";
+	public string FriendlyName = "Unnamed unit";
 	public ObjectResource Health;
 	public ObjectTargetable Targetable;
 
@@ -32,6 +32,8 @@ public abstract partial class BaseUnit : BaseComposable
 		Composables.Add(Targetable);
 	}
 
+	public Vector3 ForwardVector { get => -GlobalTransform.Basis.Z; }
+
 	public override void _Ready()
 	{
 		base._Ready();
@@ -49,6 +51,7 @@ public abstract partial class BaseUnit : BaseComposable
 
 		IsAlive = false;
 		QueueFree();
+		AllUnits.Remove(this);
 		SignalBus.GetInstance(this).EmitSignal(SignalBus.SignalName.UnitDestroyed, this);
 	}
 
