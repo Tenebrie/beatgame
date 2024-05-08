@@ -56,11 +56,10 @@ ProgressBar/styles/fill = SubResource("StyleBoxFlat_1t88a")
 
 [node name="ResourceBar" type="Control"]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = -1746.0
-offset_bottom = -1038.0
+anchor_right = 0.091
+anchor_bottom = 0.039
+offset_right = -0.720016
+offset_bottom = -0.120003
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_gq8v1")
@@ -100,10 +99,12 @@ show_percentage = false
 
 [node name="CurrentLabel" type="Label" parent="."]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
 anchor_bottom = 1.0
-offset_right = -91.0
+offset_left = -47.0
+offset_right = -5.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "50
@@ -124,10 +125,12 @@ vertical_alignment = 1
 
 [node name="MaximumLabel" type="Label" parent="."]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 90.0
+offset_left = 3.0
+offset_right = 31.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "100"

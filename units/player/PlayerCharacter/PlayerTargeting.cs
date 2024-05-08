@@ -18,12 +18,14 @@ public partial class PlayerTargeting : ComposableScript
 	{
 		SignalBus.GetInstance(this).ObjectHovered += OnObjectHovered;
 		SignalBus.GetInstance(this).ObjectTargeted += OnObjectTargeted;
+		SignalBus.GetInstance(this).UnitDestroyed += OnUnitDestroyed;
 	}
 
 	public override void _ExitTree()
 	{
 		SignalBus.GetInstance(this).ObjectHovered -= OnObjectHovered;
 		SignalBus.GetInstance(this).ObjectTargeted -= OnObjectTargeted;
+		SignalBus.GetInstance(this).UnitDestroyed -= OnUnitDestroyed;
 	}
 
 	private void OnObjectHovered(BaseUnit unit)
@@ -34,6 +36,14 @@ public partial class PlayerTargeting : ComposableScript
 	private void OnObjectTargeted(BaseUnit unit)
 	{
 		targetedUnit = unit;
+	}
+
+	private void OnUnitDestroyed(BaseUnit unit)
+	{
+		if (unit == targetedUnit)
+			targetedUnit = null;
+		if (unit == hoveredUnit)
+			hoveredUnit = null;
 	}
 
 	public override void _Input(InputEvent @event)
@@ -60,7 +70,7 @@ public partial class PlayerTargeting : ComposableScript
 			var fireball = scene.Instantiate() as Projectile;
 			GetTree().Root.AddChild(fireball);
 			fireball.GlobalPosition = GlobalPosition + new Vector3(0, 0.5f, 0);
-			fireball.targetUnit = targetedUnit;
+			fireball.TargetUnit = targetedUnit;
 		}
 	}
 }

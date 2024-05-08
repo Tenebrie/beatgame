@@ -3,5 +3,5 @@ public enum UnitAlliance
 {
 	Player,
 	Neutral,
-	Enemy,
+	Hostile,
 }

@@ -1,36 +1,50 @@
-using System.Diagnostics;
+using System.Reflection;
 using Godot;
 
 namespace Project;
 public partial class CombatUI : Control
 {
 	private ResourceBar HealthBar;
+	private UnitCardList AlliedUnitList;
+	private UnitCardList HostileUnitList;
 	public override void _Ready()
 	{
 		HealthBar = GetNode<ResourceBar>("HealthBar");
-		SignalBus.GetInstance(this).ResourceChanged += OnResourceChanged;
-		SignalBus.GetInstance(this).MaxResourceChanged += OnMaxResourceChanged;
+		AlliedUnitList = GetNode<UnitCardList>("AllyTargeting");
+		HostileUnitList = GetNode<UnitCardList>("HostileTargeting");
+		SignalBus.GetInstance(this).UnitCreated += OnUnitCreated;
+		SignalBus.GetInstance(this).UnitDestroyed += OnUnitDestroyed;
 	}
 
-	private void OnResourceChanged(BaseUnit unit, ObjectResourceType type, float value)
+	private void OnUnitCreated(BaseUnit unit)
 	{
-		if (unit is not PlayerController)
-			return;
-
-		if (type == ObjectResourceType.Health)
+		if (unit is PlayerController)
 		{
-			HealthBar.SetCurrent(value);
+			HealthBar.TrackUnit(unit, ObjectResourceType.Health);
+		}
+		else if (unit.Alliance == UnitAlliance.Player)
+		{
+			AlliedUnitList.TrackUnit(unit);
+		}
+		else if (unit.Alliance == UnitAlliance.Hostile)
+		{
+			HostileUnitList.TrackUnit(unit);
 		}
 	}
 
-	private void OnMaxResourceChanged(BaseUnit unit, ObjectResourceType type, float value)
+	private void OnUnitDestroyed(BaseUnit unit)
 	{
-		if (unit is not PlayerController)
-			return;
-
-		if (type == ObjectResourceType.Health)
+		if (unit is PlayerController)
 		{
-			HealthBar.SetMaximum(value);
+			HealthBar.UntrackUnit();
+		}
+		else if (unit.Alliance == UnitAlliance.Player)
+		{
+			AlliedUnitList.UntrackUnit(unit);
+		}
+		else if (unit.Alliance == UnitAlliance.Hostile)
+		{
+			HostileUnitList.UntrackUnit(unit);
 		}
 	}
 

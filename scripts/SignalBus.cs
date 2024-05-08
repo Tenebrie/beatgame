@@ -1,8 +1,15 @@
+using System;
+using System.Reflection;
+using System.Reflection.Metadata;
 using Godot;
 
 namespace Project;
 public partial class SignalBus : Node
 {
+	[Signal]
+	public delegate void UnitCreatedEventHandler(BaseUnit unit);
+	[Signal]
+	public delegate void UnitDestroyedEventHandler(BaseUnit unit);
 	[Signal]
 	public delegate void ObjectHoveredEventHandler(BaseUnit unit);
 	[Signal]

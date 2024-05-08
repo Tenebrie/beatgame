@@ -17,6 +17,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
+ResourceManager="*res://scripts/ResourceManager.cs"
 SignalBus="*res://scripts/SignalBus.cs"
 
 [display]

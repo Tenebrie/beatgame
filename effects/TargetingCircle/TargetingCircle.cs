@@ -21,7 +21,7 @@ public partial class TargetingCircle : Node3D
 		{
 			color = new Color(0, 0, 255);
 		}
-		else if (alliance == UnitAlliance.Enemy)
+		else if (alliance == UnitAlliance.Hostile)
 		{
 			color = new Color(255, 0, 0);
 		}

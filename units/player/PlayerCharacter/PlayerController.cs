@@ -13,6 +13,7 @@ public partial class PlayerController : BaseUnit
 	public PlayerTargeting PlayerTargeting;
 	public PlayerController()
 	{
+		FriendlyName = "The Player";
 		Alliance = UnitAlliance.Player;
 		Targetable.selectionRadius = 0.5f;
 	}

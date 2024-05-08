@@ -6,19 +6,22 @@ using Godot;
 
 namespace Project;
 
-public abstract partial class BaseUnit : CharacterBody3D
+public abstract partial class BaseUnit : BaseComposable
 {
+	public String FriendlyName = "Unnamed unit";
 	public ObjectResource Health;
 	public ObjectTargetable Targetable;
 
 	public UnitAlliance Alliance = UnitAlliance.Neutral;
-	public List<ComposableScript> Composables = new();
 
 	public const float TerminalVelocity = -30f;
 	readonly public float BaseGravity = ProjectSettings.GetSetting("physics/3d/default_gravity").AsSingle();
 	public float Gravity = ProjectSettings.GetSetting("physics/3d/default_gravity").AsSingle();
 	public bool Grounded = true;
 	private int FramesInFlight = 0;
+
+	private bool IsAlive = true;
+	private bool IsDead { get => !IsAlive; }
 
 	public BaseUnit()
 	{
@@ -31,27 +34,28 @@ public abstract partial class BaseUnit : CharacterBody3D
 
 	public override void _Ready()
 	{
+		base._Ready();
+
+		SignalBus.GetInstance(this).ResourceChanged += OnResourceChanged;
+
 		AllUnits.Add(this);
-		foreach (var composable in Composables)
-		{
-			composable._Ready();
-		}
+		SignalBus.GetInstance(this).EmitSignal(SignalBus.SignalName.UnitCreated, this);
+	}
+
+	private void OnResourceChanged(BaseUnit unit, ObjectResourceType type, float value)
+	{
+		if (unit != this || type != ObjectResourceType.Health || value > 0 || IsDead)
+			return;
+
+		IsAlive = false;
+		QueueFree();
+		SignalBus.GetInstance(this).EmitSignal(SignalBus.SignalName.UnitDestroyed, this);
 	}
 
 	public override void _Process(double delta)
 	{
 		ProcessGravity(delta);
-		foreach (var composable in Composables)
-		{
-			composable._Process(delta);
-		}
-	}
-
-	public override void _PhysicsProcess(double delta)
-	{
-		base._PhysicsProcess(delta);
-
-		// ProcessGravity(delta);
+		base._Process(delta);
 	}
 
 	protected virtual void ProcessGravity(double delta)
@@ -82,22 +86,6 @@ public abstract partial class BaseUnit : CharacterBody3D
 		if (Position.Y <= -20)
 		{
 			Position = new Vector3(0, 1, 0);
-		}
-	}
-
-	public override void _Input(InputEvent @event)
-	{
-		foreach (var composable in Composables)
-		{
-			composable._Input(@event);
-		}
-	}
-
-	public override void _ExitTree()
-	{
-		foreach (var composable in Composables)
-		{
-			composable._ExitTree();
 		}
 	}
 

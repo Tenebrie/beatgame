@@ -1,4 +1,5 @@
 using Godot;
+using Project;
 using System;
 
 public partial class ResourceBar : Control
@@ -22,7 +23,7 @@ public partial class ResourceBar : Control
 		MaximumValueLabel = GetNode<Label>("MaximumLabel");
 	}
 
-	public void  SetCurrent(float value)
+	public void SetCurrent(float value)
 	{
 		CurrentValue = value;
 		PositiveGhostValue = Math.Min(PositiveGhostValue, CurrentValue);
@@ -39,6 +40,48 @@ public partial class ResourceBar : Control
 		Bar.MaxValue = value;
 		PositiveGhost.MaxValue = value;
 		NegativeGhost.MaxValue = value;
+	}
+
+	private BaseUnit TrackedUnit = null;
+	private ObjectResourceType? TrackedResource = null;
+
+	public void TrackUnit(BaseUnit unit, ObjectResourceType resourceType)
+	{
+		TrackedUnit = unit;
+		TrackedResource = resourceType;
+		SetCurrent(unit.Health.Current);
+		SetMaximum(unit.Health.Maximum);
+		SignalBus.GetInstance(this).ResourceChanged += OnResourceChanged;
+		SignalBus.GetInstance(this).MaxResourceChanged += OnMaxResourceChanged;
+	}
+
+	public void UntrackUnit()
+	{
+		TrackedUnit = null;
+		TrackedResource = null;
+		SignalBus.GetInstance(this).ResourceChanged -= OnResourceChanged;
+		SignalBus.GetInstance(this).MaxResourceChanged -= OnMaxResourceChanged;
+	}
+
+	public override void _ExitTree()
+	{
+		UntrackUnit();
+	}
+
+	private void OnResourceChanged(BaseUnit unit, ObjectResourceType type, float value)
+	{
+		if (unit != TrackedUnit || type != TrackedResource)
+			return;
+
+		SetCurrent(value);
+	}
+
+	private void OnMaxResourceChanged(BaseUnit unit, ObjectResourceType type, float value)
+	{
+		if (unit != TrackedUnit || type != TrackedResource)
+			return;
+
+		SetMaximum(value);
 	}
 
 	public override void _Process(double delta)

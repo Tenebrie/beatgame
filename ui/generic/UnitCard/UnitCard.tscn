@@ -1,0 +1,59 @@
+[gd_scene load_steps=5 format=3 uid="uid://c2m17h2hubigh"]
+
+[ext_resource type="Script" path="res://ui/generic/UnitCard/UnitCard.cs" id="1_pma0p"]
+[ext_resource type="PackedScene" uid="uid://b7e338e230e43" path="res://ui/generic/ResourceBar/ResourceBar.tscn" id="1_sliwq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ihkyo"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.101961, 0.101961, 0.101961, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="Theme" id="Theme_xk5fw"]
+Panel/styles/panel = SubResource("StyleBoxFlat_ihkyo")
+
+[node name="UnitCard" type="Control"]
+custom_minimum_size = Vector2(300, 65)
+layout_mode = 3
+anchor_right = 0.161
+anchor_bottom = 0.073
+offset_right = -3.12003
+offset_bottom = -8.84
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_pma0p")
+
+[node name="BackgroundPanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_xk5fw")
+
+[node name="NameLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 10.0
+offset_right = 261.0
+offset_bottom = 33.0
+text = "Unit name"
+
+[node name="HealthBar" parent="." instance=ExtResource("1_sliwq")]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = -28.0
+offset_right = -9.0
+offset_bottom = -10.0
+grow_vertical = 0

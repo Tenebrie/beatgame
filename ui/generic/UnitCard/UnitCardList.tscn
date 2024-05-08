@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://chjoxvtmac26d"]
+
+[ext_resource type="Script" path="res://ui/generic/UnitCard/UnitCardList.cs" id="1_kt257"]
+[ext_resource type="PackedScene" uid="uid://c2m17h2hubigh" path="res://ui/generic/UnitCard/UnitCard.tscn" id="1_sut4l"]
+
+[node name="Container" type="VBoxContainer"]
+anchors_preset = -1
+anchor_right = 0.156
+anchor_bottom = 0.604
+offset_right = 0.47998
+offset_bottom = -0.320007
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+alignment = 2
+script = ExtResource("1_kt257")
+
+[node name="UnitCard" parent="." instance=ExtResource("1_sut4l")]
+layout_mode = 2
+
+[node name="UnitCard2" parent="." instance=ExtResource("1_sut4l")]
+layout_mode = 2

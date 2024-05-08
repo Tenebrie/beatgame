@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://ct45j83s2dkvg"]
+[gd_scene load_steps=4 format=3 uid="uid://ct45j83s2dkvg"]
 
 [ext_resource type="Script" path="res://ui/combat/CombatUI.cs" id="1_mfjmv"]
 [ext_resource type="PackedScene" uid="uid://b7e338e230e43" path="res://ui/generic/ResourceBar/ResourceBar.tscn" id="2_vq7ps"]
+[ext_resource type="PackedScene" uid="uid://chjoxvtmac26d" path="res://ui/generic/UnitCard/UnitCardList.tscn" id="3_jpa8i"]
 
 [node name="CombatUI" type="Control"]
 layout_mode = 3
@@ -31,8 +32,25 @@ anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
+anchor_bottom = 1.0
 offset_left = -86.0
 offset_top = -55.0
 offset_right = 86.0
 offset_bottom = -38.0
 grow_vertical = 0
+
+[node name="AllyTargeting" parent="." instance=ExtResource("3_jpa8i")]
+layout_mode = 1
+offset_left = 1620.0
+offset_top = 428.0
+offset_right = 1620.48
+offset_bottom = 427.68
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="HostileTargeting" parent="." instance=ExtResource("3_jpa8i")]
+layout_mode = 1
+offset_top = 428.0
+offset_bottom = 427.68
+grow_horizontal = 1
+grow_vertical = 1
