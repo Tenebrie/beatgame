@@ -1,7 +1,8 @@
 using Godot;
-using Project;
 using System;
+using System.Diagnostics;
 
+namespace Project;
 public partial class ResourceBar : Control
 {
 	public ProgressBar Bar;
@@ -9,10 +10,14 @@ public partial class ResourceBar : Control
 	public ProgressBar NegativeGhost;
 	public Label CurrentValueLabel;
 	public Label MaximumValueLabel;
+	public Timer PositiveTimer;
+	public Timer NegativeTimer;
+	public Label PositiveComboLabel;
+	public Label NegativeComboLabel;
 
-	private float CurrentValue = 50;
-	private float PositiveGhostValue = 25;
-	private float NegativeGhostValue = 75;
+	private float CurrentValue = 100;
+	private float PositiveGhostValue = 100;
+	private float NegativeGhostValue = 100;
 	private float MaximumValue = 100;
 	public override void _Ready()
 	{
@@ -21,10 +26,25 @@ public partial class ResourceBar : Control
 		NegativeGhost = GetNode<ProgressBar>("NegativeGhost");
 		CurrentValueLabel = GetNode<Label>("CurrentLabel");
 		MaximumValueLabel = GetNode<Label>("MaximumLabel");
+		PositiveTimer = GetNode<Timer>("PositiveTimer");
+		NegativeTimer = GetNode<Timer>("NegativeTimer");
+		PositiveTimer.OneShot = true;
+		NegativeTimer.OneShot = true;
+		PositiveComboLabel = GetNode<Label>("PositiveComboLabel");
+		NegativeComboLabel = GetNode<Label>("NegativeComboLabel");
 	}
 
 	public void SetCurrent(float value)
 	{
+		if (value > CurrentValue)
+		{
+			PositiveTimer.Start(0.8);
+		}
+		else if (value < CurrentValue)
+		{
+			NegativeTimer.Start(0.8);
+		}
+
 		CurrentValue = value;
 		PositiveGhostValue = Math.Min(PositiveGhostValue, CurrentValue);
 		NegativeGhostValue = Math.Max(NegativeGhostValue, CurrentValue);
@@ -51,16 +71,22 @@ public partial class ResourceBar : Control
 		TrackedResource = resourceType;
 		SetCurrent(unit.Health.Current);
 		SetMaximum(unit.Health.Maximum);
+		PositiveGhostValue = CurrentValue;
+		NegativeGhostValue = CurrentValue;
 		SignalBus.GetInstance(this).ResourceChanged += OnResourceChanged;
 		SignalBus.GetInstance(this).MaxResourceChanged += OnMaxResourceChanged;
 	}
 
 	public void UntrackUnit()
 	{
+		if (TrackedUnit == null || TrackedResource == null)
+			return;
+
 		TrackedUnit = null;
 		TrackedResource = null;
 		SignalBus.GetInstance(this).ResourceChanged -= OnResourceChanged;
 		SignalBus.GetInstance(this).MaxResourceChanged -= OnMaxResourceChanged;
+		SetCurrent(0);
 	}
 
 	public override void _ExitTree()
@@ -86,21 +112,34 @@ public partial class ResourceBar : Control
 
 	public override void _Process(double delta)
 	{
-		float fillSpeed = 15; // Units per second
+		float fillSpeed = 50; // Units per second
 
-		PositiveGhostValue += fillSpeed * (float)delta;
+		if (PositiveTimer.TimeLeft == 0)
+		{
+			PositiveGhostValue += fillSpeed * (float)delta;
+		}
 		if (PositiveGhostValue >= CurrentValue)
 		{
 			PositiveGhostValue = CurrentValue;
+			PositiveTimer.Stop();
 		}
 
-		NegativeGhostValue -= fillSpeed * (float)delta;
+		if (NegativeTimer.TimeLeft == 0)
+		{
+			NegativeGhostValue -= fillSpeed * (float)delta;
+		}
 		if (NegativeGhostValue <= CurrentValue)
 		{
 			NegativeGhostValue = CurrentValue;
+			NegativeTimer.Stop();
 		}
 
 		PositiveGhost.Value = PositiveGhostValue;
 		NegativeGhost.Value = NegativeGhostValue;
+
+		var positiveValue = Math.Round(CurrentValue - PositiveGhostValue);
+		PositiveComboLabel.Text = positiveValue > 0 ? positiveValue.ToString() : "";
+		var negativeValue = Math.Round(NegativeGhostValue - CurrentValue);
+		NegativeComboLabel.Text = negativeValue > 0 ? negativeValue.ToString() : "";
 	}
 }

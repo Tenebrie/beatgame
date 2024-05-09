@@ -46,39 +46,40 @@ point_count = 3
 curve = SubResource("Curve_a728t")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_cu3mt"]
-emission_shape = 6
-emission_ring_axis = Vector3(0, 0, 1)
-emission_ring_height = 1.0
-emission_ring_radius = 1.0
-emission_ring_inner_radius = 0.0
+emission_shape = 1
+emission_sphere_radius = 0.5
 direction = Vector3(0, 0, 0)
 spread = 180.0
-initial_velocity_min = 1.0
-initial_velocity_max = 1.0
+initial_velocity_min = 0.25
+initial_velocity_max = 0.5
 gravity = Vector3(0, -1, 0)
 linear_accel_max = 0.01
-radial_accel_max = 0.1
+radial_accel_min = -0.5
+radial_accel_max = -0.5
 radial_accel_curve = SubResource("CurveTexture_703pc")
-tangential_accel_min = 1.0
-tangential_accel_max = 1.0
+tangential_accel_min = 0.5
+tangential_accel_max = 0.5
 tangential_accel_curve = SubResource("CurveTexture_72f6w")
-damping_min = 7.0
-damping_max = 10.0
+damping_min = 3.0
+damping_max = 7.0
 scale_min = 0.1
 scale_max = 0.2
 scale_curve = SubResource("CurveTexture_5pejn")
 scale_over_velocity_max = 1.0
 scale_over_velocity_curve = SubResource("CurveTexture_h1cmy")
 anim_speed_curve = SubResource("CurveTexture_86hov")
+collision_mode = 1
+collision_friction = 0.0
+collision_bounce = 0.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_shnx2"]
 transparency = 1
 blend_mode = 1
-albedo_color = Color(0.0470588, 1, 0, 1)
+albedo_color = Color(1, 1, 0, 1)
 albedo_texture = ExtResource("2_im1ep")
 emission_enabled = true
-emission = Color(0, 0.647059, 0, 1)
-emission_energy_multiplier = 0.32
+emission = Color(1, 1, 0.00784314, 1)
+emission_energy_multiplier = 0.29
 emission_texture = ExtResource("4_dua61")
 rim_tint = 0.0
 detail_mask = ExtResource("3_307v6")
@@ -91,11 +92,10 @@ particles_anim_loop = false
 [sub_resource type="PlaneMesh" id="PlaneMesh_bplgv"]
 lightmap_size_hint = Vector2i(2, 2)
 material = SubResource("StandardMaterial3D_shnx2")
-size = Vector2(0.5, 0.5)
+size = Vector2(0.125, 0.125)
 orientation = 2
 
 [node name="HealImpact" type="Node3D"]
-transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, 0)
 script = ExtResource("1_87ksq")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
@@ -104,7 +104,8 @@ lifetime = 3.0
 explosiveness = 1.0
 randomness = 0.43
 fixed_fps = 60
-visibility_aabb = AABB(-2, -2, -2, 4, 4, 4)
+visibility_aabb = AABB(-3, -3, -3, 6, 6, 6)
+local_coords = true
 trail_lifetime = 10.0
 process_material = SubResource("ParticleProcessMaterial_cu3mt")
 draw_pass_1 = SubResource("PlaneMesh_bplgv")

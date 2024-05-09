@@ -56,8 +56,7 @@ public partial class PlayerTargeting : ComposableScript
 		{
 			var scene = GD.Load<PackedScene>("res://effects/HealImpact/HealImpact.tscn");
 			var healImpact = scene.Instantiate() as ProjectileImpact;
-			GetTree().Root.AddChild(healImpact);
-			healImpact.GlobalPosition = GlobalPosition + new Vector3(0, 0.5f, 0);
+			healImpact.AttachForDuration(Parent, .3f, new Vector3(0, 0.25f, 0));
 
 			Parent.Health.Restore(10);
 		}
@@ -113,4 +112,5 @@ public partial class PlayerTargeting : ComposableScript
 	}
 
 	// (this curly brace is fine)
+	/*{*/
 }

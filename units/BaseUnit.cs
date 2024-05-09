@@ -1,7 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
 using Godot;
 
 namespace Project;
@@ -51,7 +49,6 @@ public abstract partial class BaseUnit : BaseComposable
 
 		IsAlive = false;
 		QueueFree();
-		AllUnits.Remove(this);
 		SignalBus.GetInstance(this).EmitSignal(SignalBus.SignalName.UnitDestroyed, this);
 	}
 
@@ -61,7 +58,12 @@ public abstract partial class BaseUnit : BaseComposable
 		base._Process(delta);
 	}
 
-	protected virtual void ProcessGravity(double delta)
+    public override void _ExitTree()
+    {
+        AllUnits.Remove(this);
+    }
+
+    protected virtual void ProcessGravity(double delta)
 	{
 		var verticalVelocity = Math.Max(TerminalVelocity, Velocity.Y - Gravity * (float)delta);
 
