@@ -90,14 +90,14 @@ public partial class PlayerTargeting : ComposableScript
 		}
 
 		// TODO: Better casting please
-		if (@event.IsActionPressed("Cast1", exactMatch: true))
-		{
-			var scene = GD.Load<PackedScene>("res://effects/FireballProjectile/FireballProjectile.tscn");
-			var fireball = scene.Instantiate() as Projectile;
-			GetTree().Root.AddChild(fireball);
-			fireball.GlobalPosition = GlobalPosition + new Vector3(0, 0.5f, 0);
-			fireball.TargetUnit = targetedUnit;
-		}
+		// if (@event.IsActionPressed("Cast1", exactMatch: true))
+		// {
+		// 	var scene = GD.Load<PackedScene>("res://effects/FireballProjectile/FireballProjectile.tscn");
+		// 	var fireball = scene.Instantiate() as Projectile;
+		// 	GetTree().Root.AddChild(fireball);
+		// 	fireball.GlobalPosition = GlobalPosition + new Vector3(0, 0.5f, 0);
+		// 	fireball.TargetUnit = targetedUnit;
+		// }
 	}
 
 	private void OnRepeatCastTimer()

@@ -50,7 +50,12 @@ grow_vertical = 1
 
 [node name="HostileTargeting" parent="." instance=ExtResource("3_jpa8i")]
 layout_mode = 1
-offset_top = 428.0
-offset_bottom = 427.68
+anchors_preset = 2
+anchor_top = 1.0
+anchor_right = 0.0
+anchor_bottom = 1.0
+offset_top = -134.0
+offset_right = 300.0
+offset_bottom = 0.0
 grow_horizontal = 1
-grow_vertical = 1
+grow_vertical = 0

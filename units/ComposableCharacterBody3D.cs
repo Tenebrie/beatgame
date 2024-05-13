@@ -3,7 +3,7 @@ using Godot;
 
 namespace Project;
 
-public abstract partial class BaseComposable : CharacterBody3D
+public abstract partial class ComposableCharacterBody3D : CharacterBody3D
 {
 	public List<ComposableScript> Composables = new();
 

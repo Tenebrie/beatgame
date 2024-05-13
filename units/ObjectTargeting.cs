@@ -95,7 +95,7 @@ public partial class ObjectTargetable : ComposableScript
 			selectionModel.SetRadius(selectionRadius);
 			Parent.AddChild(selectionModel);
 		}
-		else if (selectionModel != null)
+		else if (selectionModel != null && GodotObject.IsInstanceValid(selectionModel))
 		{
 			Parent.RemoveChild(selectionModel);
 			selectionModel.QueueFree();

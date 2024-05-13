@@ -10,7 +10,8 @@ public partial class PlayerController : BaseUnit
 	[Export] public NodePath _baseCameraPath = null;
 
 	public PlayerMovement Movement;
-	public PlayerTargeting PlayerTargeting;
+	public PlayerTargeting Targeting;
+	public PlayerSpellcasting Spellcasting;
 	public PlayerController()
 	{
 		FriendlyName = "The Player";
@@ -21,10 +22,14 @@ public partial class PlayerController : BaseUnit
 	public override void _Ready()
 	{
 		Movement = new PlayerMovement(this, _mainCameraPath, _baseCameraPath);
-		PlayerTargeting = new PlayerTargeting(this);
+		Targeting = new PlayerTargeting(this);
+		Spellcasting = new PlayerSpellcasting(this);
 
 		Composables.Add(Movement);
-		Composables.Add(PlayerTargeting);
+		Composables.Add(Targeting);
+		Composables.Add(Spellcasting);
+
+		Spellcasting.Bind("Cast1", new Fireball(this));
 
 		base._Ready();
 	}

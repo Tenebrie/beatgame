@@ -4,7 +4,7 @@ using Godot;
 
 namespace Project;
 
-public abstract partial class BaseUnit : BaseComposable
+public abstract partial class BaseUnit : ComposableCharacterBody3D
 {
 	public string FriendlyName = "Unnamed unit";
 	public ObjectResource Health;
@@ -58,12 +58,12 @@ public abstract partial class BaseUnit : BaseComposable
 		base._Process(delta);
 	}
 
-    public override void _ExitTree()
-    {
-        AllUnits.Remove(this);
-    }
+	public override void _ExitTree()
+	{
+		AllUnits.Remove(this);
+	}
 
-    protected virtual void ProcessGravity(double delta)
+	protected virtual void ProcessGravity(double delta)
 	{
 		var verticalVelocity = Math.Max(TerminalVelocity, Velocity.Y - Gravity * (float)delta);
 
