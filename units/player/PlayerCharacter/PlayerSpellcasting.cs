@@ -35,8 +35,15 @@ public class PlayerSpellcasting : ComposableScript
 			if (!binding)
 				return;
 
-			var isValid = cast.ValidateTarget(Parent.Targeting.targetedUnit, out var errorMessage);
-			if (!isValid)
+			var isValidTarget = cast.ValidateTarget(Parent.Targeting.targetedUnit, out var errorMessage);
+			if (!isValidTarget)
+			{
+				Debug.WriteLine(errorMessage);
+				return;
+			}
+
+			var isValidTiming = cast.ValidateTiming(out errorMessage);
+			if (!isValidTiming)
 			{
 				Debug.WriteLine(errorMessage);
 				return;

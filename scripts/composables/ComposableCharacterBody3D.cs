@@ -23,11 +23,6 @@ public abstract partial class ComposableCharacterBody3D : CharacterBody3D
 		}
 	}
 
-	public override void _PhysicsProcess(double delta)
-	{
-		base._PhysicsProcess(delta);
-	}
-
 	public override void _Input(InputEvent @event)
 	{
 		foreach (var composable in Composables)

@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using Godot;
 namespace Project;
 
@@ -10,7 +8,8 @@ public class BaseCast : ComposableScript
 
 	public CastTargetType TargetType = CastTargetType.None;
 	public List<UnitAlliance> TargetAlliances = new() { UnitAlliance.Player, UnitAlliance.Neutral, UnitAlliance.Hostile };
-	public float RecastTime = .25f;
+	public BeatTime CastTimings = BeatTime.One;
+	public float RecastTime = .1f;
 
 	public BaseCast(BaseUnit parent) : base(parent) { }
 
@@ -36,13 +35,6 @@ public class BaseCast : ComposableScript
 	{
 		errorMessage = null;
 
-		EnsureTimerExists();
-		if (!RecastTimerHandle.IsStopped())
-		{
-			errorMessage = "Cooling down";
-			return false;
-		}
-
 		if (TargetType == CastTargetType.Unit && target == null)
 		{
 			errorMessage = "Needs a target";
@@ -57,9 +49,30 @@ public class BaseCast : ComposableScript
 		return true;
 	}
 
+	public bool ValidateTiming(out string errorMessage)
+	{
+		errorMessage = null;
+
+		EnsureTimerExists();
+		if (!RecastTimerHandle.IsStopped())
+		{
+			errorMessage = "Cooling down";
+			return false;
+		}
+
+		if (!Music.Singleton.IsTimeOpen(CastTimings))
+		{
+			errorMessage = "Bad timing";
+			return false;
+		}
+
+		return true;
+	}
+
 	public void Cast(BaseUnit targetUnit)
 	{
-		RecastTimerHandle.Start(RecastTime);
+		if (RecastTime > 0)
+			RecastTimerHandle.Start(RecastTime);
 
 		if (TargetType == CastTargetType.None)
 			CastOnNone();

@@ -34,7 +34,7 @@ public partial class Projectile : Node3D
 			GetTree().Root.AddChild(impact);
 			impact.GlobalPosition = GlobalPosition;
 
-			TargetUnit.Health.Damage(30);
+			TargetUnit.Health.Damage(5);
 		}
 	}
 

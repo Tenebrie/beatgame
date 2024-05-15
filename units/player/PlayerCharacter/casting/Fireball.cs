@@ -9,7 +9,8 @@ public class Fireball : BaseCast
 	{
 		TargetType = CastTargetType.Unit;
 		TargetAlliances = new() { UnitAlliance.Hostile };
-		RecastTime = 1f;
+		CastTimings = BeatTime.One;
+		RecastTime = 0;
 	}
 
 	protected override void CastOnUnit(BaseUnit target)

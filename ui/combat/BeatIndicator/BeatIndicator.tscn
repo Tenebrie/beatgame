@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dow7u28082gac"]
+
+[ext_resource type="Script" path="res://ui/combat/BeatIndicator/BeatIndicator.cs" id="1_yg6p5"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_io60j"]
+radius = 100.0
+height = 200.0
+
+[node name="BeatIndicator" type="Control"]
+layout_mode = 3
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yg6p5")
+
+[node name="MainBeat" type="MeshInstance2D" parent="."]
+mesh = SubResource("SphereMesh_io60j")

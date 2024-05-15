@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://ct45j83s2dkvg"]
+[gd_scene load_steps=5 format=3 uid="uid://ct45j83s2dkvg"]
 
 [ext_resource type="Script" path="res://ui/combat/CombatUI.cs" id="1_mfjmv"]
 [ext_resource type="PackedScene" uid="uid://b7e338e230e43" path="res://ui/generic/ResourceBar/ResourceBar.tscn" id="2_vq7ps"]
 [ext_resource type="PackedScene" uid="uid://chjoxvtmac26d" path="res://ui/generic/UnitCard/UnitCardList.tscn" id="3_jpa8i"]
+[ext_resource type="PackedScene" uid="uid://dow7u28082gac" path="res://ui/combat/BeatIndicator/BeatIndicator.tscn" id="4_xlxos"]
 
 [node name="CombatUI" type="Control"]
 layout_mode = 3
@@ -58,4 +59,15 @@ offset_top = -134.0
 offset_right = 300.0
 offset_bottom = 0.0
 grow_horizontal = 1
+grow_vertical = 0
+
+[node name="BeatIndicator" parent="." instance=ExtResource("4_xlxos")]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_top = -248.0
+offset_bottom = -248.0
 grow_vertical = 0
