@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://cypyot5fi6to"]
+
+[ext_resource type="Script" path="res://ui/combat/CastBar/CastBar.cs" id="1_1wq67"]
+
+[node name="CastBar" type="Control"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 3
+anchor_right = 0.102
+anchor_bottom = 0.046
+offset_right = 0.159989
+offset_bottom = 0.319996
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1wq67")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+show_percentage = false

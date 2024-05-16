@@ -13,24 +13,30 @@ public partial class AccurateTimer : Node
 	[Signal]
 	public delegate void BeatWindowLockEventHandler();
 
-	private ulong startTime;
-	private ulong waitTime;
-	private ulong lastTickedAt;
-	private bool lockedState = true;
-	private ulong beatCount = 0;
+	public long Calibration = 0;
 
-	private ulong timingWindow = 125; // ms before and after beat
+	private long startTime;
+	private long waitTime;
+	private long lastTickedAt;
+	private bool lockedState = true;
+	private long beatCount = -1;
+
+	private long timingWindow = 125; // ms before and after beat
 
 	public void Start(float bpm)
 	{
-		waitTime = (ulong)Math.Floor(1 / bpm * 60 * 1000);
-		startTime = Time.Singleton.GetTicksMsec();
+		waitTime = (long)Math.Floor(1 / bpm * 60 * 1000);
+		startTime = (long)Time.Singleton.GetTicksMsec();
 		lastTickedAt = startTime;
 	}
 
 	public override void _Process(double delta)
 	{
-		var songTime = Time.Singleton.GetTicksMsec() - startTime;
+		var songTime = (long)Time.Singleton.GetTicksMsec() - startTime + Calibration;
+
+		if (songTime < 0)
+			return;
+
 		var locked = IsLockedAt(songTime);
 		if (lockedState && !locked)
 		{
@@ -51,12 +57,12 @@ public partial class AccurateTimer : Node
 		}
 	}
 
-	private ulong GetTickIndexAt(ulong time)
+	private long GetTickIndexAt(long time)
 	{
 		return time / waitTime;
 	}
 
-	private bool IsLockedAt(ulong time)
+	private bool IsLockedAt(long time)
 	{
 		var remainder = time % waitTime;
 		if (remainder < timingWindow || remainder > (waitTime - timingWindow))

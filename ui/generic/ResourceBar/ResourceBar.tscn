@@ -56,10 +56,10 @@ ProgressBar/styles/fill = SubResource("StyleBoxFlat_1t88a")
 
 [node name="ResourceBar" type="Control"]
 layout_mode = 3
-anchor_right = 0.091
+anchor_right = 0.102
 anchor_bottom = 0.039
-offset_right = 21.28
-offset_bottom = -0.120003
+offset_right = 0.159989
+offset_bottom = -0.120005
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_gq8v1")

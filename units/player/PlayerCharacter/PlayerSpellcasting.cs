@@ -6,7 +6,7 @@ namespace Project;
 
 public class PlayerSpellcasting : ComposableScript
 {
-	private readonly Dictionary<string, BaseCast> CastBindings = new();
+	public readonly Dictionary<string, BaseCast> CastBindings = new();
 
 	new readonly PlayerController Parent;
 
@@ -18,7 +18,7 @@ public class PlayerSpellcasting : ComposableScript
 	public void Bind(string input, BaseCast cast)
 	{
 		CastBindings.Add(input, cast);
-		Composables.Add(cast);
+		Parent.AddChild(cast);
 	}
 
 	public override void _Input(InputEvent @input)
@@ -26,9 +26,6 @@ public class PlayerSpellcasting : ComposableScript
 		foreach (var key in CastBindings.Keys)
 		{
 			if (!@input.IsAction(key, true))
-				continue;
-
-			if (!@Input.IsActionJustPressed(key))
 				continue;
 
 			var binding = CastBindings.TryGetValue(key, out var cast);
@@ -42,14 +39,27 @@ public class PlayerSpellcasting : ComposableScript
 				return;
 			}
 
-			var isValidTiming = cast.ValidateTiming(out errorMessage);
-			if (!isValidTiming)
+			if (@Input.IsActionJustPressed(key))
 			{
-				Debug.WriteLine(errorMessage);
-				return;
-			}
+				var isValidTiming = cast.ValidateTiming(out errorMessage);
+				if (!isValidTiming)
+				{
+					Debug.WriteLine(errorMessage);
+					return;
+				}
 
-			cast.Cast(Parent.Targeting.targetedUnit);
+				if (cast.InputType == CastInputType.Instant)
+					cast.CastPerform(Parent.Targeting.targetedUnit, true);
+				else if (cast.InputType == CastInputType.HoldRelease)
+					cast.CastBegin();
+			}
+			else if (@Input.IsActionJustReleased(key))
+			{
+				var isValidTiming = cast.ValidateTiming(out _);
+
+				if (cast.InputType == CastInputType.HoldRelease && cast.IsCasting)
+					cast.CastPerform(Parent.Targeting.targetedUnit, isValidTiming);
+			}
 		}
 	}
 }

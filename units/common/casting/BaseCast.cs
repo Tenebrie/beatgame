@@ -2,21 +2,29 @@ using System.Collections.Generic;
 using Godot;
 namespace Project;
 
-public class BaseCast : ComposableScript
+public partial class BaseCast : Node
 {
 	public Timer RecastTimerHandle;
+	public bool IsCasting;
+	public bool CastingWithValidTiming;
 
+	public CastInputType InputType = CastInputType.Instant;
+	public float HoldTime = 1; // beat
 	public CastTargetType TargetType = CastTargetType.None;
 	public List<UnitAlliance> TargetAlliances = new() { UnitAlliance.Player, UnitAlliance.Neutral, UnitAlliance.Hostile };
 	public BeatTime CastTimings = BeatTime.One;
 	public float RecastTime = .1f;
 
-	public BaseCast(BaseUnit parent) : base(parent) { }
+	public readonly BaseUnit Parent;
+
+	public BaseCast(BaseUnit parent)
+	{
+		Parent = parent;
+	}
 
 	public override void _ExitTree()
 	{
-		base._ExitTree();
-		Parent.GetTree().Root.RemoveChild(RecastTimerHandle);
+		RemoveChild(RecastTimerHandle);
 	}
 
 	private void EnsureTimerExists()
@@ -28,7 +36,7 @@ public class BaseCast : ComposableScript
 		{
 			OneShot = true
 		};
-		Parent.GetTree().Root.AddChild(RecastTimerHandle);
+		AddChild(RecastTimerHandle);
 	}
 
 	public bool ValidateTarget(BaseUnit target, out string errorMessage)
@@ -69,8 +77,17 @@ public class BaseCast : ComposableScript
 		return true;
 	}
 
-	public void Cast(BaseUnit targetUnit)
+	public void CastBegin()
 	{
+		IsCasting = true;
+		SignalBus.GetInstance(this).EmitSignal(SignalBus.SignalName.CastStarted, this);
+	}
+
+	public void CastPerform(BaseUnit targetUnit, bool timingValid)
+	{
+		IsCasting = false;
+		SignalBus.GetInstance(this).EmitSignal(SignalBus.SignalName.CastPerformed, this);
+
 		if (RecastTime > 0)
 			RecastTimerHandle.Start(RecastTime);
 

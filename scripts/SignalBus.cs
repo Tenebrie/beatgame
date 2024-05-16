@@ -1,6 +1,3 @@
-using System;
-using System.Reflection;
-using System.Reflection.Metadata;
 using Godot;
 
 namespace Project;
@@ -18,6 +15,12 @@ public partial class SignalBus : Node
 	public delegate void ResourceChangedEventHandler(BaseUnit unit, ObjectResourceType type, float value);
 	[Signal]
 	public delegate void MaxResourceChangedEventHandler(BaseUnit unit, ObjectResourceType type, float value);
+	[Signal]
+	public delegate void CastStartedEventHandler(BaseCast cast);
+	[Signal]
+	public delegate void CastCancelledEventHandler(BaseCast cast);
+	[Signal]
+	public delegate void CastPerformedEventHandler(BaseCast cast);
 
 	public static SignalBus GetInstance(ComposableScript node)
 	{
