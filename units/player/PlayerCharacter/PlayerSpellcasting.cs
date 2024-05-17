@@ -23,6 +23,7 @@ public class PlayerSpellcasting : ComposableScript
 
 	public override void _Input(InputEvent @input)
 	{
+		var beatIndex = Music.Singleton.GetBeatIndex();
 		foreach (var key in CastBindings.Keys)
 		{
 			if (!@input.IsAction(key, true))
@@ -49,7 +50,7 @@ public class PlayerSpellcasting : ComposableScript
 				}
 
 				if (cast.InputType == CastInputType.Instant)
-					cast.CastPerform(Parent.Targeting.targetedUnit, true);
+					cast.CastPerform(Parent.Targeting.targetedUnit);
 				else if (cast.InputType == CastInputType.HoldRelease)
 					cast.CastBegin();
 			}
@@ -58,7 +59,12 @@ public class PlayerSpellcasting : ComposableScript
 				var isValidTiming = cast.ValidateTiming(out _);
 
 				if (cast.InputType == CastInputType.HoldRelease && cast.IsCasting)
-					cast.CastPerform(Parent.Targeting.targetedUnit, isValidTiming);
+				{
+					if (isValidTiming && beatIndex == cast.CastStartedAt + cast.HoldTime)
+						cast.CastPerform(Parent.Targeting.targetedUnit);
+					else
+						cast.CastFail(Parent.Targeting.targetedUnit);
+				}
 			}
 		}
 	}

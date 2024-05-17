@@ -20,6 +20,7 @@ public partial class PlayerTargeting : ComposableScript
 	{
 		SignalBus.GetInstance(this).ObjectHovered += OnObjectHovered;
 		SignalBus.GetInstance(this).ObjectTargeted += OnObjectTargeted;
+		SignalBus.GetInstance(this).ObjectUntargeted += OnObjectUntargeted;
 		SignalBus.GetInstance(this).UnitDestroyed += OnUnitDestroyed;
 	}
 
@@ -27,6 +28,7 @@ public partial class PlayerTargeting : ComposableScript
 	{
 		SignalBus.GetInstance(this).ObjectHovered -= OnObjectHovered;
 		SignalBus.GetInstance(this).ObjectTargeted -= OnObjectTargeted;
+		SignalBus.GetInstance(this).ObjectUntargeted -= OnObjectUntargeted;
 		SignalBus.GetInstance(this).UnitDestroyed -= OnUnitDestroyed;
 	}
 
@@ -40,6 +42,11 @@ public partial class PlayerTargeting : ComposableScript
 		targetedUnit = unit;
 	}
 
+	private void OnObjectUntargeted()
+	{
+		targetedUnit = null;
+	}
+
 	private void OnUnitDestroyed(BaseUnit unit)
 	{
 		if (unit == targetedUnit)
@@ -48,17 +55,47 @@ public partial class PlayerTargeting : ComposableScript
 			hoveredUnit = null;
 	}
 
-	// TODO: Refactor everything below this line
-
 	public override void _Input(InputEvent @event)
 	{
+		if (@event.IsActionPressed("TabTargetNext", exactMatch: true))
+		{
+			var enemyUnits = BaseUnit.AllUnits.FindAll(unit => unit.Alliance.HostileTo(Parent.Alliance));
+			if (enemyUnits.Count == 0)
+				return;
+
+			var indexOfCurrentTarget = enemyUnits.IndexOf(targetedUnit);
+			if (indexOfCurrentTarget < enemyUnits.Count - 1)
+			{
+				var nextUnit = enemyUnits[indexOfCurrentTarget + 1];
+				nextUnit.Targetable.MakeTargeted();
+			}
+			else
+			{
+				enemyUnits[0].Targetable.MakeTargeted();
+			}
+		}
+		if (@event.IsActionPressed("TabTargetPrevious", exactMatch: true))
+		{
+			var enemyUnits = BaseUnit.AllUnits.FindAll(unit => unit.Alliance.HostileTo(Parent.Alliance));
+			if (enemyUnits.Count == 0)
+				return;
+
+			var indexOfCurrentTarget = enemyUnits.IndexOf(targetedUnit);
+			if (indexOfCurrentTarget > 0)
+			{
+				var nextUnit = enemyUnits[indexOfCurrentTarget - 1];
+				nextUnit.Targetable.MakeTargeted();
+			}
+			else
+			{
+				enemyUnits[^1].Targetable.MakeTargeted();
+			}
+		}
+
+		// TODO: Refactor everything below this line
 		if (@event.IsActionPressed("ShiftCast1", exactMatch: true))
 		{
-			var scene = GD.Load<PackedScene>("res://effects/HealImpact/HealImpact.tscn");
-			var healImpact = scene.Instantiate() as ProjectileImpact;
-			healImpact.AttachForDuration(Parent, .3f, new Vector3(0, 0.25f, 0));
-
-			Parent.Health.Restore(10);
+			
 		}
 
 		if (@event.IsActionPressed("Cast2", exactMatch: true))

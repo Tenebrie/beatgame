@@ -14,25 +14,25 @@ public partial class AccurateTimer : Node
 	public delegate void BeatWindowLockEventHandler();
 
 	public long Calibration = 0;
+	public const long TimingWindow = 100; // ms before and after beat
 
 	private long startTime;
 	private long waitTime;
-	private long lastTickedAt;
+	public long LastTickedAt;
 	private bool lockedState = true;
 	private long beatCount = -1;
-
-	private long timingWindow = 125; // ms before and after beat
 
 	public void Start(float bpm)
 	{
 		waitTime = (long)Math.Floor(1 / bpm * 60 * 1000);
 		startTime = (long)Time.Singleton.GetTicksMsec();
-		lastTickedAt = startTime;
+		LastTickedAt = startTime;
 	}
 
 	public override void _Process(double delta)
 	{
-		var songTime = (long)Time.Singleton.GetTicksMsec() - startTime + Calibration;
+		var time = (long)Time.Singleton.GetTicksMsec();
+		var songTime = time - startTime + Calibration;
 
 		if (songTime < 0)
 			return;
@@ -53,11 +53,12 @@ public partial class AccurateTimer : Node
 		if (tickIndex > beatCount)
 		{
 			beatCount = tickIndex;
+			LastTickedAt = time;
 			EmitSignal(SignalName.Timeout);
 		}
 	}
 
-	private long GetTickIndexAt(long time)
+	public long GetTickIndexAt(long time)
 	{
 		return time / waitTime;
 	}
@@ -65,7 +66,7 @@ public partial class AccurateTimer : Node
 	private bool IsLockedAt(long time)
 	{
 		var remainder = time % waitTime;
-		if (remainder < timingWindow || remainder > (waitTime - timingWindow))
+		if (remainder < TimingWindow || remainder > (waitTime - TimingWindow))
 		{
 			return false;
 		}

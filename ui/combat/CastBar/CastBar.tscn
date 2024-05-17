@@ -1,6 +1,26 @@
-[gd_scene load_steps=2 format=3 uid="uid://cypyot5fi6to"]
+[gd_scene load_steps=6 format=3 uid="uid://cypyot5fi6to"]
 
 [ext_resource type="Script" path="res://ui/combat/CastBar/CastBar.cs" id="1_1wq67"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sia8f"]
+bg_color = Color(0.152941, 0.152941, 0.152941, 0.498039)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kivl2"]
+bg_color = Color(0.980925, 0.802389, 7.97175e-07, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5t1tu"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bjqdj"]
+bg_color = Color(0, 0.988235, 0.294118, 0.494118)
 
 [node name="CastBar" type="Control"]
 custom_minimum_size = Vector2(100, 50)
@@ -20,4 +40,25 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_sia8f")
+theme_override_styles/fill = SubResource("StyleBoxFlat_kivl2")
+step = 2.08165e-12
+value = 50.0
+allow_lesser = true
+show_percentage = false
+
+[node name="GreenZone" type="ProgressBar" parent="."]
+custom_minimum_size = Vector2(5, 2.08165e-12)
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -25.0
+offset_right = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_5t1tu")
+theme_override_styles/fill = SubResource("StyleBoxFlat_bjqdj")
+value = 100.0
 show_percentage = false

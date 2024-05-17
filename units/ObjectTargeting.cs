@@ -103,11 +103,16 @@ public partial class ObjectTargetable : ComposableScript
 		}
 	}
 
+	public void MakeTargeted()
+	{
+		SignalBus.GetInstance(Parent).EmitSignal(SignalBus.SignalName.ObjectTargeted, Parent);
+	}
+
 	private void OnInputEvent(Node camera, InputEvent @event, Vector3 position, Vector3 normal, long shapeIdx)
 	{
 		if (@event.IsActionPressed("MouseInteract") && !Input.IsActionPressed("HardCameraMove"))
 		{
-			SignalBus.GetInstance(Parent).EmitSignal(SignalBus.SignalName.ObjectTargeted, Parent);
+			MakeTargeted();
 		}
 	}
 }

@@ -6,7 +6,7 @@ public partial class BaseCast : Node
 {
 	public Timer RecastTimerHandle;
 	public bool IsCasting;
-	public bool CastingWithValidTiming;
+	public long CastStartedAt; // beat index
 
 	public CastInputType InputType = CastInputType.Instant;
 	public float HoldTime = 1; // beat
@@ -14,6 +14,7 @@ public partial class BaseCast : Node
 	public List<UnitAlliance> TargetAlliances = new() { UnitAlliance.Player, UnitAlliance.Neutral, UnitAlliance.Hostile };
 	public BeatTime CastTimings = BeatTime.One;
 	public float RecastTime = .1f;
+	public bool CastOnFail = true;
 
 	public readonly BaseUnit Parent;
 
@@ -77,17 +78,33 @@ public partial class BaseCast : Node
 		return true;
 	}
 
+	// HoldRelease cast button is pressed down
 	public void CastBegin()
 	{
 		IsCasting = true;
+		CastStartedAt = Music.Singleton.GetBeatIndex();
 		SignalBus.GetInstance(this).EmitSignal(SignalBus.SignalName.CastStarted, this);
 	}
 
-	public void CastPerform(BaseUnit targetUnit, bool timingValid)
+	// Instant cast press, or HoldRelease on button release at the right timing
+	public virtual void CastPerform(BaseUnit targetUnit)
+	{
+		SignalBus.GetInstance(this).EmitSignal(SignalBus.SignalName.CastPerformed, this);
+		CastPerformInternal(targetUnit);
+	}
+
+	// HoldRelease on button release at the bad timing
+	public virtual void CastFail(BaseUnit targetUnit)
+	{
+		SignalBus.GetInstance(this).EmitSignal(SignalBus.SignalName.CastFailed, this);
+
+		if (CastOnFail)
+			CastPerformInternal(targetUnit);
+	}
+
+	private void CastPerformInternal(BaseUnit targetUnit)
 	{
 		IsCasting = false;
-		SignalBus.GetInstance(this).EmitSignal(SignalBus.SignalName.CastPerformed, this);
-
 		if (RecastTime > 0)
 			RecastTimerHandle.Start(RecastTime);
 

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -70,6 +71,26 @@ public partial class Music : Node
 		var delay = (float)SongDelay / 1000;
 		await ToSignal(GetTree().CreateTimer(delay), "timeout");
 		AudioPlayer.Play();
+	}
+
+	public long GetBeatIndex()
+	{
+		return BeatTimer.GetTickIndexAt((long)Time.Singleton.GetTicksMsec());
+	}
+
+	// Returns the time (in ms) to the nearest beat
+	public long GetCurrentBeatOffset(BeatTime beatTime)
+	{
+		if (beatTime != BeatTime.One)
+			throw new NotImplementedException();
+
+		var beatDuration = (long)(1f / Bpm * 60 * 1000);
+		var currentTime = (long)Time.Singleton.GetTicksMsec();
+		var lastTickedAt = BeatTimer.LastTickedAt;
+		if (currentTime - lastTickedAt < lastTickedAt + beatDuration - currentTime)
+			return currentTime - lastTickedAt;
+		else
+			return -(lastTickedAt + beatDuration - currentTime);
 	}
 
 	private static Music instance = null;

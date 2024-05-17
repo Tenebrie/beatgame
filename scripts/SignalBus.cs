@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using Godot;
 
 namespace Project;
@@ -12,6 +13,8 @@ public partial class SignalBus : Node
 	[Signal]
 	public delegate void ObjectTargetedEventHandler(BaseUnit unit);
 	[Signal]
+	public delegate void ObjectUntargetedEventHandler();
+	[Signal]
 	public delegate void ResourceChangedEventHandler(BaseUnit unit, ObjectResourceType type, float value);
 	[Signal]
 	public delegate void MaxResourceChangedEventHandler(BaseUnit unit, ObjectResourceType type, float value);
@@ -21,6 +24,8 @@ public partial class SignalBus : Node
 	public delegate void CastCancelledEventHandler(BaseCast cast);
 	[Signal]
 	public delegate void CastPerformedEventHandler(BaseCast cast);
+	[Signal]
+	public delegate void CastFailedEventHandler(BaseCast cast);
 
 	public static SignalBus GetInstance(ComposableScript node)
 	{
@@ -30,5 +35,13 @@ public partial class SignalBus : Node
 	public static SignalBus GetInstance(Node node)
 	{
 		return node.GetNode<SignalBus>("/root/SignalBus");
+	}
+
+	public override void _Input(InputEvent @event)
+	{
+		if (@event.IsActionPressed("MouseInteract") && !Input.IsActionPressed("HardCameraMove"))
+		{
+			EmitSignal(SignalName.ObjectUntargeted);
+		}
 	}
 }
