@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Reflection;
 using Godot;
 
@@ -9,6 +10,7 @@ public partial class CombatUI : Control
 	private UnitCardList HostileUnitList;
 	public override void _Ready()
 	{
+		GetTree().Root.ContentScaleFactor = DisplayServer.ScreenGetScale();
 		HealthBar = GetNode<ResourceBar>("HealthBar");
 		AlliedUnitList = GetNode<UnitCardList>("AllyTargeting");
 		HostileUnitList = GetNode<UnitCardList>("HostileTargeting");

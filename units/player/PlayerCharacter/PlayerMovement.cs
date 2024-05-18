@@ -156,7 +156,7 @@ public partial class PlayerMovement : ComposableScript
 		if (Input.IsActionPressed("HardCameraMove"))
 		{
 			var mouseDelta = mousePos - hardCameraMoveStart;
-			Input.WarpMouse(hardCameraMoveStart);
+			Input.WarpMouse(hardCameraMoveStart * GetTree().Root.ContentScaleFactor);
 			Parent.Rotate(Vector3.Up, -mouseDelta.X / 500);
 			cameraHeight = Math.Max(0, Math.Min(cameraHeight + mouseDelta.Y / 500, 3));
 		}

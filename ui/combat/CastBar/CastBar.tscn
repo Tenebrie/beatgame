@@ -23,7 +23,7 @@ bg_color = Color(0.6, 0.6, 0.6, 0)
 bg_color = Color(0, 0.988235, 0.294118, 0.494118)
 
 [node name="CastBar" type="Control"]
-custom_minimum_size = Vector2(100, 50)
+custom_minimum_size = Vector2(50, 25)
 layout_mode = 3
 anchor_right = 0.102
 anchor_bottom = 0.046
