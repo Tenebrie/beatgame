@@ -30,19 +30,29 @@ public partial class ResourceBar : Control
 		NegativeTimer = GetNode<Timer>("NegativeTimer");
 		PositiveTimer.OneShot = true;
 		NegativeTimer.OneShot = true;
+		PositiveTimer.WaitTime = 1;
+		NegativeTimer.WaitTime = 1;
 		PositiveComboLabel = GetNode<Label>("PositiveComboLabel");
 		NegativeComboLabel = GetNode<Label>("NegativeComboLabel");
+		SignalBus.Singleton.TrackStarted += OnTrackStarted;
+	}
+
+	private void OnTrackStarted(MusicTrack track)
+	{
+		var waitTime = track.BeatDuration * 3;
+		PositiveTimer.WaitTime = waitTime;
+		NegativeTimer.WaitTime = waitTime;
 	}
 
 	public void SetCurrent(float value)
 	{
 		if (value > CurrentValue)
 		{
-			PositiveTimer.Start(0.8);
+			PositiveTimer.Start();
 		}
 		else if (value < CurrentValue)
 		{
-			NegativeTimer.Start(0.8);
+			NegativeTimer.Start();
 		}
 
 		CurrentValue = value;

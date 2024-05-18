@@ -18,10 +18,14 @@ public partial class JumpingDummyEnemy : BasicEnemyController
 	Timer raisingTimer;
 	Timer restingTimer;
 
+	public JumpingDummyEnemy()
+	{
+		FriendlyName = "Jumping Dummy Enemy";
+	}
+
 	public override void _Ready()
 	{
 		base._Ready();
-		FriendlyName = "Dummy Enemy";
 
 		raisingTimer = GetNode<Timer>("RaisingTimer");
 		raisingTimer.Timeout += OnRaisingTimerTick;

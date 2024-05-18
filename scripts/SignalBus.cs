@@ -1,4 +1,3 @@
-using System.Diagnostics;
 using Godot;
 
 namespace Project;
@@ -26,6 +25,8 @@ public partial class SignalBus : Node
 	public delegate void CastPerformedEventHandler(BaseCast cast);
 	[Signal]
 	public delegate void CastFailedEventHandler(BaseCast cast);
+	[Signal]
+	public delegate void TrackStartedEventHandler(MusicTrack track);
 
 	public static SignalBus GetInstance(ComposableScript node)
 	{
@@ -37,11 +38,22 @@ public partial class SignalBus : Node
 		return node.GetNode<SignalBus>("/root/SignalBus");
 	}
 
-	public override void _Input(InputEvent @event)
+    public override void _EnterTree()
+    {
+        instance = this;
+    }
+
+    public override void _Input(InputEvent @event)
 	{
 		if (@event.IsActionPressed("MouseInteract") && !Input.IsActionPressed("HardCameraMove"))
 		{
 			EmitSignal(SignalName.ObjectUntargeted);
 		}
+	}
+
+	private static SignalBus instance = null;
+	public static SignalBus Singleton
+	{
+		get => instance;
 	}
 }

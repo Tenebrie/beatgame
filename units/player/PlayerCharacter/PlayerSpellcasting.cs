@@ -23,7 +23,7 @@ public class PlayerSpellcasting : ComposableScript
 
 	public override void _Input(InputEvent @input)
 	{
-		var beatIndex = Music.Singleton.GetBeatIndex();
+		var beatIndex = Music.Singleton.GetNearestBeatIndex();
 		foreach (var key in CastBindings.Keys)
 		{
 			if (!@input.IsAction(key, true))

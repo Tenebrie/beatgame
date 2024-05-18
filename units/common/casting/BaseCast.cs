@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Diagnostics;
 using Godot;
 namespace Project;
 
@@ -82,7 +83,7 @@ public partial class BaseCast : Node
 	public void CastBegin()
 	{
 		IsCasting = true;
-		CastStartedAt = Music.Singleton.GetBeatIndex();
+		CastStartedAt = Music.Singleton.GetNearestBeatIndex();
 		SignalBus.GetInstance(this).EmitSignal(SignalBus.SignalName.CastStarted, this);
 	}
 

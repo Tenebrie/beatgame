@@ -1,13 +1,13 @@
-using Godot;
-using Project;
-using System;
 using System.Diagnostics;
+using Godot;
 
 namespace Project;
 
 public partial class CastBar : Control
 {
 	private BaseCast ActiveCast;
+	private long CastStartedAt;
+	private long CastEndsAt;
 	private bool LastCastTimingValid;
 
 	private ProgressBar Bar;
@@ -29,7 +29,9 @@ public partial class CastBar : Control
 
 		ActiveCast = cast;
 		Bar.Value = (float)Music.Singleton.GetCurrentBeatOffset(BeatTime.One) / 1000;
-		Bar.MaxValue = 2 * cast.HoldTime * (1f / Music.Singleton.Bpm * 60);
+		Bar.MaxValue = 2 * cast.HoldTime * (1f / Music.Singleton.BeatsPerMinute * 60);
+		CastStartedAt = (long)Time.Singleton.GetTicksMsec() - Music.Singleton.GetCurrentBeatOffset(BeatTime.One);
+		CastEndsAt = CastStartedAt + (long)(Bar.MaxValue * 1000);
 
 		Bar.SetFillColor(new Color(255, 255, 75, 1));
 		Bar.SetBackgroundOpacity(.5f);
@@ -47,6 +49,7 @@ public partial class CastBar : Control
 			return;
 
 		ActiveCast = null;
+		UpdateBarValue();
 
 		Bar.SetFillColor(new Color(0, 255, 0, Bar.GetFillColor().A));
 	}
@@ -57,6 +60,7 @@ public partial class CastBar : Control
 			return;
 
 		ActiveCast = null;
+		UpdateBarValue();
 
 		Bar.SetFillColor(new Color(255, 0, 0, Bar.GetFillColor().A));
 	}
@@ -65,12 +69,18 @@ public partial class CastBar : Control
 	{
 		if (ActiveCast != null)
 		{
-			Bar.Value += delta;
+			UpdateBarValue();
 			return;
 		}
 
 		Bar.SetFillOpacity(Bar.GetFillOpacity() - delta);
 		Bar.SetBackgroundOpacity(Bar.GetBackgroundOpacity() - delta);
 		GreenZone.SetFillOpacity(GreenZone.GetFillOpacity() - delta);
+	}
+
+	private void UpdateBarValue()
+	{
+		var time = (long)Time.Singleton.GetTicksMsec();
+		Bar.Value = (float)(time - CastStartedAt) / (CastEndsAt - CastStartedAt) * Bar.MaxValue;
 	}
 }

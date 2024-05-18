@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Diagnostics;
 
 namespace Project;
 public partial class BeatBar : Control
@@ -15,6 +16,10 @@ public partial class BeatBar : Control
 	public bool Mirrored;
 	public bool CleaningUp;
 	public Color DrawColor = new(255, 255, 255, 0);
+
+	public long StartsAt;
+	public long EndsAt;
+
 	public BeatBar(bool mirrored)
 	{
 		Mirrored = mirrored;
@@ -39,6 +44,14 @@ public partial class BeatBar : Control
 
 	public override void _Process(double delta)
 	{
+		if (VisualState == State.Spawning || VisualState == State.Normal)
+		{
+			float dir = Mirrored ? 1 : -1;
+			var time = (long)Time.Singleton.GetTicksMsec();
+			var pos = 500 * (1 - (float)(time - StartsAt) / (EndsAt - StartsAt));
+			Position = new Vector2(pos * dir, 0);
+		}
+
 		if (VisualState == State.Spawning)
 		{
 			DrawColor = new Color(DrawColor.R, DrawColor.G, DrawColor.B, DrawColor.A + 1 * (float)delta);

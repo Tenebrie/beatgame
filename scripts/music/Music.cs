@@ -10,15 +10,17 @@ public partial class Music : Node
 {
 	public readonly long SongDelay = 3000; // ms
 
-	public float Bpm;
+	public float BeatsPerMinute
+	{
+		get => CurrentTrack.BeatsPerMinute;
+	}
 	public bool IsStarted = false;
 
 	public AccurateTimer BeatTimer;
 	public AccurateTimer VisualBeatTimer;
-	public AudioStreamOggVorbis AudioStream = AudioStreamOggVorbis.LoadFromFile("res://assets/music/t14d-spaceship.ogg");
-	public AudioStreamPlayer AudioPlayer;
 
 	private BeatTime BeatTimeState = BeatTime.Free;
+	private MusicTrack CurrentTrack;
 
 	public override void _EnterTree()
 	{
@@ -30,8 +32,9 @@ public partial class Music : Node
 		VisualBeatTimer = new AccurateTimer();
 		AddChild(VisualBeatTimer);
 		VisualBeatTimer.Calibration = SongDelay;
-		AudioPlayer = new();
-		AddChild(AudioPlayer);
+
+		CurrentTrack = new MusicTrackSpaceship();
+		AddChild(CurrentTrack);
 
 		// Ensure no timer starts in the future
 		List<AccurateTimer> timers = new() { BeatTimer, VisualBeatTimer };
@@ -55,27 +58,22 @@ public partial class Music : Node
 		Start();
 	}
 
-	public void Start()
+	public async void Start()
 	{
-		AudioPlayer.Stream = AudioStream;
-		PlayMusicAfterDelay();
+		await ToSignal(GetTree().CreateTimer(0.5f), "timeout");
+		CurrentTrack.PlayAfterDelay((float)SongDelay / 1000);
 
-		Bpm = 120;
 		IsStarted = true;
-		BeatTimer.Start(Bpm);
-		VisualBeatTimer.Start(Bpm);
+		BeatTimer.Start(BeatsPerMinute);
+		VisualBeatTimer.Start(BeatsPerMinute);
+
+		var boss = (TestBoss)GetTree().Root.FindChild("TestBoss", true, false);
+		AddChild(new TestBossTimeline(boss));
 	}
 
-	public async void PlayMusicAfterDelay()
+	public long GetNearestBeatIndex()
 	{
-		var delay = (float)SongDelay / 1000;
-		await ToSignal(GetTree().CreateTimer(delay), "timeout");
-		AudioPlayer.Play();
-	}
-
-	public long GetBeatIndex()
-	{
-		return BeatTimer.GetTickIndexAt((long)Time.Singleton.GetTicksMsec());
+		return BeatTimer.GetTickIndexAtEngineTime();
 	}
 
 	// Returns the time (in ms) to the nearest beat
@@ -84,7 +82,7 @@ public partial class Music : Node
 		if (beatTime != BeatTime.One)
 			throw new NotImplementedException();
 
-		var beatDuration = (long)(1f / Bpm * 60 * 1000);
+		var beatDuration = (long)(1f / BeatsPerMinute * 60 * 1000);
 		var currentTime = (long)Time.Singleton.GetTicksMsec();
 		var lastTickedAt = BeatTimer.LastTickedAt;
 		if (currentTime - lastTickedAt < lastTickedAt + beatDuration - currentTime)
@@ -96,9 +94,6 @@ public partial class Music : Node
 	private static Music instance = null;
 	public static Music Singleton
 	{
-		get
-		{
-			return instance;
-		}
+		get => instance;
 	}
 }

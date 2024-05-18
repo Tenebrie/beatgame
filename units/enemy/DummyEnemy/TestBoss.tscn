@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://boie4o0ks8bw1"]
+
+[ext_resource type="PackedScene" uid="uid://dd8hi213iqvva" path="res://units/enemy/DummyEnemy/DummyEnemy.tscn" id="1_3e1ti"]
+[ext_resource type="Script" path="res://units/enemy/DummyEnemy/TestBoss.cs" id="2_2251c"]
+
+[node name="TestBoss" instance=ExtResource("1_3e1ti")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0.146725, 0)
+script = ExtResource("2_2251c")

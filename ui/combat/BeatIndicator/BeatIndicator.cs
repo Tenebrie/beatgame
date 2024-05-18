@@ -27,29 +27,25 @@ public partial class BeatIndicator : Control
 
 	public void OnVisualBeat()
 	{
-		// MainBeat.Scale = new Vector2(1, 1);
+		var time = (long)Time.Singleton.GetTicksMsec();
+		var endsAt = time + Music.Singleton.SongDelay;
+
 		var barGroup = new List<BeatBar>();
-		var rightBar = new BeatBar(true);
+		var rightBar = new BeatBar(true)
+		{
+			StartsAt = time,
+			EndsAt = endsAt,
+		};
 		AddChild(rightBar);
-		rightBar.Position = new Vector2(500, 0);
 		barGroup.Add(rightBar);
-		var leftBar = new BeatBar(false);
+
+		var leftBar = new BeatBar(false)
+		{
+			StartsAt = time,
+			EndsAt = endsAt,
+		};
 		AddChild(leftBar);
-		leftBar.Position = new Vector2(-500, 0);
 		barGroup.Add(leftBar);
 		BarGroups.Add(barGroup);
-	}
-
-	public override void _Process(double delta)
-	{
-		float speed = 1000 * (float)500 / Music.Singleton.SongDelay * (float)delta;
-		foreach (var barGroup in BarGroups)
-		{
-			foreach (var bar in barGroup)
-			{
-				float dir = -Math.Sign(bar.Position.X);
-				bar.Position = new Vector2(bar.Position.X + speed * dir, bar.Position.Y);
-			}
-		}
 	}
 }
