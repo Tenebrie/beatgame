@@ -22,7 +22,7 @@ public partial class MusicTrack : Node
 	public async void PlayAfterDelay(float delay)
 	{
 		await ToSignal(GetTree().CreateTimer(delay), "timeout");
-		SignalBus.GetInstance(this).EmitSignal(SignalBus.SignalName.TrackStarted, this);
+		SignalBus.Singleton.EmitSignal(SignalBus.SignalName.TrackStarted, this);
 		AudioPlayer.Play();
 	}
 

@@ -17,9 +17,9 @@ public partial class CastBar : Control
 	{
 		Bar = GetNode<ProgressBar>("ProgressBar");
 		GreenZone = GetNode<ProgressBar>("GreenZone");
-		SignalBus.GetInstance(this).CastStarted += OnCastStarted;
-		SignalBus.GetInstance(this).CastPerformed += OnCastPerformed;
-		SignalBus.GetInstance(this).CastFailed += OnCastFailed;
+		SignalBus.Singleton.CastStarted += OnCastStarted;
+		SignalBus.Singleton.CastPerformed += OnCastPerformed;
+		SignalBus.Singleton.CastFailed += OnCastFailed;
 	}
 
 	public void OnCastStarted(BaseCast cast)

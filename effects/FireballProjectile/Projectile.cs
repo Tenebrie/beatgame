@@ -6,6 +6,7 @@ public partial class Projectile : Node3D
 {
 	public BaseUnit TargetUnit;
 	public GpuParticles3D Emitter;
+	public float ImpactDamage = 5;
 
 	public override void _Ready()
 	{
@@ -34,7 +35,7 @@ public partial class Projectile : Node3D
 			GetTree().Root.AddChild(impact);
 			impact.GlobalPosition = GlobalPosition;
 
-			TargetUnit.Health.Damage(5);
+			TargetUnit.Health.Damage(ImpactDamage);
 		}
 	}
 

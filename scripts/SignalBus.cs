@@ -28,22 +28,13 @@ public partial class SignalBus : Node
 	[Signal]
 	public delegate void TrackStartedEventHandler(MusicTrack track);
 
-	public static SignalBus GetInstance(ComposableScript node)
+
+	public override void _EnterTree()
 	{
-		return node.Parent.GetNode<SignalBus>("/root/SignalBus");
+		instance = this;
 	}
 
-	public static SignalBus GetInstance(Node node)
-	{
-		return node.GetNode<SignalBus>("/root/SignalBus");
-	}
-
-    public override void _EnterTree()
-    {
-        instance = this;
-    }
-
-    public override void _Input(InputEvent @event)
+	public override void _Input(InputEvent @event)
 	{
 		if (@event.IsActionPressed("MouseInteract") && !Input.IsActionPressed("HardCameraMove"))
 		{

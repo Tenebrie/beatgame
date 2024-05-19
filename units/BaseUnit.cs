@@ -8,6 +8,7 @@ public abstract partial class BaseUnit : ComposableCharacterBody3D
 {
 	public string FriendlyName = "Unnamed unit";
 	public ObjectResource Health;
+	public ObjectResource Mana;
 	public ObjectTargetable Targetable;
 
 	public UnitAlliance Alliance = UnitAlliance.Neutral;
@@ -24,9 +25,11 @@ public abstract partial class BaseUnit : ComposableCharacterBody3D
 	public BaseUnit()
 	{
 		Health = new ObjectResource(this, ObjectResourceType.Health, max: 100);
+		Mana = new ObjectResource(this, ObjectResourceType.Mana, max: 0);
 		Targetable = new ObjectTargetable(this);
 
 		Composables.Add(Health);
+		Composables.Add(Mana);
 		Composables.Add(Targetable);
 	}
 
@@ -36,10 +39,10 @@ public abstract partial class BaseUnit : ComposableCharacterBody3D
 	{
 		base._Ready();
 
-		SignalBus.GetInstance(this).ResourceChanged += OnResourceChanged;
+		SignalBus.Singleton.ResourceChanged += OnResourceChanged;
 
 		AllUnits.Add(this);
-		SignalBus.GetInstance(this).EmitSignal(SignalBus.SignalName.UnitCreated, this);
+		SignalBus.Singleton.EmitSignal(SignalBus.SignalName.UnitCreated, this);
 	}
 
 	private void OnResourceChanged(BaseUnit unit, ObjectResourceType type, float value)
@@ -49,7 +52,7 @@ public abstract partial class BaseUnit : ComposableCharacterBody3D
 
 		IsAlive = false;
 		QueueFree();
-		SignalBus.GetInstance(this).EmitSignal(SignalBus.SignalName.UnitDestroyed, this);
+		SignalBus.Singleton.EmitSignal(SignalBus.SignalName.UnitDestroyed, this);
 	}
 
 	public override void _Process(double delta)

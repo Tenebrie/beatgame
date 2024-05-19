@@ -1,0 +1,40 @@
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://bujrbuaekms73"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j3t6x"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0.101961, 0.101961, 0.101961, 0.556863)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+corner_detail = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p5qev"]
+bg_color = Color(0.635294, 0.611765, 0.0745098, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nykse"]
+bg_color = Color(0.270588, 0.00392157, 0.0588235, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v6yqp"]
+bg_color = Color(0.52549, 0, 0.219608, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[resource]
+GhostBar/styles/background = SubResource("StyleBoxFlat_j3t6x")
+GhostBar/styles/fill = SubResource("StyleBoxFlat_p5qev")
+GhostBar/styles/ghost_negative = SubResource("StyleBoxFlat_nykse")
+GhostBar/styles/ghost_positive = SubResource("StyleBoxFlat_v6yqp")

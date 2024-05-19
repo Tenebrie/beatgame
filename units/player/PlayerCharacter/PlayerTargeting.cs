@@ -18,18 +18,18 @@ public partial class PlayerTargeting : ComposableScript
 
 	public override void _Ready()
 	{
-		SignalBus.GetInstance(this).ObjectHovered += OnObjectHovered;
-		SignalBus.GetInstance(this).ObjectTargeted += OnObjectTargeted;
-		SignalBus.GetInstance(this).ObjectUntargeted += OnObjectUntargeted;
-		SignalBus.GetInstance(this).UnitDestroyed += OnUnitDestroyed;
+		SignalBus.Singleton.ObjectHovered += OnObjectHovered;
+		SignalBus.Singleton.ObjectTargeted += OnObjectTargeted;
+		SignalBus.Singleton.ObjectUntargeted += OnObjectUntargeted;
+		SignalBus.Singleton.UnitDestroyed += OnUnitDestroyed;
 	}
 
 	public override void _ExitTree()
 	{
-		SignalBus.GetInstance(this).ObjectHovered -= OnObjectHovered;
-		SignalBus.GetInstance(this).ObjectTargeted -= OnObjectTargeted;
-		SignalBus.GetInstance(this).ObjectUntargeted -= OnObjectUntargeted;
-		SignalBus.GetInstance(this).UnitDestroyed -= OnUnitDestroyed;
+		SignalBus.Singleton.ObjectHovered -= OnObjectHovered;
+		SignalBus.Singleton.ObjectTargeted -= OnObjectTargeted;
+		SignalBus.Singleton.ObjectUntargeted -= OnObjectUntargeted;
+		SignalBus.Singleton.UnitDestroyed -= OnUnitDestroyed;
 	}
 
 	private void OnObjectHovered(BaseUnit unit)
@@ -95,7 +95,7 @@ public partial class PlayerTargeting : ComposableScript
 		// TODO: Refactor everything below this line
 		if (@event.IsActionPressed("ShiftCast1", exactMatch: true))
 		{
-			
+
 		}
 
 		if (@event.IsActionPressed("Cast2", exactMatch: true))

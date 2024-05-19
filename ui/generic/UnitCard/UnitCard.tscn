@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://c2m17h2hubigh"]
+[gd_scene load_steps=6 format=3 uid="uid://c2m17h2hubigh"]
 
 [ext_resource type="Script" path="res://ui/generic/UnitCard/UnitCard.cs" id="1_pma0p"]
 [ext_resource type="PackedScene" uid="uid://b7e338e230e43" path="res://ui/generic/ResourceBar/ResourceBar.tscn" id="1_sliwq"]
+[ext_resource type="Theme" uid="uid://bujrbuaekms73" path="res://ui/generic/ResourceBar/themes/HealthBar.tres" id="3_bxv2x"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ihkyo"]
 content_margin_left = 0.0
@@ -57,3 +58,4 @@ offset_top = -28.0
 offset_right = -9.0
 offset_bottom = -10.0
 grow_vertical = 0
+theme = ExtResource("3_bxv2x")

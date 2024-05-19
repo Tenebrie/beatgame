@@ -21,9 +21,9 @@ public partial class ResourceBar : Control
 	private float MaximumValue = 100;
 	public override void _Ready()
 	{
-		Bar = GetNode<ProgressBar>("Bar");
-		PositiveGhost = GetNode<ProgressBar>("PositiveGhost");
-		NegativeGhost = GetNode<ProgressBar>("NegativeGhost");
+		Bar = GetNode<ProgressBar>("ThemedProgressBar/Bar");
+		PositiveGhost = GetNode<ProgressBar>("ThemedProgressBar/PositiveGhost");
+		NegativeGhost = GetNode<ProgressBar>("ThemedProgressBar/NegativeGhost");
 		CurrentValueLabel = GetNode<Label>("CurrentLabel");
 		MaximumValueLabel = GetNode<Label>("MaximumLabel");
 		PositiveTimer = GetNode<Timer>("PositiveTimer");
@@ -32,8 +32,8 @@ public partial class ResourceBar : Control
 		NegativeTimer.OneShot = true;
 		PositiveTimer.WaitTime = 1;
 		NegativeTimer.WaitTime = 1;
-		PositiveComboLabel = GetNode<Label>("PositiveComboLabel");
-		NegativeComboLabel = GetNode<Label>("NegativeComboLabel");
+		PositiveComboLabel = GetNode<Label>("ThemedProgressBar/PositiveComboLabel");
+		NegativeComboLabel = GetNode<Label>("ThemedProgressBar/NegativeComboLabel");
 		SignalBus.Singleton.TrackStarted += OnTrackStarted;
 	}
 
@@ -77,14 +77,17 @@ public partial class ResourceBar : Control
 
 	public void TrackUnit(BaseUnit unit, ObjectResourceType resourceType)
 	{
+		var resource = (ObjectResource)unit.Composables.Find(script => script is ObjectResource resource && resource.Type == resourceType)
+			?? throw new Exception("The requested resource does not exist on this unit.");
+
 		TrackedUnit = unit;
 		TrackedResource = resourceType;
-		SetCurrent(unit.Health.Current);
-		SetMaximum(unit.Health.Maximum);
+		SetCurrent(resource.Current);
+		SetMaximum(resource.Maximum);
 		PositiveGhostValue = CurrentValue;
 		NegativeGhostValue = CurrentValue;
-		SignalBus.GetInstance(this).ResourceChanged += OnResourceChanged;
-		SignalBus.GetInstance(this).MaxResourceChanged += OnMaxResourceChanged;
+		SignalBus.Singleton.ResourceChanged += OnResourceChanged;
+		SignalBus.Singleton.MaxResourceChanged += OnMaxResourceChanged;
 	}
 
 	public void UntrackUnit()
@@ -94,8 +97,8 @@ public partial class ResourceBar : Control
 
 		TrackedUnit = null;
 		TrackedResource = null;
-		SignalBus.GetInstance(this).ResourceChanged -= OnResourceChanged;
-		SignalBus.GetInstance(this).MaxResourceChanged -= OnMaxResourceChanged;
+		SignalBus.Singleton.ResourceChanged -= OnResourceChanged;
+		SignalBus.Singleton.MaxResourceChanged -= OnMaxResourceChanged;
 		SetCurrent(0);
 	}
 

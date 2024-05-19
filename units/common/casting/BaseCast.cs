@@ -6,8 +6,8 @@ namespace Project;
 public partial class BaseCast : Node
 {
 	public Timer RecastTimerHandle;
-	public bool IsCasting;
 	public long CastStartedAt; // beat index
+	public bool IsCasting;
 
 	public CastInputType InputType = CastInputType.Instant;
 	public float HoldTime = 1; // beat
@@ -16,6 +16,8 @@ public partial class BaseCast : Node
 	public BeatTime CastTimings = BeatTime.One;
 	public float RecastTime = .1f;
 	public bool CastOnFail = true;
+
+	protected CastFlags Flags = new();
 
 	public readonly BaseUnit Parent;
 
@@ -84,20 +86,22 @@ public partial class BaseCast : Node
 	{
 		IsCasting = true;
 		CastStartedAt = Music.Singleton.GetNearestBeatIndex();
-		SignalBus.GetInstance(this).EmitSignal(SignalBus.SignalName.CastStarted, this);
+		SignalBus.Singleton.EmitSignal(SignalBus.SignalName.CastStarted, this);
 	}
 
 	// Instant cast press, or HoldRelease on button release at the right timing
 	public virtual void CastPerform(BaseUnit targetUnit)
 	{
-		SignalBus.GetInstance(this).EmitSignal(SignalBus.SignalName.CastPerformed, this);
+		Flags.CastSuccessful = true;
+		SignalBus.Singleton.EmitSignal(SignalBus.SignalName.CastPerformed, this);
 		CastPerformInternal(targetUnit);
 	}
 
 	// HoldRelease on button release at the bad timing
 	public virtual void CastFail(BaseUnit targetUnit)
 	{
-		SignalBus.GetInstance(this).EmitSignal(SignalBus.SignalName.CastFailed, this);
+		Flags.CastSuccessful = false;
+		SignalBus.Singleton.EmitSignal(SignalBus.SignalName.CastFailed, this);
 
 		if (CastOnFail)
 			CastPerformInternal(targetUnit);
@@ -118,4 +122,9 @@ public partial class BaseCast : Node
 
 	protected virtual void CastOnNone() { }
 	protected virtual void CastOnUnit(BaseUnit target) { }
+
+	protected class CastFlags
+	{
+		public bool CastSuccessful;
+	};
 }

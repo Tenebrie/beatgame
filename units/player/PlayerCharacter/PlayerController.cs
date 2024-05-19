@@ -17,6 +17,9 @@ public partial class PlayerController : BaseUnit
 		FriendlyName = "The Player";
 		Alliance = UnitAlliance.Player;
 		Targetable.selectionRadius = 0.5f;
+
+		Health.SetMax(200);
+		Mana.SetMax(100);
 	}
 
 	public override void _Ready()

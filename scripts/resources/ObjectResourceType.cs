@@ -1,8 +1,9 @@
 namespace Project;
 
-public enum ObjectResourceType
+public enum ObjectResourceType : int
 {
 	Health,
+	Mana,
 }
 
 static class ObjectResourceTypeExtensions

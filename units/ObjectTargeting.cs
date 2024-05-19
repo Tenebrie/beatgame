@@ -19,12 +19,12 @@ public partial class ObjectTargetable : ComposableScript
 		Parent.InputEvent += OnInputEvent;
 		Parent.MouseEntered += OnMouseEntered;
 		Parent.MouseExited += OnMouseExited;
-		SignalBus.GetInstance(Parent).ObjectTargeted += OnObjectTargeted;
+		SignalBus.Singleton.ObjectTargeted += OnObjectTargeted;
 	}
 
 	public override void _ExitTree()
 	{
-		SignalBus.GetInstance(Parent).ObjectTargeted -= OnObjectTargeted;
+		SignalBus.Singleton.ObjectTargeted -= OnObjectTargeted;
 	}
 
 	public override void _Process(double delta)
@@ -68,7 +68,7 @@ public partial class ObjectTargetable : ComposableScript
 
 	private void OnMouseEntered()
 	{
-		SignalBus.GetInstance(Parent).EmitSignal(SignalBus.SignalName.ObjectHovered, Parent);
+		SignalBus.Singleton.EmitSignal(SignalBus.SignalName.ObjectHovered, Parent);
 		isHovered = true;
 		hoverHighlight = 1.0f;
 	}
@@ -105,7 +105,7 @@ public partial class ObjectTargetable : ComposableScript
 
 	public void MakeTargeted()
 	{
-		SignalBus.GetInstance(Parent).EmitSignal(SignalBus.SignalName.ObjectTargeted, Parent);
+		SignalBus.Singleton.EmitSignal(SignalBus.SignalName.ObjectTargeted, Parent);
 	}
 
 	private void OnInputEvent(Node camera, InputEvent @event, Vector3 position, Vector3 normal, long shapeIdx)

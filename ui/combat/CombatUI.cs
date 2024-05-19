@@ -6,16 +6,18 @@ namespace Project;
 public partial class CombatUI : Control
 {
 	private ResourceBar HealthBar;
+	private ResourceBar ManaBar;
 	private UnitCardList AlliedUnitList;
 	private UnitCardList HostileUnitList;
 	public override void _Ready()
 	{
 		GetTree().Root.ContentScaleFactor = DisplayServer.ScreenGetScale();
 		HealthBar = GetNode<ResourceBar>("HealthBar");
+		ManaBar = GetNode<ResourceBar>("ManaBar");
 		AlliedUnitList = GetNode<UnitCardList>("AllyTargeting");
 		HostileUnitList = GetNode<UnitCardList>("HostileTargeting");
-		SignalBus.GetInstance(this).UnitCreated += OnUnitCreated;
-		SignalBus.GetInstance(this).UnitDestroyed += OnUnitDestroyed;
+		SignalBus.Singleton.UnitCreated += OnUnitCreated;
+		SignalBus.Singleton.UnitDestroyed += OnUnitDestroyed;
 	}
 
 	private void OnUnitCreated(BaseUnit unit)
@@ -23,6 +25,7 @@ public partial class CombatUI : Control
 		if (unit is PlayerController)
 		{
 			HealthBar.TrackUnit(unit, ObjectResourceType.Health);
+			ManaBar.TrackUnit(unit, ObjectResourceType.Mana);
 		}
 		else if (unit.Alliance == UnitAlliance.Player)
 		{

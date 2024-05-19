@@ -1,58 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://b7e338e230e43"]
+[gd_scene load_steps=3 format=3 uid="uid://b7e338e230e43"]
 
 [ext_resource type="Script" path="res://ui/generic/ResourceBar/ResourceBar.cs" id="1_gq8v1"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nyft7"]
-content_margin_left = 2.0
-content_margin_top = 2.0
-content_margin_right = 2.0
-content_margin_bottom = 2.0
-bg_color = Color(0.101961, 0.101961, 0.101961, 0.556863)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-corner_detail = 6
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dpjn7"]
-bg_color = Color(0.270588, 0.00392157, 0.0588235, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-
-[sub_resource type="Theme" id="Theme_2g5gg"]
-ProgressBar/styles/background = SubResource("StyleBoxFlat_nyft7")
-ProgressBar/styles/fill = SubResource("StyleBoxFlat_dpjn7")
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3r4ea"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
-corner_radius_top_left = 4
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_icgoo"]
-bg_color = Color(0.635294, 0.611765, 0.0745098, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-
-[sub_resource type="Theme" id="Theme_0otbd"]
-ProgressBar/styles/background = SubResource("StyleBoxFlat_3r4ea")
-ProgressBar/styles/fill = SubResource("StyleBoxFlat_icgoo")
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bvlcp"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1t88a"]
-bg_color = Color(0.52549, 0, 0.219608, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-
-[sub_resource type="Theme" id="Theme_wfm41"]
-ProgressBar/styles/background = SubResource("StyleBoxFlat_bvlcp")
-ProgressBar/styles/fill = SubResource("StyleBoxFlat_1t88a")
+[ext_resource type="PackedScene" uid="uid://xybk154ke1o1" path="res://ui/generic/ResourceBar/ThemedProgressBar.tscn" id="5_0s0ij"]
 
 [node name="ResourceBar" type="Control"]
 layout_mode = 3
@@ -64,38 +13,13 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_gq8v1")
 
-[node name="NegativeGhost" type="ProgressBar" parent="."]
+[node name="ThemedProgressBar" parent="." instance=ExtResource("5_0s0ij")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = SubResource("Theme_2g5gg")
-value = 75.0
-show_percentage = false
-
-[node name="Bar" type="ProgressBar" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = SubResource("Theme_0otbd")
-value = 50.0
-show_percentage = false
-
-[node name="PositiveGhost" type="ProgressBar" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = SubResource("Theme_wfm41")
-value = 25.0
-show_percentage = false
+offset_right = 0.0
+offset_bottom = 0.0
 
 [node name="CurrentLabel" type="Label" parent="."]
 layout_mode = 1
@@ -144,6 +68,7 @@ vertical_alignment = 1
 [node name="NegativeTimer" type="Timer" parent="."]
 
 [node name="PositiveComboLabel" type="Label" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
@@ -155,6 +80,7 @@ text = "25"
 vertical_alignment = 1
 
 [node name="NegativeComboLabel" type="Label" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0

@@ -1,8 +1,10 @@
 using System;
-using System.Diagnostics;
+
 namespace Project;
+
 public class ObjectResource : ComposableScript
 {
+	private bool ready = false;
 	private float current = 0;
 	private float maximum = 0;
 
@@ -26,19 +28,42 @@ public class ObjectResource : ComposableScript
 
 	public override void _Ready()
 	{
-		SignalBus.GetInstance(Parent).EmitSignal(SignalBus.SignalName.ResourceChanged, Parent, Type.ToVariant(), current);
-		SignalBus.GetInstance(Parent).EmitSignal(SignalBus.SignalName.MaxResourceChanged, Parent, Type.ToVariant(), maximum);
+		ready = true;
+		SignalBus.Singleton.EmitSignal(SignalBus.SignalName.ResourceChanged, Parent, Type.ToVariant(), current);
+		SignalBus.Singleton.EmitSignal(SignalBus.SignalName.MaxResourceChanged, Parent, Type.ToVariant(), maximum);
 	}
 
 	public void Damage(float value, BaseUnit source = null)
 	{
 		current = Math.Max(0, current - value);
-		SignalBus.GetInstance(Parent).EmitSignal(SignalBus.SignalName.ResourceChanged, Parent, Type.ToVariant(), current);
+
+		if (ready)
+			SignalBus.Singleton.EmitSignal(SignalBus.SignalName.ResourceChanged, Parent, Type.ToVariant(), current);
 	}
 
 	public void Restore(float value, BaseUnit source = null)
 	{
 		current = Math.Min(maximum, current + value);
-		SignalBus.GetInstance(Parent).EmitSignal(SignalBus.SignalName.ResourceChanged, Parent, Type.ToVariant(), current);
+
+		if (ready)
+			SignalBus.Singleton.EmitSignal(SignalBus.SignalName.ResourceChanged, Parent, Type.ToVariant(), current);
+	}
+
+	public void SetMax(float value)
+	{
+		if (value == maximum)
+			return;
+
+		var floorValue = Type == ObjectResourceType.Health ? 1 : 0;
+
+		value = Math.Max(floorValue, value);
+		var delta = value - maximum;
+		maximum = value;
+		current += delta;
+		if (ready)
+		{
+			SignalBus.Singleton.EmitSignal(SignalBus.SignalName.ResourceChanged, Parent, Type.ToVariant(), current);
+			SignalBus.Singleton.EmitSignal(SignalBus.SignalName.MaxResourceChanged, Parent, Type.ToVariant(), maximum);
+		}
 	}
 }
