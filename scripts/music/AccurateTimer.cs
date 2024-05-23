@@ -13,14 +13,16 @@ public partial class AccurateTimer : Node
 	[Signal]
 	public delegate void BeatWindowLockEventHandler();
 
-	public long Calibration = 0;
 	public const long TimingWindow = 100; // ms before and after beat
+	public long Calibration = 0;
+	public AccurateTimer PrecedingTimer;
 
 	private long startTime;
 	private long waitTime;
 	public long LastTickedAt;
 	private bool lockedState = true;
-	public long BeatIndex = -1;
+	private long internalTickIndex = -1;
+	public long TickIndex = -1;
 
 	public void Start(float bpm)
 	{
@@ -53,11 +55,16 @@ public partial class AccurateTimer : Node
 		}
 
 		var tickIndex = GetTickIndexAtSongTime(songTime);
-		if (tickIndex > BeatIndex)
+		if (tickIndex > internalTickIndex)
 		{
-			BeatIndex = tickIndex;
-			LastTickedAt = time;
-			EmitSignal(SignalName.Timeout);
+			internalTickIndex = tickIndex;
+			if (PrecedingTimer == null || PrecedingTimer.IsUnlockedNow())
+			{
+				TickIndex += 1;
+				var name = this == Music.Singleton.BeatTimer ? "Beat" : this == Music.Singleton.HalfBeatTimer ? "Half" : "Visual";
+				LastTickedAt = time;
+				EmitSignal(SignalName.Timeout);
+			}
 		}
 	}
 
@@ -69,14 +76,14 @@ public partial class AccurateTimer : Node
 		return time / waitTime;
 	}
 
-	public long GetTickIndexAtEngineTime()
+	public double GetTickIndexAtEngineTime()
 	{
 		if (waitTime == 0)
 			return 0;
 
 		var time = (long)Time.Singleton.GetTicksMsec();
 		var songTime = time - startTime + Calibration;
-		return (long)Math.Round((double)songTime / waitTime);
+		return Math.Round((double)songTime / waitTime);
 	}
 
 	private bool IsLockedAt(long time)
@@ -87,5 +94,10 @@ public partial class AccurateTimer : Node
 			return false;
 		}
 		return true;
+	}
+
+	public bool IsUnlockedNow()
+	{
+		return lockedState;
 	}
 }

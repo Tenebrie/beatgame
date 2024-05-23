@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using Godot;
 
 namespace Project;
@@ -13,6 +14,14 @@ public class PlayerSpellcasting : ComposableScript
 	public PlayerSpellcasting(BaseUnit parent) : base(parent)
 	{
 		Parent = parent as PlayerController;
+	}
+
+	public BaseCast GetCurrentCastingSpell()
+	{
+		var castingSpells = CastBindings.Values.Where(cast => cast.IsCasting).ToList();
+		if (castingSpells.Count == 0)
+			return null;
+		return castingSpells[0];
 	}
 
 	public void Bind(string input, BaseCast cast)
@@ -42,30 +51,44 @@ public class PlayerSpellcasting : ComposableScript
 
 			if (@Input.IsActionJustPressed(key))
 			{
-				var isValidTiming = cast.ValidateTiming(out errorMessage);
+				var isValidTiming = cast.ValidateCastTiming(out errorMessage);
 				if (!isValidTiming)
 				{
 					Debug.WriteLine(errorMessage);
 					return;
 				}
 
-				if (cast.InputType == CastInputType.Instant)
-					cast.CastPerform(Parent.Targeting.targetedUnit);
-				else if (cast.InputType == CastInputType.HoldRelease)
-					cast.CastBegin();
+				var currentCastingSpell = GetCurrentCastingSpell();
+				if (currentCastingSpell != null)
+				{
+					CastRelease(currentCastingSpell, beatIndex);
+				}
+
+				var targetData = new CastTargetData()
+				{
+					HostileUnit = Parent.Targeting.targetedUnit,
+				};
+
+				cast.CastBegin(targetData);
+
+				if (cast.Settings.InputType == CastInputType.Instant)
+					cast.CastPerform();
 			}
 			else if (@Input.IsActionJustReleased(key))
 			{
-				var isValidTiming = cast.ValidateTiming(out _);
-
-				if (cast.InputType == CastInputType.HoldRelease && cast.IsCasting)
+				if (cast.Settings.InputType == CastInputType.HoldRelease && cast.IsCasting)
 				{
-					if (isValidTiming && beatIndex == cast.CastStartedAt + cast.HoldTime)
-						cast.CastPerform(Parent.Targeting.targetedUnit);
-					else
-						cast.CastFail(Parent.Targeting.targetedUnit);
+					CastRelease(cast, beatIndex);
 				}
 			}
 		}
+	}
+
+	private static void CastRelease(BaseCast cast, double beatIndex)
+	{
+		if (cast.ValidateReleaseTiming())
+			cast.CastPerform();
+		else
+			cast.CastFail();
 	}
 }

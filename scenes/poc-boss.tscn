@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dd8hi213iqvva" path="res://units/enemy/DummyEnemy/DummyEnemy.tscn" id="3_ae480"]
 [ext_resource type="PackedScene" uid="uid://ct45j83s2dkvg" path="res://ui/combat/CombatUI.tscn" id="4_ase0o"]
 [ext_resource type="PackedScene" uid="uid://bigoodfgf85ex" path="res://units/enemy/DummyEnemy/JumpingDummyEnemy.tscn" id="5_yuojh"]
-[ext_resource type="PackedScene" uid="uid://boie4o0ks8bw1" path="res://units/enemy/DummyEnemy/TestBoss.tscn" id="6_vl3yg"]
+[ext_resource type="PackedScene" path="res://units/enemy/DummyEnemy/TestBoss.tscn" id="6_vl3yg"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_wv8tr"]
 

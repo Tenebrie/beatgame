@@ -24,13 +24,15 @@ public partial class CastBar : Control
 
 	public void OnCastStarted(BaseCast cast)
 	{
-		if (cast.Parent is not PlayerController)
+		if (cast.Parent is not PlayerController || cast.Settings.InputType == CastInputType.Instant)
 			return;
 
 		ActiveCast = cast;
-		Bar.Value = (float)Music.Singleton.GetCurrentBeatOffset(BeatTime.One) / 1000;
-		Bar.MaxValue = 2 * cast.HoldTime * (1f / Music.Singleton.BeatsPerMinute * 60);
-		CastStartedAt = (long)Time.Singleton.GetTicksMsec() - Music.Singleton.GetCurrentBeatOffset(BeatTime.One);
+		Bar.Value = (float)Music.Singleton.GetCurrentBeatOffset() / 1000;
+		Bar.MaxValue = cast.Settings.HoldTime * (1f / Music.Singleton.BeatsPerMinute * 60);
+		if (cast.Settings.InputType == CastInputType.HoldRelease)
+			Bar.MaxValue *= 2;
+		CastStartedAt = (long)Time.Singleton.GetTicksMsec() - Music.Singleton.GetCurrentBeatOffset();
 		CastEndsAt = CastStartedAt + (long)(Bar.MaxValue * 1000);
 
 		Bar.SetFillColor(new Color(255, 255, 75, 1));
@@ -39,8 +41,16 @@ public partial class CastBar : Control
 
 		var timingWindow = (float)AccurateTimer.TimingWindow / 1000;
 		var totalWidth = Bar.Size.X;
-		GreenZone.Size = new Vector2(timingWindow * 2 / (float)Bar.MaxValue * totalWidth, GreenZone.Size.Y);
-		GreenZone.Position = new Vector2(Bar.Position.X + totalWidth / 2 - GreenZone.Size.X / 2, Bar.Position.Y);
+		if (cast.Settings.InputType == CastInputType.HoldRelease)
+		{
+			GreenZone.Size = new Vector2(timingWindow * 2 / (float)Bar.MaxValue * totalWidth, GreenZone.Size.Y);
+			GreenZone.Position = new Vector2(Bar.Position.X + totalWidth / 2 - GreenZone.Size.X / 2, Bar.Position.Y);
+		}
+		else
+		{
+			GreenZone.Size = new Vector2(timingWindow / (float)Bar.MaxValue * totalWidth, GreenZone.Size.Y);
+			GreenZone.Position = new Vector2(Bar.Position.X + totalWidth - GreenZone.Size.X, Bar.Position.Y);
+		}
 	}
 
 	public void OnCastPerformed(BaseCast cast)

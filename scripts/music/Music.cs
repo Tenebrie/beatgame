@@ -8,6 +8,9 @@ namespace Project;
 
 public partial class Music : Node
 {
+	[Signal]
+	public delegate void BeatTickEventHandler(BeatTime beat);
+
 	public readonly long SongDelay = 3000; // ms
 
 	public float BeatsPerMinute
@@ -17,6 +20,7 @@ public partial class Music : Node
 	public bool IsStarted = false;
 
 	public AccurateTimer BeatTimer;
+	public AccurateTimer HalfBeatTimer;
 	public AccurateTimer VisualBeatTimer;
 
 	private BeatTime BeatTimeState = BeatTime.Free;
@@ -26,18 +30,30 @@ public partial class Music : Node
 	{
 		instance = this;
 
-		BeatTimer = new AccurateTimer();
+		BeatTimer = new AccurateTimer
+		{
+			Calibration = 0
+		};
 		AddChild(BeatTimer);
-		BeatTimer.Calibration = 0;
-		VisualBeatTimer = new AccurateTimer();
-		AddChild(VisualBeatTimer);
-		VisualBeatTimer.Calibration = SongDelay;
 
-		CurrentTrack = new MusicTrackSpaceship();
+		HalfBeatTimer = new AccurateTimer
+		{
+			PrecedingTimer = BeatTimer,
+			Calibration = 0
+		};
+		AddChild(HalfBeatTimer);
+
+		VisualBeatTimer = new AccurateTimer
+		{
+			Calibration = SongDelay
+		};
+		AddChild(VisualBeatTimer);
+
+		CurrentTrack = new MusicTrackTest();
 		AddChild(CurrentTrack);
 
 		// Ensure no timer starts in the future
-		List<AccurateTimer> timers = new() { BeatTimer, VisualBeatTimer };
+		List<AccurateTimer> timers = new() { BeatTimer, HalfBeatTimer, VisualBeatTimer };
 		long longestCalibration = timers.OrderByDescending(timer => timer.Calibration).ToList()[0].Calibration;
 		foreach (var timer in timers)
 		{
@@ -46,6 +62,20 @@ public partial class Music : Node
 
 		BeatTimer.BeatWindowUnlock += () => BeatTimeState |= BeatTime.One;
 		BeatTimer.BeatWindowLock += () => BeatTimeState &= ~BeatTime.One;
+		HalfBeatTimer.BeatWindowUnlock += () =>
+		{
+			if (!IsTimeOpen(BeatTime.One))
+				BeatTimeState |= BeatTime.Half;
+		};
+		HalfBeatTimer.BeatWindowLock += () => BeatTimeState &= ~BeatTime.Half;
+
+		BeatTimer.Timeout += () => OnInternalTimerTimeout(BeatTime.One);
+		HalfBeatTimer.Timeout += () => OnInternalTimerTimeout(BeatTime.Half);
+	}
+
+	private void OnInternalTimerTimeout(BeatTime beat)
+	{
+		EmitSignal(SignalName.BeatTick, beat.ToVariant());
 	}
 
 	public bool IsTimeOpen(BeatTime time)
@@ -65,30 +95,33 @@ public partial class Music : Node
 
 		IsStarted = true;
 		BeatTimer.Start(BeatsPerMinute);
-		VisualBeatTimer.Start(BeatsPerMinute);
+		HalfBeatTimer.Start(BeatsPerMinute * 2);
+		VisualBeatTimer.Start(BeatsPerMinute * 2);
 
 		var boss = (TestBoss)GetTree().Root.FindChild("TestBoss", true, false);
 		AddChild(new TestBossTimeline(boss));
 	}
 
-	public long GetNearestBeatIndex()
+	public double GetNearestBeatIndex()
 	{
-		return BeatTimer.GetTickIndexAtEngineTime();
+		return BeatTimer.GetTickIndexAtEngineTime() + ((HalfBeatTimer.GetTickIndexAtEngineTime() - (BeatTimer.GetTickIndexAtEngineTime() * 2)) / 2);
 	}
 
 	// Returns the time (in ms) to the nearest beat
-	public long GetCurrentBeatOffset(BeatTime beatTime)
+	public long GetCurrentBeatOffset()
 	{
-		if (beatTime != BeatTime.One)
-			throw new NotImplementedException();
+		List<AccurateTimer> timers = new() { BeatTimer, HalfBeatTimer };
 
-		var beatDuration = (long)(1f / BeatsPerMinute * 60 * 1000);
-		var currentTime = (long)Time.Singleton.GetTicksMsec();
-		var lastTickedAt = BeatTimer.LastTickedAt;
-		if (currentTime - lastTickedAt < lastTickedAt + beatDuration - currentTime)
-			return currentTime - lastTickedAt;
-		else
-			return -(lastTickedAt + beatDuration - currentTime);
+		return timers.Select(timer =>
+		{
+			var beatDuration = (long)(1f / BeatsPerMinute * 60 * 1000);
+			var currentTime = (long)Time.Singleton.GetTicksMsec();
+			var lastTickedAt = timer.LastTickedAt;
+			if (currentTime - lastTickedAt < lastTickedAt + beatDuration - currentTime)
+				return currentTime - lastTickedAt;
+			else
+				return -(lastTickedAt + beatDuration - currentTime);
+		}).OrderBy(offset => Math.Abs(offset)).ToList()[0];
 	}
 
 	private static Music instance = null;

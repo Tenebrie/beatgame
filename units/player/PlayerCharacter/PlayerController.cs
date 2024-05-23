@@ -33,6 +33,7 @@ public partial class PlayerController : BaseUnit
 		Composables.Add(Spellcasting);
 
 		Spellcasting.Bind("Cast1", new Fireball(this));
+		Spellcasting.Bind("Cast2", new Fireblast(this));
 		Spellcasting.Bind("ShiftCast1", new SelfHeal(this));
 
 		All.Add(this);

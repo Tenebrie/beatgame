@@ -1,5 +1,6 @@
 using Godot;
-using Project;
+
+namespace Project;
 
 public partial class MusicTrack : Node
 {
@@ -23,6 +24,7 @@ public partial class MusicTrack : Node
 	{
 		await ToSignal(GetTree().CreateTimer(delay), "timeout");
 		SignalBus.Singleton.EmitSignal(SignalBus.SignalName.TrackStarted, this);
+		AudioPlayer.VolumeDb = Mathf.LinearToDb(0.03f);
 		AudioPlayer.Play();
 	}
 

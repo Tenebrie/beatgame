@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using Godot;
 using Project;
 
@@ -19,10 +20,17 @@ public partial class BaseTimeline<ParentT> : Node where ParentT : BaseUnit
 	{
 		var beatIndex = Music.Singleton.GetNearestBeatIndex();
 
+		if (Elements.ElementAtOrDefault(CurrentElementIndex) == null)
+			return;
+
 		while (Elements[CurrentElementIndex].BeatIndex <= beatIndex)
 		{
-			Elements[CurrentElementIndex].Cast.CastPerform(PlayerController.All[0]);
+			Elements[CurrentElementIndex].Cast.CastBegin(new CastTargetData() { HostileUnit = PlayerController.All[0] });
+			Elements[CurrentElementIndex].Cast.CastPerform();
 			CurrentElementIndex += 1;
+
+			if (Elements.ElementAtOrDefault(CurrentElementIndex) == null)
+				break;
 		}
 	}
 

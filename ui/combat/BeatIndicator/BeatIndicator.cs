@@ -1,7 +1,5 @@
 using Godot;
-using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 
 namespace Project;
 
@@ -12,10 +10,21 @@ public partial class BeatIndicator : Control
 	public override void _Ready()
 	{
 		Music.Singleton.BeatTimer.Timeout += OnBeat;
+		Music.Singleton.HalfBeatTimer.Timeout += OnHalfBeat;
 		Music.Singleton.VisualBeatTimer.Timeout += OnVisualBeat;
 	}
 
 	public void OnBeat()
+	{
+		foreach (var bar in BarGroups[0])
+		{
+			bar.Position = new Vector2(0, 0);
+			bar.Cleanup();
+		}
+		BarGroups.RemoveAt(0);
+	}
+
+	public void OnHalfBeat()
 	{
 		foreach (var bar in BarGroups[0])
 		{
@@ -30,8 +39,9 @@ public partial class BeatIndicator : Control
 		var time = (long)Time.Singleton.GetTicksMsec();
 		var endsAt = time + Music.Singleton.SongDelay;
 
+		var isHalfBeat = Music.Singleton.VisualBeatTimer.TickIndex % 2 == 1;
 		var barGroup = new List<BeatBar>();
-		var rightBar = new BeatBar(true)
+		var rightBar = new BeatBar(mirrored: true, halfBeat: isHalfBeat)
 		{
 			StartsAt = time,
 			EndsAt = endsAt,
@@ -39,7 +49,7 @@ public partial class BeatIndicator : Control
 		AddChild(rightBar);
 		barGroup.Add(rightBar);
 
-		var leftBar = new BeatBar(false)
+		var leftBar = new BeatBar(false, halfBeat: isHalfBeat)
 		{
 			StartsAt = time,
 			EndsAt = endsAt,

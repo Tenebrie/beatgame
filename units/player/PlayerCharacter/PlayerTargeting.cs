@@ -98,28 +98,28 @@ public partial class PlayerTargeting : ComposableScript
 
 		}
 
-		if (@event.IsActionPressed("Cast2", exactMatch: true))
-		{
-			if (repeatCastTimer != null)
-			{
-				return;
-			}
-			repeatCastTimer = new Timer();
-			Parent.AddChild(repeatCastTimer);
-			repeatCastTimer.Timeout += OnRepeatCastTimer;
-			repeatCastTimer.WaitTime = 0.02;
-			repeatCastTimer.Start();
-		}
-		if (@event.IsActionReleased("Cast2", exactMatch: true))
-		{
-			if (repeatCastTimer == null)
-			{
-				return;
-			}
-			repeatCastTimer.Stop();
-			repeatCastTimer.QueueFree();
-			repeatCastTimer = null;
-		}
+		// if (@event.IsActionPressed("Cast2", exactMatch: true))
+		// {
+		// 	if (repeatCastTimer != null)
+		// 	{
+		// 		return;
+		// 	}
+		// 	repeatCastTimer = new Timer();
+		// 	Parent.AddChild(repeatCastTimer);
+		// 	repeatCastTimer.Timeout += OnRepeatCastTimer;
+		// 	repeatCastTimer.WaitTime = 0.02;
+		// 	repeatCastTimer.Start();
+		// }
+		// if (@event.IsActionReleased("Cast2", exactMatch: true))
+		// {
+		// 	if (repeatCastTimer == null)
+		// 	{
+		// 		return;
+		// 	}
+		// 	repeatCastTimer.Stop();
+		// 	repeatCastTimer.QueueFree();
+		// 	repeatCastTimer = null;
+		// }
 
 		if (targetedUnit == null)
 		{

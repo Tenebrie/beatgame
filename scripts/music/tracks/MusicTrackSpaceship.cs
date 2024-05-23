@@ -1,3 +1,4 @@
+namespace Project;
 public partial class MusicTrackSpaceship : MusicTrack
 {
 	public MusicTrackSpaceship()

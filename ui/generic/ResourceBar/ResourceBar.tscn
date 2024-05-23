@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://b7e338e230e43"]
 
 [ext_resource type="Script" path="res://ui/generic/ResourceBar/ResourceBar.cs" id="1_gq8v1"]
-[ext_resource type="PackedScene" uid="uid://xybk154ke1o1" path="res://ui/generic/ResourceBar/ThemedProgressBar.tscn" id="5_0s0ij"]
+[ext_resource type="PackedScene" path="res://ui/generic/ResourceBar/ThemedProgressBar.tscn" id="5_0s0ij"]
 
 [node name="ResourceBar" type="Control"]
 layout_mode = 3
