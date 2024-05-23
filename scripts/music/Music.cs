@@ -28,7 +28,7 @@ public partial class Music : Node
 	public AccurateTimer VisualBeatTimer;
 
 	private BeatTime BeatTimeState = BeatTime.Free;
-	private MusicTrack CurrentTrack;
+	public MusicTrack CurrentTrack;
 
 	public override void _EnterTree()
 	{

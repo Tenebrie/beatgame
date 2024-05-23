@@ -24,8 +24,14 @@ public partial class MusicTrack : Node
 	{
 		await ToSignal(GetTree().CreateTimer(delay), "timeout");
 		SignalBus.Singleton.EmitSignal(SignalBus.SignalName.TrackStarted, this);
-		AudioPlayer.VolumeDb = Mathf.LinearToDb(0.03f);
+		Volume = Preferences.Singleton.MainVolume;
 		AudioPlayer.Play();
+	}
+
+	public float Volume
+	{
+		get => Mathf.DbToLinear(AudioPlayer.VolumeDb);
+		set => AudioPlayer.VolumeDb = Mathf.LinearToDb(value);
 	}
 
 	public float BeatDuration
