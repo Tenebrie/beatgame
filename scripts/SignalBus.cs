@@ -32,6 +32,8 @@ public partial class SignalBus : Node
 	[Signal]
 	public delegate void CastAssignedEventHandler(BaseCast cast, string actionName);
 
+	[Signal]
+	public delegate void MessageSentEventHandler(string text);
 
 	public override void _EnterTree()
 	{
@@ -44,6 +46,11 @@ public partial class SignalBus : Node
 		{
 			EmitSignal(SignalName.ObjectUntargeted);
 		}
+	}
+
+	public static void SendMessage(string text)
+	{
+		instance.EmitSignal(SignalName.MessageSent, text);
 	}
 
 	private static SignalBus instance = null;

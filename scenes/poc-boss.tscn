@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bcrvev26qnfr0"]
+[gd_scene load_steps=17 format=3 uid="uid://bcrvev26qnfr0"]
 
 [ext_resource type="PackedScene" uid="uid://d4lr8x11fi1f4" path="res://elements/WaterSurface/WaterSurface.tscn" id="1_d3trf"]
 [ext_resource type="PackedScene" uid="uid://cj7pjptvs0hgl" path="res://ui/pause/PauseUI.tscn" id="2_2kafe"]
@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://ct45j83s2dkvg" path="res://ui/combat/CombatUI.tscn" id="4_ase0o"]
 [ext_resource type="PackedScene" uid="uid://bigoodfgf85ex" path="res://units/enemy/DummyEnemy/JumpingDummyEnemy.tscn" id="5_yuojh"]
 [ext_resource type="PackedScene" path="res://units/enemy/DummyEnemy/TestBoss.tscn" id="6_vl3yg"]
+[ext_resource type="AudioStream" uid="uid://ctwt3hacn46os" path="res://assets/music/t14d-spaceship.ogg" id="8_u1ct3"]
+[ext_resource type="AudioStream" uid="uid://djw3rc7spg3ea" path="res://assets/music/120bpm-test-track.ogg" id="9_qijot"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_wv8tr"]
 
@@ -175,3 +177,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.6974, -0.00244102, -0.00303
 
 [node name="TestBoss" parent="." instance=ExtResource("6_vl3yg")]
 transform = Transform3D(0.0075052, 0, -4.99999, 0, 5, 0, 4.99999, 0, 0.0075052, 0.337533, 1.29074, -9.056)
+
+[node name="Dummy" type="Node" parent="."]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Dummy"]
+stream = ExtResource("8_u1ct3")
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="Dummy"]
+stream = ExtResource("9_qijot")

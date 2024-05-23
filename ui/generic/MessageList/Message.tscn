@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://oh01pbmgf22l"]
+
+[ext_resource type="Script" path="res://ui/generic/MessageList/Message.cs" id="1_b8423"]
+
+[node name="Message" type="PanelContainer"]
+offset_right = 300.0
+offset_bottom = 75.0
+script = ExtResource("1_b8423")
+
+[node name="BodyLabel" type="Label" parent="."]
+custom_minimum_size = Vector2(300, 20)
+layout_mode = 2
+text = "A long piece of text that will hopefully start wrapping and do weird things for me to test stuff on"
+autowrap_mode = 3

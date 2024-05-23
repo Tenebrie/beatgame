@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://tv4bwu6rkj5t"]
+
+[ext_resource type="Script" path="res://ui/generic/MessageList/MessageList.cs" id="1_28ykm"]
+[ext_resource type="PackedScene" uid="uid://oh01pbmgf22l" path="res://ui/generic/MessageList/Message.tscn" id="2_j5qfc"]
+
+[node name="Container" type="VBoxContainer"]
+anchors_preset = -1
+anchor_right = 0.156
+anchor_bottom = 0.604
+offset_right = 0.47998
+offset_bottom = -0.320007
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+script = ExtResource("1_28ykm")
+
+[node name="Message" parent="." instance=ExtResource("2_j5qfc")]
+layout_mode = 2
+
+[node name="Message2" parent="." instance=ExtResource("2_j5qfc")]
+layout_mode = 2

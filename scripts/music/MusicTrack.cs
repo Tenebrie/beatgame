@@ -10,9 +10,10 @@ public partial class MusicTrack : Node
 	private AudioStreamOggVorbis AudioStream;
 	private AudioStreamPlayer AudioPlayer;
 
-	public override void _EnterTree()
+	public override void _Ready()
 	{
-		AudioStream = AudioStreamOggVorbis.LoadFromFile(ResourcePath);
+		AudioStream = ResourceLoader.Load<AudioStreamOggVorbis>(ResourcePath);
+
 		AudioPlayer = new()
 		{
 			Stream = AudioStream,

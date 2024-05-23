@@ -53,7 +53,8 @@ public partial class Music : Node
 		};
 		AddChild(VisualBeatTimer);
 
-		CurrentTrack = new MusicTrackTest();
+		// CurrentTrack = new MusicTrackTest();
+		CurrentTrack = new MusicTrackSpaceship();
 		AddChild(CurrentTrack);
 
 		// Ensure no timer starts in the future

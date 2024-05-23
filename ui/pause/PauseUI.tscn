@@ -92,6 +92,7 @@ offset_left = 110.0
 offset_top = 102.0
 offset_right = 480.0
 offset_bottom = 139.0
+value = 50.0
 
 [node name="ExitGameButton" type="Button" parent="Panel"]
 layout_mode = 1

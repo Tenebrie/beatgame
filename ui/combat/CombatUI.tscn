@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://ct45j83s2dkvg"]
+[gd_scene load_steps=10 format=3 uid="uid://ct45j83s2dkvg"]
 
 [ext_resource type="Script" path="res://ui/combat/CombatUI.cs" id="1_mfjmv"]
 [ext_resource type="PackedScene" uid="uid://b7e338e230e43" path="res://ui/generic/ResourceBar/ResourceBar.tscn" id="2_vq7ps"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cypyot5fi6to" path="res://ui/combat/CastBar/CastBar.tscn" id="5_5vbpp"]
 [ext_resource type="Theme" uid="uid://ss3767a5m5q7" path="res://ui/generic/ResourceBar/themes/ManaBar.tres" id="7_dxeop"]
 [ext_resource type="PackedScene" uid="uid://c2xpek74a5i4s" path="res://ui/generic/ActionPanel/ActionPanel.tscn" id="8_ukig5"]
+[ext_resource type="PackedScene" uid="uid://tv4bwu6rkj5t" path="res://ui/generic/MessageList/MessageList.tscn" id="9_aquqd"]
 
 [node name="CombatUI" type="Control"]
 layout_mode = 3
@@ -116,3 +117,13 @@ offset_left = 706.0
 offset_top = 909.0
 offset_right = 1214.0
 offset_bottom = 969.0
+
+[node name="Container" parent="." instance=ExtResource("9_aquqd")]
+layout_mode = 1
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 300.0
+offset_bottom = 154.0
+grow_horizontal = 1
+grow_vertical = 1
