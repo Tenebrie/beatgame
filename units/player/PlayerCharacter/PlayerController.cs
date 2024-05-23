@@ -36,7 +36,7 @@ public partial class PlayerController : BaseUnit
 		Spellcasting.Bind("Cast2", new Fireblast(this));
 		Spellcasting.Bind("ShiftCast1", new SelfHeal(this));
 
-		All.Add(this);
+		AllPlayers.Add(this);
 		base._Ready();
 	}
 
@@ -50,5 +50,5 @@ public partial class PlayerController : BaseUnit
 		}
 	}
 
-	public static readonly List<PlayerController> All = new();
+	public static readonly List<PlayerController> AllPlayers = new();
 }

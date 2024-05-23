@@ -1,0 +1,36 @@
+[gd_scene load_steps=3 format=3 uid="uid://c2xpek74a5i4s"]
+
+[ext_resource type="Script" path="res://ui/generic/ActionPanel/ActionPanel.cs" id="1_7qi0x"]
+[ext_resource type="PackedScene" uid="uid://bypjme16oq8em" path="res://ui/generic/ActionPanel/ActionButton.tscn" id="2_wqija"]
+
+[node name="ActionPanel" type="HBoxContainer"]
+offset_right = 508.0
+offset_bottom = 60.0
+size_flags_horizontal = 2
+size_flags_vertical = 0
+alignment = 1
+script = ExtResource("1_7qi0x")
+
+[node name="ActionButton" parent="." instance=ExtResource("2_wqija")]
+layout_mode = 2
+
+[node name="ActionButton2" parent="." instance=ExtResource("2_wqija")]
+layout_mode = 2
+
+[node name="ActionButton3" parent="." instance=ExtResource("2_wqija")]
+layout_mode = 2
+
+[node name="ActionButton4" parent="." instance=ExtResource("2_wqija")]
+layout_mode = 2
+
+[node name="ActionButton5" parent="." instance=ExtResource("2_wqija")]
+layout_mode = 2
+
+[node name="ActionButton6" parent="." instance=ExtResource("2_wqija")]
+layout_mode = 2
+
+[node name="ActionButton7" parent="." instance=ExtResource("2_wqija")]
+layout_mode = 2
+
+[node name="ActionButton8" parent="." instance=ExtResource("2_wqija")]
+layout_mode = 2

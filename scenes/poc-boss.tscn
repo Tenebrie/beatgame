@@ -161,26 +161,14 @@ environment = SubResource("Environment_nxlol")
 [node name="PlayerCharacter" parent="." instance=ExtResource("2_ofluo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00173628, -0.00244141, -0.023114)
 
-[node name="DummyEnemy" parent="." instance=ExtResource("3_ae480")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.01913, -0.00244141, -0.0104214)
-
 [node name="DummyEnemy4" parent="." instance=ExtResource("3_ae480")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.69666, -0.00244141, 0.214409)
 
 [node name="DummyEnemy5" parent="." instance=ExtResource("3_ae480")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.3723, -0.00244153, 0.425967)
 
-[node name="DummyEnemy2" parent="." instance=ExtResource("3_ae480")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.47785, -0.00244141, -0.267376)
-
-[node name="DummyEnemy3" parent="." instance=ExtResource("3_ae480")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.98294, -0.00244129, -0.598593)
-
 [node name="DummyEnemy6" parent="." instance=ExtResource("5_yuojh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.6974, -0.00244102, -0.00303364)
-
-[node name="DummyEnemy7" parent="." instance=ExtResource("5_yuojh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.56828, -0.0024409, -1.37873)
 
 [node name="TestBoss" parent="." instance=ExtResource("6_vl3yg")]
 transform = Transform3D(0.0075052, 0, -4.99999, 0, 5, 0, 4.99999, 0, 0.0075052, 0.337533, 1.29074, -9.056)

@@ -10,6 +10,10 @@ public partial class Music : Node
 {
 	[Signal]
 	public delegate void BeatTickEventHandler(BeatTime beat);
+	[Signal]
+	public delegate void BeatWindowUnlockEventHandler(BeatTime beat);
+	[Signal]
+	public delegate void BeatWindowLockEventHandler(BeatTime beat);
 
 	public readonly long SongDelay = 3000; // ms
 
@@ -60,14 +64,33 @@ public partial class Music : Node
 			timer.Calibration -= longestCalibration;
 		}
 
-		BeatTimer.BeatWindowUnlock += () => BeatTimeState |= BeatTime.One;
-		BeatTimer.BeatWindowLock += () => BeatTimeState &= ~BeatTime.One;
+		BeatTimer.BeatWindowUnlock += () =>
+		{
+			BeatTimeState |= BeatTime.One;
+			EmitSignal(SignalName.BeatWindowUnlock, BeatTime.One.ToVariant());
+		};
+		BeatTimer.BeatWindowLock += () =>
+		{
+			BeatTimeState &= ~BeatTime.One;
+			EmitSignal(SignalName.BeatWindowLock, BeatTime.One.ToVariant());
+		};
+
 		HalfBeatTimer.BeatWindowUnlock += () =>
 		{
-			if (!IsTimeOpen(BeatTime.One))
-				BeatTimeState |= BeatTime.Half;
+			if (IsTimeOpen(BeatTime.One))
+				return;
+
+			BeatTimeState |= BeatTime.Half;
+			EmitSignal(SignalName.BeatWindowUnlock, BeatTime.Half.ToVariant());
 		};
-		HalfBeatTimer.BeatWindowLock += () => BeatTimeState &= ~BeatTime.Half;
+		HalfBeatTimer.BeatWindowLock += () =>
+		{
+			if (!IsTimeOpen(BeatTime.Half))
+				return;
+
+			BeatTimeState &= ~BeatTime.Half;
+			EmitSignal(SignalName.BeatWindowLock, BeatTime.Half.ToVariant());
+		};
 
 		BeatTimer.Timeout += () => OnInternalTimerTimeout(BeatTime.One);
 		HalfBeatTimer.Timeout += () => OnInternalTimerTimeout(BeatTime.Half);

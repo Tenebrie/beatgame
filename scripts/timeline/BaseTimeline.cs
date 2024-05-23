@@ -25,7 +25,7 @@ public partial class BaseTimeline<ParentT> : Node where ParentT : BaseUnit
 
 		while (Elements[CurrentElementIndex].BeatIndex <= beatIndex)
 		{
-			Elements[CurrentElementIndex].Cast.CastBegin(new CastTargetData() { HostileUnit = PlayerController.All[0] });
+			Elements[CurrentElementIndex].Cast.CastBegin(new CastTargetData() { HostileUnit = PlayerController.AllPlayers[0] });
 			Elements[CurrentElementIndex].Cast.CastPerform();
 			CurrentElementIndex += 1;
 

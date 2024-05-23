@@ -7,7 +7,7 @@ namespace Project;
 
 public class PlayerSpellcasting : ComposableScript
 {
-	public readonly Dictionary<string, BaseCast> CastBindings = new();
+	public readonly Dictionary<string, BaseCast> CastBindings = new(); // Dictionary<InputName, BaseCast>
 
 	new readonly PlayerController Parent;
 
@@ -28,6 +28,12 @@ public class PlayerSpellcasting : ComposableScript
 	{
 		CastBindings.Add(input, cast);
 		Parent.AddChild(cast);
+		SignalBus.Singleton.EmitSignal(SignalBus.SignalName.CastAssigned, cast, input);
+	}
+
+	public BaseCast GetBinding(string input)
+	{
+		return CastBindings.GetValueOrDefault(input, null);
 	}
 
 	public override void _Input(InputEvent @input)

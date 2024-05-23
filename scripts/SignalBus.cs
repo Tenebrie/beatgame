@@ -28,6 +28,10 @@ public partial class SignalBus : Node
 	[Signal]
 	public delegate void TrackStartedEventHandler(MusicTrack track);
 
+	// Cast assigned to a slot in PlayerSpellcasting
+	[Signal]
+	public delegate void CastAssignedEventHandler(BaseCast cast, string actionName);
+
 
 	public override void _EnterTree()
 	{

@@ -12,9 +12,7 @@ public partial class UnitCardList : VBoxContainer
 	public override void _Ready()
 	{
 		foreach (var child in GetChildren())
-		{
 			RemoveChild(child);
-		}
 	}
 
 	public void TrackUnit(BaseUnit unit)
