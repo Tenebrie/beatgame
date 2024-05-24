@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Prop_TorchStick_01_mesh/SM_Prop_TorchStick_01_4300000.mesh" id="1_130n5"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_cigta"]
+
+[node name="SM_Prop_TorchStick_01" type="Node3D"]
+metadata/ufile_ids = ["2bcc13328f8e4a44abdb601fda7419a4:412208", "2bcc13328f8e4a44abdb601fda7419a4:194764", "2bcc13328f8e4a44abdb601fda7419a4:3374546", "2bcc13328f8e4a44abdb601fda7419a4:2363206", "2bcc13328f8e4a44abdb601fda7419a4:64532799615327882"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_130n5")
+surface_material_override/0 = ExtResource("2_cigta")

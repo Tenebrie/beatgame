@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Wall_Curved_Roof_01_mesh/SM_Env_Wall_Curved_Roof_01_4300000.mesh" id="1_1082u"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_fk4x0"]
+
+[node name="SM_Env_Wall_Curved_Roof_01" type="Node3D"]
+metadata/ufile_ids = ["53a4f63e40e043b429f794be2068b4a7:416970", "53a4f63e40e043b429f794be2068b4a7:149256", "53a4f63e40e043b429f794be2068b4a7:3325836", "53a4f63e40e043b429f794be2068b4a7:2360814", "53a4f63e40e043b429f794be2068b4a7:64696660379527222"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_1082u")
+surface_material_override/0 = ExtResource("2_fk4x0")

@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Prop_Chest_04_mesh/SM_Prop_Chest_04_4300000.mesh" id="1_wkyug"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_cns0c"]
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Prop_Chest_04_mesh/SM_Prop_Chest_04_Lid_4300002.mesh" id="3_y25si"]
+
+[node name="SM_Prop_Chest_04" type="Node3D"]
+metadata/ufile_ids = ["6a57b9f39fb08014aabf0466d55fedb9:481626", "6a57b9f39fb08014aabf0466d55fedb9:176990", "6a57b9f39fb08014aabf0466d55fedb9:3340912", "6a57b9f39fb08014aabf0466d55fedb9:2355134", "6a57b9f39fb08014aabf0466d55fedb9:64969059565709082"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_wkyug")
+surface_material_override/0 = ExtResource("2_cns0c")
+
+[node name="SM_Prop_Chest_04_Lid" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.33261e-10, 0.377683, -0.227922)
+metadata/ufile_ids = ["6a57b9f39fb08014aabf0466d55fedb9:441194", "6a57b9f39fb08014aabf0466d55fedb9:184818", "6a57b9f39fb08014aabf0466d55fedb9:3397890", "6a57b9f39fb08014aabf0466d55fedb9:2390958", "6a57b9f39fb08014aabf0466d55fedb9:64367928825258502"]
+
+[node name="_mesh" type="MeshInstance3D" parent="SM_Prop_Chest_04_Lid"]
+mesh = ExtResource("3_y25si")
+surface_material_override/0 = ExtResource("2_cns0c")

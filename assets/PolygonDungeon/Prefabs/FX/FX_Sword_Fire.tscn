@@ -1,0 +1,4 @@
+[gd_scene format=3]
+
+[node name="FX_Sword_Fire" type="Node3D"]
+metadata/ufile_ids = ["9614f35940a59a1439cd47c91d71fde9:415622", "9614f35940a59a1439cd47c91d71fde9:184924", "9614f35940a59a1439cd47c91d71fde9:19857706", "9614f35940a59a1439cd47c91d71fde9:19932430"]

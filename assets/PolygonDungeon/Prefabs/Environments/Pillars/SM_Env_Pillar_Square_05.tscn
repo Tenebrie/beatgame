@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Pillar_Square_05_mesh/SM_Env_Pillar_Square_05_4300000.mesh" id="1_twfcr"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_wfusi"]
+
+[node name="SM_Env_Pillar_Square_05" type="Node3D"]
+metadata/ufile_ids = ["4d74ebab2c4922f4b86d0662b41f9dda:439248", "4d74ebab2c4922f4b86d0662b41f9dda:124088", "4d74ebab2c4922f4b86d0662b41f9dda:3339144", "4d74ebab2c4922f4b86d0662b41f9dda:2313488", "4d74ebab2c4922f4b86d0662b41f9dda:64101181478344756"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_twfcr")
+surface_material_override/0 = ExtResource("2_wfusi")

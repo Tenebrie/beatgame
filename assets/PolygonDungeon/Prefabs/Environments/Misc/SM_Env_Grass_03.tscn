@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Grass_03_mesh/SM_Env_Grass_03_4300000.mesh" id="1_alhqu"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_abte1"]
+
+[node name="SM_Env_Grass_03" type="Node3D"]
+metadata/ufile_ids = ["7f3d4ff296dccb147aeb894ae74fb062:494816", "7f3d4ff296dccb147aeb894ae74fb062:198180", "7f3d4ff296dccb147aeb894ae74fb062:3363470", "7f3d4ff296dccb147aeb894ae74fb062:2394240"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_alhqu")
+surface_material_override/0 = ExtResource("2_abte1")

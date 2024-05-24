@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Prop_Goblin_Tower_01_mesh/SM_Prop_Goblin_Tower_01_4300000.mesh" id="1_cnnoc"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_77per"]
+
+[node name="SM_Prop_Goblin_Tower_01" type="Node3D"]
+metadata/ufile_ids = ["fb45b4bb31f66c946ab6381c0b798f81:433072", "fb45b4bb31f66c946ab6381c0b798f81:113812", "fb45b4bb31f66c946ab6381c0b798f81:3312254", "fb45b4bb31f66c946ab6381c0b798f81:2338274", "fb45b4bb31f66c946ab6381c0b798f81:64479903562328290"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_cnnoc")
+surface_material_override/0 = ExtResource("2_77per")

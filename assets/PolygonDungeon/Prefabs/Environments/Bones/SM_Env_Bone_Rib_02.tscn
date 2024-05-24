@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Bone_Rib_02_mesh/SM_Env_Bone_Rib_02_4300000.mesh" id="1_4slg2"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_mnx3j"]
+
+[node name="SM_Env_Bone_Rib_02" type="Node3D"]
+metadata/ufile_ids = ["000bad6ccc879d6418ec0a4f9b05be43:404584", "000bad6ccc879d6418ec0a4f9b05be43:144830", "000bad6ccc879d6418ec0a4f9b05be43:3331328", "000bad6ccc879d6418ec0a4f9b05be43:2384270", "000bad6ccc879d6418ec0a4f9b05be43:64578053619493774", "000bad6ccc879d6418ec0a4f9b05be43:64996279008209370"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_4slg2")
+surface_material_override/0 = ExtResource("2_mnx3j")

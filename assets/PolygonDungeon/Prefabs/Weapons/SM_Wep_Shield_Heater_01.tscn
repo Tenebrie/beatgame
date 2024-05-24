@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Wep_Shield_Heater_01_mesh/SM_Wep_Shield_Heater_01_4300000.mesh" id="1_0201b"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_qn1tm"]
+
+[node name="SM_Wep_Shield_Heater_01" type="Node3D"]
+metadata/ufile_ids = ["12d8a1596807fc546b7d9ecfb4336e7f:413926", "12d8a1596807fc546b7d9ecfb4336e7f:129334", "12d8a1596807fc546b7d9ecfb4336e7f:3332968", "12d8a1596807fc546b7d9ecfb4336e7f:2336816", "12d8a1596807fc546b7d9ecfb4336e7f:64108682442430390"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_0201b")
+surface_material_override/0 = ExtResource("2_qn1tm")

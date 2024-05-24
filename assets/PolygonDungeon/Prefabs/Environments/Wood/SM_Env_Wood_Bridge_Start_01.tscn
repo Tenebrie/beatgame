@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Wood_Bridge_Start_01_mesh/SM_Env_Wood_Bridge_Start_01_4300000.mesh" id="1_w7oe7"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_dv3rw"]
+
+[node name="SM_Env_Wood_Bridge_Start_01" type="Node3D"]
+metadata/ufile_ids = ["685e675711b17224685ae3d7ed84139c:476394", "685e675711b17224685ae3d7ed84139c:122446", "685e675711b17224685ae3d7ed84139c:3382566", "685e675711b17224685ae3d7ed84139c:2307434", "685e675711b17224685ae3d7ed84139c:64219999216601700"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_w7oe7")
+surface_material_override/0 = ExtResource("2_dv3rw")

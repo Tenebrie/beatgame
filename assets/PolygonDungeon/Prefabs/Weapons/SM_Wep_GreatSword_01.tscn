@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Wep_GreatSword_01_mesh/SM_Wep_GreatSword_01_4300000.mesh" id="1_sd0ox"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_af5vv"]
+
+[node name="SM_Wep_GreatSword_01" type="Node3D"]
+metadata/ufile_ids = ["630627b9fd11d4340a42d44621ddcfa7:482832", "630627b9fd11d4340a42d44621ddcfa7:138470", "630627b9fd11d4340a42d44621ddcfa7:3379030", "630627b9fd11d4340a42d44621ddcfa7:2361038", "630627b9fd11d4340a42d44621ddcfa7:64091718456069478"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_sd0ox")
+surface_material_override/0 = ExtResource("2_af5vv")

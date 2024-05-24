@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Prop_Door_Metal_02_mesh/SM_Prop_Door_Metal_02_4300000.mesh" id="1_msh2t"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_vsvca"]
+
+[node name="SM_Prop_Door_Metal_02" type="Node3D"]
+metadata/ufile_ids = ["eb9d9ae396bb45348881662d40b947c0:427920", "eb9d9ae396bb45348881662d40b947c0:127366", "eb9d9ae396bb45348881662d40b947c0:3379040", "eb9d9ae396bb45348881662d40b947c0:2334364", "eb9d9ae396bb45348881662d40b947c0:64410862501073234"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_msh2t")
+surface_material_override/0 = ExtResource("2_vsvca")

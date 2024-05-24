@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_DoorDouble_Flat_01_mesh/SM_Env_DoorDouble_Flat_01_4300000.mesh" id="1_yh6gs"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_m8h2y"]
+
+[node name="SM_Env_DoorDouble_Flat_01" type="Node3D"]
+metadata/ufile_ids = ["fbfaefed9c8de504992ea1e44db04aaf:488452", "fbfaefed9c8de504992ea1e44db04aaf:115464", "fbfaefed9c8de504992ea1e44db04aaf:3392316", "fbfaefed9c8de504992ea1e44db04aaf:2353316", "fbfaefed9c8de504992ea1e44db04aaf:65551919380510548"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_yh6gs")
+surface_material_override/0 = ExtResource("2_m8h2y")

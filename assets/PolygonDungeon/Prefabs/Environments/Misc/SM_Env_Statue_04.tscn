@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Statue_04_mesh/SM_Env_Statue_04_4300000.mesh" id="1_r418v"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_douq3"]
+
+[node name="SM_Env_Statue_04" type="Node3D"]
+metadata/ufile_ids = ["9f9c8059e0040c544bd1bf5c4f50c6d3:405812", "9f9c8059e0040c544bd1bf5c4f50c6d3:115082", "9f9c8059e0040c544bd1bf5c4f50c6d3:3351264", "9f9c8059e0040c544bd1bf5c4f50c6d3:2308748", "9f9c8059e0040c544bd1bf5c4f50c6d3:64599985790574988"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_r418v")
+surface_material_override/0 = ExtResource("2_douq3")

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Bone_Skull_Jaw_01_mesh/SM_Env_Bone_Skull_Jaw_01_4300000.mesh" id="1_c577q"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_dhpna"]
+
+[node name="SM_Env_Bone_Skull_Jaw_01" type="Node3D"]
+metadata/ufile_ids = ["56d3744b770c01044ad1bb2b6fdd65ce:415162", "56d3744b770c01044ad1bb2b6fdd65ce:191868", "56d3744b770c01044ad1bb2b6fdd65ce:3377866", "56d3744b770c01044ad1bb2b6fdd65ce:2352642", "56d3744b770c01044ad1bb2b6fdd65ce:64316047089744592"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_c577q")
+surface_material_override/0 = ExtResource("2_dhpna")

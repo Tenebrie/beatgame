@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Prop_Brazier_01_mesh/SM_Prop_Brazier_01_4300000.mesh" id="1_o52q5"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_wr6l2"]
+
+[node name="SM_Prop_Brazier_01" type="Node3D"]
+metadata/ufile_ids = ["184f44cf58e82434ab30e27aaaf9b05f:461008", "184f44cf58e82434ab30e27aaaf9b05f:166584", "184f44cf58e82434ab30e27aaaf9b05f:3307344", "184f44cf58e82434ab30e27aaaf9b05f:2394750", "184f44cf58e82434ab30e27aaaf9b05f:64185516547708776"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_o52q5")
+surface_material_override/0 = ExtResource("2_wr6l2")

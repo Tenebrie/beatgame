@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Rock_Flat_Large_01_mesh/SM_Env_Rock_Flat_Large_01_4300000.mesh" id="1_o6vbd"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_oonud"]
+
+[node name="SM_Env_Rock_Flat_Large_01" type="Node3D"]
+metadata/ufile_ids = ["37507b615ddadec429dbf7e5fbaf30d1:444024", "37507b615ddadec429dbf7e5fbaf30d1:176012", "37507b615ddadec429dbf7e5fbaf30d1:3386470", "37507b615ddadec429dbf7e5fbaf30d1:2339830", "37507b615ddadec429dbf7e5fbaf30d1:64786735820946350"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_o6vbd")
+surface_material_override/0 = ExtResource("2_oonud")

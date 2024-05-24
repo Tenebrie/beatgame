@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Grate_01_mesh/SM_Env_Grate_01_4300000.mesh" id="1_8ankq"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_tpobc"]
+
+[node name="SM_Env_Grate_01" type="Node3D"]
+metadata/ufile_ids = ["e80803924d02e1841b21783158018583:465132", "e80803924d02e1841b21783158018583:151846", "e80803924d02e1841b21783158018583:3374220", "e80803924d02e1841b21783158018583:2348562", "e80803924d02e1841b21783158018583:64945537352768776"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_8ankq")
+surface_material_override/0 = ExtResource("2_tpobc")

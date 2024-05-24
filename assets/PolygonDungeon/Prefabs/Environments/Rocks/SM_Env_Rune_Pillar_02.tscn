@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Rune_Pillar_02_mesh/SM_Env_Rune_Pillar_02_4300000.mesh" id="1_ktdan"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_pt3jx"]
+
+[node name="SM_Env_Rune_Pillar_02" type="Node3D"]
+metadata/ufile_ids = ["b914f597dc60ac94ead6d334b15d6622:406680", "b914f597dc60ac94ead6d334b15d6622:147756", "b914f597dc60ac94ead6d334b15d6622:3313388", "b914f597dc60ac94ead6d334b15d6622:2380502", "b914f597dc60ac94ead6d334b15d6622:64657837503245610"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_ktdan")
+surface_material_override/0 = ExtResource("2_pt3jx")

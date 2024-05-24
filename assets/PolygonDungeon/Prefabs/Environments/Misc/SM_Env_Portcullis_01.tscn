@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Portcullis_01_mesh/SM_Env_Portcullis_01_4300000.mesh" id="1_4c3i6"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_syhy5"]
+
+[node name="SM_Env_Portcullis_01" type="Node3D"]
+metadata/ufile_ids = ["aca4ccbc35f59c14ba44dd41bf29f94d:444462", "aca4ccbc35f59c14ba44dd41bf29f94d:118258", "aca4ccbc35f59c14ba44dd41bf29f94d:3302986", "aca4ccbc35f59c14ba44dd41bf29f94d:2312278", "aca4ccbc35f59c14ba44dd41bf29f94d:64878848138180596"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_4c3i6")
+surface_material_override/0 = ExtResource("2_syhy5")

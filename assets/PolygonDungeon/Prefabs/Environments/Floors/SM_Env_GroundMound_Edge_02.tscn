@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dq7gb1rtb2st2"]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_GroundMound_Edge_02_mesh/SM_Env_GroundMound_Edge_02_4300000.mesh" id="1_7o0a1"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_domhb"]
+
+[node name="SM_Env_GroundMound_Edge_02" type="Node3D"]
+metadata/ufile_ids = ["b057fba516b76724ca20ffa1149cfbfc:447652", "b057fba516b76724ca20ffa1149cfbfc:133098", "b057fba516b76724ca20ffa1149cfbfc:3300750", "b057fba516b76724ca20ffa1149cfbfc:2311292", "b057fba516b76724ca20ffa1149cfbfc:64920305527777556"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_7o0a1")
+surface_material_override/0 = ExtResource("2_domhb")

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Prop_Wall_Banner_05_mesh/SM_Prop_Wall_Banner_05_4300000.mesh" id="1_htc55"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_425ga"]
+
+[node name="SM_Prop_Wall_Banner_05" type="Node3D"]
+metadata/ufile_ids = ["1d8a9d4bcbe4aeb488cb292d11c7c48d:465230", "1d8a9d4bcbe4aeb488cb292d11c7c48d:192034", "1d8a9d4bcbe4aeb488cb292d11c7c48d:3397100", "1d8a9d4bcbe4aeb488cb292d11c7c48d:2369984", "1d8a9d4bcbe4aeb488cb292d11c7c48d:64347608243468472"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_htc55")
+surface_material_override/0 = ExtResource("2_425ga")

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_ReinforedPole_02_mesh/SM_Env_ReinforedPole_02_4300000.mesh" id="1_xafeg"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_8a2p7"]
+
+[node name="SM_Env_ReinforedPole_02" type="Node3D"]
+metadata/ufile_ids = ["3f5221b0a8c25dc4b95de518ead5c74e:447618", "3f5221b0a8c25dc4b95de518ead5c74e:163244", "3f5221b0a8c25dc4b95de518ead5c74e:3331262", "3f5221b0a8c25dc4b95de518ead5c74e:2378716", "3f5221b0a8c25dc4b95de518ead5c74e:64772797706708908"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_xafeg")
+surface_material_override/0 = ExtResource("2_8a2p7")

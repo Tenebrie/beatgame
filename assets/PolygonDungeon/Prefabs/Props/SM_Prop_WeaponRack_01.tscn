@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Prop_WeaponRack_01_mesh/SM_Prop_WeaponRack_01_4300000.mesh" id="1_en3en"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_q3kwa"]
+
+[node name="SM_Prop_WeaponRack_01" type="Node3D"]
+metadata/ufile_ids = ["1903e8058f802aa478acc8399cd3ac74:492276", "1903e8058f802aa478acc8399cd3ac74:198518", "1903e8058f802aa478acc8399cd3ac74:3337556", "1903e8058f802aa478acc8399cd3ac74:2345164", "1903e8058f802aa478acc8399cd3ac74:64097643669650402"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_en3en")
+surface_material_override/0 = ExtResource("2_q3kwa")

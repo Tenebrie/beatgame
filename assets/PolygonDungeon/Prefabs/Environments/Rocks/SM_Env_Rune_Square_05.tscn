@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Rune_Square_05_mesh/SM_Env_Rune_Square_05_4300000.mesh" id="1_j8hh1"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_nc7qc"]
+
+[node name="SM_Env_Rune_Square_05" type="Node3D"]
+metadata/ufile_ids = ["2da838c9213cecc48a512514d0b309e5:404720", "2da838c9213cecc48a512514d0b309e5:193704", "2da838c9213cecc48a512514d0b309e5:3312824", "2da838c9213cecc48a512514d0b309e5:2303198", "2da838c9213cecc48a512514d0b309e5:64768542215022220"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_j8hh1")
+surface_material_override/0 = ExtResource("2_nc7qc")

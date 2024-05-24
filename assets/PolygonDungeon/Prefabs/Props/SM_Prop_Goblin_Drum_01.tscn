@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Prop_Goblin_Drum_01_mesh/SM_Prop_Goblin_Drum_01_4300000.mesh" id="1_juw1u"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_ki4ju"]
+
+[node name="SM_Prop_Goblin_Drum_01" type="Node3D"]
+metadata/ufile_ids = ["eb999b0b67a4958469eed87f4b9d8d4b:454094", "eb999b0b67a4958469eed87f4b9d8d4b:177010", "eb999b0b67a4958469eed87f4b9d8d4b:3395822", "eb999b0b67a4958469eed87f4b9d8d4b:2378728", "eb999b0b67a4958469eed87f4b9d8d4b:64420782945853132"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_juw1u")
+surface_material_override/0 = ExtResource("2_ki4ju")

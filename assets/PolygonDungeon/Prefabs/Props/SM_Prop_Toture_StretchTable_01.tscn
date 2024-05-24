@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Prop_Toture_StretchTable_01_mesh/SM_Prop_Toture_StretchTable_01_4300000.mesh" id="1_o5lpf"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_ovmuq"]
+
+[node name="SM_Prop_Toture_StretchTable_01" type="Node3D"]
+metadata/ufile_ids = ["999fe1eecd3902b4ca516ecbfac9efd3:405356", "999fe1eecd3902b4ca516ecbfac9efd3:149048", "999fe1eecd3902b4ca516ecbfac9efd3:3391184", "999fe1eecd3902b4ca516ecbfac9efd3:2389700", "999fe1eecd3902b4ca516ecbfac9efd3:64796116257292612"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_o5lpf")
+surface_material_override/0 = ExtResource("2_ovmuq")

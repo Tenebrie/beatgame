@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Item_Jar_02_mesh/SM_Item_Jar_02_4300000.mesh" id="1_lup8r"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_vcqve"]
+
+[node name="SM_Item_Jar_02" type="Node3D"]
+metadata/ufile_ids = ["859784fe42032104996e218e8142dc8e:429796", "859784fe42032104996e218e8142dc8e:135966", "859784fe42032104996e218e8142dc8e:3346086", "859784fe42032104996e218e8142dc8e:2353980", "859784fe42032104996e218e8142dc8e:64561287852893644"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_lup8r")
+surface_material_override/0 = ExtResource("2_vcqve")

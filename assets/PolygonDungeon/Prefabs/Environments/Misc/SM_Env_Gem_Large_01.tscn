@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Gem_Large_01_mesh/SM_Env_Gem_Large_01_4300000.mesh" id="1_h31op"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_kade1"]
+
+[node name="SM_Env_Gem_Large_01" type="Node3D"]
+metadata/ufile_ids = ["87874848711c372419e6cf6ca05d9ea1:481882", "87874848711c372419e6cf6ca05d9ea1:190188", "87874848711c372419e6cf6ca05d9ea1:3356362", "87874848711c372419e6cf6ca05d9ea1:2310154", "87874848711c372419e6cf6ca05d9ea1:64721083181856220"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_h31op")
+surface_material_override/0 = ExtResource("2_kade1")

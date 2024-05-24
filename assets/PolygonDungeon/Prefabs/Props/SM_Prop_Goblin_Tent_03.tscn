@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Prop_Goblin_Tent_03_mesh/SM_Prop_Goblin_Tent_03_4300000.mesh" id="1_1kktn"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_ximoi"]
+
+[node name="SM_Prop_Goblin_Tent_03" type="Node3D"]
+metadata/ufile_ids = ["19fe5cc2a44e36940b2b60a288b72525:498976", "19fe5cc2a44e36940b2b60a288b72525:121376", "19fe5cc2a44e36940b2b60a288b72525:3394446", "19fe5cc2a44e36940b2b60a288b72525:2391574", "19fe5cc2a44e36940b2b60a288b72525:64334003331716412"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_1kktn")
+surface_material_override/0 = ExtResource("2_ximoi")

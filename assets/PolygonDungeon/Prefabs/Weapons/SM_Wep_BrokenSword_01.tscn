@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Wep_BrokenSword_01_mesh/SM_Wep_BrokenSword_01_4300000.mesh" id="1_i8cx6"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_l14vr"]
+
+[node name="SM_Wep_BrokenSword_01" type="Node3D"]
+metadata/ufile_ids = ["4b12cbf8230d02b4890f46dba29baeff:422976", "4b12cbf8230d02b4890f46dba29baeff:188602", "4b12cbf8230d02b4890f46dba29baeff:3336502", "4b12cbf8230d02b4890f46dba29baeff:2352266", "4b12cbf8230d02b4890f46dba29baeff:64136517186920942"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_i8cx6")
+surface_material_override/0 = ExtResource("2_l14vr")

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Fence_Metal_Spikes_02_mesh/SM_Env_SpikeFence_02_4300000.mesh" id="1_2r4md"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_npx0i"]
+
+[node name="SM_Env_Fence_Metal_Spikes_02" type="Node3D"]
+metadata/ufile_ids = ["ecdc7c8ff04ff8444928c8d3cb5a08be:487622", "ecdc7c8ff04ff8444928c8d3cb5a08be:198714", "ecdc7c8ff04ff8444928c8d3cb5a08be:3323432", "ecdc7c8ff04ff8444928c8d3cb5a08be:2324340", "ecdc7c8ff04ff8444928c8d3cb5a08be:64722425708833628"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_2r4md")
+surface_material_override/0 = ExtResource("2_npx0i")

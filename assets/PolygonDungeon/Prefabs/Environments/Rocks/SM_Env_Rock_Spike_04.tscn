@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Rock_Spike_04_mesh/SM_Env_Rock_Spike_04_4300000.mesh" id="1_rv46k"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_h3xfx"]
+
+[node name="SM_Env_Rock_Spike_04" type="Node3D"]
+metadata/ufile_ids = ["d498844a36df28a449a99795d7b3c112:404236", "d498844a36df28a449a99795d7b3c112:179880", "d498844a36df28a449a99795d7b3c112:3384326", "d498844a36df28a449a99795d7b3c112:2394102", "d498844a36df28a449a99795d7b3c112:64955674554416702"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_rv46k")
+surface_material_override/0 = ExtResource("2_h3xfx")

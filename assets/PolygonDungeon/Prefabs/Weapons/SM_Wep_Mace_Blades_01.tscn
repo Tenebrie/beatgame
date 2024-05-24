@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Wep_Mace_Blades_01_mesh/SM_Wep_Mace_Blades_01_4300000.mesh" id="1_rgvwx"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_noafc"]
+
+[node name="SM_Wep_Mace_Blades_01" type="Node3D"]
+metadata/ufile_ids = ["8e0ba5a27e6e44846a80b38bd2d8dbfd:425590", "8e0ba5a27e6e44846a80b38bd2d8dbfd:138258", "8e0ba5a27e6e44846a80b38bd2d8dbfd:3376434", "8e0ba5a27e6e44846a80b38bd2d8dbfd:2369950", "8e0ba5a27e6e44846a80b38bd2d8dbfd:64677961961150518"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_rgvwx")
+surface_material_override/0 = ExtResource("2_noafc")

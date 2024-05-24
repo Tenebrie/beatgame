@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Prop_StoneTable_Broken_01_mesh/SM_Prop_StoneTable_Broken_01_4300000.mesh" id="1_cgv1x"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_7lcls"]
+
+[node name="SM_Prop_StoneTable_Broken_01" type="Node3D"]
+metadata/ufile_ids = ["38acd8f33333a454aa8e10b6297ab6c8:492730", "38acd8f33333a454aa8e10b6297ab6c8:147182", "38acd8f33333a454aa8e10b6297ab6c8:3369036", "38acd8f33333a454aa8e10b6297ab6c8:2382826", "38acd8f33333a454aa8e10b6297ab6c8:64452930683686844", "38acd8f33333a454aa8e10b6297ab6c8:64776381368501694"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_cgv1x")
+surface_material_override/0 = ExtResource("2_7lcls")

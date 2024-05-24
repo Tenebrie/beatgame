@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Ceiling_Stone_Flat_03_mesh/SM_Env_Ceiling_Stone_Flat_03_4300000.mesh" id="1_bd8l1"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_7vrnh"]
+
+[node name="SM_Env_Ceiling_Stone_Flat_03" type="Node3D"]
+metadata/ufile_ids = ["2d772d7fdfdff1b4e96deee9d48989bd:406994", "2d772d7fdfdff1b4e96deee9d48989bd:178526", "2d772d7fdfdff1b4e96deee9d48989bd:3399742", "2d772d7fdfdff1b4e96deee9d48989bd:2317082", "2d772d7fdfdff1b4e96deee9d48989bd:65636745596475646"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_bd8l1")
+surface_material_override/0 = ExtResource("2_7vrnh")

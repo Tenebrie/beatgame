@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Item_BookPile_01_mesh/SM_Item_BookPile_01_4300000.mesh" id="1_12tce"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_7fifc"]
+
+[node name="SM_Item_BookPile_01" type="Node3D"]
+metadata/ufile_ids = ["bb363b36c456a3f4cb13db09784df636:488826", "bb363b36c456a3f4cb13db09784df636:129232", "bb363b36c456a3f4cb13db09784df636:3361044", "bb363b36c456a3f4cb13db09784df636:2304744", "bb363b36c456a3f4cb13db09784df636:64529229904953736"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_12tce")
+surface_material_override/0 = ExtResource("2_7fifc")

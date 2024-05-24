@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_BonePile_03_mesh/SM_Env_BonePile_03_4300000.mesh" id="1_h8wqu"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_6nxkc"]
+
+[node name="SM_Env_BonePile_03" type="Node3D"]
+metadata/ufile_ids = ["d74d4ec61fec68b42bdb97019a7926ad:493838", "d74d4ec61fec68b42bdb97019a7926ad:137880", "d74d4ec61fec68b42bdb97019a7926ad:3351202", "d74d4ec61fec68b42bdb97019a7926ad:2399632", "d74d4ec61fec68b42bdb97019a7926ad:64699127286929500"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_h8wqu")
+surface_material_override/0 = ExtResource("2_6nxkc")

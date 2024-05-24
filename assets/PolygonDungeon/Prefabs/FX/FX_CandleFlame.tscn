@@ -1,0 +1,4 @@
+[gd_scene format=3]
+
+[node name="FX_CandleFlame" type="Node3D"]
+metadata/ufile_ids = ["30febe85dec39834883b40180a2c4e99:409448", "30febe85dec39834883b40180a2c4e99:107636", "30febe85dec39834883b40180a2c4e99:19882126", "30febe85dec39834883b40180a2c4e99:19936402"]

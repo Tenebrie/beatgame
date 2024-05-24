@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Wood_Pole_02_mesh/SM_Env_Wood_Pole_02_4300000.mesh" id="1_imsjm"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_65a02"]
+
+[node name="SM_Env_Wood_Pole_02" type="Node3D"]
+metadata/ufile_ids = ["28139270a5dc10247b95c33903bf9c1e:458616", "28139270a5dc10247b95c33903bf9c1e:199380", "28139270a5dc10247b95c33903bf9c1e:3365222", "28139270a5dc10247b95c33903bf9c1e:2301990", "28139270a5dc10247b95c33903bf9c1e:64228740874343520"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_imsjm")
+surface_material_override/0 = ExtResource("2_65a02")

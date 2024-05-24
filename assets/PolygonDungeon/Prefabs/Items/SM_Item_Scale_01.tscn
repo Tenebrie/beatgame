@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Item_Scale_01_mesh/SM_Item_Scale_01_4300000.mesh" id="1_7guik"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_36vhm"]
+
+[node name="SM_Item_Scale_01" type="Node3D"]
+metadata/ufile_ids = ["9f78e8c3007d3dd46a0681fc1a4330da:440928", "9f78e8c3007d3dd46a0681fc1a4330da:195884", "9f78e8c3007d3dd46a0681fc1a4330da:3333780", "9f78e8c3007d3dd46a0681fc1a4330da:2335176", "9f78e8c3007d3dd46a0681fc1a4330da:64419159163041418"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_7guik")
+surface_material_override/0 = ExtResource("2_36vhm")

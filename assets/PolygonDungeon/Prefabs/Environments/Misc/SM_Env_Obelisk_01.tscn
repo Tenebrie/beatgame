@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Obelisk_01_mesh/SM_Env_Obelisk_01_4300000.mesh" id="1_f8ymw"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_p2rva"]
+
+[node name="SM_Env_Obelisk_01" type="Node3D"]
+metadata/ufile_ids = ["18a46a3340964084192d989b9cf0359a:460760", "18a46a3340964084192d989b9cf0359a:148708", "18a46a3340964084192d989b9cf0359a:3338302", "18a46a3340964084192d989b9cf0359a:2337098", "18a46a3340964084192d989b9cf0359a:64771360691133750"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_f8ymw")
+surface_material_override/0 = ExtResource("2_p2rva")

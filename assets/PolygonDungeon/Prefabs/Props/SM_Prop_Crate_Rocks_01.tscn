@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Prop_Crate_Rocks_01_mesh/SM_Prop_Crate_Rocks_01_4300000.mesh" id="1_6moli"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_5uwa1"]
+
+[node name="SM_Prop_Crate_Rocks_01" type="Node3D"]
+metadata/ufile_ids = ["30d00bb7fb067de4c99cc3b87f401945:470652", "30d00bb7fb067de4c99cc3b87f401945:124028", "30d00bb7fb067de4c99cc3b87f401945:3375870", "30d00bb7fb067de4c99cc3b87f401945:2332090", "30d00bb7fb067de4c99cc3b87f401945:64612485563168246"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_6moli")
+surface_material_override/0 = ExtResource("2_5uwa1")

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Wep_Axe_01_mesh/SM_Wep_Axe_01_4300000.mesh" id="1_hw5fm"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_lg6nl"]
+
+[node name="SM_Wep_Axe_01" type="Node3D"]
+metadata/ufile_ids = ["bcaaef6ff4b03be43871886bf6d918eb:494102", "bcaaef6ff4b03be43871886bf6d918eb:144458", "bcaaef6ff4b03be43871886bf6d918eb:3353052", "bcaaef6ff4b03be43871886bf6d918eb:2365474", "bcaaef6ff4b03be43871886bf6d918eb:64556955706186764"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_hw5fm")
+surface_material_override/0 = ExtResource("2_lg6nl")

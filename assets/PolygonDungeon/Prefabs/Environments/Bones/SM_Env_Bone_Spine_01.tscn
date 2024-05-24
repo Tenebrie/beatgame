@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Bone_Spine_01_mesh/SM_Env_Bone_Spine_01_4300000.mesh" id="1_31bm7"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_fje8s"]
+
+[node name="SM_Env_Bone_Spine_01" type="Node3D"]
+metadata/ufile_ids = ["34cd41ec62c0b594b9a6f4e292a1920d:411852", "34cd41ec62c0b594b9a6f4e292a1920d:163456", "34cd41ec62c0b594b9a6f4e292a1920d:3327176", "34cd41ec62c0b594b9a6f4e292a1920d:2368190", "34cd41ec62c0b594b9a6f4e292a1920d:64152001831959966", "34cd41ec62c0b594b9a6f4e292a1920d:64992176090607950", "34cd41ec62c0b594b9a6f4e292a1920d:64834326764136876", "34cd41ec62c0b594b9a6f4e292a1920d:64876928512542872"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_31bm7")
+surface_material_override/0 = ExtResource("2_fje8s")

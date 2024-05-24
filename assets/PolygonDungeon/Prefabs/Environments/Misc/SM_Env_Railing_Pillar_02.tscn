@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Railing_Pillar_02_mesh/SM_Env_Railing_Pillar_02_4300000.mesh" id="1_r7tqc"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_3jfdo"]
+
+[node name="SM_Env_Railing_Pillar_02" type="Node3D"]
+metadata/ufile_ids = ["5df4398968a81e04dadfc73e32ca7f79:423780", "5df4398968a81e04dadfc73e32ca7f79:125232", "5df4398968a81e04dadfc73e32ca7f79:3383012", "5df4398968a81e04dadfc73e32ca7f79:2307920", "5df4398968a81e04dadfc73e32ca7f79:64209353137505148"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.308449, 0, 1.00263)
+mesh = ExtResource("1_r7tqc")
+surface_material_override/0 = ExtResource("2_3jfdo")

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Item_Coins_04_mesh/SM_Item_Coins_04_4300000.mesh" id="1_yq2oj"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_v0hsv"]
+
+[node name="SM_Item_Coins_04" type="Node3D"]
+metadata/ufile_ids = ["b3d78aa56c0f0094b86a6d788e1864e1:404270", "b3d78aa56c0f0094b86a6d788e1864e1:151506", "b3d78aa56c0f0094b86a6d788e1864e1:3388876", "b3d78aa56c0f0094b86a6d788e1864e1:2362188", "b3d78aa56c0f0094b86a6d788e1864e1:64390534138762194"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_yq2oj")
+surface_material_override/0 = ExtResource("2_v0hsv")

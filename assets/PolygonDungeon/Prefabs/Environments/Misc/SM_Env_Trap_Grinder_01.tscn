@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Trap_Grinder_01_mesh/SM_Prop_Trap_Grinder_01_4300000.mesh" id="1_t2hlf"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_jprwt"]
+
+[node name="SM_Env_Trap_Grinder_01" type="Node3D"]
+metadata/ufile_ids = ["c6fdbb8b4c973ac47a548ec2836ef8c2:411852", "c6fdbb8b4c973ac47a548ec2836ef8c2:146398", "c6fdbb8b4c973ac47a548ec2836ef8c2:3373408", "c6fdbb8b4c973ac47a548ec2836ef8c2:2368662", "c6fdbb8b4c973ac47a548ec2836ef8c2:64839094231537886"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_t2hlf")
+surface_material_override/0 = ExtResource("2_jprwt")

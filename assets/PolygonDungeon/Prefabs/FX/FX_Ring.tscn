@@ -1,0 +1,4 @@
+[gd_scene format=3]
+
+[node name="FX_Ring" type="Node3D"]
+metadata/ufile_ids = ["8fddca1ea1c00ca4d8f50aa93f290fad:478326", "8fddca1ea1c00ca4d8f50aa93f290fad:177120", "8fddca1ea1c00ca4d8f50aa93f290fad:19822084", "8fddca1ea1c00ca4d8f50aa93f290fad:19953136"]

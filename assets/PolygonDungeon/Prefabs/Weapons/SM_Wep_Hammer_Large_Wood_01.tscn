@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Wep_Hammer_Large_Wood_01_mesh/SM_Wep_Hammer_Large_Wood_01_4300000.mesh" id="1_ymull"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_cxd05"]
+
+[node name="SM_Wep_Hammer_Large_Wood_01" type="Node3D"]
+metadata/ufile_ids = ["7e1e6ebbdfd1d8344b7dbdd624bf2408:446128", "7e1e6ebbdfd1d8344b7dbdd624bf2408:190890", "7e1e6ebbdfd1d8344b7dbdd624bf2408:3388554", "7e1e6ebbdfd1d8344b7dbdd624bf2408:2383984", "7e1e6ebbdfd1d8344b7dbdd624bf2408:64393088753849168"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_ymull")
+surface_material_override/0 = ExtResource("2_cxd05")

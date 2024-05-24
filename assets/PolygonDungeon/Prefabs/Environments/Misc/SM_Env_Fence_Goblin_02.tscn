@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Fence_Goblin_02_mesh/SM_Prop_Goblin_Fence_02_4300000.mesh" id="1_avram"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_5221d"]
+
+[node name="SM_Env_Fence_Goblin_02" type="Node3D"]
+metadata/ufile_ids = ["8c7f3a282739c344da560a2326497f5b:466852", "8c7f3a282739c344da560a2326497f5b:113894", "8c7f3a282739c344da560a2326497f5b:3360026", "8c7f3a282739c344da560a2326497f5b:2350006", "8c7f3a282739c344da560a2326497f5b:64819083230177296"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_avram")
+surface_material_override/0 = ExtResource("2_5221d")

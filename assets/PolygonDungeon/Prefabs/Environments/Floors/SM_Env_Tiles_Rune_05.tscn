@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Tiles_Rune_05_mesh/SM_Env_Tiles_Rune_05_4300000.mesh" id="1_1bu8s"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_jsqhh"]
+
+[node name="SM_Env_Tiles_Rune_05" type="Node3D"]
+metadata/ufile_ids = ["5f965c425bca89d4eadb09234439a4b6:433096", "5f965c425bca89d4eadb09234439a4b6:102998", "5f965c425bca89d4eadb09234439a4b6:3341224", "5f965c425bca89d4eadb09234439a4b6:2339174", "5f965c425bca89d4eadb09234439a4b6:65765808990722252"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_1bu8s")
+surface_material_override/0 = ExtResource("2_jsqhh")

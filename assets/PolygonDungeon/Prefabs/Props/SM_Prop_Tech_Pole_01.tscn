@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Prop_Tech_Pole_01_mesh/SM_Prop_Tech_Pole_01_4300000.mesh" id="1_n23w2"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_s6hc6"]
+
+[node name="SM_Prop_Tech_Pole_01" type="Node3D"]
+metadata/ufile_ids = ["a4fc99f9387c98143ad72a1976da05d4:485094", "a4fc99f9387c98143ad72a1976da05d4:116142", "a4fc99f9387c98143ad72a1976da05d4:3328916", "a4fc99f9387c98143ad72a1976da05d4:2319502", "a4fc99f9387c98143ad72a1976da05d4:64617282717003822"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_n23w2")
+surface_material_override/0 = ExtResource("2_s6hc6")

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Cave_Large_Corner_01_mesh/SM_Env_Cave_Large_Corner_01_4300000.mesh" id="1_ew35t"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_ail2v"]
+
+[node name="SM_Env_Cave_Large_Corner_01" type="Node3D"]
+metadata/ufile_ids = ["a1356636865ec2440bd506178d9bfe7f:482150", "a1356636865ec2440bd506178d9bfe7f:151682", "a1356636865ec2440bd506178d9bfe7f:3348272", "a1356636865ec2440bd506178d9bfe7f:2345612", "a1356636865ec2440bd506178d9bfe7f:64355335876097080"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_ew35t")
+surface_material_override/0 = ExtResource("2_ail2v")

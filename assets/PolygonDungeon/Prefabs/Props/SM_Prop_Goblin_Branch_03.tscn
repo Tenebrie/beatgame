@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Prop_Goblin_Branch_03_mesh/SM_Prop_Goblin_Branch_03_4300000.mesh" id="1_vaxrr"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_ata6m"]
+
+[node name="SM_Prop_Goblin_Branch_03" type="Node3D"]
+metadata/ufile_ids = ["1a0a00f041c72ef4884561d8f41954e6:461894", "1a0a00f041c72ef4884561d8f41954e6:103650", "1a0a00f041c72ef4884561d8f41954e6:3340610", "1a0a00f041c72ef4884561d8f41954e6:2325600", "1a0a00f041c72ef4884561d8f41954e6:64900255387914572"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_vaxrr")
+surface_material_override/0 = ExtResource("2_ata6m")

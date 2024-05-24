@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Trap_Spears_01_mesh/SM_Trap_Spears_01_4300000.mesh" id="1_0mdi3"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_ngq2b"]
+
+[node name="SM_Trap_Spears_01" type="Node3D"]
+metadata/ufile_ids = ["bb5451e0ed4ccd14f946993edded0944:445952", "bb5451e0ed4ccd14f946993edded0944:141092", "bb5451e0ed4ccd14f946993edded0944:3372636", "bb5451e0ed4ccd14f946993edded0944:2320766", "bb5451e0ed4ccd14f946993edded0944:64727002231938044"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_0mdi3")
+surface_material_override/0 = ExtResource("2_ngq2b")

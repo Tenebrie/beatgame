@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Wall_Rock_Blocked_01_mesh/SM_Env_Wall_Rock_Blocked_01_4300000.mesh" id="1_h5dtq"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_jkafs"]
+
+[node name="SM_Env_Wall_Rock_Blocked_01" type="Node3D"]
+metadata/ufile_ids = ["0095dae213368f248a257f702a3c5636:483570", "0095dae213368f248a257f702a3c5636:199214", "0095dae213368f248a257f702a3c5636:3321468", "0095dae213368f248a257f702a3c5636:2334440", "0095dae213368f248a257f702a3c5636:64116628484998346"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_h5dtq")
+surface_material_override/0 = ExtResource("2_jkafs")

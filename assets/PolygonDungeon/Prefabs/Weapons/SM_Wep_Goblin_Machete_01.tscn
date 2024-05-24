@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Wep_Goblin_Machete_01_mesh/SM_Wep_Goblin_Machete_01_4300000.mesh" id="1_svcqp"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_lxl7q"]
+
+[node name="SM_Wep_Goblin_Machete_01" type="Node3D"]
+metadata/ufile_ids = ["34576738923b14941a286d5fc7d3c9f6:423478", "34576738923b14941a286d5fc7d3c9f6:173842", "34576738923b14941a286d5fc7d3c9f6:3387822", "34576738923b14941a286d5fc7d3c9f6:2375256", "34576738923b14941a286d5fc7d3c9f6:64845256275820162"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_svcqp")
+surface_material_override/0 = ExtResource("2_lxl7q")

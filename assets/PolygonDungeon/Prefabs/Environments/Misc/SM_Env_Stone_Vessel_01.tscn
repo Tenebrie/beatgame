@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Stone_Vessel_01_mesh/SM_Env_Stone_Vessel_01_4300000.mesh" id="1_y6nu4"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_n4mfk"]
+
+[node name="SM_Env_Stone_Vessel_01" type="Node3D"]
+metadata/ufile_ids = ["6e329ba57c2f99b41acb3584d0cb8da5:468554", "6e329ba57c2f99b41acb3584d0cb8da5:128100", "6e329ba57c2f99b41acb3584d0cb8da5:3381474", "6e329ba57c2f99b41acb3584d0cb8da5:2325774", "6e329ba57c2f99b41acb3584d0cb8da5:64699225235682558"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_y6nu4")
+surface_material_override/0 = ExtResource("2_n4mfk")

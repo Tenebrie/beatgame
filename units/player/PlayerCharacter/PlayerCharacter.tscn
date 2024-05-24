@@ -4,12 +4,14 @@
 
 [sub_resource type="BoxMesh" id="BoxMesh_moeg2"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_ywbqj"]
-size = Vector3(0.20752, 0.499878, 0.215973)
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_n1txi"]
+radius = 0.15
+height = 0.5
 
 [node name="PlayerCharacter" type="Node3D"]
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+floor_block_on_wall = false
 script = ExtResource("1_2gcyd")
 _mainCameraPath = NodePath("../MainCamera")
 _baseCameraPath = NodePath("../BaseCamera")
@@ -19,8 +21,8 @@ transform = Transform3D(0.2, 0, 0, 0, 0.5, 0, 0, 0, 0.2, 0, 0.252011, 0)
 mesh = SubResource("BoxMesh_moeg2")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000244141, 0.250061, 0.00130759)
-shape = SubResource("BoxShape3D_ywbqj")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000244141, 0.24463, 0.00130759)
+shape = SubResource("CapsuleShape3D_n1txi")
 
 [node name="MainCamera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.234285, 0)

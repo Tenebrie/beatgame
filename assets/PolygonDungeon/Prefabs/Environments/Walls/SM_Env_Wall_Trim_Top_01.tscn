@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://cohw2o5nc7pmx"]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Wall_Trim_Top_01_mesh/SM_Env_Wall_Trim_Top_01_4300000.mesh" id="1_24he3"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_hftud"]
+
+[node name="SM_Env_Wall_Trim_Top_01" type="Node3D"]
+metadata/ufile_ids = ["c355e7909e9522744abb86e9cc7499da:461426", "c355e7909e9522744abb86e9cc7499da:119542", "c355e7909e9522744abb86e9cc7499da:3383172", "c355e7909e9522744abb86e9cc7499da:2396346", "c355e7909e9522744abb86e9cc7499da:65456255301964254", "c355e7909e9522744abb86e9cc7499da:65076195962665508"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_24he3")
+surface_material_override/0 = ExtResource("2_hftud")

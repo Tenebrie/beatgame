@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Tiles_Ornate_02_mesh/SM_Env_Tiles_Ornate_02_4300000.mesh" id="1_i80np"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_1vfoq"]
+
+[node name="SM_Env_Tiles_Ornate_02" type="Node3D"]
+metadata/ufile_ids = ["f7d5c786be55f564b9145808d2121305:472300", "f7d5c786be55f564b9145808d2121305:125812", "f7d5c786be55f564b9145808d2121305:3327206", "f7d5c786be55f564b9145808d2121305:2351402", "f7d5c786be55f564b9145808d2121305:65782339457480766"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_i80np")
+surface_material_override/0 = ExtResource("2_1vfoq")

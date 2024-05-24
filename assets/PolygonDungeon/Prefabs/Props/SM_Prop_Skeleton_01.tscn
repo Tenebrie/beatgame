@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Prop_Skeleton_01_mesh/SM_Prop_Skeleton_01_4300000.mesh" id="1_f8tyr"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_r13ls"]
+
+[node name="SM_Prop_Skeleton_01" type="Node3D"]
+metadata/ufile_ids = ["8659f67b76d6a314f9e352d6d0c7b43b:461842", "8659f67b76d6a314f9e352d6d0c7b43b:143182", "8659f67b76d6a314f9e352d6d0c7b43b:3364072", "8659f67b76d6a314f9e352d6d0c7b43b:2379868", "8659f67b76d6a314f9e352d6d0c7b43b:64576410801491302"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_f8tyr")
+surface_material_override/0 = ExtResource("2_r13ls")

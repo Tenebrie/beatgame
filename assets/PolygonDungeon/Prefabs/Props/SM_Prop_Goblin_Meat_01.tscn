@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Prop_Goblin_Meat_01_mesh/SM_Prop_Goblin_Meat_01_4300000.mesh" id="1_srt7t"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_03s0a"]
+
+[node name="SM_Prop_Goblin_Meat_01" type="Node3D"]
+metadata/ufile_ids = ["c6659568a19a7354db3c3a88365c4dcb:484394", "c6659568a19a7354db3c3a88365c4dcb:172868", "c6659568a19a7354db3c3a88365c4dcb:3317658", "c6659568a19a7354db3c3a88365c4dcb:2398272", "c6659568a19a7354db3c3a88365c4dcb:64206126175661296"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_srt7t")
+surface_material_override/0 = ExtResource("2_03s0a")

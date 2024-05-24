@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Ceiling_Arch_01_mesh/SM_Env_Ceiling_Arch_01_4300000.mesh" id="1_7try5"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_xumoy"]
+
+[node name="SM_Env_Ceiling_Arch_01" type="Node3D"]
+metadata/ufile_ids = ["8fef903d2d12d3c46b6a046f667b2a2a:427280", "8fef903d2d12d3c46b6a046f667b2a2a:148044", "8fef903d2d12d3c46b6a046f667b2a2a:3361786", "8fef903d2d12d3c46b6a046f667b2a2a:2383706"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_7try5")
+surface_material_override/0 = ExtResource("2_xumoy")

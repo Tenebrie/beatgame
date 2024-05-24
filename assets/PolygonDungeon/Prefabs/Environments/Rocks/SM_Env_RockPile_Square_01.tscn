@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_RockPile_Square_01_mesh/SM_Env_RockPile_Square_01_4300000.mesh" id="1_1k61g"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_fowvk"]
+
+[node name="SM_Env_RockPile_Square_01" type="Node3D"]
+metadata/ufile_ids = ["07d8e21504c5ced46b0e0d81a1698023:411664", "07d8e21504c5ced46b0e0d81a1698023:150720", "07d8e21504c5ced46b0e0d81a1698023:3341496", "07d8e21504c5ced46b0e0d81a1698023:2331906", "07d8e21504c5ced46b0e0d81a1698023:64779893967217418"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_1k61g")
+surface_material_override/0 = ExtResource("2_fowvk")

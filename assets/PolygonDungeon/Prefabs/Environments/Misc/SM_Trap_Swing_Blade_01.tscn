@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Trap_Swing_Blade_01_mesh/SM_Trap_Swing_Blade_01_4300000.mesh" id="1_cpi88"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_q0jfk"]
+
+[node name="SM_Trap_Swing_Blade_01" type="Node3D"]
+metadata/ufile_ids = ["e8b9a4d72f4c1c34b8c3ac48656dc0a3:475890", "e8b9a4d72f4c1c34b8c3ac48656dc0a3:149168", "e8b9a4d72f4c1c34b8c3ac48656dc0a3:3340184", "e8b9a4d72f4c1c34b8c3ac48656dc0a3:2337088", "e8b9a4d72f4c1c34b8c3ac48656dc0a3:64509403232994950", "e8b9a4d72f4c1c34b8c3ac48656dc0a3:64822207004734494"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_cpi88")
+surface_material_override/0 = ExtResource("2_q0jfk")

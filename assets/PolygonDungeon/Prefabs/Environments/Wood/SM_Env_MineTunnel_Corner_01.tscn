@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_MineTunnel_Corner_01_mesh/SM_Env_MineTunnel_Corner_01_4300000.mesh" id="1_0gm1p"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_bum0l"]
+
+[node name="SM_Env_MineTunnel_Corner_01" type="Node3D"]
+metadata/ufile_ids = ["43f3dc74c23c8a946938495be10582cd:456768", "43f3dc74c23c8a946938495be10582cd:151480", "43f3dc74c23c8a946938495be10582cd:3391470", "43f3dc74c23c8a946938495be10582cd:2335506", "43f3dc74c23c8a946938495be10582cd:64659903245908412"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_0gm1p")
+surface_material_override/0 = ExtResource("2_bum0l")

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Moss_Patch_01_mesh/SM_Env_Moss_Patch_01_4300000.mesh" id="1_3sesr"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_5s8h3"]
+
+[node name="SM_Env_Moss_Patch_01" type="Node3D"]
+metadata/ufile_ids = ["10149d8a7695a3e40963ad2e3b19a6c9:425666", "10149d8a7695a3e40963ad2e3b19a6c9:196922", "10149d8a7695a3e40963ad2e3b19a6c9:3380040", "10149d8a7695a3e40963ad2e3b19a6c9:2310860", "10149d8a7695a3e40963ad2e3b19a6c9:64603806235140466"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_3sesr")
+surface_material_override/0 = ExtResource("2_5s8h3")

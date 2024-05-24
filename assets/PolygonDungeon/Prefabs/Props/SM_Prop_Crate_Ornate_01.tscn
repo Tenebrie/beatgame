@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Prop_Crate_Ornate_01_mesh/SM_Prop_Crate_Ornate_01_4300000.mesh" id="1_jua47"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_n74nc"]
+
+[node name="SM_Prop_Crate_Ornate_01" type="Node3D"]
+metadata/ufile_ids = ["c44fafd591a0f624c9d8a67a72cc6652:486684", "c44fafd591a0f624c9d8a67a72cc6652:140248", "c44fafd591a0f624c9d8a67a72cc6652:3396174", "c44fafd591a0f624c9d8a67a72cc6652:2313020", "c44fafd591a0f624c9d8a67a72cc6652:64779058866331498"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_jua47")
+surface_material_override/0 = ExtResource("2_n74nc")

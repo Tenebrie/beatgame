@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_CrackedRock_03_mesh/SM_Env_CrackedRock_03_4300000.mesh" id="1_jerjy"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_iccvo"]
+
+[node name="SM_Env_CrackedRock_03" type="Node3D"]
+metadata/ufile_ids = ["bb14b7d9fa63ecb4f94207e14e280405:458192", "bb14b7d9fa63ecb4f94207e14e280405:185764", "bb14b7d9fa63ecb4f94207e14e280405:3353948", "bb14b7d9fa63ecb4f94207e14e280405:2380302", "bb14b7d9fa63ecb4f94207e14e280405:64286157488329420"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_jerjy")
+surface_material_override/0 = ExtResource("2_iccvo")

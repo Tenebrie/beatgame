@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Wep_Crystal_Axe_01_mesh/SM_Wep_Crystal_Axe_01_4300000.mesh" id="1_o3p0d"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_7vxcf"]
+
+[node name="SM_Wep_Crystal_Axe_01" type="Node3D"]
+metadata/ufile_ids = ["48610ef49478fca47a49e4e3c55f8c8a:469862", "48610ef49478fca47a49e4e3c55f8c8a:134092", "48610ef49478fca47a49e4e3c55f8c8a:3315164", "48610ef49478fca47a49e4e3c55f8c8a:2360784", "48610ef49478fca47a49e4e3c55f8c8a:64481665549646672"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_o3p0d")
+surface_material_override/0 = ExtResource("2_7vxcf")

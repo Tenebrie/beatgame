@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Entrance_Large_01_mesh/SM_Env_Entrance_Large_01_4300000.mesh" id="1_vivbb"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_tbgsp"]
+
+[node name="SM_Env_Entrance_Large_01" type="Node3D"]
+metadata/ufile_ids = ["989effbb4735e434cb3444044789c3ac:444868", "989effbb4735e434cb3444044789c3ac:165080", "989effbb4735e434cb3444044789c3ac:3310752", "989effbb4735e434cb3444044789c3ac:2382350", "989effbb4735e434cb3444044789c3ac:64268892752416240", "989effbb4735e434cb3444044789c3ac:64108490925393874", "989effbb4735e434cb3444044789c3ac:64732490690470252"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_vivbb")
+surface_material_override/0 = ExtResource("2_tbgsp")

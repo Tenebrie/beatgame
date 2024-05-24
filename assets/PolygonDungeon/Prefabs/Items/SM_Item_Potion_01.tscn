@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Item_Potion_01_mesh/SM_Item_Potion_01_4300000.mesh" id="1_pn1ko"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_avb1p"]
+
+[node name="SM_Item_Potion_01" type="Node3D"]
+metadata/ufile_ids = ["c341d70d4dd30454881fcc7fa6d0baa4:451962", "c341d70d4dd30454881fcc7fa6d0baa4:128318", "c341d70d4dd30454881fcc7fa6d0baa4:3314114", "c341d70d4dd30454881fcc7fa6d0baa4:2395042", "c341d70d4dd30454881fcc7fa6d0baa4:64251634587037306"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_pn1ko")
+surface_material_override/0 = ExtResource("2_avb1p")

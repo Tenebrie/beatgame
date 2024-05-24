@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Wep_Shield_Spike_01_mesh/SM_Wep_Shield_Spike_01_4300000.mesh" id="1_r3jba"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_ufnu2"]
+
+[node name="SM_Wep_Shield_Spike_01" type="Node3D"]
+metadata/ufile_ids = ["fe0d37e888ff9374084a7354bdb8ddcd:480090", "fe0d37e888ff9374084a7354bdb8ddcd:192082", "fe0d37e888ff9374084a7354bdb8ddcd:3334048", "fe0d37e888ff9374084a7354bdb8ddcd:2312914", "fe0d37e888ff9374084a7354bdb8ddcd:64006205685164616"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_r3jba")
+surface_material_override/0 = ExtResource("2_ufnu2")

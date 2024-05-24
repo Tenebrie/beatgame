@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Prop_Table_Round_Broken_01_mesh/SM_Prop_Table_Round_Broken_01_4300000.mesh" id="1_aqwx2"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_qa25d"]
+
+[node name="SM_Prop_Table_Round_Broken_01" type="Node3D"]
+metadata/ufile_ids = ["8931c8ab0e767cb4d84f62ac124e515c:465442", "8931c8ab0e767cb4d84f62ac124e515c:123038", "8931c8ab0e767cb4d84f62ac124e515c:3381188", "8931c8ab0e767cb4d84f62ac124e515c:2385776", "8931c8ab0e767cb4d84f62ac124e515c:64210079513845266"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_aqwx2")
+surface_material_override/0 = ExtResource("2_qa25d")

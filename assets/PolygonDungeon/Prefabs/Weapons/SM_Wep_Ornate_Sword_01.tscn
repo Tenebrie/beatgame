@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Wep_Ornate_Sword_01_mesh/SM_Wep_Ornate_Sword_01_4300000.mesh" id="1_ok716"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_vgakn"]
+
+[node name="SM_Wep_Ornate_Sword_01" type="Node3D"]
+metadata/ufile_ids = ["c17b117a7e676e148b2ee325c1e6041d:473066", "c17b117a7e676e148b2ee325c1e6041d:119060", "c17b117a7e676e148b2ee325c1e6041d:3366204", "c17b117a7e676e148b2ee325c1e6041d:2315668", "c17b117a7e676e148b2ee325c1e6041d:64342791793108732"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_ok716")
+surface_material_override/0 = ExtResource("2_vgakn")

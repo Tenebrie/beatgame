@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Mushroom_Giant_04_mesh/SM_Env_Mushroom_Giant_04_4300000.mesh" id="1_4dy0v"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_3xjyf"]
+
+[node name="SM_Env_Mushroom_Giant_04" type="Node3D"]
+metadata/ufile_ids = ["a7d0bab3996f4c44299aaa2169c9bcae:465098", "a7d0bab3996f4c44299aaa2169c9bcae:165780", "a7d0bab3996f4c44299aaa2169c9bcae:3345258", "a7d0bab3996f4c44299aaa2169c9bcae:2398262", "a7d0bab3996f4c44299aaa2169c9bcae:64087588486616290"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_4dy0v")
+surface_material_override/0 = ExtResource("2_3xjyf")

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Pillar_Broken_01_mesh/SM_Env_Pillar_Broken_01_4300000.mesh" id="1_l3igu"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_mybqh"]
+
+[node name="SM_Env_Pillar_Broken_01" type="Node3D"]
+metadata/ufile_ids = ["a0929359dc1d88b4ab98f104369aeea9:490044", "a0929359dc1d88b4ab98f104369aeea9:176356", "a0929359dc1d88b4ab98f104369aeea9:3301008", "a0929359dc1d88b4ab98f104369aeea9:2382310", "a0929359dc1d88b4ab98f104369aeea9:64150799267835040"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_l3igu")
+surface_material_override/0 = ExtResource("2_mybqh")

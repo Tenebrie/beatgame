@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Wall_Culled_04_mesh/SM_Env_Wall_Culled_04_4300000.mesh" id="1_klf7o"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_krvnp"]
+
+[node name="SM_Env_Wall_Culled_04" type="Node3D"]
+metadata/ufile_ids = ["9f8634c7eb2d75149b0b37a811f69d18:421548", "9f8634c7eb2d75149b0b37a811f69d18:198206", "9f8634c7eb2d75149b0b37a811f69d18:3326950", "9f8634c7eb2d75149b0b37a811f69d18:2320658"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_klf7o")
+surface_material_override/0 = ExtResource("2_krvnp")

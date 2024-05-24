@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Wall_Half_01_mesh/SM_Env_Wall_Half_01_4300000.mesh" id="1_4wl56"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_gnsps"]
+
+[node name="SM_Env_Wall_Half_01" type="Node3D"]
+metadata/ufile_ids = ["ae09c1c5f9a271341ad23e187de16e39:462996", "ae09c1c5f9a271341ad23e187de16e39:105306", "ae09c1c5f9a271341ad23e187de16e39:3320848", "ae09c1c5f9a271341ad23e187de16e39:2304086", "ae09c1c5f9a271341ad23e187de16e39:65281878975059352"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_4wl56")
+surface_material_override/0 = ExtResource("2_gnsps")

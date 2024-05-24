@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Basement_Support_Pole_01_mesh/SM_Env_Basement_Support_Pole_01_4300000.mesh" id="1_uo4g6"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_uxln0"]
+
+[node name="SM_Env_Basement_Support_Pole_01" type="Node3D"]
+metadata/ufile_ids = ["64f4a2188b2ff8746aa8ee3ca6e443a9:479258", "64f4a2188b2ff8746aa8ee3ca6e443a9:122250", "64f4a2188b2ff8746aa8ee3ca6e443a9:3332416", "64f4a2188b2ff8746aa8ee3ca6e443a9:2320332", "64f4a2188b2ff8746aa8ee3ca6e443a9:64364301725700754"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_uo4g6")
+surface_material_override/0 = ExtResource("2_uxln0")

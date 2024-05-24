@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Prop_Tech_Cog_01_mesh/SM_Prop_Tech_Cog_01_4300000.mesh" id="1_wgxut"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_k3pqx"]
+
+[node name="SM_Prop_Tech_Cog_01" type="Node3D"]
+metadata/ufile_ids = ["59976cdd835d06540973d1ea0d98d9bb:490888", "59976cdd835d06540973d1ea0d98d9bb:153612", "59976cdd835d06540973d1ea0d98d9bb:3325762", "59976cdd835d06540973d1ea0d98d9bb:2368506", "59976cdd835d06540973d1ea0d98d9bb:64617220109111670"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_wgxut")
+surface_material_override/0 = ExtResource("2_k3pqx")

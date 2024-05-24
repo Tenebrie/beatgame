@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Prop_Skeleton_Table_02_mesh/SM_Prop_Skeleton_Table_02_4300000.mesh" id="1_bvkwi"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_sed55"]
+
+[node name="SM_Prop_Skeleton_Table_02" type="Node3D"]
+metadata/ufile_ids = ["2b493449784da3e4cbbcc5f9b99c9f6e:454662", "2b493449784da3e4cbbcc5f9b99c9f6e:149016", "2b493449784da3e4cbbcc5f9b99c9f6e:3330622", "2b493449784da3e4cbbcc5f9b99c9f6e:2356312", "2b493449784da3e4cbbcc5f9b99c9f6e:64516181377087392"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_bvkwi")
+surface_material_override/0 = ExtResource("2_sed55")

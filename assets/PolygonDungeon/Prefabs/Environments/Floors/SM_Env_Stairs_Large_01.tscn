@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Stairs_Large_01_mesh/SM_Env_Stairs_Large_01_4300000.mesh" id="1_xjgq5"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_kqp2a"]
+
+[node name="SM_Env_Stairs_Large_01" type="Node3D"]
+metadata/ufile_ids = ["9d1850479201a0541a4deb81578aeb4f:447894", "9d1850479201a0541a4deb81578aeb4f:116074", "9d1850479201a0541a4deb81578aeb4f:3399196", "9d1850479201a0541a4deb81578aeb4f:2396176", "9d1850479201a0541a4deb81578aeb4f:64697900600960504"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_xjgq5")
+surface_material_override/0 = ExtResource("2_kqp2a")

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Prop_Log_Spike_04_mesh/SM_Prop_Log_Spike_04_4300000.mesh" id="1_82ubv"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_11sm0"]
+
+[node name="SM_Prop_Log_Spike_04" type="Node3D"]
+metadata/ufile_ids = ["b4d766866a398414ca2b5df381a1f376:416048", "b4d766866a398414ca2b5df381a1f376:154812", "b4d766866a398414ca2b5df381a1f376:3337508", "b4d766866a398414ca2b5df381a1f376:2397596", "b4d766866a398414ca2b5df381a1f376:64023389079850456"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_82ubv")
+surface_material_override/0 = ExtResource("2_11sm0")

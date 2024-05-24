@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Bone_Horn_01_mesh/SM_Env_Bone_Horn_01_4300000.mesh" id="1_lvfxx"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_uur5r"]
+
+[node name="SM_Env_Bone_Horn_01" type="Node3D"]
+metadata/ufile_ids = ["87b445a8a19d2fb4884e2dff5ae5519d:491874", "87b445a8a19d2fb4884e2dff5ae5519d:146568", "87b445a8a19d2fb4884e2dff5ae5519d:3371320", "87b445a8a19d2fb4884e2dff5ae5519d:2375602", "87b445a8a19d2fb4884e2dff5ae5519d:64946743601312040"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_lvfxx")
+surface_material_override/0 = ExtResource("2_uur5r")

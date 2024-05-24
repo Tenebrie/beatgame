@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Door_Bars_01_mesh/SM_Env_Door_Bars_01_4300000.mesh" id="1_26v4t"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_mfx0a"]
+
+[node name="SM_Env_Door_Bars_01" type="Node3D"]
+metadata/ufile_ids = ["dd2500919f1e4c64a9dc9604233608a2:485512", "dd2500919f1e4c64a9dc9604233608a2:195692", "dd2500919f1e4c64a9dc9604233608a2:3302570", "dd2500919f1e4c64a9dc9604233608a2:2325188", "dd2500919f1e4c64a9dc9604233608a2:65435226491822758"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_26v4t")
+surface_material_override/0 = ExtResource("2_mfx0a")

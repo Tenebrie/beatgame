@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Wep_Shield_Plank_01_mesh/SM_Wep_Shield_Plank_01_4300000.mesh" id="1_8rkoo"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_1wok3"]
+
+[node name="SM_Wep_Shield_Plank_01" type="Node3D"]
+metadata/ufile_ids = ["020a0313a7a871140859265074b193d0:493310", "020a0313a7a871140859265074b193d0:143154", "020a0313a7a871140859265074b193d0:3313628", "020a0313a7a871140859265074b193d0:2321616", "020a0313a7a871140859265074b193d0:64772032864048816"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_8rkoo")
+surface_material_override/0 = ExtResource("2_1wok3")

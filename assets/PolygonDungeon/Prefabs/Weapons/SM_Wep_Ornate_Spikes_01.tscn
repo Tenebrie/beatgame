@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Wep_Ornate_Spikes_01_mesh/SM_Wep_Ornate_Spikes_01_4300000.mesh" id="1_52qs5"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_tyws8"]
+
+[node name="SM_Wep_Ornate_Spikes_01" type="Node3D"]
+metadata/ufile_ids = ["c022f1fb1d1c9ed43968cee781855787:448048", "c022f1fb1d1c9ed43968cee781855787:139086", "c022f1fb1d1c9ed43968cee781855787:3316716", "c022f1fb1d1c9ed43968cee781855787:2370496", "c022f1fb1d1c9ed43968cee781855787:64117120027482174"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_52qs5")
+surface_material_override/0 = ExtResource("2_tyws8")

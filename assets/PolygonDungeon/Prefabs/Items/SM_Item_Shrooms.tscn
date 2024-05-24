@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Item_Shrooms_mesh/_-918303246576380365.mesh" id="1_pqoh5"]
+
+[node name="SM_Item_Shrooms" type="Node3D"]
+metadata/ufile_ids = ["7e3d152b856ca764db0d7d11f5c698b0:2548139006930301659", "7e3d152b856ca764db0d7d11f5c698b0:2888810952664672353", "7e3d152b856ca764db0d7d11f5c698b0:1509573906790006142", "7e3d152b856ca764db0d7d11f5c698b0:3681659923541412276"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.189238, 0.938776, 5.96046e-08)
+mesh = ExtResource("1_pqoh5")

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Rock_Brick_Simple_08_mesh/SM_Env_Rock_Brick_Simple_08_4300000.mesh" id="1_jrdvp"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_4sa5r"]
+
+[node name="SM_Env_Rock_Brick_Simple_08" type="Node3D"]
+metadata/ufile_ids = ["2d37f8b7a60491a428b507d8fa124546:403204", "2d37f8b7a60491a428b507d8fa124546:146204", "2d37f8b7a60491a428b507d8fa124546:3322766", "2d37f8b7a60491a428b507d8fa124546:2394824", "2d37f8b7a60491a428b507d8fa124546:65805090805592402"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_jrdvp")
+surface_material_override/0 = ExtResource("2_4sa5r")

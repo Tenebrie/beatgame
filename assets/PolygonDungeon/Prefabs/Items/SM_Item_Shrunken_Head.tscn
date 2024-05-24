@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Item_Shrunken_Head_mesh/_-8446096425728100478.mesh" id="1_t6h4m"]
+
+[node name="SM_Item_Shrunken_Head" type="Node3D"]
+metadata/ufile_ids = ["328adb76ac5fad540950fba5e1e28207:2082164533501999585", "328adb76ac5fad540950fba5e1e28207:1706447750528099163", "328adb76ac5fad540950fba5e1e28207:3119461864455714372", "328adb76ac5fad540950fba5e1e28207:913801090914468494"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.176248, 0.94096, -0.0111328)
+mesh = ExtResource("1_t6h4m")

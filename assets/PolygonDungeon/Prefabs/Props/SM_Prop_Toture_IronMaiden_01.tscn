@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Prop_Toture_IronMaiden_01_mesh/SM_Prop_Toture_IronMaiden_01_4300000.mesh" id="1_qyvi8"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_o6llu"]
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Prop_Toture_IronMaiden_01_mesh/SM_Prop_Toture_IronMaiden_Door_L_4300004.mesh" id="3_dnx6u"]
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Prop_Toture_IronMaiden_01_mesh/SM_Prop_Toture_IronMaiden_Door_R_4300002.mesh" id="4_4hhmw"]
+
+[node name="SM_Prop_Toture_IronMaiden_01" type="Node3D"]
+metadata/ufile_ids = ["650caedadb056ca40870f3a4ba441ebf:467838", "650caedadb056ca40870f3a4ba441ebf:113964", "650caedadb056ca40870f3a4ba441ebf:3370688", "650caedadb056ca40870f3a4ba441ebf:2386584", "650caedadb056ca40870f3a4ba441ebf:64165658872646254", "650caedadb056ca40870f3a4ba441ebf:64548796108460074"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_qyvi8")
+surface_material_override/0 = ExtResource("2_o6llu")
+
+[node name="SM_Prop_Toture_IronMaiden_Door_L" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.499071, 0.804738, -0.00224984)
+metadata/ufile_ids = ["650caedadb056ca40870f3a4ba441ebf:488594", "650caedadb056ca40870f3a4ba441ebf:100434", "650caedadb056ca40870f3a4ba441ebf:3359268", "650caedadb056ca40870f3a4ba441ebf:2376124"]
+
+[node name="_mesh" type="MeshInstance3D" parent="SM_Prop_Toture_IronMaiden_Door_L"]
+mesh = ExtResource("3_dnx6u")
+surface_material_override/0 = ExtResource("2_o6llu")
+
+[node name="SM_Prop_Toture_IronMaiden_Door_R" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.570518, 0.804738, -0.00224984)
+metadata/ufile_ids = ["650caedadb056ca40870f3a4ba441ebf:476286", "650caedadb056ca40870f3a4ba441ebf:139368", "650caedadb056ca40870f3a4ba441ebf:3385088", "650caedadb056ca40870f3a4ba441ebf:2326654"]
+
+[node name="_mesh" type="MeshInstance3D" parent="SM_Prop_Toture_IronMaiden_Door_R"]
+mesh = ExtResource("4_4hhmw")
+surface_material_override/0 = ExtResource("2_o6llu")

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Prop_Bed_02_mesh/SM_Prop_Bed_02_4300000.mesh" id="1_bfiw4"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_vqpdh"]
+
+[node name="SM_Prop_Bed_02" type="Node3D"]
+metadata/ufile_ids = ["2a9cc51d30a6d32458c4d4217b768640:433144", "2a9cc51d30a6d32458c4d4217b768640:131070", "2a9cc51d30a6d32458c4d4217b768640:3330530", "2a9cc51d30a6d32458c4d4217b768640:2320690", "2a9cc51d30a6d32458c4d4217b768640:64993018719199570", "2a9cc51d30a6d32458c4d4217b768640:64396236601553590"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_bfiw4")
+surface_material_override/0 = ExtResource("2_vqpdh")

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Prop_Forge_FirePit_01_mesh/SM_Prop_Forge_FirePit_01_4300000.mesh" id="1_mdxkp"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_rwujk"]
+
+[node name="SM_Prop_Forge_FirePit_01" type="Node3D"]
+metadata/ufile_ids = ["6f6053668e9f3ec4f966c505fc71bf60:439472", "6f6053668e9f3ec4f966c505fc71bf60:198458", "6f6053668e9f3ec4f966c505fc71bf60:3316974", "6f6053668e9f3ec4f966c505fc71bf60:2381860", "6f6053668e9f3ec4f966c505fc71bf60:64188111181148586"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_mdxkp")
+surface_material_override/0 = ExtResource("2_rwujk")

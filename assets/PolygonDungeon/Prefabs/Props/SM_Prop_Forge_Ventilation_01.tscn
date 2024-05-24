@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Prop_Forge_Ventilation_01_mesh/SM_Prop_Forge_Ventilation_01_4300000.mesh" id="1_eib5x"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_kjtm3"]
+
+[node name="SM_Prop_Forge_Ventilation_01" type="Node3D"]
+metadata/ufile_ids = ["0fc6f41f71adbc1498e2af3180fd9e27:451134", "0fc6f41f71adbc1498e2af3180fd9e27:115968", "0fc6f41f71adbc1498e2af3180fd9e27:3348792", "0fc6f41f71adbc1498e2af3180fd9e27:2342286", "0fc6f41f71adbc1498e2af3180fd9e27:64045593067913848"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_eib5x")
+surface_material_override/0 = ExtResource("2_kjtm3")

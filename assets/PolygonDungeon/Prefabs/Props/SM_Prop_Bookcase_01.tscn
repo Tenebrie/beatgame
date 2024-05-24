@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Prop_Bookcase_01_mesh/SM_Prop_Bookcase_01_4300000.mesh" id="1_modpq"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_e56bv"]
+
+[node name="SM_Prop_Bookcase_01" type="Node3D"]
+metadata/ufile_ids = ["e56ebb4a3996049479a45d35c3854e8c:494790", "e56ebb4a3996049479a45d35c3854e8c:132048", "e56ebb4a3996049479a45d35c3854e8c:3317812", "e56ebb4a3996049479a45d35c3854e8c:2377542", "e56ebb4a3996049479a45d35c3854e8c:64763348811949186"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_modpq")
+surface_material_override/0 = ExtResource("2_e56bv")

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Wep_Goblin_Club_01_mesh/SM_Wep_Goblin_Club_01_4300000.mesh" id="1_sxu0d"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_pooeq"]
+
+[node name="SM_Wep_Goblin_Club_01" type="Node3D"]
+metadata/ufile_ids = ["cf3a5c2462d00ed4c9ee956b9a48e0b8:435488", "cf3a5c2462d00ed4c9ee956b9a48e0b8:155168", "cf3a5c2462d00ed4c9ee956b9a48e0b8:3310536", "cf3a5c2462d00ed4c9ee956b9a48e0b8:2393102", "cf3a5c2462d00ed4c9ee956b9a48e0b8:64311050307941950"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_sxu0d")
+surface_material_override/0 = ExtResource("2_pooeq")

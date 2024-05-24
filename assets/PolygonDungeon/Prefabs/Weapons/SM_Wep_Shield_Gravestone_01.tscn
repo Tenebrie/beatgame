@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Wep_Shield_Gravestone_01_mesh/SM_Wep_Shield_Gravestone_01_4300000.mesh" id="1_e5t6i"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_wf8vl"]
+
+[node name="SM_Wep_Shield_Gravestone_01" type="Node3D"]
+metadata/ufile_ids = ["28412349ec5d8ee4bb18902b20885d77:419210", "28412349ec5d8ee4bb18902b20885d77:184446", "28412349ec5d8ee4bb18902b20885d77:3395304", "28412349ec5d8ee4bb18902b20885d77:2359534", "28412349ec5d8ee4bb18902b20885d77:64181510284388380"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_e5t6i")
+surface_material_override/0 = ExtResource("2_wf8vl")

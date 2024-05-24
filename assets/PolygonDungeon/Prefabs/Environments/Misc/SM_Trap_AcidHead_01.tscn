@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Trap_AcidHead_01_mesh/SM_Trap_AcidHead_01_4300000.mesh" id="1_8nosx"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_705ld"]
+
+[node name="SM_Trap_AcidHead_01" type="Node3D"]
+metadata/ufile_ids = ["0ca71879ae7aea24c866f8dbf7a2db42:429086", "0ca71879ae7aea24c866f8dbf7a2db42:115540", "0ca71879ae7aea24c866f8dbf7a2db42:3398650", "0ca71879ae7aea24c866f8dbf7a2db42:2301520", "0ca71879ae7aea24c866f8dbf7a2db42:64243402534682056"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_8nosx")
+surface_material_override/0 = ExtResource("2_705ld")

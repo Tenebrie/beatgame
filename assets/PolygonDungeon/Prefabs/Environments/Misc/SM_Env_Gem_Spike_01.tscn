@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Gem_Spike_01_mesh/SM_Env_Gem_Spike_01_4300000.mesh" id="1_o1s47"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_2vbgh"]
+
+[node name="SM_Env_Gem_Spike_01" type="Node3D"]
+metadata/ufile_ids = ["dcf56c462b61a4c43b82009dc5a23df2:439734", "dcf56c462b61a4c43b82009dc5a23df2:120426", "dcf56c462b61a4c43b82009dc5a23df2:3314628", "dcf56c462b61a4c43b82009dc5a23df2:2346208", "dcf56c462b61a4c43b82009dc5a23df2:64595564910120746"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_o1s47")
+surface_material_override/0 = ExtResource("2_2vbgh")

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Wep_Ornate_Axe_01_mesh/SM_Wep_Ornate_Axe_01_4300000.mesh" id="1_gs824"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_wfa4p"]
+
+[node name="SM_Wep_Ornate_Axe_01" type="Node3D"]
+metadata/ufile_ids = ["13016dc9a7fb5a049ae8ce8cb5563986:454666", "13016dc9a7fb5a049ae8ce8cb5563986:169604", "13016dc9a7fb5a049ae8ce8cb5563986:3383672", "13016dc9a7fb5a049ae8ce8cb5563986:2352252", "13016dc9a7fb5a049ae8ce8cb5563986:64125782944638608"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_gs824")
+surface_material_override/0 = ExtResource("2_wfa4p")

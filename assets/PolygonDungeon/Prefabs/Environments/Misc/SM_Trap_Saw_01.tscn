@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Trap_Saw_01_mesh/SM_Trap_Saw_01_4300000.mesh" id="1_sfgsp"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_4wkkb"]
+
+[node name="SM_Trap_Saw_01" type="Node3D"]
+metadata/ufile_ids = ["d0fd0f7701890024daee0118098286c8:447204", "d0fd0f7701890024daee0118098286c8:105588", "d0fd0f7701890024daee0118098286c8:3360876", "d0fd0f7701890024daee0118098286c8:2327918", "d0fd0f7701890024daee0118098286c8:64815898215657904"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_sfgsp")
+surface_material_override/0 = ExtResource("2_4wkkb")

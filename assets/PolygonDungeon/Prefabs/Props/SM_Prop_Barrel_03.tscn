@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Prop_Barrel_03_mesh/SM_Prop_Barrel_03_4300000.mesh" id="1_5lbcw"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_3qn21"]
+
+[node name="SM_Prop_Barrel_03" type="Node3D"]
+metadata/ufile_ids = ["617f333324332de47a8b5f07cc0870cc:471048", "617f333324332de47a8b5f07cc0870cc:133876", "617f333324332de47a8b5f07cc0870cc:3336314", "617f333324332de47a8b5f07cc0870cc:2348662", "617f333324332de47a8b5f07cc0870cc:64945656434365872"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_5lbcw")
+surface_material_override/0 = ExtResource("2_3qn21")

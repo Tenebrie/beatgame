@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Wep_Spear_01_mesh/SM_Wep_Spear_01_4300000.mesh" id="1_jxket"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_f3o84"]
+
+[node name="SM_Wep_Spear_01" type="Node3D"]
+metadata/ufile_ids = ["8eb04366c54966144aa0a9d5a9f6bbc1:400628", "8eb04366c54966144aa0a9d5a9f6bbc1:145458", "8eb04366c54966144aa0a9d5a9f6bbc1:3391470", "8eb04366c54966144aa0a9d5a9f6bbc1:2381910", "8eb04366c54966144aa0a9d5a9f6bbc1:64395931042449206"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_jxket")
+surface_material_override/0 = ExtResource("2_f3o84")

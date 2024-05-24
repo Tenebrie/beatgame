@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Wep_Cutlass_01_mesh/SM_Wep_Cutlass_01_4300000.mesh" id="1_w4ryp"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_s0gxk"]
+
+[node name="SM_Wep_Cutlass_01" type="Node3D"]
+metadata/ufile_ids = ["9695911e504498140aa7aeea19670d11:422222", "9695911e504498140aa7aeea19670d11:164944", "9695911e504498140aa7aeea19670d11:3306948", "9695911e504498140aa7aeea19670d11:2363828", "9695911e504498140aa7aeea19670d11:64194406976867268"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_w4ryp")
+surface_material_override/0 = ExtResource("2_s0gxk")

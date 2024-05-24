@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Wall_Window_Bars_01_mesh/SM_Env_Wall_Window_Bars_01_4300000.mesh" id="1_apxj3"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_d8iyc"]
+
+[node name="SM_Env_Wall_Window_Bars_01" type="Node3D"]
+metadata/ufile_ids = ["827c3239a0ee95542b7e6ae6288e5ffb:403192", "827c3239a0ee95542b7e6ae6288e5ffb:149836", "827c3239a0ee95542b7e6ae6288e5ffb:3361234", "827c3239a0ee95542b7e6ae6288e5ffb:2303742", "827c3239a0ee95542b7e6ae6288e5ffb:64823916055872306"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_apxj3")
+surface_material_override/0 = ExtResource("2_d8iyc")

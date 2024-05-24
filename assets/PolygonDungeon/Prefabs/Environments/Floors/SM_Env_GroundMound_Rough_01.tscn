@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_GroundMound_Rough_01_mesh/SM_Env_GroundMound_Rough_01_4300000.mesh" id="1_s4bad"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_58mw6"]
+
+[node name="SM_Env_GroundMound_Rough_01" type="Node3D"]
+metadata/ufile_ids = ["ba46c50bf80c36149aa92e6fed27cc0c:466158", "ba46c50bf80c36149aa92e6fed27cc0c:125124", "ba46c50bf80c36149aa92e6fed27cc0c:3365178", "ba46c50bf80c36149aa92e6fed27cc0c:2342958", "ba46c50bf80c36149aa92e6fed27cc0c:64129034888921308"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_s4bad")
+surface_material_override/0 = ExtResource("2_58mw6")

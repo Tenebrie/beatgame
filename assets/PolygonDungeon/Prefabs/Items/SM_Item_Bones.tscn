@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Item_Bones_mesh/_-6044121578406008026.mesh" id="1_8473r"]
+
+[node name="SM_Item_Bones" type="Node3D"]
+metadata/ufile_ids = ["0de2abf7d7e4e9c47ac3855c65a2cf8d:5213397013488802221", "0de2abf7d7e4e9c47ac3855c65a2cf8d:4833035691533615895", "0de2abf7d7e4e9c47ac3855c65a2cf8d:9220679758081824264", "0de2abf7d7e4e9c47ac3855c65a2cf8d:6346302135001080514"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.187515, 0.967518, 1.11759e-07)
+mesh = ExtResource("1_8473r")

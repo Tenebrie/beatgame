@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Wood_Platform_04_mesh/SM_Env_Wood_Platform_04_4300000.mesh" id="1_jb1i6"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_qlum3"]
+
+[node name="SM_Env_Wood_Platform_04" type="Node3D"]
+metadata/ufile_ids = ["85adacbb7212db343a16feba832b5479:493444", "85adacbb7212db343a16feba832b5479:112590", "85adacbb7212db343a16feba832b5479:3375208", "85adacbb7212db343a16feba832b5479:2354416", "85adacbb7212db343a16feba832b5479:64395566895879874"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_jb1i6")
+surface_material_override/0 = ExtResource("2_qlum3")

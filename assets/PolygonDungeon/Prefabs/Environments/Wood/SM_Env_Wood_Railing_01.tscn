@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Wood_Railing_01_mesh/SM_Env_Wood_Railing_01_4300000.mesh" id="1_cb14a"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_mtmt5"]
+
+[node name="SM_Env_Wood_Railing_01" type="Node3D"]
+metadata/ufile_ids = ["3d9255a806ebe2045b23fb7077837544:457012", "3d9255a806ebe2045b23fb7077837544:144368", "3d9255a806ebe2045b23fb7077837544:3387752", "3d9255a806ebe2045b23fb7077837544:2383376", "3d9255a806ebe2045b23fb7077837544:64638240776298464"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_cb14a")
+surface_material_override/0 = ExtResource("2_mtmt5")

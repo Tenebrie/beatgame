@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Trap_Swing_Blade_Housing_01_mesh/SM_Trap_Swing_Blade_Housing_01_4300000.mesh" id="1_rftcp"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_7x3d7"]
+
+[node name="SM_Trap_Swing_Blade_Housing_01" type="Node3D"]
+metadata/ufile_ids = ["3f1a0765ab6a768438937bf6ac67042e:476206", "3f1a0765ab6a768438937bf6ac67042e:127436", "3f1a0765ab6a768438937bf6ac67042e:3382684", "3f1a0765ab6a768438937bf6ac67042e:2354004", "3f1a0765ab6a768438937bf6ac67042e:64824392890101726"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_rftcp")
+surface_material_override/0 = ExtResource("2_7x3d7")

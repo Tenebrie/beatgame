@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Wep_Greatsword_Curved_01_mesh/SM_Wep_Greatsword_Curved_01_4300000.mesh" id="1_p65go"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_hd7wv"]
+
+[node name="SM_Wep_Greatsword_Curved_01" type="Node3D"]
+metadata/ufile_ids = ["e6138525164fc714a9e749b7608ec9b3:458016", "e6138525164fc714a9e749b7608ec9b3:155340", "e6138525164fc714a9e749b7608ec9b3:3396988", "e6138525164fc714a9e749b7608ec9b3:2310560", "e6138525164fc714a9e749b7608ec9b3:64663736877775964"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_p65go")
+surface_material_override/0 = ExtResource("2_hd7wv")

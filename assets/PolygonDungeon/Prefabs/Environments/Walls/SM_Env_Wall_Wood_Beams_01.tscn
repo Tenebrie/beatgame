@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Wall_Wood_Beams_01_mesh/SM_Env_Wall_Wood_Beams_01_4300000.mesh" id="1_6ksod"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_dxylt"]
+
+[node name="SM_Env_Wall_Wood_Beams_01" type="Node3D"]
+metadata/ufile_ids = ["b55c5c89af6466b4eac975ed5d76d2cb:482504", "b55c5c89af6466b4eac975ed5d76d2cb:122580", "b55c5c89af6466b4eac975ed5d76d2cb:3399648", "b55c5c89af6466b4eac975ed5d76d2cb:2371826", "b55c5c89af6466b4eac975ed5d76d2cb:64107577723729230", "b55c5c89af6466b4eac975ed5d76d2cb:64790532993268244", "b55c5c89af6466b4eac975ed5d76d2cb:64217793906390682", "b55c5c89af6466b4eac975ed5d76d2cb:64285390790830366"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_6ksod")
+surface_material_override/0 = ExtResource("2_dxylt")

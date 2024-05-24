@@ -1,0 +1,4 @@
+[gd_scene format=3]
+
+[node name="FX_Trap_AcidHead_Acid" type="Node3D"]
+metadata/ufile_ids = ["57d59975ae01cca4f871e5d6f42c6020:444886", "57d59975ae01cca4f871e5d6f42c6020:145734", "57d59975ae01cca4f871e5d6f42c6020:19882424", "57d59975ae01cca4f871e5d6f42c6020:19972394"]

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Prop_Lantern_02_mesh/SM_Prop_Lantern_02_4300000.mesh" id="1_h2ltb"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_fljei"]
+
+[node name="SM_Prop_Lantern_02" type="Node3D"]
+metadata/ufile_ids = ["73eee973709c1b044aa87e9eb332a527:467158", "73eee973709c1b044aa87e9eb332a527:127800", "73eee973709c1b044aa87e9eb332a527:3393266", "73eee973709c1b044aa87e9eb332a527:2354634", "73eee973709c1b044aa87e9eb332a527:64547314578814384"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_h2ltb")
+surface_material_override/0 = ExtResource("2_fljei")

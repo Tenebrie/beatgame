@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Wep_Goblin_Axe_Large_01_mesh/SM_Wep_Goblin_Axe_Large_01_4300000.mesh" id="1_8xlkc"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_hlep5"]
+
+[node name="SM_Wep_Goblin_Axe_Large_01" type="Node3D"]
+metadata/ufile_ids = ["5840d6af3b225554a806309ac5f08f60:431248", "5840d6af3b225554a806309ac5f08f60:161324", "5840d6af3b225554a806309ac5f08f60:3338862", "5840d6af3b225554a806309ac5f08f60:2385346", "5840d6af3b225554a806309ac5f08f60:64940352201742326"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_8xlkc")
+surface_material_override/0 = ExtResource("2_hlep5")

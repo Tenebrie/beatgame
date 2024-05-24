@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Prop_Plank_01_mesh/SM_Prop_Plank_01_4300000.mesh" id="1_g81fg"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_j20gb"]
+
+[node name="SM_Prop_Plank_01" type="Node3D"]
+metadata/ufile_ids = ["dcb161f5ca573ab41ac18a8b74630ef6:477968", "dcb161f5ca573ab41ac18a8b74630ef6:187594", "dcb161f5ca573ab41ac18a8b74630ef6:3305100", "dcb161f5ca573ab41ac18a8b74630ef6:2323986", "dcb161f5ca573ab41ac18a8b74630ef6:64621829369115332"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_g81fg")
+surface_material_override/0 = ExtResource("2_j20gb")

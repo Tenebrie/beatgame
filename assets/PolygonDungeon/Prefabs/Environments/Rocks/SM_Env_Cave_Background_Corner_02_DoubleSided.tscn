@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Cave_Background_Corner_02_DoubleSided_mesh/SM_Env_Cave_Background_Corner_02_DoubleSided_4300000.mesh" id="1_wcsw4"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_nrqew"]
+
+[node name="SM_Env_Cave_Background_Corner_02_DoubleSided" type="Node3D"]
+metadata/ufile_ids = ["d49776b2e97a2584f8d2b7c1b6fa81f9:403160", "d49776b2e97a2584f8d2b7c1b6fa81f9:124480", "d49776b2e97a2584f8d2b7c1b6fa81f9:3335620", "d49776b2e97a2584f8d2b7c1b6fa81f9:2359904", "d49776b2e97a2584f8d2b7c1b6fa81f9:64130021994663584"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_wcsw4")
+surface_material_override/0 = ExtResource("2_nrqew")

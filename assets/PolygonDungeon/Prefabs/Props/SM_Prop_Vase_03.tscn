@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Prop_Vase_03_mesh/SM_Prop_Vase_03_4300000.mesh" id="1_hdun0"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_ggahk"]
+
+[node name="SM_Prop_Vase_03" type="Node3D"]
+metadata/ufile_ids = ["5f453323eb1cb374b98c94ab5004a413:442842", "5f453323eb1cb374b98c94ab5004a413:158532", "5f453323eb1cb374b98c94ab5004a413:3341678", "5f453323eb1cb374b98c94ab5004a413:2395664", "5f453323eb1cb374b98c94ab5004a413:64253919333690072"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_hdun0")
+surface_material_override/0 = ExtResource("2_ggahk")

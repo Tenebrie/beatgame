@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Wep_HandAxe_01_mesh/SM_Wep_HandAxe_01_4300000.mesh" id="1_rwryd"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_6bdla"]
+
+[node name="SM_Wep_HandAxe_01" type="Node3D"]
+metadata/ufile_ids = ["eca7ededb3db2234c90bef2213ce5799:487842", "eca7ededb3db2234c90bef2213ce5799:197142", "eca7ededb3db2234c90bef2213ce5799:3358762", "eca7ededb3db2234c90bef2213ce5799:2305370", "eca7ededb3db2234c90bef2213ce5799:64311322563366150"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_rwryd")
+surface_material_override/0 = ExtResource("2_6bdla")

@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_LightRayCube_mesh/SM_LightRay_Cube_4300000.mesh" id="1_r57yw"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Misc/FX_LightRay.tres" id="2_ap0ed"]
+
+[node name="FX_LightRayCube" type="Node3D"]
+metadata/ufile_ids = ["07bee576df5b5e049a39f20f65b6ddb1:423916", "07bee576df5b5e049a39f20f65b6ddb1:120096", "07bee576df5b5e049a39f20f65b6ddb1:9569696"]
+
+[node name="Light_Shaft_Base" type="Node3D" parent="."]
+transform = Transform3D(0, 1, 0, -1, 0, 0, 0, 0, 1, 0, 0, 0)
+metadata/ufile_ids = ["07bee576df5b5e049a39f20f65b6ddb1:412148", "07bee576df5b5e049a39f20f65b6ddb1:138998"]
+
+[node name="Light_Shaft_Manip" type="Node3D" parent="Light_Shaft_Base"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8294, -4.06208e-16, 0)
+metadata/ufile_ids = ["07bee576df5b5e049a39f20f65b6ddb1:460192", "07bee576df5b5e049a39f20f65b6ddb1:176144"]
+
+[node name="@Node3D@2064" type="Node3D" parent="Light_Shaft_Base/Light_Shaft_Manip"]
+transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.79495, -3.98559e-16, 0)
+metadata/ufile_ids = ["07bee576df5b5e049a39f20f65b6ddb1:487036", "07bee576df5b5e049a39f20f65b6ddb1:123242"]
+
+[node name="SM_LightRay_Cube" type="Node3D" parent="."]
+metadata/ufile_ids = ["07bee576df5b5e049a39f20f65b6ddb1:470820", "07bee576df5b5e049a39f20f65b6ddb1:102302", "07bee576df5b5e049a39f20f65b6ddb1:13734030"]
+
+[node name="_mesh" type="MeshInstance3D" parent="SM_LightRay_Cube"]
+mesh = ExtResource("1_r57yw")
+surface_material_override/0 = ExtResource("2_ap0ed")

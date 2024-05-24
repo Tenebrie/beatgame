@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://by3brcj43nbkw"]
+
+[ext_resource type="PackedScene" uid="uid://es8lejl17jjx" path="res://assets/PolygonDungeon/Prefabs/Environments/Floors/SM_Env_Tiles_02.tscn" id="1_ps402"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g2po7"]
+size = Vector3(1, 0.05, 1)
+
+[node name="DungeonFloor02" type="StaticBody3D"]
+
+[node name="SM_Env_Tiles_02" parent="." instance=ExtResource("1_ps402")]
+transform = Transform3D(20.2, 0, 0, 0, 20.2, 0, 0, 0, 20.2, -0.01, 0, -0.01)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0.5)
+shape = SubResource("BoxShape3D_g2po7")

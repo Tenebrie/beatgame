@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Prop_Stool_03_mesh/SM_Prop_Stool_03_4300000.mesh" id="1_br5vd"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_01c3c"]
+
+[node name="SM_Prop_Stool_03" type="Node3D"]
+metadata/ufile_ids = ["1c98f16d861b9c64dbd9c4b2ad29927a:439636", "1c98f16d861b9c64dbd9c4b2ad29927a:191224", "1c98f16d861b9c64dbd9c4b2ad29927a:3328584", "1c98f16d861b9c64dbd9c4b2ad29927a:2344550", "1c98f16d861b9c64dbd9c4b2ad29927a:64996847379598108"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_br5vd")
+surface_material_override/0 = ExtResource("2_01c3c")

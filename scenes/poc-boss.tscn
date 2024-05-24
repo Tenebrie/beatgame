@@ -1,6 +1,5 @@
-[gd_scene load_steps=17 format=3 uid="uid://bcrvev26qnfr0"]
+[gd_scene load_steps=23 format=3 uid="uid://bcrvev26qnfr0"]
 
-[ext_resource type="PackedScene" uid="uid://d4lr8x11fi1f4" path="res://elements/WaterSurface/WaterSurface.tscn" id="1_d3trf"]
 [ext_resource type="PackedScene" uid="uid://cj7pjptvs0hgl" path="res://ui/pause/PauseUI.tscn" id="2_2kafe"]
 [ext_resource type="PackedScene" uid="uid://ci21idu6kwex5" path="res://units/player/PlayerCharacter/PlayerCharacter.tscn" id="2_ofluo"]
 [ext_resource type="PackedScene" uid="uid://dd8hi213iqvva" path="res://units/enemy/DummyEnemy/DummyEnemy.tscn" id="3_ae480"]
@@ -9,12 +8,13 @@
 [ext_resource type="PackedScene" path="res://units/enemy/DummyEnemy/TestBoss.tscn" id="6_vl3yg"]
 [ext_resource type="AudioStream" uid="uid://ctwt3hacn46os" path="res://assets/music/t14d-spaceship.ogg" id="8_u1ct3"]
 [ext_resource type="AudioStream" uid="uid://djw3rc7spg3ea" path="res://assets/music/120bpm-test-track.ogg" id="9_qijot"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_wv8tr"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sefcc"]
-cull_mode = 1
-disable_receive_shadows = true
+[ext_resource type="PackedScene" uid="uid://cgo34wa3ccmn5" path="res://objects/Environment/FloorTiles01.tscn" id="9_v6hir"]
+[ext_resource type="PackedScene" uid="uid://b6djjs8hwoc1o" path="res://objects/Environment/WallStone01.tscn" id="10_6n4xs"]
+[ext_resource type="PackedScene" uid="uid://dvbl5wpm0payh" path="res://objects/Environment/WallStoneDoor01.tscn" id="10_vynyj"]
+[ext_resource type="PackedScene" uid="uid://btkbxqd3m0o5r" path="res://objects/Environment/WallStoneWindow01.tscn" id="12_3l8ar"]
+[ext_resource type="PackedScene" uid="uid://bly86m2hi4wkh" path="res://objects/Environment/WallStone02.tscn" id="13_na6mm"]
+[ext_resource type="PackedScene" uid="uid://brm5ywm6ylnrg" path="res://objects/Environment/WallStone03.tscn" id="14_sg1d4"]
+[ext_resource type="PackedScene" uid="uid://buno3h8ro3xck" path="res://objects/Environment/WallStoneWindow02.tscn" id="15_ts5d6"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_mr5th"]
 
@@ -29,10 +29,15 @@ size = Vector3(20, 1, 0.5)
 [sub_resource type="Environment" id="Environment_nxlol"]
 ambient_light_energy = 0.91
 volumetric_fog_enabled = true
-volumetric_fog_density = 0.1822
+volumetric_fog_density = 0.0672
 volumetric_fog_albedo = Color(0.137255, 0.596078, 0.698039, 1)
 volumetric_fog_ambient_inject = 0.18
-volumetric_fog_temporal_reprojection_amount = 0.99
+adjustment_enabled = true
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_dlc6d"]
+dof_blur_amount = 1.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nt0qh"]
 
 [node name="Poc-boss" type="Node3D"]
 
@@ -44,26 +49,9 @@ volumetric_fog_temporal_reprojection_amount = 0.99
 
 [node name="WaterPlane" type="Node" parent="Environment"]
 
-[node name="Node3D" parent="Environment/WaterPlane" instance=ExtResource("1_d3trf")]
-transform = Transform3D(20, 0, 0, 0, 1, 0, 0, 0, 20, -10.25, 0.300087, 10.0598)
-
-[node name="Node3D2" parent="Environment/WaterPlane" instance=ExtResource("1_d3trf")]
-transform = Transform3D(20, 0, 0, 0, 1, 0, 0, 0, 20, -10.25, 0.3, -30)
-
-[node name="Node3D3" parent="Environment/WaterPlane" instance=ExtResource("1_d3trf")]
-transform = Transform3D(20, 0, 0, 0, 1, 0, 0, 0, 60, 9.75, 0.3, -29.4467)
-
-[node name="Node3D4" parent="Environment/WaterPlane" instance=ExtResource("1_d3trf")]
-transform = Transform3D(20, 0, 0, 0, 1, 0, 0, 0, 60, -30.2383, 0.3, -29.4467)
-
-[node name="BlockSky" type="MeshInstance3D" parent="Environment"]
-transform = Transform3D(60, 0, 0, 0, 60, 0, 0, 0, 60, 0, 0, 0)
-mesh = SubResource("BoxMesh_wv8tr")
-surface_material_override/0 = SubResource("StandardMaterial3D_sefcc")
-
 [node name="Arena" type="Node" parent="Environment"]
 
-[node name="FloorRigidBody" type="RigidBody3D" parent="Environment/Arena"]
+[node name="FloorRigidBody" type="StaticBody3D" parent="Environment/Arena"]
 axis_lock_linear_x = true
 axis_lock_linear_y = true
 axis_lock_linear_z = true
@@ -149,7 +137,7 @@ skeleton = NodePath("../../FloorRigidBody/Floor")
 shape = SubResource("BoxShape3D_2miy7")
 
 [node name="Sunlight" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.542647, 0.838427, 0.0507369, 0, -0.0604039, 0.998174, 0.839961, -0.541656, -0.032778, 27.2272, 37.0952, -28.8687)
+transform = Transform3D(0.541303, 0.840599, -0.0195913, 0.0381649, -0.0012869, 0.999271, 0.839961, -0.541656, -0.032778, 10.7481, 4.74743, -23.1111)
 shadow_enabled = true
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
@@ -162,15 +150,16 @@ shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_nxlol")
+camera_attributes = SubResource("CameraAttributesPractical_dlc6d")
 
 [node name="PlayerCharacter" parent="." instance=ExtResource("2_ofluo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00173628, -0.00244141, -0.023114)
 
 [node name="DummyEnemy4" parent="." instance=ExtResource("3_ae480")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.69666, -0.00244141, 0.214409)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.80834, -0.00244141, -0.0771254)
 
 [node name="DummyEnemy5" parent="." instance=ExtResource("3_ae480")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.3723, -0.00244153, 0.425967)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.48398, -0.00244153, 0.134433)
 
 [node name="DummyEnemy6" parent="." instance=ExtResource("5_yuojh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.6974, -0.00244102, -0.00303364)
@@ -185,3 +174,67 @@ stream = ExtResource("8_u1ct3")
 
 [node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="Dummy"]
 stream = ExtResource("9_qijot")
+
+[node name="DungeonFloor01" parent="." instance=ExtResource("9_v6hir")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0210625, 0)
+
+[node name="DungeonFloor02" parent="." instance=ExtResource("9_v6hir")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.0210625, 0)
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="DungeonFloor02"]
+transform = Transform3D(0.646657, -0.762781, 0, 0.762781, 0.646657, 0, 0, 0, 1, -1.43448, -0.104479, -0.47025)
+shape = SubResource("BoxShape3D_nt0qh")
+
+[node name="DungeonFloor03" parent="." instance=ExtResource("9_v6hir")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.0210625, -1)
+
+[node name="DungeonFloor04" parent="." instance=ExtResource("9_v6hir")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0210625, -1)
+
+[node name="WallStoneDoor01" parent="." instance=ExtResource("10_vynyj")]
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -1, 0.0210625, 0)
+
+[node name="WallStone02" parent="." instance=ExtResource("10_6n4xs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.0210625, -1)
+
+[node name="WallStone06" parent="." instance=ExtResource("10_6n4xs")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1, 0.0210625, -1)
+
+[node name="WallStone03" parent="." instance=ExtResource("10_6n4xs")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1, 0.0210625, 1)
+
+[node name="WallStone04" parent="." instance=ExtResource("10_6n4xs")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1, 1.02106, 1)
+
+[node name="WallStone08" parent="." instance=ExtResource("10_6n4xs")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.02106, 1)
+
+[node name="WallStone09" parent="." instance=ExtResource("10_6n4xs")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1, 1.02106, 1)
+
+[node name="WallStone10" parent="." instance=ExtResource("10_6n4xs")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 1, 1.02106, 0)
+
+[node name="WallStone11" parent="." instance=ExtResource("10_6n4xs")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 1, 1.02106, -1)
+
+[node name="WallStone12" parent="." instance=ExtResource("10_6n4xs")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 0, 1.02106, -1)
+
+[node name="WallStone13" parent="." instance=ExtResource("10_6n4xs")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -1, 1.02106, -1)
+
+[node name="WallStone05" parent="." instance=ExtResource("10_6n4xs")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1, 1.02106, 0)
+
+[node name="WallStoneWindow01" parent="." instance=ExtResource("12_3l8ar")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0210625, -1)
+
+[node name="WallStone07" parent="." instance=ExtResource("13_na6mm")]
+transform = Transform3D(-1, 0, 8.9407e-08, 0, 1, 0, -8.9407e-08, 0, -1, 1, 0.0210625, 1)
+
+[node name="WallStone03" parent="WallStone07" instance=ExtResource("14_sg1d4")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.19209e-07, 0, 1)
+
+[node name="WallStoneWindow02" parent="." instance=ExtResource("15_ts5d6")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0.0210625, 1)

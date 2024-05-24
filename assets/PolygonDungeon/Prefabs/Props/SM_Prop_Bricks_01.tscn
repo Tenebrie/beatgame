@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Prop_Bricks_01_mesh/SM_Prop_Bricks_01_4300000.mesh" id="1_jkhmw"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_qb2xv"]
+
+[node name="SM_Prop_Bricks_01" type="Node3D"]
+metadata/ufile_ids = ["42d3647458ec01743b3436714c29380a:495958", "42d3647458ec01743b3436714c29380a:164982", "42d3647458ec01743b3436714c29380a:3326146", "42d3647458ec01743b3436714c29380a:2388470", "42d3647458ec01743b3436714c29380a:64311361051684058"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_jkhmw")
+surface_material_override/0 = ExtResource("2_qb2xv")

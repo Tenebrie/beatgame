@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Flowers_01_mesh/SM_Env_Flowers_01_4300000.mesh" id="1_0fndg"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_idrmk"]
+
+[node name="SM_Env_Flowers_01" type="Node3D"]
+metadata/ufile_ids = ["04fb0adabe575c0429826d73f7db3c13:432936", "04fb0adabe575c0429826d73f7db3c13:156300", "04fb0adabe575c0429826d73f7db3c13:3386572", "04fb0adabe575c0429826d73f7db3c13:2326454", "04fb0adabe575c0429826d73f7db3c13:64564098457055536"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_0fndg")
+surface_material_override/0 = ExtResource("2_idrmk")

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Prop_StoneTable_01_mesh/SM_Prop_StoneTable_01_4300000.mesh" id="1_4dkkl"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_bao5s"]
+
+[node name="SM_Prop_StoneTable_01" type="Node3D"]
+metadata/ufile_ids = ["16b5a7abcb1d9cb438b51c495e76eb52:405634", "16b5a7abcb1d9cb438b51c495e76eb52:141482", "16b5a7abcb1d9cb438b51c495e76eb52:3320706", "16b5a7abcb1d9cb438b51c495e76eb52:2386208", "16b5a7abcb1d9cb438b51c495e76eb52:64727601646336474"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_4dkkl")
+surface_material_override/0 = ExtResource("2_bao5s")

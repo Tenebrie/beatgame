@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Wall_Alcove_Round_01_Texture_mesh/SM_Env_Wall_Alcove_Round_01_Texture_4300000.mesh" id="1_rklis"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Misc/Dungeon_Material_TextureWalls.tres" id="2_tvmk0"]
+
+[node name="SM_Env_Wall_Alcove_Round_01_Texture" type="Node3D"]
+metadata/ufile_ids = ["ee419b41994ef3a4d969f1460611b8af:471464", "ee419b41994ef3a4d969f1460611b8af:122726", "ee419b41994ef3a4d969f1460611b8af:3365822", "ee419b41994ef3a4d969f1460611b8af:2328544", "ee419b41994ef3a4d969f1460611b8af:64937830074984438"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_rklis")
+surface_material_override/0 = ExtResource("2_tvmk0")

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Prop_Goblin_Rotisserie_01_mesh/SM_Prop_Goblin_Rotisserie_01_4300000.mesh" id="1_5nihb"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_fqg5m"]
+
+[node name="SM_Prop_Goblin_Rotisserie_01" type="Node3D"]
+metadata/ufile_ids = ["d2dc90829bd0db94185f5935716eeb15:472614", "d2dc90829bd0db94185f5935716eeb15:164096", "d2dc90829bd0db94185f5935716eeb15:3387638", "d2dc90829bd0db94185f5935716eeb15:2342268", "d2dc90829bd0db94185f5935716eeb15:64631013198518778"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_5nihb")
+surface_material_override/0 = ExtResource("2_fqg5m")

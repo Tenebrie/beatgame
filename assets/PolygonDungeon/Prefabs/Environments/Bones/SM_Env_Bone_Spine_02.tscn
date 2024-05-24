@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Bone_Spine_02_mesh/SM_Env_Bone_Spine_02_4300000.mesh" id="1_gyitf"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_din62"]
+
+[node name="SM_Env_Bone_Spine_02" type="Node3D"]
+metadata/ufile_ids = ["49c27abb07f09fb4ea3422c5dceffd27:455104", "49c27abb07f09fb4ea3422c5dceffd27:123534", "49c27abb07f09fb4ea3422c5dceffd27:3370014", "49c27abb07f09fb4ea3422c5dceffd27:2304098", "49c27abb07f09fb4ea3422c5dceffd27:64960595858968978"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_gyitf")
+surface_material_override/0 = ExtResource("2_din62")

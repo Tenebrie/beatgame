@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Prop_Skeleton_Slave_Shackles_02_mesh/SM_Prop_Skeleton_Slave_Shackles_02_4300000.mesh" id="1_2cfku"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_ak8rn"]
+
+[node name="SM_Prop_Skeleton_Slave_Shackles_02" type="Node3D"]
+metadata/ufile_ids = ["f60435eb25eeef148afa615a40a4eb07:486240", "f60435eb25eeef148afa615a40a4eb07:159302", "f60435eb25eeef148afa615a40a4eb07:3339294", "f60435eb25eeef148afa615a40a4eb07:2302310", "f60435eb25eeef148afa615a40a4eb07:64797781876042722"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_2cfku")
+surface_material_override/0 = ExtResource("2_ak8rn")

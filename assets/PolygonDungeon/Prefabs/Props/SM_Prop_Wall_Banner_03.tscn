@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Prop_Wall_Banner_03_mesh/SM_Prop_Wall_Banner_03_4300000.mesh" id="1_0cnmr"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_hx5sj"]
+
+[node name="SM_Prop_Wall_Banner_03" type="Node3D"]
+metadata/ufile_ids = ["8e10a05095404614b8880f7579838d4d:455734", "8e10a05095404614b8880f7579838d4d:198824", "8e10a05095404614b8880f7579838d4d:3383008", "8e10a05095404614b8880f7579838d4d:2368700", "8e10a05095404614b8880f7579838d4d:64525508615690116"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_0cnmr")
+surface_material_override/0 = ExtResource("2_hx5sj")

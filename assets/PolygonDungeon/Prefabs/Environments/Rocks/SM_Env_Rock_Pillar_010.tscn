@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Rock_Pillar_010_mesh/SM_Env_Rock_Pillar_010_4300000.mesh" id="1_n1l1y"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_3pjd6"]
+
+[node name="SM_Env_Rock_Pillar_010" type="Node3D"]
+metadata/ufile_ids = ["10efb0aba8ca9c74b83ac0d8043f4b70:478176", "10efb0aba8ca9c74b83ac0d8043f4b70:191196", "10efb0aba8ca9c74b83ac0d8043f4b70:3315168", "10efb0aba8ca9c74b83ac0d8043f4b70:2339356", "10efb0aba8ca9c74b83ac0d8043f4b70:64628331627620254"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_n1l1y")
+surface_material_override/0 = ExtResource("2_3pjd6")

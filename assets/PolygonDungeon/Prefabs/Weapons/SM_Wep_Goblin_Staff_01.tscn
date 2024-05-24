@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Wep_Goblin_Staff_01_mesh/SM_Wep_Goblin_Staff_01_4300000.mesh" id="1_reykl"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_ywi2q"]
+
+[node name="SM_Wep_Goblin_Staff_01" type="Node3D"]
+metadata/ufile_ids = ["3e567880dba875d4fbc7834ca7f5b289:462362", "3e567880dba875d4fbc7834ca7f5b289:128030", "3e567880dba875d4fbc7834ca7f5b289:3322346", "3e567880dba875d4fbc7834ca7f5b289:2316104", "3e567880dba875d4fbc7834ca7f5b289:64790696395251388"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_reykl")
+surface_material_override/0 = ExtResource("2_ywi2q")

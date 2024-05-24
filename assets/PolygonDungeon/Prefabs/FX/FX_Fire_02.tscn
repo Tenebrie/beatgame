@@ -1,0 +1,4 @@
+[gd_scene format=3]
+
+[node name="FX_Fire_02" type="Node3D"]
+metadata/ufile_ids = ["f65b497ff807d95439b38e7da2fab667:456254", "f65b497ff807d95439b38e7da2fab667:103198", "f65b497ff807d95439b38e7da2fab667:19862286", "f65b497ff807d95439b38e7da2fab667:19926160"]

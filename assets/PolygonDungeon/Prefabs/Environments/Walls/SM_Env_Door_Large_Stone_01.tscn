@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Door_Large_Stone_01_mesh/SM_Env_Door_Large_Stone_01_4300000.mesh" id="1_lflap"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_77fay"]
+
+[node name="SM_Env_Door_Large_Stone_01" type="Node3D"]
+metadata/ufile_ids = ["83bca42b08f07db46a6e240380100f24:452850", "83bca42b08f07db46a6e240380100f24:122140", "83bca42b08f07db46a6e240380100f24:3379596", "83bca42b08f07db46a6e240380100f24:2302144", "83bca42b08f07db46a6e240380100f24:65085377905234218"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_lflap")
+surface_material_override/0 = ExtResource("2_77fay")

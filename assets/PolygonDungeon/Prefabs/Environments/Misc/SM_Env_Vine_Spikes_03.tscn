@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Vine_Spikes_03_mesh/SM_Env_Vine_Spikes_03_4300000.mesh" id="1_reij3"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_x4vhv"]
+
+[node name="SM_Env_Vine_Spikes_03" type="Node3D"]
+metadata/ufile_ids = ["9aebcee403d0c4745bea8c5fea3af6ef:475672", "9aebcee403d0c4745bea8c5fea3af6ef:195216", "9aebcee403d0c4745bea8c5fea3af6ef:3390876", "9aebcee403d0c4745bea8c5fea3af6ef:2309492", "9aebcee403d0c4745bea8c5fea3af6ef:64563302754590204"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_reij3")
+surface_material_override/0 = ExtResource("2_x4vhv")

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Wep_Goblin_Axe_Spikes_01_mesh/SM_Wep_Goblin_Axe_Spikes_01_4300000.mesh" id="1_rgvfj"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_wo68t"]
+
+[node name="SM_Wep_Goblin_Axe_Spikes_01" type="Node3D"]
+metadata/ufile_ids = ["48a47585ce7445a45be25cba3537114e:447462", "48a47585ce7445a45be25cba3537114e:130572", "48a47585ce7445a45be25cba3537114e:3315728", "48a47585ce7445a45be25cba3537114e:2319184", "48a47585ce7445a45be25cba3537114e:64315204471791876"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_rgvfj")
+surface_material_override/0 = ExtResource("2_wo68t")

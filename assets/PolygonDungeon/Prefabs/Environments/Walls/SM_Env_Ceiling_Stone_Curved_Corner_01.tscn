@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Ceiling_Stone_Curved_Corner_01_mesh/SM_Env_Ceiling_Stone_Curved_Corner_01_4300000.mesh" id="1_wven0"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_5ugod"]
+
+[node name="SM_Env_Ceiling_Stone_Curved_Corner_01" type="Node3D"]
+metadata/ufile_ids = ["85f5f4776e3804945ab0095870a1212b:496582", "85f5f4776e3804945ab0095870a1212b:147372", "85f5f4776e3804945ab0095870a1212b:3354718", "85f5f4776e3804945ab0095870a1212b:2372536", "85f5f4776e3804945ab0095870a1212b:64244191198810274", "85f5f4776e3804945ab0095870a1212b:64312440712092702", "85f5f4776e3804945ab0095870a1212b:64754104136085610", "85f5f4776e3804945ab0095870a1212b:64839925039791966", "85f5f4776e3804945ab0095870a1212b:64979792717002652"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_wven0")
+surface_material_override/0 = ExtResource("2_5ugod")

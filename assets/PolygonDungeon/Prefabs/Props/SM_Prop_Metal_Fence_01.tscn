@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Prop_Metal_Fence_01_mesh/SM_Prop_Metal_Fence_01_4300000.mesh" id="1_ho7ry"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_kdqg6"]
+
+[node name="SM_Prop_Metal_Fence_01" type="Node3D"]
+metadata/ufile_ids = ["e2d4897b09257264892b7aeeacdc56e9:404714", "e2d4897b09257264892b7aeeacdc56e9:102550", "e2d4897b09257264892b7aeeacdc56e9:3349144", "e2d4897b09257264892b7aeeacdc56e9:2322952", "e2d4897b09257264892b7aeeacdc56e9:64949330440527240"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_ho7ry")
+surface_material_override/0 = ExtResource("2_kdqg6")

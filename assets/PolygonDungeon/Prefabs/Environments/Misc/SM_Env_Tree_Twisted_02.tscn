@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Tree_Twisted_02_mesh/SM_Env_Tree_Twisted_02_4300000.mesh" id="1_dkayh"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_w7vqg"]
+
+[node name="SM_Env_Tree_Twisted_02" type="Node3D"]
+metadata/ufile_ids = ["146879b9a407b4947a38bacaa6fc4dd8:437822", "146879b9a407b4947a38bacaa6fc4dd8:122796", "146879b9a407b4947a38bacaa6fc4dd8:3308242", "146879b9a407b4947a38bacaa6fc4dd8:2375534", "146879b9a407b4947a38bacaa6fc4dd8:64787401752508558"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_dkayh")
+surface_material_override/0 = ExtResource("2_w7vqg")

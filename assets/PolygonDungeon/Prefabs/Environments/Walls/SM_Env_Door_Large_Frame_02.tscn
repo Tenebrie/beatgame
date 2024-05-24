@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Door_Large_Frame_02_mesh/SM_Env_Door_Large_Frame_02_4300000.mesh" id="1_ofgcb"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_ryvqd"]
+
+[node name="SM_Env_Door_Large_Frame_02" type="Node3D"]
+metadata/ufile_ids = ["c39c4cd0967de674eb0b5c00da3fdccd:467916", "c39c4cd0967de674eb0b5c00da3fdccd:164216", "c39c4cd0967de674eb0b5c00da3fdccd:3373348", "c39c4cd0967de674eb0b5c00da3fdccd:2376244", "c39c4cd0967de674eb0b5c00da3fdccd:64819900136439752", "c39c4cd0967de674eb0b5c00da3fdccd:64283959730749606", "c39c4cd0967de674eb0b5c00da3fdccd:64916741775676952", "c39c4cd0967de674eb0b5c00da3fdccd:64117116701846134", "c39c4cd0967de674eb0b5c00da3fdccd:64423599672147928"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_ofgcb")
+surface_material_override/0 = ExtResource("2_ryvqd")

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Trap_WallArrow_Hole_01_mesh/SM_Trap_WallArrow_Hole_01_4300000.mesh" id="1_j2sa4"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_mb818"]
+
+[node name="SM_Trap_WallArrow_Hole_01" type="Node3D"]
+metadata/ufile_ids = ["5b290bad62686f54786d6121cfb82c4a:443466", "5b290bad62686f54786d6121cfb82c4a:128952", "5b290bad62686f54786d6121cfb82c4a:3391566", "5b290bad62686f54786d6121cfb82c4a:2370640", "5b290bad62686f54786d6121cfb82c4a:64506964545415972"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_j2sa4")
+surface_material_override/0 = ExtResource("2_mb818")

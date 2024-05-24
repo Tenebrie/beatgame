@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Sewer_Canal_01_mesh/SM_Env_Sewer_Canal_01_4300000.mesh" id="1_epc21"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_2bs0d"]
+
+[node name="SM_Env_Sewer_Canal_01" type="Node3D"]
+metadata/ufile_ids = ["494ea68912b382044bbcc86230c7fbad:483244", "494ea68912b382044bbcc86230c7fbad:155712", "494ea68912b382044bbcc86230c7fbad:3328566", "494ea68912b382044bbcc86230c7fbad:2380420", "494ea68912b382044bbcc86230c7fbad:64739336676974438", "494ea68912b382044bbcc86230c7fbad:64024811664259754", "494ea68912b382044bbcc86230c7fbad:64554363460022394", "494ea68912b382044bbcc86230c7fbad:64482960853513130"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_epc21")
+surface_material_override/0 = ExtResource("2_2bs0d")

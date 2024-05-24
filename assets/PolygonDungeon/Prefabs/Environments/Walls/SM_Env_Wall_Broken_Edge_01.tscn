@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Wall_Broken_Edge_01_mesh/SM_Env_Wall_Broken_Edge_01_4300000.mesh" id="1_pic4e"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_jlwd0"]
+
+[node name="SM_Env_Wall_Broken_Edge_01" type="Node3D"]
+metadata/ufile_ids = ["79bc9246d82833f41a623e9e01fd5e0a:454530", "79bc9246d82833f41a623e9e01fd5e0a:144152", "79bc9246d82833f41a623e9e01fd5e0a:3334568", "79bc9246d82833f41a623e9e01fd5e0a:2380824", "79bc9246d82833f41a623e9e01fd5e0a:64308412678103150"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_pic4e")
+surface_material_override/0 = ExtResource("2_jlwd0")

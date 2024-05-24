@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Prop_Tech_Turbine_01_mesh/SM_Prop_Tech_Turbine_01_4300000.mesh" id="1_w3qgp"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_ifyqx"]
+
+[node name="SM_Prop_Tech_Turbine_01" type="Node3D"]
+metadata/ufile_ids = ["1a4b5e35e3879dd418861e3a2b58d6e2:434754", "1a4b5e35e3879dd418861e3a2b58d6e2:130566", "1a4b5e35e3879dd418861e3a2b58d6e2:3322984", "1a4b5e35e3879dd418861e3a2b58d6e2:2377840", "1a4b5e35e3879dd418861e3a2b58d6e2:64746892101306222"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_w3qgp")
+surface_material_override/0 = ExtResource("2_ifyqx")

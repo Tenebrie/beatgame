@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Prop_Candle_Stand_01_mesh/SM_Prop_Candle_Stand_01_4300000.mesh" id="1_0y5q5"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_ufhwf"]
+
+[node name="SM_Prop_Candle_Stand_01_Preset" type="Node3D"]
+metadata/ufile_ids = ["c39d6af8061c7594b832d1b44c44a0d5:435184", "c39d6af8061c7594b832d1b44c44a0d5:136604", "c39d6af8061c7594b832d1b44c44a0d5:3384342", "c39d6af8061c7594b832d1b44c44a0d5:2387922", "c39d6af8061c7594b832d1b44c44a0d5:19951378", "c39d6af8061c7594b832d1b44c44a0d5:19884824", "c39d6af8061c7594b832d1b44c44a0d5:64204588326203556"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_0y5q5")
+surface_material_override/0 = ExtResource("2_ufhwf")

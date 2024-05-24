@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://ceqx76vu6bckg"]
+
+[ext_resource type="PackedScene" uid="uid://b80jah8paq02t" path="res://assets/PolygonDungeon/Prefabs/Environments/Walls/SM_Env_Wall_Trim_Floor_01.tscn" id="2_mtst8"]
+
+[node name="FloorTilesTrim01" type="StaticBody3D"]
+
+[node name="SM_Env_Wall_Trim_Floor_01" parent="." instance=ExtResource("2_mtst8")]
+transform = Transform3D(20.2, 0, 0, 0, 20.2, 0, 0, 0, 20.2, 0.5, 0.00467011, 0.06)

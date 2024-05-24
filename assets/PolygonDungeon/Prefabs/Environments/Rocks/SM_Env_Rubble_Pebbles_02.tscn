@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Rubble_Pebbles_02_mesh/SM_Env_Rubble_Pebbles_02_4300000.mesh" id="1_pfw1c"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_wa8ji"]
+
+[node name="SM_Env_Rubble_Pebbles_02" type="Node3D"]
+metadata/ufile_ids = ["6b8ef567fab8aae4fb47c66e41111903:486262", "6b8ef567fab8aae4fb47c66e41111903:113888", "6b8ef567fab8aae4fb47c66e41111903:3394562", "6b8ef567fab8aae4fb47c66e41111903:2379120"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_pfw1c")
+surface_material_override/0 = ExtResource("2_wa8ji")

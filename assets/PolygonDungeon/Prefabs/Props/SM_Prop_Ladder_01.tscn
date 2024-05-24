@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Prop_Ladder_01_mesh/SM_Prop_Ladder_01_4300000.mesh" id="1_lm5oc"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_mb6wm"]
+
+[node name="SM_Prop_Ladder_01" type="Node3D"]
+metadata/ufile_ids = ["c5d3e226ed6e1e84081c162b216658e4:482954", "c5d3e226ed6e1e84081c162b216658e4:107534", "c5d3e226ed6e1e84081c162b216658e4:3326202", "c5d3e226ed6e1e84081c162b216658e4:2315642", "c5d3e226ed6e1e84081c162b216658e4:64942341903626750"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_lm5oc")
+surface_material_override/0 = ExtResource("2_mb6wm")

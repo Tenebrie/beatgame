@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Wep_Hammer_Mace_Spikes_01_mesh/SM_Wep_Hammer_Mace_Spikes_01_4300000.mesh" id="1_xsg4f"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_oygm5"]
+
+[node name="SM_Wep_Hammer_Mace_Spikes_01" type="Node3D"]
+metadata/ufile_ids = ["7921028fb0081074d9fb82bb7648f1c9:458030", "7921028fb0081074d9fb82bb7648f1c9:158504", "7921028fb0081074d9fb82bb7648f1c9:3371806", "7921028fb0081074d9fb82bb7648f1c9:2317466", "7921028fb0081074d9fb82bb7648f1c9:64626318233199694"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_xsg4f")
+surface_material_override/0 = ExtResource("2_oygm5")

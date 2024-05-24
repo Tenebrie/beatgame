@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Prop_Barrel_Broken_02_mesh/SM_Prop_Barrel_Broken_02_4300000.mesh" id="1_jxkxj"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_2fmc1"]
+
+[node name="SM_Prop_Barrel_Broken_02" type="Node3D"]
+metadata/ufile_ids = ["497b6e4d56b9a2d48ac2cd8de829fa88:452834", "497b6e4d56b9a2d48ac2cd8de829fa88:175928", "497b6e4d56b9a2d48ac2cd8de829fa88:3339682", "497b6e4d56b9a2d48ac2cd8de829fa88:2385234", "497b6e4d56b9a2d48ac2cd8de829fa88:64588729037098784"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_jxkxj")
+surface_material_override/0 = ExtResource("2_2fmc1")

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Item_Vial_03_mesh/SM_Item_Vial_03_4300000.mesh" id="1_cbmuk"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_pp5by"]
+
+[node name="SM_Item_Vial_03" type="Node3D"]
+metadata/ufile_ids = ["b674cb11b6548924ab5a2c9f3d632ab3:459080", "b674cb11b6548924ab5a2c9f3d632ab3:128790", "b674cb11b6548924ab5a2c9f3d632ab3:3311132", "b674cb11b6548924ab5a2c9f3d632ab3:2372488", "b674cb11b6548924ab5a2c9f3d632ab3:64072665455295188"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_cbmuk")
+surface_material_override/0 = ExtResource("2_pp5by")

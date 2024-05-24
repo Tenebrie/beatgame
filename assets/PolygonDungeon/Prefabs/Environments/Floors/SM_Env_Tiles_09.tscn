@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Tiles_09_mesh/SM_Env_Tiles_09_4300000.mesh" id="1_mtv8u"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_ettx8"]
+
+[node name="SM_Env_Tiles_09" type="Node3D"]
+metadata/ufile_ids = ["faefc7bf0b06adc4497fd8b1694fad68:410826", "faefc7bf0b06adc4497fd8b1694fad68:139024", "faefc7bf0b06adc4497fd8b1694fad68:3351782", "faefc7bf0b06adc4497fd8b1694fad68:2305866", "faefc7bf0b06adc4497fd8b1694fad68:65793550901043660"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_mtv8u")
+surface_material_override/0 = ExtResource("2_ettx8")

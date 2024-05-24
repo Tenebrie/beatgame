@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Bone_Spike_05_mesh/SM_Env_Bone_Spike_05_4300000.mesh" id="1_wyyxy"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_hkvhk"]
+
+[node name="SM_Env_Bone_Spike_05" type="Node3D"]
+metadata/ufile_ids = ["499ca17c290b90e4cbd04a938d059508:488738", "499ca17c290b90e4cbd04a938d059508:165000", "499ca17c290b90e4cbd04a938d059508:3344328", "499ca17c290b90e4cbd04a938d059508:2361356", "499ca17c290b90e4cbd04a938d059508:64196129482310730"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_wyyxy")
+surface_material_override/0 = ExtResource("2_hkvhk")

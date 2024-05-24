@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Pillar_Round_Simple_02_mesh/SM_Env_Pillar_Round_Simple_02_4300000.mesh" id="1_1e3d6"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_7icch"]
+
+[node name="SM_Env_Pillar_Round_Simple_02" type="Node3D"]
+metadata/ufile_ids = ["281a3ed0ca8499b4cb312a7458c72f6f:439972", "281a3ed0ca8499b4cb312a7458c72f6f:146758", "281a3ed0ca8499b4cb312a7458c72f6f:3368474", "281a3ed0ca8499b4cb312a7458c72f6f:2378884", "281a3ed0ca8499b4cb312a7458c72f6f:64180921997014250"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_1e3d6")
+surface_material_override/0 = ExtResource("2_7icch")

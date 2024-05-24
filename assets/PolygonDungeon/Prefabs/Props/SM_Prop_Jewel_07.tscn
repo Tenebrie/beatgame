@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Prop_Jewel_07_mesh/SM_Prop_Jewel_07_4300000.mesh" id="1_lgnna"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_dsyb0"]
+
+[node name="SM_Prop_Jewel_07" type="Node3D"]
+metadata/ufile_ids = ["15091d7e6dee66e4997a3d048491e089:491666", "15091d7e6dee66e4997a3d048491e089:125582", "15091d7e6dee66e4997a3d048491e089:3359766", "15091d7e6dee66e4997a3d048491e089:2319898", "15091d7e6dee66e4997a3d048491e089:64203719223519112"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_lgnna")
+surface_material_override/0 = ExtResource("2_dsyb0")

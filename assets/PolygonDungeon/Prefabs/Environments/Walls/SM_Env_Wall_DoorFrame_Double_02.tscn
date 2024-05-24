@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Wall_DoorFrame_Double_02_mesh/SM_Env_Wall_DoorFrame_Double_02_4300000.mesh" id="1_4j2lv"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_35bml"]
+
+[node name="SM_Env_Wall_DoorFrame_Double_02" type="Node3D"]
+metadata/ufile_ids = ["92f8c2e1e15bda544b2b3a62a69798e1:478414", "92f8c2e1e15bda544b2b3a62a69798e1:162506", "92f8c2e1e15bda544b2b3a62a69798e1:3347700", "92f8c2e1e15bda544b2b3a62a69798e1:2328142", "92f8c2e1e15bda544b2b3a62a69798e1:64921788129446606", "92f8c2e1e15bda544b2b3a62a69798e1:64412717226102144", "92f8c2e1e15bda544b2b3a62a69798e1:64547995234767034"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_4j2lv")
+surface_material_override/0 = ExtResource("2_35bml")

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Rune_Rounded_01_mesh/SM_Env_Rune_Rounded_01_4300000.mesh" id="1_lbnod"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_54c4x"]
+
+[node name="SM_Env_Rune_Rounded_01" type="Node3D"]
+metadata/ufile_ids = ["6b7c63da8f83bca49b2da996b980802b:451534", "6b7c63da8f83bca49b2da996b980802b:189258", "6b7c63da8f83bca49b2da996b980802b:3370446", "6b7c63da8f83bca49b2da996b980802b:2347554", "6b7c63da8f83bca49b2da996b980802b:64963032792455890"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_lbnod")
+surface_material_override/0 = ExtResource("2_54c4x")

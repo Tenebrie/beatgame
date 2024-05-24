@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Wep_Greatsword_Straight_01_mesh/SM_Wep_Greatsword_Straight_01_4300000.mesh" id="1_vlewa"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_qq5g6"]
+
+[node name="SM_Wep_Greatsword_Straight_01" type="Node3D"]
+metadata/ufile_ids = ["e7196d0541b91bf4f8cab39924cb6d49:496414", "e7196d0541b91bf4f8cab39924cb6d49:195570", "e7196d0541b91bf4f8cab39924cb6d49:3367842", "e7196d0541b91bf4f8cab39924cb6d49:2329820", "e7196d0541b91bf4f8cab39924cb6d49:64105496731757734"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_vlewa")
+surface_material_override/0 = ExtResource("2_qq5g6")

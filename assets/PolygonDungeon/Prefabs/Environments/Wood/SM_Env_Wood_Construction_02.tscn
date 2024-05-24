@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Wood_Construction_02_mesh/SM_Env_Wood_Construction_02_4300000.mesh" id="1_i2dr8"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_fqrq1"]
+
+[node name="SM_Env_Wood_Construction_02" type="Node3D"]
+metadata/ufile_ids = ["8508f4035fc8e834c9fd1d3204d99fb3:404624", "8508f4035fc8e834c9fd1d3204d99fb3:171592", "8508f4035fc8e834c9fd1d3204d99fb3:3367634", "8508f4035fc8e834c9fd1d3204d99fb3:2307600", "8508f4035fc8e834c9fd1d3204d99fb3:64932504581968294"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_i2dr8")
+surface_material_override/0 = ExtResource("2_fqrq1")

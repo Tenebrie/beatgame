@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Stalactite_03_mesh/SM_Env_Stalactite_03_4300000.mesh" id="1_chskt"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_q1jyh"]
+
+[node name="SM_Env_Stalactite_03" type="Node3D"]
+metadata/ufile_ids = ["d38455e41106b784aa3bf9114d0e80ef:421326", "d38455e41106b784aa3bf9114d0e80ef:170954", "d38455e41106b784aa3bf9114d0e80ef:3350316", "d38455e41106b784aa3bf9114d0e80ef:2383238", "d38455e41106b784aa3bf9114d0e80ef:64049515451603648"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_chskt")
+surface_material_override/0 = ExtResource("2_q1jyh")

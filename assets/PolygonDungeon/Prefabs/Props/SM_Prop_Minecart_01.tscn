@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Prop_Minecart_01_mesh/SM_Prop_Minecart_01_4300000.mesh" id="1_h60nn"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_5bppq"]
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Prop_Minecart_01_mesh/SM_Prop_Minecart_Wheel_01_4300004.mesh" id="3_qos67"]
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Prop_Minecart_01_mesh/SM_Prop_Minecart_Wheel_02_4300002.mesh" id="4_mbs8i"]
+
+[node name="SM_Prop_Minecart_01" type="Node3D"]
+metadata/ufile_ids = ["5c00c5f03c23f3b44af6d75077362432:498650", "5c00c5f03c23f3b44af6d75077362432:137454", "5c00c5f03c23f3b44af6d75077362432:3310736", "5c00c5f03c23f3b44af6d75077362432:2376396", "5c00c5f03c23f3b44af6d75077362432:64704561030017730"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_h60nn")
+surface_material_override/0 = ExtResource("2_5bppq")
+
+[node name="SM_Prop_Minecart_Wheel_01" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.211259, -0.33372)
+metadata/ufile_ids = ["5c00c5f03c23f3b44af6d75077362432:413368", "5c00c5f03c23f3b44af6d75077362432:132422", "5c00c5f03c23f3b44af6d75077362432:3365444", "5c00c5f03c23f3b44af6d75077362432:2391982"]
+
+[node name="_mesh" type="MeshInstance3D" parent="SM_Prop_Minecart_Wheel_01"]
+mesh = ExtResource("3_qos67")
+surface_material_override/0 = ExtResource("2_5bppq")
+
+[node name="SM_Prop_Minecart_Wheel_02" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.211259, 0.339743)
+metadata/ufile_ids = ["5c00c5f03c23f3b44af6d75077362432:423254", "5c00c5f03c23f3b44af6d75077362432:137766", "5c00c5f03c23f3b44af6d75077362432:3364914", "5c00c5f03c23f3b44af6d75077362432:2307226"]
+
+[node name="_mesh" type="MeshInstance3D" parent="SM_Prop_Minecart_Wheel_02"]
+mesh = ExtResource("4_mbs8i")
+surface_material_override/0 = ExtResource("2_5bppq")

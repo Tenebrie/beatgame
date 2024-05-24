@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Item_Inkwell_01_mesh/SM_Item_Inkwell_01_4300000.mesh" id="1_mr3h4"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_d2anr"]
+
+[node name="SM_Item_Inkwell_01" type="Node3D"]
+metadata/ufile_ids = ["67e9d0b0d7ee4da4d82f258ee2471dec:410506", "67e9d0b0d7ee4da4d82f258ee2471dec:165626", "67e9d0b0d7ee4da4d82f258ee2471dec:3313518", "67e9d0b0d7ee4da4d82f258ee2471dec:2330322", "67e9d0b0d7ee4da4d82f258ee2471dec:64210920137424936"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_mr3h4")
+surface_material_override/0 = ExtResource("2_d2anr")

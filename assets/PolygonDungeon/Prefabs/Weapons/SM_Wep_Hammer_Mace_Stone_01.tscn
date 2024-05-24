@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Wep_Hammer_Mace_Stone_01_mesh/SM_Wep_Hammer_Mace_Stone_01_4300000.mesh" id="1_wfbkv"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_ut3e8"]
+
+[node name="SM_Wep_Hammer_Mace_Stone_01" type="Node3D"]
+metadata/ufile_ids = ["2105d87117cec60459395ab06ab7794a:447914", "2105d87117cec60459395ab06ab7794a:166614", "2105d87117cec60459395ab06ab7794a:3309514", "2105d87117cec60459395ab06ab7794a:2381262", "2105d87117cec60459395ab06ab7794a:64295611567139102"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_wfbkv")
+surface_material_override/0 = ExtResource("2_ut3e8")

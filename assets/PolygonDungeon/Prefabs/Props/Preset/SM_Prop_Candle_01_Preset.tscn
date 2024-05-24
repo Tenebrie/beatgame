@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Prop_Candle_01_mesh/SM_Prop_Candle_01_4300000.mesh" id="1_ado6k"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_5rys2"]
+
+[node name="SM_Prop_Candle_01_Preset" type="Node3D"]
+metadata/ufile_ids = ["2e98df0b7ed838243b630e4b8179640e:400314", "2e98df0b7ed838243b630e4b8179640e:132656", "2e98df0b7ed838243b630e4b8179640e:3392870", "2e98df0b7ed838243b630e4b8179640e:2320872"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_ado6k")
+surface_material_override/0 = ExtResource("2_5rys2")
+
+[node name="SM_Prop_Candle_01_Particle" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.005, 0.367, -0.00399999)
+metadata/ufile_ids = ["2e98df0b7ed838243b630e4b8179640e:484868", "2e98df0b7ed838243b630e4b8179640e:143816", "2e98df0b7ed838243b630e4b8179640e:19800172", "2e98df0b7ed838243b630e4b8179640e:19976588"]

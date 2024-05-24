@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Railing_Angle_01_mesh/SM_Env_Railing_Angle_01_4300000.mesh" id="1_6y328"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_qdwmo"]
+
+[node name="SM_Env_Railing_Angle_01" type="Node3D"]
+metadata/ufile_ids = ["472eefd56110c694798273288354869a:414962", "472eefd56110c694798273288354869a:153396", "472eefd56110c694798273288354869a:3320280", "472eefd56110c694798273288354869a:2300506", "472eefd56110c694798273288354869a:64116582621935090"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_6y328")
+surface_material_override/0 = ExtResource("2_qdwmo")

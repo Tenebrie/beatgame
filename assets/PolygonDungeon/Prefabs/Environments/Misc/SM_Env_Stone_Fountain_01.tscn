@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Stone_Fountain_01_mesh/SM_Env_Stone_Fountain_01_4300000.mesh" id="1_ck4p7"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_x4orf"]
+
+[node name="SM_Env_Stone_Fountain_01" type="Node3D"]
+metadata/ufile_ids = ["6bbd17f12a2597b40a7e0227052c6f44:492018", "6bbd17f12a2597b40a7e0227052c6f44:131582", "6bbd17f12a2597b40a7e0227052c6f44:3345648", "6bbd17f12a2597b40a7e0227052c6f44:2386848", "6bbd17f12a2597b40a7e0227052c6f44:64729194367214470"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_ck4p7")
+surface_material_override/0 = ExtResource("2_x4orf")

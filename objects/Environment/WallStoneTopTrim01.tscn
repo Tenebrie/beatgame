@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://bau5tbibe4nef"]
+
+[ext_resource type="PackedScene" path="res://assets/PolygonDungeon/Prefabs/Environments/Walls/SM_Env_Wall_Window_02.tscn" id="1_edaup"]
+[ext_resource type="PackedScene" uid="uid://cohw2o5nc7pmx" path="res://assets/PolygonDungeon/Prefabs/Environments/Walls/SM_Env_Wall_Trim_Top_01.tscn" id="2_e6ncu"]
+[ext_resource type="PackedScene" uid="uid://cvyfyv2ri0tvs" path="res://assets/PolygonDungeon/Prefabs/Environments/Walls/SM_Env_Wall_DoorFrame_Round_01.tscn" id="2_kbjyd"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g2po7"]
+size = Vector3(1, 1, 0.1)
+
+[node name="WallStoneTopTrim01" type="StaticBody3D"]
+
+[node name="SM_Env_Wall_Window_02" parent="." instance=ExtResource("1_edaup")]
+transform = Transform3D(20.2, 0, 0, 0, 20.2, 0, 0, 0, 20.2, -0.01, -0.01, -0.01)
+visible = false
+
+[node name="SM_Env_Wall_Trim_Top_01" parent="." instance=ExtResource("2_e6ncu")]
+transform = Transform3D(40, 0, 0, 0, 40, 0, 0, 0, 40, 0.5, 1, 0.0291738)
+
+[node name="SM_Env_Wall_DoorFrame_Round_01" parent="." instance=ExtResource("2_kbjyd")]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.5, 0)
+shape = SubResource("BoxShape3D_g2po7")

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Prop_Skeleton_Slave_Wall_Sitting_01_mesh/SM_Prop_Skeleton_Slave_Wall_Sitting_01_4300000.mesh" id="1_m6lh1"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_jkddm"]
+
+[node name="SM_Prop_Skeleton_Slave_Wall_Sitting_01" type="Node3D"]
+metadata/ufile_ids = ["7b433e4840fda0f48b0428546af484d5:420310", "7b433e4840fda0f48b0428546af484d5:188314", "7b433e4840fda0f48b0428546af484d5:3393370", "7b433e4840fda0f48b0428546af484d5:2323176", "7b433e4840fda0f48b0428546af484d5:64354054029824500"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_m6lh1")
+surface_material_override/0 = ExtResource("2_jkddm")

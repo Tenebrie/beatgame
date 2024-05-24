@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Wep_Goblin_Shiv_Bone_01_mesh/SM_Wep_Goblin_Shiv_Bone_01_4300000.mesh" id="1_4y6pv"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_s6bx0"]
+
+[node name="SM_Wep_Goblin_Shiv_Bone_01" type="Node3D"]
+metadata/ufile_ids = ["df7d13354c6fd5f438880a25ebd59596:446072", "df7d13354c6fd5f438880a25ebd59596:150692", "df7d13354c6fd5f438880a25ebd59596:3397840", "df7d13354c6fd5f438880a25ebd59596:2359792", "df7d13354c6fd5f438880a25ebd59596:64003625761095470"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_4y6pv")
+surface_material_override/0 = ExtResource("2_s6bx0")

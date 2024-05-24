@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://dvbl5wpm0payh"]
+
+[ext_resource type="PackedScene" path="res://assets/PolygonDungeon/Prefabs/Environments/Walls/SM_Env_Wall_Window_02.tscn" id="1_dqich"]
+[ext_resource type="PackedScene" uid="uid://cvyfyv2ri0tvs" path="res://assets/PolygonDungeon/Prefabs/Environments/Walls/SM_Env_Wall_DoorFrame_Round_01.tscn" id="2_l7yri"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g2po7"]
+size = Vector3(0.325, 1, 0.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5m3vm"]
+size = Vector3(0.325, 0.4, 0.1)
+
+[node name="WallStoneDoor01" type="StaticBody3D"]
+
+[node name="SM_Env_Wall_Window_02" parent="." instance=ExtResource("1_dqich")]
+transform = Transform3D(20.2, 0, 0, 0, 20.2, 0, 0, 0, 20.2, -0.01, -0.01, -0.01)
+visible = false
+
+[node name="SM_Env_Wall_DoorFrame_Round_01" parent="." instance=ExtResource("2_l7yri")]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.163, 0.5, 0)
+shape = SubResource("BoxShape3D_g2po7")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.837, 0.5, 0)
+shape = SubResource("BoxShape3D_g2po7")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.8, 0)
+shape = SubResource("BoxShape3D_5m3vm")

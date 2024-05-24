@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3]
+
+[ext_resource type="Texture2D" path="res://assets/PolygonDungeon/Textures/Dungeons_Texture_01.tex" id="1_8pgmc"]
+
+[resource]
+resource_name = "Dungeons_Material_Characters_01"
+albedo_texture = ExtResource("1_8pgmc")
+emission = Color(0, 0, 0, 0)

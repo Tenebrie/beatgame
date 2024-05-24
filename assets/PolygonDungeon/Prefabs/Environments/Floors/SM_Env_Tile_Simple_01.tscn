@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Tile_Simple_01_mesh/SM_Env_Tile_Simple_01_4300000.mesh" id="1_oaosq"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_4b6go"]
+
+[node name="SM_Env_Tile_Simple_01" type="Node3D"]
+metadata/ufile_ids = ["c4c2f2cd68566504d841b2fcd72704a6:473014", "c4c2f2cd68566504d841b2fcd72704a6:198252", "c4c2f2cd68566504d841b2fcd72704a6:3319234", "c4c2f2cd68566504d841b2fcd72704a6:2337636", "c4c2f2cd68566504d841b2fcd72704a6:65203884990181086"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_oaosq")
+surface_material_override/0 = ExtResource("2_4b6go")

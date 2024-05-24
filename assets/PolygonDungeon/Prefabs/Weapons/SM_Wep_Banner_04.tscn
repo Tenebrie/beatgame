@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Wep_Banner_04_mesh/SM_Wep_Banner_04_4300000.mesh" id="1_hpw03"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_8pe46"]
+
+[node name="SM_Wep_Banner_04" type="Node3D"]
+metadata/ufile_ids = ["ff70520d25e17ed4b9c168c849d0ed29:449450", "ff70520d25e17ed4b9c168c849d0ed29:105986", "ff70520d25e17ed4b9c168c849d0ed29:3309948", "ff70520d25e17ed4b9c168c849d0ed29:2384186", "ff70520d25e17ed4b9c168c849d0ed29:64822387795000176"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_hpw03")
+surface_material_override/0 = ExtResource("2_8pe46")

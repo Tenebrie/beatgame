@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Minetrack_Broken_01_mesh/SM_Env_Minetrack_Broken_01_4300000.mesh" id="1_lpt1a"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_b6qe5"]
+
+[node name="SM_Env_Minetrack_Broken_01" type="Node3D"]
+metadata/ufile_ids = ["970513e78dc7f37459fb1c296855f4b2:473918", "970513e78dc7f37459fb1c296855f4b2:169798", "970513e78dc7f37459fb1c296855f4b2:3328912", "970513e78dc7f37459fb1c296855f4b2:2317694", "970513e78dc7f37459fb1c296855f4b2:64472338179035370"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_lpt1a")
+surface_material_override/0 = ExtResource("2_b6qe5")

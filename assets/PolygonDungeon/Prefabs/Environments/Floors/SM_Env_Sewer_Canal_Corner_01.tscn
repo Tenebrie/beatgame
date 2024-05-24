@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Sewer_Canal_Corner_01_mesh/SM_Env_Sewer_Canal_Corner_01_4300000.mesh" id="1_aws4p"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_2mhwg"]
+
+[node name="SM_Env_Sewer_Canal_Corner_01" type="Node3D"]
+metadata/ufile_ids = ["d64dfded9f1d52c44a52ed92602dcb67:436162", "d64dfded9f1d52c44a52ed92602dcb67:188134", "d64dfded9f1d52c44a52ed92602dcb67:3352060", "d64dfded9f1d52c44a52ed92602dcb67:2323392", "d64dfded9f1d52c44a52ed92602dcb67:64379188330661884", "d64dfded9f1d52c44a52ed92602dcb67:64898235444071930", "d64dfded9f1d52c44a52ed92602dcb67:64941108726867632", "d64dfded9f1d52c44a52ed92602dcb67:64873985960257458"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_aws4p")
+surface_material_override/0 = ExtResource("2_2mhwg")

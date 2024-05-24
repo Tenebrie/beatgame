@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Prop_Candles_03_mesh/SM_Prop_Candles_03_4300000.mesh" id="1_j0dxp"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_jlkgx"]
+
+[node name="SM_Prop_Candles_03_Preset" type="Node3D"]
+metadata/ufile_ids = ["cb3ad6c0d401f1248849059cc39a4217:457102", "cb3ad6c0d401f1248849059cc39a4217:118430", "cb3ad6c0d401f1248849059cc39a4217:3347716", "cb3ad6c0d401f1248849059cc39a4217:2327110", "cb3ad6c0d401f1248849059cc39a4217:19916810", "cb3ad6c0d401f1248849059cc39a4217:19855336"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_j0dxp")
+surface_material_override/0 = ExtResource("2_jlkgx")

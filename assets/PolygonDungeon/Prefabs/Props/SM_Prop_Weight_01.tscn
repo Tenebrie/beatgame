@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Prop_Weight_01_mesh/SM_Prop_Weight_01_4300000.mesh" id="1_y8brk"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_m7ksy"]
+
+[node name="SM_Prop_Weight_01" type="Node3D"]
+metadata/ufile_ids = ["6909bf91eec20eb4b88365b6b4893dff:494428", "6909bf91eec20eb4b88365b6b4893dff:150972", "6909bf91eec20eb4b88365b6b4893dff:3363746", "6909bf91eec20eb4b88365b6b4893dff:2388718", "6909bf91eec20eb4b88365b6b4893dff:64366732204452812"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_y8brk")
+surface_material_override/0 = ExtResource("2_m7ksy")

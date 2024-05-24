@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Wep_Crysta_Halberdl_01_mesh/SM_Wep_Crysta_Halberdl_01_4300000.mesh" id="1_w73yb"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_c2efj"]
+
+[node name="SM_Wep_Crysta_Halberdl_01" type="Node3D"]
+metadata/ufile_ids = ["94a16c3d557d2e047944ed7d34d3da9e:495852", "94a16c3d557d2e047944ed7d34d3da9e:148826", "94a16c3d557d2e047944ed7d34d3da9e:3300616", "94a16c3d557d2e047944ed7d34d3da9e:2387144", "94a16c3d557d2e047944ed7d34d3da9e:64084370375947350"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_w73yb")
+surface_material_override/0 = ExtResource("2_c2efj")

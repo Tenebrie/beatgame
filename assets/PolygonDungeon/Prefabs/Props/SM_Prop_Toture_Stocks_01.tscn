@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Prop_Toture_Stocks_01_mesh/SM_Prop_Toture_Stocks_01_4300000.mesh" id="1_1o832"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_3ba5p"]
+
+[node name="SM_Prop_Toture_Stocks_01" type="Node3D"]
+metadata/ufile_ids = ["08cedb31bf7d3414a92316d542661816:439086", "08cedb31bf7d3414a92316d542661816:120480", "08cedb31bf7d3414a92316d542661816:3311632", "08cedb31bf7d3414a92316d542661816:2306990", "08cedb31bf7d3414a92316d542661816:64350541683831818"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_1o832")
+surface_material_override/0 = ExtResource("2_3ba5p")

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Bone_Tail_01_mesh/SM_Env_Bone_Tail_01_4300000.mesh" id="1_frjqm"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_yidmj"]
+
+[node name="SM_Env_Bone_Tail_01" type="Node3D"]
+metadata/ufile_ids = ["7841a56d83ea28445b6e0939bae8c07a:429426", "7841a56d83ea28445b6e0939bae8c07a:129512", "7841a56d83ea28445b6e0939bae8c07a:3387720", "7841a56d83ea28445b6e0939bae8c07a:2352744", "7841a56d83ea28445b6e0939bae8c07a:64176441254910916", "7841a56d83ea28445b6e0939bae8c07a:64444894529856936", "7841a56d83ea28445b6e0939bae8c07a:64018852100875392", "7841a56d83ea28445b6e0939bae8c07a:64936343308723962"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_frjqm")
+surface_material_override/0 = ExtResource("2_yidmj")

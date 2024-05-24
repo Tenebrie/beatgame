@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Trap_Pit_01_mesh/SM_Prop_Trap_Pit_01_4300000.mesh" id="1_a7bce"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_gh2r8"]
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Trap_Pit_01_mesh/SM_Prop_Trap_Pit_Door_L_4300004.mesh" id="3_ufndr"]
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Trap_Pit_01_mesh/SM_Prop_Trap_Pit_Door_R_4300002.mesh" id="4_8s3u8"]
+
+[node name="SM_Env_Trap_Pit_01" type="Node3D"]
+metadata/ufile_ids = ["51b3bfb8ca2fb804a9aca49048d541ef:455900", "51b3bfb8ca2fb804a9aca49048d541ef:189660", "51b3bfb8ca2fb804a9aca49048d541ef:3311614", "51b3bfb8ca2fb804a9aca49048d541ef:2360916", "51b3bfb8ca2fb804a9aca49048d541ef:64138969533144444"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_a7bce")
+surface_material_override/0 = ExtResource("2_gh2r8")
+
+[node name="SM_Prop_Trap_Pit_Door_L" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.36978, 0.151305, 0)
+metadata/ufile_ids = ["51b3bfb8ca2fb804a9aca49048d541ef:440692", "51b3bfb8ca2fb804a9aca49048d541ef:169186", "51b3bfb8ca2fb804a9aca49048d541ef:3347542", "51b3bfb8ca2fb804a9aca49048d541ef:2375616"]
+
+[node name="_mesh" type="MeshInstance3D" parent="SM_Prop_Trap_Pit_Door_L"]
+mesh = ExtResource("3_ufndr")
+surface_material_override/0 = ExtResource("2_gh2r8")
+
+[node name="SM_Prop_Trap_Pit_Door_R" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.36978, 0.151305, 0)
+metadata/ufile_ids = ["51b3bfb8ca2fb804a9aca49048d541ef:415500", "51b3bfb8ca2fb804a9aca49048d541ef:155756", "51b3bfb8ca2fb804a9aca49048d541ef:3336852", "51b3bfb8ca2fb804a9aca49048d541ef:2378706"]
+
+[node name="_mesh" type="MeshInstance3D" parent="SM_Prop_Trap_Pit_Door_R"]
+mesh = ExtResource("4_8s3u8")
+surface_material_override/0 = ExtResource("2_gh2r8")

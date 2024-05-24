@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Prop_Torch_Ornate_01_mesh/SM_Prop_Torch_Ornate_01_4300000.mesh" id="1_ff06y"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_1psgi"]
+
+[node name="SM_Prop_Torch_Ornate_01" type="Node3D"]
+metadata/ufile_ids = ["8995caca94342db4c831349441b30d1f:475210", "8995caca94342db4c831349441b30d1f:197870", "8995caca94342db4c831349441b30d1f:3349116", "8995caca94342db4c831349441b30d1f:2311790", "8995caca94342db4c831349441b30d1f:64164106274060974"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.46945e-20)
+mesh = ExtResource("1_ff06y")
+surface_material_override/0 = ExtResource("2_1psgi")

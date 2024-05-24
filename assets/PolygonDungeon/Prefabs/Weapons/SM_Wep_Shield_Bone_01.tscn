@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Wep_Shield_Bone_01_mesh/SM_Wep_Shield_Bone_01_4300000.mesh" id="1_61bjv"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_8xyxs"]
+
+[node name="SM_Wep_Shield_Bone_01" type="Node3D"]
+metadata/ufile_ids = ["6db95b51172c2bf44bf5b975704c213f:400156", "6db95b51172c2bf44bf5b975704c213f:129300", "6db95b51172c2bf44bf5b975704c213f:3312618", "6db95b51172c2bf44bf5b975704c213f:2354584", "6db95b51172c2bf44bf5b975704c213f:64906380406435442"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_61bjv")
+surface_material_override/0 = ExtResource("2_8xyxs")

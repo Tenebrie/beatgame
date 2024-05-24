@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Prop_Candle_Chandelier_02_Broken_mesh/SM_Prop_Candle_Chandelier_02_Broken_4300000.mesh" id="1_otttf"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_yp6h7"]
+
+[node name="SM_Prop_Candle_Chandelier_02_Broken" type="Node3D"]
+metadata/ufile_ids = ["54bbf0588af80b046b2aa8dc91c1b0f3:421320", "54bbf0588af80b046b2aa8dc91c1b0f3:174300", "54bbf0588af80b046b2aa8dc91c1b0f3:3343942", "54bbf0588af80b046b2aa8dc91c1b0f3:2327670", "54bbf0588af80b046b2aa8dc91c1b0f3:64423727310743562"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_otttf")
+surface_material_override/0 = ExtResource("2_yp6h7")

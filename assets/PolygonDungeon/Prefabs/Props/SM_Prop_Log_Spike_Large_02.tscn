@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Prop_Log_Spike_Large_02_mesh/SM_Prop_Log_Spike_Large_02_4300000.mesh" id="1_cjg51"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_p5fe2"]
+
+[node name="SM_Prop_Log_Spike_Large_02" type="Node3D"]
+metadata/ufile_ids = ["4ab75ecf377bfca45af385b8fa0a4b62:444530", "4ab75ecf377bfca45af385b8fa0a4b62:105608", "4ab75ecf377bfca45af385b8fa0a4b62:3341966", "4ab75ecf377bfca45af385b8fa0a4b62:2336432", "4ab75ecf377bfca45af385b8fa0a4b62:64749031039145116"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_cjg51")
+surface_material_override/0 = ExtResource("2_p5fe2")

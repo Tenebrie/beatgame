@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Prop_Crate_Wood_01_mesh/SM_Prop_Crate_Wood_01_4300000.mesh" id="1_dlkus"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_uemyy"]
+
+[node name="SM_Prop_Crate_Wood_01" type="Node3D"]
+metadata/ufile_ids = ["27ac44c94d7f6e741a7e270ce72ccd9b:419638", "27ac44c94d7f6e741a7e270ce72ccd9b:182792", "27ac44c94d7f6e741a7e270ce72ccd9b:3300430", "27ac44c94d7f6e741a7e270ce72ccd9b:2361422", "27ac44c94d7f6e741a7e270ce72ccd9b:64217764274616662"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_dlkus")
+surface_material_override/0 = ExtResource("2_uemyy")

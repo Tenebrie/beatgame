@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Ceiling_Stone_Pillar_02_mesh/SM_Env_Ceiling_Stone_Pillar_02_4300000.mesh" id="1_uh7up"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_i28fx"]
+
+[node name="SM_Env_Ceiling_Stone_Pillar_02" type="Node3D"]
+metadata/ufile_ids = ["2c52fc029ee6e764aaddc5e8930caf9d:428220", "2c52fc029ee6e764aaddc5e8930caf9d:117424", "2c52fc029ee6e764aaddc5e8930caf9d:3385194", "2c52fc029ee6e764aaddc5e8930caf9d:2346978", "2c52fc029ee6e764aaddc5e8930caf9d:64757412466171416"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_uh7up")
+surface_material_override/0 = ExtResource("2_i28fx")

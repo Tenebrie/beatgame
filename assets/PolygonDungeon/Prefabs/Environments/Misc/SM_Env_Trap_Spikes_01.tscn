@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Trap_Spikes_01_mesh/SM_Prop_Trap_Spikes_01_4300000.mesh" id="1_yojum"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_kg3x8"]
+
+[node name="SM_Env_Trap_Spikes_01" type="Node3D"]
+metadata/ufile_ids = ["71b973d16356c61458cb853ecb1850ca:487932", "71b973d16356c61458cb853ecb1850ca:134976", "71b973d16356c61458cb853ecb1850ca:3353754", "71b973d16356c61458cb853ecb1850ca:2361470", "71b973d16356c61458cb853ecb1850ca:64302430810497940"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_yojum")
+surface_material_override/0 = ExtResource("2_kg3x8")

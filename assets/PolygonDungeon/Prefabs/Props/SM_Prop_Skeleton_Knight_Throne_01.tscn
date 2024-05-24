@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Prop_Skeleton_Knight_Throne_01_mesh/SM_Prop_Skeleton_Knight_Throne_01_4300000.mesh" id="1_yvydj"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_n0dkm"]
+
+[node name="SM_Prop_Skeleton_Knight_Throne_01" type="Node3D"]
+metadata/ufile_ids = ["bbe9251e064bbde42ab22c6eeacf7e1c:456828", "bbe9251e064bbde42ab22c6eeacf7e1c:143142", "bbe9251e064bbde42ab22c6eeacf7e1c:3382616", "bbe9251e064bbde42ab22c6eeacf7e1c:2337766", "bbe9251e064bbde42ab22c6eeacf7e1c:64298904844028130"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_yvydj")
+surface_material_override/0 = ExtResource("2_n0dkm")

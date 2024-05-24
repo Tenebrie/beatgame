@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Cave_Curved_Corner_01_mesh/SM_Env_Cave_Curved_Corner_01_4300000.mesh" id="1_rmgk3"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_a26jl"]
+
+[node name="SM_Env_Cave_Curved_Corner_01" type="Node3D"]
+metadata/ufile_ids = ["d43c0ad073877d9438a0bd64827b026d:452856", "d43c0ad073877d9438a0bd64827b026d:152180", "d43c0ad073877d9438a0bd64827b026d:3318570", "d43c0ad073877d9438a0bd64827b026d:2303254", "d43c0ad073877d9438a0bd64827b026d:64461157432723044"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_rmgk3")
+surface_material_override/0 = ExtResource("2_a26jl")

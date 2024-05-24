@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Wall_Quarter_01_mesh/SM_Env_Wall_Quarter_01_4300000.mesh" id="1_c7sjp"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_7k6t8"]
+
+[node name="SM_Env_Wall_Quarter_01" type="Node3D"]
+metadata/ufile_ids = ["a9303bd2cd5b01e43895c7af905fa35e:413336", "a9303bd2cd5b01e43895c7af905fa35e:158500", "a9303bd2cd5b01e43895c7af905fa35e:3343054", "a9303bd2cd5b01e43895c7af905fa35e:2343956", "a9303bd2cd5b01e43895c7af905fa35e:65733613337235546"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_c7sjp")
+surface_material_override/0 = ExtResource("2_7k6t8")

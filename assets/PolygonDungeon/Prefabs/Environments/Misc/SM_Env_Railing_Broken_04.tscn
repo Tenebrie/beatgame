@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Railing_Broken_04_mesh/SM_Env_Railing_Broken_04_4300000.mesh" id="1_87e0r"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_vs7xa"]
+
+[node name="SM_Env_Railing_Broken_04" type="Node3D"]
+metadata/ufile_ids = ["41ec293d7ae663c418439466f0d7c93e:402256", "41ec293d7ae663c418439466f0d7c93e:152716", "41ec293d7ae663c418439466f0d7c93e:3314054", "41ec293d7ae663c418439466f0d7c93e:2381918", "41ec293d7ae663c418439466f0d7c93e:65369093230577714"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_87e0r")
+surface_material_override/0 = ExtResource("2_vs7xa")

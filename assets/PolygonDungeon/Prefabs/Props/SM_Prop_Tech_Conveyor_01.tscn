@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Prop_Tech_Conveyor_01_mesh/SM_Prop_Tech_Conveyor_01_4300000.mesh" id="1_66nip"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_e0rp1"]
+
+[node name="SM_Prop_Tech_Conveyor_01" type="Node3D"]
+metadata/ufile_ids = ["e3f271622febd0f499a685ebb28fdf87:461106", "e3f271622febd0f499a685ebb28fdf87:145214", "e3f271622febd0f499a685ebb28fdf87:3334420", "e3f271622febd0f499a685ebb28fdf87:2388752", "e3f271622febd0f499a685ebb28fdf87:64378841251617972"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_66nip")
+surface_material_override/0 = ExtResource("2_e0rp1")

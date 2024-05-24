@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_GlowingOrb_01_mesh/SM_Env_GlowingOrb_01_4300000.mesh" id="1_jcnch"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_yt2w1"]
+
+[node name="SM_Env_GlowingOrb_01" type="Node3D"]
+metadata/ufile_ids = ["20002ad77119e9849a8815f85c128ba3:487850", "20002ad77119e9849a8815f85c128ba3:122892", "20002ad77119e9849a8815f85c128ba3:3396928", "20002ad77119e9849a8815f85c128ba3:2391920", "20002ad77119e9849a8815f85c128ba3:64690233481148090"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_jcnch")
+surface_material_override/0 = ExtResource("2_yt2w1")

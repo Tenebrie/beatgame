@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Wall_Alcove_Round_01_mesh/SM_Env_Wall_Alcove_Round_01_4300000.mesh" id="1_kobn5"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_vmft4"]
+
+[node name="SM_Env_Wall_Alcove_Round_01" type="Node3D"]
+metadata/ufile_ids = ["78323bf0d7182224dbacd34e55e53ec3:432958", "78323bf0d7182224dbacd34e55e53ec3:171136", "78323bf0d7182224dbacd34e55e53ec3:3376510", "78323bf0d7182224dbacd34e55e53ec3:2389436", "78323bf0d7182224dbacd34e55e53ec3:64654573456109590", "78323bf0d7182224dbacd34e55e53ec3:64332866639324670", "78323bf0d7182224dbacd34e55e53ec3:64431175118622358", "78323bf0d7182224dbacd34e55e53ec3:64988047215567444"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_kobn5")
+surface_material_override/0 = ExtResource("2_vmft4")

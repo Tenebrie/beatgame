@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Sewer_Water_01_mesh/SM_Env_Sewer_Water_01_4300000.mesh" id="1_is337"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Misc/FX_Water_Sewer.tres" id="2_uj54n"]
+
+[node name="SM_Env_Sewer_Water_01" type="Node3D"]
+metadata/ufile_ids = ["11584a00ddf0d8645861ef68ab28d55b:493432", "11584a00ddf0d8645861ef68ab28d55b:142172", "11584a00ddf0d8645861ef68ab28d55b:3371536", "11584a00ddf0d8645861ef68ab28d55b:2390798"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_is337")
+surface_material_override/0 = ExtResource("2_uj54n")

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Ceiling_Stone_Stairs_01_mesh/SM_Env_Ceiling_Stone_Stairs_01_4300000.mesh" id="1_g8kbl"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_q34k4"]
+
+[node name="SM_Env_Ceiling_Stone_Stairs_01" type="Node3D"]
+metadata/ufile_ids = ["b3a8db2c24bfe96478e34750982fb70c:469240", "b3a8db2c24bfe96478e34750982fb70c:192824", "b3a8db2c24bfe96478e34750982fb70c:3324750", "b3a8db2c24bfe96478e34750982fb70c:2312178", "b3a8db2c24bfe96478e34750982fb70c:64848420974822070"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_g8kbl")
+surface_material_override/0 = ExtResource("2_q34k4")

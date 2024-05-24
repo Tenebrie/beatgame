@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Entrance_Small_01_mesh/SM_Env_Entrance_Small_01_4300000.mesh" id="1_cmymi"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_kt4ui"]
+
+[node name="SM_Env_Entrance_Small_01" type="Node3D"]
+metadata/ufile_ids = ["5500c299441dac74792ff65cd7d5b32e:462642", "5500c299441dac74792ff65cd7d5b32e:196424", "5500c299441dac74792ff65cd7d5b32e:3382740", "5500c299441dac74792ff65cd7d5b32e:2399896", "5500c299441dac74792ff65cd7d5b32e:64088921930650308", "5500c299441dac74792ff65cd7d5b32e:64905148472215294", "5500c299441dac74792ff65cd7d5b32e:64258688717448698"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_cmymi")
+surface_material_override/0 = ExtResource("2_kt4ui")

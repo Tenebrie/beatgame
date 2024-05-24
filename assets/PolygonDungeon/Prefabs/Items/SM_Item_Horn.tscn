@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Item_Horn_mesh/_6519804257193634337.mesh" id="1_lbo0n"]
+
+[node name="SM_Item_Horn" type="Node3D"]
+metadata/ufile_ids = ["666f1bb259b50b643b4f40629b358095:3422494116486190713", "666f1bb259b50b643b4f40629b358095:2608979363868593347", "666f1bb259b50b643b4f40629b358095:1788210326471776732", "666f1bb259b50b643b4f40629b358095:4554274574909959446"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.165818, 0.956706, 6.70552e-08)
+mesh = ExtResource("1_lbo0n")

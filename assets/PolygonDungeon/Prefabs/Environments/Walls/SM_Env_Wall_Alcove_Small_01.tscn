@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Wall_Alcove_Small_01_mesh/SM_Env_Wall_Alcove_Small_01_4300000.mesh" id="1_veioi"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_xqa1o"]
+
+[node name="SM_Env_Wall_Alcove_Small_01" type="Node3D"]
+metadata/ufile_ids = ["8f060e4c716392b4fa1aeb91e2996207:432124", "8f060e4c716392b4fa1aeb91e2996207:118452", "8f060e4c716392b4fa1aeb91e2996207:3316746", "8f060e4c716392b4fa1aeb91e2996207:2307958", "8f060e4c716392b4fa1aeb91e2996207:64642294795648552"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_veioi")
+surface_material_override/0 = ExtResource("2_xqa1o")

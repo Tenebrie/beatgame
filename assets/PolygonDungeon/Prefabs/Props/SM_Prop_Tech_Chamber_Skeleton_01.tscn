@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Prop_Tech_Chamber_Skeleton_01_mesh/SM_Prop_Skeleton_Cage_01_4300000.mesh" id="1_7vidt"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_1m10w"]
+
+[node name="SM_Prop_Tech_Chamber_Skeleton_01" type="Node3D"]
+metadata/ufile_ids = ["bdfa8cb477be4604aa495ce10eebf98a:496298", "bdfa8cb477be4604aa495ce10eebf98a:107664", "bdfa8cb477be4604aa495ce10eebf98a:3364836", "bdfa8cb477be4604aa495ce10eebf98a:2343796", "bdfa8cb477be4604aa495ce10eebf98a:64336490576904764"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_7vidt")
+surface_material_override/0 = ExtResource("2_1m10w")

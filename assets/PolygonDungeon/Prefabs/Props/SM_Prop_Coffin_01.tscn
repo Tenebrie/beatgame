@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Prop_Coffin_01_mesh/SM_Prop_Coffin_01_4300000.mesh" id="1_al7mg"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_u228g"]
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Prop_Coffin_01_mesh/SM_Prop_Coffin_Lid_01_4300002.mesh" id="3_v36fo"]
+
+[node name="SM_Prop_Coffin_01" type="Node3D"]
+metadata/ufile_ids = ["ac72a98c062e432478eb557db53fdc1d:422702", "ac72a98c062e432478eb557db53fdc1d:185252", "ac72a98c062e432478eb557db53fdc1d:3370824", "ac72a98c062e432478eb557db53fdc1d:2312450", "ac72a98c062e432478eb557db53fdc1d:64234143336494212"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_al7mg")
+surface_material_override/0 = ExtResource("2_u228g")
+
+[node name="SM_Prop_Coffin_Lid_01" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.51446, 0.491475, -0.52963)
+metadata/ufile_ids = ["ac72a98c062e432478eb557db53fdc1d:453332", "ac72a98c062e432478eb557db53fdc1d:115100", "ac72a98c062e432478eb557db53fdc1d:3316088", "ac72a98c062e432478eb557db53fdc1d:2365752"]
+
+[node name="_mesh" type="MeshInstance3D" parent="SM_Prop_Coffin_Lid_01"]
+mesh = ExtResource("3_v36fo")
+surface_material_override/0 = ExtResource("2_u228g")

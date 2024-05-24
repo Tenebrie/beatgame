@@ -1,0 +1,464 @@
+[gd_scene load_steps=30 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/FixedScale/Characters_mesh/Character_Ghost_01_4300040.mesh" id="1_h3ci6"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_jdimt"]
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/FixedScale/Characters_mesh/Character_Ghost_02_4300032.mesh" id="3_rsenh"]
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/FixedScale/Characters_mesh/Character_Goblin_Female_4300028.mesh" id="4_6rmcs"]
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/FixedScale/Characters_mesh/Character_Goblin_Male_4300046.mesh" id="5_7tjq6"]
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/FixedScale/Characters_mesh/Character_Goblin_Shaman_4300038.mesh" id="6_7vblc"]
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/FixedScale/Characters_mesh/Character_Goblin_WarChief_4300052.mesh" id="7_sgl86"]
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/FixedScale/Characters_mesh/Character_Goblin_Warrior_Female_4300024.mesh" id="8_70rfq"]
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/FixedScale/Characters_mesh/Character_Goblin_Warrior_Male_4300034.mesh" id="9_wg3xy"]
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/FixedScale/Characters_mesh/Character_Hero_Knight_Female_4300030.mesh" id="10_2luh6"]
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/FixedScale/Characters_mesh/Character_Hero_Knight_Male_4300048.mesh" id="11_fmga7"]
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/FixedScale/Characters_mesh/Character_Rock_Golem_4300036.mesh" id="12_jc4ox"]
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/FixedScale/Characters_mesh/Character_Skeleton_Knight_4300026.mesh" id="13_g6j8o"]
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/FixedScale/Characters_mesh/Character_Skeleton_Slave_01_4300050.mesh" id="14_aayl4"]
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/FixedScale/Characters_mesh/Character_Skeleton_Soldier_01_4300054.mesh" id="15_yqese"]
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/FixedScale/Characters_mesh/Character_Skeleton_Soldier_02_4300044.mesh" id="16_rex8x"]
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/FixedScale/Characters_mesh/Character_Tormented_Soul_4300042.mesh" id="17_lu7gr"]
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/FixedScale/Characters_mesh/SM_Item_Bag_Large_4300022.mesh" id="18_aeky0"]
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/FixedScale/Characters_mesh/SM_Item_Bags_4300014.mesh" id="19_oqmnj"]
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/FixedScale/Characters_mesh/SM_Item_Bones_4300020.mesh" id="20_yotm7"]
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/FixedScale/Characters_mesh/SM_Item_Horn_4300018.mesh" id="21_22xge"]
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/FixedScale/Characters_mesh/SM_Item_Shrooms_4300016.mesh" id="22_8yy0x"]
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/FixedScale/Characters_mesh/SM_Item_Shrunken_Head_4300012.mesh" id="23_hdx8y"]
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/FixedScale/Characters_mesh/SM_Item_Goblin_WarBanner_4300006.mesh" id="24_6mjfs"]
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/FixedScale/Characters_mesh/SM_Item_Shield_4300010.mesh" id="25_3jnvs"]
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/FixedScale/Characters_mesh/SM_Item_Sword_4300008.mesh" id="26_j5mcs"]
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/FixedScale/Characters_mesh/SM_Item_Goblin_Hair_4300000.mesh" id="27_fva0o"]
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/FixedScale/Characters_mesh/SM_Item_Mask_01_4300002.mesh" id="28_31m6l"]
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/FixedScale/Characters_mesh/SM_Item_Mask_02_4300004.mesh" id="29_pwwqc"]
+
+[node name="Character_Goblin_Male_FixedScale" type="Node3D"]
+metadata/ufile_ids = ["7ee713c854e6be5469a1372d66b7bc40:4712718303035360", "7ee713c854e6be5469a1372d66b7bc40:1387492477484550", "7ee713c854e6be5469a1372d66b7bc40:95206771163083378"]
+
+[node name="Character_Ghost_01" type="Node3D" parent="."]
+visible = false
+metadata/ufile_ids = ["7ee713c854e6be5469a1372d66b7bc40:4312518705265556", "7ee713c854e6be5469a1372d66b7bc40:1218858095578658", "7ee713c854e6be5469a1372d66b7bc40:137243303331621382"]
+
+[node name="_mesh" type="MeshInstance3D" parent="Character_Ghost_01"]
+mesh = ExtResource("1_h3ci6")
+surface_material_override/0 = ExtResource("2_jdimt")
+
+[node name="Character_Ghost_02" type="Node3D" parent="."]
+visible = false
+metadata/ufile_ids = ["7ee713c854e6be5469a1372d66b7bc40:4865438669946122", "7ee713c854e6be5469a1372d66b7bc40:1607765600007950", "7ee713c854e6be5469a1372d66b7bc40:137512746121109108"]
+
+[node name="_mesh" type="MeshInstance3D" parent="Character_Ghost_02"]
+mesh = ExtResource("3_rsenh")
+surface_material_override/0 = ExtResource("2_jdimt")
+
+[node name="Character_Goblin_Female" type="Node3D" parent="."]
+visible = false
+metadata/ufile_ids = ["7ee713c854e6be5469a1372d66b7bc40:4598173194658514", "7ee713c854e6be5469a1372d66b7bc40:1965105948272030", "7ee713c854e6be5469a1372d66b7bc40:137944183526113886"]
+
+[node name="_mesh" type="MeshInstance3D" parent="Character_Goblin_Female"]
+mesh = ExtResource("4_6rmcs")
+surface_material_override/0 = ExtResource("2_jdimt")
+
+[node name="Character_Goblin_Male" type="Node3D" parent="."]
+metadata/ufile_ids = ["7ee713c854e6be5469a1372d66b7bc40:4761660779871440", "7ee713c854e6be5469a1372d66b7bc40:1224327272069300", "7ee713c854e6be5469a1372d66b7bc40:137791056035064494"]
+
+[node name="_mesh" type="MeshInstance3D" parent="Character_Goblin_Male"]
+mesh = ExtResource("5_7tjq6")
+surface_material_override/0 = ExtResource("2_jdimt")
+
+[node name="Character_Goblin_Shaman" type="Node3D" parent="."]
+visible = false
+metadata/ufile_ids = ["7ee713c854e6be5469a1372d66b7bc40:4568152210217488", "7ee713c854e6be5469a1372d66b7bc40:1663545581258334", "7ee713c854e6be5469a1372d66b7bc40:137361079670664422"]
+
+[node name="_mesh" type="MeshInstance3D" parent="Character_Goblin_Shaman"]
+mesh = ExtResource("6_7vblc")
+surface_material_override/0 = ExtResource("2_jdimt")
+
+[node name="Character_Goblin_WarChief" type="Node3D" parent="."]
+visible = false
+metadata/ufile_ids = ["7ee713c854e6be5469a1372d66b7bc40:4334596798994828", "7ee713c854e6be5469a1372d66b7bc40:1537755706005046", "7ee713c854e6be5469a1372d66b7bc40:137035984441483692"]
+
+[node name="_mesh" type="MeshInstance3D" parent="Character_Goblin_WarChief"]
+mesh = ExtResource("7_sgl86")
+surface_material_override/0 = ExtResource("2_jdimt")
+
+[node name="Character_Goblin_Warrior_Female" type="Node3D" parent="."]
+visible = false
+metadata/ufile_ids = ["7ee713c854e6be5469a1372d66b7bc40:4800957584220904", "7ee713c854e6be5469a1372d66b7bc40:1369646061280054", "7ee713c854e6be5469a1372d66b7bc40:137410999533234234"]
+
+[node name="_mesh" type="MeshInstance3D" parent="Character_Goblin_Warrior_Female"]
+mesh = ExtResource("8_70rfq")
+surface_material_override/0 = ExtResource("2_jdimt")
+
+[node name="Character_Goblin_Warrior_Male" type="Node3D" parent="."]
+visible = false
+metadata/ufile_ids = ["7ee713c854e6be5469a1372d66b7bc40:4719858736592352", "7ee713c854e6be5469a1372d66b7bc40:1656631742430208", "7ee713c854e6be5469a1372d66b7bc40:137220164017794046"]
+
+[node name="_mesh" type="MeshInstance3D" parent="Character_Goblin_Warrior_Male"]
+mesh = ExtResource("9_wg3xy")
+surface_material_override/0 = ExtResource("2_jdimt")
+
+[node name="Character_Hero_Knight_Female" type="Node3D" parent="."]
+visible = false
+metadata/ufile_ids = ["7ee713c854e6be5469a1372d66b7bc40:4158083247434262", "7ee713c854e6be5469a1372d66b7bc40:1181144864290698", "7ee713c854e6be5469a1372d66b7bc40:137533669883620844"]
+
+[node name="_mesh" type="MeshInstance3D" parent="Character_Hero_Knight_Female"]
+mesh = ExtResource("10_2luh6")
+surface_material_override/0 = ExtResource("2_jdimt")
+
+[node name="Character_Hero_Knight_Male" type="Node3D" parent="."]
+visible = false
+metadata/ufile_ids = ["7ee713c854e6be5469a1372d66b7bc40:4861385797905122", "7ee713c854e6be5469a1372d66b7bc40:1696667286940464", "7ee713c854e6be5469a1372d66b7bc40:137122714168730126"]
+
+[node name="_mesh" type="MeshInstance3D" parent="Character_Hero_Knight_Male"]
+mesh = ExtResource("11_fmga7")
+surface_material_override/0 = ExtResource("2_jdimt")
+
+[node name="Character_Rock_Golem" type="Node3D" parent="."]
+visible = false
+metadata/ufile_ids = ["7ee713c854e6be5469a1372d66b7bc40:4927231592405352", "7ee713c854e6be5469a1372d66b7bc40:1371404286056686", "7ee713c854e6be5469a1372d66b7bc40:137494980370397314"]
+
+[node name="_mesh" type="MeshInstance3D" parent="Character_Rock_Golem"]
+mesh = ExtResource("12_jc4ox")
+surface_material_override/0 = ExtResource("2_jdimt")
+
+[node name="Character_Skeleton_Knight" type="Node3D" parent="."]
+visible = false
+metadata/ufile_ids = ["7ee713c854e6be5469a1372d66b7bc40:4843302251145970", "7ee713c854e6be5469a1372d66b7bc40:1701695331322778", "7ee713c854e6be5469a1372d66b7bc40:137570350075627354"]
+
+[node name="_mesh" type="MeshInstance3D" parent="Character_Skeleton_Knight"]
+mesh = ExtResource("13_g6j8o")
+surface_material_override/0 = ExtResource("2_jdimt")
+
+[node name="Character_Skeleton_Slave_01" type="Node3D" parent="."]
+visible = false
+metadata/ufile_ids = ["7ee713c854e6be5469a1372d66b7bc40:4372295413832806", "7ee713c854e6be5469a1372d66b7bc40:1450331681537176", "7ee713c854e6be5469a1372d66b7bc40:137410409843705452"]
+
+[node name="_mesh" type="MeshInstance3D" parent="Character_Skeleton_Slave_01"]
+mesh = ExtResource("14_aayl4")
+surface_material_override/0 = ExtResource("2_jdimt")
+
+[node name="Character_Skeleton_Soldier_01" type="Node3D" parent="."]
+visible = false
+metadata/ufile_ids = ["7ee713c854e6be5469a1372d66b7bc40:4402510356137586", "7ee713c854e6be5469a1372d66b7bc40:1066662985428764", "7ee713c854e6be5469a1372d66b7bc40:137354151714089740"]
+
+[node name="_mesh" type="MeshInstance3D" parent="Character_Skeleton_Soldier_01"]
+mesh = ExtResource("15_yqese")
+surface_material_override/0 = ExtResource("2_jdimt")
+
+[node name="Character_Skeleton_Soldier_02" type="Node3D" parent="."]
+visible = false
+metadata/ufile_ids = ["7ee713c854e6be5469a1372d66b7bc40:4249312030584214", "7ee713c854e6be5469a1372d66b7bc40:1333680409769466", "7ee713c854e6be5469a1372d66b7bc40:137588458312314420"]
+
+[node name="_mesh" type="MeshInstance3D" parent="Character_Skeleton_Soldier_02"]
+mesh = ExtResource("16_rex8x")
+surface_material_override/0 = ExtResource("2_jdimt")
+
+[node name="Character_Tormented_Soul" type="Node3D" parent="."]
+visible = false
+metadata/ufile_ids = ["7ee713c854e6be5469a1372d66b7bc40:4302951576172400", "7ee713c854e6be5469a1372d66b7bc40:1203878573732108", "7ee713c854e6be5469a1372d66b7bc40:137399195085176132"]
+
+[node name="_mesh" type="MeshInstance3D" parent="Character_Tormented_Soul"]
+mesh = ExtResource("17_lu7gr")
+surface_material_override/0 = ExtResource("2_jdimt")
+
+[node name="Root" type="Node3D" parent="."]
+metadata/ufile_ids = ["7ee713c854e6be5469a1372d66b7bc40:4398461173285446", "7ee713c854e6be5469a1372d66b7bc40:1065647276028842"]
+
+[node name="Hips" type="Node3D" parent="Root"]
+transform = Transform3D(0, 0, 1, 0.988775, 0.149412, 0, -0.149412, 0.988775, 0, 0, 0.876276, 0)
+metadata/ufile_ids = ["7ee713c854e6be5469a1372d66b7bc40:4546957346295720", "7ee713c854e6be5469a1372d66b7bc40:1469740585849462"]
+
+[node name="SM_Item_Bag_Large" type="Node3D" parent="Root/Hips"]
+transform = Transform3D(0, 0.988775, -0.149412, 0, 0.149412, 0.988775, 1, 0, 0, 0.0734897, 0.0111049, -0.206229)
+visible = false
+metadata/ufile_ids = ["7ee713c854e6be5469a1372d66b7bc40:4637491755741956", "7ee713c854e6be5469a1372d66b7bc40:1577864110289402", "7ee713c854e6be5469a1372d66b7bc40:33315708282170896", "7ee713c854e6be5469a1372d66b7bc40:23508992602666198"]
+
+[node name="_mesh" type="MeshInstance3D" parent="Root/Hips/SM_Item_Bag_Large"]
+mesh = ExtResource("18_aeky0")
+surface_material_override/0 = ExtResource("2_jdimt")
+
+[node name="SM_Item_Bags" type="Node3D" parent="Root/Hips"]
+transform = Transform3D(0, 0.988775, -0.149412, 0, 0.149412, 0.988775, 1, 0, 0, 0.0734897, 0.0111049, -0.206229)
+visible = false
+metadata/ufile_ids = ["7ee713c854e6be5469a1372d66b7bc40:4738081593575684", "7ee713c854e6be5469a1372d66b7bc40:1296236085912928", "7ee713c854e6be5469a1372d66b7bc40:33504956524263330", "7ee713c854e6be5469a1372d66b7bc40:23453445186086520"]
+
+[node name="_mesh" type="MeshInstance3D" parent="Root/Hips/SM_Item_Bags"]
+mesh = ExtResource("19_oqmnj")
+surface_material_override/0 = ExtResource("2_jdimt")
+
+[node name="SM_Item_Bones" type="Node3D" parent="Root/Hips"]
+transform = Transform3D(0, 0.988775, -0.149412, 0, 0.149412, 0.988775, 1, 0, 0, 0.0902181, 0.0136327, -0.187515)
+visible = false
+metadata/ufile_ids = ["7ee713c854e6be5469a1372d66b7bc40:4977871368215724", "7ee713c854e6be5469a1372d66b7bc40:1089405873865674", "7ee713c854e6be5469a1372d66b7bc40:33208338064896736", "7ee713c854e6be5469a1372d66b7bc40:23782137776069626"]
+
+[node name="_mesh" type="MeshInstance3D" parent="Root/Hips/SM_Item_Bones"]
+mesh = ExtResource("20_yotm7")
+surface_material_override/0 = ExtResource("2_jdimt")
+
+[node name="SM_Item_Horn" type="Node3D" parent="Root/Hips"]
+transform = Transform3D(0, 0.988775, -0.149412, 0, 0.149412, 0.988775, 1, 0, 0, 0.0795274, 0.0120172, 0.165818)
+visible = false
+metadata/ufile_ids = ["7ee713c854e6be5469a1372d66b7bc40:4062514491044692", "7ee713c854e6be5469a1372d66b7bc40:1341400876879366", "7ee713c854e6be5469a1372d66b7bc40:33039660657204808", "7ee713c854e6be5469a1372d66b7bc40:23335684505521458"]
+
+[node name="_mesh" type="MeshInstance3D" parent="Root/Hips/SM_Item_Horn"]
+mesh = ExtResource("21_22xge")
+surface_material_override/0 = ExtResource("2_jdimt")
+
+[node name="SM_Item_Shrooms" type="Node3D" parent="Root/Hips"]
+transform = Transform3D(0, 0.988775, -0.149412, 0, 0.149412, 0.988775, 1, 0, 0, 0.0617986, 0.00933827, 0.189238)
+visible = false
+metadata/ufile_ids = ["7ee713c854e6be5469a1372d66b7bc40:4962893021360364", "7ee713c854e6be5469a1372d66b7bc40:1467778836336548", "7ee713c854e6be5469a1372d66b7bc40:33310355721954136", "7ee713c854e6be5469a1372d66b7bc40:23128624729413522"]
+
+[node name="_mesh" type="MeshInstance3D" parent="Root/Hips/SM_Item_Shrooms"]
+mesh = ExtResource("22_8yy0x")
+surface_material_override/0 = ExtResource("2_jdimt")
+
+[node name="SM_Item_Shrunken_Head" type="Node3D" parent="Root/Hips"]
+transform = Transform3D(-0.122535, 0.939419, 0.32012, 0.991102, 0.0989298, 0.0890537, 0.0519893, 0.328184, -0.943182, 0.0656217, -0.00134331, -0.176248)
+visible = false
+metadata/ufile_ids = ["7ee713c854e6be5469a1372d66b7bc40:4827742802310970", "7ee713c854e6be5469a1372d66b7bc40:1459825739114790", "7ee713c854e6be5469a1372d66b7bc40:33895863762492850", "7ee713c854e6be5469a1372d66b7bc40:23532068641216356"]
+
+[node name="_mesh" type="MeshInstance3D" parent="Root/Hips/SM_Item_Shrunken_Head"]
+mesh = ExtResource("23_hdx8y")
+surface_material_override/0 = ExtResource("2_jdimt")
+
+[node name="Spine_01" type="Node3D" parent="Root/Hips"]
+transform = Transform3D(0.980128, 0.198365, -2.61763e-15, 0.198365, -0.980128, -4.04826e-16, -2.64591e-15, -1.22465e-16, -1, 0.103933, 1.33227e-17, 4.61554e-17)
+metadata/ufile_ids = ["7ee713c854e6be5469a1372d66b7bc40:4359820677432790", "7ee713c854e6be5469a1372d66b7bc40:1500073152932506"]
+
+[node name="Spine_02" type="Node3D" parent="Root/Hips/Spine_01"]
+transform = Transform3D(0.980791, 0.195062, 1.17531e-15, 0.195062, -0.980791, 3.58611e-16, 1.22268e-15, -1.22465e-16, -1, 0.181512, 1.55431e-17, -7.10107e-17)
+metadata/ufile_ids = ["7ee713c854e6be5469a1372d66b7bc40:4282947049839840", "7ee713c854e6be5469a1372d66b7bc40:1373274061961136"]
+
+[node name="SM_Item_Goblin_WarBanner" type="Node3D" parent="Root/Hips/Spine_01/Spine_02"]
+transform = Transform3D(0, 0.989273, -0.14608, 0, 0.14608, 0.989273, 1, 0, 0, 0.100745, -0.137135, 3.42695e-15)
+visible = false
+metadata/ufile_ids = ["7ee713c854e6be5469a1372d66b7bc40:4224893339414230", "7ee713c854e6be5469a1372d66b7bc40:1845595324654140", "7ee713c854e6be5469a1372d66b7bc40:33385152020109780", "7ee713c854e6be5469a1372d66b7bc40:23401099401250164"]
+
+[node name="_mesh" type="MeshInstance3D" parent="Root/Hips/Spine_01/Spine_02/SM_Item_Goblin_WarBanner"]
+mesh = ExtResource("24_6mjfs")
+surface_material_override/0 = ExtResource("2_jdimt")
+
+[node name="SM_Item_Shield" type="Node3D" parent="Root/Hips/Spine_01/Spine_02"]
+transform = Transform3D(0, 0.989273, -0.14608, 0, 0.14608, 0.989273, 1, 0, 0, 0.194008, -0.0959115, 4.07389e-15)
+visible = false
+metadata/ufile_ids = ["7ee713c854e6be5469a1372d66b7bc40:4205434213695480", "7ee713c854e6be5469a1372d66b7bc40:1144807032597634", "7ee713c854e6be5469a1372d66b7bc40:33734784191856126", "7ee713c854e6be5469a1372d66b7bc40:23615414555627746"]
+
+[node name="_mesh" type="MeshInstance3D" parent="Root/Hips/Spine_01/Spine_02/SM_Item_Shield"]
+mesh = ExtResource("25_3jnvs")
+surface_material_override/0 = ExtResource("2_jdimt")
+
+[node name="SM_Item_Sword" type="Node3D" parent="Root/Hips/Spine_01/Spine_02"]
+transform = Transform3D(0, 0.989273, -0.14608, 0, 0.14608, 0.989273, 1, 0, 0, 0.169072, -0.120668, 3.97542e-15)
+visible = false
+metadata/ufile_ids = ["7ee713c854e6be5469a1372d66b7bc40:4699139324745506", "7ee713c854e6be5469a1372d66b7bc40:1973472056054238", "7ee713c854e6be5469a1372d66b7bc40:33509170936858400", "7ee713c854e6be5469a1372d66b7bc40:23919285728701270"]
+
+[node name="_mesh" type="MeshInstance3D" parent="Root/Hips/Spine_01/Spine_02/SM_Item_Sword"]
+mesh = ExtResource("26_j5mcs")
+surface_material_override/0 = ExtResource("2_jdimt")
+
+[node name="Spine_03" type="Node3D" parent="Root/Hips/Spine_01/Spine_02"]
+transform = Transform3D(0.975318, 0.220805, 6.48372e-17, 0.220805, -0.975318, 1.40243e-16, 9.42032e-17, -1.22465e-16, -1, 0.179037, 2.22045e-17, 7.50973e-17)
+metadata/ufile_ids = ["7ee713c854e6be5469a1372d66b7bc40:4460355296684648", "7ee713c854e6be5469a1372d66b7bc40:1502700235110444"]
+
+[node name="Clavicle_L" type="Node3D" parent="Root/Hips/Spine_01/Spine_02/Spine_03"]
+transform = Transform3D(-0.0486081, 0.996564, 0.0670689, 0.467129, 0.0820338, -0.880376, -0.882852, -0.0114635, -0.469511, 0.0580117, -0.0419145, -0.0744715)
+metadata/ufile_ids = ["7ee713c854e6be5469a1372d66b7bc40:4644915443042126", "7ee713c854e6be5469a1372d66b7bc40:1847376676595522"]
+
+[node name="Shoulder_L" type="Node3D" parent="Root/Hips/Spine_01/Spine_02/Spine_03/Clavicle_L"]
+transform = Transform3D(0.885509, 0.0602784, -0.460696, -0.0710111, 0.997458, -0.00598189, 0.459164, 0.0380115, 0.887538, 0.131979, -4.85723e-19, -2.66454e-17)
+metadata/ufile_ids = ["7ee713c854e6be5469a1372d66b7bc40:4902175214281904", "7ee713c854e6be5469a1372d66b7bc40:1111728844366400"]
+
+[node name="Elbow_L" type="Node3D" parent="Root/Hips/Spine_01/Spine_02/Spine_03/Clavicle_L/Shoulder_L"]
+transform = Transform3D(0.993276, -0.0825021, -0.081223, 0.0822276, 0.996591, -0.00672399, 0.0815009, -2.32831e-10, 0.996673, 0.339474, -0.00144907, -0.00143626)
+metadata/ufile_ids = ["7ee713c854e6be5469a1372d66b7bc40:4551103486994422", "7ee713c854e6be5469a1372d66b7bc40:1267169140463620"]
+
+[node name="Hand_L" type="Node3D" parent="Root/Hips/Spine_01/Spine_02/Spine_03/Clavicle_L/Shoulder_L/Elbow_L"]
+transform = Transform3D(0.997432, 3.33198e-15, 0.0716155, -3.33544e-15, 1, -7.12448e-17, -0.0716155, -1.67807e-16, 0.997432, 0.271145, 0, -0.000381364)
+metadata/ufile_ids = ["7ee713c854e6be5469a1372d66b7bc40:4674835605488498", "7ee713c854e6be5469a1372d66b7bc40:1538925073750634"]
+
+[node name="Finger_01" type="Node3D" parent="Root/Hips/Spine_01/Spine_02/Spine_03/Clavicle_L/Shoulder_L/Elbow_L/Hand_L"]
+transform = Transform3D(0.98976, 0.11253, 0.0878153, -0.112967, 0.993599, 0, -0.0872532, -0.0099202, 0.996137, 0.0998253, -0.00115959, -0.0328334)
+metadata/ufile_ids = ["7ee713c854e6be5469a1372d66b7bc40:4011568561945984", "7ee713c854e6be5469a1372d66b7bc40:1833684276961834"]
+
+[node name="Finger_02" type="Node3D" parent="Root/Hips/Spine_01/Spine_02/Spine_03/Clavicle_L/Shoulder_L/Elbow_L/Hand_L/Finger_01"]
+transform = Transform3D(0.998335, 0.042418, -0.0390799, -0.0426236, 0.999081, -0.00444316, 0.0388555, 0.00610149, 0.999226, 0.0424881, -1.05818e-17, -8.32667e-18)
+metadata/ufile_ids = ["7ee713c854e6be5469a1372d66b7bc40:4894368962335156", "7ee713c854e6be5469a1372d66b7bc40:1878542240279382"]
+
+[node name="Finger_03" type="Node3D" parent="Root/Hips/Spine_01/Spine_02/Spine_03/Clavicle_L/Shoulder_L/Elbow_L/Hand_L/Finger_01/Finger_02"]
+transform = Transform3D(0.972665, 0.181128, 0.145312, -0.186317, 0.982225, 0.0228184, -0.138596, -0.0492687, 0.989123, 0.0351333, -3.00324e-16, 3.77476e-17)
+metadata/ufile_ids = ["7ee713c854e6be5469a1372d66b7bc40:4516550378691720", "7ee713c854e6be5469a1372d66b7bc40:1966559039220286"]
+
+[node name="Finger_04" type="Node3D" parent="Root/Hips/Spine_01/Spine_02/Spine_03/Clavicle_L/Shoulder_L/Elbow_L/Hand_L/Finger_01/Finger_02/Finger_03"]
+transform = Transform3D(0.924156, -0.33495, -0.183697, 0.328523, 0.942236, -0.0653013, 0.194958, 0, 0.980812, 0.0300324, 2.12677e-16, -1.11022e-18)
+metadata/ufile_ids = ["7ee713c854e6be5469a1372d66b7bc40:4933395849327918", "7ee713c854e6be5469a1372d66b7bc40:1444689785400570"]
+
+[node name="IndexFinger_01" type="Node3D" parent="Root/Hips/Spine_01/Spine_02/Spine_03/Clavicle_L/Shoulder_L/Elbow_L/Hand_L"]
+transform = Transform3D(0.991306, 0.00845244, -0.131305, -0.00852626, 0.999964, 0, 0.1313, 0.00111954, 0.991342, 0.103966, 0.00398715, 0.0267265)
+metadata/ufile_ids = ["7ee713c854e6be5469a1372d66b7bc40:4693933743221882", "7ee713c854e6be5469a1372d66b7bc40:1918292115117956"]
+
+[node name="IndexFinger_02" type="Node3D" parent="Root/Hips/Spine_01/Spine_02/Spine_03/Clavicle_L/Shoulder_L/Elbow_L/Hand_L/IndexFinger_01"]
+transform = Transform3D(0.980432, 0.19567, 0.0216048, -0.19572, 0.98066, 0.000184215, -0.021151, -0.00440911, 0.999767, 0.0409363, -1.52764e-18, 2.44249e-17)
+metadata/ufile_ids = ["7ee713c854e6be5469a1372d66b7bc40:4938440489489118", "7ee713c854e6be5469a1372d66b7bc40:1194691055476836"]
+
+[node name="IndexFinger_03" type="Node3D" parent="Root/Hips/Spine_01/Spine_02/Spine_03/Clavicle_L/Shoulder_L/Elbow_L/Hand_L/IndexFinger_01/IndexFinger_02"]
+transform = Transform3D(0.992179, 0.113423, 0.0521209, -0.114134, 0.993406, 0.0108651, -0.0505449, -0.0167289, 0.998582, 0.0379119, -2.1462e-16, -3.83027e-17)
+metadata/ufile_ids = ["7ee713c854e6be5469a1372d66b7bc40:4421718923074658", "7ee713c854e6be5469a1372d66b7bc40:1796769289259282"]
+
+[node name="IndexFinger_04" type="Node3D" parent="Root/Hips/Spine_01/Spine_02/Spine_03/Clavicle_L/Shoulder_L/Elbow_L/Hand_L/IndexFinger_01/IndexFinger_02/IndexFinger_03"]
+transform = Transform3D(0.947822, -0.314209, 0.0539051, 0.313702, 0.949354, 0.017841, -0.0567808, 9.31323e-10, 0.998387, 0.0377979, -1.92841e-16, -9.99201e-18)
+metadata/ufile_ids = ["7ee713c854e6be5469a1372d66b7bc40:4850015663879832", "7ee713c854e6be5469a1372d66b7bc40:1812516074315778"]
+
+[node name="Thumb_01" type="Node3D" parent="Root/Hips/Spine_01/Spine_02/Spine_03/Clavicle_L/Shoulder_L/Elbow_L/Hand_L"]
+transform = Transform3D(0.831214, 0.154317, -0.534106, -0.182534, 0.9832, 1.11759e-08, 0.525132, 0.0974924, 0.845418, 0.0351405, -0.0117069, 0.0450554)
+metadata/ufile_ids = ["7ee713c854e6be5469a1372d66b7bc40:4695676837844206", "7ee713c854e6be5469a1372d66b7bc40:1338570614682922"]
+
+[node name="Thumb_02" type="Node3D" parent="Root/Hips/Spine_01/Spine_02/Spine_03/Clavicle_L/Shoulder_L/Elbow_L/Hand_L/Thumb_01"]
+transform = Transform3D(0.932106, 0.268778, 0.242769, -0.287605, 0.956688, 0.0450708, -0.22014, -0.111832, 0.969037, 0.0637021, -6.10623e-18, 4.44089e-18)
+metadata/ufile_ids = ["7ee713c854e6be5469a1372d66b7bc40:4292994741227274", "7ee713c854e6be5469a1372d66b7bc40:1158575010601942"]
+
+[node name="Thumb_03" type="Node3D" parent="Root/Hips/Spine_01/Spine_02/Spine_03/Clavicle_L/Shoulder_L/Elbow_L/Hand_L/Thumb_01/Thumb_02"]
+transform = Transform3D(0.847975, -0.452915, 0.27533, 0.430776, 0.891554, 0.139869, -0.30882, 0, 0.951121, 0.0566557, 2.91156e-16, 3.9968e-17)
+metadata/ufile_ids = ["7ee713c854e6be5469a1372d66b7bc40:4541930488710250", "7ee713c854e6be5469a1372d66b7bc40:1914863773302286"]
+
+[node name="Clavicle_R" type="Node3D" parent="Root/Hips/Spine_01/Spine_02/Spine_03"]
+transform = Transform3D(0.0486079, -0.996564, -0.0670688, -0.467129, -0.0820339, 0.880376, -0.882852, -0.0114635, -0.469511, 0.0580153, -0.0419142, 0.0744715)
+metadata/ufile_ids = ["7ee713c854e6be5469a1372d66b7bc40:4510213649100142", "7ee713c854e6be5469a1372d66b7bc40:1681013196064142"]
+
+[node name="Shoulder_R" type="Node3D" parent="Root/Hips/Spine_01/Spine_02/Spine_03/Clavicle_R"]
+transform = Transform3D(0.885509, 0.0602784, -0.460696, -0.0710111, 0.997458, -0.00598189, 0.459164, 0.0380115, 0.887538, -0.131979, 6.47339e-06, 4.73534e-08)
+metadata/ufile_ids = ["7ee713c854e6be5469a1372d66b7bc40:4692886827880020", "7ee713c854e6be5469a1372d66b7bc40:1983296050975310"]
+
+[node name="Elbow_R" type="Node3D" parent="Root/Hips/Spine_01/Spine_02/Spine_03/Clavicle_R/Shoulder_R"]
+transform = Transform3D(0.993276, -0.0825021, -0.081223, 0.0822276, 0.996591, -0.00672399, 0.0815009, -2.32831e-10, 0.996673, -0.339475, 0.00144759, 0.00143626)
+metadata/ufile_ids = ["7ee713c854e6be5469a1372d66b7bc40:4823029580132138", "7ee713c854e6be5469a1372d66b7bc40:1819379398700258"]
+
+[node name="Hand_R" type="Node3D" parent="Root/Hips/Spine_01/Spine_02/Spine_03/Clavicle_R/Shoulder_R/Elbow_R"]
+transform = Transform3D(0.997432, -2.35026e-15, 0.0716155, 2.33581e-15, 1, 2.85541e-16, -0.0716155, -1.17528e-16, 0.997432, -0.271145, -2.84217e-16, 0.000381361)
+metadata/ufile_ids = ["7ee713c854e6be5469a1372d66b7bc40:4533272818862748", "7ee713c854e6be5469a1372d66b7bc40:1066470464526444"]
+
+[node name="Finger_01 1" type="Node3D" parent="Root/Hips/Spine_01/Spine_02/Spine_03/Clavicle_R/Shoulder_R/Elbow_R/Hand_R"]
+transform = Transform3D(0.98976, 0.11253, 0.0878153, -0.112967, 0.993599, 0, -0.0872532, -0.0099202, 0.996137, -0.099825, 0.00116, 0.0328334)
+metadata/ufile_ids = ["7ee713c854e6be5469a1372d66b7bc40:4297447516107342", "7ee713c854e6be5469a1372d66b7bc40:1190578283789954"]
+
+[node name="Finger_02 1" type="Node3D" parent="Root/Hips/Spine_01/Spine_02/Spine_03/Clavicle_R/Shoulder_R/Elbow_R/Hand_R/Finger_01 1"]
+transform = Transform3D(0.998335, 0.042418, -0.0390799, -0.0426236, 0.999081, -0.00444316, 0.0388555, 0.00610149, 0.999226, -0.0424881, 2.65344e-07, -1.97899e-08)
+metadata/ufile_ids = ["7ee713c854e6be5469a1372d66b7bc40:4526715440021780", "7ee713c854e6be5469a1372d66b7bc40:1459722109980204"]
+
+[node name="Finger_03 1" type="Node3D" parent="Root/Hips/Spine_01/Spine_02/Spine_03/Clavicle_R/Shoulder_R/Elbow_R/Hand_R/Finger_01 1/Finger_02 1"]
+transform = Transform3D(0.972665, 0.181128, 0.145312, -0.186317, 0.982225, 0.0228184, -0.138596, -0.0492687, 0.989123, -0.0351332, -1.99785e-07, 1.48536e-08)
+metadata/ufile_ids = ["7ee713c854e6be5469a1372d66b7bc40:4585189261871700", "7ee713c854e6be5469a1372d66b7bc40:1279193918743776"]
+
+[node name="Finger_04 1" type="Node3D" parent="Root/Hips/Spine_01/Spine_02/Spine_03/Clavicle_R/Shoulder_R/Elbow_R/Hand_R/Finger_01 1/Finger_02 1/Finger_03 1"]
+transform = Transform3D(0.924156, -0.33495, -0.183697, 0.328523, 0.942236, -0.0653013, 0.194958, 0, 0.980812, -0.0300311, 1.13347e-06, 3.5911e-07)
+metadata/ufile_ids = ["7ee713c854e6be5469a1372d66b7bc40:4784327083570262", "7ee713c854e6be5469a1372d66b7bc40:1544105362744184"]
+
+[node name="IndexFinger_01 1" type="Node3D" parent="Root/Hips/Spine_01/Spine_02/Spine_03/Clavicle_R/Shoulder_R/Elbow_R/Hand_R"]
+transform = Transform3D(0.991306, 0.00845244, -0.131305, -0.00852626, 0.999964, 0, 0.1313, 0.00111954, 0.991342, -0.103966, -0.00399, -0.0267265)
+metadata/ufile_ids = ["7ee713c854e6be5469a1372d66b7bc40:4568876094493076", "7ee713c854e6be5469a1372d66b7bc40:1027696607564658"]
+
+[node name="IndexFinger_02 1" type="Node3D" parent="Root/Hips/Spine_01/Spine_02/Spine_03/Clavicle_R/Shoulder_R/Elbow_R/Hand_R/IndexFinger_01 1"]
+transform = Transform3D(0.980432, 0.19567, 0.0216048, -0.19572, 0.98066, 0.000184215, -0.021151, -0.00440911, 0.999767, -0.0409359, 9.69869e-07, -4.95675e-08)
+metadata/ufile_ids = ["7ee713c854e6be5469a1372d66b7bc40:4401519341662766", "7ee713c854e6be5469a1372d66b7bc40:1541138407218952"]
+
+[node name="IndexFinger_03 1" type="Node3D" parent="Root/Hips/Spine_01/Spine_02/Spine_03/Clavicle_R/Shoulder_R/Elbow_R/Hand_R/IndexFinger_01 1/IndexFinger_02 1"]
+transform = Transform3D(0.992179, 0.113423, 0.0521209, -0.114134, 0.993406, 0.0108651, -0.0505449, -0.0167289, 0.998582, -0.0379121, 3.24998e-06, -4.54529e-08)
+metadata/ufile_ids = ["7ee713c854e6be5469a1372d66b7bc40:4194788819661296", "7ee713c854e6be5469a1372d66b7bc40:1849835538632564"]
+
+[node name="IndexFinger_04 1" type="Node3D" parent="Root/Hips/Spine_01/Spine_02/Spine_03/Clavicle_R/Shoulder_R/Elbow_R/Hand_R/IndexFinger_01 1/IndexFinger_02 1/IndexFinger_03 1"]
+transform = Transform3D(0.947822, -0.314209, 0.0539051, 0.313702, 0.949354, 0.017841, -0.0567808, 9.31323e-10, 0.998387, -0.0377933, -5.26571e-06, -1.55074e-07)
+metadata/ufile_ids = ["7ee713c854e6be5469a1372d66b7bc40:4289479370948592", "7ee713c854e6be5469a1372d66b7bc40:1546695838465706"]
+
+[node name="Thumb_01 1" type="Node3D" parent="Root/Hips/Spine_01/Spine_02/Spine_03/Clavicle_R/Shoulder_R/Elbow_R/Hand_R"]
+transform = Transform3D(0.831214, 0.154317, -0.534106, -0.182534, 0.9832, 1.11759e-08, 0.525132, 0.0974924, 0.845418, -0.03514, 0.01171, -0.0450554)
+metadata/ufile_ids = ["7ee713c854e6be5469a1372d66b7bc40:4161672827340636", "7ee713c854e6be5469a1372d66b7bc40:1152185705542626"]
+
+[node name="Thumb_02 1" type="Node3D" parent="Root/Hips/Spine_01/Spine_02/Spine_03/Clavicle_R/Shoulder_R/Elbow_R/Hand_R/Thumb_01 1"]
+transform = Transform3D(0.932106, 0.268778, 0.242769, -0.287605, 0.956688, 0.0450708, -0.22014, -0.111832, 0.969037, -0.0637015, -7.81182e-06, 4.36381e-07)
+metadata/ufile_ids = ["7ee713c854e6be5469a1372d66b7bc40:4700250328320036", "7ee713c854e6be5469a1372d66b7bc40:1289072640649284"]
+
+[node name="Thumb_03 1" type="Node3D" parent="Root/Hips/Spine_01/Spine_02/Spine_03/Clavicle_R/Shoulder_R/Elbow_R/Hand_R/Thumb_01 1/Thumb_02 1"]
+transform = Transform3D(0.847975, -0.452915, 0.27533, 0.430776, 0.891554, 0.139869, -0.30882, 0, 0.951121, -0.0566551, 9.8355e-08, -2.02795e-07)
+metadata/ufile_ids = ["7ee713c854e6be5469a1372d66b7bc40:4570836238072408", "7ee713c854e6be5469a1372d66b7bc40:1138332308630472"]
+
+[node name="Neck" type="Node3D" parent="Root/Hips/Spine_01/Spine_02/Spine_03"]
+transform = Transform3D(0.996517, 0.083394, -2.58936e-15, -0.083394, 0.996517, 1.85358e-16, 2.5958e-15, 3.1225e-17, 1, 0.11189, -6.66134e-18, -4.62441e-17)
+metadata/ufile_ids = ["7ee713c854e6be5469a1372d66b7bc40:4260665911183232", "7ee713c854e6be5469a1372d66b7bc40:1750295694152022"]
+
+[node name="Head" type="Node3D" parent="Root/Hips/Spine_01/Spine_02/Spine_03/Neck"]
+transform = Transform3D(0, 0.987303, 0.158851, 0, 0.158851, -0.987303, -1, 0, 0, 0.121644, -1.5099e-16, -5.05918e-17)
+metadata/ufile_ids = ["7ee713c854e6be5469a1372d66b7bc40:4946102864127780", "7ee713c854e6be5469a1372d66b7bc40:1826037347352886"]
+
+[node name="Eyebrows" type="Node3D" parent="Root/Hips/Spine_01/Spine_02/Spine_03/Neck/Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.52435e-31, 0.127669, 0.122722)
+metadata/ufile_ids = ["7ee713c854e6be5469a1372d66b7bc40:4037385492036954", "7ee713c854e6be5469a1372d66b7bc40:1358738618408460"]
+
+[node name="Eyes" type="Node3D" parent="Root/Hips/Spine_01/Spine_02/Spine_03/Neck/Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.05104e-31, 0.0944761, 0.122722)
+metadata/ufile_ids = ["7ee713c854e6be5469a1372d66b7bc40:4782028877273868", "7ee713c854e6be5469a1372d66b7bc40:1737470877139230"]
+
+[node name="SM_Item_Goblin_Hair" type="Node3D" parent="Root/Hips/Spine_01/Spine_02/Spine_03/Neck/Head"]
+transform = Transform3D(1, 1.11999e-14, -8.30618e-15, -1.11999e-14, 1, -3.13721e-13, 8.30618e-15, 3.13721e-13, 1, -0.00482341, 0.184513, -0.116214)
+visible = false
+metadata/ufile_ids = ["7ee713c854e6be5469a1372d66b7bc40:4118753768004966", "7ee713c854e6be5469a1372d66b7bc40:1584711206707204", "7ee713c854e6be5469a1372d66b7bc40:33924501029345424", "7ee713c854e6be5469a1372d66b7bc40:23989672029415320"]
+
+[node name="_mesh" type="MeshInstance3D" parent="Root/Hips/Spine_01/Spine_02/Spine_03/Neck/Head/SM_Item_Goblin_Hair"]
+mesh = ExtResource("27_fva0o")
+surface_material_override/0 = ExtResource("2_jdimt")
+
+[node name="SM_Item_Mask_01" type="Node3D" parent="Root/Hips/Spine_01/Spine_02/Spine_03/Neck/Head"]
+transform = Transform3D(1, 1.11999e-14, -8.30618e-15, -1.11999e-14, 1, -3.13721e-13, 8.30618e-15, 3.13721e-13, 1, -1.26528e-14, -1.56911, 0.00483958)
+visible = false
+metadata/ufile_ids = ["7ee713c854e6be5469a1372d66b7bc40:4184700665496294", "7ee713c854e6be5469a1372d66b7bc40:1522603677331758", "7ee713c854e6be5469a1372d66b7bc40:33627722253053562", "7ee713c854e6be5469a1372d66b7bc40:23461630778918094"]
+
+[node name="_mesh" type="MeshInstance3D" parent="Root/Hips/Spine_01/Spine_02/Spine_03/Neck/Head/SM_Item_Mask_01"]
+mesh = ExtResource("28_31m6l")
+surface_material_override/0 = ExtResource("2_jdimt")
+
+[node name="SM_Item_Mask_02" type="Node3D" parent="Root/Hips/Spine_01/Spine_02/Spine_03/Neck/Head"]
+transform = Transform3D(1, 1.11999e-14, -8.30618e-15, -1.11999e-14, 1, -3.13721e-13, 8.30618e-15, 3.13721e-13, 1, -1.26528e-14, -1.56911, 0.00483958)
+visible = false
+metadata/ufile_ids = ["7ee713c854e6be5469a1372d66b7bc40:4191398010854214", "7ee713c854e6be5469a1372d66b7bc40:1046518479194040", "7ee713c854e6be5469a1372d66b7bc40:33845275103027428", "7ee713c854e6be5469a1372d66b7bc40:23648921350497940"]
+
+[node name="_mesh" type="MeshInstance3D" parent="Root/Hips/Spine_01/Spine_02/Spine_03/Neck/Head/SM_Item_Mask_02"]
+mesh = ExtResource("29_pwwqc")
+surface_material_override/0 = ExtResource("2_jdimt")
+
+[node name="UpperLeg_L" type="Node3D" parent="Root/Hips"]
+transform = Transform3D(0.988277, -0.0313848, -0.149412, 0.149337, -0.00474262, 0.988775, -0.0317411, -0.999496, -1.19209e-07, -0.0411578, -0.0269207, 0.0989671)
+metadata/ufile_ids = ["7ee713c854e6be5469a1372d66b7bc40:4396751367183266", "7ee713c854e6be5469a1372d66b7bc40:1481983696813516"]
+
+[node name="LowerLeg_L" type="Node3D" parent="Root/Hips/UpperLeg_L"]
+transform = Transform3D(0.998758, -0.0387686, -0.031288, -0.0242844, 0.16951, -0.985229, 0.0434995, 0.984766, 0.168358, -0.399309, -3.80503e-07, 1.46549e-16)
+metadata/ufile_ids = ["7ee713c854e6be5469a1372d66b7bc40:4945017687025468", "7ee713c854e6be5469a1372d66b7bc40:1159136497172832"]
+
+[node name="Ankle_L" type="Node3D" parent="Root/Hips/UpperLeg_L/LowerLeg_L"]
+transform = Transform3D(0.482309, -0.875969, 0.00742956, -0.864116, -0.474357, 0.168194, -0.143808, -0.0875415, -0.985726, -0.377123, 1.31695e-07, -8.41104e-07)
+metadata/ufile_ids = ["7ee713c854e6be5469a1372d66b7bc40:4357550635634204", "7ee713c854e6be5469a1372d66b7bc40:1353874146329008"]
+
+[node name="Ball_L" type="Node3D" parent="Root/Hips/UpperLeg_L/LowerLeg_L/Ankle_L"]
+transform = Transform3D(0.854183, -0.519973, -7.5118e-15, 0.519973, 0.854183, -9.44708e-15, 1.13287e-14, 4.16361e-15, 1, -0.11284, -1.68496e-08, -7.10543e-17)
+metadata/ufile_ids = ["7ee713c854e6be5469a1372d66b7bc40:4756670811759700", "7ee713c854e6be5469a1372d66b7bc40:1561060887781710"]
+
+[node name="Toes_L" type="Node3D" parent="Root/Hips/UpperLeg_L/LowerLeg_L/Ankle_L/Ball_L"]
+transform = Transform3D(0, -7.74325e-13, 1, 0, 1, 7.74325e-13, -1, 0, 0, -0.0729575, 2.66454e-17, 1.77636e-17)
+metadata/ufile_ids = ["7ee713c854e6be5469a1372d66b7bc40:4095652240745364", "7ee713c854e6be5469a1372d66b7bc40:1314738151871256"]
+
+[node name="UpperLeg_R" type="Node3D" parent="Root/Hips"]
+transform = Transform3D(-0.988277, 0.0313848, 0.149412, -0.149337, 0.00474262, -0.988775, -0.0317411, -0.999496, 5.96046e-08, -0.0411577, -0.0269207, -0.0989671)
+metadata/ufile_ids = ["7ee713c854e6be5469a1372d66b7bc40:4201921557229274", "7ee713c854e6be5469a1372d66b7bc40:1468109259203012"]
+
+[node name="LowerLeg_R" type="Node3D" parent="Root/Hips/UpperLeg_R"]
+transform = Transform3D(0.998758, -0.0387686, -0.031288, -0.0242844, 0.16951, -0.985229, 0.0434995, 0.984766, 0.168358, 0.399309, -6.88338e-17, -5.33421e-17)
+metadata/ufile_ids = ["7ee713c854e6be5469a1372d66b7bc40:4798519654310506", "7ee713c854e6be5469a1372d66b7bc40:1111987440512244"]
+
+[node name="Ankle_R" type="Node3D" parent="Root/Hips/UpperLeg_R/LowerLeg_R"]
+transform = Transform3D(0.482309, -0.875969, 0.00742956, -0.864116, -0.474357, 0.168194, -0.143808, -0.0875415, -0.985726, 0.377124, -7.77156e-17, 1.68199e-16)
+metadata/ufile_ids = ["7ee713c854e6be5469a1372d66b7bc40:4719598189270946", "7ee713c854e6be5469a1372d66b7bc40:1718619013031538"]
+
+[node name="Ball_R" type="Node3D" parent="Root/Hips/UpperLeg_R/LowerLeg_R/Ankle_R"]
+transform = Transform3D(0.854183, -0.519973, -2.65799e-15, 0.519973, 0.854183, 7.41842e-16, 1.88467e-15, -2.01575e-15, 1, 0.11284, -1.15463e-16, -2.11335e-17)
+metadata/ufile_ids = ["7ee713c854e6be5469a1372d66b7bc40:4248881029975100", "7ee713c854e6be5469a1372d66b7bc40:1758047429003748"]
+
+[node name="Toes_R" type="Node3D" parent="Root/Hips/UpperLeg_R/LowerLeg_R/Ankle_R/Ball_R"]
+transform = Transform3D(0, 5.33341e-14, 1, 0, 1, -5.33341e-14, -1, 0, 0, 0.0729576, 2.04009e-18, 3.40871e-18)
+metadata/ufile_ids = ["7ee713c854e6be5469a1372d66b7bc40:4668120763626342", "7ee713c854e6be5469a1372d66b7bc40:1767748611135998"]

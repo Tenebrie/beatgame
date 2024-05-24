@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Wall_Archway_02_mesh/SM_Env_Wall_Archway_02_4300000.mesh" id="1_kwoa1"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_ybecn"]
+
+[node name="SM_Env_Wall_Archway_02" type="Node3D"]
+metadata/ufile_ids = ["d8ec58f0ec86550429486ef4c8cb7e4e:470216", "d8ec58f0ec86550429486ef4c8cb7e4e:127922", "d8ec58f0ec86550429486ef4c8cb7e4e:3385198", "d8ec58f0ec86550429486ef4c8cb7e4e:2330460", "d8ec58f0ec86550429486ef4c8cb7e4e:64867102545770942"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_kwoa1")
+surface_material_override/0 = ExtResource("2_ybecn")

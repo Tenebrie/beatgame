@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Cave_Roof_01_DoubleSided_mesh/SM_Env_Cave_Roof_01_DoubleSided_4300000.mesh" id="1_x06de"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_xmy48"]
+
+[node name="SM_Env_Cave_Roof_01_DoubleSided" type="Node3D"]
+metadata/ufile_ids = ["9efa9d1e9921c3645a4952e67bca85ef:436156", "9efa9d1e9921c3645a4952e67bca85ef:161970", "9efa9d1e9921c3645a4952e67bca85ef:3310444", "9efa9d1e9921c3645a4952e67bca85ef:2398060", "9efa9d1e9921c3645a4952e67bca85ef:64466701955908422"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_x06de")
+surface_material_override/0 = ExtResource("2_xmy48")

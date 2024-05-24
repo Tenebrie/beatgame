@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Prop_Candles_04_mesh/SM_Prop_Candles_04_4300000.mesh" id="1_wrtjb"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_vwfkm"]
+
+[node name="SM_Prop_Candles_04" type="Node3D"]
+metadata/ufile_ids = ["0533ddc0f38f3c842bf18ac27f90260f:471080", "0533ddc0f38f3c842bf18ac27f90260f:184338", "0533ddc0f38f3c842bf18ac27f90260f:3316306", "0533ddc0f38f3c842bf18ac27f90260f:2362532", "0533ddc0f38f3c842bf18ac27f90260f:64723567395194226"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_wrtjb")
+surface_material_override/0 = ExtResource("2_vwfkm")

@@ -1,0 +1,4 @@
+[gd_scene format=3]
+
+[node name="FX_Trap_FlameHead_Fire" type="Node3D"]
+metadata/ufile_ids = ["f8356666ac1766c498d6e8a0bc3eb447:432986", "f8356666ac1766c498d6e8a0bc3eb447:174256", "f8356666ac1766c498d6e8a0bc3eb447:19861774", "f8356666ac1766c498d6e8a0bc3eb447:19987796"]

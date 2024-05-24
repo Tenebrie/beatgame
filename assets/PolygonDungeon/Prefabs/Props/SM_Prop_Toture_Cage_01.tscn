@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Prop_Toture_Cage_01_mesh/SM_Prop_Toture_Cage_01_4300000.mesh" id="1_rye04"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_xn3qy"]
+
+[node name="SM_Prop_Toture_Cage_01" type="Node3D"]
+metadata/ufile_ids = ["cd24b009c944b1848a4b3e5904c18513:442804", "cd24b009c944b1848a4b3e5904c18513:140460", "cd24b009c944b1848a4b3e5904c18513:3389292", "cd24b009c944b1848a4b3e5904c18513:2372116", "cd24b009c944b1848a4b3e5904c18513:64990041994781728"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_rye04")
+surface_material_override/0 = ExtResource("2_xn3qy")

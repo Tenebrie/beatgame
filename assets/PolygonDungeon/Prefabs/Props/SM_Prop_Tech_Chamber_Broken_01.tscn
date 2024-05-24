@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Prop_Tech_Chamber_Broken_01_mesh/SM_Prop_Tech_Chamber_Broken_01_4300000.mesh" id="1_momkb"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_guc5x"]
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Prop_Tech_Chamber_Broken_01_mesh/SM_Prop_Tech_Chamber_Broken_Glass_4300002.mesh" id="3_iov8r"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Misc/Dungeon_Material_Transparent.tres" id="4_qw2oq"]
+
+[node name="SM_Prop_Tech_Chamber_Broken_01" type="Node3D"]
+metadata/ufile_ids = ["f477c0969c98fb943901a32316cf5d18:433062", "f477c0969c98fb943901a32316cf5d18:193678", "f477c0969c98fb943901a32316cf5d18:3364440", "f477c0969c98fb943901a32316cf5d18:2385350", "f477c0969c98fb943901a32316cf5d18:64239058918012064"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_momkb")
+surface_material_override/0 = ExtResource("2_guc5x")
+
+[node name="SM_Prop_Tech_Chamber_Broken_Glass" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.100929, -2.34899e-07)
+metadata/ufile_ids = ["f477c0969c98fb943901a32316cf5d18:410384", "f477c0969c98fb943901a32316cf5d18:183074", "f477c0969c98fb943901a32316cf5d18:3332012", "f477c0969c98fb943901a32316cf5d18:2353500"]
+
+[node name="_mesh" type="MeshInstance3D" parent="SM_Prop_Tech_Chamber_Broken_Glass"]
+mesh = ExtResource("3_iov8r")
+surface_material_override/0 = ExtResource("4_qw2oq")

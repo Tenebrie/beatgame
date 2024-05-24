@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Minetrack_Bridge_Broken_01_mesh/SM_Env_Minetrack_Bridge_Broken_01_4300000.mesh" id="1_c52tl"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_x0x36"]
+
+[node name="SM_Env_Minetrack_Bridge_Broken_01" type="Node3D"]
+metadata/ufile_ids = ["1e7cc353830e2d6409a9b84abc744fd8:424770", "1e7cc353830e2d6409a9b84abc744fd8:112134", "1e7cc353830e2d6409a9b84abc744fd8:3365036", "1e7cc353830e2d6409a9b84abc744fd8:2320124", "1e7cc353830e2d6409a9b84abc744fd8:64990695994123988"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_c52tl")
+surface_material_override/0 = ExtResource("2_x0x36")

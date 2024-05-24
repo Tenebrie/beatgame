@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Stone_Lantern_01_mesh/SM_Env_Stone_Lantern_01_4300000.mesh" id="1_epsfm"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_4whr5"]
+
+[node name="SM_Env_Stone_Lantern_01" type="Node3D"]
+metadata/ufile_ids = ["58f22659dd1426f4a8410923cf2db4b6:485330", "58f22659dd1426f4a8410923cf2db4b6:117110", "58f22659dd1426f4a8410923cf2db4b6:3328170", "58f22659dd1426f4a8410923cf2db4b6:2372050", "58f22659dd1426f4a8410923cf2db4b6:64934859049534114"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_epsfm")
+surface_material_override/0 = ExtResource("2_4whr5")

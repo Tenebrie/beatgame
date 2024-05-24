@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://b80jah8paq02t"]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Wall_Trim_Floor_01_mesh/SM_Env_Wall_Trim_Floor_01_4300000.mesh" id="1_ictld"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_7ofvd"]
+
+[node name="SM_Env_Wall_Trim_Floor_01" type="Node3D"]
+metadata/ufile_ids = ["94ca6d6ca29cc81419b65c6bf9286a6f:442146", "94ca6d6ca29cc81419b65c6bf9286a6f:180174", "94ca6d6ca29cc81419b65c6bf9286a6f:3339858", "94ca6d6ca29cc81419b65c6bf9286a6f:2352226", "94ca6d6ca29cc81419b65c6bf9286a6f:65160946206927962"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_ictld")
+surface_material_override/0 = ExtResource("2_7ofvd")

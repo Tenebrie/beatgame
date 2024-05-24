@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Background_Black_01_mesh/SM_Env_Background_Black_01_4300000.mesh" id="1_l0fvq"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_px18c"]
+
+[node name="SM_Env_Background_Black_01" type="Node3D"]
+metadata/ufile_ids = ["23fcbe63e1a3afc45ac8f42a5198761e:478960", "23fcbe63e1a3afc45ac8f42a5198761e:189884", "23fcbe63e1a3afc45ac8f42a5198761e:3395324", "23fcbe63e1a3afc45ac8f42a5198761e:2380360"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_l0fvq")
+surface_material_override/0 = ExtResource("2_px18c")

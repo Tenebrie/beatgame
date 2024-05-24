@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Wep_Goblin_Halberd_01_mesh/SM_Wep_Goblin_Halberd_01_4300000.mesh" id="1_q4ycd"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_si3kd"]
+
+[node name="SM_Wep_Goblin_Halberd_01" type="Node3D"]
+metadata/ufile_ids = ["3ceded547f62c964cb227472f2bc1146:497756", "3ceded547f62c964cb227472f2bc1146:134074", "3ceded547f62c964cb227472f2bc1146:3301920", "3ceded547f62c964cb227472f2bc1146:2371450", "3ceded547f62c964cb227472f2bc1146:64050837415361828"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_q4ycd")
+surface_material_override/0 = ExtResource("2_si3kd")

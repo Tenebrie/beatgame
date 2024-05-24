@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Wep_Shield_Round_01_mesh/SM_Wep_Shield_Round_01_4300000.mesh" id="1_4j52i"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_6gq7c"]
+
+[node name="SM_Wep_Shield_Round_01" type="Node3D"]
+metadata/ufile_ids = ["a2c97ac2ed0f912499b00d5fdd2d2014:481464", "a2c97ac2ed0f912499b00d5fdd2d2014:149276", "a2c97ac2ed0f912499b00d5fdd2d2014:3367046", "a2c97ac2ed0f912499b00d5fdd2d2014:2312352", "a2c97ac2ed0f912499b00d5fdd2d2014:64500261113895048"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_4j52i")
+surface_material_override/0 = ExtResource("2_6gq7c")

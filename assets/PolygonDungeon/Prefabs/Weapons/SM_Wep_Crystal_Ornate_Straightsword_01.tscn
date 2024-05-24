@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Wep_Crystal_Ornate_Straightsword_01_mesh/SM_Wep_Crystal_Ornate_Straightsword_01_4300000.mesh" id="1_35gu3"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_pspt4"]
+
+[node name="SM_Wep_Crystal_Ornate_Straightsword_01" type="Node3D"]
+metadata/ufile_ids = ["11b84f6e8e1190b46b3d40c72c9fe522:458314", "11b84f6e8e1190b46b3d40c72c9fe522:102960", "11b84f6e8e1190b46b3d40c72c9fe522:3318874", "11b84f6e8e1190b46b3d40c72c9fe522:2356508", "11b84f6e8e1190b46b3d40c72c9fe522:64839682411337404"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_35gu3")
+surface_material_override/0 = ExtResource("2_pspt4")

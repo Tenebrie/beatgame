@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Basement_Ceiling_01_mesh/SM_Env_Basement_Ceiling_01_4300000.mesh" id="1_fummt"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_13nxn"]
+
+[node name="SM_Env_Basement_Ceiling_01" type="Node3D"]
+metadata/ufile_ids = ["0ea397d43eaecae4b81003acaaf9abb5:459324", "0ea397d43eaecae4b81003acaaf9abb5:173574", "0ea397d43eaecae4b81003acaaf9abb5:3373618", "0ea397d43eaecae4b81003acaaf9abb5:2333968", "0ea397d43eaecae4b81003acaaf9abb5:64759869380445526"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_fummt")
+surface_material_override/0 = ExtResource("2_13nxn")

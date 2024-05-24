@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_DoorDouble_Round_01_mesh/SM_Env_DoorDouble_Round_01_4300000.mesh" id="1_ubghk"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_cqn3w"]
+
+[node name="SM_Env_DoorDouble_Round_01" type="Node3D"]
+metadata/ufile_ids = ["7b2cf94cdab0ced489fd2a15c809d7b3:427910", "7b2cf94cdab0ced489fd2a15c809d7b3:151566", "7b2cf94cdab0ced489fd2a15c809d7b3:3327880", "7b2cf94cdab0ced489fd2a15c809d7b3:2391326", "7b2cf94cdab0ced489fd2a15c809d7b3:65751508817235718"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_ubghk")
+surface_material_override/0 = ExtResource("2_cqn3w")

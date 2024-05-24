@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Brick_Rubble_03_mesh/SM_Env_Brick_Rubble_03_4300000.mesh" id="1_ofqmd"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_kssbc"]
+
+[node name="SM_Env_Brick_Rubble_03" type="Node3D"]
+metadata/ufile_ids = ["eca2f09fb1643284eb2b5c59aca0dc1f:479578", "eca2f09fb1643284eb2b5c59aca0dc1f:140670", "eca2f09fb1643284eb2b5c59aca0dc1f:3365782", "eca2f09fb1643284eb2b5c59aca0dc1f:2366178", "eca2f09fb1643284eb2b5c59aca0dc1f:65392331570067396"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_ofqmd")
+surface_material_override/0 = ExtResource("2_kssbc")

@@ -1,0 +1,8 @@
+[gd_scene format=3]
+
+[node name="FX_SkeletonSpawn" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, -1.19209e-07, 1, 0, -1, -1.19209e-07, 0, 0, 0)
+metadata/ufile_ids = ["9d82e1be9de81be4dbc15c60c39dd6ff:416600", "9d82e1be9de81be4dbc15c60c39dd6ff:152438", "9d82e1be9de81be4dbc15c60c39dd6ff:19824050", "9d82e1be9de81be4dbc15c60c39dd6ff:19955574"]
+
+[node name="FX_Dirt_Dust" type="Node3D" parent="."]
+metadata/ufile_ids = ["9d82e1be9de81be4dbc15c60c39dd6ff:468570", "9d82e1be9de81be4dbc15c60c39dd6ff:174396", "9d82e1be9de81be4dbc15c60c39dd6ff:19842370", "9d82e1be9de81be4dbc15c60c39dd6ff:19902986"]

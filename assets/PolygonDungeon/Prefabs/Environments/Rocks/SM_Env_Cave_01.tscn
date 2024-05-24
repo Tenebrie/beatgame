@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Cave_01_mesh/SM_Env_Cave_01_4300000.mesh" id="1_rgepq"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_rwalu"]
+
+[node name="SM_Env_Cave_01" type="Node3D"]
+metadata/ufile_ids = ["1c9878cdc3f9c3b4dad10dddc05eafba:492536", "1c9878cdc3f9c3b4dad10dddc05eafba:125756", "1c9878cdc3f9c3b4dad10dddc05eafba:3387668", "1c9878cdc3f9c3b4dad10dddc05eafba:2332868", "1c9878cdc3f9c3b4dad10dddc05eafba:64885461374266364"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_rgepq")
+surface_material_override/0 = ExtResource("2_rwalu")

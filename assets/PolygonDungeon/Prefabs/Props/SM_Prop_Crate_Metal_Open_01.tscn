@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Prop_Crate_Metal_Open_01_mesh/SM_Prop_Crate_Metal_Open_01_4300000.mesh" id="1_8tcsb"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_eerys"]
+
+[node name="SM_Prop_Crate_Metal_Open_01" type="Node3D"]
+metadata/ufile_ids = ["abf07ccdbcba5d747bb51ff4aa1b29cb:405960", "abf07ccdbcba5d747bb51ff4aa1b29cb:155118", "abf07ccdbcba5d747bb51ff4aa1b29cb:3317780", "abf07ccdbcba5d747bb51ff4aa1b29cb:2320408", "abf07ccdbcba5d747bb51ff4aa1b29cb:64636404681042328"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_8tcsb")
+surface_material_override/0 = ExtResource("2_eerys")

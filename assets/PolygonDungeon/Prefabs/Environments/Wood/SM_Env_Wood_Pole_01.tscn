@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Wood_Pole_01_mesh/SM_Env_Wood_Pole_01_4300000.mesh" id="1_uakb8"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_hetco"]
+
+[node name="SM_Env_Wood_Pole_01" type="Node3D"]
+metadata/ufile_ids = ["84ae56118b3bca244bb0851a157db93f:467840", "84ae56118b3bca244bb0851a157db93f:195656", "84ae56118b3bca244bb0851a157db93f:3310622", "84ae56118b3bca244bb0851a157db93f:2326182", "84ae56118b3bca244bb0851a157db93f:64692772768273118"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_uakb8")
+surface_material_override/0 = ExtResource("2_hetco")

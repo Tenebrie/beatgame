@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Rock_Rectangle_06_mesh/SM_Env_Rock_Rectangle_06_4300000.mesh" id="1_27gyi"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_ibbgt"]
+
+[node name="SM_Env_Rock_Rectangle_06" type="Node3D"]
+metadata/ufile_ids = ["4a35e71f929fb994688db9ce77a9bf90:462112", "4a35e71f929fb994688db9ce77a9bf90:178702", "4a35e71f929fb994688db9ce77a9bf90:3314996", "4a35e71f929fb994688db9ce77a9bf90:2340888", "4a35e71f929fb994688db9ce77a9bf90:64953866166588500"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_27gyi")
+surface_material_override/0 = ExtResource("2_ibbgt")

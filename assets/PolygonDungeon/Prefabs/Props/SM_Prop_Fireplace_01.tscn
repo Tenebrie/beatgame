@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Prop_Fireplace_01_mesh/SM_Prop_Fireplace_01_4300000.mesh" id="1_mplmh"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_7twll"]
+
+[node name="SM_Prop_Fireplace_01" type="Node3D"]
+metadata/ufile_ids = ["e657c22f66e1a6a4ba85153eed847119:492122", "e657c22f66e1a6a4ba85153eed847119:179310", "e657c22f66e1a6a4ba85153eed847119:3323804", "e657c22f66e1a6a4ba85153eed847119:2353746", "e657c22f66e1a6a4ba85153eed847119:64642888208892960"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_mplmh")
+surface_material_override/0 = ExtResource("2_7twll")

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Bone_Cracked_02_mesh/SM_Env_Bone_Cracked_02_4300000.mesh" id="1_obu84"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_4ab24"]
+
+[node name="SM_Env_Bone_Cracked_02" type="Node3D"]
+metadata/ufile_ids = ["221b5ed13bf02b247abae28b2fc10612:469032", "221b5ed13bf02b247abae28b2fc10612:101826", "221b5ed13bf02b247abae28b2fc10612:3337462", "221b5ed13bf02b247abae28b2fc10612:2318632", "221b5ed13bf02b247abae28b2fc10612:64560618554647624"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_obu84")
+surface_material_override/0 = ExtResource("2_4ab24")

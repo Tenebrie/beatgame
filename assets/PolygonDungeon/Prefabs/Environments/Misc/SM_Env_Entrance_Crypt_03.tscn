@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Entrance_Crypt_03_mesh/SM_Env_Entrance_Crypt_03_4300000.mesh" id="1_er5m1"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_onrdv"]
+
+[node name="SM_Env_Entrance_Crypt_03" type="Node3D"]
+metadata/ufile_ids = ["d448d2981717e5a42ae3084d0fdce755:472312", "d448d2981717e5a42ae3084d0fdce755:113724", "d448d2981717e5a42ae3084d0fdce755:3371272", "d448d2981717e5a42ae3084d0fdce755:2347494", "d448d2981717e5a42ae3084d0fdce755:64067040460781838", "d448d2981717e5a42ae3084d0fdce755:64016046668228180", "d448d2981717e5a42ae3084d0fdce755:64514120871760416", "d448d2981717e5a42ae3084d0fdce755:64809029579622870"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_er5m1")
+surface_material_override/0 = ExtResource("2_onrdv")

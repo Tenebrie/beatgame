@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Prop_Tech_Pipe_01_mesh/SM_Prop_Tech_Pipe_01_4300000.mesh" id="1_4t2ly"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_qrt5k"]
+
+[node name="SM_Prop_Tech_Pipe_01" type="Node3D"]
+metadata/ufile_ids = ["24723697b9ebff74c90a3e26c420ab62:482120", "24723697b9ebff74c90a3e26c420ab62:137964", "24723697b9ebff74c90a3e26c420ab62:3359726", "24723697b9ebff74c90a3e26c420ab62:2333460", "24723697b9ebff74c90a3e26c420ab62:64494126700264884"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_4t2ly")
+surface_material_override/0 = ExtResource("2_qrt5k")

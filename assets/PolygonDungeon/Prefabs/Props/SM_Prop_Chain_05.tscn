@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Prop_Chain_05_mesh/SM_Prop_Chain_05_4300000.mesh" id="1_mpxc7"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_7g3qg"]
+
+[node name="SM_Prop_Chain_05" type="Node3D"]
+metadata/ufile_ids = ["e4bdc284be7b2674e9a957e16dde623b:434786", "e4bdc284be7b2674e9a957e16dde623b:128124", "e4bdc284be7b2674e9a957e16dde623b:3309278", "e4bdc284be7b2674e9a957e16dde623b:2381132", "e4bdc284be7b2674e9a957e16dde623b:64406866374384864"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_mpxc7")
+surface_material_override/0 = ExtResource("2_7g3qg")

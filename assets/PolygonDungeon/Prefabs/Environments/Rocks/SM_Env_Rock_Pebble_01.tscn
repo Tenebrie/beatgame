@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Rock_Pebble_01_mesh/SM_Env_Rock_Pebble_01_4300000.mesh" id="1_lkc82"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_bkv83"]
+
+[node name="SM_Env_Rock_Pebble_01" type="Node3D"]
+metadata/ufile_ids = ["7717b0cc406cc31468116059bfe0ce93:464890", "7717b0cc406cc31468116059bfe0ce93:140864", "7717b0cc406cc31468116059bfe0ce93:3394568", "7717b0cc406cc31468116059bfe0ce93:2394572", "7717b0cc406cc31468116059bfe0ce93:64822954086889974"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_lkc82")
+surface_material_override/0 = ExtResource("2_bkv83")

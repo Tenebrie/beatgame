@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Wep_Hammer_Small_02_mesh/SM_Wep_Hammer_Small_02_4300000.mesh" id="1_us6no"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_7d7i4"]
+
+[node name="SM_Wep_Hammer_Small_02" type="Node3D"]
+metadata/ufile_ids = ["7a167a044b06be94e8cf799be2cce3d2:499910", "7a167a044b06be94e8cf799be2cce3d2:165204", "7a167a044b06be94e8cf799be2cce3d2:3327126", "7a167a044b06be94e8cf799be2cce3d2:2391636", "7a167a044b06be94e8cf799be2cce3d2:64496803163351196"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_us6no")
+surface_material_override/0 = ExtResource("2_7d7i4")

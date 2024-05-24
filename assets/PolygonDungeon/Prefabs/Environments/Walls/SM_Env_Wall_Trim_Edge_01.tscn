@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://tex0v3agrfeu"]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Wall_Trim_Edge_01_mesh/SM_Env_Wall_Trim_Edge_01_4300000.mesh" id="1_xg74k"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_4sagn"]
+
+[node name="SM_Env_Wall_Trim_Edge_01" type="Node3D"]
+metadata/ufile_ids = ["68c36969be1a05e4ba39680b7d1b04b8:469326", "68c36969be1a05e4ba39680b7d1b04b8:147884", "68c36969be1a05e4ba39680b7d1b04b8:3380544", "68c36969be1a05e4ba39680b7d1b04b8:2369998", "68c36969be1a05e4ba39680b7d1b04b8:65104210645516678", "68c36969be1a05e4ba39680b7d1b04b8:65407784372950242"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_xg74k")
+surface_material_override/0 = ExtResource("2_4sagn")

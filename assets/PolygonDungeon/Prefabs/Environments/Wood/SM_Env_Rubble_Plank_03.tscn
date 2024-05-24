@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Rubble_Plank_03_mesh/SM_Env_Rubble_Plank_03_4300000.mesh" id="1_8s7o5"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_rlc8c"]
+
+[node name="SM_Env_Rubble_Plank_03" type="Node3D"]
+metadata/ufile_ids = ["99a526f2ec49c0c4a9b0d668b8456f52:442626", "99a526f2ec49c0c4a9b0d668b8456f52:158264", "99a526f2ec49c0c4a9b0d668b8456f52:3396550", "99a526f2ec49c0c4a9b0d668b8456f52:2311850", "99a526f2ec49c0c4a9b0d668b8456f52:64954939133552118"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_8s7o5")
+surface_material_override/0 = ExtResource("2_rlc8c")

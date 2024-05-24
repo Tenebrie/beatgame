@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Wall_End_Coner_Outer_01_mesh/SM_Env_Wall_End_Coner_Outer_01_4300000.mesh" id="1_hctap"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_ikwq8"]
+
+[node name="SM_Env_Wall_End_Coner_Outer_01" type="Node3D"]
+metadata/ufile_ids = ["c4c867f83beeae549bdc784dca9b0798:461420", "c4c867f83beeae549bdc784dca9b0798:193824", "c4c867f83beeae549bdc784dca9b0798:3310990", "c4c867f83beeae549bdc784dca9b0798:2364552", "c4c867f83beeae549bdc784dca9b0798:65108306305872866"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_hctap")
+surface_material_override/0 = ExtResource("2_ikwq8")

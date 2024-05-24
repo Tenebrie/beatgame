@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Wall_07_mesh/SM_Env_Wall_07_4300000.mesh" id="1_lts2j"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_pxdxy"]
+
+[node name="SM_Env_Wall_07" type="Node3D"]
+metadata/ufile_ids = ["edc836b82587af342b79b01da47827f5:417958", "edc836b82587af342b79b01da47827f5:162390", "edc836b82587af342b79b01da47827f5:3393762", "edc836b82587af342b79b01da47827f5:2328324", "edc836b82587af342b79b01da47827f5:64511416059610202", "edc836b82587af342b79b01da47827f5:64620619852698776", "edc836b82587af342b79b01da47827f5:64419371759709276", "edc836b82587af342b79b01da47827f5:64985990043301514"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_lts2j")
+surface_material_override/0 = ExtResource("2_pxdxy")

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Statue_01_mesh/SM_Env_Statue_01_4300000.mesh" id="1_2kb1a"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_abcob"]
+
+[node name="SM_Env_Statue_01" type="Node3D"]
+metadata/ufile_ids = ["deb03c74d28f60441b068b11f38269ea:410070", "deb03c74d28f60441b068b11f38269ea:116140", "deb03c74d28f60441b068b11f38269ea:3304578", "deb03c74d28f60441b068b11f38269ea:2369334", "deb03c74d28f60441b068b11f38269ea:64995324629206940", "deb03c74d28f60441b068b11f38269ea:64268549347793968"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_2kb1a")
+surface_material_override/0 = ExtResource("2_abcob")

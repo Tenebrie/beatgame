@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Tiles_Texture_X_mesh/_646082883083444877.mesh" id="1_kw7st"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Misc/Dungeon_Material_TextureFloor_09.tres" id="2_sus53"]
+
+[node name="SM_Env_Tiles_Texture_09" type="Node3D"]
+metadata/ufile_ids = ["c6827baba0df5c14193d711868220119:417240", "c6827baba0df5c14193d711868220119:198546", "c6827baba0df5c14193d711868220119:3350484", "c6827baba0df5c14193d711868220119:2339600", "c6827baba0df5c14193d711868220119:65290101202963912"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_kw7st")
+surface_material_override/0 = ExtResource("2_sus53")

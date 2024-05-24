@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Tree_Dandelion_01_mesh/SM_Env_Tree_Dandelion_01_4300000.mesh" id="1_yxu22"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_d5wko"]
+
+[node name="SM_Env_Tree_Dandelion_01" type="Node3D"]
+metadata/ufile_ids = ["afabe8b7bd32e00499c004ec7cf11bb2:455388", "afabe8b7bd32e00499c004ec7cf11bb2:141366", "afabe8b7bd32e00499c004ec7cf11bb2:3395112", "afabe8b7bd32e00499c004ec7cf11bb2:2356012", "afabe8b7bd32e00499c004ec7cf11bb2:64830104466970200", "afabe8b7bd32e00499c004ec7cf11bb2:64740734681543058"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_yxu22")
+surface_material_override/0 = ExtResource("2_d5wko")

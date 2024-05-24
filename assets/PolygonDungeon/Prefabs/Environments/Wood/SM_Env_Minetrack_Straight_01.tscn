@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Minetrack_Straight_01_mesh/SM_Env_Minetrack_Straight_01_4300000.mesh" id="1_5ikmk"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_t15cc"]
+
+[node name="SM_Env_Minetrack_Straight_01" type="Node3D"]
+metadata/ufile_ids = ["f7dc92b7dff7d2c419e6070d90115e42:421472", "f7dc92b7dff7d2c419e6070d90115e42:164350", "f7dc92b7dff7d2c419e6070d90115e42:3319084", "f7dc92b7dff7d2c419e6070d90115e42:2327360", "f7dc92b7dff7d2c419e6070d90115e42:64395177758538218"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_5ikmk")
+surface_material_override/0 = ExtResource("2_t15cc")

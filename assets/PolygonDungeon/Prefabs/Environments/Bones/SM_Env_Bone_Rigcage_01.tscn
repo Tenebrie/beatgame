@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Bone_Rigcage_01_mesh/SM_Env_Bone_Rigcage_01_4300000.mesh" id="1_dcud8"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_4s3xj"]
+
+[node name="SM_Env_Bone_Rigcage_01" type="Node3D"]
+metadata/ufile_ids = ["8c3c19c34c678744485079676334c608:468028", "8c3c19c34c678744485079676334c608:153826", "8c3c19c34c678744485079676334c608:3375046", "8c3c19c34c678744485079676334c608:2371978", "8c3c19c34c678744485079676334c608:64377898824175080"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_dcud8")
+surface_material_override/0 = ExtResource("2_4s3xj")

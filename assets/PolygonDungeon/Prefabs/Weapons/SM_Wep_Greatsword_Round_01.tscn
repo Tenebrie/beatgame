@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Wep_Greatsword_Round_01_mesh/SM_Wep_Greatsword_Round_01_4300000.mesh" id="1_mvety"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_q0h66"]
+
+[node name="SM_Wep_Greatsword_Round_01" type="Node3D"]
+metadata/ufile_ids = ["4aeec2a8eb0265641938df66ebefe8cf:463874", "4aeec2a8eb0265641938df66ebefe8cf:169506", "4aeec2a8eb0265641938df66ebefe8cf:3340834", "4aeec2a8eb0265641938df66ebefe8cf:2368566", "4aeec2a8eb0265641938df66ebefe8cf:64697355517685856"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_mvety")
+surface_material_override/0 = ExtResource("2_q0h66")

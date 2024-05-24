@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Wall_Fireplace_Entrance_01_mesh/SM_Env_Wall_Fireplace_01_4300000.mesh" id="1_msvpk"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_1ja7l"]
+
+[node name="SM_Env_Wall_Fireplace_Entrance_01" type="Node3D"]
+metadata/ufile_ids = ["d537c186f3833064e9d8c3525655f44d:449278", "d537c186f3833064e9d8c3525655f44d:183470", "d537c186f3833064e9d8c3525655f44d:3316426", "d537c186f3833064e9d8c3525655f44d:2323500", "d537c186f3833064e9d8c3525655f44d:64680825622994898"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_msvpk")
+surface_material_override/0 = ExtResource("2_1ja7l")

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Bone_Ribs_01_mesh/SM_Env_Bone_Ribs_01_4300000.mesh" id="1_lpg7o"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_aon3h"]
+
+[node name="SM_Env_Bone_Ribs_01" type="Node3D"]
+metadata/ufile_ids = ["52c6ffa15558342449409fa54ffb9000:462616", "52c6ffa15558342449409fa54ffb9000:145742", "52c6ffa15558342449409fa54ffb9000:3358324", "52c6ffa15558342449409fa54ffb9000:2312772", "52c6ffa15558342449409fa54ffb9000:64370776333577780", "52c6ffa15558342449409fa54ffb9000:64350985021602758", "52c6ffa15558342449409fa54ffb9000:64311048376038236", "52c6ffa15558342449409fa54ffb9000:64811825208421824", "52c6ffa15558342449409fa54ffb9000:64875056466819344"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_lpg7o")
+surface_material_override/0 = ExtResource("2_aon3h")

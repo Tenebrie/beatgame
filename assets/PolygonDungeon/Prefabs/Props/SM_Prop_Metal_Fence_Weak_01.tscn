@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Prop_Metal_Fence_Weak_01_mesh/SM_Prop_Metal_Fence_Weak_01_4300000.mesh" id="1_cyr8o"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_tml3u"]
+
+[node name="SM_Prop_Metal_Fence_Weak_01" type="Node3D"]
+metadata/ufile_ids = ["ccb8112539740f54eb26d539f5ab25b3:477762", "ccb8112539740f54eb26d539f5ab25b3:108204", "ccb8112539740f54eb26d539f5ab25b3:3323828", "ccb8112539740f54eb26d539f5ab25b3:2372316", "ccb8112539740f54eb26d539f5ab25b3:64331485909133542"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_cyr8o")
+surface_material_override/0 = ExtResource("2_tml3u")

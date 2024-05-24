@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Trap_Wallslab_01_mesh/SM_Prop_Trap_Wallslab_01_4300000.mesh" id="1_h8p36"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_84j75"]
+
+[node name="SM_Env_Trap_Wallslab_01" type="Node3D"]
+metadata/ufile_ids = ["7d76b5563f554fb4dba6b7dbda97921e:455846", "7d76b5563f554fb4dba6b7dbda97921e:140516", "7d76b5563f554fb4dba6b7dbda97921e:3383296", "7d76b5563f554fb4dba6b7dbda97921e:2341998", "7d76b5563f554fb4dba6b7dbda97921e:64057583007707620"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_h8p36")
+surface_material_override/0 = ExtResource("2_84j75")

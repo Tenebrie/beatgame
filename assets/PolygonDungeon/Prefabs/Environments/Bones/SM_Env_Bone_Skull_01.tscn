@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Bone_Skull_01_mesh/SM_Env_Bone_Skull_01_4300000.mesh" id="1_5odyf"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_gvk8j"]
+
+[node name="SM_Env_Bone_Skull_01" type="Node3D"]
+metadata/ufile_ids = ["ddc413674fbd6094fb373197897aadbf:495616", "ddc413674fbd6094fb373197897aadbf:151284", "ddc413674fbd6094fb373197897aadbf:3375174", "ddc413674fbd6094fb373197897aadbf:2392038", "ddc413674fbd6094fb373197897aadbf:64572706797746244"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_5odyf")
+surface_material_override/0 = ExtResource("2_gvk8j")

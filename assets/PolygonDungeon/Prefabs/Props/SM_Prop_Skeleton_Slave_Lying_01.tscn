@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Prop_Skeleton_Slave_Lying_01_mesh/SM_Prop_Skeleton_Slave_Lying_01_4300000.mesh" id="1_v5kns"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_jam4k"]
+
+[node name="SM_Prop_Skeleton_Slave_Lying_01" type="Node3D"]
+metadata/ufile_ids = ["ec78f1131a3a5464a8882bd020e329ff:442280", "ec78f1131a3a5464a8882bd020e329ff:188464", "ec78f1131a3a5464a8882bd020e329ff:3371652", "ec78f1131a3a5464a8882bd020e329ff:2350820", "ec78f1131a3a5464a8882bd020e329ff:64760634815137024"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_v5kns")
+surface_material_override/0 = ExtResource("2_jam4k")

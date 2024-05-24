@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Stalagmite_06_mesh/SM_Env_Stalagmite_06_4300000.mesh" id="1_va6yx"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_mrr6t"]
+
+[node name="SM_Env_Stalagmite_06" type="Node3D"]
+metadata/ufile_ids = ["75ed778f1e82b1a4c91b1332d1f793ea:456150", "75ed778f1e82b1a4c91b1332d1f793ea:170590", "75ed778f1e82b1a4c91b1332d1f793ea:3332388", "75ed778f1e82b1a4c91b1332d1f793ea:2384208", "75ed778f1e82b1a4c91b1332d1f793ea:64065738459290240"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_va6yx")
+surface_material_override/0 = ExtResource("2_mrr6t")

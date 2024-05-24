@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Entrance_Crypt_02_mesh/SM_Env_Entrance_Crypt_02_4300000.mesh" id="1_6ho44"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_tnm44"]
+
+[node name="SM_Env_Entrance_Crypt_02" type="Node3D"]
+metadata/ufile_ids = ["772903348b2350147ade514c354409a8:405754", "772903348b2350147ade514c354409a8:151604", "772903348b2350147ade514c354409a8:3339278", "772903348b2350147ade514c354409a8:2303416", "772903348b2350147ade514c354409a8:64007387694090858"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_6ho44")
+surface_material_override/0 = ExtResource("2_tnm44")

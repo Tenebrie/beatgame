@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Wep_Handle_Wood_01_mesh/SM_Wep_Handle_Wood_01_4300000.mesh" id="1_um7kx"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_5880g"]
+
+[node name="SM_Wep_Handle_Wood_01" type="Node3D"]
+metadata/ufile_ids = ["ae09de03098be734ba0564ccdd73d447:497856", "ae09de03098be734ba0564ccdd73d447:137386", "ae09de03098be734ba0564ccdd73d447:3370828", "ae09de03098be734ba0564ccdd73d447:2351470", "ae09de03098be734ba0564ccdd73d447:64115949832154720"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_um7kx")
+surface_material_override/0 = ExtResource("2_5880g")

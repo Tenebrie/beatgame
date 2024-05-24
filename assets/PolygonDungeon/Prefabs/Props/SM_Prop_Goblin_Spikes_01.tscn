@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Prop_Goblin_Spikes_01_mesh/SM_Prop_Goblin_Spikes_01_4300000.mesh" id="1_p8un0"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_y6wca"]
+
+[node name="SM_Prop_Goblin_Spikes_01" type="Node3D"]
+metadata/ufile_ids = ["6ce2b1182f7171b479d3366b79766686:455956", "6ce2b1182f7171b479d3366b79766686:152268", "6ce2b1182f7171b479d3366b79766686:3360440", "6ce2b1182f7171b479d3366b79766686:2349174", "6ce2b1182f7171b479d3366b79766686:64407393244360804"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_p8un0")
+surface_material_override/0 = ExtResource("2_y6wca")

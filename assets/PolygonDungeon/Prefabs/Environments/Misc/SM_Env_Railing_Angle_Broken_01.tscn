@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Railing_Angle_Broken_01_mesh/SM_Env_Railing_Angle_Broken_01_4300000.mesh" id="1_vo6sl"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_g2dax"]
+
+[node name="SM_Env_Railing_Angle_Broken_01" type="Node3D"]
+metadata/ufile_ids = ["2bd7c1c7c1bdbb84a91591e48d1ae167:425312", "2bd7c1c7c1bdbb84a91591e48d1ae167:122956", "2bd7c1c7c1bdbb84a91591e48d1ae167:3333342", "2bd7c1c7c1bdbb84a91591e48d1ae167:2313494", "2bd7c1c7c1bdbb84a91591e48d1ae167:64337828604029326"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_vo6sl")
+surface_material_override/0 = ExtResource("2_g2dax")

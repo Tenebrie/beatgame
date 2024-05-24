@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_SpiralStairs_01_mesh/SM_Env_SpiralStairs_01_4300000.mesh" id="1_ndmeg"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_m0hql"]
+
+[node name="SM_Env_SpiralStairs_01" type="Node3D"]
+metadata/ufile_ids = ["6a6b1081f48150d4396ed522e4168e12:445238", "6a6b1081f48150d4396ed522e4168e12:144082", "6a6b1081f48150d4396ed522e4168e12:3375622", "6a6b1081f48150d4396ed522e4168e12:2377310", "6a6b1081f48150d4396ed522e4168e12:64997343433414752"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_ndmeg")
+surface_material_override/0 = ExtResource("2_m0hql")

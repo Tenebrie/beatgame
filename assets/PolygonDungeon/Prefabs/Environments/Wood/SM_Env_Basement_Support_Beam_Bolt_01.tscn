@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Basement_Support_Beam_Bolt_01_mesh/SM_Env_Basement_Support_Beam_Bolt_01_4300000.mesh" id="1_uhw58"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_1kwoe"]
+
+[node name="SM_Env_Basement_Support_Beam_Bolt_01" type="Node3D"]
+metadata/ufile_ids = ["2b04b50db2c33f647a3ac53f54bcf15c:496648", "2b04b50db2c33f647a3ac53f54bcf15c:148364", "2b04b50db2c33f647a3ac53f54bcf15c:3351652", "2b04b50db2c33f647a3ac53f54bcf15c:2383112", "2b04b50db2c33f647a3ac53f54bcf15c:64104745313294566"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_uhw58")
+surface_material_override/0 = ExtResource("2_1kwoe")

@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Item_Bag_Large_mesh/_-1775731935565371512.mesh" id="1_ks0og"]
+
+[node name="SM_Item_Bag_Large" type="Node3D"]
+metadata/ufile_ids = ["a2198fb3e72b5b54b8fe3ccb4f9fe66d:1513284352239356013", "a2198fb3e72b5b54b8fe3ccb4f9fe66d:2183001951008068311", "a2198fb3e72b5b54b8fe3ccb4f9fe66d:2499391744096683976", "a2198fb3e72b5b54b8fe3ccb4f9fe66d:381513790631293698"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.206229, 0.9506, 1.04308e-07)
+mesh = ExtResource("1_ks0og")

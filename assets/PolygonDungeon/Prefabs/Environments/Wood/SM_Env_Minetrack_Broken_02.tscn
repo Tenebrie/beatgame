@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Minetrack_Broken_02_mesh/SM_Env_Minetrack_Broken_02_4300000.mesh" id="1_cyfae"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_vto0x"]
+
+[node name="SM_Env_Minetrack_Broken_02" type="Node3D"]
+metadata/ufile_ids = ["3fec779d1ea47f143b709b707919a5f8:460716", "3fec779d1ea47f143b709b707919a5f8:105362", "3fec779d1ea47f143b709b707919a5f8:3361952", "3fec779d1ea47f143b709b707919a5f8:2340316", "3fec779d1ea47f143b709b707919a5f8:64102860500593614"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_cyfae")
+surface_material_override/0 = ExtResource("2_vto0x")

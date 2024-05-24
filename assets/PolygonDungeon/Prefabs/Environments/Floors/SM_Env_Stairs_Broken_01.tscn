@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Stairs_Broken_01_mesh/SM_Env_Stairs_Broken_01_4300000.mesh" id="1_2otdn"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_gjtvx"]
+
+[node name="SM_Env_Stairs_Broken_01" type="Node3D"]
+metadata/ufile_ids = ["4dba5daa1cb721c438f8260a7b3d7285:427434", "4dba5daa1cb721c438f8260a7b3d7285:107520", "4dba5daa1cb721c438f8260a7b3d7285:3391466", "4dba5daa1cb721c438f8260a7b3d7285:2340180", "4dba5daa1cb721c438f8260a7b3d7285:64744695600451482"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_2otdn")
+surface_material_override/0 = ExtResource("2_gjtvx")

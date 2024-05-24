@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Item_Potion_Pole_01_mesh/SM_Item_Potion_Pole_01_4300000.mesh" id="1_ledvd"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_bvpki"]
+
+[node name="SM_Item_Potion_Pole_01" type="Node3D"]
+metadata/ufile_ids = ["0791c641554147b49bb514b3d368f400:449338", "0791c641554147b49bb514b3d368f400:151414", "0791c641554147b49bb514b3d368f400:3338640", "0791c641554147b49bb514b3d368f400:2313130", "0791c641554147b49bb514b3d368f400:64408519912268436"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_ledvd")
+surface_material_override/0 = ExtResource("2_bvpki")

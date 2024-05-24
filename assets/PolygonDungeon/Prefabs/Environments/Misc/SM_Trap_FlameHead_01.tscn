@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Trap_FlameHead_01_mesh/SM_Trap_FlameHead_01_4300000.mesh" id="1_rfmf6"]
+[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_0ykfg"]
+
+[node name="SM_Trap_FlameHead_01" type="Node3D"]
+metadata/ufile_ids = ["ab36741255716d949845f790041d721f:491964", "ab36741255716d949845f790041d721f:180336", "ab36741255716d949845f790041d721f:3366024", "ab36741255716d949845f790041d721f:2303602", "ab36741255716d949845f790041d721f:64735907498888062"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_rfmf6")
+surface_material_override/0 = ExtResource("2_0ykfg")
