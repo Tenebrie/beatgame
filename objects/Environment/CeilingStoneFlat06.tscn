@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://25hc4kee14rb"]
+
+[ext_resource type="PackedScene" path="res://assets/PolygonDungeon/Prefabs/Environments/Walls/SM_Env_Ceiling_Stone_Flat_06.tscn" id="5_70oh3"]
+
+[node name="CeilingStoneFlat06" type="Node3D"]
+
+[node name="SM_Env_Ceiling_Stone_Flat_06" parent="." instance=ExtResource("5_70oh3")]
+transform = Transform3D(10.1, 0, 0, 0, 10.1, 0, 0, 0, 10.1, -0.01, 0, -0.01)

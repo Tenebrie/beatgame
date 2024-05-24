@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://d1hgk3pk7ww6g"]
+
+[ext_resource type="PackedScene" path="res://assets/PolygonDungeon/Prefabs/Environments/Pillars/SM_Env_Pillar_Round_02.tscn" id="2_koyoq"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_peecm"]
+height = 1.0
+radius = 0.12
+
+[node name="PillarStone02" type="StaticBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("CylinderShape3D_peecm")
+
+[node name="SM_Env_Pillar_Round_02" parent="." instance=ExtResource("2_koyoq")]
+transform = Transform3D(26.8, 0, 0, 0, 26.8, 0, 0, 0, 26.8, 0, 0, 0)

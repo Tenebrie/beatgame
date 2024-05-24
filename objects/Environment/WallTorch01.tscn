@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bpiqe2l4wo6ft"]
+
+[ext_resource type="PackedScene" path="res://assets/PolygonDungeon/Prefabs/Props/SM_Prop_Torch_Ornate_02.tscn" id="2_lvn8k"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g2po7"]
+size = Vector3(0.2, 0.24751, 0.2)
+
+[node name="WallTorch01" type="StaticBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.504, 0.084)
+shape = SubResource("BoxShape3D_g2po7")
+
+[node name="SM_Prop_Torch_Ornate_02" parent="." instance=ExtResource("2_lvn8k")]
+transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, 0, 0.5, 0.043)
