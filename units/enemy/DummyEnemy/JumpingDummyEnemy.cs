@@ -1,4 +1,5 @@
 using Godot;
+using System.Diagnostics;
 using System.Linq;
 
 namespace Project;
@@ -28,9 +29,13 @@ public partial class JumpingDummyEnemy : BasicEnemyController
 		base._Ready();
 
 		raisingTimer = GetNode<Timer>("RaisingTimer");
+		raisingTimer.WaitTime = 1.5f * Music.Singleton.BeatsPerSecond;
 		raisingTimer.Timeout += OnRaisingTimerTick;
+
 		restingTimer = GetNode<Timer>("RestingTimer");
+		restingTimer.WaitTime = 0.5f * Music.Singleton.BeatsPerSecond;
 		restingTimer.Timeout += OnRestingTimerTick;
+
 		restingTimer.Start();
 	}
 
@@ -58,6 +63,10 @@ public partial class JumpingDummyEnemy : BasicEnemyController
 		state = State.Raising;
 		raisingTimer.Start();
 		Gravity = -BaseGravity / 10;
+		var circle = this.CreateGroundCircularArea(Position);
+		circle.GrowTime = 1.5f;
+		circle.Radius = 3;
+		circle.Alliance = UnitAlliance.Hostile;
 	}
 
 	public void DoAttackDamage()

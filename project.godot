@@ -159,6 +159,10 @@ Escape={
 ]
 }
 
+[layer_names]
+
+3d_render/layer_11="Layer 11 - Floors"
+
 [rendering]
 
 lights_and_shadows/directional_shadow/soft_shadow_filter_quality=4

@@ -21,12 +21,21 @@ public partial class Music : Node
 	{
 		get => CurrentTrack.BeatsPerMinute;
 	}
+	public float BeatsPerSecond
+	{
+		get => BeatsPerMinute / 60;
+	}
+	public float SecondsPerBeat
+	{
+		get => 1 / BeatsPerSecond;
+	}
 	public bool IsStarted = false;
 
 	public AccurateTimer BeatTimer;
 	public AccurateTimer HalfBeatTimer;
 	public AccurateTimer VisualBeatTimer;
 
+	public long BeatIndex = -1;
 	private BeatTime BeatTimeState = BeatTime.Free;
 	public MusicTrack CurrentTrack;
 
@@ -99,6 +108,7 @@ public partial class Music : Node
 
 	private void OnInternalTimerTimeout(BeatTime beat)
 	{
+		BeatIndex += 1;
 		EmitSignal(SignalName.BeatTick, beat.ToVariant());
 	}
 

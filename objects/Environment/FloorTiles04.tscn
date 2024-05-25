@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bgk2kx421thtu"]
 
-[ext_resource type="PackedScene" path="res://assets/PolygonDungeon/Prefabs/Environments/Floors/SM_Env_Tiles_04.tscn" id="1_6u1jf"]
+[ext_resource type="PackedScene" uid="uid://dhpd5o4kyimrs" path="res://assets/PolygonDungeon/Prefabs/Environments/Floors/SM_Env_Tiles_04.tscn" id="1_6u1jf"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_g2po7"]
 size = Vector3(1, 0.05, 1)

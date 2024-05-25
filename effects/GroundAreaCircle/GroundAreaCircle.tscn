@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=3 uid="uid://i7uo3ra8dvfu"]
+
+[ext_resource type="Script" path="res://effects/GroundAreaCircle/GroundAreaCircle.cs" id="1_hjvyv"]
+[ext_resource type="Texture2D" uid="uid://dcgbr6lyrwgen" path="res://assets/decals/outer-circle.png" id="2_0q8t1"]
+[ext_resource type="Texture2D" uid="uid://bafxoll45xh5h" path="res://assets/decals/outer-circle-emission.png" id="3_bsx5e"]
+[ext_resource type="Texture2D" uid="uid://b7syesuigv2dr" path="res://assets/decals/inner-circle.png" id="4_wigfy"]
+[ext_resource type="Texture2D" uid="uid://cldem4uxcn1f3" path="res://assets/decals/inner-circle-emission.png" id="5_xfo24"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_pp7oh"]
+
+[node name="GroundAreaCircle" type="Node3D"]
+script = ExtResource("1_hjvyv")
+
+[node name="OuterCircle" type="Decal" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0502324, 0)
+size = Vector3(1, 1, 1)
+texture_albedo = ExtResource("2_0q8t1")
+texture_emission = ExtResource("3_bsx5e")
+emission_energy = 128.0
+modulate = Color(1, 0, 0, 1)
+normal_fade = 0.999
+cull_mask = 1024
+
+[node name="InnerCircle" type="Decal" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0502324, 0)
+size = Vector3(0.975, 1, 0.975)
+texture_albedo = ExtResource("4_wigfy")
+texture_emission = ExtResource("5_xfo24")
+emission_energy = 128.0
+modulate = Color(1, 0, 0, 1)
+albedo_mix = 0.5
+normal_fade = 0.999
+cull_mask = 1024
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0675832, 0)
+visible = false
+mesh = SubResource("PlaneMesh_pp7oh")

@@ -14,18 +14,19 @@ public partial class BaseTimeline<ParentT> : Node where ParentT : BaseUnit
 	public BaseTimeline(ParentT parent)
 	{
 		Parent = parent;
+		Music.Singleton.BeatTick += OnBeatTick;
 	}
 
-	public override void _Process(double delta)
+	public void OnBeatTick(BeatTime time)
 	{
-		var beatIndex = Music.Singleton.GetNearestBeatIndex();
+		var beatIndex = Music.Singleton.BeatIndex;
 
 		if (Elements.ElementAtOrDefault(CurrentElementIndex) == null)
 			return;
 
 		while (Elements[CurrentElementIndex].BeatIndex <= beatIndex)
 		{
-			Elements[CurrentElementIndex].Cast.CastBegin(new CastTargetData() { HostileUnit = PlayerController.AllPlayers[0] });
+			Elements[CurrentElementIndex].Cast.CastBegin(new CastTargetData() { HostileUnit = PlayerController.AllPlayers[0], TargetPoint = PlayerController.AllPlayers[0].Position });
 			Elements[CurrentElementIndex].Cast.CastPerform();
 			CurrentElementIndex += 1;
 

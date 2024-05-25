@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Godot;
 namespace Project;
@@ -156,8 +157,21 @@ public partial class BaseCast : Node
 
 		if (Settings.TargetType == CastTargetType.HostileUnit)
 			CastOnUnit(CastTargetData.HostileUnit);
+
+		if (Settings.TargetType == CastTargetType.Point)
+			CastOnPoint(CastTargetData.TargetPoint);
 	}
 
-	protected virtual void CastOnNone() { }
-	protected virtual void CastOnUnit(BaseUnit target) { }
+	protected virtual void CastOnNone()
+	{
+		throw new NotImplementedException("CastOnNone not implemented on node " + this.Name);
+	}
+	protected virtual void CastOnUnit(BaseUnit target)
+	{
+		throw new NotImplementedException("CastOnUnit not implemented on node " + this.Name);
+	}
+	protected virtual void CastOnPoint(Vector3 point)
+	{
+		throw new NotImplementedException("CastOnPoint not implemented on node " + this.Name);
+	}
 }

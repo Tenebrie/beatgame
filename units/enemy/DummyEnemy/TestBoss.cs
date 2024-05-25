@@ -2,7 +2,7 @@ namespace Project;
 
 public partial class TestBoss : BasicEnemyController
 {
-	public Fireball AutoAttack;
+	public BossGroundAttack AutoAttack;
 	public TestBoss()
 	{
 		AutoAttack = new(this);

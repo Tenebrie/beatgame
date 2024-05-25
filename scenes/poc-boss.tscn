@@ -65,6 +65,7 @@ axis_lock_angular_z = true
 
 [node name="Floor" type="MeshInstance3D" parent="Environment/Arena/FloorRigidBody"]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, -0.0671806, 0)
+layers = 1025
 mesh = SubResource("BoxMesh_2op7s")
 skeleton = NodePath("../../../..")
 
