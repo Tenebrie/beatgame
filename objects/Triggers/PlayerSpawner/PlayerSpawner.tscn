@@ -1,3 +1,65 @@
-[gd_scene format=3 uid="uid://k3tq7jb87g5b"]
+[gd_scene load_steps=10 format=3 uid="uid://k3tq7jb87g5b"]
+
+[ext_resource type="Script" path="res://units/player/PlayerCharacter/visuals/Visuals.cs" id="1_knvc2"]
+[ext_resource type="Texture2D" uid="uid://dyh7yd6ess6bk" path="res://assets/particles/circle_05.png" id="2_him8i"]
+
+[sub_resource type="Curve" id="Curve_b627q"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0640394, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_6541r"]
+curve = SubResource("Curve_b627q")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ayyaa"]
+emission_shape = 1
+emission_sphere_radius = 0.05
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_6541r")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ojsb4"]
+transparency = 1
+blend_mode = 1
+albedo_color = Color(1, 0, 1, 1)
+albedo_texture = ExtResource("2_him8i")
+emission_enabled = true
+emission = Color(0.490196, 0.27451, 0.478431, 1)
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_e7a6q"]
+material = SubResource("StandardMaterial3D_ojsb4")
+size = Vector2(0.2, 0.2)
+orientation = 2
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_efkqc"]
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_6541r")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_qrbce"]
+material = SubResource("StandardMaterial3D_ojsb4")
+size = Vector2(0.4, 0.4)
+orientation = 2
 
 [node name="PlayerSpawner" type="Node3D"]
+
+[node name="Visuals" type="Node3D" parent="."]
+script = ExtResource("1_knvc2")
+
+[node name="MainEmitterGlobalSpaceLarge" type="GPUParticles3D" parent="Visuals"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+amount = 50
+lifetime = 0.5
+process_material = SubResource("ParticleProcessMaterial_ayyaa")
+draw_pass_1 = SubResource("PlaneMesh_e7a6q")
+
+[node name="MainEmitterLocalSpace" type="GPUParticles3D" parent="Visuals"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+amount = 5
+lifetime = 4.0
+preprocess = 20.0
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_efkqc")
+draw_pass_1 = SubResource("PlaneMesh_qrbce")
