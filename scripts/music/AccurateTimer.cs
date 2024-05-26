@@ -61,7 +61,6 @@ public partial class AccurateTimer : Node
 			if (PrecedingTimer == null || PrecedingTimer.IsUnlockedNow())
 			{
 				TickIndex += 1;
-				var name = this == Music.Singleton.BeatTimer ? "Beat" : this == Music.Singleton.HalfBeatTimer ? "Half" : "Visual";
 				LastTickedAt = time;
 				EmitSignal(SignalName.Timeout);
 			}
@@ -88,7 +87,7 @@ public partial class AccurateTimer : Node
 
 	private bool IsLockedAt(long time)
 	{
-		var remainder = time % waitTime;
+		var remainder = Math.Abs(time) % waitTime;
 		if (remainder < TimingWindow || remainder > (waitTime - TimingWindow))
 		{
 			return false;

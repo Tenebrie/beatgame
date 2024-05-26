@@ -38,6 +38,7 @@ public partial class SignalBus : Node
 	public override void _EnterTree()
 	{
 		instance = this;
+		GD.Randomize();
 	}
 
 	public override void _Input(InputEvent @event)
