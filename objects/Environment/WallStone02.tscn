@@ -6,6 +6,7 @@
 size = Vector3(1, 1, 0.1)
 
 [node name="WallStone02" type="StaticBody3D"]
+collision_layer = 33
 
 [node name="SM_Env_Wall_03" parent="." instance=ExtResource("2_qm8m6")]
 transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)

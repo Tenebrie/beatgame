@@ -11,6 +11,7 @@ size = Vector3(0.12, 1, 1)
 size = Vector3(1, 0.2, 1)
 
 [node name="TunnelStone02" type="StaticBody3D"]
+collision_layer = 33
 
 [node name="SM_Env_Wall_Tunnel_01" parent="." instance=ExtResource("1_03caa")]
 transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 1)

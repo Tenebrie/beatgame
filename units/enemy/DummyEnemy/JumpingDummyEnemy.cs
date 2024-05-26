@@ -76,7 +76,7 @@ public partial class JumpingDummyEnemy : BasicEnemyController
 
 		foreach (var target in targets)
 		{
-			target.Health.Damage(15);
+			target.Health.Damage(1500);
 		}
 	}
 }

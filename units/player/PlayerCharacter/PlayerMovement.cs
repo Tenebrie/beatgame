@@ -11,16 +11,17 @@ public partial class PlayerMovement : ComposableScript
 
 	Camera3D mainCamera;
 
-	// Ignores soft rotation
-	Camera3D baseCamera;
-
 	bool softCameraMoving = false;
 	Vector2 softCameraMoveStart;
 	bool hardCameraMoving = false;
 	Vector2 hardCameraMoveStart;
 
+	private Node3D horizontalCameraPivot;
+	private Node3D verticalCameraPivot;
+	private SpringArm3D springArm;
+
 	float cameraDistance = 1.5f;
-	float cameraHeight = 1;
+	float cameraHeight = 0;
 
 	float jumpCount = 0;
 
@@ -36,40 +37,44 @@ public partial class PlayerMovement : ComposableScript
 	public override void _Ready()
 	{
 		mainCamera = Parent.GetNode<Camera3D>(_mainCameraPath);
-		baseCamera = Parent.GetNode<Camera3D>(_baseCameraPath);
+		horizontalCameraPivot = Parent.GetNode<Node3D>("HCameraPivot");
+		verticalCameraPivot = Parent.GetNode<Node3D>("HCameraPivot/VCameraPivot");
+		springArm = Parent.GetNode<SpringArm3D>("HCameraPivot/VCameraPivot/SpringArm3D");
 	}
 
 	public override void _Input(InputEvent @event)
 	{
 		if (@event.IsActionPressed("SoftCameraMove"))
 		{
-			softCameraMoving = true;
 			softCameraMoveStart = GetWindow().GetMousePosition();
 		}
 		if (@event.IsActionReleased("SoftCameraMove"))
 		{
 			softCameraMoving = false;
-			baseCamera.Position = mainCamera.Position;
+			if (!hardCameraMoving)
+				Input.MouseMode = Input.MouseModeEnum.Visible;
 		}
 
 		if (@event.IsActionPressed("HardCameraMove"))
 		{
+			hardCameraMoving = true;
 			hardCameraMoveStart = GetWindow().GetMousePosition();
 			Input.MouseMode = Input.MouseModeEnum.Hidden;
 		}
 		if (@event.IsActionReleased("HardCameraMove"))
 		{
 			hardCameraMoving = false;
-			Input.MouseMode = Input.MouseModeEnum.Visible;
+			if (!softCameraMoving)
+				Input.MouseMode = Input.MouseModeEnum.Visible;
 		}
 
 		if (@event.IsActionPressed("ZoomIn"))
 		{
-			cameraDistance -= 0.25f;
+			cameraDistance = Math.Max(0, cameraDistance - 0.15f);
 		}
 		if (@event.IsActionPressed("ZoomOut"))
 		{
-			cameraDistance += 0.25f;
+			cameraDistance = Math.Min(4, cameraDistance + 0.15f);
 		}
 
 		if (@event.IsActionPressed("Jump") && jumpCount < 2)
@@ -139,14 +144,30 @@ public partial class PlayerMovement : ComposableScript
 			z: forwardVector.Z * movementVector.Y + rightVector.Z * movementVector.X
 		));
 
-		var rotationSpeed = 2;
+		var rotationSpeed = 2; // radians per second
 		if (Input.IsActionPressed("TurnLeft") && !Input.IsActionPressed("HardCameraMove"))
 		{
-			Parent.Rotate(Vector3.Up, rotationSpeed * (float)delta);
+			var rotation = rotationSpeed * (float)delta;
+			Parent.Rotate(Vector3.Up, rotation);
+			if (Input.IsActionPressed("SoftCameraMove"))
+				RotateCameraHorizontal(-rotation);
 		}
 		if (Input.IsActionPressed("TurnRight") && !Input.IsActionPressed("HardCameraMove"))
 		{
-			Parent.Rotate(Vector3.Up, -rotationSpeed * (float)delta);
+			var rotation = -rotationSpeed * (float)delta;
+			Parent.Rotate(Vector3.Up, rotation);
+			if (Input.IsActionPressed("SoftCameraMove"))
+				RotateCameraHorizontal(-rotation);
+		}
+
+		if (!Input.IsActionPressed("SoftCameraMove") && movementVector.Length() > 0)
+		{
+			var unrotationSpeed = 3f; // radians per second
+
+			var rotation = -Math.Sign(horizontalCameraPivot.Rotation.Y) * unrotationSpeed * (float)delta;
+			if (Math.Abs(horizontalCameraPivot.Rotation.Y) <= 0.01f)
+				rotation = -horizontalCameraPivot.Rotation.Y;
+			RotateCameraHorizontal(rotation, true);
 		}
 	}
 
@@ -158,20 +179,58 @@ public partial class PlayerMovement : ComposableScript
 			var mouseDelta = mousePos - hardCameraMoveStart;
 			Input.WarpMouse(hardCameraMoveStart * GetTree().Root.ContentScaleFactor);
 			Parent.Rotate(Vector3.Up, -mouseDelta.X / 500);
-			cameraHeight = Math.Max(0, Math.Min(cameraHeight + mouseDelta.Y / 500, 3));
+			var rotation = (float)Math.Min(Math.PI / 4, Math.Max(-Math.PI / 2 + 0.01f, verticalCameraPivot.Rotation.X - mouseDelta.Y / 500));
+			verticalCameraPivot.Rotation = new Vector3(rotation, 0, 0);
+		}
+		else if (Input.IsActionPressed("SoftCameraMove") && !softCameraMoving)
+		{
+			var mouseDelta = mousePos - softCameraMoveStart;
+			if (mouseDelta.Length() > 5)
+			{
+				softCameraMoving = true;
+				Input.MouseMode = Input.MouseModeEnum.Hidden;
+			}
+		}
+		else if (Input.IsActionPressed("SoftCameraMove") && softCameraMoving)
+		{
+			var mouseDelta = mousePos - softCameraMoveStart;
+			Input.WarpMouse(softCameraMoveStart * GetTree().Root.ContentScaleFactor);
+			RotateCameraHorizontal(-mouseDelta.X / 500);
+			var verticalRotation = (float)Math.Min(Math.PI / 4, Math.Max(-Math.PI / 2 + 0.01f, verticalCameraPivot.Rotation.X - mouseDelta.Y / 500));
+			verticalCameraPivot.Rotation = new Vector3(verticalRotation, 0, 0);
 		}
 
-		var forward = -Parent.GlobalTransform.Basis.Z;
+		var effectiveHeight = 1f;
+		var minSnapDistance = 1.5f;
+		var maxSnapDistance = 2.5f;
+		if (cameraDistance < minSnapDistance)
+			effectiveHeight -= (1 - (cameraDistance / minSnapDistance)) * 0.8f;
+		if (cameraDistance > maxSnapDistance)
+			effectiveHeight += cameraDistance - maxSnapDistance;
 
-		var targetCameraPosition = Position - forward * cameraDistance + new Vector3(0, cameraHeight, 0);
+		horizontalCameraPivot.Position = new Vector3(0, effectiveHeight, 0);
+		springArm.SpringLength = cameraDistance;
+	}
 
-		var snappingSpeed = hardCameraMoving ? 20 : 10;
+	private void RotateCameraHorizontal(float radians, bool snapping = false)
+	{
+		var newValue = horizontalCameraPivot.Rotation.Y + radians;
+		if (newValue > Math.PI * 2)
+			newValue -= (float)Math.PI * 2;
+		if (newValue < -Math.PI * 2)
+			newValue += (float)Math.PI * 2;
 
-		baseCamera.Position += (float)delta * snappingSpeed * (targetCameraPosition - baseCamera.Position);
+		if (newValue > Math.PI)
+			newValue = 2 * (float)Math.PI - newValue;
+		if (newValue < -Math.PI)
+			newValue = -2 * (float)Math.PI + newValue;
 
-		var verticalOffset = new Vector3(0, 0.5f, 0);
-		mainCamera.Position = baseCamera.Position;
-		mainCamera.LookAt(Position + verticalOffset);
+		if (Math.Abs(newValue) > Math.PI)
+			newValue = -newValue;
+		if (snapping && Math.Abs(newValue) <= 0.05f)
+			newValue = 0;
+
+		horizontalCameraPivot.Rotation = new Vector3(0, newValue, 0);
 	}
 
 	public void ResetJumpCount()

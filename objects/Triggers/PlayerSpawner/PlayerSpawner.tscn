@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://k3tq7jb87g5b"]
 
-[ext_resource type="Script" path="res://units/player/PlayerCharacter/visuals/Visuals.cs" id="1_knvc2"]
+[ext_resource type="Script" path="res://objects/Triggers/PlayerSpawner/PlayerSpawner.cs" id="1_syxy4"]
 [ext_resource type="Texture2D" uid="uid://dyh7yd6ess6bk" path="res://assets/particles/circle_05.png" id="2_him8i"]
 
 [sub_resource type="Curve" id="Curve_b627q"]
@@ -44,9 +44,9 @@ size = Vector2(0.4, 0.4)
 orientation = 2
 
 [node name="PlayerSpawner" type="Node3D"]
+script = ExtResource("1_syxy4")
 
 [node name="Visuals" type="Node3D" parent="."]
-script = ExtResource("1_knvc2")
 
 [node name="MainEmitterGlobalSpaceLarge" type="GPUParticles3D" parent="Visuals"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)

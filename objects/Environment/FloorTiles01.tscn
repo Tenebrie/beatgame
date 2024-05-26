@@ -6,6 +6,7 @@
 size = Vector3(1, 0.05, 1)
 
 [node name="DungeonFloor01" type="StaticBody3D"]
+collision_layer = 17
 
 [node name="SM_Env_Tiles_01" parent="." instance=ExtResource("1_k2o5x")]
 transform = Transform3D(20.2, 0, 0, 0, 20.2, 0, 0, 0, 20.2, -0.01, 0, -0.01)

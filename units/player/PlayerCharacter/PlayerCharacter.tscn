@@ -99,34 +99,32 @@ material = SubResource("StandardMaterial3D_e0vg2")
 size = Vector2(0.2, 0.2)
 orientation = 2
 
-[node name="PlayerCharacter" type="Node3D"]
-
-[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+[node name="CharacterBody3D" type="CharacterBody3D"]
 floor_block_on_wall = false
 script = ExtResource("1_2gcyd")
-_mainCameraPath = NodePath("../MainCamera")
-_baseCameraPath = NodePath("../BaseCamera")
+_mainCameraPath = NodePath("HCameraPivot/VCameraPivot/SpringArm3D/MainCamera")
+_baseCameraPath = NodePath("BaseCamera")
 
-[node name="PlayerUnit" type="MeshInstance3D" parent="CharacterBody3D"]
+[node name="PlayerUnit" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.2, 0, 0, 0, 0.5, 0, 0, 0, 0.2, 0, 0.252011, 0)
 visible = false
 mesh = SubResource("BoxMesh_moeg2")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000244141, 0.24463, 0.00130759)
 shape = SubResource("CapsuleShape3D_n1txi")
 
-[node name="Visuals" type="Node3D" parent="CharacterBody3D"]
+[node name="Visuals" type="Node3D" parent="."]
 script = ExtResource("2_yi0ob")
 
-[node name="MainEmitterGlobalSpaceLarge" type="GPUParticles3D" parent="CharacterBody3D/Visuals"]
+[node name="MainEmitterGlobalSpaceLarge" type="GPUParticles3D" parent="Visuals"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
 amount = 50
 lifetime = 0.5
 process_material = SubResource("ParticleProcessMaterial_qk6o4")
 draw_pass_1 = SubResource("PlaneMesh_vgtqq")
 
-[node name="MainEmitterGlobalSpaceSmall" type="GPUParticles3D" parent="CharacterBody3D/Visuals"]
+[node name="MainEmitterGlobalSpaceSmall" type="GPUParticles3D" parent="Visuals"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
 visible = false
 amount = 200
@@ -134,7 +132,7 @@ lifetime = 0.2
 process_material = SubResource("ParticleProcessMaterial_3fy4l")
 draw_pass_1 = SubResource("PlaneMesh_tbug0")
 
-[node name="OnBeatEmitterLocalSpace" type="GPUParticles3D" parent="CharacterBody3D/Visuals"]
+[node name="OnBeatEmitterLocalSpace" type="GPUParticles3D" parent="Visuals"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
 emitting = false
 amount = 100
@@ -145,7 +143,7 @@ process_material = SubResource("ParticleProcessMaterial_181pp")
 draw_pass_1 = SubResource("PlaneMesh_xv1hi")
 script = ExtResource("3_4yyta")
 
-[node name="MainEmitterLocalSpace" type="GPUParticles3D" parent="CharacterBody3D/Visuals"]
+[node name="MainEmitterLocalSpace" type="GPUParticles3D" parent="Visuals"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
 amount = 5
 lifetime = 4.0
@@ -154,14 +152,24 @@ local_coords = true
 process_material = SubResource("ParticleProcessMaterial_181pp")
 draw_pass_1 = SubResource("PlaneMesh_d40ro")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D/Visuals"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Visuals"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
 visible = false
 mesh = SubResource("PlaneMesh_2yssi")
 
-[node name="MainCamera" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.234285, 0)
-current = true
-
 [node name="BaseCamera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.251438, 0)
+visible = false
+
+[node name="HCameraPivot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 0.5, 2.08165e-12)
+
+[node name="VCameraPivot" type="Node3D" parent="HCameraPivot"]
+transform = Transform3D(1, -4.3906e-16, 3.36902e-16, 3.36902e-16, 0.965926, 0.258819, -4.3906e-16, -0.258819, 0.965926, 0, 0, 0)
+
+[node name="SpringArm3D" type="SpringArm3D" parent="HCameraPivot/VCameraPivot"]
+collision_mask = 48
+
+[node name="MainCamera" type="Camera3D" parent="HCameraPivot/VCameraPivot/SpringArm3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.234285, 0)
+current = true

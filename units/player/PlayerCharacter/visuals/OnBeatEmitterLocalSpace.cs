@@ -15,6 +15,11 @@ public partial class OnBeatEmitterLocalSpace : GpuParticles3D
 		((StandardMaterial3D)DrawPass1.SurfaceGetMaterial(0)).Emission = new Color(GD.Randf(), GD.Randf(), GD.Randf());
 	}
 
+	public override void _ExitTree()
+	{
+		Music.Singleton.BeatWindowUnlock -= OnBeatTick;
+	}
+
 	public void OnBeatTick(BeatTime time)
 	{
 		EmitParticle(Transform, Vector3.Zero, new Color(1, 1, 1), new Color(1, 1, 1), 0);

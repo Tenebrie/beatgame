@@ -1,6 +1,4 @@
-[gd_resource type="VisualShader" load_steps=26 format=3 uid="uid://dr67jmxhu3bag"]
-
-[ext_resource type="Texture2D" uid="uid://ddlnukuahvyii" path="res://assets/ui/ui_icon_empty_white.png" id="1_7vmla"]
+[gd_resource type="VisualShader" load_steps=25 format=3 uid="uid://dr67jmxhu3bag"]
 
 [sub_resource type="VisualShaderNodeColorConstant" id="VisualShaderNodeColorConstant_ts5n7"]
 constant = Color(0.686275, 0.686275, 0.686275, 1)
@@ -44,7 +42,6 @@ default_input_values = [0, Vector3(1, 1, 1), 1, Vector3(1, 0, 0)]
 
 [sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_lrld1"]
 source = 5
-texture = ExtResource("1_7vmla")
 
 [sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_ng0lh"]
 default_input_values = [0, Vector3(1, 1, 1), 1, Vector3(1, 0, 0)]

@@ -8,16 +8,13 @@ public partial class MusicTrack : Node
 	public string ResourcePath;
 
 	private AudioStreamOggVorbis AudioStream;
-	private AudioStreamPlayer AudioPlayer;
+	private AudioStreamPlayer AudioPlayer = new();
 
 	public override void _Ready()
 	{
 		AudioStream = ResourceLoader.Load<AudioStreamOggVorbis>(ResourcePath);
 
-		AudioPlayer = new()
-		{
-			Stream = AudioStream,
-		};
+		AudioPlayer.Stream = AudioStream;
 		AddChild(AudioPlayer);
 	}
 

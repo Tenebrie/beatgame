@@ -6,6 +6,7 @@
 size = Vector3(0.2, 0.24751, 0.2)
 
 [node name="WallTorch01" type="StaticBody3D"]
+collision_layer = 33
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.504, 0.084)

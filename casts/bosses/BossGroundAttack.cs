@@ -32,7 +32,8 @@ public partial class BossGroundAttack : BaseCast
 	{
 		var targets = BaseUnit.AllUnits
 		.Where(unit =>
-			unit.Alliance.HostileTo(Parent.Alliance)
+			unit.IsAlive
+			&& unit.Alliance.HostileTo(Parent.Alliance)
 			&& unit.Position.FlatDistanceTo(point) <= AreaRadius
 			&& unit.Position.VerticalDistanceTo(point) <= 1);
 

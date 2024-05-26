@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using Godot;
 
 namespace Project;
@@ -19,8 +20,8 @@ public abstract partial class BaseUnit : ComposableCharacterBody3D
 	public bool Grounded = true;
 	private int FramesInFlight = 0;
 
-	private bool IsAlive = true;
-	private bool IsDead { get => !IsAlive; }
+	public bool IsAlive = true;
+	public bool IsDead { get => !IsAlive; }
 
 	public BaseUnit()
 	{

@@ -40,12 +40,17 @@ public partial class PlayerController : BaseUnit
 		base._Ready();
 	}
 
+	public override void _ExitTree()
+	{
+		base._ExitTree();
+		AllPlayers.Remove(this);
+	}
+
 	protected override void ProcessGravity(double delta)
 	{
 		base.ProcessGravity(delta);
 		if (Grounded)
 		{
-
 			Movement.ResetJumpCount();
 		}
 	}
