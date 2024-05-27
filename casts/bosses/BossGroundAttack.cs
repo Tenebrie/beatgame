@@ -19,16 +19,15 @@ public partial class BossGroundAttack : BaseCast
 		};
 	}
 
-	protected override void CastOnPoint(Vector3 point)
+	protected override void CastStarted(CastTargetData targetData)
 	{
-		var circle = this.CreateGroundCircularArea(point);
+		var circle = this.CreateGroundCircularArea(targetData.Point);
 		circle.Radius = AreaRadius;
-		circle.GrowTime = 1;
+		circle.GrowTime = this.Settings.HoldTime;
 		circle.Alliance = UnitAlliance.Hostile;
-		circle.OnFinishedCallback = () => OnFinishedCasting(point);
 	}
 
-	private void OnFinishedCasting(Vector3 point)
+	protected override void CastOnPoint(Vector3 point)
 	{
 		var targets = BaseUnit.AllUnits
 		.Where(unit =>

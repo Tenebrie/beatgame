@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using Godot;
 
@@ -15,11 +14,13 @@ public partial class Music : Node
 	[Signal]
 	public delegate void BeatWindowLockEventHandler(BeatTime beat);
 
+	private MusicLibrary musicLibrary = new();
+
 	public readonly long SongDelay = 3000; // ms
 
 	public float BeatsPerMinute
 	{
-		get => CurrentTrack.BeatsPerMinute;
+		get => CurrentTrack != null ? CurrentTrack.BeatsPerMinute : 60;
 	}
 	public float BeatsPerSecond
 	{
@@ -34,15 +35,17 @@ public partial class Music : Node
 	private long LongestCalibration;
 	public AccurateTimer BeatTimer;
 	public AccurateTimer HalfBeatTimer;
+	public AccurateTimer QuarterBeatTimer;
 	public AccurateTimer VisualBeatTimer;
 
-	public long BeatIndex = -1;
+	public double BeatIndex = -1;
 	private BeatTime BeatTimeState = BeatTime.Free;
 	public MusicTrack CurrentTrack;
 
 	public override void _EnterTree()
 	{
 		instance = this;
+		AddChild(musicLibrary);
 
 		BeatTimer = new AccurateTimer
 		{
@@ -57,17 +60,21 @@ public partial class Music : Node
 		};
 		AddChild(HalfBeatTimer);
 
+		QuarterBeatTimer = new AccurateTimer
+		{
+			PrecedingTimer = HalfBeatTimer,
+			Calibration = 0
+		};
+		AddChild(QuarterBeatTimer);
+
 		VisualBeatTimer = new AccurateTimer
 		{
 			Calibration = SongDelay
 		};
 		AddChild(VisualBeatTimer);
 
-		CurrentTrack = new MusicTrackTest();
-		AddChild(CurrentTrack);
-
 		// Ensure no timer starts in the future
-		List<AccurateTimer> timers = new() { BeatTimer, HalfBeatTimer, VisualBeatTimer };
+		List<AccurateTimer> timers = new() { BeatTimer, HalfBeatTimer, QuarterBeatTimer, VisualBeatTimer };
 		LongestCalibration = timers.OrderByDescending(timer => timer.Calibration).ToList()[0].Calibration;
 		foreach (var timer in timers)
 		{
@@ -102,8 +109,26 @@ public partial class Music : Node
 			EmitSignal(SignalName.BeatWindowLock, BeatTime.Half.ToVariant());
 		};
 
+		HalfBeatTimer.BeatWindowUnlock += () =>
+		{
+			if (IsTimeOpen(BeatTime.Half))
+				return;
+
+			BeatTimeState |= BeatTime.Quarter;
+			EmitSignal(SignalName.BeatWindowUnlock, BeatTime.Quarter.ToVariant());
+		};
+		HalfBeatTimer.BeatWindowLock += () =>
+		{
+			if (!IsTimeOpen(BeatTime.Quarter))
+				return;
+
+			BeatTimeState &= ~BeatTime.Quarter;
+			EmitSignal(SignalName.BeatWindowLock, BeatTime.Quarter.ToVariant());
+		};
+
 		BeatTimer.Timeout += () => OnInternalTimerTimeout(BeatTime.One);
 		HalfBeatTimer.Timeout += () => OnInternalTimerTimeout(BeatTime.Half);
+		QuarterBeatTimer.Timeout += () => OnInternalTimerTimeout(BeatTime.Quarter);
 
 		SignalBus.Singleton.SceneTransitionStarted += OnSceneTransitionStarted;
 		SignalBus.Singleton.SceneTransitionFinished += OnSceneTransitionFinished;
@@ -111,7 +136,10 @@ public partial class Music : Node
 
 	private void OnInternalTimerTimeout(BeatTime beat)
 	{
-		BeatIndex += 1;
+		if (BeatIndex < 0)
+			BeatIndex = 0;
+		else
+			BeatIndex += 0.25f;
 		EmitSignal(SignalName.BeatTick, beat.ToVariant());
 	}
 
@@ -122,18 +150,25 @@ public partial class Music : Node
 
 	public override void _Ready()
 	{
+		PlaySceneSong();
+	}
+
+	private void PlaySceneSong()
+	{
+		var scene = GetTree().CurrentScene.Name;
+		CurrentTrack = scene == "BossArenaAeriel" ? musicLibrary.BossArenaAeriel : musicLibrary.TrainingRoom;
 		Start();
 	}
 
-	public async void Start()
+	public void Start()
 	{
-		await ToSignal(GetTree().CreateTimer(0.1f), "timeout");
 		CurrentTrack.PlayAfterDelay((float)SongDelay / 1000);
 
 		BeatIndex = -1;
 		IsStarted = true;
 		BeatTimer.Start(BeatsPerMinute);
 		HalfBeatTimer.Start(BeatsPerMinute * 2);
+		QuarterBeatTimer.Start(BeatsPerMinute * 4);
 		VisualBeatTimer.Start(BeatsPerMinute * 2);
 
 		var boss = (TestBoss)GetTree().Root.FindChild("TestBoss", true, false);
@@ -145,6 +180,7 @@ public partial class Music : Node
 	{
 		BeatTimer.Stop(-BeatTimer.Calibration);
 		HalfBeatTimer.Stop(-HalfBeatTimer.Calibration);
+		QuarterBeatTimer.Stop(-QuarterBeatTimer.Calibration);
 		VisualBeatTimer.Stop(-VisualBeatTimer.Calibration);
 		await ToSignal(GetTree().CreateTimer(LongestCalibration / 1000), "timeout");
 		CurrentTrack.Stop();
@@ -162,13 +198,19 @@ public partial class Music : Node
 
 	public double GetNearestBeatIndex()
 	{
-		return BeatTimer.GetTickIndexAtEngineTime() + ((HalfBeatTimer.GetTickIndexAtEngineTime() - (BeatTimer.GetTickIndexAtEngineTime() * 2)) / 2);
+		return QuarterBeatTimer.GetNearestTickIndexAtEngineTime() / 4;
 	}
 
 	// Returns the time (in ms) to the nearest beat
-	public long GetCurrentBeatOffset()
+	public long GetCurrentBeatOffset(BeatTime timings)
 	{
-		List<AccurateTimer> timers = new() { BeatTimer, HalfBeatTimer };
+		List<AccurateTimer> timers = new();
+		if ((timings & BeatTime.One) > 0)
+			timers.Add(BeatTimer);
+		if ((timings & BeatTime.Half) > 0)
+			timers.Add(HalfBeatTimer);
+		if ((timings & BeatTime.Quarter) > 0)
+			timers.Add(QuarterBeatTimer);
 
 		return timers.Select(timer =>
 		{

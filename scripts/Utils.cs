@@ -7,6 +7,10 @@ public static class ObjectExtensions
 	{
 		Debug.WriteLine(message);
 	}
+	public static void Log(this Object _, double message)
+	{
+		Debug.WriteLine(message);
+	}
 	public static void Log(this Object _, string message)
 	{
 		Debug.WriteLine(message);

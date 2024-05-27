@@ -36,7 +36,7 @@ dof_blur_amount = 1.0
 [sub_resource type="BoxShape3D" id="BoxShape3D_50btq"]
 size = Vector3(4.2522, 3.51804, 2.15479)
 
-[node name="Poc-boss" type="Node3D"]
+[node name="TrainingRoom" type="Node3D"]
 
 [node name="Environment" type="Node" parent="."]
 

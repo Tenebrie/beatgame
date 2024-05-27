@@ -8,6 +8,7 @@ public partial class BossAuto : BaseCast
 		Settings = new()
 		{
 			InputType = CastInputType.AutoRelease,
+			TargetType = CastTargetType.HostileUnit,
 			TargetAlliances = new() { UnitAlliance.Hostile },
 			HoldTime = 1,
 			RecastTime = 0,
@@ -16,6 +17,7 @@ public partial class BossAuto : BaseCast
 
 	protected override void CastOnUnit(BaseUnit target)
 	{
+		this.Log("smack");
 		target.Health.Damage(5, Parent);
 	}
 }

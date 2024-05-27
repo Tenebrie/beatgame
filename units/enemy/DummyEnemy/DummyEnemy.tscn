@@ -1,14 +1,14 @@
 [gd_scene load_steps=6 format=3 uid="uid://dd8hi213iqvva"]
 
 [ext_resource type="Script" path="res://units/enemy/DummyEnemy/DummyEnemy.cs" id="1_hrpc5"]
-[ext_resource type="Shader" uid="uid://si0nnmd167ny" path="res://units/enemy/DummyEnemy/DummyEnemyMaterial.tres" id="2_pioo0"]
+[ext_resource type="Material" uid="uid://hrprhmwst7jk" path="res://assets/materials/HoverableUnitMaterial.tres" id="2_eooxv"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ridno"]
-render_priority = 0
-shader = ExtResource("2_pioo0")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gw003"]
+next_pass = ExtResource("2_eooxv")
+albedo_color = Color(0.729412, 0.321569, 0.392157, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_e37df"]
-material = SubResource("ShaderMaterial_ridno")
+material = SubResource("StandardMaterial3D_gw003")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_28ffj"]
 size = Vector3(0.194397, 0.822235, 0.59137)

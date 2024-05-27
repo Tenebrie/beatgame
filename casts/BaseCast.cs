@@ -119,25 +119,25 @@ public partial class BaseCast : Node
 
 	private CastTargetData CastTargetData;
 
-	// AutoRelease or HoldRelease cast button is pressed down
 	public void CastBegin(CastTargetData targetData)
 	{
 		IsCasting = true;
 		CastStartedAt = Music.Singleton.GetNearestBeatIndex();
 		CastTargetData = targetData;
 		SignalBus.Singleton.EmitSignal(SignalBus.SignalName.CastStarted, this);
+		CastStarted(targetData);
+		if (Settings.InputType == CastInputType.Instant)
+			CastPerform();
 	}
 
-	// Instant cast press, or HoldRelease on button release at the right timing
-	public virtual void CastPerform()
+	public void CastPerform()
 	{
 		Flags.CastSuccessful = true;
 		SignalBus.Singleton.EmitSignal(SignalBus.SignalName.CastPerformed, this);
 		CastPerformInternal();
 	}
 
-	// Cast failed or cancelled
-	public virtual void CastFail()
+	public void CastFail()
 	{
 		IsCasting = false;
 		Flags.CastSuccessful = false;
@@ -160,9 +160,10 @@ public partial class BaseCast : Node
 			CastOnUnit(CastTargetData.HostileUnit);
 
 		if (Settings.TargetType == CastTargetType.Point)
-			CastOnPoint(CastTargetData.TargetPoint);
+			CastOnPoint(CastTargetData.Point);
 	}
 
+	protected virtual void CastStarted(CastTargetData _) { }
 	protected virtual void CastOnNone()
 	{
 		throw new NotImplementedException("CastOnNone not implemented on node " + this.Name);

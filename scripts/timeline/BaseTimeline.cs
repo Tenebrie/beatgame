@@ -1,9 +1,8 @@
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using Godot;
-using Project;
 
+namespace Project;
 public partial class BaseTimeline<ParentT> : Node where ParentT : BaseUnit
 {
 	public ParentT Parent;
@@ -19,6 +18,9 @@ public partial class BaseTimeline<ParentT> : Node where ParentT : BaseUnit
 
 	public void OnBeatTick(BeatTime time)
 	{
+		if (FightEditorUI.Singleton.EditingMode)
+			return;
+
 		var beatIndex = Music.Singleton.BeatIndex;
 
 		if (Elements.ElementAtOrDefault(CurrentElementIndex) == null)
@@ -26,8 +28,9 @@ public partial class BaseTimeline<ParentT> : Node where ParentT : BaseUnit
 
 		while (Elements[CurrentElementIndex].BeatIndex <= beatIndex)
 		{
-			Elements[CurrentElementIndex].Cast.CastBegin(new CastTargetData() { HostileUnit = PlayerController.AllPlayers[0], TargetPoint = PlayerController.AllPlayers[0].Position });
-			Elements[CurrentElementIndex].Cast.CastPerform();
+			var targetData = new CastTargetData() { HostileUnit = PlayerController.AllPlayers[0], Point = PlayerController.AllPlayers[0].Position };
+
+			Elements[CurrentElementIndex].Cast.CastBegin(targetData);
 			CurrentElementIndex += 1;
 
 			if (Elements.ElementAtOrDefault(CurrentElementIndex) == null)
@@ -35,7 +38,7 @@ public partial class BaseTimeline<ParentT> : Node where ParentT : BaseUnit
 		}
 	}
 
-	public void Add(long beatIndex, BaseCast cast)
+	public void Add(double beatIndex, BaseCast cast)
 	{
 		var element = new TimelineElement
 		{
@@ -48,6 +51,12 @@ public partial class BaseTimeline<ParentT> : Node where ParentT : BaseUnit
 
 public class TimelineElement
 {
-	public long BeatIndex;
+	public double BeatIndex;
+	public BaseCast Cast;
+}
+
+public class CastQueueElement
+{
+	public double ReleaseAt;
 	public BaseCast Cast;
 }

@@ -28,11 +28,11 @@ public partial class CastBar : Control
 			return;
 
 		ActiveCast = cast;
-		Bar.Value = (float)Music.Singleton.GetCurrentBeatOffset() / 1000;
+		Bar.Value = (float)Music.Singleton.GetCurrentBeatOffset(cast.Settings.CastTimings) / 1000;
 		Bar.MaxValue = cast.Settings.HoldTime * (1f / Music.Singleton.BeatsPerMinute * 60);
 		if (cast.Settings.InputType == CastInputType.HoldRelease)
 			Bar.MaxValue *= 2;
-		CastStartedAt = (long)Time.Singleton.GetTicksMsec() - Music.Singleton.GetCurrentBeatOffset();
+		CastStartedAt = (long)Time.Singleton.GetTicksMsec() - Music.Singleton.GetCurrentBeatOffset(cast.Settings.CastTimings);
 		CastEndsAt = CastStartedAt + (long)(Bar.MaxValue * 1000);
 
 		Bar.SetFillColor(new Color(255, 255, 75, 1));

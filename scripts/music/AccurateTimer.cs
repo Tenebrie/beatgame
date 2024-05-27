@@ -90,7 +90,7 @@ public partial class AccurateTimer : Node
 		return time / waitTime;
 	}
 
-	public double GetTickIndexAtEngineTime()
+	public double GetNearestTickIndexAtEngineTime()
 	{
 		if (waitTime == 0)
 			return 0;
