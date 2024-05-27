@@ -17,23 +17,38 @@ public partial class AccurateTimer : Node
 	public long Calibration = 0;
 	public AccurateTimer PrecedingTimer;
 
+	private bool IsStarted;
 	private long startTime;
 	private long waitTime;
 	public long LastTickedAt;
-	private bool lockedState = true;
+	private bool timingWindowLocked = true;
 	private long internalTickIndex = -1;
 	public long TickIndex = -1;
 
 	public void Start(float bpm)
 	{
+		IsStarted = true;
 		waitTime = (long)Math.Floor(1 / bpm * 60 * 1000);
 		startTime = (long)Time.Singleton.GetTicksMsec();
 		LastTickedAt = startTime;
+		TickIndex = -1;
+		internalTickIndex = -1;
+	}
+
+	public async void Stop(float delay)
+	{
+		await ToSignal(GetTree().CreateTimer(delay / 1000), "timeout");
+		if (!timingWindowLocked)
+		{
+			timingWindowLocked = true;
+			EmitSignal(SignalName.BeatWindowLock);
+		}
+		IsStarted = false;
 	}
 
 	public override void _Process(double delta)
 	{
-		if (!Music.Singleton.IsStarted)
+		if (!IsStarted)
 			return;
 
 		var time = (long)Time.Singleton.GetTicksMsec();
@@ -43,14 +58,14 @@ public partial class AccurateTimer : Node
 			return;
 
 		var locked = IsLockedAt(songTime);
-		if (lockedState && !locked)
+		if (timingWindowLocked && !locked)
 		{
-			lockedState = false;
+			timingWindowLocked = false;
 			EmitSignal(SignalName.BeatWindowUnlock);
 		}
-		else if (!lockedState && locked)
+		else if (!timingWindowLocked && locked)
 		{
-			lockedState = true;
+			timingWindowLocked = true;
 			EmitSignal(SignalName.BeatWindowLock);
 		}
 
@@ -97,6 +112,6 @@ public partial class AccurateTimer : Node
 
 	public bool IsUnlockedNow()
 	{
-		return lockedState;
+		return timingWindowLocked;
 	}
 }

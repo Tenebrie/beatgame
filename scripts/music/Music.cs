@@ -31,6 +31,7 @@ public partial class Music : Node
 	}
 	public bool IsStarted = false;
 
+	private long LongestCalibration;
 	public AccurateTimer BeatTimer;
 	public AccurateTimer HalfBeatTimer;
 	public AccurateTimer VisualBeatTimer;
@@ -62,16 +63,15 @@ public partial class Music : Node
 		};
 		AddChild(VisualBeatTimer);
 
-		// CurrentTrack = new MusicTrackTest();
-		CurrentTrack = new MusicTrackSpaceship();
+		CurrentTrack = new MusicTrackTest();
 		AddChild(CurrentTrack);
 
 		// Ensure no timer starts in the future
 		List<AccurateTimer> timers = new() { BeatTimer, HalfBeatTimer, VisualBeatTimer };
-		long longestCalibration = timers.OrderByDescending(timer => timer.Calibration).ToList()[0].Calibration;
+		LongestCalibration = timers.OrderByDescending(timer => timer.Calibration).ToList()[0].Calibration;
 		foreach (var timer in timers)
 		{
-			timer.Calibration -= longestCalibration;
+			timer.Calibration -= LongestCalibration;
 		}
 
 		BeatTimer.BeatWindowUnlock += () =>
@@ -104,6 +104,9 @@ public partial class Music : Node
 
 		BeatTimer.Timeout += () => OnInternalTimerTimeout(BeatTime.One);
 		HalfBeatTimer.Timeout += () => OnInternalTimerTimeout(BeatTime.Half);
+
+		SignalBus.Singleton.SceneTransitionStarted += OnSceneTransitionStarted;
+		SignalBus.Singleton.SceneTransitionFinished += OnSceneTransitionFinished;
 	}
 
 	private void OnInternalTimerTimeout(BeatTime beat)
@@ -124,16 +127,37 @@ public partial class Music : Node
 
 	public async void Start()
 	{
-		await ToSignal(GetTree().CreateTimer(0.5f), "timeout");
+		await ToSignal(GetTree().CreateTimer(0.1f), "timeout");
 		CurrentTrack.PlayAfterDelay((float)SongDelay / 1000);
 
+		BeatIndex = -1;
 		IsStarted = true;
 		BeatTimer.Start(BeatsPerMinute);
 		HalfBeatTimer.Start(BeatsPerMinute * 2);
 		VisualBeatTimer.Start(BeatsPerMinute * 2);
 
 		var boss = (TestBoss)GetTree().Root.FindChild("TestBoss", true, false);
-		AddChild(new TestBossTimeline(boss));
+		if (boss != null)
+			AddChild(new TestBossTimeline(boss));
+	}
+
+	private async void OnSceneTransitionStarted(PackedScene _)
+	{
+		BeatTimer.Stop(-BeatTimer.Calibration);
+		HalfBeatTimer.Stop(-HalfBeatTimer.Calibration);
+		VisualBeatTimer.Stop(-VisualBeatTimer.Calibration);
+		await ToSignal(GetTree().CreateTimer(LongestCalibration / 1000), "timeout");
+		CurrentTrack.Stop();
+		CurrentTrack.QueueFree();
+		CurrentTrack = null;
+		SignalBus.Singleton.EmitSignal(SignalBus.SignalName.SceneTransitionMusicReady);
+	}
+
+	private void OnSceneTransitionFinished(PackedScene _)
+	{
+		CurrentTrack = new MusicTrackSpaceship();
+		AddChild(CurrentTrack);
+		Start();
 	}
 
 	public double GetNearestBeatIndex()

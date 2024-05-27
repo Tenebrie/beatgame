@@ -9,7 +9,7 @@ size = Vector3(1, 0.05, 1)
 collision_layer = 17
 
 [node name="SM_Env_Tiles_04" parent="." instance=ExtResource("1_6u1jf")]
-transform = Transform3D(20.2, 0, 0, 0, 20.2, 0, 0, 0, 20.2, -0.01, 0, -0.01)
+transform = Transform3D(20.4, 0, 0, 0, 20.4, 0, 0, 0, 20.4, -0.01, 0, -0.01)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0.5)

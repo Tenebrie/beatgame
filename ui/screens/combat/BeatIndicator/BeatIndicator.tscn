@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dow7u28082gac"]
 
-[ext_resource type="Script" path="res://ui/combat/BeatIndicator/BeatIndicator.cs" id="1_yg6p5"]
-[ext_resource type="Script" path="res://ui/combat/BeatIndicator/CentralCircle.cs" id="2_exbka"]
+[ext_resource type="Script" path="res://ui/screens/combat/BeatIndicator/BeatIndicator.cs" id="1_yg6p5"]
+[ext_resource type="Script" path="res://ui/screens/combat/BeatIndicator/CentralCircle.cs" id="2_exbka"]
 
 [sub_resource type="TorusMesh" id="TorusMesh_ky57d"]
 inner_radius = 100.0

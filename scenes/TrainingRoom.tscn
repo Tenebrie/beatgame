@@ -17,15 +17,10 @@
 [ext_resource type="PackedScene" uid="uid://bihf3ds2bffpf" path="res://objects/Environment/CeilingStoneFlat07.tscn" id="17_hfhsh"]
 [ext_resource type="PackedScene" uid="uid://dqhojeplm586p" path="res://objects/Environment/PillarStone01.tscn" id="18_l61wd"]
 [ext_resource type="PackedScene" uid="uid://k3tq7jb87g5b" path="res://objects/Triggers/PlayerSpawner/PlayerSpawner.tscn" id="20_b5ew1"]
+[ext_resource type="PackedScene" uid="uid://ducyw438mwduj" path="res://objects/Triggers/SceneTransition/SceneTransition.tscn" id="20_tekqx"]
 [ext_resource type="PackedScene" uid="uid://dd8hi213iqvva" path="res://units/enemy/DummyEnemy/DummyEnemy.tscn" id="20_u8i6y"]
 [ext_resource type="PackedScene" uid="uid://bigoodfgf85ex" path="res://units/enemy/DummyEnemy/JumpingDummyEnemy.tscn" id="21_1cqso"]
-[ext_resource type="PackedScene" uid="uid://boie4o0ks8bw1" path="res://units/enemy/DummyEnemy/TestBoss.tscn" id="22_ob1rc"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_2op7s"]
-size = Vector3(2.04, 0.01, 2.04)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_egr1y"]
-size = Vector3(20.4769, 0.253876, 20.4731)
+[ext_resource type="PackedScene" uid="uid://b1d3j63byd72g" path="res://scenes/BossArenaAeriel.tscn" id="21_2cl6q"]
 
 [sub_resource type="Environment" id="Environment_nxlol"]
 ambient_light_energy = 0.91
@@ -38,6 +33,9 @@ adjustment_enabled = true
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_dlc6d"]
 dof_blur_amount = 1.0
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_50btq"]
+size = Vector3(4.2522, 3.51804, 2.15479)
+
 [node name="Poc-boss" type="Node3D"]
 
 [node name="Environment" type="Node" parent="."]
@@ -45,25 +43,6 @@ dof_blur_amount = 1.0
 [node name="WaterPlane" type="Node" parent="Environment"]
 
 [node name="Arena" type="Node" parent="Environment"]
-
-[node name="FloorRigidBody" type="StaticBody3D" parent="Environment/Arena"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -28)
-axis_lock_linear_x = true
-axis_lock_linear_y = true
-axis_lock_linear_z = true
-axis_lock_angular_x = true
-axis_lock_angular_y = true
-axis_lock_angular_z = true
-
-[node name="Floor" type="MeshInstance3D" parent="Environment/Arena/FloorRigidBody"]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, -0.0671806, 0)
-layers = 1025
-mesh = SubResource("BoxMesh_2op7s")
-skeleton = NodePath("../../../..")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Arena/FloorRigidBody"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.005, -0.129379, 0)
-shape = SubResource("BoxShape3D_egr1y")
 
 [node name="Walls" type="Node3D" parent="Environment/Arena"]
 
@@ -956,8 +935,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.48398, -0.00244153, 0.1344
 [node name="DummyEnemy6" parent="." instance=ExtResource("21_1cqso")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.6974, -0.00244102, -0.00303364)
 
-[node name="TestBoss" parent="." instance=ExtResource("22_ob1rc")]
-transform = Transform3D(0.0075052, 0, -4.99999, 0, 5, 0, 4.99999, 0, 0.0075052, 0.337533, 1.29074, -34.056)
-
 [node name="PlayerSpawner" parent="." instance=ExtResource("20_b5ew1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.010752, 1.1261, 0.0234984)
+
+[node name="SceneTransition" parent="." instance=ExtResource("20_tekqx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.177972, 0.00719925, -14.952)
+TransitionTo = ExtResource("21_2cl6q")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SceneTransition"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.393017, 1.64715, -2.03025)
+shape = SubResource("BoxShape3D_50btq")

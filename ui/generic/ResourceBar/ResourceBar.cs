@@ -105,6 +105,7 @@ public partial class ResourceBar : Control
 	public override void _ExitTree()
 	{
 		UntrackUnit();
+		SignalBus.Singleton.TrackStarted -= OnTrackStarted;
 	}
 
 	private void OnResourceChanged(BaseUnit unit, ObjectResourceType type, float value)

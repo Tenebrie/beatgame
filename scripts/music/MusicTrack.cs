@@ -26,6 +26,11 @@ public partial class MusicTrack : Node
 		AudioPlayer.Play();
 	}
 
+	public void Stop()
+	{
+		AudioPlayer.Stop();
+	}
+
 	public float Volume
 	{
 		get => Mathf.DbToLinear(AudioPlayer.VolumeDb);

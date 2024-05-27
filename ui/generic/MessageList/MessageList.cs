@@ -19,7 +19,6 @@ public partial class MessageList : VBoxContainer
 
 	public void AddMessage(string text)
 	{
-		Debug.WriteLine("Add message");
 		var message = MessageResource.Instantiate<Message>();
 		AddChild(message);
 		message.Body = text;

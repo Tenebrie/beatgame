@@ -11,6 +11,7 @@ public partial class PlayerMovement : ComposableScript
 
 	Camera3D mainCamera;
 
+	bool softCameraPreMoving = false;
 	bool softCameraMoving = false;
 	Vector2 softCameraMoveStart;
 	bool hardCameraMoving = false;
@@ -21,7 +22,6 @@ public partial class PlayerMovement : ComposableScript
 	private SpringArm3D springArm;
 
 	float cameraDistance = 1.5f;
-	float cameraHeight = 0;
 
 	float jumpCount = 0;
 
@@ -42,14 +42,16 @@ public partial class PlayerMovement : ComposableScript
 		springArm = Parent.GetNode<SpringArm3D>("HCameraPivot/VCameraPivot/SpringArm3D");
 	}
 
-	public override void _Input(InputEvent @event)
+	public override void _UnhandledInput(InputEvent @event)
 	{
 		if (@event.IsActionPressed("SoftCameraMove"))
 		{
+			softCameraPreMoving = true;
 			softCameraMoveStart = GetWindow().GetMousePosition();
 		}
 		if (@event.IsActionReleased("SoftCameraMove"))
 		{
+			softCameraPreMoving = false;
 			softCameraMoving = false;
 			if (!hardCameraMoving)
 				Input.MouseMode = Input.MouseModeEnum.Visible;
@@ -174,7 +176,7 @@ public partial class PlayerMovement : ComposableScript
 	private void ProcessCamera(double delta)
 	{
 		var mousePos = GetWindow().GetMousePosition();
-		if (Input.IsActionPressed("HardCameraMove"))
+		if (hardCameraMoving)
 		{
 			var mouseDelta = mousePos - hardCameraMoveStart;
 			Input.WarpMouse(hardCameraMoveStart * GetTree().Root.ContentScaleFactor);
@@ -182,16 +184,17 @@ public partial class PlayerMovement : ComposableScript
 			var rotation = (float)Math.Min(Math.PI / 4, Math.Max(-Math.PI / 2 + 0.01f, verticalCameraPivot.Rotation.X - mouseDelta.Y / 500));
 			verticalCameraPivot.Rotation = new Vector3(rotation, 0, 0);
 		}
-		else if (Input.IsActionPressed("SoftCameraMove") && !softCameraMoving)
+		else if (softCameraPreMoving)
 		{
 			var mouseDelta = mousePos - softCameraMoveStart;
 			if (mouseDelta.Length() > 5)
 			{
+				softCameraPreMoving = false;
 				softCameraMoving = true;
 				Input.MouseMode = Input.MouseModeEnum.Hidden;
 			}
 		}
-		else if (Input.IsActionPressed("SoftCameraMove") && softCameraMoving)
+		else if (softCameraMoving)
 		{
 			var mouseDelta = mousePos - softCameraMoveStart;
 			Input.WarpMouse(softCameraMoveStart * GetTree().Root.ContentScaleFactor);
@@ -200,11 +203,11 @@ public partial class PlayerMovement : ComposableScript
 			verticalCameraPivot.Rotation = new Vector3(verticalRotation, 0, 0);
 		}
 
-		var effectiveHeight = 1f;
+		var effectiveHeight = Preferences.Singleton.CameraHeight + 0.25f; // TODO: Should be generic 'unit center height'
 		var minSnapDistance = 1.5f;
 		var maxSnapDistance = 2.5f;
 		if (cameraDistance < minSnapDistance)
-			effectiveHeight -= (1 - (cameraDistance / minSnapDistance)) * 0.8f;
+			effectiveHeight -= (1 - (cameraDistance / minSnapDistance)) * Preferences.Singleton.CameraHeight;
 		if (cameraDistance > maxSnapDistance)
 			effectiveHeight += cameraDistance - maxSnapDistance;
 

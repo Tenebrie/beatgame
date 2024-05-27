@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ducyw438mwduj"]
+
+[ext_resource type="Script" path="res://objects/Triggers/SceneTransition/SceneTransition.cs" id="1_5rtlj"]
+
+[node name="SceneTransition" type="Area3D"]
+script = ExtResource("1_5rtlj")

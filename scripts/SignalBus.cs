@@ -27,6 +27,16 @@ public partial class SignalBus : Node
 	public delegate void CastFailedEventHandler(BaseCast cast);
 	[Signal]
 	public delegate void TrackStartedEventHandler(MusicTrack track);
+	[Signal]
+	public delegate void SceneTransitionStartedEventHandler(PackedScene scene);
+	[Signal]
+	public delegate void SceneTransitionFinishedEventHandler(PackedScene scene);
+	[Signal]
+	public delegate void SceneTransitionMusicReadyEventHandler();
+	[Signal]
+	public delegate void SceneFadeOutFinishedEventHandler();
+	[Signal]
+	public delegate void SceneFadeInFinishedEventHandler();
 
 	// Cast assigned to a slot in PlayerSpellcasting
 	[Signal]

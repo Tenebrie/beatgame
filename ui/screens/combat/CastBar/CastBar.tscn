@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://cypyot5fi6to"]
 
-[ext_resource type="Script" path="res://ui/combat/CastBar/CastBar.cs" id="1_1wq67"]
+[ext_resource type="Script" path="res://ui/screens/combat/CastBar/CastBar.cs" id="1_1wq67"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sia8f"]
 bg_color = Color(0.152941, 0.152941, 0.152941, 0.498039)

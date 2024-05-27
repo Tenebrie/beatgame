@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://b1d3j63byd72g"]
+
+[ext_resource type="PackedScene" uid="uid://k3tq7jb87g5b" path="res://objects/Triggers/PlayerSpawner/PlayerSpawner.tscn" id="1_rng0i"]
+[ext_resource type="PackedScene" uid="uid://boie4o0ks8bw1" path="res://units/enemy/DummyEnemy/TestBoss.tscn" id="2_wx5uw"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_1t4f2"]
+size = Vector3(2.04, 0.01, 2.04)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_sgxrx"]
+size = Vector3(20.4769, 0.253876, 20.4731)
+
+[node name="BossArenaAeriel" type="Node3D"]
+
+[node name="FloorRigidBody" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, 2.08165e-12)
+axis_lock_linear_x = true
+axis_lock_linear_y = true
+axis_lock_linear_z = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+
+[node name="Floor" type="MeshInstance3D" parent="FloorRigidBody"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, -0.0671806, 0)
+layers = 1025
+mesh = SubResource("BoxMesh_1t4f2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FloorRigidBody"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.005, -0.129379, 0)
+shape = SubResource("BoxShape3D_sgxrx")
+
+[node name="PlayerSpawner" parent="." instance=ExtResource("1_rng0i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.14314, 0.497863, 3.44449)
+
+[node name="TestBoss" parent="." instance=ExtResource("2_wx5uw")]
+transform = Transform3D(-2.34597, 0, -4.41548, 0, 5, 0, 4.41548, 0, -2.34597, 0.0940746, -0.0024409, -4.86722)

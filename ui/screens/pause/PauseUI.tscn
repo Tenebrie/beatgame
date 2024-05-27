@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cj7pjptvs0hgl"]
 
-[ext_resource type="Script" path="res://ui/pause/PauseUI.cs" id="1_2h6ub"]
+[ext_resource type="Script" path="res://ui/screens/pause/PauseUI.cs" id="1_2h6ub"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_0qe1t"]
 font_size = 32
@@ -17,7 +17,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 1
+mouse_filter = 2
+mouse_force_pass_scroll_events = false
 script = ExtResource("1_2h6ub")
 
 [node name="Panel" type="Panel" parent="."]
@@ -33,6 +34,7 @@ offset_right = 249.0
 offset_bottom = 227.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_force_pass_scroll_events = false
 
 [node name="Label" type="Label" parent="Panel"]
 layout_mode = 1
@@ -86,12 +88,37 @@ label_settings = SubResource("LabelSettings_41mo3")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="CameraHeightLabel" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -248.0
+offset_top = 129.0
+offset_right = -108.0
+offset_bottom = 174.0
+grow_horizontal = 2
+tooltip_text = "Doesn't actually pause yet"
+mouse_filter = 1
+text = "Camera Height"
+label_settings = SubResource("LabelSettings_41mo3")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="VolumeSlider" type="HSlider" parent="Panel"]
 layout_mode = 0
 offset_left = 110.0
 offset_top = 102.0
 offset_right = 480.0
 offset_bottom = 139.0
+value = 50.0
+
+[node name="CameraHeightSlider" type="HSlider" parent="Panel"]
+layout_mode = 0
+offset_left = 149.0
+offset_top = 134.0
+offset_right = 480.0
+offset_bottom = 171.0
 value = 50.0
 
 [node name="ExitGameButton" type="Button" parent="Panel"]

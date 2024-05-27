@@ -16,6 +16,17 @@ public partial class Preferences : Node
 		}
 	}
 
+	private float cameraHeight = 0;
+	public float CameraHeight
+	{
+		get => cameraHeight;
+		set
+		{
+			cameraHeight = value;
+			SaveConfig();
+		}
+	}
+
 	private float renderScale = 1f;
 	public float RenderScale
 	{
@@ -40,6 +51,7 @@ public partial class Preferences : Node
 		var config = new ConfigFile();
 
 		config.SetValue("section", "mainVolume", MainVolume);
+		config.SetValue("section", "cameraHeight", CameraHeight);
 
 		config.Save("user://config.cfg");
 	}
@@ -50,6 +62,7 @@ public partial class Preferences : Node
 		config.Load("user://config.cfg");
 
 		mainVolume = (float)config.GetValue("section", "mainVolume", 0.5f);
+		cameraHeight = (float)config.GetValue("section", "cameraHeight", 0.25f);
 		renderScale = (float)config.GetValue("section", "renderScale", GetDefaultRenderScale());
 	}
 

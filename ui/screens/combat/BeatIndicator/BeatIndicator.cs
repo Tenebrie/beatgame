@@ -16,6 +16,9 @@ public partial class BeatIndicator : Control
 
 	public void OnBeat()
 	{
+		if (BarGroups.Count == 0)
+			return;
+
 		foreach (var bar in BarGroups[0])
 		{
 			bar.Position = new Vector2(0, 0);
@@ -26,6 +29,9 @@ public partial class BeatIndicator : Control
 
 	public void OnHalfBeat()
 	{
+		if (BarGroups.Count == 0)
+			return;
+
 		foreach (var bar in BarGroups[0])
 		{
 			bar.Position = new Vector2(0, 0);

@@ -65,6 +65,8 @@ public abstract partial class BaseUnit : ComposableCharacterBody3D
 	public override void _ExitTree()
 	{
 		AllUnits.Remove(this);
+		if (IsAlive)
+			SignalBus.Singleton.EmitSignal(SignalBus.SignalName.UnitDestroyed, this);
 	}
 
 	protected virtual void ProcessGravity(double delta)

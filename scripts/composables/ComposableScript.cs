@@ -37,6 +37,14 @@ public abstract class ComposableScript
 		}
 	}
 
+	public virtual void _UnhandledInput(InputEvent @event)
+	{
+		foreach (var composable in Composables)
+		{
+			composable._UnhandledInput(@event);
+		}
+	}
+
 	public virtual void _ExitTree()
 	{
 		foreach (var composable in Composables)

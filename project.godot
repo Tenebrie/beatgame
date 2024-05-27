@@ -26,8 +26,9 @@ SignalBus="*res://scripts/SignalBus.cs"
 Preferences="*res://scripts/preferences/Preferences.cs"
 Music="*res://scripts/music/Music.cs"
 Calibration="*res://scripts/music/Calibration.cs"
-CombatUI="*res://ui/combat/CombatUI.tscn"
-PauseUI="*res://ui/pause/PauseUI.tscn"
+CombatUI="*res://ui/screens/combat/CombatUI.tscn"
+PauseUI="*res://ui/screens/pause/PauseUI.tscn"
+TransitionUi="*res://ui/screens/transition/TransitionUI.tscn"
 
 [display]
 

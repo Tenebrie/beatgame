@@ -139,6 +139,7 @@ public partial class BaseCast : Node
 	// Cast failed or cancelled
 	public virtual void CastFail()
 	{
+		IsCasting = false;
 		Flags.CastSuccessful = false;
 		SignalBus.Singleton.EmitSignal(SignalBus.SignalName.CastFailed, this);
 

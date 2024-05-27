@@ -31,6 +31,14 @@ public abstract partial class ComposableCharacterBody3D : CharacterBody3D
 		}
 	}
 
+	public override void _UnhandledInput(InputEvent @event)
+	{
+		foreach (var composable in Composables)
+		{
+			composable._UnhandledInput(@event);
+		}
+	}
+
 	public override void _ExitTree()
 	{
 		foreach (var composable in Composables)
