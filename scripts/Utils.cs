@@ -3,6 +3,10 @@ using System.Diagnostics;
 
 public static class ObjectExtensions
 {
+	public static void Log(this Object _, float message)
+	{
+		Debug.WriteLine(message);
+	}
 	public static void Log(this Object _, string message)
 	{
 		Debug.WriteLine(message);

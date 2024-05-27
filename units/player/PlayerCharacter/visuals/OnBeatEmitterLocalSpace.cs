@@ -1,12 +1,9 @@
-using System;
-using System.Diagnostics;
 using Godot;
 
 namespace Project;
 
 public partial class OnBeatEmitterLocalSpace : GpuParticles3D
 {
-	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		Music.Singleton.BeatWindowUnlock += OnBeatTick;

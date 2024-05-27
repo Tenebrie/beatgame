@@ -62,6 +62,13 @@ public partial class PlayerMovement : ComposableScript
 			hardCameraMoving = true;
 			hardCameraMoveStart = GetWindow().GetMousePosition();
 			Input.MouseMode = Input.MouseModeEnum.Hidden;
+			if (softCameraMoving)
+			{
+				Parent.Rotate(Vector3.Up, horizontalCameraPivot.Rotation.Y);
+				RotateCameraHorizontal(-horizontalCameraPivot.Rotation.Y);
+				// Unrotate the horizontal pivot
+				// Rotate parent by the horizontal pivot rotation
+			}
 		}
 		if (@event.IsActionReleased("HardCameraMove"))
 		{
@@ -162,7 +169,7 @@ public partial class PlayerMovement : ComposableScript
 				RotateCameraHorizontal(-rotation);
 		}
 
-		if (!Input.IsActionPressed("SoftCameraMove") && movementVector.Length() > 0)
+		if (!Input.IsActionPressed("SoftCameraMove") && !Input.IsActionPressed("HardCameraMove") && movementVector.Length() > 0)
 		{
 			var unrotationSpeed = 3f; // radians per second
 
@@ -224,12 +231,11 @@ public partial class PlayerMovement : ComposableScript
 			newValue += (float)Math.PI * 2;
 
 		if (newValue > Math.PI)
-			newValue = 2 * (float)Math.PI - newValue;
-		if (newValue < -Math.PI)
 			newValue = -2 * (float)Math.PI + newValue;
+		if (newValue < -Math.PI)
+			newValue = 2 * (float)Math.PI - newValue;
 
-		if (Math.Abs(newValue) > Math.PI)
-			newValue = -newValue;
+
 		if (snapping && Math.Abs(newValue) <= 0.05f)
 			newValue = 0;
 
