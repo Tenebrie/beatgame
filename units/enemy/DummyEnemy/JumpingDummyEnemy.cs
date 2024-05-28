@@ -76,7 +76,8 @@ public partial class JumpingDummyEnemy : BasicEnemyController
 
 		foreach (var target in targets)
 		{
-			target.Health.Damage(1500);
+			target.Health.Damage(5);
+			target.ForcefulMovement.Push(1, target.Position - Position, 1);
 		}
 	}
 }

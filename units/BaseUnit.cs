@@ -21,7 +21,7 @@ public abstract partial class BaseUnit : ComposableCharacterBody3D
 	public bool Grounded = true;
 	private int FramesInFlight = 0;
 
-	public bool IsBeingMoved { get => ForcefulMovement.Inertia.Length() > 0.5f; }
+	public bool IsBeingMoved { get => ForcefulMovement.IsBeingMoved(); }
 
 	public bool IsAlive = true;
 	public bool IsDead { get => !IsAlive; }

@@ -45,20 +45,20 @@ public static class CastUtils
 	/// <summary>
 	/// Returns an angle in radians corresponding to facing inside the arena.
 	/// <br />
-	/// Assumes that the target is facing towards positive X axis (Y rotation is set to 0)
+	/// Assumes that the target is facing towards negative Z axis (Y rotation is set to 0)
 	/// <br />
 	/// Usage: <code>Node3D.Rotate(Vector3.Up, this.GetArenaFacingAngle(...))</code>
 	/// </summary>
 	public static float GetArenaFacingAngle(this Node _, ArenaFacing facing)
 	{
 		if (facing == ArenaFacing.East)
-			return (float)Math.PI;
-		if (facing == ArenaFacing.North)
-			return (float)-Math.PI / 2;
-		if (facing == ArenaFacing.West)
-			return 0;
-		if (facing == ArenaFacing.South)
 			return (float)Math.PI / 2;
+		if (facing == ArenaFacing.North)
+			return (float)Math.PI;
+		if (facing == ArenaFacing.West)
+			return (float)-Math.PI / 2;
+		if (facing == ArenaFacing.South)
+			return 0;
 		return 0;
 	}
 }

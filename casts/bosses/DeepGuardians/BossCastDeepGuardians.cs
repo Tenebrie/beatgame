@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 
 namespace Project;
@@ -66,23 +67,24 @@ public partial class BossCastDeepGuardians : BaseCast
 	private void SpawnGuardian()
 	{
 		var index = GuardianQueue.Count;
-		var instance = Lib.Scene(Lib.Token.DeepGuardian).Instantiate<DeepGuardian>();
-		GetTree().CurrentScene.AddChild(instance);
+		var guardian = Lib.Scene(Lib.Token.DeepGuardian).Instantiate<DeepGuardian>();
+		GetTree().CurrentScene.AddChild(guardian);
 
 		var effectiveIndex = (index - 1.5f) * (Mirrored ? -1 : 1);
-		instance.Position = this.RotatePositionToArenaEdge(new Vector3(8 * effectiveIndex, 0, 0), Orientation);
+		guardian.Position = this.RotatePositionToArenaEdge(new Vector3(8 * effectiveIndex, 0, 0), Orientation);
 
-		GuardianQueue.Enqueue(instance);
+		GuardianQueue.Enqueue(guardian);
 
-		var rect = this.CreateGroundRectangularArea(instance.Position);
+		var rect = this.CreateGroundRectangularArea(guardian.Position);
 
-		instance.Rotate(Vector3.Up, this.GetArenaFacingAngle(Orientation));
+		guardian.Rotate(Vector3.Up, this.GetArenaFacingAngle(Orientation));
 		rect.Rotate(Vector3.Up, this.GetArenaFacingAngle(Orientation));
 
 		rect.Width = 8;
 		rect.Length = 32;
 		rect.GrowTime = 4;
 		rect.LengthOrigin = GroundAreaRect.Origin.Start;
+		guardian.AttachRect(rect);
 
 		if (GuardianQueue.Count >= 4)
 			SpawningGuardians = false;
