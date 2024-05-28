@@ -7,7 +7,9 @@ public partial class BossCastDeepGuardians : BaseCast
 {
 	private bool SpawningGuardians;
 	private readonly Queue<DeepGuardian> GuardianQueue = new();
-	private PackedScene PackedGuardian = GD.Load<PackedScene>("res://casts/bosses/DeepGuardians/tokens/DeepGuardian.tscn");
+
+	public ArenaFacing Orientation;
+	public bool Mirrored;
 
 	public BossCastDeepGuardians(BaseUnit parent) : base(parent)
 	{
@@ -19,6 +21,22 @@ public partial class BossCastDeepGuardians : BaseCast
 			HoldTime = 8,
 			RecastTime = 0,
 		};
+	}
+
+	public void RandomizeOrientation()
+	{
+		Orientation = (ArenaFacing)(Math.Abs((int)GD.Randi()) % 4);
+		Mirrored = GD.Randf() < 0.5f;
+	}
+
+	public void AdvanceOrientation()
+	{
+		Orientation += 1 * Math.Sign(GD.Randf() - 0.5f);
+		if ((int)Orientation > 3)
+			Orientation = 0;
+		else if ((int)Orientation < 0)
+			Orientation = (ArenaFacing)3;
+		Mirrored = GD.Randf() < 0.5f;
 	}
 
 	public override void _EnterTree()
@@ -48,16 +66,19 @@ public partial class BossCastDeepGuardians : BaseCast
 	private void SpawnGuardian()
 	{
 		var index = GuardianQueue.Count;
-		var instance = PackedGuardian.Instantiate<DeepGuardian>();
+		var instance = Lib.Scene(Lib.Token.DeepGuardian).Instantiate<DeepGuardian>();
 		GetTree().CurrentScene.AddChild(instance);
-		instance.RotationDegrees = new Vector3(0, 90, 0);
-		var effectiveIndex = index - 1.5f;
-		instance.Position = new Vector3(8 * effectiveIndex, 0, 16);
+
+		var effectiveIndex = (index - 1.5f) * (Mirrored ? -1 : 1);
+		instance.Position = this.RotatePositionToArenaEdge(new Vector3(8 * effectiveIndex, 0, 0), Orientation);
+
 		GuardianQueue.Enqueue(instance);
 
-		// TODO: Separate rects for center grow and directional grow
 		var rect = this.CreateGroundRectangularArea(instance.Position);
-		rect.Rotate(Vector3.Up, (float)Math.PI / 2);
+
+		instance.Rotate(Vector3.Up, this.GetArenaFacingAngle(Orientation));
+		rect.Rotate(Vector3.Up, this.GetArenaFacingAngle(Orientation));
+
 		rect.Width = 8;
 		rect.Length = 32;
 		rect.GrowTime = 4;
@@ -69,10 +90,9 @@ public partial class BossCastDeepGuardians : BaseCast
 
 	private void ReleaseGuardian()
 	{
-		var guardian = GuardianQueue.Dequeue();
-		if (guardian == null)
+		if (GuardianQueue.Count == 0)
 			return;
-
+		var guardian = GuardianQueue.Dequeue();
 		guardian.Activate();
 	}
 

@@ -67,10 +67,10 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -300.0
-offset_top = -134.0
-offset_right = 0.0
-offset_bottom = 0.0
+offset_left = -308.0
+offset_top = -143.0
+offset_right = -8.0
+offset_bottom = -9.0
 grow_horizontal = 0
 grow_vertical = 0
 
@@ -78,12 +78,22 @@ grow_vertical = 0
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
-anchor_right = 0.0
 anchor_bottom = 1.0
-offset_top = -134.0
-offset_right = 300.0
-offset_bottom = 0.0
-grow_horizontal = 1
+offset_left = 8.0
+offset_top = -215.0
+offset_right = 186.0
+offset_bottom = -81.0
+grow_vertical = 0
+
+[node name="BossTargeting" parent="." instance=ExtResource("3_jpa8i")]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = -76.0
+offset_right = 294.0
+offset_bottom = -11.0
 grow_vertical = 0
 
 [node name="BeatIndicator" parent="." instance=ExtResource("4_xlxos")]

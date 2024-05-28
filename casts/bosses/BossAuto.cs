@@ -17,7 +17,6 @@ public partial class BossAuto : BaseCast
 
 	protected override void CastOnUnit(BaseUnit target)
 	{
-		this.Log("smack");
 		target.Health.Damage(5, Parent);
 	}
 }

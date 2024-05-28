@@ -89,8 +89,7 @@ public partial class ObjectTargetable : ComposableScript
 
 		if (targeted)
 		{
-			var scene = GD.Load<PackedScene>("res://effects/TargetingCircle/TargetingCircle.tscn");
-			selectionModel = scene.Instantiate() as TargetingCircle;
+			selectionModel = Lib.Scene(Lib.Effect.TargetingCircle).Instantiate() as TargetingCircle;
 			selectionModel.SetAlliance(Parent.Alliance);
 			selectionModel.SetRadius(selectionRadius);
 			Parent.AddChild(selectionModel);

@@ -15,4 +15,8 @@ public static class ObjectExtensions
 	{
 		Debug.WriteLine(message);
 	}
+	public static void Log(this Object _, object message)
+	{
+		Debug.WriteLine(message.ToString());
+	}
 }

@@ -8,7 +8,11 @@ public partial class TestBossTimeline : BaseTimeline<TestBoss>
 		// for (var i = 0; i < 20; i++)
 		// 	Add(i * 4, parent.AutoAttack);
 
-		Add(0, parent.DeepGuardians);
+		Add(1, () => parent.DeepGuardians.RandomizeOrientation());
+		Add(1, parent.DeepGuardians);
+		Add(5, () => parent.DeepGuardiansTwo.Orientation = parent.DeepGuardians.Orientation);
+		Add(5, () => parent.DeepGuardiansTwo.AdvanceOrientation());
+		Add(5, parent.DeepGuardiansTwo);
 
 		// Add(0, parent.AutoAttack);
 		// Add(0.5, parent.GroundAttack);

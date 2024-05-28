@@ -9,6 +9,7 @@ public partial class CombatUI : Control
 	private ResourceBar ManaBar;
 	private UnitCardList AlliedUnitList;
 	private UnitCardList HostileUnitList;
+	private UnitCardList HostileBossList;
 	public override void _Ready()
 	{
 		GetTree().Root.ContentScaleFactor = DisplayServer.ScreenGetScale();
@@ -16,6 +17,7 @@ public partial class CombatUI : Control
 		ManaBar = GetNode<ResourceBar>("ManaBar");
 		AlliedUnitList = GetNode<UnitCardList>("AllyTargeting");
 		HostileUnitList = GetNode<UnitCardList>("HostileTargeting");
+		HostileBossList = GetNode<UnitCardList>("BossTargeting");
 		SignalBus.Singleton.UnitCreated += OnUnitCreated;
 		SignalBus.Singleton.UnitDestroyed += OnUnitDestroyed;
 	}
@@ -30,6 +32,10 @@ public partial class CombatUI : Control
 		else if (unit.Alliance == UnitAlliance.Player)
 		{
 			AlliedUnitList.TrackUnit(unit);
+		}
+		else if (unit.Alliance == UnitAlliance.Hostile && unit is TestBoss)
+		{
+			HostileBossList.TrackUnit(unit);
 		}
 		else if (unit.Alliance == UnitAlliance.Hostile)
 		{
@@ -46,6 +52,10 @@ public partial class CombatUI : Control
 		else if (unit.Alliance == UnitAlliance.Player)
 		{
 			AlliedUnitList.UntrackUnit(unit);
+		}
+		else if (unit.Alliance == UnitAlliance.Hostile && unit is TestBoss)
+		{
+			HostileBossList.UntrackUnit(unit);
 		}
 		else if (unit.Alliance == UnitAlliance.Hostile)
 		{

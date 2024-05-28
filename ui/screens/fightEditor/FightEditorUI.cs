@@ -48,7 +48,7 @@ public partial class FightEditorUI : Control
 	private void Add(double beatIndex, string cast)
 	{
 		var bossName = "parent";
-		var script = $"Add({beatIndex}, {bossName}.{cast});";
+		var script = $"Add({beatIndex + 1}, {bossName}.{cast});";
 
 		textEdit.Text += script + "\n";
 		textEdit.ScrollVertical = 999999;

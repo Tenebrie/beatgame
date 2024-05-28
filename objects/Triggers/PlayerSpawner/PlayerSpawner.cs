@@ -7,7 +7,6 @@ namespace Project;
 public partial class PlayerSpawner : Node3D
 {
 	private PlayerController Player;
-	private PackedScene PlayerScene = GD.Load<PackedScene>("res://units/player/PlayerCharacter/PlayerCharacter.tscn");
 
 	public override void _Ready()
 	{
@@ -16,7 +15,7 @@ public partial class PlayerSpawner : Node3D
 
 	public void SpawnPlayer()
 	{
-		var player = PlayerScene.Instantiate<PlayerController>();
+		var player = Lib.Scene(Lib.Unit.PlayerCharacter).Instantiate<PlayerController>();
 		player.Position = GlobalPosition;
 		GetParent().AddChild(player);
 

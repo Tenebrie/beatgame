@@ -10,17 +10,14 @@ public partial class MusicTrack : Node
 	private AudioStreamOggVorbis AudioStream;
 	private AudioStreamPlayer AudioPlayer = new();
 
-	public override void _Ready()
-	{
-		AudioStream = ResourceLoader.Load<AudioStreamOggVorbis>(ResourcePath);
-
-		AudioPlayer.Stream = AudioStream;
-		AddChild(AudioPlayer);
-	}
-
 	public async void PlayAfterDelay(float delay)
 	{
 		await ToSignal(GetTree().CreateTimer(delay), "timeout");
+
+		AudioStream = Lib.Vorbis(ResourcePath);
+		AudioPlayer.Stream = AudioStream;
+		AddChild(AudioPlayer);
+
 		SignalBus.Singleton.EmitSignal(SignalBus.SignalName.TrackStarted, this);
 		Volume = Preferences.Singleton.MainVolume;
 		AudioPlayer.Play();

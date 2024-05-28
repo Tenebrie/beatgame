@@ -16,7 +16,7 @@ public partial class Music : Node
 
 	private MusicLibrary musicLibrary = new();
 
-	public readonly long SongDelay = 3000; // ms
+	public readonly long SongDelay = 1000; // ms
 
 	public float BeatsPerMinute
 	{
@@ -160,7 +160,7 @@ public partial class Music : Node
 		Start();
 	}
 
-	public void Start()
+	public async void Start()
 	{
 		CurrentTrack.PlayAfterDelay((float)SongDelay / 1000);
 
@@ -171,9 +171,11 @@ public partial class Music : Node
 		QuarterBeatTimer.Start(BeatsPerMinute * 4);
 		VisualBeatTimer.Start(BeatsPerMinute * 2);
 
-		var boss = (TestBoss)GetTree().Root.FindChild("TestBoss", true, false);
-		if (boss != null)
-			AddChild(new TestBossTimeline(boss));
+		await ToSignal(GetTree().CreateTimer(0.1f), "timeout");
+
+		var bosses = BaseUnit.AllUnits.Where(unit => unit is TestBoss).Cast<TestBoss>().ToList();
+		if (bosses.Count > 0)
+			AddChild(new TestBossTimeline(bosses[0]));
 	}
 
 	private async void OnSceneTransitionStarted(PackedScene _)

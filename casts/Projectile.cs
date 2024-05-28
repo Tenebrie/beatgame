@@ -11,8 +11,6 @@ public partial class Projectile : Node3D
 	public List<GpuParticles3D> Emitters;
 	public float ImpactDamage = 5;
 
-	PackedScene scene = GD.Load<PackedScene>("res://effects/FireballProjectile/FireballProjectileImpact.tscn");
-
 	public override void _Ready()
 	{
 		Emitters = GetChildren().Where(child => child is GpuParticles3D).Cast<GpuParticles3D>().ToList();
@@ -35,7 +33,7 @@ public partial class Projectile : Node3D
 		{
 			Cleanup();
 
-			var impact = scene.Instantiate() as ProjectileImpact;
+			var impact = Lib.Scene(Lib.Effect.FireballProjectileImpact).Instantiate() as ProjectileImpact;
 			GetTree().Root.AddChild(impact);
 			impact.GlobalPosition = GlobalPosition;
 

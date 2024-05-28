@@ -16,8 +16,7 @@ public partial class SelfHeal : BaseCast
 
 	protected override void CastOnNone()
 	{
-		var scene = GD.Load<PackedScene>("res://effects/HealImpact/HealImpact.tscn");
-		var healImpact = scene.Instantiate() as ProjectileImpact;
+		var healImpact = Lib.Scene(Lib.Effect.HealImpact).Instantiate() as ProjectileImpact;
 		healImpact.AttachForDuration(Parent, .3f, new Vector3(0, 0.25f, 0));
 
 		var healing = Flags.CastSuccessful ? 20 : 10;

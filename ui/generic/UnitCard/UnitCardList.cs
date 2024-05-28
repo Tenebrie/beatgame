@@ -3,23 +3,21 @@ using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace Project;
-public partial class UnitCardList : VBoxContainer
+public partial class UnitCardList : Control
 {
-	private readonly static PackedScene UnitCardResource = GD.Load<PackedScene>("uid://c2m17h2hubigh");
-
 	public Dictionary<BaseUnit, UnitCard> UnitCards = new();
+	private AnimatedVBoxContainer Container;
 
 	public override void _Ready()
 	{
-		foreach (var child in GetChildren())
-			RemoveChild(child);
+		Container = GetNode<AnimatedVBoxContainer>("AnimatedVBoxContainer");
 	}
 
 	public void TrackUnit(BaseUnit unit)
 	{
-		var unitCard = UnitCardResource.Instantiate<UnitCard>();
+		var unitCard = Lib.Scene(Lib.UI.UnitCard).Instantiate<UnitCard>();
 		unitCard.TrackUnit(unit);
-		AddChild(unitCard);
+		Container.AddChild(unitCard);
 		UnitCards.Add(unit, unitCard);
 	}
 
@@ -32,6 +30,6 @@ public partial class UnitCardList : VBoxContainer
 		}
 
 		unitCard.UntrackUnit();
-		unitCard.QueueFree();
+		Container.FreeChildWithAnimation(unitCard);
 	}
 }

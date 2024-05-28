@@ -11,6 +11,7 @@ public abstract partial class BaseUnit : ComposableCharacterBody3D
 	public ObjectResource Health;
 	public ObjectResource Mana;
 	public ObjectTargetable Targetable;
+	public ObjectForcefulMovement ForcefulMovement;
 
 	public UnitAlliance Alliance = UnitAlliance.Neutral;
 
@@ -20,6 +21,8 @@ public abstract partial class BaseUnit : ComposableCharacterBody3D
 	public bool Grounded = true;
 	private int FramesInFlight = 0;
 
+	public bool IsBeingMoved { get => ForcefulMovement.Inertia.Length() > 0.5f; }
+
 	public bool IsAlive = true;
 	public bool IsDead { get => !IsAlive; }
 
@@ -28,10 +31,12 @@ public abstract partial class BaseUnit : ComposableCharacterBody3D
 		Health = new ObjectResource(this, ObjectResourceType.Health, max: 100);
 		Mana = new ObjectResource(this, ObjectResourceType.Mana, max: 0);
 		Targetable = new ObjectTargetable(this);
+		ForcefulMovement = new ObjectForcefulMovement(this);
 
 		Composables.Add(Health);
 		Composables.Add(Mana);
 		Composables.Add(Targetable);
+		Composables.Add(ForcefulMovement);
 	}
 
 	public Vector3 ForwardVector { get => -GlobalTransform.Basis.Z; }
@@ -94,7 +99,7 @@ public abstract partial class BaseUnit : ComposableCharacterBody3D
 		Grounded = FramesInFlight <= Math.Ceiling(Engine.GetFramesPerSecond() / 40);
 
 		// Out of bounds plane snap
-		if (Position.Y <= -20)
+		if (Position.Y <= -30)
 		{
 			Position = new Vector3(0, 1, 0);
 		}

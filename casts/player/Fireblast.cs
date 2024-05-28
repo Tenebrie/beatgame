@@ -3,8 +3,6 @@ using Godot;
 namespace Project;
 public partial class Fireblast : BaseCast
 {
-	static readonly PackedScene scene = GD.Load<PackedScene>("res://effects/FireballProjectile/FireballProjectileImpact.tscn");
-
 	public Fireblast(BaseUnit parent) : base(parent)
 	{
 		Settings = new()
@@ -19,7 +17,7 @@ public partial class Fireblast : BaseCast
 
 	protected override void CastOnUnit(BaseUnit target)
 	{
-		var impact = scene.Instantiate() as ProjectileImpact;
+		var impact = Lib.Scene(Lib.Effect.FireballProjectileImpact).Instantiate() as ProjectileImpact;
 		GetTree().Root.AddChild(impact);
 		impact.GlobalPosition = Parent.GlobalPosition;
 

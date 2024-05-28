@@ -94,7 +94,6 @@ public partial class GroundAreaRect : Node3D
 
 		var time = (double)Time.GetTicksMsec();
 		var percentage = (float)Math.Min(1, (time - createdAt) / (finishesAt - createdAt));
-		this.Log(percentage);
 		innerCircle.Size = new Vector3(outerCircle.Size.X * percentage, 1, outerCircle.Size.Z * percentage);
 		if (percentage >= 1)
 		{

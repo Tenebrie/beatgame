@@ -20,7 +20,7 @@ corner_detail = 5
 Panel/styles/panel = SubResource("StyleBoxFlat_ihkyo")
 
 [node name="UnitCard" type="Control"]
-custom_minimum_size = Vector2(300, 65)
+custom_minimum_size = Vector2(100, 65)
 layout_mode = 3
 anchor_right = 0.161
 anchor_bottom = 0.073

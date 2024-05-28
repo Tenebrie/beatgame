@@ -82,8 +82,8 @@ public partial class ResourceBar : Control
 
 		TrackedUnit = unit;
 		TrackedResource = resourceType;
-		SetCurrent(resource.Current);
 		SetMaximum(resource.Maximum);
+		SetCurrent(resource.Current);
 		PositiveGhostValue = CurrentValue;
 		NegativeGhostValue = CurrentValue;
 		SignalBus.Singleton.ResourceChanged += OnResourceChanged;

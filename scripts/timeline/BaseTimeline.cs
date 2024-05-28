@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
@@ -30,7 +31,9 @@ public partial class BaseTimeline<ParentT> : Node where ParentT : BaseUnit
 		{
 			var targetData = new CastTargetData() { HostileUnit = PlayerController.AllPlayers[0], Point = PlayerController.AllPlayers[0].Position };
 
-			Elements[CurrentElementIndex].Cast.CastBegin(targetData);
+			Elements[CurrentElementIndex].Cast?.CastBegin(targetData);
+			Elements[CurrentElementIndex].Action?.Invoke();
+
 			CurrentElementIndex += 1;
 
 			if (Elements.ElementAtOrDefault(CurrentElementIndex) == null)
@@ -42,8 +45,18 @@ public partial class BaseTimeline<ParentT> : Node where ParentT : BaseUnit
 	{
 		var element = new TimelineElement
 		{
-			BeatIndex = beatIndex,
+			BeatIndex = beatIndex - 1,
 			Cast = cast
+		};
+		Elements.Add(element);
+	}
+
+	public void Add(double beatIndex, Action action)
+	{
+		var element = new TimelineElement
+		{
+			BeatIndex = beatIndex - 1,
+			Action = action
 		};
 		Elements.Add(element);
 	}
@@ -53,6 +66,7 @@ public class TimelineElement
 {
 	public double BeatIndex;
 	public BaseCast Cast;
+	public Action Action;
 }
 
 public class CastQueueElement

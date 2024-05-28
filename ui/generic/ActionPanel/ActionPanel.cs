@@ -7,13 +7,14 @@ using System.Linq;
 namespace Project;
 public partial class ActionPanel : HBoxContainer
 {
-	private PackedScene ButtonResource = GD.Load<PackedScene>("res://ui/generic/ActionPanel/ActionButton.tscn");
-
 	public override void _EnterTree()
 	{
 		foreach (var child in GetChildren())
 			RemoveChild(child);
+	}
 
+	public override void _Ready()
+	{
 		var c1 = new ActionButton()
 		{
 			Label = "1",
@@ -63,7 +64,7 @@ public partial class ActionPanel : HBoxContainer
 		List<ActionButton> buttons = new() { c1, c2, c3, c4, sc1, sc2, sc3, sc4 };
 		var instances = buttons.Select(btn =>
 		{
-			var instance = ButtonResource.Instantiate<ActionButton>();
+			var instance = Lib.Scene(Lib.UI.ActionButton).Instantiate<ActionButton>();
 			instance.Label = btn.Label;
 			instance.ActionName = btn.ActionName;
 			instance.IsDisabled = btn.IsDisabled;
