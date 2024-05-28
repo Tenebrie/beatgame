@@ -13,6 +13,7 @@ public abstract partial class BaseUnit : ComposableCharacterBody3D
 	public ObjectTargetable Targetable;
 	public ObjectForcefulMovement ForcefulMovement;
 
+	[Export]
 	public UnitAlliance Alliance = UnitAlliance.Neutral;
 
 	public const float TerminalVelocity = -30f;

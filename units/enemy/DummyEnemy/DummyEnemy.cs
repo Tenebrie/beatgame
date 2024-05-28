@@ -1,10 +1,11 @@
+using Godot;
+
 namespace Project;
 
 public partial class DummyEnemy : BasicEnemyController
 {
 	public DummyEnemy()
 	{
-		FriendlyName = "Dummy Enemy";
-		Gravity = 0;
+		FriendlyName = Alliance == UnitAlliance.Hostile ? "Dummy Enemy" : "Dummy Fren";
 	}
 }

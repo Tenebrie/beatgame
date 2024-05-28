@@ -72,6 +72,7 @@ public class PlayerSpellcasting : ComposableScript
 
 				var targetData = new CastTargetData()
 				{
+					AlliedUnit = Parent.Targeting.targetedUnit,
 					HostileUnit = Parent.Targeting.targetedUnit,
 					Point = Parent.Position, // TODO: Implement ground targeting
 				};

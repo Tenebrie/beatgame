@@ -46,7 +46,6 @@ public partial class ActionPanel : HBoxContainer
 		{
 			Label = "S2",
 			ActionName = "ShiftCast2",
-			IsDisabled = true,
 		};
 		var sc3 = new ActionButton()
 		{

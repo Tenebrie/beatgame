@@ -12,14 +12,14 @@ public partial class ObjectForcefulMovement : ComposableScript
 
 	public void Push(float distance, Vector3 direction, float timeInBeats)
 	{
-		var D = new Vector3(direction.X, Math.Max(0, direction.Y), direction.Z).Normalized() * distance * 2;
+		var D = new Vector3(direction.X, Math.Max(0, direction.Y), direction.Z).Normalized() * distance;
 		var t = timeInBeats * Music.Singleton.SecondsPerBeat;
 		Movements.Add(new Movement()
 		{
 			Distance = D,
 			Time = t,
-			Speed = 2 * D.Length() / t,
-			Acceleration = 2 * D.Length() / (t * t),
+			Speed = 2 * distance / t,
+			Acceleration = -2 * distance / (t * t),
 			CoveredDistance = 0,
 		});
 	}
@@ -48,10 +48,10 @@ public partial class ObjectForcefulMovement : ComposableScript
 
 		public void ApplyToUnit(BaseUnit unit, float delta)
 		{
-			var distancePerFrame = Math.Min(Speed * delta, Distance.LengthSquared() - CoveredDistanceSquared);
+			var distancePerFrame = Math.Min(Speed * delta, Distance.Length() - CoveredDistance);
 			var movementVector = Distance.Normalized() * distancePerFrame;
 
-			Speed = Math.Max(0, Speed - delta * Acceleration);
+			Speed = Math.Max(0, Speed + delta * Acceleration);
 			unit.MoveAndCollide(movementVector);
 			CoveredDistance += distancePerFrame;
 			CoveredDistanceSquared = CoveredDistance * CoveredDistance;

@@ -928,12 +928,15 @@ camera_attributes = SubResource("CameraAttributesPractical_dlc6d")
 
 [node name="DummyEnemy4" parent="." instance=ExtResource("20_u8i6y")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.80834, -0.00244141, -0.0771254)
+Alliance = 0
 
 [node name="DummyEnemy5" parent="." instance=ExtResource("20_u8i6y")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.48398, -0.00244153, 0.134433)
+Alliance = 2
 
 [node name="DummyEnemy6" parent="." instance=ExtResource("21_1cqso")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.6974, -0.00244102, -0.00303364)
+Alliance = 2
 
 [node name="PlayerSpawner" parent="." instance=ExtResource("20_b5ew1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.010752, 1.1261, 0.0234984)

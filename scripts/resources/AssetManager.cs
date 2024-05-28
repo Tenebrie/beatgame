@@ -95,12 +95,12 @@ public partial class AssetManager : Node
 		if (currentlyLoaded >= TotalResourceCount)
 		{
 			Loaded = true;
-			this.Log($"Successfully preloaded {TotalResourceCount} resources");
+			Debug.WriteLine($"Successfully preloaded {TotalResourceCount} resources");
 		}
 		else
 		{
 			var percentage = Math.Round(currentlyLoaded / TotalResourceCount * 100);
-			this.Log($"Loading assets: {percentage}%");
+			Debug.WriteLine($"Loading assets: {percentage}%");
 		}
 	}
 }

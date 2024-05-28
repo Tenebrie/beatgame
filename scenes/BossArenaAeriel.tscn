@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://b1d3j63byd72g"]
+[gd_scene load_steps=6 format=3 uid="uid://b1d3j63byd72g"]
 
 [ext_resource type="PackedScene" uid="uid://k3tq7jb87g5b" path="res://objects/Triggers/PlayerSpawner/PlayerSpawner.tscn" id="1_rng0i"]
 [ext_resource type="PackedScene" uid="uid://54vsvup5iam6" path="res://units/enemy/DummyEnemy/TestBoss.tscn" id="2_wx5uw"]
+[ext_resource type="PackedScene" uid="uid://dd8hi213iqvva" path="res://units/enemy/DummyEnemy/DummyEnemy.tscn" id="3_ondps"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_1t4f2"]
 size = Vector3(2, 0.01, 2)
@@ -35,7 +36,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.14314, 0.497863, 3.44449)
 
 [node name="TestBoss" parent="." instance=ExtResource("2_wx5uw")]
 transform = Transform3D(-2.34597, 0, -4.41548, 0, 5, 0, 4.41548, 0, -2.34597, 0.0940746, -0.0024409, -4.86722)
+Alliance = 2
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.671979, 0.74057, 0, -0.74057, 0.671979, 0, 7.01133, 0)
 light_color = Color(1, 0.533333, 0.184314, 1)
+
+[node name="DummyEnemy" parent="." instance=ExtResource("3_ondps")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.96745, -0.00237915, 4.64895)
+Alliance = 0

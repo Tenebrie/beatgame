@@ -156,6 +156,9 @@ public partial class BaseCast : Node
 		if (Settings.TargetType == CastTargetType.None)
 			CastOnNone();
 
+		if (Settings.TargetType == CastTargetType.AlliedUnit)
+			CastOnUnit(CastTargetData.AlliedUnit);
+
 		if (Settings.TargetType == CastTargetType.HostileUnit)
 			CastOnUnit(CastTargetData.HostileUnit);
 
