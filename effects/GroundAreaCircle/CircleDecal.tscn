@@ -1,0 +1,94 @@
+[gd_scene load_steps=5 format=3 uid="uid://d0518ise2jvew"]
+
+[ext_resource type="Script" path="res://effects/GroundAreaCircle/CircleDecal.cs" id="1_sq4y0"]
+
+[sub_resource type="Shader" id="Shader_inner_fxf2a"]
+code = "shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_schlick_ggx;
+
+instance uniform float COLOR_R : hint_range(0.0, 1.0) = 1;
+instance uniform float COLOR_G : hint_range(0.0, 1.0) = 0;
+instance uniform float COLOR_B : hint_range(0.0, 1.0) = 0;
+instance uniform float PROGRESS : hint_range(0.0, 1.0) = 0.5;
+instance uniform float RADIUS : hint_range(0.01, 10.0) = 0.5;
+instance uniform float SCALE : hint_range(0.01, 10.0) = 1;
+instance uniform float OUTER_WIDTH : hint_range(0.02, 0.10) = 0.05;
+instance uniform float FADE : hint_range(0.0, 1.0) = 1;
+instance uniform float CULL_DIST = 0;
+
+void fragment()
+{
+	float dist = distance(NODE_POSITION_VIEW, VERTEX);
+	float effectiveRadius = RADIUS * SCALE;
+	float innerLimit = effectiveRadius * PROGRESS;
+	ALPHA = 0.05;
+	bool outerEdge = dist > float(effectiveRadius - OUTER_WIDTH) && dist < float(effectiveRadius);
+	bool innerCircle = dist < innerLimit;
+	if (outerEdge && !innerCircle)
+	{
+		float d2 = (dist - effectiveRadius + OUTER_WIDTH) * float(1) / OUTER_WIDTH;
+		if (d2 < 0.5)
+		{
+			ALBEDO = vec3(COLOR_R, COLOR_G, COLOR_B);
+			ALPHA = d2 * float(2);
+		}
+		else
+		{
+			ALBEDO = vec3((float(1)-d2) * float(2), 0, 0);
+			ALPHA = (float(1)-d2) * float(2);
+		}
+	}
+	else if (innerCircle && !outerEdge)
+	{
+		float toLimit = innerLimit - dist;
+		ALBEDO = vec3(COLOR_R, COLOR_G, COLOR_B);
+		ALPHA = min(1, toLimit * float(25)) * 0.5;
+	}
+	else if (innerCircle && outerEdge)
+	{
+		float d2 = (dist - effectiveRadius + OUTER_WIDTH) * float(1) / OUTER_WIDTH;
+		if (d2 < 0.5)
+		{
+			ALBEDO = vec3(d2 * float(2) + COLOR_R, COLOR_G, COLOR_B);
+			ALPHA = 1.0;
+		}
+		else
+		{
+			float a = (float(1)-d2) * float(2);
+			ALBEDO = vec3(d2 * float(2) * a + (float(1)-d2) * float(2), 0, 0);
+			ALPHA = a;
+			
+		}
+	}
+	
+	if (dist < effectiveRadius)
+	{
+		ALBEDO = ALBEDO * vec3(COLOR_R * 0.5, COLOR_G * 0.5, COLOR_B * 0.5);
+		ALPHA = max(ALPHA, float(0.05));
+	}
+	else
+	{
+		ALPHA = float(0);
+	}
+	EMISSION = ALBEDO * 2.0;
+	ALPHA *= FADE;
+	
+	vec3 world = (INV_VIEW_MATRIX * vec4(VERTEX, 1.0)).xyz;
+	if (CULL_DIST > 0.0 && (world.x > CULL_DIST || world.x < -CULL_DIST || world.z > CULL_DIST || world.z < -CULL_DIST))
+	{
+		ALPHA = 0.0;
+	}
+}
+
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nrq6q"]
+render_priority = 0
+shader = SubResource("Shader_inner_fxf2a")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_8pqm6"]
+material = SubResource("ShaderMaterial_nrq6q")
+
+[node name="CircleDecal" type="MeshInstance3D"]
+mesh = SubResource("PlaneMesh_8pqm6")
+script = ExtResource("1_sq4y0")

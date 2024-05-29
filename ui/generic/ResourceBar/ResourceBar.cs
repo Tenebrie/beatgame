@@ -39,9 +39,9 @@ public partial class ResourceBar : Control
 
 	private void OnTrackStarted(MusicTrack track)
 	{
-		var waitTime = track.BeatDuration * 3;
-		PositiveTimer.WaitTime = waitTime;
-		NegativeTimer.WaitTime = waitTime;
+		// var waitTime = track.BeatDuration * 3;
+		PositiveTimer.WaitTime = 0.01f;
+		NegativeTimer.WaitTime = 0.25f;
 	}
 
 	public void SetCurrent(float value)
@@ -58,14 +58,14 @@ public partial class ResourceBar : Control
 		CurrentValue = value;
 		PositiveGhostValue = Math.Min(PositiveGhostValue, CurrentValue);
 		NegativeGhostValue = Math.Max(NegativeGhostValue, CurrentValue);
-		CurrentValueLabel.Text = value.ToString();
+		CurrentValueLabel.Text = Math.Round(value).ToString();
 
 		Bar.Value = value;
 	}
 
 	public void SetMaximum(float value)
 	{
-		MaximumValueLabel.Text = value.ToString();
+		MaximumValueLabel.Text = Math.Round(value).ToString();
 
 		Bar.MaxValue = value;
 		PositiveGhost.MaxValue = value;
@@ -152,8 +152,8 @@ public partial class ResourceBar : Control
 		NegativeGhost.Value = NegativeGhostValue;
 
 		var positiveValue = Math.Round(CurrentValue - PositiveGhostValue);
-		PositiveComboLabel.Text = positiveValue > 0 ? positiveValue.ToString() : "";
+		PositiveComboLabel.Text = positiveValue > 0 ? Math.Round(positiveValue).ToString() : "";
 		var negativeValue = Math.Round(NegativeGhostValue - CurrentValue);
-		NegativeComboLabel.Text = negativeValue > 0 ? negativeValue.ToString() : "";
+		NegativeComboLabel.Text = negativeValue > 0 ? Math.Round(negativeValue).ToString() : "";
 	}
 }

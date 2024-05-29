@@ -40,7 +40,7 @@ public abstract partial class BaseUnit : ComposableCharacterBody3D
 		Composables.Add(ForcefulMovement);
 	}
 
-	public Vector3 ForwardVector { get => -GlobalTransform.Basis.Z; }
+	public Vector3 ForwardVector { get => -GlobalTransform.Basis.Z.Normalized(); }
 
 	public override void _Ready()
 	{

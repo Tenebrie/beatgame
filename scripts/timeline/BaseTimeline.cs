@@ -11,10 +11,17 @@ public partial class BaseTimeline<ParentT> : Node where ParentT : BaseUnit
 	public List<TimelineElement> Elements = new();
 	public int CurrentElementIndex = 0;
 
+	public CastTargetData targetData;
+
 	public BaseTimeline(ParentT parent)
 	{
 		Parent = parent;
 		Music.Singleton.BeatTick += OnBeatTick;
+	}
+
+	public void Start()
+	{
+		targetData = new CastTargetData() { HostileUnit = PlayerController.AllPlayers[0], Point = PlayerController.AllPlayers[0].Position };
 	}
 
 	public void OnBeatTick(BeatTime time)
@@ -29,8 +36,6 @@ public partial class BaseTimeline<ParentT> : Node where ParentT : BaseUnit
 
 		while (Elements[CurrentElementIndex].BeatIndex <= beatIndex)
 		{
-			var targetData = new CastTargetData() { HostileUnit = PlayerController.AllPlayers[0], Point = PlayerController.AllPlayers[0].Position };
-
 			Elements[CurrentElementIndex].Cast?.CastBegin(targetData);
 			Elements[CurrentElementIndex].Action?.Invoke();
 
@@ -57,6 +62,16 @@ public partial class BaseTimeline<ParentT> : Node where ParentT : BaseUnit
 		{
 			BeatIndex = beatIndex - 1,
 			Action = action
+		};
+		Elements.Add(element);
+	}
+
+	public void Target(double beatIndex, Vector3 point)
+	{
+		var element = new TimelineElement
+		{
+			BeatIndex = beatIndex - 1,
+			Action = () => targetData.Point = point,
 		};
 		Elements.Add(element);
 	}

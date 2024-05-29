@@ -1,20 +1,19 @@
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using Godot;
 using Project;
 
 namespace Project;
-public partial class GroundAreaCircle : Node3D
+public partial class GroundAreaCircle : BaseTelegraph
 {
-	private Decal outerCircle;
-	private Decal innerCircle;
-	private double createdAt;
-	private double finishesAt;
-	private bool cleaningUp;
+	// private Decal outerCircle;
+	private CircleDecal decal;
+	private Area3D hitbox;
+	private CollisionShape3D hitboxCollision;
 
 	private float radius = .5f;
-	private float growTime = 1; // beats
-	private UnitAlliance alliance = UnitAlliance.Neutral;
 
 	public float Radius
 	{
@@ -25,25 +24,6 @@ public partial class GroundAreaCircle : Node3D
 			UpdateRadius();
 		}
 	}
-	public UnitAlliance Alliance
-	{
-		get => alliance;
-		set
-		{
-			alliance = value;
-			UpdateAlliance();
-		}
-	}
-	public float GrowTime
-	{
-		get => growTime;
-		set
-		{
-			growTime = value;
-			finishesAt = createdAt + Music.Singleton.SecondsPerBeat * value * 1000;
-		}
-	}
-	public Action OnFinishedCallback = null;
 
 	public GroundAreaCircle()
 	{
@@ -52,47 +32,56 @@ public partial class GroundAreaCircle : Node3D
 
 	public override void _Ready()
 	{
-		outerCircle = GetNode<Decal>("OuterCircle");
-		innerCircle = GetNode<Decal>("InnerCircle");
-		innerCircle.Scale = new Vector3(0, 0, 0);
-		finishesAt = createdAt + Music.Singleton.SecondsPerBeat * GrowTime * 1000;
+		base._Ready();
+		hitbox = GetNode<Area3D>("Hitbox");
+		hitboxCollision = GetNode<CollisionShape3D>("Hitbox/CollisionShape3D");
+		decal = GetNode<CircleDecal>("CircleDecal");
+
+		hitbox.BodyEntered += OnBodyEntered;
 	}
 
 	public override void _Process(double delta)
 	{
-		if (cleaningUp)
-		{
-			QueueFree();
+		base._Process(delta);
+		decal.SetInstanceShaderParameter("PROGRESS", GrowPercentage);
+	}
 
+	private void OnBodyEntered(Node3D body)
+	{
+		if (body is not BaseUnit unit)
 			return;
-		}
 
-		var time = (double)Time.GetTicksMsec();
-		var percentage = (float)Math.Min(1, (time - createdAt) / (finishesAt - createdAt));
-		innerCircle.Scale = new Vector3(percentage, 1, percentage);
-		if (percentage >= 1)
+		if (unit.Alliance.HostileTo(Alliance))
+			OnHostileImpactCallback?.Invoke(unit);
+	}
+
+	public List<BaseUnit> GetUnitsInside()
+	{
+		return BaseUnit.AllUnits.Where(unit =>
 		{
-			OnFinishedCallback?.Invoke();
-			cleaningUp = true;
-		}
+			if (unit.Position.VerticalDistanceTo(Position) > 1)
+				return false;
+
+			return unit.Position.FlatDistanceTo(Position) < radius;
+		}).ToList();
 	}
 
 	private void UpdateRadius()
 	{
 		Scale = new Vector3(radius * 2, radius * 2, radius * 2);
+		decal.SetInstanceShaderParameter("RADIUS", radius);
 	}
 
-	private void UpdateAlliance()
+	protected override void SetColor(Color color)
 	{
-		var color = new Color(255, 255, 0);
+		decal.SetInstanceShaderParameter("COLOR_R", color.R);
+		decal.SetInstanceShaderParameter("COLOR_G", color.G);
+		decal.SetInstanceShaderParameter("COLOR_B", color.B);
+	}
 
-		if (alliance == UnitAlliance.Player)
-			color = new Color(0, 0, 255);
-		else if (alliance == UnitAlliance.Hostile)
-			color = new Color(255, 0, 0, 0.5f);
-		outerCircle.Modulate = color;
-		outerCircle.AlbedoMix = 1;
-		innerCircle.Modulate = color;
-		innerCircle.AlbedoMix = 0;
+	public override void CleanUp()
+	{
+		decal.CleanUp();
+		decal.onFadedOut = () => base.CleanUp();
 	}
 }

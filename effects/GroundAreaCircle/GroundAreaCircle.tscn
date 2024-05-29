@@ -1,18 +1,25 @@
-[gd_scene load_steps=7 format=3 uid="uid://i7uo3ra8dvfu"]
+[gd_scene load_steps=9 format=3 uid="uid://i7uo3ra8dvfu"]
 
 [ext_resource type="Script" path="res://effects/GroundAreaCircle/GroundAreaCircle.cs" id="1_hjvyv"]
 [ext_resource type="Texture2D" uid="uid://dcgbr6lyrwgen" path="res://assets/decals/outer-circle.png" id="2_0q8t1"]
+[ext_resource type="PackedScene" uid="uid://d0518ise2jvew" path="res://effects/GroundAreaCircle/CircleDecal.tscn" id="2_w4jly"]
 [ext_resource type="Texture2D" uid="uid://bafxoll45xh5h" path="res://assets/decals/outer-circle-emission.png" id="3_bsx5e"]
 [ext_resource type="Texture2D" uid="uid://b7syesuigv2dr" path="res://assets/decals/inner-circle.png" id="4_wigfy"]
 [ext_resource type="Texture2D" uid="uid://cldem4uxcn1f3" path="res://assets/decals/inner-circle-emission.png" id="5_xfo24"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_pp7oh"]
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_0hdw0"]
+
 [node name="GroundAreaCircle" type="Node3D"]
 script = ExtResource("1_hjvyv")
 
+[node name="CircleDecal" parent="." instance=ExtResource("2_w4jly")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.006)
+
 [node name="OuterCircle" type="Decal" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0502324, 0)
+visible = false
 size = Vector3(1, 1, 1)
 texture_albedo = ExtResource("2_0q8t1")
 texture_emission = ExtResource("3_bsx5e")
@@ -23,6 +30,7 @@ cull_mask = 1024
 
 [node name="InnerCircle" type="Decal" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0502324, 0)
+visible = false
 size = Vector3(0.975, 1, 0.975)
 texture_albedo = ExtResource("4_wigfy")
 texture_emission = ExtResource("5_xfo24")
@@ -33,7 +41,12 @@ normal_fade = 0.999
 cull_mask = 1024
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0675832, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0368254, 0)
 visible = false
 layers = 1025
 mesh = SubResource("PlaneMesh_pp7oh")
+
+[node name="Hitbox" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
+shape = SubResource("SphereShape3D_0hdw0")

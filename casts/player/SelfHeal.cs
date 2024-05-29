@@ -19,7 +19,7 @@ public partial class SelfHeal : BaseCast
 		var healImpact = Lib.Scene(Lib.Effect.HealImpact).Instantiate() as ProjectileImpact;
 		healImpact.AttachForDuration(Parent, .3f, new Vector3(0, 0.25f, 0));
 
-		var healing = Flags.CastSuccessful ? 20 : 10;
+		var healing = Flags.CastSuccessful ? 60 : 30;
 		Parent.Health.Restore(healing);
 		Parent.Mana.Damage(10);
 	}

@@ -8,6 +8,7 @@ public class UnitLibrary
 public class TokenLibrary
 {
 	public string DeepGuardian = "res://casts/bosses/DeepGuardians/tokens/DeepGuardian.tscn";
+	public string AnimatedTrident = "res://casts/bosses/Tridents/tokens/AnimatedTrident.tscn";
 }
 
 public class EffectLibrary

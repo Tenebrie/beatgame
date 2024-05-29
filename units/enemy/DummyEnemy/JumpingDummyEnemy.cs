@@ -66,6 +66,7 @@ public partial class JumpingDummyEnemy : BasicEnemyController
 		var circle = this.CreateGroundCircularArea(Position);
 		circle.GrowTime = 1.5f;
 		circle.Radius = 3;
+		circle.SnapToGround();
 		circle.Alliance = UnitAlliance.Hostile;
 	}
 

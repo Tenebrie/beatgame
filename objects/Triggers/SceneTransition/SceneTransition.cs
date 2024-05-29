@@ -3,6 +3,7 @@ using Project;
 using System;
 using System.Diagnostics;
 
+namespace Project;
 public partial class SceneTransition : Area3D
 {
 	[Export]
@@ -21,8 +22,4 @@ public partial class SceneTransition : Area3D
 		SignalBus.Singleton.EmitSignal(SignalBus.SignalName.SceneTransitionStarted, TransitionTo);
 	}
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
-	}
 }

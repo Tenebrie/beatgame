@@ -9,6 +9,7 @@ public partial class DeepGuardian : BasicEnemyController
 	{
 		FriendlyName = "Deep Guardian";
 		Gravity = 0;
+		Alliance = UnitAlliance.Hostile;
 	}
 
 	public void AttachRect(GroundAreaRect rect)

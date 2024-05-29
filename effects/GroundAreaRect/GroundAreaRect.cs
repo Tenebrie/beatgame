@@ -1,25 +1,19 @@
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using Godot;
-using Project;
 
 namespace Project;
-public partial class GroundAreaRect : Node3D
+public partial class GroundAreaRect : BaseTelegraph
 {
 	private Decal outerCircle;
 	private Decal innerCircle;
-	private double createdAt;
-	private double finishesAt;
-	private bool cleaningUp;
+
 
 	private float width = 1;
 	private float length = 1;
 	private float rotation = 0;
-	private float growTime = 1; // beats
 	private Origin lengthOrigin = Origin.Center;
-	private UnitAlliance alliance = UnitAlliance.Neutral;
 
 	public float Width
 	{
@@ -39,24 +33,7 @@ public partial class GroundAreaRect : Node3D
 			UpdateSize();
 		}
 	}
-	public UnitAlliance Alliance
-	{
-		get => alliance;
-		set
-		{
-			alliance = value;
-			UpdateAlliance();
-		}
-	}
-	public float GrowTime
-	{
-		get => growTime;
-		set
-		{
-			growTime = value;
-			finishesAt = createdAt + Music.Singleton.SecondsPerBeat * value * 1000;
-		}
-	}
+
 	public Origin LengthOrigin
 	{
 		get => LengthOrigin;
@@ -71,7 +48,6 @@ public partial class GroundAreaRect : Node3D
 			}
 		}
 	}
-	public Action OnFinishedCallback = null;
 
 	public GroundAreaRect()
 	{
@@ -80,28 +56,16 @@ public partial class GroundAreaRect : Node3D
 
 	public override void _Ready()
 	{
+		base._Ready();
 		outerCircle = GetNode<Decal>("OuterCircle");
 		innerCircle = GetNode<Decal>("InnerCircle");
-		finishesAt = createdAt + Music.Singleton.SecondsPerBeat * GrowTime * 1000;
 	}
 
 	public override void _Process(double delta)
 	{
-		if (cleaningUp)
-		{
-			QueueFree();
+		base._Process(delta);
 
-			return;
-		}
-
-		var time = (double)Time.GetTicksMsec();
-		var percentage = (float)Math.Min(1, (time - createdAt) / (finishesAt - createdAt));
-		innerCircle.Size = new Vector3(outerCircle.Size.X * percentage, 1, outerCircle.Size.Z * percentage);
-		if (percentage >= 1)
-		{
-			OnFinishedCallback?.Invoke();
-			cleaningUp = true;
-		}
+		innerCircle.Size = new Vector3(outerCircle.Size.X * GrowPercentage, 1, outerCircle.Size.Z * GrowPercentage);
 	}
 
 	private void UpdateSize()
@@ -110,14 +74,8 @@ public partial class GroundAreaRect : Node3D
 		innerCircle.Size = new Vector3(width, 1, length);
 	}
 
-	private void UpdateAlliance()
+	protected override void SetColor(Color color)
 	{
-		var color = new Color(255, 255, 0);
-
-		if (alliance == UnitAlliance.Player)
-			color = new Color(0, 0, 255);
-		else if (alliance == UnitAlliance.Hostile)
-			color = new Color(255, 0, 0, 0.5f);
 		outerCircle.Modulate = color;
 		outerCircle.AlbedoMix = 1;
 		innerCircle.Modulate = color;

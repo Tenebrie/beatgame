@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bue0mn46sn4fj"]
+
+[ext_resource type="Script" path="res://objects/Triggers/FightStart/FightStartTrigger.cs" id="1_w3s6q"]
+
+[node name="FightStartTrigger" type="Area3D"]
+script = ExtResource("1_w3s6q")

@@ -16,7 +16,8 @@ public partial class Music : Node
 
 	private MusicLibrary musicLibrary = new();
 
-	public readonly long SongDelay = 1000; // ms
+	public readonly long SongDelay = 2000; // ms
+	public const double MinBeatSize = 0.25;
 
 	public float BeatsPerMinute
 	{
@@ -38,7 +39,7 @@ public partial class Music : Node
 	public AccurateTimer QuarterBeatTimer;
 	public AccurateTimer VisualBeatTimer;
 
-	public double BeatIndex = -1;
+	public double BeatIndex = -1; // Number of timer ticks. Rational number.
 	private BeatTime BeatTimeState = BeatTime.Free;
 	public MusicTrack CurrentTrack;
 
@@ -77,9 +78,7 @@ public partial class Music : Node
 		List<AccurateTimer> timers = new() { BeatTimer, HalfBeatTimer, QuarterBeatTimer, VisualBeatTimer };
 		LongestCalibration = timers.OrderByDescending(timer => timer.Calibration).ToList()[0].Calibration;
 		foreach (var timer in timers)
-		{
 			timer.Calibration -= LongestCalibration;
-		}
 
 		BeatTimer.BeatWindowUnlock += () =>
 		{
@@ -139,7 +138,7 @@ public partial class Music : Node
 		if (BeatIndex < 0)
 			BeatIndex = 0;
 		else
-			BeatIndex += 0.25f;
+			BeatIndex += MinBeatSize;
 		EmitSignal(SignalName.BeatTick, beat.ToVariant());
 	}
 
@@ -157,11 +156,15 @@ public partial class Music : Node
 	{
 		var scene = GetTree().CurrentScene.Name;
 		CurrentTrack = scene == "BossArenaAeriel" ? musicLibrary.BossArenaAeriel : musicLibrary.TrainingRoom;
-		Start();
+		if (scene == "TrainingRoom")
+			Start();
 	}
 
 	public async void Start()
 	{
+		if (IsStarted)
+			return;
+
 		CurrentTrack.PlayAfterDelay((float)SongDelay / 1000);
 
 		BeatIndex = -1;

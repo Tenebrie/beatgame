@@ -1,3 +1,4 @@
+using Godot;
 using Project;
 
 public partial class TestBossTimeline : BaseTimeline<TestBoss>
@@ -7,6 +8,31 @@ public partial class TestBossTimeline : BaseTimeline<TestBoss>
 		// return;
 		// for (var i = 0; i < 20; i++)
 		// 	Add(i * 4, parent.AutoAttack);
+
+
+		Add(1, () =>
+		{
+			var rect = this.CreateGroundRectangularArea(Vector3.Zero);
+			rect.GrowTime = 1;
+			rect.Length = 8;
+			rect.Width = 8;
+			rect.Periodic = true;
+		});
+
+		Add(1, parent.TorrentialRain);
+		// Add(1, parent.AnimatedTridents);
+
+
+		// Add(9, parent.MidGuardians);
+
+		// Target(15, new Vector3(+16, 0, 0));
+		// Add(15, parent.LargeCornerAttack);
+		// Target(15, new Vector3(-16, 0, 0));
+		// Add(15, parent.LargeCornerAttack);
+		// Target(15, new Vector3(0, 0, +16));
+		// Add(15, parent.LargeCornerAttack);
+		// Target(15, new Vector3(0, 0, -16));
+		// Add(15, parent.LargeCornerAttack);
 
 		// Add(1, () => parent.DeepGuardians.RandomizeOrientation());
 		// Add(1, parent.DeepGuardians);
@@ -31,5 +57,10 @@ public partial class TestBossTimeline : BaseTimeline<TestBoss>
 		// Add(7, parent.AutoAttack);
 		// Add(7.25, parent.AutoAttack);
 		// Add(7.5, parent.AutoAttack);
+	}
+
+	public override void _Ready()
+	{
+		Start();
 	}
 }

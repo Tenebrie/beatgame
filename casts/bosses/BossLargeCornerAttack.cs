@@ -4,18 +4,16 @@ using System.Linq;
 using Godot;
 
 namespace Project;
-public partial class BossGroundAttack : BaseCast
+public partial class BossLargeCornerAttack : BossGroundAttack
 {
-	public float AreaRadius = 0.5f;
-
-	public BossGroundAttack(BaseUnit parent) : base(parent)
+	public BossLargeCornerAttack(BaseUnit parent) : base(parent)
 	{
 		Settings = new()
 		{
 			TargetType = CastTargetType.Point,
 			InputType = CastInputType.AutoRelease,
 			TargetAlliances = new() { UnitAlliance.Hostile },
-			HoldTime = 1,
+			HoldTime = 4,
 			RecastTime = 0,
 		};
 	}

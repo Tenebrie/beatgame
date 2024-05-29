@@ -1,6 +1,5 @@
 using Godot;
 using System.Collections.Generic;
-using System.Diagnostics;
 
 namespace Project;
 public partial class UnitCardList : Control

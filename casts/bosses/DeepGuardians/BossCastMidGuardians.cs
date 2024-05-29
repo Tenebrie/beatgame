@@ -4,7 +4,7 @@ using System.Linq;
 using Godot;
 
 namespace Project;
-public partial class BossCastDeepGuardians : BaseCast
+public partial class BossCastMidGuardians : BaseCast
 {
 	private bool SpawningGuardians;
 	private readonly Queue<DeepGuardian> GuardianQueue = new();
@@ -12,14 +12,14 @@ public partial class BossCastDeepGuardians : BaseCast
 	public ArenaFacing Orientation;
 	public bool Mirrored;
 
-	public BossCastDeepGuardians(BaseUnit parent) : base(parent)
+	public BossCastMidGuardians(BaseUnit parent) : base(parent)
 	{
 		Settings = new()
 		{
 			InputType = CastInputType.AutoRelease,
 			TargetType = CastTargetType.None,
 			TargetAlliances = new() { UnitAlliance.Hostile },
-			HoldTime = 8,
+			HoldTime = 4,
 			RecastTime = 0,
 		};
 	}
@@ -32,12 +32,15 @@ public partial class BossCastDeepGuardians : BaseCast
 
 	public void AdvanceOrientation()
 	{
-		Orientation += 1 * Math.Sign(GD.Randf() - 0.5f);
+		if (Mirrored)
+			Orientation += 1;
+		else
+			Orientation -= 1;
+
 		if ((int)Orientation > 3)
 			Orientation = 0;
 		else if ((int)Orientation < 0)
 			Orientation = (ArenaFacing)3;
-		Mirrored = GD.Randf() < 0.5f;
 	}
 
 	public override void _EnterTree()
@@ -70,8 +73,7 @@ public partial class BossCastDeepGuardians : BaseCast
 		var guardian = Lib.Scene(Lib.Token.DeepGuardian).Instantiate<DeepGuardian>();
 		GetTree().CurrentScene.AddChild(guardian);
 
-		var effectiveIndex = (index - 1.5f) * (Mirrored ? -1 : 1);
-		guardian.Position = this.GetArenaEdgePosition(new Vector3(0.5f * effectiveIndex, 0, 0), Orientation);
+		guardian.Position = this.GetArenaEdgePosition(new Vector3(0, 0, 0), Orientation);
 
 		GuardianQueue.Enqueue(guardian);
 
@@ -80,13 +82,15 @@ public partial class BossCastDeepGuardians : BaseCast
 		guardian.Rotate(Vector3.Up, this.GetArenaFacingAngle(Orientation));
 		rect.Rotate(Vector3.Up, this.GetArenaFacingAngle(Orientation));
 
-		rect.Width = 8;
+		rect.Width = 16;
 		rect.Length = 32;
 		rect.GrowTime = 4;
 		rect.LengthOrigin = GroundAreaRect.Origin.Start;
 		guardian.AttachRect(rect);
 
-		if (GuardianQueue.Count >= 4)
+		AdvanceOrientation();
+
+		if (GuardianQueue.Count >= 2)
 			SpawningGuardians = false;
 	}
 
