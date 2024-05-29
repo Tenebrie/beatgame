@@ -9,6 +9,7 @@ public partial class TestBoss : BasicEnemyController
 	public BossCastDeepGuardians DeepGuardiansTwo;
 	public BossCastMidGuardians MidGuardians;
 	public BossCastTridents AnimatedTridents;
+	public BossCastLightningStorm LightningStorm;
 	public BossCastTorrentialRain TorrentialRain;
 	public TestBoss()
 	{
@@ -26,6 +27,8 @@ public partial class TestBoss : BasicEnemyController
 		AddChild(MidGuardians);
 		AnimatedTridents = new(this);
 		AddChild(AnimatedTridents);
+		LightningStorm = new(this);
+		AddChild(LightningStorm);
 		TorrentialRain = new(this);
 		AddChild(TorrentialRain);
 

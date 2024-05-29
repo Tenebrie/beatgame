@@ -82,7 +82,7 @@ public partial class GroundAreaRect : BaseTelegraph
 		innerCircle.AlbedoMix = 0;
 	}
 
-	public List<BaseUnit> GetUnitsInside()
+	public override List<BaseUnit> GetUnitsInside()
 	{
 		var forward = -GlobalTransform.Basis.Z;
 		var right = GlobalTransform.Basis.X;

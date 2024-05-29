@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Godot;
 
 namespace Project;
@@ -13,6 +14,7 @@ public abstract partial class BaseTelegraph : Node3D
 	protected UnitAlliance alliance = UnitAlliance.Neutral;
 	public Action<BaseUnit> OnHostileImpactCallback = null;
 	public Action OnFinishedCallback = null;
+	public Action<BaseUnit> OnFinishedPerTargetCallback = null;
 
 	protected float GrowPercentage;
 
@@ -58,6 +60,11 @@ public abstract partial class BaseTelegraph : Node3D
 		{
 			endReached = true;
 			OnFinishedCallback?.Invoke();
+			if (OnFinishedPerTargetCallback != null)
+			{
+				foreach (var target in GetUnitsInside())
+					OnFinishedPerTargetCallback(target);
+			}
 			if (!Periodic)
 				CleanUp();
 		}
@@ -69,6 +76,7 @@ public abstract partial class BaseTelegraph : Node3D
 	}
 
 	protected abstract void SetColor(Color color);
+	public abstract List<BaseUnit> GetUnitsInside();
 
 	public virtual void CleanUp()
 	{

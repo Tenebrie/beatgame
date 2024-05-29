@@ -19,7 +19,8 @@ public partial class TestBossTimeline : BaseTimeline<TestBoss>
 			rect.Periodic = true;
 		});
 
-		Add(1, parent.TorrentialRain);
+		Add(1, parent.LightningStorm);
+		// Add(1, parent.TorrentialRain);
 		// Add(1, parent.AnimatedTridents);
 
 

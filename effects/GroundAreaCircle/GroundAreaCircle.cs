@@ -55,7 +55,7 @@ public partial class GroundAreaCircle : BaseTelegraph
 			OnHostileImpactCallback?.Invoke(unit);
 	}
 
-	public List<BaseUnit> GetUnitsInside()
+	public override List<BaseUnit> GetUnitsInside()
 	{
 		return BaseUnit.AllUnits.Where(unit =>
 		{
