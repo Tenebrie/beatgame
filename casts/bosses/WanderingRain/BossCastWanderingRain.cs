@@ -36,12 +36,12 @@ public partial class BossCastWanderingRain : BaseCast
 		return list;
 	}
 
-	protected override void CastStarted(CastTargetData _)
+	protected override void OnCastStarted(CastTargetData _)
 	{
 
 	}
 
-	protected override void CastOnNone() { }
+	protected override void OnCastCompleted(CastTargetData _) { }
 
 	private enum State
 	{

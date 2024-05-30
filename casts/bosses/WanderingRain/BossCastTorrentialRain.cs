@@ -32,7 +32,7 @@ public partial class BossCastTorrentialRain : BaseCast
 			list.Add(this.GetArenaEdgePosition(new Vector3(GD.Randf() * 2 - 1, 0, GD.Randf()), facing));
 		}
 		var target = targets[(int)(GD.Randi() % targets.Count)];
-		list.Add(new Vector3(target.Position.X + GD.Randf() * 4 - 2, 0, target.Position.Z + GD.Randf() * 4 - 2));
+		list.Add(new Vector3(target.Position.X + GD.Randf() * 1 - 0.5f, 0, target.Position.Z + GD.Randf() * 1 - 0.5f));
 		return list;
 	}
 
@@ -43,7 +43,7 @@ public partial class BossCastTorrentialRain : BaseCast
 		if (!IsCasting)
 			return;
 
-		dropletsExpected += 1000 * (float)delta;
+		dropletsExpected += 200 * (float)delta;
 		var dropletsToSpawn = Math.Floor(dropletsExpected - dropletsSpawned);
 		for (var i = 0; i < dropletsToSpawn; i += 5)
 		{
@@ -52,7 +52,7 @@ public partial class BossCastTorrentialRain : BaseCast
 			{
 				dropletsSpawned += 1;
 				var area = this.CreateGroundCircularArea(pos);
-				area.GrowTime = 0.5f;
+				area.GrowTime = 0.25f;
 				area.Radius = 0.4f;
 			}
 		}
@@ -77,7 +77,7 @@ public partial class BossCastTorrentialRain : BaseCast
 		damageDealt = damageExpected;
 	}
 
-	protected override void CastStarted(CastTargetData _)
+	protected override void OnCastStarted(CastTargetData _)
 	{
 		damageDealt = 0;
 		damageExpected = 0;
@@ -85,5 +85,5 @@ public partial class BossCastTorrentialRain : BaseCast
 		dropletsExpected = 0;
 	}
 
-	protected override void CastOnNone() { }
+	protected override void OnCastCompleted(CastTargetData _) { }
 }

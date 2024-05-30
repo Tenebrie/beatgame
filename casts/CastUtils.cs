@@ -86,6 +86,18 @@ public static class CastUtils
 
 		return (Vector3)result["position"];
 	}
+
+	public static Vector3 GetGroundedPosition(this Node3D node, float verticalOffset = 0.05f)
+	{
+		var spaceState = node.GetWorld3D().DirectSpaceState;
+		var query = PhysicsRayQueryParameters3D.Create(node.Position + Vector3.Up * 5, node.Position + Vector3.Down * 10, 1 << 4);
+		var result = spaceState.IntersectRay(query);
+		if (result.Count == 0)
+			return Vector3.Zero;
+
+		var pos = (Vector3)result["position"];
+		return new Vector3(pos.X, pos.Y + verticalOffset, pos.Z);
+	}
 }
 
 public enum ArenaFacing : int

@@ -17,12 +17,12 @@ public partial class Fireball : BaseCast
 		};
 	}
 
-	protected override void CastOnUnit(BaseUnit target)
+	protected override void OnCastCompleted(CastTargetData target)
 	{
 		var fireball = Lib.Scene(Lib.Effect.FireballProjectile).Instantiate() as Projectile;
 		GetTree().Root.AddChild(fireball);
 		fireball.GlobalPosition = Parent.GlobalPosition + new Vector3(0, 0.5f, 0);
-		fireball.TargetUnit = target;
+		fireball.TargetUnit = target.HostileUnit;
 		var damage = Flags.CastSuccessful ? 10 : 5;
 		fireball.ImpactDamage = damage;
 	}

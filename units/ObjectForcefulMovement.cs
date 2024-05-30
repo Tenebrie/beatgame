@@ -7,6 +7,7 @@ namespace Project;
 public partial class ObjectForcefulMovement : ComposableScript
 {
 	private List<Movement> Movements = new();
+	private List<ContinuousMovement> ContinuousMovements = new();
 
 	public ObjectForcefulMovement(BaseUnit parent) : base(parent) { }
 
@@ -16,6 +17,7 @@ public partial class ObjectForcefulMovement : ComposableScript
 		var t = timeInBeats * Music.Singleton.SecondsPerBeat;
 		Movements.Add(new Movement()
 		{
+			Unit = Parent,
 			Distance = D,
 			Time = t,
 			Speed = 2 * distance / t,
@@ -24,12 +26,27 @@ public partial class ObjectForcefulMovement : ComposableScript
 		});
 	}
 
+	public ContinuousMovement PushContinuously(float speed, Vector3 direction)
+	{
+		var movement = new ContinuousMovement()
+		{
+			Unit = Parent,
+			Speed = speed,
+			Direction = direction.Normalized(),
+		};
+		ContinuousMovements.Add(movement);
+		return movement;
+	}
+
 	public override void _Process(double delta)
 	{
 		foreach (var movement in Movements)
-			movement.ApplyToUnit(Parent, (float)delta);
+			movement.Apply((float)delta);
 
 		Movements = Movements.Where(movement => movement.CoveredDistanceSquared < movement.Distance.LengthSquared()).ToList();
+
+		foreach (var movement in ContinuousMovements)
+			movement.Apply((float)delta);
 	}
 
 	public bool IsBeingMoved()
@@ -39,6 +56,7 @@ public partial class ObjectForcefulMovement : ComposableScript
 
 	private class Movement
 	{
+		public BaseUnit Unit;
 		public float Time;
 		public float Speed;
 		public float Acceleration;
@@ -46,15 +64,35 @@ public partial class ObjectForcefulMovement : ComposableScript
 		public float CoveredDistance;
 		public float CoveredDistanceSquared;
 
-		public void ApplyToUnit(BaseUnit unit, float delta)
+		public void Apply(float delta)
 		{
 			var distancePerFrame = Math.Min(Speed * delta, Distance.Length() - CoveredDistance);
 			var movementVector = Distance.Normalized() * distancePerFrame;
 
 			Speed = Math.Max(0, Speed + delta * Acceleration);
-			unit.MoveAndCollide(movementVector);
+			Unit.MoveAndCollide(movementVector);
 			CoveredDistance += distancePerFrame;
 			CoveredDistanceSquared = CoveredDistance * CoveredDistance;
+		}
+	}
+
+	public class ContinuousMovement
+	{
+		public string ID = Guid.NewGuid().ToString();
+		public BaseUnit Unit;
+		public float Speed;
+		public Vector3 Direction;
+
+		public void Apply(float delta)
+		{
+			var distancePerFrame = Speed * delta;
+			var movementVector = Direction * distancePerFrame;
+			Unit.MoveAndCollide(movementVector);
+		}
+
+		public void Stop()
+		{
+			Unit.ForcefulMovement.ContinuousMovements.Remove(this);
 		}
 	}
 }

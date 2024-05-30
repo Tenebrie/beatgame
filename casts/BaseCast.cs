@@ -7,14 +7,24 @@ public partial class BaseCast : Node
 {
 	public class CastSettings
 	{
+		public string FriendlyName;
 		public CastInputType InputType = CastInputType.Instant;
 		public float HoldTime = 1; // beat
 		public CastTargetType TargetType = CastTargetType.None;
 		public List<UnitAlliance> TargetAlliances = new() { UnitAlliance.Player, UnitAlliance.Neutral, UnitAlliance.Hostile };
 		public BeatTime CastTimings = BeatTime.One;
 		public BeatTime ReleaseTimings = BeatTime.All;
+		public BeatTime ChannelingTickTimings = 0;
 		public float RecastTime = .1f;
 		public bool CastOnFailedRelease = true;
+	}
+
+	protected BaseCast()
+	{
+		Settings = new()
+		{
+			FriendlyName = this.ToString(),
+		};
 	}
 
 	protected class CastFlags
@@ -61,10 +71,14 @@ public partial class BaseCast : Node
 
 	private void OnBeatTick(BeatTime time)
 	{
-		if (Settings.InputType != CastInputType.AutoRelease || !IsCasting || Music.Singleton.GetNearestBeatIndex() != CastStartedAt + Settings.HoldTime)
+		if (!IsCasting)
 			return;
 
-		CastPerform();
+		if ((time & Settings.ChannelingTickTimings) > 0)
+			OnCastTicked();
+
+		if (Settings.InputType == CastInputType.AutoRelease && Music.Singleton.GetNearestBeatIndex() == CastStartedAt + Settings.HoldTime)
+			CastPerform();
 	}
 
 	public bool ValidateTarget(BaseUnit target, out string errorMessage)
@@ -125,8 +139,8 @@ public partial class BaseCast : Node
 		CastStartedAt = Music.Singleton.GetNearestBeatIndex();
 		CastTargetData = targetData;
 		SignalBus.Singleton.EmitSignal(SignalBus.SignalName.CastStarted, this);
-		CastStarted(targetData);
-		if (Settings.InputType == CastInputType.Instant)
+		OnCastStarted(targetData);
+		if (Settings.InputType == CastInputType.Instant || (Settings.InputType == CastInputType.AutoRelease && Settings.HoldTime == 0))
 			CastPerform();
 	}
 
@@ -153,30 +167,10 @@ public partial class BaseCast : Node
 		if (Settings.RecastTime > 0)
 			RecastTimerHandle.Start(Settings.RecastTime);
 
-		if (Settings.TargetType == CastTargetType.None)
-			CastOnNone();
-
-		if (Settings.TargetType == CastTargetType.AlliedUnit)
-			CastOnUnit(CastTargetData.AlliedUnit);
-
-		if (Settings.TargetType == CastTargetType.HostileUnit)
-			CastOnUnit(CastTargetData.HostileUnit);
-
-		if (Settings.TargetType == CastTargetType.Point)
-			CastOnPoint(CastTargetData.Point);
+		OnCastCompleted(CastTargetData);
 	}
 
-	protected virtual void CastStarted(CastTargetData _) { }
-	protected virtual void CastOnNone()
-	{
-		throw new NotImplementedException("CastOnNone not implemented on node " + this.Name);
-	}
-	protected virtual void CastOnUnit(BaseUnit target)
-	{
-		throw new NotImplementedException("CastOnUnit not implemented on node " + this.Name);
-	}
-	protected virtual void CastOnPoint(Vector3 point)
-	{
-		throw new NotImplementedException("CastOnPoint not implemented on node " + this.Name);
-	}
+	protected virtual void OnCastStarted(CastTargetData _) { }
+	protected virtual void OnCastTicked() { }
+	protected virtual void OnCastCompleted(CastTargetData _) { }
 }

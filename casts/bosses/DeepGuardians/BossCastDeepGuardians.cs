@@ -47,7 +47,7 @@ public partial class BossCastDeepGuardians : BaseCast
 		GuardianQueue.EnsureCapacity(4);
 	}
 
-	protected override void CastStarted(CastTargetData _)
+	protected override void OnCastStarted(CastTargetData _)
 	{
 		SpawningGuardians = true;
 		SpawnGuardian();
@@ -99,5 +99,5 @@ public partial class BossCastDeepGuardians : BaseCast
 		guardian.Activate();
 	}
 
-	protected override void CastOnNone() { }
+	protected override void OnCastCompleted(CastTargetData _) { }
 }

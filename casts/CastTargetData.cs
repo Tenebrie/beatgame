@@ -1,9 +1,12 @@
+using System.Collections.Generic;
 using Godot;
-using Project;
+
+namespace Project;
 
 public class CastTargetData
 {
 	public BaseUnit AlliedUnit;
 	public BaseUnit HostileUnit;
 	public Vector3 Point;
+	public List<Vector3> MultitargetPoints = new();
 }

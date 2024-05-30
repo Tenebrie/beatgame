@@ -10,13 +10,13 @@ public partial class BossAuto : BaseCast
 			InputType = CastInputType.AutoRelease,
 			TargetType = CastTargetType.HostileUnit,
 			TargetAlliances = new() { UnitAlliance.Hostile },
-			HoldTime = 1,
+			HoldTime = 0.5f,
 			RecastTime = 0,
 		};
 	}
 
-	protected override void CastOnUnit(BaseUnit target)
+	protected override void OnCastCompleted(CastTargetData target)
 	{
-		target.Health.Damage(5, Parent);
+		target.HostileUnit.Health.Damage(1, Parent);
 	}
 }

@@ -10,7 +10,7 @@ public partial class TestBossTimeline : BaseTimeline<TestBoss>
 		// 	Add(i * 4, parent.AutoAttack);
 
 
-		Add(1, () =>
+		Act(1, () =>
 		{
 			var rect = this.CreateGroundRectangularArea(Vector3.Zero);
 			rect.GrowTime = 1;
@@ -19,45 +19,74 @@ public partial class TestBossTimeline : BaseTimeline<TestBoss>
 			rect.Periodic = true;
 		});
 
-		Add(1, parent.LightningStorm);
-		// Add(1, parent.TorrentialRain);
-		// Add(1, parent.AnimatedTridents);
+		Cast(parent.AutoAttack);
+		Cast(parent.AutoAttack);
+		Cast(parent.AutoAttack);
+		Cast(parent.AutoAttack);
 
+		Cast(parent.TorrentialRain);
 
-		// Add(9, parent.MidGuardians);
+		Cast(parent.AutoAttack);
+		Cast(parent.AutoAttack);
+		Cast(parent.AutoAttack);
+		Cast(parent.AutoAttack);
 
-		// Target(15, new Vector3(+16, 0, 0));
-		// Add(15, parent.LargeCornerAttack);
-		// Target(15, new Vector3(-16, 0, 0));
-		// Add(15, parent.LargeCornerAttack);
-		// Target(15, new Vector3(0, 0, +16));
-		// Add(15, parent.LargeCornerAttack);
-		// Target(15, new Vector3(0, 0, -16));
-		// Add(15, parent.LargeCornerAttack);
+		Cast(parent.ConsumingWinds);
 
-		// Add(1, () => parent.DeepGuardians.RandomizeOrientation());
-		// Add(1, parent.DeepGuardians);
-		// Add(5, () => parent.DeepGuardiansTwo.Orientation = parent.DeepGuardians.Orientation);
-		// Add(5, () => parent.DeepGuardiansTwo.AdvanceOrientation());
-		// Add(5, parent.DeepGuardiansTwo);
+		Cast(parent.AutoAttack);
+		Cast(parent.AutoAttack);
+		Cast(parent.AutoAttack);
+		Cast(parent.AutoAttack);
 
-		// Add(0, parent.AutoAttack);
-		// Add(0.5, parent.GroundAttack);
-		// Add(1, parent.AutoAttack);
-		// Add(1.5, parent.GroundAttack);
-		// Add(2, parent.AutoAttack);
-		// Add(2.5, parent.GroundAttack);
-		// Add(3, parent.AutoAttack);
-		// Add(3.5, parent.GroundAttack);
-		// Add(4, parent.AutoAttack);
-		// Add(4.5, parent.GroundAttack);
-		// Add(5, parent.AutoAttack);
-		// Add(5.5, parent.GroundAttack);
-		// Add(6, parent.AutoAttack);
-		// Add(6.5, parent.GroundAttack);
-		// Add(7, parent.AutoAttack);
-		// Add(7.25, parent.AutoAttack);
-		// Add(7.5, parent.AutoAttack);
+		Cast(parent.AnimatedTridents);
+
+		Cast(parent.AutoAttack);
+		Cast(parent.AutoAttack);
+		Cast(parent.AutoAttack);
+		Cast(parent.AutoAttack);
+
+		Target(new Vector3(0, 0, 0), allowMultitarget: true);
+		Target(new Vector3(+16, 0, 0), allowMultitarget: true);
+		Target(new Vector3(-16, 0, 0), allowMultitarget: true);
+		Target(new Vector3(0, 0, +16), allowMultitarget: true);
+		Target(new Vector3(0, 0, -16), allowMultitarget: true);
+		Cast(parent.AreaAttack);
+
+		Cast(parent.AutoAttack);
+		Cast(parent.AutoAttack);
+		Cast(parent.AutoAttack);
+		Cast(parent.AutoAttack);
+
+		Cast(parent.ConsumingWinds);
+
+		Cast(parent.AutoAttack);
+		Cast(parent.AutoAttack);
+		Cast(parent.AutoAttack);
+		Cast(parent.AutoAttack);
+
+		Act(() => parent.DeepGuardians.RandomizeOrientation());
+		Cast(parent.DeepGuardians, advance: false);
+		AdvanceTime(4);
+		Act(5, () => parent.DeepGuardiansTwo.Orientation = parent.DeepGuardians.Orientation);
+		Act(5, () => parent.DeepGuardiansTwo.AdvanceOrientation());
+		Cast(5, parent.DeepGuardiansTwo, advance: false);
+		AdvanceTime(4);
+
+		Cast(parent.AutoAttack);
+		Cast(parent.AutoAttack);
+		Cast(parent.AutoAttack);
+		Cast(parent.AutoAttack);
+
+		Cast(parent.AutoAttack);
+		Cast(parent.AutoAttack);
+		Cast(parent.AutoAttack);
+		Cast(parent.AutoAttack);
+
+		Cast(parent.TorrentialRain);
+		Cast(parent.TorrentialRain);
+		Cast(parent.TorrentialRain);
+
+		Cast(parent.HardEnrage);
 	}
 
 	public override void _Ready()

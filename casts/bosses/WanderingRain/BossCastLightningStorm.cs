@@ -59,10 +59,10 @@ public partial class BossCastLightningStorm : BaseCast
 		return list;
 	}
 
-	protected override void CastStarted(CastTargetData _)
+	protected override void OnCastStarted(CastTargetData _)
 	{
 		OnBeatTick(BeatTime.One);
 	}
 
-	protected override void CastOnNone() { }
+	protected override void OnCastCompleted(CastTargetData _) { }
 }

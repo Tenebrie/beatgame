@@ -10,6 +10,7 @@ public partial class BaseTimeline<ParentT> : Node where ParentT : BaseUnit
 
 	public List<TimelineElement> Elements = new();
 	public int CurrentElementIndex = 0;
+	public double EditorPointer = 0;
 
 	public CastTargetData targetData;
 
@@ -46,32 +47,61 @@ public partial class BaseTimeline<ParentT> : Node where ParentT : BaseUnit
 		}
 	}
 
-	public void Add(double beatIndex, BaseCast cast)
+	public void AdvanceTime(double beatIndex)
+	{
+		EditorPointer += beatIndex;
+	}
+
+	public void Cast(BaseCast cast, bool advance = true)
+	{
+		Cast(1, cast, advance);
+	}
+
+	public void Cast(double beatIndex, BaseCast cast, bool advance = true)
 	{
 		var element = new TimelineElement
 		{
-			BeatIndex = beatIndex - 1,
+			BeatIndex = beatIndex - 1 + EditorPointer,
 			Cast = cast
 		};
 		Elements.Add(element);
+
+		if (advance)
+			EditorPointer += beatIndex - 1 + cast.Settings.HoldTime;
 	}
 
-	public void Add(double beatIndex, Action action)
+	public void Act(Action action)
+	{
+		Act(1, action);
+	}
+
+	public void Act(double beatIndex, Action action)
 	{
 		var element = new TimelineElement
 		{
-			BeatIndex = beatIndex - 1,
+			BeatIndex = beatIndex - 1 + EditorPointer,
 			Action = action
 		};
 		Elements.Add(element);
 	}
 
-	public void Target(double beatIndex, Vector3 point)
+	public void Target(Vector3 point, bool allowMultitarget = false)
+	{
+		Target(1, point, allowMultitarget);
+	}
+
+	public void Target(double beatIndex, Vector3 point, bool allowMultitarget = false)
 	{
 		var element = new TimelineElement
 		{
-			BeatIndex = beatIndex - 1,
-			Action = () => targetData.Point = point,
+			BeatIndex = beatIndex - 1 + EditorPointer,
+			Action = () =>
+			{
+				targetData.Point = point;
+				if (!allowMultitarget)
+					targetData.MultitargetPoints.Clear();
+				targetData.MultitargetPoints.Add(point);
+			},
 		};
 		Elements.Add(element);
 	}

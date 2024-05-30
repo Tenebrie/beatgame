@@ -3,22 +3,22 @@ namespace Project;
 public partial class TestBoss : BasicEnemyController
 {
 	public BossAuto AutoAttack;
-	public BossGroundAttack GroundAttack;
-	public BossLargeCornerAttack LargeCornerAttack;
+	public BossCastAreaAttack AreaAttack;
 	public BossCastDeepGuardians DeepGuardians;
 	public BossCastDeepGuardians DeepGuardiansTwo;
 	public BossCastMidGuardians MidGuardians;
 	public BossCastTridents AnimatedTridents;
 	public BossCastLightningStorm LightningStorm;
 	public BossCastTorrentialRain TorrentialRain;
+	public BossCastRavagingWinds RavagingWinds;
+	public BossCastConsumingWinds ConsumingWinds;
+	public BossCastHardEnrage HardEnrage;
 	public TestBoss()
 	{
 		AutoAttack = new(this);
 		AddChild(AutoAttack);
-		GroundAttack = new(this);
-		AddChild(GroundAttack);
-		LargeCornerAttack = new(this);
-		AddChild(LargeCornerAttack);
+		AreaAttack = new(this);
+		AddChild(AreaAttack);
 		DeepGuardians = new(this);
 		DeepGuardiansTwo = new(this);
 		AddChild(DeepGuardians);
@@ -31,6 +31,12 @@ public partial class TestBoss : BasicEnemyController
 		AddChild(LightningStorm);
 		TorrentialRain = new(this);
 		AddChild(TorrentialRain);
+		RavagingWinds = new(this);
+		AddChild(RavagingWinds);
+		ConsumingWinds = new(this);
+		AddChild(ConsumingWinds);
+		HardEnrage = new(this);
+		AddChild(HardEnrage);
 
 		FriendlyName = "THE BOSS";
 		Health.SetMax(10000);

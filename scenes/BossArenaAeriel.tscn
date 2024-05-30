@@ -31,6 +31,7 @@ axis_lock_angular_y = true
 axis_lock_angular_z = true
 
 [node name="Floor" type="MeshInstance3D" parent="FloorRigidBody"]
+layers = 1025
 mesh = SubResource("BoxMesh_1t4f2")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="FloorRigidBody"]

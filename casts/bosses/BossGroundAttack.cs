@@ -20,7 +20,7 @@ public partial class BossGroundAttack : BaseCast
 		};
 	}
 
-	protected override void CastStarted(CastTargetData targetData)
+	protected override void OnCastStarted(CastTargetData targetData)
 	{
 		var circle = this.CreateGroundCircularArea(targetData.Point);
 		circle.Radius = AreaRadius;
@@ -28,18 +28,18 @@ public partial class BossGroundAttack : BaseCast
 		circle.Alliance = UnitAlliance.Hostile;
 	}
 
-	protected override void CastOnPoint(Vector3 point)
+	protected override void OnCastCompleted(CastTargetData target)
 	{
 		var targets = BaseUnit.AllUnits
 		.Where(unit =>
 			unit.IsAlive
 			&& unit.Alliance.HostileTo(Parent.Alliance)
-			&& unit.Position.FlatDistanceTo(point) <= AreaRadius
-			&& unit.Position.VerticalDistanceTo(point) <= 1);
+			&& unit.Position.FlatDistanceTo(target.Point) <= AreaRadius
+			&& unit.Position.VerticalDistanceTo(target.Point) <= AreaRadius);
 
-		foreach (var target in targets)
+		foreach (var t in targets)
 		{
-			target.Health.Damage(5);
+			t.Health.Damage(5);
 		}
 	}
 }

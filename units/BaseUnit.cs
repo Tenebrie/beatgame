@@ -57,6 +57,14 @@ public abstract partial class BaseUnit : ComposableCharacterBody3D
 		if (unit != this || type != ObjectResourceType.Health || value > 0 || IsDead)
 			return;
 
+		Instakill();
+	}
+
+	public void Instakill()
+	{
+		if (IsDead)
+			return;
+
 		IsAlive = false;
 		QueueFree();
 		SignalBus.Singleton.EmitSignal(SignalBus.SignalName.UnitDestroyed, this);

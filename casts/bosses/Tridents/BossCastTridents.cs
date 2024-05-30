@@ -19,7 +19,7 @@ public partial class BossCastTridents : BaseCast
 			InputType = CastInputType.AutoRelease,
 			TargetType = CastTargetType.None,
 			TargetAlliances = new() { UnitAlliance.Hostile },
-			HoldTime = 2,
+			HoldTime = 4,
 			RecastTime = 0,
 		};
 
@@ -61,7 +61,7 @@ public partial class BossCastTridents : BaseCast
 		return list;
 	}
 
-	protected override void CastStarted(CastTargetData _)
+	protected override void OnCastStarted(CastTargetData _)
 	{
 		stateMachine.Start();
 		foreach (var (position, _) in GetSpawnPositions())
@@ -131,7 +131,7 @@ public partial class BossCastTridents : BaseCast
 		}
 	}
 
-	protected override void CastOnNone() { }
+	protected override void OnCastCompleted(CastTargetData _) { }
 
 	private enum State
 	{

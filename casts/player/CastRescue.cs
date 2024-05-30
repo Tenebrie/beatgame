@@ -16,11 +16,9 @@ public partial class CastRescue : BaseCast
 		};
 	}
 
-	protected override void CastOnUnit(BaseUnit target)
+	protected override void OnCastCompleted(CastTargetData target)
 	{
-		// target.ForcefulMovement.Push(target.Position.FlatDistanceTo(Parent.Position), Parent.Position - target.Position, 1);
-		// target.ForcefulMovement.Push(target.Position.FlatDistanceTo(Parent.Position), Parent.Position - target.Position, 1);
-		target.ForcefulMovement.Push(target.Position.FlatDistanceTo(Parent.Position), Parent.Position - target.Position, 1);
+		target.HostileUnit.ForcefulMovement.Push(target.HostileUnit.Position.FlatDistanceTo(Parent.Position), Parent.Position - target.HostileUnit.Position, 1);
 
 	}
 }
