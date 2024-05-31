@@ -9,6 +9,7 @@ public partial class BossCastLightningStorm : BaseCast
 	{
 		Settings = new()
 		{
+			FriendlyName = "Lightning Storm",
 			InputType = CastInputType.AutoRelease,
 			TargetType = CastTargetType.None,
 			HoldTime = 4,

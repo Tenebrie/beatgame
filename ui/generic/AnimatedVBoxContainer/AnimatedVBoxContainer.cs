@@ -7,6 +7,8 @@ namespace Project;
 [Tool]
 public partial class AnimatedVBoxContainer : Control
 {
+	[Export]
+	public Animation AnimationType = Animation.SlideLeft;
 	private float ChildrenCumulativeHeight;
 	private readonly Dictionary<Control, ChildState> childState = new();
 	public override void _EnterTree()
@@ -27,7 +29,10 @@ public partial class AnimatedVBoxContainer : Control
 			return;
 
 		childState.TryAdd(control, new ChildState() { Node = control, IsDespawning = false });
-		control.Position = new Vector2(-Size.X - 30, Size.Y - ChildrenCumulativeHeight - control.Size.Y);
+		var x = -Size.X - 30;
+		if (AnimationType == Animation.SlideRight)
+			x = Size.X + 30;
+		control.Position = new Vector2(x, Size.Y - ChildrenCumulativeHeight - control.Size.Y);
 		SetSize(control);
 	}
 
@@ -48,7 +53,6 @@ public partial class AnimatedVBoxContainer : Control
 		state.IsDespawning = true;
 	}
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
 		ChildrenCumulativeHeight = 0;
@@ -60,9 +64,13 @@ public partial class AnimatedVBoxContainer : Control
 				continue;
 
 			Vector2 targetPosition;
-			if (state.IsDespawning)
+			if (AnimationType == Animation.SlideLeft && state.IsDespawning)
 			{
-				targetPosition = new Vector2(-control.Size.X * 2, control.Position.Y);
+				targetPosition = new Vector2(-control.Size.X * 2 - 10, control.Position.Y);
+			}
+			else if (AnimationType == Animation.SlideRight && state.IsDespawning)
+			{
+				targetPosition = new Vector2(control.Size.X * 2 + 10, control.Position.Y);
 			}
 			else
 			{
@@ -71,7 +79,7 @@ public partial class AnimatedVBoxContainer : Control
 			}
 
 			control.Position = control.Position.Lerp(targetPosition, Math.Min(1, (float)delta * 5)).Lerp(targetPosition, Math.Min(1, (float)delta * 5));
-			if (state.IsDespawning && control.Position.X <= -control.Size.X * 2)
+			if (state.IsDespawning && (control.Position.X <= -control.Size.X * 2 || control.Position.X > control.Size.X * 2))
 				control.QueueFree();
 		}
 	}
@@ -86,5 +94,11 @@ public partial class AnimatedVBoxContainer : Control
 	{
 		public CanvasItem Node;
 		public bool IsDespawning;
+	}
+
+	public enum Animation
+	{
+		SlideLeft,
+		SlideRight,
 	}
 }

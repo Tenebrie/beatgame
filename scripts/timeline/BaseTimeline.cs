@@ -12,17 +12,24 @@ public partial class BaseTimeline<ParentT> : Node where ParentT : BaseUnit
 	public int CurrentElementIndex = 0;
 	public double EditorPointer = 0;
 
-	public CastTargetData targetData;
+	public CastTargetData targetData = new();
 
 	public BaseTimeline(ParentT parent)
 	{
 		Parent = parent;
 		Music.Singleton.BeatTick += OnBeatTick;
+		SignalBus.Singleton.UnitCreated += OnUnitCreated;
+	}
+
+	void OnUnitCreated(BaseUnit unit)
+	{
+		if (unit is PlayerController)
+			targetData.HostileUnit = unit;
 	}
 
 	public void Start()
 	{
-		targetData = new CastTargetData() { HostileUnit = PlayerController.AllPlayers[0], Point = PlayerController.AllPlayers[0].Position };
+		targetData.HostileUnit = PlayerController.AllPlayers[0];
 	}
 
 	public void OnBeatTick(BeatTime time)
@@ -47,7 +54,7 @@ public partial class BaseTimeline<ParentT> : Node where ParentT : BaseUnit
 		}
 	}
 
-	public void AdvanceTime(double beatIndex)
+	public void Wait(double beatIndex)
 	{
 		EditorPointer += beatIndex;
 	}
@@ -59,15 +66,17 @@ public partial class BaseTimeline<ParentT> : Node where ParentT : BaseUnit
 
 	public void Cast(double beatIndex, BaseCast cast, bool advance = true)
 	{
+		var targetIndex = beatIndex - 1 + EditorPointer;
+
 		var element = new TimelineElement
 		{
-			BeatIndex = beatIndex - 1 + EditorPointer,
+			BeatIndex = targetIndex,
 			Cast = cast
 		};
 		Elements.Add(element);
 
 		if (advance)
-			EditorPointer += beatIndex - 1 + cast.Settings.HoldTime;
+			EditorPointer += beatIndex - 1 + cast.Settings.HoldTime + cast.Settings.PrepareTime;
 	}
 
 	public void Act(Action action)

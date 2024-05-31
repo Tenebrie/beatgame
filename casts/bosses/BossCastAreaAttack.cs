@@ -1,8 +1,3 @@
-using System;
-using System.Diagnostics;
-using System.Linq;
-using Godot;
-
 namespace Project;
 public partial class BossCastAreaAttack : BaseCast
 {
@@ -12,9 +7,9 @@ public partial class BossCastAreaAttack : BaseCast
 	{
 		Settings = new()
 		{
+			FriendlyName = "Ground Slap",
 			TargetType = CastTargetType.Point,
 			InputType = CastInputType.AutoRelease,
-			TargetAlliances = new() { UnitAlliance.Hostile },
 			HoldTime = 8,
 			RecastTime = 0,
 		};

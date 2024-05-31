@@ -7,24 +7,24 @@ public partial class BaseCast : Node
 {
 	public class CastSettings
 	{
-		public string FriendlyName;
-		public CastInputType InputType = CastInputType.Instant;
+		public string FriendlyName = "Unnamed Spell";
 		public float HoldTime = 1; // beat
+		public CastInputType InputType = CastInputType.Instant;
 		public CastTargetType TargetType = CastTargetType.None;
-		public List<UnitAlliance> TargetAlliances = new() { UnitAlliance.Player, UnitAlliance.Neutral, UnitAlliance.Hostile };
 		public BeatTime CastTimings = BeatTime.One;
-		public BeatTime ReleaseTimings = BeatTime.All;
 		public BeatTime ChannelingTickTimings = 0;
 		public float RecastTime = .1f;
-		public bool CastOnFailedRelease = true;
-	}
+		public bool ReversedCastBar = false;
 
-	protected BaseCast()
-	{
-		Settings = new()
-		{
-			FriendlyName = this.ToString(),
-		};
+		/// <summary>Only for CastInputType.AutoRelease</summary>
+		public float PrepareTime = 0; // beats
+		/// <summary>Only for CastInputType.AutoRelease</summary>
+		public bool TickWhilePreparing = false;
+
+		/// <summary>Only for CastInputType.HoldRelease</summary>
+		public BeatTime ReleaseTimings = BeatTime.All;
+		/// <summary>Only for CastInputType.HoldRelease</summary>
+		public bool CastOnFailedRelease = true;
 	}
 
 	protected class CastFlags
@@ -35,6 +35,7 @@ public partial class BaseCast : Node
 	public Timer RecastTimerHandle;
 	public double CastStartedAt; // beat index
 	public bool IsCasting;
+	public bool IsPreparing;
 
 	public CastSettings Settings;
 
@@ -74,25 +75,24 @@ public partial class BaseCast : Node
 		if (!IsCasting)
 			return;
 
-		if ((time & Settings.ChannelingTickTimings) > 0)
-			OnCastTicked();
+		var nearestBeatIndex = Music.Singleton.GetNearestBeatIndex();
+		if ((time & Settings.ChannelingTickTimings) > 0 && (Settings.TickWhilePreparing || nearestBeatIndex > CastStartedAt + Settings.PrepareTime))
+			OnCastTicked(CastTargetData, time);
 
-		if (Settings.InputType == CastInputType.AutoRelease && Music.Singleton.GetNearestBeatIndex() == CastStartedAt + Settings.HoldTime)
+		if (Settings.PrepareTime > 0 && nearestBeatIndex == CastStartedAt + Settings.PrepareTime)
+			CastPrepare();
+
+		if (Settings.InputType == CastInputType.AutoRelease && nearestBeatIndex == CastStartedAt + Settings.PrepareTime + Settings.HoldTime)
 			CastPerform();
 	}
 
-	public bool ValidateTarget(BaseUnit target, out string errorMessage)
+	public bool ValidateTarget(CastTargetData target, out string errorMessage)
 	{
 		errorMessage = null;
 
-		if (Settings.TargetType == CastTargetType.HostileUnit && target == null)
+		if ((Settings.TargetType & CastTargetType.HostileUnit) > 0 && target.HostileUnit == null)
 		{
-			errorMessage = "Needs a target";
-			return false;
-		}
-		else if (Settings.TargetType == CastTargetType.HostileUnit && !Settings.TargetAlliances.Contains(target.Alliance))
-		{
-			errorMessage = "Can't target this unit";
+			errorMessage = "Needs a hostile target";
 			return false;
 		}
 
@@ -136,12 +136,20 @@ public partial class BaseCast : Node
 	public void CastBegin(CastTargetData targetData)
 	{
 		IsCasting = true;
+		if (Settings.PrepareTime > 0)
+			IsPreparing = true;
 		CastStartedAt = Music.Singleton.GetNearestBeatIndex();
 		CastTargetData = targetData;
 		SignalBus.Singleton.EmitSignal(SignalBus.SignalName.CastStarted, this);
 		OnCastStarted(targetData);
 		if (Settings.InputType == CastInputType.Instant || (Settings.InputType == CastInputType.AutoRelease && Settings.HoldTime == 0))
 			CastPerform();
+	}
+
+	public void CastPrepare()
+	{
+		IsPreparing = false;
+		OnPrepCompleted(CastTargetData);
 	}
 
 	public void CastPerform()
@@ -171,6 +179,7 @@ public partial class BaseCast : Node
 	}
 
 	protected virtual void OnCastStarted(CastTargetData _) { }
-	protected virtual void OnCastTicked() { }
+	protected virtual void OnCastTicked(CastTargetData _, BeatTime time) { }
+	protected virtual void OnPrepCompleted(CastTargetData _) { }
 	protected virtual void OnCastCompleted(CastTargetData _) { }
 }

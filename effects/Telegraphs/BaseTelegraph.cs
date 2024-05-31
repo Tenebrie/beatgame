@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 
 namespace Project;
@@ -11,10 +12,12 @@ public abstract partial class BaseTelegraph : Node3D
 	protected double finishesAt;
 	protected bool endReached;
 	protected bool cleaningUp;
-	protected UnitAlliance alliance = UnitAlliance.Neutral;
+	protected UnitAlliance alliance = UnitAlliance.Hostile;
 	public Action<BaseUnit> OnHostileImpactCallback = null;
 	public Action OnFinishedCallback = null;
+	public Func<BaseUnit, bool> TargetValidator = null;
 	public Action<BaseUnit> OnFinishedPerTargetCallback = null;
+	readonly List<BaseUnit> targets = new();
 
 	protected float GrowPercentage;
 
@@ -24,14 +27,7 @@ public abstract partial class BaseTelegraph : Node3D
 		set
 		{
 			alliance = value;
-			var color = new Color(255, 255, 0);
-
-			if (alliance == UnitAlliance.Player)
-				color = new Color(0, 0, 255);
-			else if (alliance == UnitAlliance.Hostile)
-				color = new Color(0.7f, 0.2f, 0);
-
-			SetColor(color);
+			UpdateColor();
 		}
 	}
 
@@ -49,6 +45,7 @@ public abstract partial class BaseTelegraph : Node3D
 	public override void _Ready()
 	{
 		finishesAt = createdAt + Music.Singleton.SecondsPerBeat * GrowTime * 1000;
+		UpdateColor();
 	}
 
 	public override void _Process(double delta)
@@ -62,12 +59,47 @@ public abstract partial class BaseTelegraph : Node3D
 			OnFinishedCallback?.Invoke();
 			if (OnFinishedPerTargetCallback != null)
 			{
-				foreach (var target in GetUnitsInside())
+				foreach (var target in GetTargets())
 					OnFinishedPerTargetCallback(target);
 			}
 			if (!Periodic)
 				CleanUp();
 		}
+	}
+
+	protected void OnBodyEntered(Node3D body)
+	{
+		if (body is not BaseUnit unit)
+			return;
+
+		targets.Add(unit);
+		if (unit.Alliance.HostileTo(Alliance))
+			OnHostileImpactCallback?.Invoke(unit);
+	}
+
+	protected void OnBodyExited(Node3D body)
+	{
+		if (body is not BaseUnit unit)
+			return;
+
+		targets.Remove(unit);
+	}
+
+	void UpdateColor()
+	{
+		var color = new Color(0, 0.7f, 0.7f);
+
+		if (alliance == UnitAlliance.Player)
+			color = new Color(0, 0.7f, 0);
+		else if (alliance == UnitAlliance.Hostile)
+			color = new Color(0.7f, 0.2f, 0);
+
+		SetColor(color);
+	}
+
+	public List<BaseUnit> GetTargets()
+	{
+		return targets.Distinct().Where(target => TargetValidator == null || TargetValidator(target)).ToList();
 	}
 
 	public void SnapToGround()
@@ -76,7 +108,6 @@ public abstract partial class BaseTelegraph : Node3D
 	}
 
 	protected abstract void SetColor(Color color);
-	public abstract List<BaseUnit> GetUnitsInside();
 
 	public virtual void CleanUp()
 	{

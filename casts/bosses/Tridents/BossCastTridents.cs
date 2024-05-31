@@ -16,9 +16,9 @@ public partial class BossCastTridents : BaseCast
 	{
 		Settings = new()
 		{
+			FriendlyName = "Tridents",
 			InputType = CastInputType.AutoRelease,
 			TargetType = CastTargetType.None,
-			TargetAlliances = new() { UnitAlliance.Hostile },
 			HoldTime = 4,
 			RecastTime = 0,
 		};
@@ -72,7 +72,7 @@ public partial class BossCastTridents : BaseCast
 			rect.Alliance = UnitAlliance.Hostile;
 			rect.OnFinishedCallback = () =>
 			{
-				foreach (var unit in rect.GetUnitsInside())
+				foreach (var unit in rect.GetTargets())
 				{
 					unit.Health.Damage(30);
 					unit.ForcefulMovement.Push(2, unit.Position - rect.Position, 0.5f);
@@ -89,9 +89,9 @@ public partial class BossCastTridents : BaseCast
 			foreach (var (position, rotation) in GetSpawnPositions())
 			{
 				var instance = trident.Instantiate<AnimatedTrident>();
-				GetTree().CurrentScene.AddChild(instance);
 				instance.Position = position;
 				instance.Rotate(Vector3.Up, rotation);
+				GetTree().CurrentScene.AddChild(instance);
 				tridents.Add(instance);
 			}
 		}
@@ -113,7 +113,7 @@ public partial class BossCastTridents : BaseCast
 				rect.Alliance = UnitAlliance.Hostile;
 				rect.OnFinishedCallback = () =>
 				{
-					foreach (var unit in rect.GetUnitsInside())
+					foreach (var unit in rect.GetTargets())
 					{
 						unit.Health.Damage(30);
 						unit.ForcefulMovement.Push(2, unit.Position - rect.Position, 0.5f);

@@ -10,7 +10,7 @@ public partial class PlayerSpawner : Node3D
 
 	public override void _Ready()
 	{
-		SignalBus.Singleton.ResourceChanged += OnResourceChanged;
+		SignalBus.Singleton.UnitDestroyed += OnUnitDestroyed;
 	}
 
 	public void SpawnPlayer()
@@ -22,13 +22,12 @@ public partial class PlayerSpawner : Node3D
 		Player = player;
 	}
 
-	public void OnResourceChanged(BaseUnit unit, ObjectResourceType type, float value)
+	public void OnUnitDestroyed(BaseUnit unit)
 	{
 		if (unit != Player)
 			return;
 
-		if (type == ObjectResourceType.Health && value == 0)
-			Player = null;
+		Player = null;
 	}
 
 	public override void _Process(double delta)

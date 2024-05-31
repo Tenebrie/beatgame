@@ -7,9 +7,9 @@ public partial class Fireblast : BaseCast
 	{
 		Settings = new()
 		{
+			FriendlyName = "Fireblast",
 			InputType = CastInputType.Instant,
 			TargetType = CastTargetType.HostileUnit,
-			TargetAlliances = new() { UnitAlliance.Hostile },
 			CastTimings = BeatTime.One | BeatTime.Half,
 			RecastTime = 0.1f,
 		};

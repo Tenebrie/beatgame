@@ -17,6 +17,9 @@ public static class ObjectExtensions
 	}
 	public static void Log(this Object _, object message)
 	{
-		Debug.WriteLine(message.ToString());
+		if (message == null)
+			Debug.WriteLine("null");
+		else
+			Debug.WriteLine(message.ToString());
 	}
 }

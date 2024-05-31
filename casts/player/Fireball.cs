@@ -7,9 +7,9 @@ public partial class Fireball : BaseCast
 	{
 		Settings = new()
 		{
+			FriendlyName = "Fireball",
 			InputType = CastInputType.AutoRelease,
 			TargetType = CastTargetType.HostileUnit,
-			TargetAlliances = new() { UnitAlliance.Hostile },
 			CastTimings = BeatTime.One | BeatTime.Half,
 			ReleaseTimings = BeatTime.One | BeatTime.Half,
 			HoldTime = 1,

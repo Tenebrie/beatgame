@@ -7,7 +7,7 @@ namespace Project;
 public partial class ObjectForcefulMovement : ComposableScript
 {
 	private List<Movement> Movements = new();
-	private List<ContinuousMovement> ContinuousMovements = new();
+	private readonly List<ContinuousMovement> ContinuousMovements = new();
 
 	public ObjectForcefulMovement(BaseUnit parent) : base(parent) { }
 
@@ -26,13 +26,14 @@ public partial class ObjectForcefulMovement : ComposableScript
 		});
 	}
 
-	public ContinuousMovement PushContinuously(float speed, Vector3 direction)
+	public ContinuousMovement PushContinuously(Func<float> speed, Func<Vector3> direction, Func<bool> condition = null)
 	{
 		var movement = new ContinuousMovement()
 		{
 			Unit = Parent,
 			Speed = speed,
-			Direction = direction.Normalized(),
+			Direction = direction,
+			Condition = condition,
 		};
 		ContinuousMovements.Add(movement);
 		return movement;
@@ -80,13 +81,18 @@ public partial class ObjectForcefulMovement : ComposableScript
 	{
 		public string ID = Guid.NewGuid().ToString();
 		public BaseUnit Unit;
-		public float Speed;
-		public Vector3 Direction;
+		public Func<float> Speed;
+		public Func<Vector3> Direction;
+		public Func<bool> Condition;
 
 		public void Apply(float delta)
 		{
-			var distancePerFrame = Speed * delta;
-			var movementVector = Direction * distancePerFrame;
+			var isActive = Condition?.Invoke();
+			if (isActive == false)
+				return;
+
+			var distancePerFrame = Speed() * delta;
+			var movementVector = Direction().Normalized() * distancePerFrame;
 			Unit.MoveAndCollide(movementVector);
 		}
 

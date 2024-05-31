@@ -16,27 +16,36 @@ public partial class TestBoss : BasicEnemyController
 	public TestBoss()
 	{
 		AutoAttack = new(this);
-		AddChild(AutoAttack);
+		CastLibrary.Register(AutoAttack);
+
 		AreaAttack = new(this);
-		AddChild(AreaAttack);
+		CastLibrary.Register(AreaAttack);
+
 		DeepGuardians = new(this);
 		DeepGuardiansTwo = new(this);
-		AddChild(DeepGuardians);
-		AddChild(DeepGuardiansTwo);
+		CastLibrary.Register(DeepGuardians);
+		CastLibrary.Register(DeepGuardiansTwo);
+
 		MidGuardians = new(this);
-		AddChild(MidGuardians);
+		CastLibrary.Register(MidGuardians);
+
 		AnimatedTridents = new(this);
-		AddChild(AnimatedTridents);
+		CastLibrary.Register(AnimatedTridents);
+
 		LightningStorm = new(this);
-		AddChild(LightningStorm);
+		CastLibrary.Register(LightningStorm);
+
 		TorrentialRain = new(this);
-		AddChild(TorrentialRain);
+		CastLibrary.Register(TorrentialRain);
+
 		RavagingWinds = new(this);
-		AddChild(RavagingWinds);
+		CastLibrary.Register(RavagingWinds);
+
 		ConsumingWinds = new(this);
-		AddChild(ConsumingWinds);
+		CastLibrary.Register(ConsumingWinds);
+
 		HardEnrage = new(this);
-		AddChild(HardEnrage);
+		CastLibrary.Register(HardEnrage);
 
 		FriendlyName = "THE BOSS";
 		Health.SetMax(10000);

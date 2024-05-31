@@ -18,7 +18,6 @@ public partial class BossCastMidGuardians : BaseCast
 		{
 			InputType = CastInputType.AutoRelease,
 			TargetType = CastTargetType.None,
-			TargetAlliances = new() { UnitAlliance.Hostile },
 			HoldTime = 4,
 			RecastTime = 0,
 		};
@@ -63,8 +62,6 @@ public partial class BossCastMidGuardians : BaseCast
 
 		if (SpawningGuardians)
 			SpawnGuardian();
-		else
-			ReleaseGuardian();
 	}
 
 	private void SpawnGuardian()
@@ -86,22 +83,19 @@ public partial class BossCastMidGuardians : BaseCast
 		rect.Length = 32;
 		rect.GrowTime = 4;
 		rect.LengthOrigin = GroundAreaRect.Origin.Start;
-		guardian.AttachRect(rect);
+
+		var forward = guardian.ForwardVector;
+		rect.TargetValidator = (target) => target.HostileTo(Parent);
+		rect.OnFinishedPerTargetCallback = (BaseUnit target) =>
+		{
+			target.Health.Damage(50);
+			target.ForcefulMovement.Push(8, forward, 1);
+		};
+		rect.OnFinishedCallback = () => guardian.QueueFree();
 
 		AdvanceOrientation();
 
 		if (GuardianQueue.Count >= 2)
 			SpawningGuardians = false;
 	}
-
-	private void ReleaseGuardian()
-	{
-		if (GuardianQueue.Count == 0)
-			return;
-
-		var guardian = GuardianQueue.Dequeue();
-		guardian.Activate();
-	}
-
-	protected override void OnCastCompleted(CastTargetData _) { }
 }

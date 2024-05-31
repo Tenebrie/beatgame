@@ -1,13 +1,11 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using Godot;
 
 namespace Project;
 public partial class BossCastDeepGuardians : BaseCast
 {
 	private bool SpawningGuardians;
-	private readonly Queue<DeepGuardian> GuardianQueue = new();
+	private int GuardianCount;
 
 	public ArenaFacing Orientation;
 	public bool Mirrored;
@@ -16,15 +14,18 @@ public partial class BossCastDeepGuardians : BaseCast
 	{
 		Settings = new()
 		{
+			FriendlyName = "Deep Guardians",
 			InputType = CastInputType.AutoRelease,
 			TargetType = CastTargetType.None,
-			TargetAlliances = new() { UnitAlliance.Hostile },
-			HoldTime = 8,
+			ChannelingTickTimings = BeatTime.One,
+			TickWhilePreparing = true,
+			HoldTime = 4,
 			RecastTime = 0,
+			PrepareTime = 4,
 		};
 	}
 
-	public void RandomizeOrientation()
+	public void Reset()
 	{
 		Orientation = (ArenaFacing)(Math.Abs((int)GD.Randi()) % 4);
 		Mirrored = GD.Randf() < 0.5f;
@@ -43,37 +44,28 @@ public partial class BossCastDeepGuardians : BaseCast
 	public override void _EnterTree()
 	{
 		base._EnterTree();
-		Music.Singleton.BeatTick += OnBeatTick;
-		GuardianQueue.EnsureCapacity(4);
 	}
 
 	protected override void OnCastStarted(CastTargetData _)
 	{
+		GuardianCount = 0;
 		SpawningGuardians = true;
-		SpawnGuardian();
 	}
 
-	private void OnBeatTick(BeatTime time)
+	protected override void OnCastTicked(CastTargetData targetData, BeatTime time)
 	{
-		if (time != BeatTime.One || !IsCasting)
-			return;
-
 		if (SpawningGuardians)
 			SpawnGuardian();
-		else
-			ReleaseGuardian();
 	}
 
 	private void SpawnGuardian()
 	{
-		var index = GuardianQueue.Count;
 		var guardian = Lib.Scene(Lib.Token.DeepGuardian).Instantiate<DeepGuardian>();
+		var effectiveIndex = (GuardianCount - 1.5f) * (Mirrored ? -1 : 1);
+		guardian.Position = this.GetArenaEdgePosition(new Vector3(0.5f * effectiveIndex, 0, 0), Orientation);
 		GetTree().CurrentScene.AddChild(guardian);
 
-		var effectiveIndex = (index - 1.5f) * (Mirrored ? -1 : 1);
-		guardian.Position = this.GetArenaEdgePosition(new Vector3(0.5f * effectiveIndex, 0, 0), Orientation);
-
-		GuardianQueue.Enqueue(guardian);
+		GuardianCount += 1;
 
 		var rect = this.CreateGroundRectangularArea(guardian.Position);
 
@@ -84,20 +76,17 @@ public partial class BossCastDeepGuardians : BaseCast
 		rect.Length = 32;
 		rect.GrowTime = 4;
 		rect.LengthOrigin = GroundAreaRect.Origin.Start;
-		guardian.AttachRect(rect);
 
-		if (GuardianQueue.Count >= 4)
+		var forward = guardian.ForwardVector;
+		rect.TargetValidator = (target) => target.HostileTo(Parent);
+		rect.OnFinishedPerTargetCallback = (BaseUnit target) =>
+		{
+			target.Health.Damage(50);
+			target.ForcefulMovement.Push(8, forward, 1);
+		};
+		rect.OnFinishedCallback = () => guardian.QueueFree();
+
+		if (GuardianCount >= 4)
 			SpawningGuardians = false;
 	}
-
-	private void ReleaseGuardian()
-	{
-		if (GuardianQueue.Count == 0)
-			return;
-
-		var guardian = GuardianQueue.Dequeue();
-		guardian.Activate();
-	}
-
-	protected override void OnCastCompleted(CastTargetData _) { }
 }

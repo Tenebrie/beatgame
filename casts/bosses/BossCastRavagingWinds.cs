@@ -14,17 +14,19 @@ public partial class BossCastRavagingWinds : BaseCast
 	{
 		Settings = new()
 		{
+			FriendlyName = "Ravaging Winds",
 			TargetType = CastTargetType.None,
 			InputType = CastInputType.AutoRelease,
-			HoldTime = 16,
+			HoldTime = 14,
 			RecastTime = 0,
+			PrepareTime = 2,
 			ChannelingTickTimings = BeatTime.One,
 		};
 	}
 
-	protected override void OnCastStarted(CastTargetData targetData)
+	protected override void OnPrepCompleted	(CastTargetData targetData)
 	{
-		OnCastTicked();
+		OnCastTicked(targetData, BeatTime.One);
 	}
 
 	List<(Vector3 pos, float size)> GetSpawnPositions()
@@ -46,7 +48,7 @@ public partial class BossCastRavagingWinds : BaseCast
 		return list;
 	}
 
-	protected override void OnCastTicked()
+	protected override void OnCastTicked(CastTargetData targetData, BeatTime time)
 	{
 		var spawns = GetSpawnPositions();
 		List<GroundAreaCircle> circleGroup = new();
@@ -61,13 +63,13 @@ public partial class BossCastRavagingWinds : BaseCast
 		}
 		circleGroup[0].OnFinishedCallback = () =>
 		{
-			var targets = circleGroup.SelectMany(circle => circle.GetUnitsInside()).Distinct().Where(unit => unit.HostileTo(Parent));
+			var targets = circleGroup.SelectMany(circle => circle.GetTargets()).Distinct().Where(unit => unit.HostileTo(Parent));
 			foreach (var target in targets)
 			{
 				target.Health.Damage(30);
 				target.ForcefulMovement.Push(2, target.Position - Parent.Position, 0.5f);
 			}
 		};
-		Rotation += (float)Math.PI * 2 / 16;
+		Rotation += (float)Math.PI * 2 / Settings.HoldTime;
 	}
 }

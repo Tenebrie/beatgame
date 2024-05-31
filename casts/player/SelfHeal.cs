@@ -8,6 +8,7 @@ public partial class SelfHeal : BaseCast
 	{
 		Settings = new()
 		{
+			FriendlyName = "Self Heal",
 			InputType = CastInputType.HoldRelease,
 			TargetType = CastTargetType.None,
 			CastTimings = BeatTime.One,

@@ -12,6 +12,7 @@ public abstract partial class BaseUnit : ComposableCharacterBody3D
 	public ObjectResource Mana;
 	public ObjectTargetable Targetable;
 	public ObjectForcefulMovement ForcefulMovement;
+	public ObjectCastLibrary CastLibrary;
 
 	[Export]
 	public UnitAlliance Alliance = UnitAlliance.Neutral;
@@ -33,11 +34,13 @@ public abstract partial class BaseUnit : ComposableCharacterBody3D
 		Mana = new ObjectResource(this, ObjectResourceType.Mana, max: 0);
 		Targetable = new ObjectTargetable(this);
 		ForcefulMovement = new ObjectForcefulMovement(this);
+		CastLibrary = new ObjectCastLibrary(this);
 
 		Composables.Add(Health);
 		Composables.Add(Mana);
 		Composables.Add(Targetable);
 		Composables.Add(ForcefulMovement);
+		Composables.Add(CastLibrary);
 	}
 
 	public Vector3 ForwardVector { get => -GlobalTransform.Basis.Z.Normalized(); }

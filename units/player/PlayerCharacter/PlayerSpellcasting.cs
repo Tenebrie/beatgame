@@ -27,7 +27,7 @@ public class PlayerSpellcasting : ComposableScript
 	public void Bind(string input, BaseCast cast)
 	{
 		CastBindings.Add(input, cast);
-		Parent.AddChild(cast);
+		Parent.CastLibrary.Register(cast);
 		SignalBus.Singleton.EmitSignal(SignalBus.SignalName.CastAssigned, cast, input);
 	}
 
@@ -48,7 +48,14 @@ public class PlayerSpellcasting : ComposableScript
 			if (!binding)
 				return;
 
-			var isValidTarget = cast.ValidateTarget(Parent.Targeting.targetedUnit, out var errorMessage);
+			var targetData = new CastTargetData()
+			{
+				AlliedUnit = Parent.Targeting.targetedUnit,
+				HostileUnit = Parent.Targeting.targetedUnit,
+				Point = Parent.Position, // TODO: Implement ground targeting
+			};
+
+			var isValidTarget = cast.ValidateTarget(targetData, out var errorMessage);
 			if (!isValidTarget)
 			{
 				Debug.WriteLine(errorMessage);
@@ -69,13 +76,6 @@ public class PlayerSpellcasting : ComposableScript
 				{
 					CastRelease(currentCastingSpell, beatIndex);
 				}
-
-				var targetData = new CastTargetData()
-				{
-					AlliedUnit = Parent.Targeting.targetedUnit,
-					HostileUnit = Parent.Targeting.targetedUnit,
-					Point = Parent.Position, // TODO: Implement ground targeting
-				};
 
 				cast.CastBegin(targetData);
 			}

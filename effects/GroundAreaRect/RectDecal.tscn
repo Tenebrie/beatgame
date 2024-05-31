@@ -1,0 +1,144 @@
+[gd_scene load_steps=5 format=3 uid="uid://tk3jful5lm6r"]
+
+[ext_resource type="Script" path="res://effects/GroundAreaRect/RectDecal.cs" id="1_nsbf3"]
+
+[sub_resource type="Shader" id="Shader_inner_fxf2a"]
+code = "shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_schlick_ggx;
+
+instance uniform float COLOR_R : hint_range(0.0, 1.0) = 0;
+instance uniform float COLOR_G : hint_range(0.0, 1.0) = 1;
+instance uniform float COLOR_B : hint_range(0.0, 1.0) = 1;
+instance uniform float PROGRESS : hint_range(0.0, 1.0) = 0.5;
+instance uniform float SIZE_X : hint_range(0.01, 10.0) = 0.5;
+instance uniform float SIZE_Z : hint_range(0.01, 10.0) = 0.5;
+instance uniform float OUTER_WIDTH : hint_range(0.02, 0.10) = 0.05;
+instance uniform float FADE : hint_range(0.0, 1.0) = 1;
+instance uniform float CULL_DIST = 0;
+
+void fragment()
+{
+	ALPHA = 0.05;
+	bool transparent = false;
+	float smoothOver = 0.015;
+	float prog = PROGRESS;
+	vec3 world = (INV_VIEW_MATRIX * vec4(VERTEX, 1.0)).xyz;
+	vec3 pos = (vec4((world - NODE_POSITION_WORLD), 1.0) * MODEL_MATRIX).xyz;
+	float outerStartX = SIZE_X - OUTER_WIDTH;
+	float outerStartZ = SIZE_Z - OUTER_WIDTH;
+	bool leftRightEdge = (abs(pos.x) >= outerStartX && abs(pos.x) <= SIZE_X);
+	bool topBottomEdge = (abs(pos.z) >= outerStartZ && abs(pos.z) <= SIZE_Z);
+	
+	bool innerLeftRight = abs(pos.x) <= prog * SIZE_X;
+	bool innerTopBottom = abs(pos.z) <= prog * SIZE_Z;
+	bool innerCircle = (innerTopBottom && innerLeftRight);
+	if (topBottomEdge && leftRightEdge && !innerCircle)
+	{
+		float d1 = (abs(pos.x) - SIZE_X + OUTER_WIDTH) / OUTER_WIDTH;
+		float d2 = (abs(pos.z) - SIZE_Z + OUTER_WIDTH) / OUTER_WIDTH;
+		float d3 = sqrt(d1 * d1 + d2 * d2);
+		if (d3 < 0.5)
+		{
+			ALBEDO = vec3(COLOR_R, COLOR_G, COLOR_B);
+			ALPHA = max(0.05, d3 * 2.0);
+		}
+		else
+		{
+			float a = (1.0 - d3) * 2.0;
+			ALBEDO = vec3(a * COLOR_R, a * COLOR_G, a * COLOR_B);
+			ALPHA = max(0.0, (1.0 - d3) * 2.0);
+		}
+		transparent = true;
+	}
+	else if (leftRightEdge && !innerCircle)
+	{
+		float d2 = (abs(pos.x) - SIZE_X + OUTER_WIDTH) / OUTER_WIDTH;
+		if (d2 < 0.5)
+		{
+			ALBEDO = vec3(COLOR_R, COLOR_G, COLOR_B);
+			ALPHA = d2 * 2.0;
+		}
+		else
+		{
+			float a = (1.0 - d2) * 2.0;
+			ALBEDO = vec3(a * COLOR_R, a * COLOR_G, a * COLOR_B);
+			ALPHA = (1.0 - d2) * 2.0;
+		}
+	}
+	else if (topBottomEdge && !innerCircle)
+	{
+		float d2 = (abs(pos.z) - SIZE_Z + OUTER_WIDTH) / OUTER_WIDTH;
+		if (d2 < 0.5)
+		{
+			ALBEDO = vec3(COLOR_R, COLOR_G, COLOR_B);
+			ALPHA = d2 * 2.0;
+		}
+		else
+		{
+			float a = (1.0 - d2) * 2.0;
+			ALBEDO = vec3(a * COLOR_R, a * COLOR_G, a * COLOR_B);
+			ALPHA = (1.0 - d2) * 2.0;
+		}
+	}
+	else if (innerCircle && !leftRightEdge && !topBottomEdge)
+	{
+		float d2 = (abs(pos.z) - prog * SIZE_Z + smoothOver) / smoothOver;
+		float toLimit = prog - d2;
+		ALBEDO = vec3(COLOR_R, COLOR_G, COLOR_B);
+		ALPHA = min(1, toLimit) * 0.5; 
+		
+		float d3 = (abs(pos.x) - prog * SIZE_X + smoothOver) / smoothOver;
+		float toLimit2 = prog - d3;
+		ALBEDO *= vec3(COLOR_R, COLOR_G, COLOR_B);
+		ALPHA *= max(0, min(1, toLimit2) * 0.5);
+	}
+	else if (innerCircle)
+	{
+		float d1 = leftRightEdge ? (abs(pos.x) - SIZE_X + OUTER_WIDTH) / OUTER_WIDTH : 0.0;
+		float d2 = topBottomEdge ? (abs(pos.z) - SIZE_Z + OUTER_WIDTH) / OUTER_WIDTH : 0.0;
+		float d3 = sqrt(d1 * d1 + d2 * d2);
+		if (d3 < 0.5)
+		{
+			ALBEDO = vec3(COLOR_R, COLOR_G, COLOR_B);
+			ALPHA = 1.0;
+		}
+		else
+		{
+			float a = (1.0 -d3) * 2.0;
+			float b = d3 * 2.0 * a + (1.0 - d3) * 2.0;
+			ALBEDO = vec3(b * COLOR_R, b * COLOR_G, b * COLOR_B);
+			ALPHA = max(0, a);
+		}
+		
+		transparent = true;
+	}
+	
+	ALBEDO = ALBEDO * vec3(COLOR_R * 0.5, COLOR_G * 0.5, COLOR_B * 0.5);
+	if (!transparent)
+		ALPHA = max(ALPHA, float(0.05));
+	EMISSION = ALBEDO * 2.0;
+	ALPHA *= FADE;
+	
+	if (abs(pos.x) > SIZE_X || abs(pos.z) > SIZE_Z)
+	{
+		ALPHA = 0.0;
+	}
+	
+	if (CULL_DIST > 0.0 && (world.x > CULL_DIST || world.x < -CULL_DIST || world.z > CULL_DIST || world.z < -CULL_DIST))
+	{
+		ALPHA = 0.0;
+	}
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nrq6q"]
+render_priority = 0
+shader = SubResource("Shader_inner_fxf2a")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_8pqm6"]
+material = SubResource("ShaderMaterial_nrq6q")
+size = Vector2(1, 1)
+
+[node name="RectDecal" type="MeshInstance3D"]
+mesh = SubResource("PlaneMesh_8pqm6")
+script = ExtResource("1_nsbf3")

@@ -24,6 +24,7 @@ public class EffectLibrary
 public class UILibrary
 {
 	public string UnitCard = "res://ui/generic/UnitCard/UnitCard.tscn";
+	public string CastBar = "res://ui/screens/combat/CastBar/CastBar.tscn";
 	public string ActionButton = "res://ui/generic/ActionPanel/ActionButton.tscn";
 	public string MessageListMessage = "res://ui/generic/MessageList/Message.tscn";
 }

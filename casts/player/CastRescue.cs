@@ -7,9 +7,9 @@ public partial class CastRescue : BaseCast
 	{
 		Settings = new()
 		{
+			FriendlyName = "Rescue",
 			InputType = CastInputType.Instant,
 			TargetType = CastTargetType.AlliedUnit,
-			TargetAlliances = new() { UnitAlliance.Player },
 			CastTimings = BeatTime.Free,
 			HoldTime = 0,
 			RecastTime = 1,

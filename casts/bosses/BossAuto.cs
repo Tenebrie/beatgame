@@ -7,9 +7,9 @@ public partial class BossAuto : BaseCast
 	{
 		Settings = new()
 		{
+			FriendlyName = "Zap",
 			InputType = CastInputType.AutoRelease,
 			TargetType = CastTargetType.HostileUnit,
-			TargetAlliances = new() { UnitAlliance.Hostile },
 			HoldTime = 0.5f,
 			RecastTime = 0,
 		};

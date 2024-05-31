@@ -13,7 +13,6 @@ public partial class BossCastHardEnrage : BaseCast
 			FriendlyName = "Destruction of the Universe",
 			TargetType = CastTargetType.None,
 			InputType = CastInputType.AutoRelease,
-			TargetAlliances = new() { UnitAlliance.Hostile },
 			HoldTime = 16,
 			RecastTime = 0,
 		};

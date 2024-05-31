@@ -16,9 +16,11 @@ public partial class BossCastTorrentialRain : BaseCast
 	{
 		Settings = new()
 		{
+			FriendlyName = "Torrential Rain",
 			InputType = CastInputType.AutoRelease,
 			TargetType = CastTargetType.None,
-			HoldTime = 8,
+			HoldTime = 6,
+			PrepareTime = 2,
 			RecastTime = 0,
 		};
 	}
@@ -26,7 +28,7 @@ public partial class BossCastTorrentialRain : BaseCast
 	List<Vector3> GetSpawnPositions()
 	{
 		var list = new List<Vector3>();
-		var targets = BaseUnit.AllUnits.Where(unit => unit.Alliance.HostileTo(Parent.Alliance)).ToList();
+		var targets = BaseUnit.AllUnits.Where(unit => unit.HostileTo(Parent)).ToList();
 		foreach (var facing in CastUtils.AllArenaFacings())
 		{
 			list.Add(this.GetArenaEdgePosition(new Vector3(GD.Randf() * 2 - 1, 0, GD.Randf()), facing));
@@ -40,7 +42,7 @@ public partial class BossCastTorrentialRain : BaseCast
 	{
 		base._Process(delta);
 		ApplyDamage();
-		if (!IsCasting)
+		if (!IsCasting || IsPreparing)
 			return;
 
 		dropletsExpected += 200 * (float)delta;

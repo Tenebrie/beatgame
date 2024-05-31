@@ -19,32 +19,11 @@ public partial class TestBossTimeline : BaseTimeline<TestBoss>
 			rect.Periodic = true;
 		});
 
-		Cast(parent.AutoAttack);
-		Cast(parent.AutoAttack);
-		Cast(parent.AutoAttack);
-		Cast(parent.AutoAttack);
-
-		Cast(parent.TorrentialRain);
-
-		Cast(parent.AutoAttack);
-		Cast(parent.AutoAttack);
-		Cast(parent.AutoAttack);
-		Cast(parent.AutoAttack);
-
-		Cast(parent.ConsumingWinds);
-
-		Cast(parent.AutoAttack);
-		Cast(parent.AutoAttack);
-		Cast(parent.AutoAttack);
-		Cast(parent.AutoAttack);
+		Cast(parent.RavagingWinds);
 
 		Cast(parent.AnimatedTridents);
 
-		Cast(parent.AutoAttack);
-		Cast(parent.AutoAttack);
-		Cast(parent.AutoAttack);
-		Cast(parent.AutoAttack);
-
+		Act(() => parent.AreaAttack.Settings.HoldTime = 4);
 		Target(new Vector3(0, 0, 0), allowMultitarget: true);
 		Target(new Vector3(+16, 0, 0), allowMultitarget: true);
 		Target(new Vector3(-16, 0, 0), allowMultitarget: true);
@@ -52,35 +31,84 @@ public partial class TestBossTimeline : BaseTimeline<TestBoss>
 		Target(new Vector3(0, 0, -16), allowMultitarget: true);
 		Cast(parent.AreaAttack);
 
-		Cast(parent.AutoAttack);
-		Cast(parent.AutoAttack);
-		Cast(parent.AutoAttack);
-		Cast(parent.AutoAttack);
+		Act(() => parent.DeepGuardians.Reset());
+		Cast(parent.DeepGuardians, advance: false);
+
+		Wait(4);
+
+		Act(() => parent.DeepGuardiansTwo.Orientation = parent.DeepGuardians.Orientation);
+		Act(() => parent.DeepGuardiansTwo.AdvanceOrientation());
+		Cast(parent.DeepGuardiansTwo);
 
 		Cast(parent.ConsumingWinds);
 
+		Wait(1);
 		Cast(parent.AutoAttack);
 		Cast(parent.AutoAttack);
 		Cast(parent.AutoAttack);
 		Cast(parent.AutoAttack);
+		Wait(1);
 
-		Act(() => parent.DeepGuardians.RandomizeOrientation());
+		Cast(parent.TorrentialRain);
+
+		Wait(1);
+		Cast(parent.AutoAttack);
+		Cast(parent.AutoAttack);
+		Cast(parent.AutoAttack);
+		Cast(parent.AutoAttack);
+		Wait(1);
+
+
+		Wait(1);
+		Cast(parent.AutoAttack);
+		Cast(parent.AutoAttack);
+		Cast(parent.AutoAttack);
+		Cast(parent.AutoAttack);
+		Wait(1);
+
+		Wait(1);
+		Cast(parent.AutoAttack);
+		Cast(parent.AutoAttack);
+		Cast(parent.AutoAttack);
+		Cast(parent.AutoAttack);
+		Wait(1);
+
+		Cast(parent.ConsumingWinds);
+
+		Wait(1);
+		Cast(parent.AutoAttack);
+		Cast(parent.AutoAttack);
+		Cast(parent.AutoAttack);
+		Cast(parent.AutoAttack);
+		Wait(1);
+
+		Act(() => parent.DeepGuardians.Reset());
+		Act(() => parent.DeepGuardiansTwo.Reset());
 		Cast(parent.DeepGuardians, advance: false);
-		AdvanceTime(4);
-		Act(5, () => parent.DeepGuardiansTwo.Orientation = parent.DeepGuardians.Orientation);
-		Act(5, () => parent.DeepGuardiansTwo.AdvanceOrientation());
-		Cast(5, parent.DeepGuardiansTwo, advance: false);
-		AdvanceTime(4);
 
+		Wait(1);
 		Cast(parent.AutoAttack);
 		Cast(parent.AutoAttack);
 		Cast(parent.AutoAttack);
 		Cast(parent.AutoAttack);
 
+		Act(() => parent.DeepGuardiansTwo.Orientation = parent.DeepGuardians.Orientation);
+		Act(() => parent.DeepGuardiansTwo.AdvanceOrientation());
+		Cast(parent.DeepGuardiansTwo, advance: false);
+
+		Wait(1);
 		Cast(parent.AutoAttack);
 		Cast(parent.AutoAttack);
 		Cast(parent.AutoAttack);
 		Cast(parent.AutoAttack);
+		Wait(1);
+
+		Wait(1);
+		Cast(parent.AutoAttack);
+		Cast(parent.AutoAttack);
+		Cast(parent.AutoAttack);
+		Cast(parent.AutoAttack);
+		Wait(1);
 
 		Cast(parent.TorrentialRain);
 		Cast(parent.TorrentialRain);

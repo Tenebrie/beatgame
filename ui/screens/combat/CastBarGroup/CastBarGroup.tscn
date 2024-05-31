@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cvvveopdhteji"]
+
+[ext_resource type="Script" path="res://ui/screens/combat/CastBarGroup/CastBarGroup.cs" id="1_ctdc3"]
+[ext_resource type="PackedScene" uid="uid://dyblv08pi4qtc" path="res://ui/screens/combat/CastBar/CastBar.tscn" id="1_d11qn"]
+
+[node name="CastBarGroup" type="VBoxContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_ctdc3")
+
+[node name="CastBar" parent="." instance=ExtResource("1_d11qn")]
+layout_mode = 2
+
+[node name="CastBar2" parent="." instance=ExtResource("1_d11qn")]
+layout_mode = 2

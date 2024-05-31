@@ -13,4 +13,9 @@ public static class Vector3Extensions
 	{
 		return Math.Abs(a.Y - b.Y);
 	}
+
+	public static Vector3 Flatten(this Vector3 a, float height)
+	{
+		return new Vector3(a.X, height, a.Z);
+	}
 }

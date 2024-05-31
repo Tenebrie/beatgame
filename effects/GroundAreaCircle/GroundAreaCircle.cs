@@ -11,7 +11,6 @@ public partial class GroundAreaCircle : BaseTelegraph
 	// private Decal outerCircle;
 	private CircleDecal decal;
 	private Area3D hitbox;
-	private CollisionShape3D hitboxCollision;
 
 	private float radius = .5f;
 
@@ -32,38 +31,19 @@ public partial class GroundAreaCircle : BaseTelegraph
 
 	public override void _Ready()
 	{
-		base._Ready();
 		hitbox = GetNode<Area3D>("Hitbox");
-		hitboxCollision = GetNode<CollisionShape3D>("Hitbox/CollisionShape3D");
 		decal = GetNode<CircleDecal>("CircleDecal");
 
 		hitbox.BodyEntered += OnBodyEntered;
+		hitbox.BodyExited += OnBodyExited;
+
+		base._Ready();
 	}
 
 	public override void _Process(double delta)
 	{
 		base._Process(delta);
 		decal.SetInstanceShaderParameter("PROGRESS", GrowPercentage);
-	}
-
-	private void OnBodyEntered(Node3D body)
-	{
-		if (body is not BaseUnit unit)
-			return;
-
-		if (unit.Alliance.HostileTo(Alliance))
-			OnHostileImpactCallback?.Invoke(unit);
-	}
-
-	public override List<BaseUnit> GetUnitsInside()
-	{
-		return BaseUnit.AllUnits.Where(unit =>
-		{
-			if (unit.Position.VerticalDistanceTo(Position) > 1)
-				return false;
-
-			return unit.Position.FlatDistanceTo(Position) < radius;
-		}).ToList();
 	}
 
 	private void UpdateRadius()

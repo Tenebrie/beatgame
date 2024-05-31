@@ -11,21 +11,4 @@ public partial class DeepGuardian : BasicEnemyController
 		Gravity = 0;
 		Alliance = UnitAlliance.Hostile;
 	}
-
-	public void AttachRect(GroundAreaRect rect)
-	{
-		castRect = rect;
-	}
-
-	public void Activate()
-	{
-		var targets = castRect.GetUnitsInside().Where(unit => unit.Alliance.HostileTo(Alliance));
-		foreach (var target in targets)
-		{
-			target.Health.Damage(50);
-			target.ForcefulMovement.Push(8, ForwardVector, 1);
-		}
-
-		QueueFree();
-	}
 }
