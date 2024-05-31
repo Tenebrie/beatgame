@@ -56,7 +56,7 @@ void fragment()
 		else
 		{
 			float a = (1.0 - d2) * 2.0;
-			float b = d2 * 2.0 * a + (1.0 - d2) * 2.0;
+			float b = min(1, d2 * 2.0 * a + (1.0 - d2) * 2.0);
 			ALBEDO = vec3(b * COLOR_R, b * COLOR_G, b * COLOR_B);
 			ALPHA = a;
 			

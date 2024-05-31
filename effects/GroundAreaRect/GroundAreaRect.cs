@@ -12,6 +12,7 @@ public partial class GroundAreaRect : BaseTelegraph
 
 	private float width = 1;
 	private float length = 1;
+	private float height = 2;
 	private float rotation = 0;
 	private Origin lengthOrigin = Origin.Center;
 
@@ -44,6 +45,7 @@ public partial class GroundAreaRect : BaseTelegraph
 			if (value == Origin.Start)
 			{
 				decal.Position = new Vector3(decal.Position.X, decal.Position.Y, decal.Position.Z - Length / 2);
+				collisionShape.Position = new Vector3(collisionShape.Position.X, collisionShape.Position.Y, collisionShape.Position.Z - Length / 2);
 			}
 		}
 	}
@@ -53,16 +55,17 @@ public partial class GroundAreaRect : BaseTelegraph
 		createdAt = Time.GetTicksMsec();
 	}
 
-	public override void _Ready()
+	public override void _EnterTree()
 	{
 		hitbox = GetNode<Area3D>("Hitbox");
 		decal = GetNode<RectDecal>("RectDecal");
 		collisionShape = GetNode<CollisionShape3D>("Hitbox/CollisionShape3D");
+		collisionShape.Shape = (Shape3D)collisionShape.Shape.Duplicate();
 
 		hitbox.BodyEntered += OnBodyEntered;
 		hitbox.BodyExited += OnBodyExited;
 
-		base._Ready();
+		base._EnterTree();
 	}
 
 	public override void _Process(double delta)
@@ -74,10 +77,16 @@ public partial class GroundAreaRect : BaseTelegraph
 	private void UpdateSize()
 	{
 		// Scale = new Vector3(width * 2, 1, length * 2);
-		(decal.Mesh as PlaneMesh).Size = new Vector2(width * 2, length * 2);
-		(collisionShape.Shape as BoxShape3D).Size = new Vector3(width, width + length, length);
+		(decal.Mesh as PlaneMesh).Size = new Vector2(32, 32);
+		(collisionShape.Shape as BoxShape3D).Size = new Vector3(width, height, length);
 		decal.SetInstanceShaderParameter("SIZE_X", width / 2);
 		decal.SetInstanceShaderParameter("SIZE_Z", length / 2);
+	}
+
+	public void SetHeight(float value)
+	{
+		this.height = value;
+		UpdateSize();
 	}
 
 	protected override void SetColor(Color color)

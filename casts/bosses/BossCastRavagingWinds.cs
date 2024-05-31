@@ -34,16 +34,17 @@ public partial class BossCastRavagingWinds : BaseCast
 		var list = new List<(Vector3 pos, float size)>();
 		foreach (var facing in CastUtils.AllArenaFacings())
 		{
-			list.Add((this.GetArenaEdgePosition(new Vector3(0, 0, 0.00f), facing), 1.0f));
-			list.Add((this.GetArenaEdgePosition(new Vector3(0, 0, 0.10f), facing), 1.0f));
-			list.Add((this.GetArenaEdgePosition(new Vector3(0, 0, 0.20f), facing), 0.9f));
-			list.Add((this.GetArenaEdgePosition(new Vector3(0, 0, 0.30f), facing), 0.8f));
-			list.Add((this.GetArenaEdgePosition(new Vector3(0, 0, 0.40f), facing), 0.7f));
-			list.Add((this.GetArenaEdgePosition(new Vector3(0, 0, 0.50f), facing), 0.6f));
-			list.Add((this.GetArenaEdgePosition(new Vector3(0, 0, 0.60f), facing), 0.5f));
-			list.Add((this.GetArenaEdgePosition(new Vector3(0, 0, 0.70f), facing), 0.4f));
-			list.Add((this.GetArenaEdgePosition(new Vector3(0, 0, 0.80f), facing), 0.3f));
-			list.Add((this.GetArenaEdgePosition(new Vector3(0, 0, 0.90f), facing), 0.3f));
+			list.Add((this.GetArenaEdgePosition(new Vector3(0, 0, -0.10f), facing), 1.2f));
+			list.Add((this.GetArenaEdgePosition(new Vector3(0, 0, +0.00f), facing), 1.1f));
+			list.Add((this.GetArenaEdgePosition(new Vector3(0, 0, +0.10f), facing), 1.0f));
+			list.Add((this.GetArenaEdgePosition(new Vector3(0, 0, +0.20f), facing), 0.9f));
+			list.Add((this.GetArenaEdgePosition(new Vector3(0, 0, +0.30f), facing), 0.8f));
+			list.Add((this.GetArenaEdgePosition(new Vector3(0, 0, +0.40f), facing), 0.7f));
+			list.Add((this.GetArenaEdgePosition(new Vector3(0, 0, +0.50f), facing), 0.6f));
+			list.Add((this.GetArenaEdgePosition(new Vector3(0, 0, +0.60f), facing), 0.5f));
+			list.Add((this.GetArenaEdgePosition(new Vector3(0, 0, +0.70f), facing), 0.4f));
+			list.Add((this.GetArenaEdgePosition(new Vector3(0, 0, +0.80f), facing), 0.3f));
+			list.Add((this.GetArenaEdgePosition(new Vector3(0, 0, +0.90f), facing), 0.3f));
 		}
 		return list;
 	}

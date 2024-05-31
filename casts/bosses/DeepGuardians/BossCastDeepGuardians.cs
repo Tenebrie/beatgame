@@ -69,8 +69,9 @@ public partial class BossCastDeepGuardians : BaseCast
 
 		var rect = this.CreateGroundRectangularArea(guardian.Position);
 
-		guardian.Rotate(Vector3.Up, this.GetArenaFacingAngle(Orientation));
-		rect.Rotate(Vector3.Up, this.GetArenaFacingAngle(Orientation));
+		var angle = this.GetArenaFacingAngle(Orientation);
+		guardian.Rotate(Vector3.Up, angle);
+		rect.Rotate(Vector3.Up, angle);
 
 		rect.Width = 8;
 		rect.Length = 32;
@@ -79,12 +80,19 @@ public partial class BossCastDeepGuardians : BaseCast
 
 		var forward = guardian.ForwardVector;
 		rect.TargetValidator = (target) => target.HostileTo(Parent);
+		rect.OnHostileImpactCallback = (BaseUnit target) =>
+		{
+			target.Health.Damage(3);
+		};
 		rect.OnFinishedPerTargetCallback = (BaseUnit target) =>
 		{
 			target.Health.Damage(50);
 			target.ForcefulMovement.Push(8, forward, 1);
 		};
-		rect.OnFinishedCallback = () => guardian.QueueFree();
+		rect.OnFinishedCallback = () =>
+		{
+			guardian.QueueFree();
+		};
 
 		if (GuardianCount >= 4)
 			SpawningGuardians = false;

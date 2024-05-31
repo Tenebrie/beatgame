@@ -11,17 +11,27 @@ public partial class ObjectForcefulMovement : ComposableScript
 
 	public ObjectForcefulMovement(BaseUnit parent) : base(parent) { }
 
-	public void Push(float distance, Vector3 direction, float timeInBeats)
+	public void Push(float distance, Vector3 direction, float timeInBeats, bool inverted = false)
 	{
-		var D = new Vector3(direction.X, Math.Max(0, direction.Y), direction.Z).Normalized() * distance;
+		distance *= 1 - Parent.Buffs.State.PercentageCCReduction;
+
+		var D = new Vector3(direction.X, direction.Y, direction.Z).Normalized() * distance;
 		var t = timeInBeats * Music.Singleton.SecondsPerBeat;
+
+		var speed = 2 * distance / t;
+		var acceleration = -2 * distance / (t * t);
+		if (inverted)
+		{
+			speed = 0;
+			acceleration = -acceleration;
+		}
 		Movements.Add(new Movement()
 		{
 			Unit = Parent,
 			Distance = D,
 			Time = t,
-			Speed = 2 * distance / t,
-			Acceleration = -2 * distance / (t * t),
+			Speed = speed,
+			Acceleration = acceleration,
 			CoveredDistance = 0,
 		});
 	}

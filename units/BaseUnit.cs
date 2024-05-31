@@ -10,6 +10,7 @@ public abstract partial class BaseUnit : ComposableCharacterBody3D
 	public string FriendlyName = "Unnamed unit";
 	public ObjectResource Health;
 	public ObjectResource Mana;
+	public ObjectBuffs Buffs;
 	public ObjectTargetable Targetable;
 	public ObjectForcefulMovement ForcefulMovement;
 	public ObjectCastLibrary CastLibrary;
@@ -18,7 +19,7 @@ public abstract partial class BaseUnit : ComposableCharacterBody3D
 	public UnitAlliance Alliance = UnitAlliance.Neutral;
 
 	public const float TerminalVelocity = -30f;
-	readonly public float BaseGravity = ProjectSettings.GetSetting("physics/3d/default_gravity").AsSingle();
+	public float BaseGravity = ProjectSettings.GetSetting("physics/3d/default_gravity").AsSingle();
 	public float Gravity = ProjectSettings.GetSetting("physics/3d/default_gravity").AsSingle();
 	public bool Grounded = true;
 	private int FramesInFlight = 0;
@@ -32,10 +33,12 @@ public abstract partial class BaseUnit : ComposableCharacterBody3D
 	{
 		Health = new ObjectResource(this, ObjectResourceType.Health, max: 100);
 		Mana = new ObjectResource(this, ObjectResourceType.Mana, max: 0);
+		Buffs = new ObjectBuffs(this);
 		Targetable = new ObjectTargetable(this);
 		ForcefulMovement = new ObjectForcefulMovement(this);
 		CastLibrary = new ObjectCastLibrary(this);
 
+		Composables.Add(Buffs);
 		Composables.Add(Health);
 		Composables.Add(Mana);
 		Composables.Add(Targetable);
@@ -95,6 +98,9 @@ public abstract partial class BaseUnit : ComposableCharacterBody3D
 			y: verticalVelocity,
 			z: Velocity.Z
 		);
+
+		if (Velocity.Y == 0)
+			return;
 
 		var collision = MoveAndCollide(new Vector3(0, Velocity.Y * (float)delta, 0));
 

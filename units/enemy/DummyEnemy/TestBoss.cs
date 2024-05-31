@@ -6,12 +6,13 @@ public partial class TestBoss : BasicEnemyController
 	public BossCastAreaAttack AreaAttack;
 	public BossCastDeepGuardians DeepGuardians;
 	public BossCastDeepGuardians DeepGuardiansTwo;
-	public BossCastMidGuardians MidGuardians;
+	public BossCastEliteGuardian EliteGuardian;
 	public BossCastTridents AnimatedTridents;
 	public BossCastLightningStorm LightningStorm;
 	public BossCastTorrentialRain TorrentialRain;
 	public BossCastRavagingWinds RavagingWinds;
 	public BossCastConsumingWinds ConsumingWinds;
+	public BossCastGeysers Geysers;
 	public BossCastHardEnrage HardEnrage;
 	public TestBoss()
 	{
@@ -26,8 +27,8 @@ public partial class TestBoss : BasicEnemyController
 		CastLibrary.Register(DeepGuardians);
 		CastLibrary.Register(DeepGuardiansTwo);
 
-		MidGuardians = new(this);
-		CastLibrary.Register(MidGuardians);
+		EliteGuardian = new(this);
+		CastLibrary.Register(EliteGuardian);
 
 		AnimatedTridents = new(this);
 		CastLibrary.Register(AnimatedTridents);
@@ -43,6 +44,9 @@ public partial class TestBoss : BasicEnemyController
 
 		ConsumingWinds = new(this);
 		CastLibrary.Register(ConsumingWinds);
+
+		Geysers = new(this);
+		CastLibrary.Register(Geysers);
 
 		HardEnrage = new(this);
 		CastLibrary.Register(HardEnrage);

@@ -1,3 +1,4 @@
+using System;
 using Godot;
 using Project;
 
@@ -18,6 +19,17 @@ public partial class TestBossTimeline : BaseTimeline<TestBoss>
 			rect.Width = 8;
 			rect.Periodic = true;
 		});
+
+		// Act(() => parent.DeepGuardians.Reset());
+		// Cast(parent.DeepGuardians, advance: false);
+
+		Act(() => parent.EliteGuardian.RandomizeOrientation());
+		Cast(parent.EliteGuardian, advance: false);
+		Wait(4);
+
+		Act(() => parent.Geysers.Variation = BossCastGeysers.VariationType.UnderBoss | BossCastGeysers.VariationType.FourSides);
+		Cast(parent.Geysers);
+		Wait(4);
 
 		Cast(parent.RavagingWinds);
 

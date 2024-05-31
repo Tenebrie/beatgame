@@ -23,7 +23,7 @@ void fragment()
 	float smoothOver = 0.015;
 	float prog = PROGRESS;
 	vec3 world = (INV_VIEW_MATRIX * vec4(VERTEX, 1.0)).xyz;
-	vec3 pos = (vec4((world - NODE_POSITION_WORLD), 1.0) * MODEL_MATRIX).xyz;
+	vec3 pos = (inverse(MODEL_MATRIX) * vec4((world), 1.0)).xyz;
 	float outerStartX = SIZE_X - OUTER_WIDTH;
 	float outerStartZ = SIZE_Z - OUTER_WIDTH;
 	bool leftRightEdge = (abs(pos.x) >= outerStartX && abs(pos.x) <= SIZE_X);
@@ -105,7 +105,7 @@ void fragment()
 		else
 		{
 			float a = (1.0 -d3) * 2.0;
-			float b = d3 * 2.0 * a + (1.0 - d3) * 2.0;
+			float b = min(1, d3 * 2.0 * a + (1.0 - d3) * 2.0);
 			ALBEDO = vec3(b * COLOR_R, b * COLOR_G, b * COLOR_B);
 			ALPHA = max(0, a);
 		}

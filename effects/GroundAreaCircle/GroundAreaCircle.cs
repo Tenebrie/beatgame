@@ -11,6 +11,7 @@ public partial class GroundAreaCircle : BaseTelegraph
 	// private Decal outerCircle;
 	private CircleDecal decal;
 	private Area3D hitbox;
+	private CollisionShape3D collisionShape;
 
 	private float radius = .5f;
 
@@ -29,15 +30,17 @@ public partial class GroundAreaCircle : BaseTelegraph
 		createdAt = Time.GetTicksMsec();
 	}
 
-	public override void _Ready()
+	public override void _EnterTree()
 	{
 		hitbox = GetNode<Area3D>("Hitbox");
 		decal = GetNode<CircleDecal>("CircleDecal");
+		collisionShape = GetNode<CollisionShape3D>("Hitbox/CollisionShape3D");
+		// collisionShape.Shape = (Shape3D)collisionShape.Shape.Duplicate();
 
 		hitbox.BodyEntered += OnBodyEntered;
 		hitbox.BodyExited += OnBodyExited;
 
-		base._Ready();
+		base._EnterTree();
 	}
 
 	public override void _Process(double delta)

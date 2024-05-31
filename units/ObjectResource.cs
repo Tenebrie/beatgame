@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace Project;
 
@@ -35,6 +36,7 @@ public class ObjectResource : ComposableScript
 
 	public void Damage(float value, BaseUnit source = null)
 	{
+		value *= 1 - Parent.Buffs.State.PercentageDamageReduction.GetValueOrDefault(Type);
 		current = Math.Max(0, current - value);
 
 		if (ready)
