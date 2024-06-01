@@ -101,7 +101,7 @@ public partial class ObjectForcefulMovement : ComposableScript
 			if (isActive == false)
 				return;
 
-			var distancePerFrame = Speed() * delta;
+			var distancePerFrame = Speed() * delta * (1 - Unit.Buffs.State.PercentageCCReduction);
 			var movementVector = Direction().Normalized() * distancePerFrame;
 			Unit.MoveAndCollide(movementVector);
 		}

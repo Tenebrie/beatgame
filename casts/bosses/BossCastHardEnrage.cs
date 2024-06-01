@@ -13,7 +13,7 @@ public partial class BossCastHardEnrage : BaseCast
 			FriendlyName = "Destruction of the Universe",
 			TargetType = CastTargetType.None,
 			InputType = CastInputType.AutoRelease,
-			HoldTime = 16,
+			HoldTime = 32,
 			RecastTime = 0,
 		};
 	}

@@ -3,7 +3,7 @@ public partial class MusicTrackAeriel : MusicTrack
 {
 	public MusicTrackAeriel()
 	{
-		BeatsPerMinute = 60;
+		BeatsPerMinute = 120;
 		ResourcePath = Lib.Audio.MusicTrackAeriel;
 	}
 }

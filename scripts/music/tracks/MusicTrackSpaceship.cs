@@ -3,7 +3,7 @@ public partial class MusicTrackSpaceship : MusicTrack
 {
 	public MusicTrackSpaceship()
 	{
-		BeatsPerMinute = 60;
+		BeatsPerMinute = 120;
 		ResourcePath = Lib.Audio.MusicTrackSpaceship;
 	}
 }

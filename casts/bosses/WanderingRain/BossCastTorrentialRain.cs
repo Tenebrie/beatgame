@@ -54,12 +54,12 @@ public partial class BossCastTorrentialRain : BaseCast
 			{
 				dropletsSpawned += 1;
 				var area = this.CreateGroundCircularArea(pos);
-				area.GrowTime = 0.25f;
+				area.GrowTime = 0.5f;
 				area.Radius = 0.4f;
 			}
 		}
 
-		damageExpected += damageTotal / Settings.HoldTime * (float)delta * Music.Singleton.SecondsPerBeat;
+		damageExpected += damageTotal / Settings.HoldTime * (float)delta / Music.Singleton.SecondsPerBeat;
 		if (damageExpected - damageDealt > 1)
 		{
 			ApplyDamage();

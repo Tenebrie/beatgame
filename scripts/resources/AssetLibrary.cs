@@ -33,5 +33,5 @@ public class AudioLibrary
 {
 	public string MusicTrackTest = "res://assets/music/120bpm-test-track.ogg";
 	public string MusicTrackSpaceship = "res://assets/music/t14d-spaceship.ogg";
-	public string MusicTrackAeriel = "res://assets/music/120bpm-aeriel.ogg";
+	public string MusicTrackAeriel = "res://assets/music/120bpm-tidehawk.ogg";
 }

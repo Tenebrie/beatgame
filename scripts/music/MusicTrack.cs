@@ -21,7 +21,6 @@ public partial class MusicTrack : Node
 		SignalBus.Singleton.EmitSignal(SignalBus.SignalName.TrackStarted, this);
 		Volume = Preferences.Singleton.MainVolume;
 		AudioPlayer.Play();
-		this.Log(fromPosition);
 		AudioPlayer.Seek(fromPosition);
 	}
 

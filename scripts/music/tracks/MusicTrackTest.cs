@@ -3,7 +3,7 @@ public partial class MusicTrackTest : MusicTrack
 {
 	public MusicTrackTest()
 	{
-		BeatsPerMinute = 60;
+		BeatsPerMinute = 120;
 		ResourcePath = Lib.Audio.MusicTrackTest;
 	}
 }

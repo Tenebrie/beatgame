@@ -15,7 +15,7 @@ public partial class BossCastEliteGuardian : BaseCast
 			FriendlyName = "Skyreaching Guardian",
 			InputType = CastInputType.AutoRelease,
 			TargetType = CastTargetType.None,
-			HoldTime = 14f,
+			HoldTime = 30f,
 			RecastTime = 0,
 		};
 	}

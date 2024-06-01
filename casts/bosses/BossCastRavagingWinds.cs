@@ -17,14 +17,14 @@ public partial class BossCastRavagingWinds : BaseCast
 			FriendlyName = "Ravaging Winds",
 			TargetType = CastTargetType.None,
 			InputType = CastInputType.AutoRelease,
-			HoldTime = 14,
+			HoldTime = 30,
 			RecastTime = 0,
-			PrepareTime = 2,
+			PrepareTime = 4,
 			ChannelingTickTimings = BeatTime.One,
 		};
 	}
 
-	protected override void OnPrepCompleted	(CastTargetData targetData)
+	protected override void OnPrepCompleted(CastTargetData targetData)
 	{
 		OnCastTicked(targetData, BeatTime.One);
 	}
@@ -51,6 +51,9 @@ public partial class BossCastRavagingWinds : BaseCast
 
 	protected override void OnCastTicked(CastTargetData targetData, BeatTime time)
 	{
+		if (Music.Singleton.BeatIndex % 2 > 0)
+			return;
+
 		var spawns = GetSpawnPositions();
 		List<GroundAreaCircle> circleGroup = new();
 		foreach (var (spawn, size) in spawns)
@@ -58,7 +61,7 @@ public partial class BossCastRavagingWinds : BaseCast
 			var rotatedSpawn = spawn.Rotated(Vector3.Up, Rotation);
 			var circle = this.CreateGroundCircularArea(rotatedSpawn);
 			circle.Radius = size * AreaRadius;
-			circle.GrowTime = 1;
+			circle.GrowTime = 2;
 			circle.Alliance = UnitAlliance.Hostile;
 			circleGroup.Add(circle);
 		}
@@ -71,6 +74,6 @@ public partial class BossCastRavagingWinds : BaseCast
 				target.ForcefulMovement.Push(2, target.Position - Parent.Position, 0.5f);
 			}
 		};
-		Rotation += (float)Math.PI * 2 / Settings.HoldTime;
+		Rotation += (float)Math.PI * 2 / Settings.HoldTime * 2;
 	}
 }

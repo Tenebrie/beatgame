@@ -6,8 +6,9 @@ using Godot;
 namespace Project;
 public partial class BossCastConsumingWinds : BaseCast
 {
-	public float Rotation = 0;
-	public float AreaRadius = 3;
+	public float PullStrength = 1.5f;
+	public float ExtraPullStrength = 2.5f;
+	public float AreaRadius = 12;
 
 	public BossCastConsumingWinds(BaseUnit parent) : base(parent)
 	{
@@ -16,9 +17,9 @@ public partial class BossCastConsumingWinds : BaseCast
 			FriendlyName = "Consuming Winds",
 			TargetType = CastTargetType.None,
 			InputType = CastInputType.AutoRelease,
-			HoldTime = 8,
+			HoldTime = 16,
 			RecastTime = 0,
-			PrepareTime = 2,
+			PrepareTime = 8,
 			ChannelingTickTimings = BeatTime.One | BeatTime.Half,
 		};
 	}
@@ -30,14 +31,14 @@ public partial class BossCastConsumingWinds : BaseCast
 		foreach (var target in targets)
 		{
 			Vector3 getVector() => (Parent.Position - target.Position).Flatten(target.Position.Y);
-			var movement = target.ForcefulMovement.PushContinuously(() => 1.5f, getVector);
+			var movement = target.ForcefulMovement.PushContinuously(() => PullStrength, getVector);
 			movements.Add(movement);
-			var jumpingMovement = target.ForcefulMovement.PushContinuously(() => 2.5f, getVector, () => target.Grounded);
+			var jumpingMovement = target.ForcefulMovement.PushContinuously(() => ExtraPullStrength, getVector, () => target.Grounded);
 			movements.Add(jumpingMovement);
 		}
 
 		var circle = this.CreateGroundCircularArea(Parent.GetGroundedPosition());
-		circle.Radius = 12;
+		circle.Radius = AreaRadius;
 		circle.GrowTime = Settings.HoldTime;
 		circle.Alliance = UnitAlliance.Hostile;
 		circle.OnFinishedPerTargetCallback = (BaseUnit target) =>

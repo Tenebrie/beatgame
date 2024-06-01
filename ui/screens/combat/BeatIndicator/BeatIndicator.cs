@@ -10,24 +10,10 @@ public partial class BeatIndicator : Control
 	public override void _Ready()
 	{
 		Music.Singleton.BeatTimer.Timeout += OnBeat;
-		Music.Singleton.HalfBeatTimer.Timeout += OnHalfBeat;
 		Music.Singleton.VisualBeatTimer.Timeout += OnVisualBeat;
 	}
 
 	public void OnBeat()
-	{
-		if (BarGroups.Count == 0)
-			return;
-
-		foreach (var bar in BarGroups[0])
-		{
-			bar.Position = new Vector2(0, 0);
-			bar.Cleanup();
-		}
-		BarGroups.RemoveAt(0);
-	}
-
-	public void OnHalfBeat()
 	{
 		if (BarGroups.Count == 0)
 			return;

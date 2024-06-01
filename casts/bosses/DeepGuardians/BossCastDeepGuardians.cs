@@ -19,9 +19,9 @@ public partial class BossCastDeepGuardians : BaseCast
 			TargetType = CastTargetType.None,
 			ChannelingTickTimings = BeatTime.One,
 			TickWhilePreparing = true,
-			HoldTime = 4,
+			HoldTime = 8,
 			RecastTime = 0,
-			PrepareTime = 4,
+			PrepareTime = 16,
 		};
 	}
 
@@ -50,11 +50,12 @@ public partial class BossCastDeepGuardians : BaseCast
 	{
 		GuardianCount = 0;
 		SpawningGuardians = true;
+		SpawnGuardian();
 	}
 
 	protected override void OnCastTicked(CastTargetData targetData, BeatTime time)
 	{
-		if (SpawningGuardians)
+		if (SpawningGuardians && Music.Singleton.BeatIndex % 2 == 0)
 			SpawnGuardian();
 	}
 
@@ -75,7 +76,7 @@ public partial class BossCastDeepGuardians : BaseCast
 
 		rect.Width = 8;
 		rect.Length = 32;
-		rect.GrowTime = 4;
+		rect.GrowTime = Settings.PrepareTime;
 		rect.LengthOrigin = GroundAreaRect.Origin.Start;
 
 		var forward = guardian.ForwardVector;

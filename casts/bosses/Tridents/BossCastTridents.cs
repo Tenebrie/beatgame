@@ -16,7 +16,7 @@ public partial class BossCastTridents : BaseCast
 	{
 		Settings = new()
 		{
-			FriendlyName = "Tridents",
+			FriendlyName = "Animated Tridents",
 			InputType = CastInputType.AutoRelease,
 			TargetType = CastTargetType.None,
 			HoldTime = 4,

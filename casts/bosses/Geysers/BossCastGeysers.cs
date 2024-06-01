@@ -14,9 +14,9 @@ public partial class BossCastGeysers : BaseCast
 		{
 			FriendlyName = "Geysers",
 			InputType = CastInputType.AutoRelease,
-			HoldTime = 2,
+			HoldTime = 4,
 			RecastTime = 0,
-			PrepareTime = 8,
+			PrepareTime = 16,
 		};
 	}
 
@@ -56,9 +56,9 @@ public partial class BossCastGeysers : BaseCast
 			{
 				unit.Buffs.Add(new BuffGeyserLevitation()
 				{
-					Duration = 4.0f,
+					Duration = Settings.HoldTime + 4,
 				});
-				unit.ForcefulMovement.Push(10, Vector3.Up, 1.5f);
+				unit.ForcefulMovement.Push(10, Vector3.Up, 3f);
 				affectedUnits.Add(unit);
 			};
 		}
@@ -77,5 +77,6 @@ public partial class BossCastGeysers : BaseCast
 		UnderBoss = 1,
 		FourSides = 2,
 		FourCorners = 4,
+		AllPositions = 7,
 	}
 }

@@ -35,9 +35,12 @@ public partial class CentralCircle : Control
 
 	public void OnBeatTick(BeatTime time)
 	{
-		if (time == BeatTime.One)
+		if (time != BeatTime.One)
+			return;
+		var beatIndex = Music.Singleton.BeatIndex;
+		if (beatIndex % 2 == 0)
 			BeatColor.A = 1;
-		else if (time == BeatTime.Half)
+		else
 			HalfBeatColor.A = 1;
 	}
 

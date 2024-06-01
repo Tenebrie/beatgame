@@ -3,6 +3,8 @@ namespace Project;
 public partial class TestBoss : BasicEnemyController
 {
 	public BossAuto AutoAttack;
+	public BossCastBuster Buster;
+	public BossCastRaidwide Raidwide;
 	public BossCastAreaAttack AreaAttack;
 	public BossCastDeepGuardians DeepGuardians;
 	public BossCastDeepGuardians DeepGuardiansTwo;
@@ -10,14 +12,22 @@ public partial class TestBoss : BasicEnemyController
 	public BossCastTridents AnimatedTridents;
 	public BossCastLightningStorm LightningStorm;
 	public BossCastTorrentialRain TorrentialRain;
+	public BossCastTorrentialRain OpeningTorrentialRain;
 	public BossCastRavagingWinds RavagingWinds;
 	public BossCastConsumingWinds ConsumingWinds;
+	public BossCastConsumingWinds TwiceConsumingWinds;
 	public BossCastGeysers Geysers;
 	public BossCastHardEnrage HardEnrage;
 	public TestBoss()
 	{
 		AutoAttack = new(this);
 		CastLibrary.Register(AutoAttack);
+
+		Buster = new(this);
+		CastLibrary.Register(Buster);
+
+		Raidwide = new(this);
+		CastLibrary.Register(Raidwide);
 
 		AreaAttack = new(this);
 		CastLibrary.Register(AreaAttack);
@@ -39,11 +49,23 @@ public partial class TestBoss : BasicEnemyController
 		TorrentialRain = new(this);
 		CastLibrary.Register(TorrentialRain);
 
+		OpeningTorrentialRain = new(this);
+		CastLibrary.Register(OpeningTorrentialRain);
+		OpeningTorrentialRain.Settings.HoldTime = 12;
+		OpeningTorrentialRain.Settings.PrepareTime = 4;
+
 		RavagingWinds = new(this);
 		CastLibrary.Register(RavagingWinds);
 
 		ConsumingWinds = new(this);
 		CastLibrary.Register(ConsumingWinds);
+
+		TwiceConsumingWinds = new(this);
+		CastLibrary.Register(TwiceConsumingWinds);
+		TwiceConsumingWinds.Settings.FriendlyName = "Twice Consuming Winds";
+		TwiceConsumingWinds.AreaRadius += 2;
+		// TwiceConsumingWinds.PullStrength += 0.25f;
+		TwiceConsumingWinds.ExtraPullStrength += 0.25f;
 
 		Geysers = new(this);
 		CastLibrary.Register(Geysers);

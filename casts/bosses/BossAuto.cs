@@ -10,7 +10,7 @@ public partial class BossAuto : BaseCast
 			FriendlyName = "Zap",
 			InputType = CastInputType.AutoRelease,
 			TargetType = CastTargetType.HostileUnit,
-			HoldTime = 0.5f,
+			HoldTime = 0,
 			RecastTime = 0,
 		};
 	}

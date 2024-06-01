@@ -170,14 +170,14 @@ public partial class Music : Node
 			AddChild(new TestBossTimeline(bosses[0]));
 
 		var startTime = (float)StartingFromBeat * SecondsPerBeat;
-		CurrentTrack.PlayAfterDelay((float)SongDelay / 1000, startTime / 2);
+		CurrentTrack.PlayAfterDelay((float)SongDelay / 1000, startTime);
 
 		BeatIndex = StartingFromBeat - MinBeatSize;
 		IsStarted = true;
 		BeatTimer.Start(BeatsPerMinute);
 		HalfBeatTimer.Start(BeatsPerMinute * 2);
 		QuarterBeatTimer.Start(BeatsPerMinute * 4);
-		VisualBeatTimer.Start(BeatsPerMinute * 2);
+		VisualBeatTimer.Start(BeatsPerMinute);
 	}
 
 	private async void OnSceneTransitionStarted(PackedScene _)

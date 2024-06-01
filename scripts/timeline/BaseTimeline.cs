@@ -40,6 +40,8 @@ public partial class BaseTimeline<ParentT> : Node where ParentT : BaseUnit
 	public void Start()
 	{
 		targetData.HostileUnit = PlayerController.AllPlayers[0];
+
+		Elements = Elements.OrderBy(el => el.BeatIndex).ThenBy(el => el.Priority).ToList();
 	}
 
 	public void OnBeatTick(BeatTime time)
@@ -92,53 +94,74 @@ public partial class BaseTimeline<ParentT> : Node where ParentT : BaseUnit
 
 	public void Cast(BaseCast cast, bool advance = true)
 	{
-		Cast(1, cast, advance);
+		Cast(0, cast, advance);
 	}
 
 	public void Cast(double beatIndex, BaseCast cast, bool advance = true)
 	{
-		var targetIndex = beatIndex - 1 + EditorPointer;
+		var targetIndex = beatIndex + EditorPointer;
 
 		var element = new TimelineElement
 		{
+			Priority = 1,
 			BeatIndex = targetIndex,
 			Cast = cast
 		};
 		Elements.Add(element);
 
 		if (advance)
-			EditorPointer += beatIndex - 1 + cast.Settings.HoldTime + cast.Settings.PrepareTime;
+			EditorPointer += beatIndex + cast.Settings.HoldTime + cast.Settings.PrepareTime;
 	}
 
-	public void Act(Action action) => Act(1, action);
+	public void Act(Action action) => Act(0, action);
 	public void Act(double beatIndex, Action action)
 	{
 		var element = new TimelineElement
 		{
-			BeatIndex = beatIndex - 1 + EditorPointer,
+			Priority = 0,
+			BeatIndex = beatIndex + EditorPointer,
 			Action = action
 		};
 		Elements.Add(element);
 	}
 
-	public void Mark(string name) => Mark(1, name);
+	public void Goto(double beatIndex)
+	{
+		EditorPointer = beatIndex;
+	}
+
+	public void GotoAbleton(double abletonIndex)
+	{
+		string str = abletonIndex.ToString("0.0");
+		int wholePart = int.Parse(str.Split(".")[0]) - 1;
+		int subPart = int.Parse(str.Split(".")[1]) - 1;
+		if (subPart == -1)
+			subPart = 0;
+		else if (subPart > 4)
+			GD.PushError("GotoAbleton index decimal should not exceed 4");
+
+		EditorPointer = wholePart * 4 + subPart;
+	}
+
+	public void Mark(string name) => Mark(0, name);
 
 	public void Mark(double beatIndex, string name)
 	{
-		Marks[name] = beatIndex - 1 + EditorPointer;
-		EditorPointer += beatIndex - 1;
+		Marks[name] = beatIndex + EditorPointer;
+		EditorPointer += beatIndex;
 	}
 
 	public void Target(Vector3 point, bool allowMultitarget = false)
 	{
-		Target(1, point, allowMultitarget);
+		Target(0, point, allowMultitarget);
 	}
 
 	public void Target(double beatIndex, Vector3 point, bool allowMultitarget = false)
 	{
 		var element = new TimelineElement
 		{
-			BeatIndex = beatIndex - 1 + EditorPointer,
+			Priority = 0,
+			BeatIndex = beatIndex + EditorPointer,
 			Action = () =>
 			{
 				targetData.Point = point;
@@ -149,10 +172,16 @@ public partial class BaseTimeline<ParentT> : Node where ParentT : BaseUnit
 		};
 		Elements.Add(element);
 	}
+
+	public enum EditorMode
+	{
+
+	}
 }
 
 public class TimelineElement
 {
+	public int Priority; // Lower is better
 	public double BeatIndex;
 	public BaseCast Cast;
 	public Action Action;
