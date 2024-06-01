@@ -13,11 +13,14 @@ public partial class Music : Node
 	public delegate void BeatWindowUnlockEventHandler(BeatTime beat);
 	[Signal]
 	public delegate void BeatWindowLockEventHandler(BeatTime beat);
+	[Signal]
+	public delegate void CurrentTrackPositionChangedEventHandler(double beatIndex);
 
 	private MusicLibrary musicLibrary = new();
 
 	public readonly long SongDelay = 2000; // ms
 	public const double MinBeatSize = 0.25;
+	public double StartingFromBeat = 0;
 
 	public float BeatsPerMinute
 	{
@@ -135,10 +138,7 @@ public partial class Music : Node
 
 	private void OnInternalTimerTimeout(BeatTime beat)
 	{
-		if (BeatIndex < 0)
-			BeatIndex = 0;
-		else
-			BeatIndex += MinBeatSize;
+		BeatIndex += MinBeatSize;
 		EmitSignal(SignalName.BeatTick, beat.ToVariant());
 	}
 
@@ -160,25 +160,24 @@ public partial class Music : Node
 			Start();
 	}
 
-	public async void Start()
+	public void Start()
 	{
 		if (IsStarted)
 			return;
 
-		CurrentTrack.PlayAfterDelay((float)SongDelay / 1000);
+		var bosses = BaseUnit.AllUnits.Where(unit => unit is TestBoss).Cast<TestBoss>().ToList();
+		if (bosses.Count > 0)
+			AddChild(new TestBossTimeline(bosses[0]));
 
-		BeatIndex = -1;
+		var startTime = (float)StartingFromBeat * SecondsPerBeat;
+		CurrentTrack.PlayAfterDelay((float)SongDelay / 1000, startTime / 2);
+
+		BeatIndex = StartingFromBeat - MinBeatSize;
 		IsStarted = true;
 		BeatTimer.Start(BeatsPerMinute);
 		HalfBeatTimer.Start(BeatsPerMinute * 2);
 		QuarterBeatTimer.Start(BeatsPerMinute * 4);
 		VisualBeatTimer.Start(BeatsPerMinute * 2);
-
-		await ToSignal(GetTree().CreateTimer(0.1f), "timeout");
-
-		var bosses = BaseUnit.AllUnits.Where(unit => unit is TestBoss).Cast<TestBoss>().ToList();
-		if (bosses.Count > 0)
-			AddChild(new TestBossTimeline(bosses[0]));
 	}
 
 	private async void OnSceneTransitionStarted(PackedScene _)
@@ -227,6 +226,19 @@ public partial class Music : Node
 			else
 				return -(lastTickedAt + beatDuration - currentTime);
 		}).OrderBy(offset => Math.Abs(offset)).ToList()[0];
+	}
+
+	public void SeekTo(double beatIndex)
+	{
+		StartingFromBeat = beatIndex;
+		if (IsStarted)
+		{
+			BeatTimer.SeekTo(beatIndex);
+			HalfBeatTimer.SeekTo(beatIndex);
+			QuarterBeatTimer.SeekTo(beatIndex);
+			VisualBeatTimer.SeekTo(beatIndex);
+		}
+		EmitSignal(SignalName.CurrentTrackPositionChanged, beatIndex);
 	}
 
 	private static Music instance = null;

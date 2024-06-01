@@ -10,7 +10,7 @@ public partial class MusicLibrary : Node
 	{
 		TrainingRoom = new MusicTrackTest();
 		AddChild(TrainingRoom);
-		BossArenaAeriel = new MusicTrackSpaceship();
+		BossArenaAeriel = new MusicTrackAeriel();
 		AddChild(BossArenaAeriel);
 	}
 }

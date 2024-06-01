@@ -29,6 +29,10 @@ public partial class CastBarGroup : VBoxContainer
 		if (cast.Parent != trackedUnit || cast.Settings.InputType == CastInputType.Instant)
 			return;
 
+		var oldBar = activeBars.Find(entry => entry.cast == cast);
+		if (oldBar != null)
+			return;
+
 		var newBar = Lib.Scene(Lib.UI.CastBar).Instantiate<CastBar>();
 		AddChild(newBar);
 		newBar.TrackCast(cast);

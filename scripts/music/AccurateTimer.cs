@@ -35,6 +35,11 @@ public partial class AccurateTimer : Node
 		internalTickIndex = -1;
 	}
 
+	public void SeekTo(double beatIndex)
+	{
+		
+	}
+
 	public async void Stop(float delay)
 	{
 		await ToSignal(GetTree().CreateTimer(delay / 1000), "timeout");

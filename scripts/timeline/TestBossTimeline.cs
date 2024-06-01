@@ -10,7 +10,6 @@ public partial class TestBossTimeline : BaseTimeline<TestBoss>
 		// for (var i = 0; i < 20; i++)
 		// 	Add(i * 4, parent.AutoAttack);
 
-
 		Act(1, () =>
 		{
 			var rect = this.CreateGroundRectangularArea(Vector3.Zero);
@@ -22,6 +21,13 @@ public partial class TestBossTimeline : BaseTimeline<TestBoss>
 
 		// Act(() => parent.DeepGuardians.Reset());
 		// Cast(parent.DeepGuardians, advance: false);
+
+		Mark(84 * 4 + 1, "Debug");
+
+		// Cast(parent.AutoAttack);
+		// Cast(parent.AutoAttack);
+		// Cast(parent.AutoAttack);
+		// Cast(parent.AutoAttack);
 
 		Act(() => parent.EliteGuardian.RandomizeOrientation());
 		Cast(parent.EliteGuardian, advance: false);
@@ -132,5 +138,6 @@ public partial class TestBossTimeline : BaseTimeline<TestBoss>
 	public override void _Ready()
 	{
 		Start();
+		Music.Singleton.SeekTo(GetMarkBeatIndex("Debug"));
 	}
 }

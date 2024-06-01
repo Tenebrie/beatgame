@@ -9,6 +9,7 @@ public partial class BaseTimeline<ParentT> : Node where ParentT : BaseUnit
 	public ParentT Parent;
 
 	public List<TimelineElement> Elements = new();
+	public Dictionary<string, double> Marks = new();
 	public int CurrentElementIndex = 0;
 	public double EditorPointer = 0;
 
@@ -18,6 +19,7 @@ public partial class BaseTimeline<ParentT> : Node where ParentT : BaseUnit
 	{
 		Parent = parent;
 		Music.Singleton.BeatTick += OnBeatTick;
+		Music.Singleton.CurrentTrackPositionChanged += OnPositionChanged;
 		SignalBus.Singleton.UnitCreated += OnUnitCreated;
 	}
 
@@ -25,6 +27,14 @@ public partial class BaseTimeline<ParentT> : Node where ParentT : BaseUnit
 	{
 		if (unit is PlayerController)
 			targetData.HostileUnit = unit;
+	}
+
+	public double GetMarkBeatIndex(string name)
+	{
+		var valueFound = Marks.TryGetValue(name, out var beatIndex);
+		if (!valueFound)
+			GD.PushWarning($"Unable to find a mark with name {name}, starting from beginning");
+		return beatIndex;
 	}
 
 	public void Start()
@@ -54,6 +64,27 @@ public partial class BaseTimeline<ParentT> : Node where ParentT : BaseUnit
 		}
 	}
 
+	public void OnPositionChanged(double beatIndex)
+	{
+		if (Elements.Count == 0)
+			return;
+
+		var number = 0;
+
+		while (Elements[number].BeatIndex < beatIndex)
+		{
+			number += 1;
+
+			if (Elements.ElementAtOrDefault(number) == null)
+			{
+				number = 0;
+				break;
+			}
+		}
+
+		CurrentElementIndex = Math.Max(0, number);
+	}
+
 	public void Wait(double beatIndex)
 	{
 		EditorPointer += beatIndex;
@@ -79,11 +110,7 @@ public partial class BaseTimeline<ParentT> : Node where ParentT : BaseUnit
 			EditorPointer += beatIndex - 1 + cast.Settings.HoldTime + cast.Settings.PrepareTime;
 	}
 
-	public void Act(Action action)
-	{
-		Act(1, action);
-	}
-
+	public void Act(Action action) => Act(1, action);
 	public void Act(double beatIndex, Action action)
 	{
 		var element = new TimelineElement
@@ -92,6 +119,14 @@ public partial class BaseTimeline<ParentT> : Node where ParentT : BaseUnit
 			Action = action
 		};
 		Elements.Add(element);
+	}
+
+	public void Mark(string name) => Mark(1, name);
+
+	public void Mark(double beatIndex, string name)
+	{
+		Marks[name] = beatIndex - 1 + EditorPointer;
+		EditorPointer += beatIndex - 1;
 	}
 
 	public void Target(Vector3 point, bool allowMultitarget = false)
