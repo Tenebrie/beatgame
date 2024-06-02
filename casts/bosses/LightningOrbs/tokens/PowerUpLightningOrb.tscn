@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://45cw2fy2lyeq"]
+
+[ext_resource type="Script" path="res://casts/bosses/LightningOrbs/tokens/PowerUpLightningOrb.cs" id="1_hylq5"]
+[ext_resource type="PackedScene" uid="uid://dbf4kocl48bm8" path="res://effects/EnergyOrb/EnergyOrb.tscn" id="1_m68en"]
+[ext_resource type="PackedScene" uid="uid://i7uo3ra8dvfu" path="res://effects/GroundAreaCircle/GroundAreaCircle.tscn" id="2_gadha"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xyssa"]
+
+[node name="PowerUpLightningOrb" type="Node3D"]
+script = ExtResource("1_hylq5")
+
+[node name="EnergyOrb" parent="." instance=ExtResource("1_m68en")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.548531, 0)
+
+[node name="GroundAreaCircle" parent="." instance=ExtResource("2_gadha")]
+
+[node name="TriggerArea" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TriggerArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.507269, 0)
+shape = SubResource("CapsuleShape3D_xyssa")

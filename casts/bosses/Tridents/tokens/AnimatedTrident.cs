@@ -15,7 +15,7 @@ public partial class AnimatedTrident : BasicEnemyController
 		area.Radius = this.GetArenaSize() * 0.16f / 2;
 		area.Periodic = true;
 		area.Alliance = UnitAlliance.Hostile;
-		area.OnHostileImpactCallback = OnImpactCallback;
+		area.OnTargetEntered = OnImpactCallback;
 	}
 
 	public void OnImpactCallback(BaseUnit unit)

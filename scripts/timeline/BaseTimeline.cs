@@ -75,6 +75,7 @@ public partial class BaseTimeline<ParentT> : Node where ParentT : BaseUnit
 
 		while (Elements[number].BeatIndex < beatIndex)
 		{
+			Elements[number].Action?.Invoke();
 			number += 1;
 
 			if (Elements.ElementAtOrDefault(number) == null)
@@ -84,7 +85,7 @@ public partial class BaseTimeline<ParentT> : Node where ParentT : BaseUnit
 			}
 		}
 
-		CurrentElementIndex = Math.Max(0, number);
+		CurrentElementIndex = number;
 	}
 
 	public void Wait(double beatIndex)

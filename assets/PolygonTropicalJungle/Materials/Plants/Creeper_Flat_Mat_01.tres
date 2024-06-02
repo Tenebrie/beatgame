@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://couqyy0gnshi4"]
+
+[ext_resource type="Texture2D" uid="uid://bvhybqjpoubt7" path="res://assets/PolygonTropicalJungle/Textures/Plants/CreeperMat_01.tga" id="1_uuqrp"]
+
+[resource]
+resource_name = "Creeper_Flat_Mat_01"
+transparency = 1
+albedo_texture = ExtResource("1_uuqrp")
+emission = Color(2, 2, 2, 1)

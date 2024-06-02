@@ -17,7 +17,7 @@ public partial class PlayerSpawner : Node3D
 	{
 		var player = Lib.Scene(Lib.Unit.PlayerCharacter).Instantiate<PlayerController>();
 		player.Position = GlobalPosition;
-		GetParent().AddChild(player);
+		GetTree().CurrentScene.AddChild(player);
 
 		Player = player;
 	}

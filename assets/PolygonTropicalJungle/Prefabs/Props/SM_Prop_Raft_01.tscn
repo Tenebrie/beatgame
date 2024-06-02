@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://b18x1tgtnsqr5"]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonTropicalJungle/Models/SM_Prop_Raft_01_mesh/_-5068560739280232443.mesh" id="1_gexua"]
+[ext_resource type="Material" uid="uid://dqudjujj5y6mm" path="res://assets/PolygonTropicalJungle/Materials/PolygonNatureBiomesTropical_Mat_01.tres" id="2_l81fm"]
+
+[node name="SM_Prop_Raft_01" type="Node3D"]
+metadata/ufile_ids = ["98e381a479096ea4e88937876032497d:2243487313796375953", "98e381a479096ea4e88937876032497d:1470890920812347179", "98e381a479096ea4e88937876032497d:2922181150063634996", "98e381a479096ea4e88937876032497d:1110518906880155390", "98e381a479096ea4e88937876032497d:6342127175585219626"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_gexua")
+surface_material_override/0 = ExtResource("2_l81fm")

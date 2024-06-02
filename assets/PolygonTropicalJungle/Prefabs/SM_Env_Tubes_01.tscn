@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://ds0qtgksp5wn1"]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonTropicalJungle/Models/SM_Env_Tubes_01_mesh/_2434671668943915331.mesh" id="1_ibxp4"]
+[ext_resource type="Material" uid="uid://dqudjujj5y6mm" path="res://assets/PolygonTropicalJungle/Materials/PolygonNatureBiomesTropical_Mat_01.tres" id="2_3qwse"]
+[ext_resource type="ArrayMesh" path="res://assets/PolygonTropicalJungle/Models/SM_Env_Tubes_01_mesh/_3836190642393717454.mesh" id="3_w5oaa"]
+[ext_resource type="ArrayMesh" path="res://assets/PolygonTropicalJungle/Models/SM_Env_Tubes_01_mesh/_885959263210098848.mesh" id="4_16eix"]
+
+[node name="SM_Env_Tubes_01" type="Node3D"]
+metadata/ufile_ids = ["703f471ca1e66a54785303bd75b5a84e:7555299939445916378", "703f471ca1e66a54785303bd75b5a84e:7174799284452464736", "703f471ca1e66a54785303bd75b5a84e:3351750055298790827"]
+
+[node name="SM_Env_Tubes_01_LOD0" type="Node3D" parent="."]
+metadata/ufile_ids = ["703f471ca1e66a54785303bd75b5a84e:3580462945966522201", "703f471ca1e66a54785303bd75b5a84e:6009750027189874275", "703f471ca1e66a54785303bd75b5a84e:420961487733995941", "703f471ca1e66a54785303bd75b5a84e:6295351276972074532"]
+
+[node name="_mesh" type="MeshInstance3D" parent="SM_Env_Tubes_01_LOD0"]
+mesh = ExtResource("1_ibxp4")
+surface_material_override/0 = ExtResource("2_3qwse")
+
+[node name="SM_Env_Tubes_01_LOD1" type="Node3D" parent="."]
+visible = false
+metadata/ufile_ids = ["703f471ca1e66a54785303bd75b5a84e:7192455363154416598", "703f471ca1e66a54785303bd75b5a84e:8171793586056055767", "703f471ca1e66a54785303bd75b5a84e:6495702500258442597", "703f471ca1e66a54785303bd75b5a84e:3888428850014971448"]
+
+[node name="_mesh" type="MeshInstance3D" parent="SM_Env_Tubes_01_LOD1"]
+mesh = ExtResource("3_w5oaa")
+surface_material_override/0 = ExtResource("2_3qwse")
+
+[node name="SM_Env_Tubes_01_LOD2" type="Node3D" parent="."]
+visible = false
+metadata/ufile_ids = ["703f471ca1e66a54785303bd75b5a84e:8754577848662377307", "703f471ca1e66a54785303bd75b5a84e:6324846599566817368", "703f471ca1e66a54785303bd75b5a84e:4290710384392629052", "703f471ca1e66a54785303bd75b5a84e:53175963108831100"]
+
+[node name="_mesh" type="MeshInstance3D" parent="SM_Env_Tubes_01_LOD2"]
+mesh = ExtResource("4_16eix")
+surface_material_override/0 = ExtResource("2_3qwse")

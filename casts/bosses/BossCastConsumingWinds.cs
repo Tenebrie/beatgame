@@ -6,6 +6,7 @@ using Godot;
 namespace Project;
 public partial class BossCastConsumingWinds : BaseCast
 {
+	public float Damage = 80;
 	public float PullStrength = 1.5f;
 	public float ExtraPullStrength = 2.5f;
 	public float AreaRadius = 12;
@@ -43,8 +44,8 @@ public partial class BossCastConsumingWinds : BaseCast
 		circle.Alliance = UnitAlliance.Hostile;
 		circle.OnFinishedPerTargetCallback = (BaseUnit target) =>
 		{
-			target.Health.Damage(80);
-			target.ForcefulMovement.Push(12, target.Position - Parent.Position, 2);
+			target.Health.Damage(Damage);
+			target.ForcefulMovement.Push(12, (target.Position - Parent.Position).Flatten(target.Position.Y), 2);
 		};
 		circle.OnFinishedCallback = () =>
 		{

@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=3 format=3 uid="uid://d1m3rlvuty1lf"]
 
 [ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Wep_Crystal_DoubleSword_01_mesh/SM_Wep_Crystal_DoubleSword_01_4300000.mesh" id="1_dkrhe"]
 [ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_vk0ya"]
@@ -7,5 +7,6 @@
 metadata/ufile_ids = ["6d137d44990918a48bfc447d3dda3796:452112", "6d137d44990918a48bfc447d3dda3796:138024", "6d137d44990918a48bfc447d3dda3796:3389452", "6d137d44990918a48bfc447d3dda3796:2321604", "6d137d44990918a48bfc447d3dda3796:64117480093628612"]
 
 [node name="_mesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
 mesh = ExtResource("1_dkrhe")
 surface_material_override/0 = ExtResource("2_vk0ya")

@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://tbhmfegmf8tb"]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonTropicalJungle/Models/SM_Env_Ground_Cover_03_mesh/_-7409212227393097224.mesh" id="1_ejlw4"]
+[ext_resource type="Material" uid="uid://bvb8ssbx32fjh" path="res://assets/PolygonTropicalJungle/Materials/Plants/Ground_Cover_Mat_01.tres" id="2_rnqrw"]
+[ext_resource type="ArrayMesh" path="res://assets/PolygonTropicalJungle/Models/SM_Env_Ground_Cover_03_mesh/_-129805460025875311.mesh" id="3_y6xax"]
+[ext_resource type="ArrayMesh" path="res://assets/PolygonTropicalJungle/Models/SM_Env_Ground_Cover_03_mesh/_4824464116378587426.mesh" id="4_78nm4"]
+
+[node name="SM_Env_Ground_Cover_03" type="Node3D"]
+metadata/ufile_ids = ["3691b837c44b37a4ab637987551c4790:6399433736969719127", "3691b837c44b37a4ab637987551c4790:6018088656224081901", "3691b837c44b37a4ab637987551c4790:3624866504659622129"]
+
+[node name="SM_Env_Ground_Cover_03_LOD0" type="Node3D" parent="."]
+metadata/ufile_ids = ["3691b837c44b37a4ab637987551c4790:6983402065330237048", "3691b837c44b37a4ab637987551c4790:2139114464032224092", "3691b837c44b37a4ab637987551c4790:5837177581775695859", "3691b837c44b37a4ab637987551c4790:750174302558282368"]
+
+[node name="_mesh" type="MeshInstance3D" parent="SM_Env_Ground_Cover_03_LOD0"]
+mesh = ExtResource("1_ejlw4")
+surface_material_override/0 = ExtResource("2_rnqrw")
+
+[node name="SM_Env_Ground_Cover_03_LOD1" type="Node3D" parent="."]
+visible = false
+metadata/ufile_ids = ["3691b837c44b37a4ab637987551c4790:57560688158716992", "3691b837c44b37a4ab637987551c4790:1370058486278465409", "3691b837c44b37a4ab637987551c4790:7440808965670314910", "3691b837c44b37a4ab637987551c4790:8436404302565003468"]
+
+[node name="_mesh" type="MeshInstance3D" parent="SM_Env_Ground_Cover_03_LOD1"]
+mesh = ExtResource("3_y6xax")
+surface_material_override/0 = ExtResource("2_rnqrw")
+
+[node name="SM_Env_Ground_Cover_03_LOD2" type="Node3D" parent="."]
+visible = false
+metadata/ufile_ids = ["3691b837c44b37a4ab637987551c4790:4325024223382126346", "3691b837c44b37a4ab637987551c4790:3867590072985784141", "3691b837c44b37a4ab637987551c4790:4058566244070314516", "3691b837c44b37a4ab637987551c4790:5225025452258184005"]
+
+[node name="_mesh" type="MeshInstance3D" parent="SM_Env_Ground_Cover_03_LOD2"]
+mesh = ExtResource("4_78nm4")
+surface_material_override/0 = ExtResource("2_rnqrw")

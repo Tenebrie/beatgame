@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonTropicalJungle/Models/SM_Env_Volcano_01_mesh/_5517835479823853966.mesh" id="1_pikka"]
+[ext_resource type="Material" uid="uid://dqudjujj5y6mm" path="res://assets/PolygonTropicalJungle/Materials/PolygonNatureBiomesTropical_Mat_01.tres" id="2_er4iq"]
+
+[node name="SM_Env_Volcano_01" type="Node3D"]
+metadata/ufile_ids = ["1b837cc600e88a5439111ce45e2ca0a8:951188082755228427", "1b837cc600e88a5439111ce45e2ca0a8:466294261634402737", "1b837cc600e88a5439111ce45e2ca0a8:4223416648985140398", "1b837cc600e88a5439111ce45e2ca0a8:2123553160330618980", "1b837cc600e88a5439111ce45e2ca0a8:5345368983154576152"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_pikka")
+surface_material_override/0 = ExtResource("2_er4iq")

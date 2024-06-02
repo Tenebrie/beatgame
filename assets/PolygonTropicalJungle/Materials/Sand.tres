@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://cq0hdfn5kdnie"]
+
+[ext_resource type="Texture2D" uid="uid://0oq4x3vsrdoj" path="res://assets/PolygonTropicalJungle/Terrain/Sand_Texture_02.png" id="1_fyxli"]
+
+[resource]
+resource_name = "Sand"
+albedo_texture = ExtResource("1_fyxli")

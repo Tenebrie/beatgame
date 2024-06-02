@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://cit1mfsrxtjb2"]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonTropicalJungle/Models/SM_Env_Grass_Med_Clump_03_mesh/_1126063983478198923.mesh" id="1_q562e"]
+[ext_resource type="Material" uid="uid://d3go2nqa6yqp4" path="res://assets/PolygonTropicalJungle/Materials/Plants/Grass_Med_Mat_01.tres" id="2_6q81t"]
+[ext_resource type="ArrayMesh" path="res://assets/PolygonTropicalJungle/Models/SM_Env_Grass_Med_Clump_03_mesh/_2520906610241629844.mesh" id="3_mj6kr"]
+[ext_resource type="ArrayMesh" path="res://assets/PolygonTropicalJungle/Models/SM_Env_Grass_Med_Clump_03_mesh/_7414406497357360880.mesh" id="4_u6u02"]
+
+[node name="SM_Env_Grass_Med_Clump_03" type="Node3D"]
+metadata/ufile_ids = ["b255c701e20163843b15c06e37c43746:4961707967908060182", "b255c701e20163843b15c06e37c43746:5733178770489263788", "b255c701e20163843b15c06e37c43746:8615440567517305558"]
+
+[node name="SM_Env_Grass_Med_Clump_03_LOD0" type="Node3D" parent="."]
+metadata/ufile_ids = ["b255c701e20163843b15c06e37c43746:6613714906989837755", "b255c701e20163843b15c06e37c43746:8124665871883814099", "b255c701e20163843b15c06e37c43746:9111386641506328828", "b255c701e20163843b15c06e37c43746:4635295232792969452"]
+
+[node name="_mesh" type="MeshInstance3D" parent="SM_Env_Grass_Med_Clump_03_LOD0"]
+mesh = ExtResource("1_q562e")
+surface_material_override/0 = ExtResource("2_6q81t")
+
+[node name="SM_Env_Grass_Med_Clump_03_LOD1" type="Node3D" parent="."]
+visible = false
+metadata/ufile_ids = ["b255c701e20163843b15c06e37c43746:2064626023100098527", "b255c701e20163843b15c06e37c43746:1008402546086312584", "b255c701e20163843b15c06e37c43746:1764073112540099974", "b255c701e20163843b15c06e37c43746:6939047052327427634"]
+
+[node name="_mesh" type="MeshInstance3D" parent="SM_Env_Grass_Med_Clump_03_LOD1"]
+mesh = ExtResource("3_mj6kr")
+surface_material_override/0 = ExtResource("2_6q81t")
+
+[node name="SM_Env_Grass_Med_Clump_03_LOD2" type="Node3D" parent="."]
+visible = false
+metadata/ufile_ids = ["b255c701e20163843b15c06e37c43746:3513544951311233744", "b255c701e20163843b15c06e37c43746:8890233553586107180", "b255c701e20163843b15c06e37c43746:1386223998437653206", "b255c701e20163843b15c06e37c43746:6953510925079538265"]
+
+[node name="_mesh" type="MeshInstance3D" parent="SM_Env_Grass_Med_Clump_03_LOD2"]
+mesh = ExtResource("4_u6u02")
+surface_material_override/0 = ExtResource("2_6q81t")

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://c4wm6fi2nxctc"]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonTropicalJungle/Models/SM_Bld_Shack_Pirate_01_mesh/_5941405521646463149.mesh" id="1_3ean1"]
+[ext_resource type="Material" uid="uid://dqudjujj5y6mm" path="res://assets/PolygonTropicalJungle/Materials/PolygonNatureBiomesTropical_Mat_01.tres" id="2_8vl0l"]
+
+[node name="SM_Bld_Shack_Pirate_01" type="Node3D"]
+metadata/ufile_ids = ["e95e061153a79cb4195a0e822885f9f8:4187387423541002279", "e95e061153a79cb4195a0e822885f9f8:3555387403485698717", "e95e061153a79cb4195a0e822885f9f8:987217647497547650", "e95e061153a79cb4195a0e822885f9f8:3051112269762427720", "e95e061153a79cb4195a0e822885f9f8:5655687142569293559"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_3ean1")
+surface_material_override/0 = ExtResource("2_8vl0l")

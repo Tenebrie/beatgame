@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://bbksah5ymmhu0"]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonTropicalJungle/Models/SM_Env_Dock_Stairs_01_mesh/_7325265490148033310.mesh" id="1_0ngg8"]
+[ext_resource type="Material" uid="uid://dqudjujj5y6mm" path="res://assets/PolygonTropicalJungle/Materials/PolygonNatureBiomesTropical_Mat_01.tres" id="2_sbv84"]
+
+[node name="SM_Env_Dock_Stairs_01" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0470917, -0.00782899, -0.0446339)
+metadata/ufile_ids = ["bd82272f12752c9449cfb13b9c9ee1a2:5619768762886578737", "bd82272f12752c9449cfb13b9c9ee1a2:5095468139529943179", "bd82272f12752c9449cfb13b9c9ee1a2:8814308079337205140", "bd82272f12752c9449cfb13b9c9ee1a2:6752656393950402910", "bd82272f12752c9449cfb13b9c9ee1a2:-7952221224937151075"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_0ngg8")
+surface_material_override/0 = ExtResource("2_sbv84")

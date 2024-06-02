@@ -13,7 +13,6 @@ public partial class CircleDecal : MeshInstance3D
 	public override void _Ready()
 	{
 		SetInstanceShaderParameter("FADE", fadeValue);
-		SetInstanceShaderParameter("CULL_DIST", this.GetArenaSize());
 	}
 
 	public override void _Process(double delta)
@@ -38,6 +37,11 @@ public partial class CircleDecal : MeshInstance3D
 				fadingIn = false;
 			}
 		}
+	}
+
+	public void EnableCulling()
+	{
+		SetInstanceShaderParameter("CULL_DIST", this.GetArenaSize());
 	}
 
 	public void CleanUp()

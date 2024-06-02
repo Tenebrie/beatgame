@@ -96,6 +96,11 @@ public partial class GroundAreaRect : BaseTelegraph
 		decal.SetInstanceShaderParameter("COLOR_B", color.B);
 	}
 
+	public void EnableCulling()
+	{
+		decal.EnableCulling();
+	}
+
 	// public static bool IsPointInsideRectangle(Vector3 pt, Vector3 A, Vector3 B, Vector3 C, Vector3 D)
 	// {
 	// 	double x1 = A.X;

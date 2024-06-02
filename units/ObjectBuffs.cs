@@ -32,6 +32,11 @@ public partial class ObjectBuffs : ComposableScript
 		return Buffs.Find(buff => buff is BuffClass) != null;
 	}
 
+	public int Stacks<BuffClass>() where BuffClass : BaseBuff
+	{
+		return Buffs.Count(buff => buff is BuffClass);
+	}
+
 	public void Remove(BaseBuff buff)
 	{
 		Buffs.Remove(buff);

@@ -18,7 +18,7 @@ public partial class WanderingRain : BasicEnemyController
 		area = this.CreateGroundCircularArea(this.Position);
 		area.GrowTime = 1;
 		area.Radius = 1;
-		area.OnHostileImpactCallback = OnImpactCallback;
+		area.OnTargetEntered = OnImpactCallback;
 	}
 
 	public static void OnImpactCallback(BaseUnit unit)

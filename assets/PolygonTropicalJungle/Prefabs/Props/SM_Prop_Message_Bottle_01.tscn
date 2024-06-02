@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://b8jjyka1luhhg"]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonTropicalJungle/Models/SM_Prop_Message_Bottle_01_mesh/_-2343435573438498283.mesh" id="1_x4jq4"]
+[ext_resource type="Material" uid="uid://bwuc2aysdyhrs" path="res://assets/PolygonTropicalJungle/Materials/Glass_MAT.tres" id="2_1jw4q"]
+[ext_resource type="Material" uid="uid://dqudjujj5y6mm" path="res://assets/PolygonTropicalJungle/Materials/PolygonNatureBiomesTropical_Mat_01.tres" id="3_n8m5h"]
+
+[node name="SM_Prop_Message_Bottle_01" type="Node3D"]
+metadata/ufile_ids = ["de0af2128e16ed144b1932ae383733e4:6270195574336604661", "de0af2128e16ed144b1932ae383733e4:6651787014121132879", "de0af2128e16ed144b1932ae383733e4:6965923147954538064", "de0af2128e16ed144b1932ae383733e4:5138353719222514330"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_x4jq4")
+surface_material_override/0 = ExtResource("2_1jw4q")
+surface_material_override/1 = ExtResource("3_n8m5h")

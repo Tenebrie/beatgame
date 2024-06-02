@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dvo3kbeuj72om"]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonTropicalJungle/Models/SM_Bld_Ruins_Archway_02_mesh/_-6328502511374521615.mesh" id="1_s3t6e"]
+[ext_resource type="Material" uid="uid://dqudjujj5y6mm" path="res://assets/PolygonTropicalJungle/Materials/PolygonNatureBiomesTropical_Mat_01.tres" id="2_u8bha"]
+
+[node name="SM_Bld_Ruins_Archway_02" type="Node3D"]
+metadata/ufile_ids = ["f06a8c0d2206f2f47870941f1a79927d:5597957279540951305", "f06a8c0d2206f2f47870941f1a79927d:5108243955345646515", "f06a8c0d2206f2f47870941f1a79927d:8791074755791206060", "f06a8c0d2206f2f47870941f1a79927d:6765775120620733030", "f06a8c0d2206f2f47870941f1a79927d:-6570768661664675761"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_s3t6e")
+surface_material_override/0 = ExtResource("2_u8bha")

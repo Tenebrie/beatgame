@@ -1,25 +1,76 @@
-[gd_scene load_steps=9 format=3 uid="uid://b1d3j63byd72g"]
+[gd_scene load_steps=35 format=3 uid="uid://b1d3j63byd72g"]
 
+[ext_resource type="Texture2D" uid="uid://0oq4x3vsrdoj" path="res://assets/PolygonTropicalJungle/Terrain/Sand_Texture_02.png" id="1_kfj03"]
 [ext_resource type="PackedScene" uid="uid://k3tq7jb87g5b" path="res://objects/Triggers/PlayerSpawner/PlayerSpawner.tscn" id="1_rng0i"]
+[ext_resource type="Texture2D" uid="uid://7capj8gkjdma" path="res://assets/PolygonTropicalJungle/Terrain/Sand_Normals_02.png" id="2_rsvkw"]
 [ext_resource type="PackedScene" uid="uid://54vsvup5iam6" path="res://units/enemy/DummyEnemy/TestBoss.tscn" id="2_wx5uw"]
+[ext_resource type="PackedScene" uid="uid://kv2sxv7kxs57" path="res://assets/PolygonTropicalJungle/Prefabs/SM_Bld_Ruins_Column_02.tscn" id="3_edsgm"]
 [ext_resource type="PackedScene" uid="uid://dd8hi213iqvva" path="res://units/enemy/DummyEnemy/DummyEnemy.tscn" id="3_ondps"]
 [ext_resource type="PackedScene" uid="uid://bue0mn46sn4fj" path="res://objects/Triggers/FightStart/FightStartTrigger.tscn" id="4_xw0ju"]
+[ext_resource type="PackedScene" uid="uid://behv2icdj5778" path="res://assets/PolygonTropicalJungle/Prefabs/SM_Env_Rock_Pile_03.tscn" id="4_y5dva"]
+[ext_resource type="PackedScene" uid="uid://gj8xxedifnpp" path="res://assets/PolygonDungeon/Prefabs/Props/SM_Prop_Tech_Crystal_01.tscn" id="5_16guk"]
+[ext_resource type="PackedScene" uid="uid://vrbfb42k26ix" path="res://assets/PolygonTropicalJungle/Prefabs/SM_Env_Rock_Pile_01.tscn" id="5_gnunl"]
+[ext_resource type="Script" path="res://scripts/environment/ControllableOmniLight.cs" id="6_j5xyj"]
+[ext_resource type="PackedScene" path="res://assets/PolygonDungeon/Prefabs/Environments/Floors/SM_Env_GroundMound_Rough_01.tscn" id="7_kdusl"]
+[ext_resource type="PackedScene" uid="uid://dlc1cewn4ggr2" path="res://assets/PolygonTropicalJungle/Prefabs/SM_Env_Rock_Spikes_02.tscn" id="10_qxvsl"]
+[ext_resource type="PackedScene" uid="uid://bv8iuch80marh" path="res://objects/WaterSurface/WaterSurfaceCentered.tscn" id="11_p1e04"]
+[ext_resource type="PackedScene" uid="uid://e86qp0qdejbg" path="res://assets/PolygonTropicalJungle/Prefabs/SM_Env_Tree_Forest_02_Sturdy.tscn" id="11_tgae6"]
+[ext_resource type="PackedScene" uid="uid://06vom8h5v1pw" path="res://assets/PolygonTropicalJungle/Prefabs/SM_Env_Tree_Forest_03.tscn" id="12_2bnqk"]
+[ext_resource type="Script" path="res://scripts/environment/ControllableDirectionalLight.cs" id="12_5x64u"]
+[ext_resource type="PackedScene" uid="uid://80i2cy8m7ne4" path="res://assets/PolygonTropicalJungle/Prefabs/SM_Env_Bush_01.tscn" id="14_06l6j"]
+[ext_resource type="PackedScene" uid="uid://drf6g6kssvgf1" path="res://assets/PolygonTropicalJungle/Prefabs/SM_Env_Bush_02.tscn" id="15_u0dpw"]
+[ext_resource type="PackedScene" uid="uid://chl176ponels8" path="res://assets/PolygonTropicalJungle/Prefabs/SM_Bld_Ruins_Wall_01.tscn" id="17_mbvt2"]
+[ext_resource type="PackedScene" uid="uid://d4negrpp6ptix" path="res://objects/Triggers/AerialFaithPlate/AerialFaithPlate.tscn" id="19_ovjkk"]
+[ext_resource type="PackedScene" uid="uid://b270gmemxyd8l" path="res://objects/Triggers/AerialFaithPlate/AerialFaithPlateTarget.tscn" id="20_eepki"]
+[ext_resource type="PackedScene" uid="uid://c5qjexdib0qy8" path="res://scripts/environment/EnvironmentController.tscn" id="23_g5mbb"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7i8b0"]
+albedo_texture = ExtResource("1_kfj03")
+normal_enabled = true
+normal_texture = ExtResource("2_rsvkw")
+uv1_scale = Vector3(5, 5, 5)
 
 [sub_resource type="BoxMesh" id="BoxMesh_1t4f2"]
-size = Vector3(2, 0.01, 2)
+material = SubResource("StandardMaterial3D_7i8b0")
+size = Vector3(2, 1, 2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_sgxrx"]
 size = Vector3(2, 0.01, 2)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_o1fa0"]
+size = Vector3(0.122681, 0.184092, 0.364746)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ybffm"]
+size = Vector3(0.125, 0.685, 0.125)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_w20qo"]
-size = Vector3(4, 0.254, 4)
+size = Vector3(5.1828, 0.254, 5.4834)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_45cbj"]
+size = Vector3(2.29232, 0.254, 0.755249)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_24efe"]
-size = Vector3(4, 8, 4)
+size = Vector3(32, 64, 32)
+
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_4koyb"]
+energy_multiplier = 3.0
+
+[sub_resource type="Sky" id="Sky_58p3f"]
+sky_material = SubResource("PhysicalSkyMaterial_4koyb")
+
+[sub_resource type="Environment" id="Environment_wvtxm"]
+background_mode = 2
+sky = SubResource("Sky_58p3f")
+sky_rotation = Vector3(0, 1.0472, 0)
+ambient_light_source = 3
+reflected_light_source = 2
+fog_sun_scatter = 0.75
+volumetric_fog_density = 0.0194
+volumetric_fog_length = 95.3
 
 [node name="BossArenaAeriel" type="Node3D"]
 
-[node name="FloorRigidBody" type="StaticBody3D" parent="."]
+[node name="Arena" type="StaticBody3D" parent="."]
 transform = Transform3D(16, 0, 0, 0, 16, 0, 0, 0, 16, 0, -0.085, 0)
 collision_layer = 17
 collision_mask = 17
@@ -30,16 +81,173 @@ axis_lock_angular_x = true
 axis_lock_angular_y = true
 axis_lock_angular_z = true
 
-[node name="Floor" type="MeshInstance3D" parent="FloorRigidBody"]
+[node name="Floor" type="MeshInstance3D" parent="Arena"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 layers = 1025
 mesh = SubResource("BoxMesh_1t4f2")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="FloorRigidBody"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Arena"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.009, 0, 0)
 shape = SubResource("BoxShape3D_sgxrx")
 
-[node name="FloorRigidBody2" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 9, 18)
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Arena"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.02411, -0.041433, -0.523226)
+shape = SubResource("BoxShape3D_o1fa0")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Arena"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.02411, -0.0394054, 0.498506)
+shape = SubResource("BoxShape3D_o1fa0")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="Arena"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.01144, -0.0411831, -0.523226)
+shape = SubResource("BoxShape3D_o1fa0")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="Arena"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.01144, -0.0423423, 0.498506)
+shape = SubResource("BoxShape3D_o1fa0")
+
+[node name="CollisionShape3D10" type="CollisionShape3D" parent="Arena"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1, 0.25, 1)
+shape = SubResource("BoxShape3D_ybffm")
+
+[node name="CollisionShape3D11" type="CollisionShape3D" parent="Arena"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1, 0.25, -1)
+shape = SubResource("BoxShape3D_ybffm")
+
+[node name="CollisionShape3D12" type="CollisionShape3D" parent="Arena"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1, 0.25, -1)
+shape = SubResource("BoxShape3D_ybffm")
+
+[node name="CollisionShape3D13" type="CollisionShape3D" parent="Arena"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1, 0.25, 1)
+shape = SubResource("BoxShape3D_ybffm")
+
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="Arena"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.491668, -0.0413581, 0.984075)
+shape = SubResource("BoxShape3D_o1fa0")
+
+[node name="CollisionShape3D7" type="CollisionShape3D" parent="Arena"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.530064, -0.0395029, 0.984075)
+shape = SubResource("BoxShape3D_o1fa0")
+
+[node name="CollisionShape3D8" type="CollisionShape3D" parent="Arena"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.519018, -0.0451819, -1.01592)
+shape = SubResource("BoxShape3D_o1fa0")
+
+[node name="CollisionShape3D9" type="CollisionShape3D" parent="Arena"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.502714, -0.0451819, -1.01592)
+shape = SubResource("BoxShape3D_o1fa0")
+
+[node name="SM_Bld_Ruins_Column_02" parent="Arena" instance=ExtResource("3_edsgm")]
+transform = Transform3D(0.125, 0, 0, 0, 0.125, 0, 0, 0, 0.125, 1, -0.244687, 1)
+
+[node name="SM_Bld_Ruins_Column_03" parent="Arena" instance=ExtResource("3_edsgm")]
+transform = Transform3D(0.125, 0, 0, 0, 0.125, 0, 0, 0, 0.125, 1, -0.244687, -1)
+
+[node name="SM_Bld_Ruins_Column_04" parent="Arena" instance=ExtResource("3_edsgm")]
+transform = Transform3D(0.125, 0, 0, 0, 0.125, 0, 0, 0, 0.125, -1, -0.244687, 1)
+
+[node name="SM_Bld_Ruins_Column_05" parent="Arena" instance=ExtResource("3_edsgm")]
+transform = Transform3D(0.125, 0, 0, 0, 0.125, 0, 0, 0, 0.125, -1, -0.244687, -1)
+
+[node name="SM_Bld_Ruins_Wall_01" parent="Arena" instance=ExtResource("17_mbvt2")]
+transform = Transform3D(0.125, 0, 0, 0, 0.125, 0, 0, 0, 0.125, -0.485047, -0.549592, 0.989072)
+
+[node name="SM_Bld_Ruins_Wall_02" parent="Arena" instance=ExtResource("17_mbvt2")]
+transform = Transform3D(-0.125, 0, -1.09278e-08, 0, 0.125, 0, 1.09278e-08, 0, -0.125, 0.452453, -0.549592, 0.989072)
+
+[node name="SM_Bld_Ruins_Wall_03" parent="Arena" instance=ExtResource("17_mbvt2")]
+transform = Transform3D(-5.46392e-09, 0, -0.125, 0, 0.125, 0, 0.125, 0, -5.46392e-09, -1.0163, -0.549974, -0.479678)
+
+[node name="SM_Bld_Ruins_Wall_04" parent="Arena" instance=ExtResource("17_mbvt2")]
+transform = Transform3D(-5.46392e-09, 0, 0.125, 0, 0.125, 0, -0.125, 0, -5.46392e-09, -1.0163, -0.549974, 0.457822)
+
+[node name="SM_Bld_Ruins_Wall_05" parent="Arena" instance=ExtResource("17_mbvt2")]
+transform = Transform3D(-0.125, 0, -1.09278e-08, 0, 0.125, 0, 1.09278e-08, 0, -0.125, 0.480172, -0.553385, -1.01093)
+
+[node name="SM_Bld_Ruins_Wall_06" parent="Arena" instance=ExtResource("17_mbvt2")]
+transform = Transform3D(0.125, 0, 2.18557e-08, 0, 0.125, 0, -2.18557e-08, 0, 0.125, -0.457328, -0.553385, -1.01093)
+
+[node name="SM_Bld_Ruins_Wall_07" parent="Arena" instance=ExtResource("17_mbvt2")]
+transform = Transform3D(-5.46392e-09, 0, 0.125, 0, 0.125, 0, -0.125, 0, -5.46392e-09, 1.01142, -0.549982, 0.457822)
+
+[node name="SM_Bld_Ruins_Wall_08" parent="Arena" instance=ExtResource("17_mbvt2")]
+transform = Transform3D(1.63918e-08, 0, -0.125, 0, 0.125, 0, 0.125, 0, 1.63918e-08, 1.01142, -0.549982, -0.479678)
+
+[node name="SM_Prop_Tech_Crystal_01" parent="Arena" instance=ExtResource("5_16guk")]
+transform = Transform3D(0.625, 0, 0, 0, 0.625, 0, 0, 0, 0.625, 1, 0.380313, 1)
+
+[node name="SM_Prop_Tech_Crystal_02" parent="Arena" instance=ExtResource("5_16guk")]
+transform = Transform3D(0.625, 0, 0, 0, 0.625, 0, 0, 0, 0.625, -1, 0.380313, 1)
+
+[node name="SM_Prop_Tech_Crystal_03" parent="Arena" instance=ExtResource("5_16guk")]
+transform = Transform3D(0.625, 0, 0, 0, 0.625, 0, 0, 0, 0.625, 1, 0.380313, -1)
+
+[node name="SM_Prop_Tech_Crystal_04" parent="Arena" instance=ExtResource("5_16guk")]
+transform = Transform3D(0.625, 0, 0, 0, 0.625, 0, 0, 0, 0.625, -1, 0.380313, -1)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Arena"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.546711, 1)
+light_color = Color(0.74902, 0.913725, 0.937255, 1)
+light_energy = 5.017
+light_size = 0.189
+light_specular = 7.23
+omni_range = 36.913
+script = ExtResource("6_j5xyj")
+GroupName = "arena"
+EnabledByDefault = false
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="Arena"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.546711, -1)
+light_color = Color(0.74902, 0.913725, 0.937255, 1)
+light_energy = 5.017
+light_size = 0.189
+light_specular = 7.23
+omni_range = 36.913
+omni_shadow_mode = 0
+script = ExtResource("6_j5xyj")
+GroupName = "arena"
+EnabledByDefault = false
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="Arena"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.546711, 1)
+light_color = Color(0.74902, 0.913725, 0.937255, 1)
+light_energy = 5.017
+light_size = 0.189
+light_specular = 7.23
+omni_range = 36.913
+script = ExtResource("6_j5xyj")
+GroupName = "arena"
+EnabledByDefault = false
+
+[node name="OmniLight3D4" type="OmniLight3D" parent="Arena"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.546711, -1)
+light_color = Color(0.74902, 0.913725, 0.937255, 1)
+light_energy = 5.017
+light_size = 0.189
+light_specular = 7.23
+omni_range = 36.913
+script = ExtResource("6_j5xyj")
+GroupName = "arena"
+EnabledByDefault = false
+
+[node name="FloorRigidBody3" type="StaticBody3D" parent="."]
+transform = Transform3D(16, 0, 0, 0, 16, 0, 0, 0, 16, 0, -0.085, -88.3183)
+collision_layer = 17
+collision_mask = 17
+axis_lock_linear_x = true
+axis_lock_linear_y = true
+axis_lock_linear_z = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FloorRigidBody3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.009, 0, 0)
+shape = SubResource("BoxShape3D_sgxrx")
+
+[node name="PlayerPlatform" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9, 32)
 collision_layer = 17
 axis_lock_linear_x = true
 axis_lock_linear_y = true
@@ -48,17 +256,34 @@ axis_lock_angular_x = true
 axis_lock_angular_y = true
 axis_lock_angular_z = true
 
-[node name="Floor" type="MeshInstance3D" parent="FloorRigidBody2"]
+[node name="Floor" type="MeshInstance3D" parent="PlayerPlatform"]
 transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 2, 0, -0.0671806, 0)
+visible = false
 layers = 1025
 mesh = SubResource("BoxMesh_1t4f2")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="FloorRigidBody2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00850952, -0.129379, 0)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerPlatform"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.136201, 0.0335712, -0.135756)
 shape = SubResource("BoxShape3D_w20qo")
 
-[node name="PlayerSpawner" parent="." instance=ExtResource("1_rng0i")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 18)
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="PlayerPlatform"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0296925, 0.0335712, -3.24163)
+shape = SubResource("BoxShape3D_45cbj")
+
+[node name="PlayerSpawner" parent="PlayerPlatform" instance=ExtResource("1_rng0i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.08165e-12, 1, 1)
+
+[node name="SM_Env_Rock_Pile_03" parent="PlayerPlatform" instance=ExtResource("4_y5dva")]
+transform = Transform3D(0.568691, 0, -0.822551, 0, 1, 0, 0.822551, 0, 0.568691, -0.349854, -1.96053, -0.760616)
+
+[node name="SM_Env_Rock_Pile_01" parent="PlayerPlatform" instance=ExtResource("5_gnunl")]
+transform = Transform3D(0.393355, 0, 1.77636e-15, 0, 0.393355, 0, -1.77636e-15, 0, 0.393355, 0.140279, -0.670633, 1.39464)
+
+[node name="SM_Env_Rock_Pile_02" parent="PlayerPlatform" instance=ExtResource("5_gnunl")]
+transform = Transform3D(-0.393355, 0, -3.43882e-08, 0, 0.393355, 0, 3.43882e-08, 0, -0.393355, 0.140279, -0.670633, -0.843615)
+
+[node name="SM_Env_Rock_Spikes_02" parent="PlayerPlatform" instance=ExtResource("10_qxvsl")]
+transform = Transform3D(-4.37114e-08, 0, 1.241, 0, 1, 0, -1, 0, -5.42458e-08, -0.0666519, -13.391, 5.59251)
 
 [node name="TestBoss" parent="." instance=ExtResource("2_wx5uw")]
 transform = Transform3D(-2.34597, 0, -4.41548, 0, 5, 0, 4.41548, 0, -2.34597, -0.00532163, -0.0024409, -0.178204)
@@ -67,14 +292,100 @@ Alliance = 2
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.671979, 0.74057, 0, -0.74057, 0.671979, 0, 7.01133, 0)
 light_color = Color(1, 0.533333, 0.184314, 1)
+script = ExtResource("12_5x64u")
+GroupName = "sun"
 
 [node name="DummyEnemy" parent="." instance=ExtResource("3_ondps")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.96745, -0.00237915, 4.64895)
 Alliance = 0
 
 [node name="FightStartTrigger" parent="." instance=ExtResource("4_xw0ju")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9, 18)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="FightStartTrigger"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.114779, 0, 0.0617561)
 shape = SubResource("BoxShape3D_24efe")
+
+[node name="GiantTreeIsland" parent="." instance=ExtResource("7_kdusl")]
+transform = Transform3D(2848.75, 0, 0, 0, 2848.75, 0, 0, 0, 2848.75, 1.51529, -15.0293, -277.905)
+
+[node name="SM_Env_Tree_Forest_06" parent="GiantTreeIsland" instance=ExtResource("11_tgae6")]
+transform = Transform3D(0.00305927, 0, -0.00739195, 0, 0.008, 0, 0.00739195, 0, 0.00305927, -0.000509657, 0.000636365, 0.00134762)
+
+[node name="SM_Env_Tree_Forest_03" parent="GiantTreeIsland" instance=ExtResource("12_2bnqk")]
+transform = Transform3D(-0.00105044, 0, -0.00170193, 0, 0.002, 0, 0.00170193, 0, -0.00105044, -0.0110858, 0.00312767, 0.00297713)
+visible = false
+
+[node name="SM_Env_Tree_Forest_09" parent="GiantTreeIsland" instance=ExtResource("12_2bnqk")]
+transform = Transform3D(-0.000525219, 0, -0.000850967, 0, 0.001, 0, 0.000850967, 0, -0.000525219, 0.00284727, 0.00504384, 0.0104662)
+visible = false
+
+[node name="SM_Env_Tree_Forest_05" parent="GiantTreeIsland" instance=ExtResource("12_2bnqk")]
+transform = Transform3D(-0.00105056, 0, -7.2965e-05, 0, 0.00105309, 0, 7.2965e-05, 0, -0.00105056, 0.00876267, 0.00347715, 0.010686)
+visible = false
+
+[node name="SM_Env_Tree_Forest_08" parent="GiantTreeIsland" instance=ExtResource("12_2bnqk")]
+transform = Transform3D(-0.000726274, 0, 0.000762583, 0, 0.00105309, 0, -0.000762583, 0, -0.000726274, -0.00381995, 0.00347715, 0.009702)
+visible = false
+
+[node name="SM_Env_Tree_Forest_04" parent="GiantTreeIsland" instance=ExtResource("12_2bnqk")]
+transform = Transform3D(0.00154187, 0, -0.00127383, 0, 0.002, 0, 0.00127383, 0, 0.00154187, 0.0126626, 0.00312767, -0.00750244)
+visible = false
+
+[node name="SM_Env_Tree_Forest_07" parent="GiantTreeIsland" instance=ExtResource("12_2bnqk")]
+transform = Transform3D(-0.000379939, 0, -0.00196358, 0, 0.002, 0, 0.00196358, 0, -0.000379939, -0.00419322, 0.00212176, -0.00492834)
+visible = false
+
+[node name="SM_Env_Bush_01" parent="GiantTreeIsland" instance=ExtResource("14_06l6j")]
+transform = Transform3D(0.000954686, 0, -0.00175743, 0, 0.002, 0, 0.00175743, 0, 0.000954686, -0.00212138, 0.00782655, 0.00299183)
+visible = false
+
+[node name="SM_Env_Bush_05" parent="GiantTreeIsland" instance=ExtResource("14_06l6j")]
+transform = Transform3D(-0.00178822, 0, 0.000895706, 0, 0.002, 0, -0.000895706, 0, -0.00178822, -0.000380548, 0.000230577, 0.0120018)
+visible = false
+
+[node name="SM_Env_Bush_02" parent="GiantTreeIsland" instance=ExtResource("15_u0dpw")]
+transform = Transform3D(0.002, 0, 0, 0, 0.002, 0, 0, 0, 0.002, -0.0096379, 0.004254, 0.00863852)
+visible = false
+
+[node name="SM_Env_Bush_09" parent="GiantTreeIsland" instance=ExtResource("15_u0dpw")]
+transform = Transform3D(0.002, 0, 0, 0, 0.00197512, -0.000314455, 0, 0.000314455, 0.00197512, -0.00476189, 0.00328318, 0.0105069)
+visible = false
+
+[node name="SM_Env_Bush_06" parent="GiantTreeIsland" instance=ExtResource("15_u0dpw")]
+transform = Transform3D(0.000697111, 0, -0.00187458, 0, 0.002, 0, 0.00187458, 0, 0.000697111, -0.00688523, 0.00643624, 0.00215179)
+visible = false
+
+[node name="SM_Env_Bush_07" parent="GiantTreeIsland" instance=ExtResource("15_u0dpw")]
+transform = Transform3D(0.000697111, 0, -0.00187458, 0, 0.002, 0, 0.00187458, 0, 0.000697111, 0.00106678, 0.0104156, -0.00129932)
+visible = false
+
+[node name="SM_Env_Bush_08" parent="GiantTreeIsland" instance=ExtResource("15_u0dpw")]
+transform = Transform3D(0.000697111, 0, -0.00187458, 0, 0.002, 0, 0.00187458, 0, 0.000697111, -0.000927441, 0.00650957, 0.00647285)
+visible = false
+
+[node name="SM_Env_Bush_03" parent="GiantTreeIsland" instance=ExtResource("15_u0dpw")]
+transform = Transform3D(0.002, 0, 0, 0, 0.002, 0, 0, 0, 0.002, 0.00688462, 0.004254, 0.0113043)
+visible = false
+
+[node name="SM_Env_Bush_04" parent="GiantTreeIsland" instance=ExtResource("15_u0dpw")]
+transform = Transform3D(0.00156086, 0, 0.00125049, 0, 0.002, 0, -0.00125049, 0, 0.00156086, 0.00522297, 0.00578608, 0.00439768)
+visible = false
+
+[node name="OmniLight3D" type="OmniLight3D" parent="GiantTreeIsland"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00930297, -0.0214041)
+light_energy = 16.0
+omni_range = 114.623
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_wvtxm")
+
+[node name="EnvironmentController" parent="." instance=ExtResource("23_g5mbb")]
+
+[node name="WaterSurfaceCentered" parent="." instance=ExtResource("11_p1e04")]
+transform = Transform3D(1000, 0, 0, 0, 1000, 0, 0, 0, 1000, 0, -4.18042, 0)
+
+[node name="AerialFaithPlate" parent="." instance=ExtResource("19_ovjkk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.01991, 29)
+
+[node name="AerialFaithPlateTarget" parent="AerialFaithPlate" instance=ExtResource("20_eepki")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.929476, -15)

@@ -8,12 +8,10 @@ public partial class TestBossTimeline : BaseTimeline<TestBoss>
 {
 	public TestBossTimeline(TestBoss parent) : base(parent)
 	{
-		// return;
-		// for (var i = 0; i < 20; i++)
-		// 	Add(i * 4, parent.AutoAttack);
+		GotoAbleton(42);
 
-		GotoAbleton(33);
 		Mark("Debug");
+		Wait(2);
 
 		RegisterAutoAttacks();
 		RegisterRaidwides();
@@ -75,8 +73,38 @@ public partial class TestBossTimeline : BaseTimeline<TestBoss>
 		// ===================================================
 		// Lightning Orbs 1
 		// ===================================================
-		// GotoAbleton(37);
-		// Cast(parent.AnimatedTridents);
+		GotoAbleton(42);
+		Cast(parent.LightningOrbs);
+
+		// ===================================================
+		// Thrice Consuming Winds
+		// ===================================================
+		GotoAbleton(61);
+		Cast(parent.ThriceConsumingWinds);
+
+		GotoAbleton(65);
+		Act(() => parent.AreaAttack.AreaRadius = 12);
+		Act(() => parent.AreaAttack.Settings.HoldTime = 8);
+		Target(new Vector3(+16, 0, 0), allowMultitarget: true);
+		Target(new Vector3(-16, 0, 0), allowMultitarget: true);
+		Target(new Vector3(0, 0, +16), allowMultitarget: true);
+		Target(new Vector3(0, 0, -16), allowMultitarget: true);
+		Cast(parent.AreaAttack);
+
+		GotoAbleton(69);
+		Cast(parent.MiniBuster);
+
+		GotoAbleton(71);
+		Cast(parent.MiniBuster);
+
+		GotoAbleton(73);
+		Cast(parent.MiniBuster);
+
+		GotoAbleton(75);
+		Cast(parent.MiniBuster);
+
+		GotoAbleton(77);
+		Cast(parent.MiniBuster);
 
 		// ===================================================
 		// Geysers
@@ -97,7 +125,7 @@ public partial class TestBossTimeline : BaseTimeline<TestBoss>
 
 		GotoAbleton(86);
 
-		Target(new Vector3(0, 0, 0), allowMultitarget: true);
+		Target(new Vector3(0, 0, 0));
 		Act(() => parent.AreaAttack.AreaRadius = 8f);
 		Act(() => parent.AreaAttack.Settings.HoldTime = 4f);
 		Cast(parent.AreaAttack);
@@ -115,6 +143,14 @@ public partial class TestBossTimeline : BaseTimeline<TestBoss>
 		Act(() => parent.Geysers.Settings.HoldTime = 5);
 		Act(() => parent.Geysers.Variation = BossCastGeysers.VariationType.AllPositions);
 		Cast(parent.Geysers);
+
+		GotoAbleton(96);
+		Act(() =>
+		{
+			EnvironmentController.Singleton.UpdateLights("sun", false);
+			EnvironmentController.Singleton.UpdateLights("arena", true);
+			EnvironmentController.Singleton.SetBiolumenescence(1);
+		});
 
 
 
@@ -282,6 +318,7 @@ public partial class TestBossTimeline : BaseTimeline<TestBoss>
 	public override void _Ready()
 	{
 		Start();
-		Music.Singleton.SeekTo(GetMarkBeatIndex("Debug"));
+		var targetIndex = GetMarkBeatIndex("Debug");
+		Music.Singleton.SeekTo(targetIndex);
 	}
 }

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonTropicalJungle/Models/SM_Prop_Rum_Bottle_01_mesh/_-7857535721261530117.mesh" id="1_qo21u"]
+[ext_resource type="Material" uid="uid://dqudjujj5y6mm" path="res://assets/PolygonTropicalJungle/Materials/PolygonNatureBiomesTropical_Mat_01.tres" id="2_f26e5"]
+
+[node name="SM_Prop_Rum_Bottle_01" type="Node3D"]
+metadata/ufile_ids = ["19a16ce7302e9664d81551b64b7cfb5b:7434899554991944576", "19a16ce7302e9664d81551b64b7cfb5b:7810861800470178106", "19a16ce7302e9664d81551b64b7cfb5b:5801140264169782309", "19a16ce7302e9664d81551b64b7cfb5b:8603349854839556335"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_qo21u")
+surface_material_override/0 = ExtResource("2_f26e5")

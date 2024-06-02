@@ -35,5 +35,5 @@ public abstract partial class BaseBuff : Node
 		}
 	}
 
-	public abstract void Visit(BuffVisitor visitor);
+	public virtual void Visit(BuffVisitor visitor) { }
 }

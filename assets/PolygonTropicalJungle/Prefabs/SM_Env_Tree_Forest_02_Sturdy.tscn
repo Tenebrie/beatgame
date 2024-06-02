@@ -1,0 +1,292 @@
+[gd_scene load_steps=14 format=3 uid="uid://e86qp0qdejbg"]
+
+[ext_resource type="ArrayMesh" uid="uid://4m4ou7os10ew" path="res://assets/PolygonTropicalJungle/Models/SM_Env_Tree_Forest_02_mesh/_5516341722648445450.mesh" id="1_i43xd"]
+[ext_resource type="Texture2D" uid="uid://djjyoah6txbtw" path="res://assets/PolygonTropicalJungle/Textures/Plants/Branches_01.tga" id="3_3dnds"]
+[ext_resource type="ArrayMesh" uid="uid://t0eamfbbi2l0" path="res://assets/PolygonTropicalJungle/Models/SM_Env_Tree_Forest_02_mesh/_3161772402728639463.mesh" id="3_57e4u"]
+[ext_resource type="Material" uid="uid://d3ygicjy7y5xc" path="res://assets/PolygonTropicalJungle/Materials/Plants/Tree_Mat_02.tres" id="4_86jfl"]
+[ext_resource type="Shader" path="res://assets/PolygonTropicalJungle/Shaders/VegetationShader.gdshader" id="4_be143"]
+[ext_resource type="Texture2D" uid="uid://lsf1hq5k6iie" path="res://assets/PolygonTropicalJungle/Textures/Bioluminescence/Leaf_Palm_Biolumin_Final_04.png" id="5_160oe"]
+[ext_resource type="ArrayMesh" path="res://assets/PolygonTropicalJungle/Models/SM_Env_Tree_Forest_02_mesh/_7659305217767344828.mesh" id="5_h5vbn"]
+[ext_resource type="ArrayMesh" path="res://assets/PolygonTropicalJungle/Models/SM_Env_Tree_Forest_02_mesh/_6464372572425316803.mesh" id="6_7wtfc"]
+[ext_resource type="ArrayMesh" path="res://assets/PolygonTropicalJungle/Models/SM_Env_Tree_Forest_02_mesh/_-5384704353631480585.mesh" id="7_f8not"]
+[ext_resource type="Material" uid="uid://cxeyypm5878d8" path="res://assets/PolygonTropicalJungle/Materials/Plants/SM_Env_Tree_Forest_02_Sturdy.tres" id="7_qygf0"]
+[ext_resource type="Material" uid="uid://dy8r0vnlptr3k" path="res://assets/PolygonTropicalJungle/Materials/LOD_Cards/Card_Tree_Forest_02.tres" id="8_4wdkv"]
+[ext_resource type="Texture2D" uid="uid://d1xmmw454r022" path="res://assets/PolygonTropicalJungle/Textures/Core/Noise_Small.png" id="10_074oy"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uouv1"]
+resource_name = "Branches_01"
+render_priority = 0
+shader = ExtResource("4_be143")
+shader_parameter/alpha_scissor_threshold = 0.4
+shader_parameter/specular = 0.4
+shader_parameter/roughness = 0.85
+shader_parameter/face_tint = 0.2
+shader_parameter/Leaf_UV_Scale = Vector2(1, 1)
+shader_parameter/Leaf_Tint_Base = Color(0, 0, 0, 1)
+shader_parameter/Leaf_Tint_Highlight = Color(1, 1, 1, 1)
+shader_parameter/Leaf_Tint_Str = 0.0
+shader_parameter/Texture_As_Brightness = true
+shader_parameter/Brightness = 8.0
+shader_parameter/Leaf_Texture = ExtResource("3_3dnds")
+shader_parameter/Leaf_Emmisive_Color = Color(0, 0, 0, 1)
+shader_parameter/Leaf_Emissive_Str = 0.0
+shader_parameter/Leaf_Emmisive_Mask = ExtResource("5_160oe")
+shader_parameter/Trunk_UV_Scale = Vector2(1, 1)
+shader_parameter/Trunk_Tint = Color(0.309804, 0.196078, 0.0901961, 1)
+shader_parameter/Trunk_Tint_Str = 1.0
+shader_parameter/Trunk_Texture = ExtResource("3_3dnds")
+shader_parameter/F_Texture_As_Brightness = true
+shader_parameter/F_Brightness = 8.0
+shader_parameter/frost_amount = 0.0
+shader_parameter/frost_fade = 1.0
+shader_parameter/Frost_Color = Color(1, 1, 1, 1)
+shader_parameter/Wind_Enable = true
+shader_parameter/wind_color_shift = Color(0, 0, 0, 1)
+shader_parameter/wind_color_strength = 0.5
+shader_parameter/wind_strength = 0.33
+shader_parameter/wind_direction_rads = 0.0
+shader_parameter/sway_multiplier = 0.25
+shader_parameter/jitter_multiplier = 0.25
+shader_parameter/deform_multiplier = 0.25
+shader_parameter/bend_multiplier = 0.2
+shader_parameter/wind_noise = ExtResource("10_074oy")
+metadata/shader_placeholder = "Assets/PolygonNatureBiomes/PNB_Core/Shaders/SyntyStudios_VegitationShader.shader"
+metadata/tex_GustNoiseMap = "Assets/PolygonNatureBiomes/PNB_Core/Textures/Noise_Mid.tga"
+metadata/tex_LOD_DitheringMap = "Assets/PolygonNatureBiomes/PNB_Core/Textures/LODNoise.png"
+metadata/tex_LeafTex = "Assets/PolygonNatureBiomes/PNB_Tropical_Jungle/Textures/Plants/Branches_01.tga"
+metadata/tex_Leaves_NoiseTexture2 = "Assets/PolygonNatureBiomes/PNB_Core/Textures/Noise_Small.png"
+metadata/tex_PanningNoise = "Assets/PolygonNatureBiomes/PNB_Core/Textures/Noise_Big.tga"
+metadata/tex_PanningNoise1 = "Assets/PolygonNatureBiomes/PNB_Core/Textures/Noise_Mid.tga"
+metadata/tex_TextureSample1 = "Assets/PolygonNatureBiomes/PNB_Core/Textures/Noise_Mid.tga"
+metadata/tex_Tree_NoiseTexture2 = "Assets/PolygonNatureBiomes/PNB_Core/Textures/Noise_Big.tga"
+metadata/tex_TunkTex = "Assets/PolygonNatureBiomes/PNB_Tropical_Jungle/Textures/Plants/Branches_01.tga"
+metadata/color_BaseColour = {
+"a": 0.0,
+"b": 0.0,
+"g": 0.0201597,
+"r": 0.0784314
+}
+metadata/color_Color = {
+"a": 1.0,
+"b": 1.0,
+"g": 1.0,
+"r": 1.0
+}
+metadata/color_EmissionColor = {
+"a": 1.0,
+"b": 0.0,
+"g": 0.0,
+"r": 0.0
+}
+metadata/color_Emissive2Colour = {
+"a": 0.0,
+"b": 0.0,
+"g": 0.0,
+"r": 0.0
+}
+metadata/color_EmissiveColour = {
+"a": 0.0,
+"b": 0.0,
+"g": 0.0,
+"r": 0.0
+}
+metadata/color_FrostingColour = {
+"a": 0.0,
+"b": 1.0,
+"g": 1.0,
+"r": 1.0
+}
+metadata/color_GustHighlight = {
+"a": 0.0,
+"b": 0.0,
+"g": 0.0,
+"r": 0.0
+}
+metadata/color_GustSmoothing = {
+"a": 0.0,
+"b": 0.5,
+"g": 0.5,
+"r": 0.5
+}
+metadata/color_LeafBaseColour = {
+"a": 0.0,
+"b": 0.0,
+"g": 0.0,
+"r": 0.0
+}
+metadata/color_LeafNoiseColour = {
+"a": 0.0,
+"b": 0.0,
+"g": 0.0,
+"r": 0.0
+}
+metadata/color_LeafNoiseLargeColour = {
+"a": 0.0,
+"b": 0.0,
+"g": 0.0201597,
+"r": 0.0784314
+}
+metadata/color_LeafTint = {
+"a": 0.0,
+"b": 0.0,
+"g": 0.0201597,
+"r": 0.0784314
+}
+metadata/color_SnowColour = {
+"a": 0.0,
+"b": 1.0,
+"g": 1.0,
+"r": 1.0
+}
+metadata/color_Tint = {
+"a": 0.0,
+"b": 0.0,
+"g": 0.0,
+"r": 0.0
+}
+metadata/color_TrunkBaseColour = {
+"a": 0.0,
+"b": 0.0,
+"g": 0.0201597,
+"r": 0.0784314
+}
+metadata/color_TrunkEmissiveColour = {
+"a": 0.0,
+"b": 0.0,
+"g": 0.0,
+"r": 0.0
+}
+metadata/color_TrunkNoiseColour = {
+"a": 0.0,
+"b": 0.0,
+"g": 0.0,
+"r": 0.0
+}
+metadata/color_TrunkTint = {
+"a": 0.0,
+"b": 0.0,
+"g": 0.0201597,
+"r": 0.0784314
+}
+metadata/float_Big_Wave = 10.0
+metadata/float_Big_WindAmount = 1.22
+metadata/float_Big_Windspeed = 1.84
+metadata/float_BumpScale = 1.0
+metadata/float_ColourNoiseLargeScale = 0.0
+metadata/float_ColourNoiseScale = 0.0
+metadata/float_ColourNoiseSmallScale = 0.0
+metadata/float_Cutoff = 0.5
+metadata/float_DetailNormalMapScale = 1.0
+metadata/float_DstBlend = 0.0
+metadata/float_EmissiveAmount = 0.0
+metadata/float_FlatColourSwitch = 0.0
+metadata/float_Float0 = 0.0
+metadata/float_Float1 = 0.05
+metadata/float_FrostingFalloff = 1.0
+metadata/float_FrostingHeight = 1.0
+metadata/float_FrostingSwitch = 0.0
+metadata/float_GlossMapScale = 1.0
+metadata/float_Glossiness = 0.5
+metadata/float_GlossyReflections = 1.0
+metadata/float_GustAmount = 0.145
+metadata/float_GustFreq = 0.224
+metadata/float_GustLargeFreq = 0.107
+metadata/float_GustScale = 0.226
+metadata/float_GustSmallFreq = 0.416
+metadata/float_JitterAmount = 0.0
+metadata/float_JitterFreq = 0.235
+metadata/float_LOD_FADE_CROSSFADE = 1.0
+metadata/float_LOD_FADE_CROSSFADE_in = 0.0
+metadata/float_LOD_FADE_CROSSFADE_out = 0.0
+metadata/float_LeafBigNoiseAmount = 0.0
+metadata/float_LeafBigNoiseScale = 1.0
+metadata/float_LeafFlatColourSwitch = 0.0
+metadata/float_LeafMetallic = 0.144
+metadata/float_LeafNoiseAmount = 0.0
+metadata/float_LeafNoiseScale = 1.0
+metadata/float_LeafNormalAmount = 0.5
+metadata/float_LeafSmoothness = 0.484
+metadata/float_Metallic = 0.132
+metadata/float_Mode = 0.0
+metadata/float_NormalAmount = 0.5
+metadata/float_OcclusionStrength = 1.0
+metadata/float_PanningSpeed = 0.007
+metadata/float_PanningSpeed1 = 0.127
+metadata/float_Parallax = 0.02
+metadata/float_Small_Wave = 2.1
+metadata/float_Smoothness = 0.2
+metadata/float_SmoothnessTextureChannel = 0.0
+metadata/float_SnowFalloff = 1.0
+metadata/float_SnowHeight = 1.0
+metadata/float_SnowSwitch = 0.0
+metadata/float_SpecularHighlights = 1.0
+metadata/float_SrcBlend = 1.0
+metadata/float_Tiling = 1.0
+metadata/float_Tint_Tiling = 0.5
+metadata/float_TotalWindAmount = 0.5
+metadata/float_TrunkFlatColourSwitch = 0.0
+metadata/float_TrunkMetallic = 0.0
+metadata/float_TrunkNormalAmount = 0.5
+metadata/float_TrunkSmoothness = 0.2
+metadata/float_UVSec = 0.0
+metadata/float_WindAmount = 1.0
+metadata/float_WindBaseline = 0.247
+metadata/float_WindDirection = 0.0
+metadata/float_WindDirection1 = 0.0
+metadata/float_WindNoiseScale = 0.018
+metadata/float_WindNoiseScale1 = 14.76
+metadata/float_WindWorldScale = 0.08
+metadata/float_WindWorldScale1 = 0.001
+metadata/float_Y_multiplier = -0.5
+metadata/float_ZWrite = 1.0
+metadata/float__dirty = 0.0
+metadata/float_leafNoiseScale = 1.0
+metadata/float_minimum = 0.0
+metadata/float_noiseAmount = 0.189
+metadata/float_noiseScale = 0.7
+metadata/float_noiseTemp = 1.0
+metadata/float_remap = 0.7
+metadata/float_sin = 0.27
+metadata/float_tempNoise = 0.29
+metadata/float_worldScale = 0.67
+
+[node name="SM_Env_Tree_Forest_02" type="Node3D"]
+metadata/ufile_ids = ["e6f4239d87d23bc438c6c367834a247c:488843598089089648", "e6f4239d87d23bc438c6c367834a247c:973736315334076618", "e6f4239d87d23bc438c6c367834a247c:4652964986910164225", "e6f4239d87d23bc438c6c367834a247c:-4433336108264867083"]
+
+[node name="SM_Env_Tree_Forest_02_Branches_LOD0" type="Node3D" parent="."]
+metadata/ufile_ids = ["e6f4239d87d23bc438c6c367834a247c:4244691805088009471", "e6f4239d87d23bc438c6c367834a247c:225883377700854305", "e6f4239d87d23bc438c6c367834a247c:2727052068312761521", "e6f4239d87d23bc438c6c367834a247c:5580284809167028026"]
+
+[node name="_mesh" type="MeshInstance3D" parent="SM_Env_Tree_Forest_02_Branches_LOD0"]
+mesh = ExtResource("1_i43xd")
+surface_material_override/0 = SubResource("ShaderMaterial_uouv1")
+
+[node name="SM_Env_Tree_Forest_02_LOD0" type="Node3D" parent="."]
+metadata/ufile_ids = ["e6f4239d87d23bc438c6c367834a247c:5347788795413825392", "e6f4239d87d23bc438c6c367834a247c:3788416140961674640", "e6f4239d87d23bc438c6c367834a247c:1605598447858438419", "e6f4239d87d23bc438c6c367834a247c:2712686686849104757"]
+
+[node name="_mesh" type="MeshInstance3D" parent="SM_Env_Tree_Forest_02_LOD0"]
+mesh = ExtResource("3_57e4u")
+surface_material_override/0 = ExtResource("7_qygf0")
+
+[node name="SM_Env_Tree_Forest_02_LOD1" type="Node3D" parent="."]
+visible = false
+metadata/ufile_ids = ["e6f4239d87d23bc438c6c367834a247c:8697236286223136102", "e6f4239d87d23bc438c6c367834a247c:1037612102825543751", "e6f4239d87d23bc438c6c367834a247c:3500499574065603237", "e6f4239d87d23bc438c6c367834a247c:4668442485682192374"]
+
+[node name="_mesh" type="MeshInstance3D" parent="SM_Env_Tree_Forest_02_LOD1"]
+mesh = ExtResource("5_h5vbn")
+surface_material_override/0 = ExtResource("4_86jfl")
+
+[node name="SM_Env_Tree_Forest_02_LOD2" type="Node3D" parent="."]
+visible = false
+metadata/ufile_ids = ["e6f4239d87d23bc438c6c367834a247c:3545177984947867982", "e6f4239d87d23bc438c6c367834a247c:3079904162438935573", "e6f4239d87d23bc438c6c367834a247c:1441892951504642515", "e6f4239d87d23bc438c6c367834a247c:4563739241195557457"]
+
+[node name="_mesh" type="MeshInstance3D" parent="SM_Env_Tree_Forest_02_LOD2"]
+mesh = ExtResource("6_7wtfc")
+surface_material_override/0 = ExtResource("4_86jfl")
+
+[node name="SM_Env_Tree_Forest_02_LOD3" type="Node3D" parent="."]
+visible = false
+metadata/ufile_ids = ["e6f4239d87d23bc438c6c367834a247c:4969174559270448424", "e6f4239d87d23bc438c6c367834a247c:3363056382035600031", "e6f4239d87d23bc438c6c367834a247c:8408753896198034222", "e6f4239d87d23bc438c6c367834a247c:2745192351623465946"]
+
+[node name="_mesh" type="MeshInstance3D" parent="SM_Env_Tree_Forest_02_LOD3"]
+mesh = ExtResource("7_f8not")
+surface_material_override/0 = ExtResource("8_4wdkv")

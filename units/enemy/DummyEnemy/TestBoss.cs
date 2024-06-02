@@ -4,6 +4,7 @@ public partial class TestBoss : BasicEnemyController
 {
 	public BossAuto AutoAttack;
 	public BossCastBuster Buster;
+	public BossCastBuster MiniBuster;
 	public BossCastRaidwide Raidwide;
 	public BossCastAreaAttack AreaAttack;
 	public BossCastDeepGuardians DeepGuardians;
@@ -16,7 +17,9 @@ public partial class TestBoss : BasicEnemyController
 	public BossCastRavagingWinds RavagingWinds;
 	public BossCastConsumingWinds ConsumingWinds;
 	public BossCastConsumingWinds TwiceConsumingWinds;
+	public BossCastConsumingWinds ThriceConsumingWinds;
 	public BossCastGeysers Geysers;
+	public BossCastLightningOrbs LightningOrbs;
 	public BossCastHardEnrage HardEnrage;
 	public TestBoss()
 	{
@@ -25,6 +28,11 @@ public partial class TestBoss : BasicEnemyController
 
 		Buster = new(this);
 		CastLibrary.Register(Buster);
+
+		MiniBuster = new(this);
+		CastLibrary.Register(MiniBuster);
+		MiniBuster.Settings.FriendlyName = "Mini Buster";
+		MiniBuster.Damage = 100;
 
 		Raidwide = new(this);
 		CastLibrary.Register(Raidwide);
@@ -64,11 +72,20 @@ public partial class TestBoss : BasicEnemyController
 		CastLibrary.Register(TwiceConsumingWinds);
 		TwiceConsumingWinds.Settings.FriendlyName = "Twice Consuming Winds";
 		TwiceConsumingWinds.AreaRadius += 2;
-		// TwiceConsumingWinds.PullStrength += 0.25f;
 		TwiceConsumingWinds.ExtraPullStrength += 0.25f;
+
+		ThriceConsumingWinds = new(this);
+		CastLibrary.Register(ThriceConsumingWinds);
+		ThriceConsumingWinds.Settings.FriendlyName = "Thrice Consuming Winds";
+		ThriceConsumingWinds.AreaRadius += 4;
+		ThriceConsumingWinds.ExtraPullStrength += 0.25f;
+		ThriceConsumingWinds.Damage = 20;
 
 		Geysers = new(this);
 		CastLibrary.Register(Geysers);
+
+		LightningOrbs = new(this);
+		CastLibrary.Register(LightningOrbs);
 
 		HardEnrage = new(this);
 		CastLibrary.Register(HardEnrage);

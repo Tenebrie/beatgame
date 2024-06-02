@@ -18,9 +18,12 @@ public partial class Projectile : Node3D
 
 	public override void _Process(double delta)
 	{
+		if (TargetUnit == null)
+			return;
+
 		if (!IsInstanceValid(TargetUnit))
 		{
-			Cleanup();
+			CleanUp();
 			return;
 		}
 
@@ -31,7 +34,7 @@ public partial class Projectile : Node3D
 		Position += direction * speed;
 		if (GlobalPosition.DistanceSquaredTo(targetPos) <= 0.02f && IsEmitting)
 		{
-			Cleanup();
+			CleanUp();
 
 			var impact = Lib.Scene(Lib.Effect.FireballProjectileImpact).Instantiate() as ProjectileImpact;
 			GetTree().Root.AddChild(impact);
@@ -41,7 +44,7 @@ public partial class Projectile : Node3D
 		}
 	}
 
-	private async void Cleanup()
+	public async void CleanUp()
 	{
 		IsEmitting = false;
 		foreach (var emitter in Emitters)

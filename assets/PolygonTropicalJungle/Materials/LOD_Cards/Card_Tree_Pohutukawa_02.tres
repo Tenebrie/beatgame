@@ -1,0 +1,243 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dxb1qyj4kas0v"]
+
+[ext_resource type="Shader" path="res://assets/PolygonTropicalJungle/Shaders/VegetationShader.gdshader" id="1_qjrvc"]
+
+[resource]
+resource_name = "Card_Tree_Pohutukawa_02"
+render_priority = 0
+shader = ExtResource("1_qjrvc")
+shader_parameter/alpha_scissor_threshold = 0.4
+shader_parameter/specular = 0.4
+shader_parameter/roughness = 0.85
+shader_parameter/face_tint = 0.2
+shader_parameter/Leaf_UV_Scale = Vector2(1, 1)
+shader_parameter/Leaf_Tint_Base = Color(0, 0, 0, 1)
+shader_parameter/Leaf_Tint_Highlight = Color(1, 1, 1, 1)
+shader_parameter/Leaf_Tint_Str = 0.0
+shader_parameter/Texture_As_Brightness = true
+shader_parameter/Brightness = 8.0
+shader_parameter/Leaf_Emmisive_Color = Color(0, 0, 0, 1)
+shader_parameter/Leaf_Emissive_Str = 0.0
+shader_parameter/Trunk_UV_Scale = Vector2(1, 1)
+shader_parameter/Trunk_Tint = Color(0, 0, 0, 1)
+shader_parameter/Trunk_Tint_Str = 0.0
+shader_parameter/F_Texture_As_Brightness = true
+shader_parameter/F_Brightness = 8.0
+shader_parameter/frost_amount = 0.0
+shader_parameter/frost_fade = 1.0
+shader_parameter/Frost_Color = Color(1, 1, 1, 1)
+shader_parameter/Wind_Enable = true
+shader_parameter/wind_color_shift = Color(0, 0, 0, 1)
+shader_parameter/wind_color_strength = 0.5
+shader_parameter/wind_strength = 0.33
+shader_parameter/wind_direction_rads = 0.0
+shader_parameter/sway_multiplier = 2.0
+shader_parameter/jitter_multiplier = 2.0
+shader_parameter/deform_multiplier = 2.0
+shader_parameter/bend_multiplier = 2.0
+metadata/shader_placeholder = "Assets/PolygonNatureBiomes/PNB_Core/Shaders/SyntyStudios_VegitationShader.shader"
+metadata/tex_GustNoiseMap = "Assets/PolygonNatureBiomes/PNB_Core/Textures/Noise_Mid.tga"
+metadata/tex_LOD_DitheringMap = "Assets/PolygonNatureBiomes/PNB_Core/Textures/LODNoise.png"
+metadata/tex_LeafNormalMap = "Assets/PolygonNatureBiomes/PNB_Tropical_Jungle/Textures/LOD_Cards/treePohutukawa_02_Normals.tga"
+metadata/tex_LeafTex = "Assets/PolygonNatureBiomes/PNB_Tropical_Jungle/Textures/LOD_Cards/treePohutukawa_02.tga"
+metadata/tex_Leaves_NoiseTexture2 = "Assets/PolygonNatureBiomes/PNB_Core/Textures/Noise_Small.png"
+metadata/tex_MainTex = "Assets/PolygonNatureBiomes/PNB_Tropical_Jungle/Textures/LOD_Cards/treePohutukawa_02.tga"
+metadata/tex_NormalMap = "Assets/PolygonNatureBiomes/PNB_Tropical_Jungle/Textures/LOD_Cards/treePohutukawa_02_Normals.tga"
+metadata/tex_PanningNoise = "Assets/PolygonNatureBiomes/PNB_Core/Textures/Noise_Big.tga"
+metadata/tex_PanningNoise1 = "Assets/PolygonNatureBiomes/PNB_Core/Textures/Noise_Mid.tga"
+metadata/tex_TextureSample1 = "Assets/PolygonNatureBiomes/PNB_Core/Textures/Noise_Mid.tga"
+metadata/tex_Tree_NoiseTexture2 = "Assets/PolygonNatureBiomes/PNB_Core/Textures/Noise_Big.tga"
+metadata/tex_TrunkNormalMap = "Assets/PolygonNatureBiomes/PNB_Tropical_Jungle/Textures/LOD_Cards/treePohutukawa_02_Normals.tga"
+metadata/tex_TunkTex = "Assets/PolygonNatureBiomes/PNB_Tropical_Jungle/Textures/LOD_Cards/treePohutukawa_02.tga"
+metadata/color_BaseColour = {
+"a": 0.0,
+"b": 0.0,
+"g": 0.0201597,
+"r": 0.0784314
+}
+metadata/color_Color = {
+"a": 1.0,
+"b": 1.0,
+"g": 1.0,
+"r": 1.0
+}
+metadata/color_EmissionColor = {
+"a": 1.0,
+"b": 0.0,
+"g": 0.0,
+"r": 0.0
+}
+metadata/color_Emissive2Colour = {
+"a": 0.0,
+"b": 0.0,
+"g": 0.0,
+"r": 0.0
+}
+metadata/color_EmissiveColour = {
+"a": 0.0,
+"b": 0.0,
+"g": 0.0,
+"r": 0.0
+}
+metadata/color_FrostingColour = {
+"a": 0.0,
+"b": 0.0,
+"g": 0.0,
+"r": 1.0
+}
+metadata/color_GustHighlight = {
+"a": 0.0,
+"b": 0.0,
+"g": 0.0,
+"r": 0.0
+}
+metadata/color_GustSmoothing = {
+"a": 0.0,
+"b": 0.5,
+"g": 0.5,
+"r": 0.5
+}
+metadata/color_LeafBaseColour = {
+"a": 0.0,
+"b": 0.0,
+"g": 0.0,
+"r": 0.0
+}
+metadata/color_LeafNoiseColour = {
+"a": 0.0,
+"b": 0.0,
+"g": 0.0,
+"r": 0.0
+}
+metadata/color_LeafNoiseLargeColour = {
+"a": 0.0,
+"b": 0.0,
+"g": 0.0,
+"r": 0.0
+}
+metadata/color_LeafTint = {
+"a": 0.0,
+"b": 0.0,
+"g": 0.0201597,
+"r": 0.0784314
+}
+metadata/color_SnowColour = {
+"a": 0.0,
+"b": 0.0,
+"g": 0.0117647,
+"r": 0.784314
+}
+metadata/color_Tint = {
+"a": 0.0,
+"b": 0.0,
+"g": 0.0,
+"r": 0.0
+}
+metadata/color_TrunkBaseColour = {
+"a": 0.0,
+"b": 0.0,
+"g": 0.0,
+"r": 0.0
+}
+metadata/color_TrunkEmissiveColour = {
+"a": 0.0,
+"b": 0.0,
+"g": 0.0,
+"r": 0.0
+}
+metadata/color_TrunkNoiseColour = {
+"a": 0.0,
+"b": 0.0,
+"g": 0.0,
+"r": 0.0
+}
+metadata/color_TrunkTint = {
+"a": 0.0,
+"b": 0.0,
+"g": 0.0201597,
+"r": 0.0784314
+}
+metadata/float_AO_Amount = 1.0
+metadata/float_Big_Wave = 10.0
+metadata/float_Big_WindAmount = 1.22
+metadata/float_Big_Windspeed = 1.84
+metadata/float_BumpScale = 1.0
+metadata/float_CardToggle = 1.0
+metadata/float_ColourNoiseLargeScale = 0.0
+metadata/float_ColourNoiseScale = 0.0
+metadata/float_ColourNoiseSmallScale = 0.0
+metadata/float_Cutoff = 0.5
+metadata/float_DetailNormalMapScale = 1.0
+metadata/float_DstBlend = 0.0
+metadata/float_EmissiveAmount = 0.0
+metadata/float_FlatColourSwitch = 0.0
+metadata/float_Float0 = 0.0
+metadata/float_Float1 = 0.05
+metadata/float_FrostingFalloff = 0.14
+metadata/float_FrostingHeight = 5.56
+metadata/float_FrostingSwitch = 1.0
+metadata/float_GlossMapScale = 1.0
+metadata/float_Glossiness = 0.5
+metadata/float_GlossyReflections = 1.0
+metadata/float_GustAmount = 0.136
+metadata/float_GustFreq = 0.224
+metadata/float_GustLargeFreq = 0.077
+metadata/float_GustScale = 0.09
+metadata/float_GustSmallFreq = 0.247
+metadata/float_JitterAmount = 0.241
+metadata/float_JitterFreq = 0.093
+metadata/float_LOD_FADE_CROSSFADE = 1.0
+metadata/float_LOD_FADE_CROSSFADE_in = 0.0
+metadata/float_LOD_FADE_CROSSFADE_out = 0.0
+metadata/float_LeafBigNoiseAmount = 0.5
+metadata/float_LeafBigNoiseScale = 1.0
+metadata/float_LeafFlatColourSwitch = 0.0
+metadata/float_LeafMetallic = 0.0
+metadata/float_LeafNoiseAmount = 0.2
+metadata/float_LeafNoiseScale = 1.0
+metadata/float_LeafNormalAmount = 0.5
+metadata/float_LeafSmoothness = 0.0
+metadata/float_Metallic = 0.132
+metadata/float_Mode = 0.0
+metadata/float_NormalAmount = 1.0
+metadata/float_OcclusionStrength = 1.0
+metadata/float_PanningSpeed = 0.007
+metadata/float_PanningSpeed1 = 0.127
+metadata/float_Parallax = 0.02
+metadata/float_Small_Wave = 2.1
+metadata/float_Smoothness = 0.2
+metadata/float_SmoothnessTextureChannel = 0.0
+metadata/float_SnowFalloff = 1.0
+metadata/float_SnowHeight = 0.15
+metadata/float_SnowSwitch = 1.0
+metadata/float_SpecularHighlights = 1.0
+metadata/float_SrcBlend = 1.0
+metadata/float_Tiling = 1.0
+metadata/float_Tint_Tiling = 0.5
+metadata/float_TotalWindAmount = 1.0
+metadata/float_TrunkFlatColourSwitch = 0.0
+metadata/float_TrunkMetallic = 0.0
+metadata/float_TrunkNormalAmount = 0.5
+metadata/float_TrunkSmoothness = 0.0
+metadata/float_UVSec = 0.0
+metadata/float_WindAmount = 1.0
+metadata/float_WindBaseline = 0.0
+metadata/float_WindDirection = 0.0
+metadata/float_WindDirection1 = 0.0
+metadata/float_WindNoiseScale = 0.018
+metadata/float_WindNoiseScale1 = 14.76
+metadata/float_WindNoiseScale2 = 0.5
+metadata/float_WindWorldScale = 0.08
+metadata/float_WindWorldScale1 = 0.001
+metadata/float_Y_multiplier = -0.5
+metadata/float_ZWrite = 1.0
+metadata/float__dirty = 0.0
+metadata/float_leafNoiseScale = 1.0
+metadata/float_minimum = 0.0
+metadata/float_noiseAmount = 0.189
+metadata/float_noiseScale = 0.7
+metadata/float_noiseTemp = 1.0
+metadata/float_remap = 0.7
+metadata/float_sin = 0.27
+metadata/float_tempNoise = 0.29
+metadata/float_worldScale = 0.67

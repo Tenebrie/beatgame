@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dyhwgr665r0mu"]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonTropicalJungle/Models/SM_Env_Seaweed_Beach_01_mesh/_338068163891258858.mesh" id="1_axx4c"]
+[ext_resource type="Material" uid="uid://dqudjujj5y6mm" path="res://assets/PolygonTropicalJungle/Materials/PolygonNatureBiomesTropical_Mat_01.tres" id="2_viwhb"]
+
+[node name="SM_Env_Seaweed_Beach_01" type="Node3D"]
+metadata/ufile_ids = ["7a783490c392777438a468ae0c9faa76:1728825236067421514", "7a783490c392777438a468ae0c9faa76:2068794662578542576", "7a783490c392777438a468ae0c9faa76:2328887610011321071", "7a783490c392777438a468ae0c9faa76:555396002901161509"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_axx4c")
+surface_material_override/0 = ExtResource("2_viwhb")

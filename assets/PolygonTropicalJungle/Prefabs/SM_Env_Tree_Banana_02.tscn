@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://wxdolurbde5a"]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonTropicalJungle/Models/SM_Env_Tree_Banana_02_mesh/_4173791154933147518.mesh" id="1_5fsjm"]
+[ext_resource type="Material" uid="uid://ccnwame4c0ji0" path="res://assets/PolygonTropicalJungle/Materials/Plants/Palm_Mat_07.tres" id="2_eutf5"]
+[ext_resource type="ArrayMesh" path="res://assets/PolygonTropicalJungle/Models/SM_Env_Tree_Banana_02_mesh/_222505144767218004.mesh" id="3_jxmpf"]
+[ext_resource type="ArrayMesh" path="res://assets/PolygonTropicalJungle/Models/SM_Env_Tree_Banana_02_mesh/_6450012080877463058.mesh" id="4_rwmgy"]
+[ext_resource type="Material" uid="uid://seqr3j55kyed" path="res://assets/PolygonTropicalJungle/Materials/LOD_Cards/Card_Tree_Banana_01.tres" id="5_663fw"]
+
+[node name="SM_Env_Tree_Banana_02" type="Node3D"]
+metadata/ufile_ids = ["90236d3d5e34c2343ac685b1d4c77e3b:4106533951315044332", "90236d3d5e34c2343ac685b1d4c77e3b:3726313572465556822", "90236d3d5e34c2343ac685b1d4c77e3b:9126343942285578397", "90236d3d5e34c2343ac685b1d4c77e3b:6450461528770881520"]
+
+[node name="SM_Env_Tree_Banana_02_LOD0" type="Node3D" parent="."]
+metadata/ufile_ids = ["90236d3d5e34c2343ac685b1d4c77e3b:8179743437606225738", "90236d3d5e34c2343ac685b1d4c77e3b:8901262154672964448", "90236d3d5e34c2343ac685b1d4c77e3b:4506282773390800288", "90236d3d5e34c2343ac685b1d4c77e3b:7137353383801310317"]
+
+[node name="_mesh" type="MeshInstance3D" parent="SM_Env_Tree_Banana_02_LOD0"]
+mesh = ExtResource("1_5fsjm")
+surface_material_override/0 = ExtResource("2_eutf5")
+
+[node name="SM_Env_Tree_Banana_02_LOD1" type="Node3D" parent="."]
+visible = false
+metadata/ufile_ids = ["90236d3d5e34c2343ac685b1d4c77e3b:8998243950150535826", "90236d3d5e34c2343ac685b1d4c77e3b:289438432718865578", "90236d3d5e34c2343ac685b1d4c77e3b:3237218628014726477", "90236d3d5e34c2343ac685b1d4c77e3b:3402398066155772953"]
+
+[node name="_mesh" type="MeshInstance3D" parent="SM_Env_Tree_Banana_02_LOD1"]
+mesh = ExtResource("3_jxmpf")
+surface_material_override/0 = ExtResource("2_eutf5")
+
+[node name="SM_Env_Tree_Banana_02_LOD2" type="Node3D" parent="."]
+visible = false
+metadata/ufile_ids = ["90236d3d5e34c2343ac685b1d4c77e3b:3914960412358743403", "90236d3d5e34c2343ac685b1d4c77e3b:5493878983221754839", "90236d3d5e34c2343ac685b1d4c77e3b:5458182864118043921", "90236d3d5e34c2343ac685b1d4c77e3b:4934987534239011619"]
+
+[node name="_mesh" type="MeshInstance3D" parent="SM_Env_Tree_Banana_02_LOD2"]
+mesh = ExtResource("4_rwmgy")
+surface_material_override/0 = ExtResource("5_663fw")

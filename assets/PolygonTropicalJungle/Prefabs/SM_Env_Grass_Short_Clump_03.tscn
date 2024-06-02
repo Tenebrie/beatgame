@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://c60t7raj660qm"]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonTropicalJungle/Models/SM_Env_Grass_Short_Clump_03_mesh/_-147487298262627820.mesh" id="1_kf2rm"]
+[ext_resource type="Material" uid="uid://cs6owr2irx3d" path="res://assets/PolygonTropicalJungle/Materials/Plants/Grass_Short_Mat_01.tres" id="2_ogrey"]
+[ext_resource type="ArrayMesh" path="res://assets/PolygonTropicalJungle/Models/SM_Env_Grass_Short_Clump_03_mesh/_-5091695612625429098.mesh" id="3_6hm8j"]
+[ext_resource type="ArrayMesh" path="res://assets/PolygonTropicalJungle/Models/SM_Env_Grass_Short_Clump_03_mesh/_-8090790278808664402.mesh" id="4_kmcjl"]
+
+[node name="SM_Env_Grass_Short_Clump_03" type="Node3D"]
+metadata/ufile_ids = ["8578e5a32dd395c40940cbc0879f13ae:396220667151066971", "8578e5a32dd395c40940cbc0879f13ae:1023575181874265569", "8578e5a32dd395c40940cbc0879f13ae:2579077387282139683"]
+
+[node name="SM_Env_Grass_Short_Clump_03_LOD0" type="Node3D" parent="."]
+metadata/ufile_ids = ["8578e5a32dd395c40940cbc0879f13ae:2633720556731335844", "8578e5a32dd395c40940cbc0879f13ae:3597847358358566462", "8578e5a32dd395c40940cbc0879f13ae:6185525958966237282", "8578e5a32dd395c40940cbc0879f13ae:8029803840316359306"]
+
+[node name="_mesh" type="MeshInstance3D" parent="SM_Env_Grass_Short_Clump_03_LOD0"]
+mesh = ExtResource("1_kf2rm")
+surface_material_override/0 = ExtResource("2_ogrey")
+
+[node name="SM_Env_Grass_Short_Clump_03_LOD1" type="Node3D" parent="."]
+visible = false
+metadata/ufile_ids = ["8578e5a32dd395c40940cbc0879f13ae:1947490223421747901", "8578e5a32dd395c40940cbc0879f13ae:6066775278296118142", "8578e5a32dd395c40940cbc0879f13ae:6038121653154310133", "8578e5a32dd395c40940cbc0879f13ae:3143353308396301879"]
+
+[node name="_mesh" type="MeshInstance3D" parent="SM_Env_Grass_Short_Clump_03_LOD1"]
+mesh = ExtResource("3_6hm8j")
+surface_material_override/0 = ExtResource("2_ogrey")
+
+[node name="SM_Env_Grass_Short_Clump_03_LOD2" type="Node3D" parent="."]
+visible = false
+metadata/ufile_ids = ["8578e5a32dd395c40940cbc0879f13ae:834419421276742588", "8578e5a32dd395c40940cbc0879f13ae:1136030826207001777", "8578e5a32dd395c40940cbc0879f13ae:2896638607238114467", "8578e5a32dd395c40940cbc0879f13ae:7698711333544906061"]
+
+[node name="_mesh" type="MeshInstance3D" parent="SM_Env_Grass_Short_Clump_03_LOD2"]
+mesh = ExtResource("4_kmcjl")
+surface_material_override/0 = ExtResource("2_ogrey")

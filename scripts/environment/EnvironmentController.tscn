@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c5qjexdib0qy8"]
+
+[ext_resource type="Script" path="res://scripts/environment/EnvironmentController.cs" id="1_bitrx"]
+
+[node name="EnvironmentController" type="Node3D"]
+script = ExtResource("1_bitrx")

@@ -62,6 +62,11 @@ public partial class GroundAreaCircle : BaseTelegraph
 		decal.SetInstanceShaderParameter("COLOR_B", color.B);
 	}
 
+	public void EnableCulling()
+	{
+		decal.EnableCulling();
+	}
+
 	public override void CleanUp()
 	{
 		decal.CleanUp();

@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonTropicalJungle/Models/SM_Env_DriftWood_04_mesh/_-6497365035627934165.mesh" id="1_hellq"]
+[ext_resource type="Material" uid="uid://dqudjujj5y6mm" path="res://assets/PolygonTropicalJungle/Materials/PolygonNatureBiomesTropical_Mat_01.tres" id="2_1a0mg"]
+
+[node name="SM_Env_DriftWood_04" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0470917, -0.00782899, -0.0446339)
+metadata/ufile_ids = ["6e82461fe89e0674eab2eed545b0f913:5491949341650562954", "6e82461fe89e0674eab2eed545b0f913:5151135528853566768", "6e82461fe89e0674eab2eed545b0f913:8906019177128173615", "6e82461fe89e0674eab2eed545b0f913:6664340123802031333", "6e82461fe89e0674eab2eed545b0f913:8553457368513762773", "6e82461fe89e0674eab2eed545b0f913:5820485993433294833"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_hellq")
+surface_material_override/0 = ExtResource("2_1a0mg")

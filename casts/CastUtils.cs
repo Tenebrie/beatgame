@@ -11,6 +11,7 @@ public static class CastUtils
 		var circle = Lib.Scene(Lib.Effect.GroundAreaCircle).Instantiate<GroundAreaCircle>();
 		circle.Position = point;
 		node.GetTree().CurrentScene.AddChild(circle);
+		circle.EnableCulling();
 		return circle;
 	}
 
@@ -19,6 +20,7 @@ public static class CastUtils
 		var rect = Lib.Scene(Lib.Effect.GroundAreaRect).Instantiate<GroundAreaRect>();
 		rect.Position = point;
 		node.GetTree().CurrentScene.AddChild(rect);
+		rect.EnableCulling();
 		return rect;
 	}
 

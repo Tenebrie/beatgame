@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://cpvxv7wovng2t"]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonTropicalJungle/Models/SM_Env_Bush_Palm_02_mesh/_913510839453895001.mesh" id="1_y5twd"]
+[ext_resource type="Material" uid="uid://c6qo5b25pixw8" path="res://assets/PolygonTropicalJungle/Materials/Plants/Palm_Mat_02.tres" id="2_moe6x"]
+[ext_resource type="ArrayMesh" uid="uid://b3untk7ksfnb0" path="res://assets/PolygonTropicalJungle/Models/SM_Env_Bush_Palm_02_mesh/_7018966975285237975.mesh" id="3_57x67"]
+[ext_resource type="ArrayMesh" path="res://assets/PolygonTropicalJungle/Models/SM_Env_Bush_Palm_02_mesh/_-3229725789663892933.mesh" id="4_h0vvj"]
+
+[node name="SM_Env_Bush_Palm_02" type="Node3D"]
+metadata/ufile_ids = ["d348e4345879c594384fa5decf172505:3773308883295373466", "d348e4345879c594384fa5decf172505:4546010937354998304", "d348e4345879c594384fa5decf172505:8216645830353567723", "d348e4345879c594384fa5decf172505:7520059158336295921"]
+
+[node name="SM_Env_Bush_Palm_02_LOD0" type="Node3D" parent="."]
+metadata/ufile_ids = ["d348e4345879c594384fa5decf172505:6146600393231761074", "d348e4345879c594384fa5decf172505:4055166699737660035", "d348e4345879c594384fa5decf172505:1885237704877161536", "d348e4345879c594384fa5decf172505:7128918830670014254"]
+
+[node name="_mesh" type="MeshInstance3D" parent="SM_Env_Bush_Palm_02_LOD0"]
+mesh = ExtResource("1_y5twd")
+surface_material_override/0 = ExtResource("2_moe6x")
+
+[node name="SM_Env_Bush_Palm_02_LOD1" type="Node3D" parent="."]
+visible = false
+metadata/ufile_ids = ["d348e4345879c594384fa5decf172505:2565093595985770890", "d348e4345879c594384fa5decf172505:8308292293253215577", "d348e4345879c594384fa5decf172505:5953062332750382311", "d348e4345879c594384fa5decf172505:2452147643828347981"]
+
+[node name="_mesh" type="MeshInstance3D" parent="SM_Env_Bush_Palm_02_LOD1"]
+mesh = ExtResource("3_57x67")
+surface_material_override/0 = ExtResource("2_moe6x")
+
+[node name="SM_Env_Bush_Palm_02_LOD2" type="Node3D" parent="."]
+visible = false
+metadata/ufile_ids = ["d348e4345879c594384fa5decf172505:3274530806541348862", "d348e4345879c594384fa5decf172505:3429057763979596310", "d348e4345879c594384fa5decf172505:250986811147450382", "d348e4345879c594384fa5decf172505:9120497800787487016"]
+
+[node name="_mesh" type="MeshInstance3D" parent="SM_Env_Bush_Palm_02_LOD2"]
+mesh = ExtResource("4_h0vvj")
+surface_material_override/0 = ExtResource("2_moe6x")

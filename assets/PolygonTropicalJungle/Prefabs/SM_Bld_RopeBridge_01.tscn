@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://bvj20d6gq1jdr"]
+
+[ext_resource type="ArrayMesh" uid="uid://clsmmrmxqrvs" path="res://assets/PolygonTropicalJungle/Models/SM_Bld_RopeBridge_01_mesh/_2472919162445805352.mesh" id="1_sxqsc"]
+[ext_resource type="Texture2D" uid="uid://bk3u52cr2736a" path="res://assets/PolygonTropicalJungle/Textures/PolygonNatureBiomes_Tropical_Texture_01.png" id="2_ujynu"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q18t5"]
+resource_name = "Explorer_MAT12"
+albedo_color = Color(0.906332, 0.906332, 0.906332, 1)
+albedo_texture = ExtResource("2_ujynu")
+metallic = 0.2
+roughness = 0.8
+
+[node name="SM_Bld_RopeBridge_01" type="Node3D"]
+metadata/ufile_ids = ["1bb6ebdae52e65548ad7282208fffa55:5898794517287197575", "1bb6ebdae52e65548ad7282208fffa55:6527803766729376061", "1bb6ebdae52e65548ad7282208fffa55:7382351732185224226", "1bb6ebdae52e65548ad7282208fffa55:4726411812897235176", "1bb6ebdae52e65548ad7282208fffa55:-1765700710003389088"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_sxqsc")
+surface_material_override/0 = SubResource("StandardMaterial3D_q18t5")

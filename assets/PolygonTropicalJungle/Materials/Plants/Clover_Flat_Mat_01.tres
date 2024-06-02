@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://8tsgstdbx5ir"]
+
+[ext_resource type="Texture2D" uid="uid://c2tsjosrw36kp" path="res://assets/PolygonTropicalJungle/Textures/Plants/cloverMat_01.tga" id="1_sofnx"]
+
+[resource]
+resource_name = "Clover_Flat_Mat_01"
+transparency = 1
+albedo_texture = ExtResource("1_sofnx")
+emission = Color(2, 2, 2, 1)

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonTropicalJungle/Models/SM_Prop_ShipWreck_02_mesh/_-5784867505634538370.mesh" id="1_d0vl4"]
+[ext_resource type="Material" uid="uid://dqudjujj5y6mm" path="res://assets/PolygonTropicalJungle/Materials/PolygonNatureBiomesTropical_Mat_01.tres" id="2_cl771"]
+
+[node name="SM_Prop_ShipWreck_02" type="Node3D"]
+metadata/ufile_ids = ["db9a44739dd799e47a3072d07be42b72:254141763840819864", "db9a44739dd799e47a3072d07be42b72:634220550249682978", "db9a44739dd799e47a3072d07be42b72:3758604646979849533", "db9a44739dd799e47a3072d07be42b72:1427016880728390135", "db9a44739dd799e47a3072d07be42b72:2578833194452717431"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_d0vl4")
+surface_material_override/0 = ExtResource("2_cl771")

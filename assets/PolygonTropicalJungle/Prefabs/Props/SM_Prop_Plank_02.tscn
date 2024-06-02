@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://uchitm6w0abd"]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonTropicalJungle/Models/SM_Prop_Plank_02_mesh/_-7152834261127580156.mesh" id="1_e4ies"]
+[ext_resource type="Material" uid="uid://dqudjujj5y6mm" path="res://assets/PolygonTropicalJungle/Materials/PolygonNatureBiomesTropical_Mat_01.tres" id="2_d51vg"]
+
+[node name="SM_Prop_Plank_02" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0470917, -0.00782899, -0.0446339)
+metadata/ufile_ids = ["40e67ddffa69f4b4595d5f41168132fd:3594765757810038999", "40e67ddffa69f4b4595d5f41168132fd:4226906176407798381", "40e67ddffa69f4b4595d5f41168132fd:454010325957498738", "40e67ddffa69f4b4595d5f41168132fd:2425189178894361528", "40e67ddffa69f4b4595d5f41168132fd:1277696422066849987"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_e4ies")
+surface_material_override/0 = ExtResource("2_d51vg")

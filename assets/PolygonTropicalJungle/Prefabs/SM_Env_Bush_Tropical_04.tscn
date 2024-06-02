@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://cbbmpqg06h2mr"]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonTropicalJungle/Models/SM_Env_Bush_Tropical_04_mesh/_7349910307165890899.mesh" id="1_xd7m2"]
+[ext_resource type="Material" uid="uid://ca31s2f6x3nhu" path="res://assets/PolygonTropicalJungle/Materials/Plants/Branches_01.tres" id="2_0pv6c"]
+[ext_resource type="ArrayMesh" path="res://assets/PolygonTropicalJungle/Models/SM_Env_Bush_Tropical_04_mesh/_-5512086681436082657.mesh" id="3_dn0nf"]
+[ext_resource type="Material" uid="uid://bqegr8v5es7ul" path="res://assets/PolygonTropicalJungle/Materials/Plants/Tree_Mat_03.tres" id="4_hg0sc"]
+[ext_resource type="ArrayMesh" path="res://assets/PolygonTropicalJungle/Models/SM_Env_Bush_Tropical_04_mesh/_4903026176351672119.mesh" id="5_iylct"]
+
+[node name="SM_Env_Bush_Tropical_04" type="Node3D"]
+metadata/ufile_ids = ["238339890dcb3b1408b880eedea0c294:7416067408739777445", "238339890dcb3b1408b880eedea0c294:7899589348871987487", "238339890dcb3b1408b880eedea0c294:2355723099175357652"]
+
+[node name="SM_Env_Bush_Tropical_04_Branches_LOD0" type="Node3D" parent="."]
+metadata/ufile_ids = ["238339890dcb3b1408b880eedea0c294:498006381016872755", "238339890dcb3b1408b880eedea0c294:3166341926718731197", "238339890dcb3b1408b880eedea0c294:6722768566387405641", "238339890dcb3b1408b880eedea0c294:4187433146844198867"]
+
+[node name="_mesh" type="MeshInstance3D" parent="SM_Env_Bush_Tropical_04_Branches_LOD0"]
+mesh = ExtResource("1_xd7m2")
+surface_material_override/0 = ExtResource("2_0pv6c")
+
+[node name="SM_Env_Bush_Tropical_04_Leaves_LOD0" type="Node3D" parent="."]
+metadata/ufile_ids = ["238339890dcb3b1408b880eedea0c294:1755102099084021395", "238339890dcb3b1408b880eedea0c294:8181512451720302663", "238339890dcb3b1408b880eedea0c294:23716291696020378", "238339890dcb3b1408b880eedea0c294:1134343444890065748"]
+
+[node name="_mesh" type="MeshInstance3D" parent="SM_Env_Bush_Tropical_04_Leaves_LOD0"]
+mesh = ExtResource("3_dn0nf")
+surface_material_override/0 = ExtResource("4_hg0sc")
+
+[node name="SM_Env_Bush_Tropical_04_Leaves_LOD1" type="Node3D" parent="."]
+visible = false
+metadata/ufile_ids = ["238339890dcb3b1408b880eedea0c294:5308360901203256852", "238339890dcb3b1408b880eedea0c294:5882715841309892839", "238339890dcb3b1408b880eedea0c294:1306300178687683526", "238339890dcb3b1408b880eedea0c294:8747559208453245076"]
+
+[node name="_mesh" type="MeshInstance3D" parent="SM_Env_Bush_Tropical_04_Leaves_LOD1"]
+mesh = ExtResource("5_iylct")
+surface_material_override/0 = ExtResource("4_hg0sc")

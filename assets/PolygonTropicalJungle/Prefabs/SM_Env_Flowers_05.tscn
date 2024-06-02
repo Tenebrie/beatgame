@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://brms7lht2fpux"]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonTropicalJungle/Models/SM_Env_Flowers_05_mesh/_8584259698544216169.mesh" id="1_a32sw"]
+[ext_resource type="Material" uid="uid://cos06yuevvr8h" path="res://assets/PolygonTropicalJungle/Materials/BASEMat_01.tres" id="2_a2kae"]
+[ext_resource type="ArrayMesh" path="res://assets/PolygonTropicalJungle/Models/SM_Env_Flowers_05_mesh/_1793352553854833337.mesh" id="3_cnetb"]
+[ext_resource type="ArrayMesh" path="res://assets/PolygonTropicalJungle/Models/SM_Env_Flowers_05_mesh/_-5484294956152013983.mesh" id="4_qtond"]
+
+[node name="SM_Env_Flowers_05" type="Node3D"]
+metadata/ufile_ids = ["bafd1445f32831e4d8a269ae843656ba:1713393330678609830", "bafd1445f32831e4d8a269ae843656ba:2057268188935056668", "bafd1445f32831e4d8a269ae843656ba:5880906721971503319"]
+
+[node name="SM_Env_Flowers_05_LOD0" type="Node3D" parent="."]
+metadata/ufile_ids = ["bafd1445f32831e4d8a269ae843656ba:1216393836133020409", "bafd1445f32831e4d8a269ae843656ba:6077307331344956116", "bafd1445f32831e4d8a269ae843656ba:5525453911416279282", "bafd1445f32831e4d8a269ae843656ba:8704652069347895791"]
+
+[node name="_mesh" type="MeshInstance3D" parent="SM_Env_Flowers_05_LOD0"]
+mesh = ExtResource("1_a32sw")
+surface_material_override/0 = ExtResource("2_a2kae")
+
+[node name="SM_Env_Flowers_05_LOD1" type="Node3D" parent="."]
+metadata/ufile_ids = ["bafd1445f32831e4d8a269ae843656ba:2624875586618516704", "bafd1445f32831e4d8a269ae843656ba:7071777863072030739", "bafd1445f32831e4d8a269ae843656ba:2348579059406430076", "bafd1445f32831e4d8a269ae843656ba:7318221882604651624"]
+
+[node name="_mesh" type="MeshInstance3D" parent="SM_Env_Flowers_05_LOD1"]
+mesh = ExtResource("3_cnetb")
+surface_material_override/0 = ExtResource("2_a2kae")
+
+[node name="SM_Env_Flowers_05_LOD2" type="Node3D" parent="."]
+metadata/ufile_ids = ["bafd1445f32831e4d8a269ae843656ba:8127508863687640100", "bafd1445f32831e4d8a269ae843656ba:3219756262010043418", "bafd1445f32831e4d8a269ae843656ba:133100224222075362", "bafd1445f32831e4d8a269ae843656ba:3264453142983950911"]
+
+[node name="_mesh" type="MeshInstance3D" parent="SM_Env_Flowers_05_LOD2"]
+mesh = ExtResource("4_qtond")
+surface_material_override/0 = ExtResource("2_a2kae")

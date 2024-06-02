@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://v16wqw7wspae"]
+
+[ext_resource type="Texture2D" uid="uid://dhu0psfdae7b3" path="res://assets/PolygonTropicalJungle/Terrain/Grass_Clovers_Texture_01.png" id="1_2kcbw"]
+[ext_resource type="Texture2D" uid="uid://188trq7euedt" path="res://assets/PolygonTropicalJungle/Terrain/Ground_Clovers_Normals_01.png" id="2_ymxix"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eom2o"]
+resource_name = "flowerSHD1"
+albedo_color = Color(0.906332, 0.906332, 0.906332, 0)
+albedo_texture = ExtResource("1_2kcbw")
+metallic = 0.2
+roughness = 0.8
+normal_enabled = true
+normal_texture = ExtResource("2_ymxix")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_1o57e"]
+resource_name = "Root Scene_SM_Env_Flowers_Flat_03"
+_surfaces = [{
+"aabb": AABB(-1.0265, 0, -1, 2.05432, 0.178868, 2.00865),
+"attribute_data": PackedByteArray(210, 56, 73, 252, 221, 54, 182, 201, 100, 6, 219, 251, 173, 106, 54, 201, 210, 55, 124, 154, 20, 5, 129, 201, 77, 105, 219, 251, 100, 6, 242, 152, 77, 105, 242, 152),
+"format": 34896613399,
+"index_count": 24,
+"index_data": PackedByteArray(0, 0, 2, 0, 1, 0, 1, 0, 3, 0, 0, 0, 1, 0, 4, 0, 3, 0, 2, 0, 5, 0, 1, 0, 3, 0, 6, 0, 0, 0, 7, 0, 4, 0, 5, 0, 4, 0, 1, 0, 5, 0, 4, 0, 8, 0, 3, 0),
+"material": SubResource("StandardMaterial3D_eom2o"),
+"name": "flowerSHD2",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 9,
+"vertex_data": PackedByteArray(94, 130, 29, 18, 254, 255, 109, 186, 112, 125, 255, 255, 171, 125, 254, 191, 77, 3, 0, 0, 228, 254, 22, 188, 255, 255, 46, 94, 96, 124, 179, 191, 219, 127, 99, 67, 247, 3, 222, 195, 0, 0, 161, 39, 34, 125, 38, 193, 135, 252, 0, 0, 228, 254, 94, 189, 77, 3, 0, 0, 0, 0, 55, 193, 135, 252, 0, 0, 0, 0, 206, 194, 132, 252, 120, 126, 208, 255, 93, 128, 63, 251, 254, 137, 155, 247, 210, 123, 110, 255, 12, 129, 248, 248, 230, 141, 60, 254, 37, 127, 43, 253, 145, 133, 171, 250, 62, 125)
+}]
+blend_shape_mode = 0
+
+[node name="SM_Env_Flowers_Flat_03" type="Node3D"]
+metadata/ufile_ids = ["806343e5c8b0bd947a858c7b2b0cd200:_", "6084ba228920fa042b5ce5b9418aafc2:1980075877756565485"]
+
+[node name="RootNode" type="Node3D" parent="."]
+
+[node name="SM_Env_Flowers_Flat_03" type="MeshInstance3D" parent="RootNode"]
+mesh = SubResource("ArrayMesh_1o57e")
+skeleton = NodePath("")

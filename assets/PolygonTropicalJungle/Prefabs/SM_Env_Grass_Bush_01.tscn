@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://c5isi62o2pa5s"]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonTropicalJungle/Models/SM_Env_Grass_Bush_01_mesh/_-8611993544084753918.mesh" id="1_5cixi"]
+[ext_resource type="Material" uid="uid://cqy6aj3cpuwrv" path="res://assets/PolygonTropicalJungle/Materials/Plants/Grass_Tall_Mat_01.tres" id="2_dya6c"]
+[ext_resource type="ArrayMesh" path="res://assets/PolygonTropicalJungle/Models/SM_Env_Grass_Bush_01_mesh/_4182946734167169768.mesh" id="3_omorm"]
+[ext_resource type="ArrayMesh" path="res://assets/PolygonTropicalJungle/Models/SM_Env_Grass_Bush_01_mesh/_-1512712671472045832.mesh" id="4_wtxpa"]
+
+[node name="SM_Env_Grass_Bush_01" type="Node3D"]
+metadata/ufile_ids = ["597245baab5f7c149896c7cfecc011db:6021397490697034255", "597245baab5f7c149896c7cfecc011db:6402884682779492533", "597245baab5f7c149896c7cfecc011db:1570158353938804094"]
+
+[node name="SM_Env_Grass_Bush_01_LOD0" type="Node3D" parent="."]
+metadata/ufile_ids = ["597245baab5f7c149896c7cfecc011db:3054115579353984824", "597245baab5f7c149896c7cfecc011db:5230636495346248849", "597245baab5f7c149896c7cfecc011db:6727304883273029708", "597245baab5f7c149896c7cfecc011db:3423785987044405401"]
+
+[node name="_mesh" type="MeshInstance3D" parent="SM_Env_Grass_Bush_01_LOD0"]
+mesh = ExtResource("1_5cixi")
+surface_material_override/0 = ExtResource("2_dya6c")
+
+[node name="SM_Env_Grass_Bush_01_LOD1" type="Node3D" parent="."]
+visible = false
+metadata/ufile_ids = ["597245baab5f7c149896c7cfecc011db:3515358231037310858", "597245baab5f7c149896c7cfecc011db:5483558571854840532", "597245baab5f7c149896c7cfecc011db:9091940657308235756", "597245baab5f7c149896c7cfecc011db:4505645170319692206"]
+
+[node name="_mesh" type="MeshInstance3D" parent="SM_Env_Grass_Bush_01_LOD1"]
+mesh = ExtResource("3_omorm")
+surface_material_override/0 = ExtResource("2_dya6c")
+
+[node name="SM_Env_Grass_Bush_01_LOD2" type="Node3D" parent="."]
+visible = false
+metadata/ufile_ids = ["597245baab5f7c149896c7cfecc011db:7389734040206862786", "597245baab5f7c149896c7cfecc011db:1489726935110043782", "597245baab5f7c149896c7cfecc011db:1468000534465602577", "597245baab5f7c149896c7cfecc011db:5364246982194343752"]
+
+[node name="_mesh" type="MeshInstance3D" parent="SM_Env_Grass_Bush_01_LOD2"]
+mesh = ExtResource("4_wtxpa")
+surface_material_override/0 = ExtResource("2_dya6c")

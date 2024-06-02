@@ -1,0 +1,51 @@
+[gd_scene load_steps=9 format=3 uid="uid://b5njpawhv1h0y"]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonTropicalJungle/Models/SM_Env_Tree_Forest_01_mesh/_-290886655529947657.mesh" id="1_aeon7"]
+[ext_resource type="Material" uid="uid://ca31s2f6x3nhu" path="res://assets/PolygonTropicalJungle/Materials/Plants/Branches_01.tres" id="2_yvblc"]
+[ext_resource type="ArrayMesh" uid="uid://bxthg7wmlvjbu" path="res://assets/PolygonTropicalJungle/Models/SM_Env_Tree_Forest_01_mesh/_8843792351703353979.mesh" id="4_8y1ws"]
+[ext_resource type="Material" uid="uid://d3ygicjy7y5xc" path="res://assets/PolygonTropicalJungle/Materials/Plants/Tree_Mat_02.tres" id="5_tefte"]
+[ext_resource type="ArrayMesh" path="res://assets/PolygonTropicalJungle/Models/SM_Env_Tree_Forest_01_mesh/_-7939269893359697063.mesh" id="6_pjfo0"]
+[ext_resource type="ArrayMesh" path="res://assets/PolygonTropicalJungle/Models/SM_Env_Tree_Forest_01_mesh/_3944986101615839940.mesh" id="7_wyloy"]
+[ext_resource type="ArrayMesh" path="res://assets/PolygonTropicalJungle/Models/SM_Env_Tree_Forest_01_mesh/_1342388023575544570.mesh" id="8_d0agb"]
+[ext_resource type="Material" uid="uid://dv887m0k82drp" path="res://assets/PolygonTropicalJungle/Materials/LOD_Cards/Card_Tree_Forest_01.tres" id="9_8kj6g"]
+
+[node name="SM_Env_Tree_Forest_01" type="Node3D"]
+metadata/ufile_ids = ["77786f90b4e04534f8f254066b283f57:1064976675718954543", "77786f90b4e04534f8f254066b283f57:399797857411769493", "77786f90b4e04534f8f254066b283f57:5232497830207375710", "77786f90b4e04534f8f254066b283f57:7753892312517017102"]
+
+[node name="SM_Env_Tree_Forest_01_Branches_LOD0" type="Node3D" parent="."]
+metadata/ufile_ids = ["77786f90b4e04534f8f254066b283f57:3063039841298245356", "77786f90b4e04534f8f254066b283f57:7869463936787927972", "77786f90b4e04534f8f254066b283f57:1263894848062267967", "77786f90b4e04534f8f254066b283f57:2347583809461360696"]
+
+[node name="_mesh" type="MeshInstance3D" parent="SM_Env_Tree_Forest_01_Branches_LOD0"]
+mesh = ExtResource("1_aeon7")
+surface_material_override/0 = ExtResource("2_yvblc")
+
+[node name="SM_Env_Tree_Forest_01_LOD0" type="Node3D" parent="."]
+metadata/ufile_ids = ["77786f90b4e04534f8f254066b283f57:1452929795463602290", "77786f90b4e04534f8f254066b283f57:4981504224093849268", "77786f90b4e04534f8f254066b283f57:8401696808925086767", "77786f90b4e04534f8f254066b283f57:4517160678036427364"]
+
+[node name="_mesh" type="MeshInstance3D" parent="SM_Env_Tree_Forest_01_LOD0"]
+mesh = ExtResource("4_8y1ws")
+surface_material_override/0 = ExtResource("5_tefte")
+
+[node name="SM_Env_Tree_Forest_01_LOD1" type="Node3D" parent="."]
+visible = false
+metadata/ufile_ids = ["77786f90b4e04534f8f254066b283f57:4745157917866879452", "77786f90b4e04534f8f254066b283f57:2498065999933197326", "77786f90b4e04534f8f254066b283f57:5006504591302969889", "77786f90b4e04534f8f254066b283f57:3940500424123859739"]
+
+[node name="_mesh" type="MeshInstance3D" parent="SM_Env_Tree_Forest_01_LOD1"]
+mesh = ExtResource("6_pjfo0")
+surface_material_override/0 = ExtResource("5_tefte")
+
+[node name="SM_Env_Tree_Forest_01_LOD2" type="Node3D" parent="."]
+visible = false
+metadata/ufile_ids = ["77786f90b4e04534f8f254066b283f57:501290947629312076", "77786f90b4e04534f8f254066b283f57:6357312291537403365", "77786f90b4e04534f8f254066b283f57:2288271669562700184", "77786f90b4e04534f8f254066b283f57:3297768787102873314"]
+
+[node name="_mesh" type="MeshInstance3D" parent="SM_Env_Tree_Forest_01_LOD2"]
+mesh = ExtResource("7_wyloy")
+surface_material_override/0 = ExtResource("5_tefte")
+
+[node name="SM_Env_Tree_Forest_01_LOD3" type="Node3D" parent="."]
+visible = false
+metadata/ufile_ids = ["77786f90b4e04534f8f254066b283f57:5650069123664631623", "77786f90b4e04534f8f254066b283f57:2077390689710125298", "77786f90b4e04534f8f254066b283f57:2091675571646395024", "77786f90b4e04534f8f254066b283f57:2287273907433270890"]
+
+[node name="_mesh" type="MeshInstance3D" parent="SM_Env_Tree_Forest_01_LOD3"]
+mesh = ExtResource("8_d0agb")
+surface_material_override/0 = ExtResource("9_8kj6g")

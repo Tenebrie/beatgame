@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://dqudjujj5y6mm"]
+
+[ext_resource type="Texture2D" uid="uid://bk3u52cr2736a" path="res://assets/PolygonTropicalJungle/Textures/PolygonNatureBiomes_Tropical_Texture_01.png" id="1_134kg"]
+
+[resource]
+resource_name = "PolygonNatureBiomesTropical_Mat_01"
+albedo_texture = ExtResource("1_134kg")
+emission = Color(1, 1, 1, 1)

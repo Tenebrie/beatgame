@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://qvnc4wrivxbd"]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonTropicalJungle/Models/SM_Bld_Giant_Column_01_mesh/_-5262529206373078761.mesh" id="1_tohjc"]
+[ext_resource type="Material" uid="uid://dqudjujj5y6mm" path="res://assets/PolygonTropicalJungle/Materials/PolygonNatureBiomesTropical_Mat_01.tres" id="2_f8dl5"]
+
+[node name="SM_Bld_Giant_Column_01" type="Node3D"]
+metadata/ufile_ids = ["13af250cd6da53143ba0a206013b9326:3277317438105620452", "13af250cd6da53143ba0a206013b9326:2751856001338234206", "13af250cd6da53143ba0a206013b9326:1933316709372231745", "13af250cd6da53143ba0a206013b9326:4409149397747987595", "13af250cd6da53143ba0a206013b9326:2950008544064067184"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_tohjc")
+surface_material_override/0 = ExtResource("2_f8dl5")

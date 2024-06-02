@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://mg62k61eerfy"]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonTropicalJungle/Models/SM_Env_Ground_Cover_01_mesh/_-4439799363639277271.mesh" id="1_l0rhj"]
+[ext_resource type="Material" uid="uid://bvb8ssbx32fjh" path="res://assets/PolygonTropicalJungle/Materials/Plants/Ground_Cover_Mat_01.tres" id="2_lgc1t"]
+[ext_resource type="ArrayMesh" path="res://assets/PolygonTropicalJungle/Models/SM_Env_Ground_Cover_01_mesh/_4201594935179330601.mesh" id="3_njnkd"]
+
+[node name="SM_Env_Ground_Cover_01" type="Node3D"]
+metadata/ufile_ids = ["c678dcba28d62ef4986c3aab66be783c:7766756284005712131", "c678dcba28d62ef4986c3aab66be783c:6954366086762585017", "c678dcba28d62ef4986c3aab66be783c:2770043901150336990"]
+
+[node name="SM_Env_Ground_Cover_01_LOD0" type="Node3D" parent="."]
+metadata/ufile_ids = ["c678dcba28d62ef4986c3aab66be783c:2486283432571863452", "c678dcba28d62ef4986c3aab66be783c:6750696148435840566", "c678dcba28d62ef4986c3aab66be783c:5779760583937369288", "c678dcba28d62ef4986c3aab66be783c:260356595076423049"]
+
+[node name="_mesh" type="MeshInstance3D" parent="SM_Env_Ground_Cover_01_LOD0"]
+mesh = ExtResource("1_l0rhj")
+surface_material_override/0 = ExtResource("2_lgc1t")
+
+[node name="SM_Env_Ground_Cover_01_LOD1" type="Node3D" parent="."]
+visible = false
+metadata/ufile_ids = ["c678dcba28d62ef4986c3aab66be783c:6435960144785171866", "c678dcba28d62ef4986c3aab66be783c:5810776336527956607", "c678dcba28d62ef4986c3aab66be783c:2738792297305903823", "c678dcba28d62ef4986c3aab66be783c:5783795382898864471"]
+
+[node name="_mesh" type="MeshInstance3D" parent="SM_Env_Ground_Cover_01_LOD1"]
+mesh = ExtResource("3_njnkd")
+surface_material_override/0 = ExtResource("2_lgc1t")

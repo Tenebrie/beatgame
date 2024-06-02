@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://nsd2tiq72b11"]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonTropicalJungle/Models/SM_Env_Tree_Palm_01_Coconuts_01_mesh/_-3655329989043330739.mesh" id="1_q7c3i"]
+[ext_resource type="Material" uid="uid://cos06yuevvr8h" path="res://assets/PolygonTropicalJungle/Materials/BASEMat_01.tres" id="2_p5mo8"]
+
+[node name="SM_Env_Tree_Palm_01_Coconuts_01" type="Node3D"]
+metadata/ufile_ids = ["a74cde0425584a743be5389aa13a71f3:7283987053097186912", "a74cde0425584a743be5389aa13a71f3:7952858920795942106", "a74cde0425584a743be5389aa13a71f3:5961130059735103941", "a74cde0425584a743be5389aa13a71f3:8457416491484646671"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_q7c3i")
+surface_material_override/0 = ExtResource("2_p5mo8")

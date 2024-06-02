@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://d0v4n38mgdwan"]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonTropicalJungle/Models/SM_Env_Ground_Cover_02_mesh/_6227684362158767468.mesh" id="1_mccyp"]
+[ext_resource type="Material" uid="uid://bvb8ssbx32fjh" path="res://assets/PolygonTropicalJungle/Materials/Plants/Ground_Cover_Mat_01.tres" id="2_hrqtr"]
+[ext_resource type="ArrayMesh" path="res://assets/PolygonTropicalJungle/Models/SM_Env_Ground_Cover_02_mesh/_-7562226464328057824.mesh" id="3_qmdv6"]
+[ext_resource type="ArrayMesh" path="res://assets/PolygonTropicalJungle/Models/SM_Env_Ground_Cover_02_mesh/_1529352178844419542.mesh" id="4_yjnfr"]
+
+[node name="SM_Env_Ground_Cover_02" type="Node3D"]
+metadata/ufile_ids = ["d8d2be233e6d7a5498b2ae80147777ad:4370785347328645734", "d8d2be233e6d7a5498b2ae80147777ad:4027333732602069212", "d8d2be233e6d7a5498b2ae80147777ad:3849520431926697422"]
+
+[node name="SM_Env_Ground_Cover_02_LOD0" type="Node3D" parent="."]
+metadata/ufile_ids = ["d8d2be233e6d7a5498b2ae80147777ad:3420347666115532527", "d8d2be233e6d7a5498b2ae80147777ad:1919953814485731397", "d8d2be233e6d7a5498b2ae80147777ad:560004708370051583", "d8d2be233e6d7a5498b2ae80147777ad:8254590140107722112"]
+
+[node name="_mesh" type="MeshInstance3D" parent="SM_Env_Ground_Cover_02_LOD0"]
+mesh = ExtResource("1_mccyp")
+surface_material_override/0 = ExtResource("2_hrqtr")
+
+[node name="SM_Env_Ground_Cover_02_LOD1" type="Node3D" parent="."]
+visible = false
+metadata/ufile_ids = ["d8d2be233e6d7a5498b2ae80147777ad:1277231592648156713", "d8d2be233e6d7a5498b2ae80147777ad:2962149182189723905", "d8d2be233e6d7a5498b2ae80147777ad:1420938431758844025", "d8d2be233e6d7a5498b2ae80147777ad:1750821906922030477"]
+
+[node name="_mesh" type="MeshInstance3D" parent="SM_Env_Ground_Cover_02_LOD1"]
+mesh = ExtResource("3_qmdv6")
+surface_material_override/0 = ExtResource("2_hrqtr")
+
+[node name="SM_Env_Ground_Cover_02_LOD2" type="Node3D" parent="."]
+visible = false
+metadata/ufile_ids = ["d8d2be233e6d7a5498b2ae80147777ad:4317703395111945143", "d8d2be233e6d7a5498b2ae80147777ad:7533846367586060068", "d8d2be233e6d7a5498b2ae80147777ad:8438223820019117894", "d8d2be233e6d7a5498b2ae80147777ad:8791163971538396536"]
+
+[node name="_mesh" type="MeshInstance3D" parent="SM_Env_Ground_Cover_02_LOD2"]
+mesh = ExtResource("4_yjnfr")
+surface_material_override/0 = ExtResource("2_hrqtr")

@@ -43,6 +43,25 @@ window/size/viewport_height=1080
 
 project/assembly_name="BeatGame"
 
+[file_customization]
+
+folder_colors={
+"res://assets/": "gray",
+"res://buffs/": "gray",
+"res://buffs/bosses/": "orange",
+"res://casts/": "gray",
+"res://casts/bosses/": "orange",
+"res://casts/player/": "blue",
+"res://effects/": "purple",
+"res://objects/": "yellow",
+"res://scenes/": "pink",
+"res://scripts/": "red",
+"res://ui/": "teal",
+"res://units/": "gray",
+"res://units/enemy/": "orange",
+"res://units/player/": "blue"
+}
+
 [input]
 
 MoveForward={

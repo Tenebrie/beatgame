@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://c0r6xxpxb2u6w"]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonTropicalJungle/Models/SM_Env_Vines_04_mesh/_3606871751813632956.mesh" id="1_42n12"]
+[ext_resource type="Material" uid="uid://cos06yuevvr8h" path="res://assets/PolygonTropicalJungle/Materials/BASEMat_01.tres" id="2_mxjwg"]
+
+[node name="SM_Env_Vines_04" type="Node3D"]
+metadata/ufile_ids = ["8fa65ccfe163c7142b1024b10fe7739b:3511427422641154972", "8fa65ccfe163c7142b1024b10fe7739b:4319172006976631078", "8fa65ccfe163c7142b1024b10fe7739b:510247301795046457", "8fa65ccfe163c7142b1024b10fe7739b:2373454720888508659"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_42n12")
+surface_material_override/0 = ExtResource("2_mxjwg")

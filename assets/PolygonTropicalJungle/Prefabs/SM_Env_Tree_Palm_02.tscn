@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://dn5mjjkmdeaie"]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonTropicalJungle/Models/SM_Env_Tree_Palm_02_mesh/_8058409391183460019.mesh" id="1_m4evv"]
+[ext_resource type="Material" uid="uid://4ra8xt2irbef" path="res://assets/PolygonTropicalJungle/Materials/Plants/Palm_Mat_01.tres" id="2_7osn1"]
+[ext_resource type="ArrayMesh" path="res://assets/PolygonTropicalJungle/Models/SM_Env_Tree_Palm_02_mesh/_-7287466260671095457.mesh" id="3_v0iiy"]
+[ext_resource type="ArrayMesh" path="res://assets/PolygonTropicalJungle/Models/SM_Env_Tree_Palm_02_mesh/_-8188706524701414068.mesh" id="4_dsmka"]
+[ext_resource type="ArrayMesh" path="res://assets/PolygonTropicalJungle/Models/SM_Env_Tree_Palm_02_mesh/_1794377022224372726.mesh" id="5_phpuk"]
+[ext_resource type="Material" uid="uid://cag0ac3bab1if" path="res://assets/PolygonTropicalJungle/Materials/LOD_Cards/Card_Tree_Palm_02.tres" id="6_jvq73"]
+
+[node name="SM_Env_Tree_Palm_02" type="Node3D"]
+metadata/ufile_ids = ["8524a36fffb567143aadc06379331a5c:3158665517360533810", "8524a36fffb567143aadc06379331a5c:2350321698655210376", "8524a36fffb567143aadc06379331a5c:7894750928396510787", "8524a36fffb567143aadc06379331a5c:-1704335002619956720"]
+
+[node name="SM_Env_Tree_Palm_02_LOD0" type="Node3D" parent="."]
+metadata/ufile_ids = ["8524a36fffb567143aadc06379331a5c:5850257033673467626", "8524a36fffb567143aadc06379331a5c:6883212804915454514", "8524a36fffb567143aadc06379331a5c:5963157645025917518", "8524a36fffb567143aadc06379331a5c:7065819289584114989"]
+
+[node name="_mesh" type="MeshInstance3D" parent="SM_Env_Tree_Palm_02_LOD0"]
+mesh = ExtResource("1_m4evv")
+surface_material_override/0 = ExtResource("2_7osn1")
+
+[node name="SM_Env_Tree_Palm_02_LOD1" type="Node3D" parent="."]
+visible = false
+metadata/ufile_ids = ["8524a36fffb567143aadc06379331a5c:4263021565206680485", "8524a36fffb567143aadc06379331a5c:8338429261832550795", "8524a36fffb567143aadc06379331a5c:2740721275325943855", "8524a36fffb567143aadc06379331a5c:4987625320348944197"]
+
+[node name="_mesh" type="MeshInstance3D" parent="SM_Env_Tree_Palm_02_LOD1"]
+mesh = ExtResource("3_v0iiy")
+surface_material_override/0 = ExtResource("2_7osn1")
+
+[node name="SM_Env_Tree_Palm_02_LOD2" type="Node3D" parent="."]
+visible = false
+metadata/ufile_ids = ["8524a36fffb567143aadc06379331a5c:759585939393690519", "8524a36fffb567143aadc06379331a5c:6497986224502730741", "8524a36fffb567143aadc06379331a5c:6145488681380126683", "8524a36fffb567143aadc06379331a5c:3561029140515632732"]
+
+[node name="_mesh" type="MeshInstance3D" parent="SM_Env_Tree_Palm_02_LOD2"]
+mesh = ExtResource("4_dsmka")
+surface_material_override/0 = ExtResource("2_7osn1")
+
+[node name="SM_Env_Tree_Palm_02_LOD3" type="Node3D" parent="."]
+visible = false
+metadata/ufile_ids = ["8524a36fffb567143aadc06379331a5c:532789473439442939", "8524a36fffb567143aadc06379331a5c:3739457847169069354", "8524a36fffb567143aadc06379331a5c:1126429639841637464", "8524a36fffb567143aadc06379331a5c:8652727468152219597"]
+
+[node name="_mesh" type="MeshInstance3D" parent="SM_Env_Tree_Palm_02_LOD3"]
+mesh = ExtResource("5_phpuk")
+surface_material_override/0 = ExtResource("6_jvq73")

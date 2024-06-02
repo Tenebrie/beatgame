@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bwuc2aysdyhrs"]
+
+[ext_resource type="Texture2D" uid="uid://bk3u52cr2736a" path="res://assets/PolygonTropicalJungle/Textures/PolygonNatureBiomes_Tropical_Texture_01.png" id="1_1dcek"]
+
+[resource]
+resource_name = "Glass_MAT"
+albedo_color = Color(1, 1, 1, 0.505882)
+albedo_texture = ExtResource("1_1dcek")
+metallic = 0.2

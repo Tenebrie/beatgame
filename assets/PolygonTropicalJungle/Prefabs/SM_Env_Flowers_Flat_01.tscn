@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://csjk614s55v13"]
+
+[ext_resource type="Texture2D" uid="uid://dhu0psfdae7b3" path="res://assets/PolygonTropicalJungle/Terrain/Grass_Clovers_Texture_01.png" id="1_5p5un"]
+[ext_resource type="Texture2D" uid="uid://188trq7euedt" path="res://assets/PolygonTropicalJungle/Terrain/Ground_Clovers_Normals_01.png" id="2_6ilya"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tq4ht"]
+resource_name = "flowerSHD1"
+albedo_color = Color(0.906332, 0.906332, 0.906332, 0)
+albedo_texture = ExtResource("1_5p5un")
+metallic = 0.2
+roughness = 0.8
+normal_enabled = true
+normal_texture = ExtResource("2_6ilya")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_h1wmk"]
+resource_name = "Root Scene_SM_Env_Flowers_Flat_01"
+_surfaces = [{
+"aabb": AABB(-1.03414, 0, -1, 2.06579, 0.1425, 2.02109),
+"attribute_data": PackedByteArray(228, 70, 155, 149, 71, 70, 77, 101, 9, 19, 227, 149, 237, 116, 50, 98, 17, 65, 20, 47, 125, 16, 49, 99, 104, 116, 89, 50, 161, 17, 165, 48, 91, 119, 118, 151, 69, 168, 227, 149, 15, 170, 29, 98, 200, 68, 229, 3, 9, 19, 168, 0, 161, 170, 214, 48, 116, 118, 16, 2, 69, 168, 168, 0),
+"format": 34896613399,
+"index_count": 54,
+"index_data": PackedByteArray(0, 0, 2, 0, 1, 0, 0, 0, 1, 0, 3, 0, 1, 0, 5, 0, 4, 0, 1, 0, 4, 0, 6, 0, 2, 0, 5, 0, 1, 0, 5, 0, 7, 0, 4, 0, 8, 0, 0, 0, 3, 0, 8, 0, 3, 0, 9, 0, 3, 0, 10, 0, 9, 0, 3, 0, 1, 0, 6, 0, 3, 0, 6, 0, 10, 0, 4, 0, 11, 0, 6, 0, 7, 0, 12, 0, 4, 0, 6, 0, 13, 0, 10, 0, 6, 0, 14, 0, 13, 0, 12, 0, 11, 0, 4, 0, 11, 0, 14, 0, 6, 0, 14, 0, 15, 0, 13, 0),
+"material": SubResource("StandardMaterial3D_tq4ht"),
+"name": "flowerSHD",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 16,
+"vertex_data": PackedByteArray(88, 90, 23, 23, 215, 252, 222, 186, 84, 89, 163, 143, 217, 170, 60, 191, 59, 4, 0, 0, 83, 253, 254, 188, 206, 166, 255, 255, 147, 165, 151, 191, 173, 80, 110, 105, 205, 78, 175, 192, 0, 0, 209, 57, 68, 167, 112, 191, 241, 165, 52, 102, 90, 84, 96, 194, 228, 1, 172, 41, 118, 81, 15, 193, 215, 170, 98, 22, 255, 255, 172, 184, 19, 252, 0, 0, 83, 253, 199, 185, 11, 255, 228, 157, 111, 165, 84, 191, 216, 86, 200, 110, 127, 5, 100, 192, 59, 4, 0, 0, 0, 0, 238, 192, 255, 255, 139, 78, 202, 81, 114, 194, 87, 169, 99, 58, 100, 2, 208, 193, 19, 252, 0, 0, 0, 0, 220, 194, 44, 254, 9, 132, 85, 252, 99, 135, 48, 253, 205, 133, 205, 255, 100, 128, 229, 253, 36, 132, 25, 252, 215, 135, 153, 254, 75, 127, 144, 252, 198, 134, 161, 254, 94, 127, 68, 249, 227, 124, 168, 248, 91, 124, 26, 254, 199, 131, 161, 251, 162, 136, 28, 253, 128, 126, 167, 251, 199, 125, 120, 250, 35, 125)
+}]
+blend_shape_mode = 0
+
+[node name="SM_Env_Flowers_Flat_01" type="Node3D"]
+metadata/ufile_ids = ["036e8a60d42c22d46895e34fe18e9508:_", "5804fcd07e4641048bf0a25f8fa1ed79:4962930544637626273"]
+
+[node name="RootNode" type="Node3D" parent="."]
+
+[node name="SM_Env_Flowers_Flat_01" type="MeshInstance3D" parent="RootNode"]
+mesh = SubResource("ArrayMesh_h1wmk")
+skeleton = NodePath("")

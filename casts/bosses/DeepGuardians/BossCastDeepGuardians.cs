@@ -81,7 +81,7 @@ public partial class BossCastDeepGuardians : BaseCast
 
 		var forward = guardian.ForwardVector;
 		rect.TargetValidator = (target) => target.HostileTo(Parent);
-		rect.OnHostileImpactCallback = (BaseUnit target) =>
+		rect.OnTargetEntered = (BaseUnit target) =>
 		{
 			target.Health.Damage(3);
 		};

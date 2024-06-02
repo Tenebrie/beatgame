@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://dwitj1p54e48d"]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonTropicalJungle/Models/SM_Env_DriftWood_05_mesh/_-8036490269452680338.mesh" id="1_32rll"]
+[ext_resource type="Material" uid="uid://dqudjujj5y6mm" path="res://assets/PolygonTropicalJungle/Materials/PolygonNatureBiomesTropical_Mat_01.tres" id="2_wih4g"]
+
+[node name="SM_Env_DriftWood_05" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0470917, -0.00782899, -0.0446339)
+metadata/ufile_ids = ["90352f28b63083240b5278e08b80c965:4789862882659078990", "90352f28b63083240b5278e08b80c965:5274509309026847220", "90352f28b63083240b5278e08b80c965:8491213277235649771", "90352f28b63083240b5278e08b80c965:5922847266584324129", "90352f28b63083240b5278e08b80c965:7613364584523951214", "90352f28b63083240b5278e08b80c965:6882771175441110212"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_32rll")
+surface_material_override/0 = ExtResource("2_wih4g")

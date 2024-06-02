@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://sj8qnsxtf84s"]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonTropicalJungle/Models/SM_Prop_Coral_02_mesh/_7152817538634756336.mesh" id="1_th12x"]
+[ext_resource type="Material" uid="uid://dqudjujj5y6mm" path="res://assets/PolygonTropicalJungle/Materials/PolygonNatureBiomesTropical_Mat_01.tres" id="2_rwvld"]
+
+[node name="SM_Prop_Coral_02" type="Node3D"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+metadata/ufile_ids = ["a2c7fb009bdb42c4b9a842ed34cdde43:3438137345664597239", "a2c7fb009bdb42c4b9a842ed34cdde43:2665399940333168205", "a2c7fb009bdb42c4b9a842ed34cdde43:1736538043660677970", "a2c7fb009bdb42c4b9a842ed34cdde43:4611012496777037720"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_th12x")
+surface_material_override/0 = ExtResource("2_rwvld")

@@ -13,7 +13,7 @@ public abstract partial class BaseTelegraph : Node3D
 	protected bool endReached;
 	protected bool cleaningUp;
 	protected UnitAlliance alliance = UnitAlliance.Hostile;
-	public Action<BaseUnit> OnHostileImpactCallback = null;
+	public Action<BaseUnit> OnTargetEntered = null;
 	public Action OnFinishedCallback = null;
 	public Func<BaseUnit, bool> TargetValidator = null;
 	public Action<BaseUnit> OnFinishedPerTargetCallback = null;
@@ -73,8 +73,8 @@ public abstract partial class BaseTelegraph : Node3D
 			return;
 
 		targets.Add(unit);
-		if (unit.Alliance.HostileTo(Alliance))
-			OnHostileImpactCallback?.Invoke(unit);
+		if (TargetValidator == null || TargetValidator(unit))
+			OnTargetEntered?.Invoke(unit);
 	}
 
 	protected void OnBodyExited(Node3D body)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=3 format=3 uid="uid://gj8xxedifnpp"]
 
 [ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Prop_Tech_Crystal_01_mesh/SM_Prop_Tech_Crystal_01_4300000.mesh" id="1_r0omw"]
 [ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_wqd85"]
@@ -7,5 +7,6 @@
 metadata/ufile_ids = ["7c680b46ce821d34dbd937520b58182a:476228", "7c680b46ce821d34dbd937520b58182a:168806", "7c680b46ce821d34dbd937520b58182a:3312000", "7c680b46ce821d34dbd937520b58182a:2360018", "7c680b46ce821d34dbd937520b58182a:64890180213145336"]
 
 [node name="_mesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
 mesh = ExtResource("1_r0omw")
 surface_material_override/0 = ExtResource("2_wqd85")

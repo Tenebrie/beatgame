@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://da1u1w6e6w46l"]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonTropicalJungle/Models/SM_Env_Seaweed_02_mesh/_-339221891531531484.mesh" id="1_sulyh"]
+[ext_resource type="Material" uid="uid://bljtafwclt12h" path="res://assets/PolygonTropicalJungle/Materials/Plants/Seaweed_Mat_01.tres" id="2_xjff2"]
+[ext_resource type="ArrayMesh" path="res://assets/PolygonTropicalJungle/Models/SM_Env_Seaweed_02_mesh/_6922359381737804484.mesh" id="3_3th6d"]
+[ext_resource type="ArrayMesh" path="res://assets/PolygonTropicalJungle/Models/SM_Env_Seaweed_02_mesh/_-3613880418300737416.mesh" id="4_s5o1e"]
+
+[node name="SM_Env_Seaweed_02" type="Node3D"]
+metadata/ufile_ids = ["6759b104cf188764aabd0ce145a02b25:1462228183399057333", "6759b104cf188764aabd0ce145a02b25:2234120102760979727", "6759b104cf188764aabd0ce145a02b25:5913507099725164740"]
+
+[node name="SM_Env_Seaweed_02_LOD0" type="Node3D" parent="."]
+metadata/ufile_ids = ["6759b104cf188764aabd0ce145a02b25:8095003494656512014", "6759b104cf188764aabd0ce145a02b25:2842624660641570981", "6759b104cf188764aabd0ce145a02b25:4261925865366993420", "6759b104cf188764aabd0ce145a02b25:210746773954209338"]
+
+[node name="_mesh" type="MeshInstance3D" parent="SM_Env_Seaweed_02_LOD0"]
+mesh = ExtResource("1_sulyh")
+surface_material_override/0 = ExtResource("2_xjff2")
+
+[node name="SM_Env_Seaweed_02_LOD1" type="Node3D" parent="."]
+visible = false
+metadata/ufile_ids = ["6759b104cf188764aabd0ce145a02b25:6070336988074323800", "6759b104cf188764aabd0ce145a02b25:4011746671076797871", "6759b104cf188764aabd0ce145a02b25:7707489575124449752", "6759b104cf188764aabd0ce145a02b25:7574363428854788284"]
+
+[node name="_mesh" type="MeshInstance3D" parent="SM_Env_Seaweed_02_LOD1"]
+mesh = ExtResource("3_3th6d")
+surface_material_override/0 = ExtResource("2_xjff2")
+
+[node name="SM_Env_Seaweed_02_LOD2" type="Node3D" parent="."]
+visible = false
+metadata/ufile_ids = ["6759b104cf188764aabd0ce145a02b25:8030458477467286933", "6759b104cf188764aabd0ce145a02b25:7736334703882067488", "6759b104cf188764aabd0ce145a02b25:6546644173177794728", "6759b104cf188764aabd0ce145a02b25:6543270098095353510"]
+
+[node name="_mesh" type="MeshInstance3D" parent="SM_Env_Seaweed_02_LOD2"]
+mesh = ExtResource("4_s5o1e")
+surface_material_override/0 = ExtResource("2_xjff2")

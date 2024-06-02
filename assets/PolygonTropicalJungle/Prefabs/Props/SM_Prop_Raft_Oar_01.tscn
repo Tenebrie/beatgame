@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bgntryywks7nk"]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonTropicalJungle/Models/SM_Prop_Raft_Oar_01_mesh/_4157972666407995493.mesh" id="1_njqit"]
+[ext_resource type="Material" uid="uid://dqudjujj5y6mm" path="res://assets/PolygonTropicalJungle/Materials/PolygonNatureBiomesTropical_Mat_01.tres" id="2_k0eh5"]
+
+[node name="SM_Prop_Raft_Oar_01" type="Node3D"]
+metadata/ufile_ids = ["856c75bfb002d254d8549465c2774513:7240776846882415247", "856c75bfb002d254d8549465c2774513:8014076927377471541", "856c75bfb002d254d8549465c2774513:6040369130610339114", "856c75bfb002d254d8549465c2774513:8374237836082371040", "856c75bfb002d254d8549465c2774513:7402144190123299775", "856c75bfb002d254d8549465c2774513:2564745494007378312"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_njqit")
+surface_material_override/0 = ExtResource("2_k0eh5")

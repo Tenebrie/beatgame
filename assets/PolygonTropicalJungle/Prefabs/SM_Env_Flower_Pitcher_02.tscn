@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://cly77aoafjuxo"]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonTropicalJungle/Models/SM_Env_Flower_Pitcher_02_mesh/_-137090743330564645.mesh" id="1_xg1ri"]
+[ext_resource type="Material" uid="uid://cos06yuevvr8h" path="res://assets/PolygonTropicalJungle/Materials/BASEMat_01.tres" id="2_y1bc6"]
+[ext_resource type="ArrayMesh" path="res://assets/PolygonTropicalJungle/Models/SM_Env_Flower_Pitcher_02_mesh/_4748314089595732250.mesh" id="3_3h60o"]
+[ext_resource type="ArrayMesh" path="res://assets/PolygonTropicalJungle/Models/SM_Env_Flower_Pitcher_02_mesh/_-7840714384500681052.mesh" id="4_n01vu"]
+
+[node name="SM_Env_Flower_Pitcher_02" type="Node3D"]
+metadata/ufile_ids = ["9ca312419e6055b4e9aba92b41ea7fa7:3110705644980533623", "9ca312419e6055b4e9aba92b41ea7fa7:2333043694555210701", "9ca312419e6055b4e9aba92b41ea7fa7:7886205252046900742"]
+
+[node name="SM_Env_Flower_Pitcher_02_LOD0" type="Node3D" parent="."]
+metadata/ufile_ids = ["9ca312419e6055b4e9aba92b41ea7fa7:8218630200613469832", "9ca312419e6055b4e9aba92b41ea7fa7:5533171372579807925", "9ca312419e6055b4e9aba92b41ea7fa7:8356914650340640461", "9ca312419e6055b4e9aba92b41ea7fa7:8554882698613691751"]
+
+[node name="_mesh" type="MeshInstance3D" parent="SM_Env_Flower_Pitcher_02_LOD0"]
+mesh = ExtResource("1_xg1ri")
+surface_material_override/0 = ExtResource("2_y1bc6")
+
+[node name="SM_Env_Flower_Pitcher_02_LOD1" type="Node3D" parent="."]
+visible = false
+metadata/ufile_ids = ["9ca312419e6055b4e9aba92b41ea7fa7:650978962970785841", "9ca312419e6055b4e9aba92b41ea7fa7:4276313011397330943", "9ca312419e6055b4e9aba92b41ea7fa7:8474931294435118731", "9ca312419e6055b4e9aba92b41ea7fa7:7572499622612171675"]
+
+[node name="_mesh" type="MeshInstance3D" parent="SM_Env_Flower_Pitcher_02_LOD1"]
+mesh = ExtResource("3_3h60o")
+surface_material_override/0 = ExtResource("2_y1bc6")
+
+[node name="SM_Env_Flower_Pitcher_02_LOD2" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.71063, -0.0939642)
+visible = false
+metadata/ufile_ids = ["9ca312419e6055b4e9aba92b41ea7fa7:5679627815614530807", "9ca312419e6055b4e9aba92b41ea7fa7:8638433968353709259", "9ca312419e6055b4e9aba92b41ea7fa7:5265795110712298694", "9ca312419e6055b4e9aba92b41ea7fa7:7130900325766933387"]
+
+[node name="_mesh" type="MeshInstance3D" parent="SM_Env_Flower_Pitcher_02_LOD2"]
+mesh = ExtResource("4_n01vu")
+surface_material_override/0 = ExtResource("2_y1bc6")

@@ -6,6 +6,7 @@ using Godot;
 namespace Project;
 public partial class BossCastBuster : BaseCast
 {
+	public float Damage = 220;
 	public BossCastBuster(BaseUnit parent) : base(parent)
 	{
 		Settings = new()

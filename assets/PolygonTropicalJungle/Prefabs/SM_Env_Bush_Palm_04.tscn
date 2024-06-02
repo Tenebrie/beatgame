@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://clwp0qmp1ml25"]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonTropicalJungle/Models/SM_Env_Bush_Palm_04_mesh/_-5793409055229150253.mesh" id="1_yjs36"]
+[ext_resource type="Material" uid="uid://cmghp40hpl7cx" path="res://assets/PolygonTropicalJungle/Materials/Plants/Palm_Mat_06.tres" id="2_1ol18"]
+[ext_resource type="ArrayMesh" path="res://assets/PolygonTropicalJungle/Models/SM_Env_Bush_Palm_04_mesh/_-6546262001145658735.mesh" id="3_1g2sq"]
+[ext_resource type="ArrayMesh" path="res://assets/PolygonTropicalJungle/Models/SM_Env_Bush_Palm_04_mesh/_2631692728887326733.mesh" id="4_vi0du"]
+
+[node name="SM_Env_Bush_Palm_04" type="Node3D"]
+metadata/ufile_ids = ["f49da30f3a88d7d45b637f7c8dc7f4cc:2260558171583584225", "f49da30f3a88d7d45b637f7c8dc7f4cc:1447006790945918299", "f49da30f3a88d7d45b637f7c8dc7f4cc:6414535474430746768", "f49da30f3a88d7d45b637f7c8dc7f4cc:-3260207501394979648"]
+
+[node name="SM_Env_Bush_Palm_04_LOD0" type="Node3D" parent="."]
+metadata/ufile_ids = ["f49da30f3a88d7d45b637f7c8dc7f4cc:1448255077246296947", "f49da30f3a88d7d45b637f7c8dc7f4cc:5380275777926173181", "f49da30f3a88d7d45b637f7c8dc7f4cc:5015908390190148538", "f49da30f3a88d7d45b637f7c8dc7f4cc:6433960168587844630"]
+
+[node name="_mesh" type="MeshInstance3D" parent="SM_Env_Bush_Palm_04_LOD0"]
+mesh = ExtResource("1_yjs36")
+surface_material_override/0 = ExtResource("2_1ol18")
+
+[node name="SM_Env_Bush_Palm_04_LOD1" type="Node3D" parent="."]
+visible = false
+metadata/ufile_ids = ["f49da30f3a88d7d45b637f7c8dc7f4cc:2530016566025572601", "f49da30f3a88d7d45b637f7c8dc7f4cc:3773219788152782435", "f49da30f3a88d7d45b637f7c8dc7f4cc:2308426565173266550", "f49da30f3a88d7d45b637f7c8dc7f4cc:7279057514599910351"]
+
+[node name="_mesh" type="MeshInstance3D" parent="SM_Env_Bush_Palm_04_LOD1"]
+mesh = ExtResource("3_1g2sq")
+surface_material_override/0 = ExtResource("2_1ol18")
+
+[node name="SM_Env_Bush_Palm_04_LOD2" type="Node3D" parent="."]
+visible = false
+metadata/ufile_ids = ["f49da30f3a88d7d45b637f7c8dc7f4cc:2668780177041303068", "f49da30f3a88d7d45b637f7c8dc7f4cc:4726492514878092601", "f49da30f3a88d7d45b637f7c8dc7f4cc:247788544364511768", "f49da30f3a88d7d45b637f7c8dc7f4cc:7145989053143933150"]
+
+[node name="_mesh" type="MeshInstance3D" parent="SM_Env_Bush_Palm_04_LOD2"]
+mesh = ExtResource("4_vi0du")
+surface_material_override/0 = ExtResource("2_1ol18")

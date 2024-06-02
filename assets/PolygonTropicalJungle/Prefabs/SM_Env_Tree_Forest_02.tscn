@@ -1,0 +1,51 @@
+[gd_scene load_steps=9 format=3 uid="uid://clkb5v6k4yuy2"]
+
+[ext_resource type="ArrayMesh" uid="uid://4m4ou7os10ew" path="res://assets/PolygonTropicalJungle/Models/SM_Env_Tree_Forest_02_mesh/_5516341722648445450.mesh" id="1_6jwvy"]
+[ext_resource type="Material" uid="uid://ca31s2f6x3nhu" path="res://assets/PolygonTropicalJungle/Materials/Plants/Branches_01.tres" id="2_ydjrw"]
+[ext_resource type="ArrayMesh" uid="uid://t0eamfbbi2l0" path="res://assets/PolygonTropicalJungle/Models/SM_Env_Tree_Forest_02_mesh/_3161772402728639463.mesh" id="4_iaswj"]
+[ext_resource type="Material" uid="uid://d3ygicjy7y5xc" path="res://assets/PolygonTropicalJungle/Materials/Plants/Tree_Mat_02.tres" id="5_gqlny"]
+[ext_resource type="ArrayMesh" path="res://assets/PolygonTropicalJungle/Models/SM_Env_Tree_Forest_02_mesh/_7659305217767344828.mesh" id="6_qsxb6"]
+[ext_resource type="ArrayMesh" path="res://assets/PolygonTropicalJungle/Models/SM_Env_Tree_Forest_02_mesh/_6464372572425316803.mesh" id="7_jbifo"]
+[ext_resource type="ArrayMesh" path="res://assets/PolygonTropicalJungle/Models/SM_Env_Tree_Forest_02_mesh/_-5384704353631480585.mesh" id="8_qitlr"]
+[ext_resource type="Material" uid="uid://dy8r0vnlptr3k" path="res://assets/PolygonTropicalJungle/Materials/LOD_Cards/Card_Tree_Forest_02.tres" id="9_1cfk3"]
+
+[node name="SM_Env_Tree_Forest_02" type="Node3D"]
+metadata/ufile_ids = ["e6f4239d87d23bc438c6c367834a247c:488843598089089648", "e6f4239d87d23bc438c6c367834a247c:973736315334076618", "e6f4239d87d23bc438c6c367834a247c:4652964986910164225", "e6f4239d87d23bc438c6c367834a247c:-4433336108264867083"]
+
+[node name="SM_Env_Tree_Forest_02_Branches_LOD0" type="Node3D" parent="."]
+metadata/ufile_ids = ["e6f4239d87d23bc438c6c367834a247c:4244691805088009471", "e6f4239d87d23bc438c6c367834a247c:225883377700854305", "e6f4239d87d23bc438c6c367834a247c:2727052068312761521", "e6f4239d87d23bc438c6c367834a247c:5580284809167028026"]
+
+[node name="_mesh" type="MeshInstance3D" parent="SM_Env_Tree_Forest_02_Branches_LOD0"]
+mesh = ExtResource("1_6jwvy")
+surface_material_override/0 = ExtResource("2_ydjrw")
+
+[node name="SM_Env_Tree_Forest_02_LOD0" type="Node3D" parent="."]
+metadata/ufile_ids = ["e6f4239d87d23bc438c6c367834a247c:5347788795413825392", "e6f4239d87d23bc438c6c367834a247c:3788416140961674640", "e6f4239d87d23bc438c6c367834a247c:1605598447858438419", "e6f4239d87d23bc438c6c367834a247c:2712686686849104757"]
+
+[node name="_mesh" type="MeshInstance3D" parent="SM_Env_Tree_Forest_02_LOD0"]
+mesh = ExtResource("4_iaswj")
+surface_material_override/0 = ExtResource("5_gqlny")
+
+[node name="SM_Env_Tree_Forest_02_LOD1" type="Node3D" parent="."]
+visible = false
+metadata/ufile_ids = ["e6f4239d87d23bc438c6c367834a247c:8697236286223136102", "e6f4239d87d23bc438c6c367834a247c:1037612102825543751", "e6f4239d87d23bc438c6c367834a247c:3500499574065603237", "e6f4239d87d23bc438c6c367834a247c:4668442485682192374"]
+
+[node name="_mesh" type="MeshInstance3D" parent="SM_Env_Tree_Forest_02_LOD1"]
+mesh = ExtResource("6_qsxb6")
+surface_material_override/0 = ExtResource("5_gqlny")
+
+[node name="SM_Env_Tree_Forest_02_LOD2" type="Node3D" parent="."]
+visible = false
+metadata/ufile_ids = ["e6f4239d87d23bc438c6c367834a247c:3545177984947867982", "e6f4239d87d23bc438c6c367834a247c:3079904162438935573", "e6f4239d87d23bc438c6c367834a247c:1441892951504642515", "e6f4239d87d23bc438c6c367834a247c:4563739241195557457"]
+
+[node name="_mesh" type="MeshInstance3D" parent="SM_Env_Tree_Forest_02_LOD2"]
+mesh = ExtResource("7_jbifo")
+surface_material_override/0 = ExtResource("5_gqlny")
+
+[node name="SM_Env_Tree_Forest_02_LOD3" type="Node3D" parent="."]
+visible = false
+metadata/ufile_ids = ["e6f4239d87d23bc438c6c367834a247c:4969174559270448424", "e6f4239d87d23bc438c6c367834a247c:3363056382035600031", "e6f4239d87d23bc438c6c367834a247c:8408753896198034222", "e6f4239d87d23bc438c6c367834a247c:2745192351623465946"]
+
+[node name="_mesh" type="MeshInstance3D" parent="SM_Env_Tree_Forest_02_LOD3"]
+mesh = ExtResource("8_qitlr")
+surface_material_override/0 = ExtResource("9_1cfk3")

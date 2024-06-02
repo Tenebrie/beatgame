@@ -1,0 +1,42 @@
+[gd_scene load_steps=8 format=3 uid="uid://dl7gv8hdijujc"]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonTropicalJungle/Models/SM_Env_Tree_Pohutukawa_01_mesh/_7413558654161418249.mesh" id="1_a4sta"]
+[ext_resource type="Material" uid="uid://ca31s2f6x3nhu" path="res://assets/PolygonTropicalJungle/Materials/Plants/Branches_01.tres" id="2_wnnx5"]
+[ext_resource type="ArrayMesh" path="res://assets/PolygonTropicalJungle/Models/SM_Env_Tree_Pohutukawa_01_mesh/_2142436318779114554.mesh" id="4_mcxc5"]
+[ext_resource type="Material" uid="uid://cc0dxdc0e554x" path="res://assets/PolygonTropicalJungle/Materials/Plants/Pohutukawa_Mat_01.tres" id="5_nhvmn"]
+[ext_resource type="ArrayMesh" path="res://assets/PolygonTropicalJungle/Models/SM_Env_Tree_Pohutukawa_01_mesh/_2077005393848555372.mesh" id="6_5hckn"]
+[ext_resource type="ArrayMesh" path="res://assets/PolygonTropicalJungle/Models/SM_Env_Tree_Pohutukawa_01_mesh/_-8597938041603193379.mesh" id="7_cf7ht"]
+[ext_resource type="Material" uid="uid://28qktxpq6rht" path="res://assets/PolygonTropicalJungle/Materials/LOD_Cards/Card_Tree_Pohutukawa_01.tres" id="8_uiiaj"]
+
+[node name="SM_Env_Tree_Pohutukawa_01" type="Node3D"]
+metadata/ufile_ids = ["9d13b99ba0d33a54dbc8d64d1ce7965d:5788806807395683009", "9d13b99ba0d33a54dbc8d64d1ce7965d:6565731153089564795", "9d13b99ba0d33a54dbc8d64d1ce7965d:1589742870089203120", "9d13b99ba0d33a54dbc8d64d1ce7965d:-8205325410361092646"]
+
+[node name="SM_Env_Tree_Pohutukawa_01_Branches_LOD0" type="Node3D" parent="."]
+metadata/ufile_ids = ["9d13b99ba0d33a54dbc8d64d1ce7965d:2333696916140844932", "9d13b99ba0d33a54dbc8d64d1ce7965d:7677739428727823105", "9d13b99ba0d33a54dbc8d64d1ce7965d:7986152393817621092", "9d13b99ba0d33a54dbc8d64d1ce7965d:171793824456624284"]
+
+[node name="_mesh" type="MeshInstance3D" parent="SM_Env_Tree_Pohutukawa_01_Branches_LOD0"]
+mesh = ExtResource("1_a4sta")
+surface_material_override/0 = ExtResource("2_wnnx5")
+
+[node name="SM_Env_Tree_Pohutukawa_01_LOD0" type="Node3D" parent="."]
+metadata/ufile_ids = ["9d13b99ba0d33a54dbc8d64d1ce7965d:1181377325575419326", "9d13b99ba0d33a54dbc8d64d1ce7965d:7322066086735910813", "9d13b99ba0d33a54dbc8d64d1ce7965d:1484405941210020959", "9d13b99ba0d33a54dbc8d64d1ce7965d:2801252737750748738"]
+
+[node name="_mesh" type="MeshInstance3D" parent="SM_Env_Tree_Pohutukawa_01_LOD0"]
+mesh = ExtResource("4_mcxc5")
+surface_material_override/0 = ExtResource("5_nhvmn")
+
+[node name="SM_Env_Tree_Pohutukawa_01_LOD1" type="Node3D" parent="."]
+visible = false
+metadata/ufile_ids = ["9d13b99ba0d33a54dbc8d64d1ce7965d:6488993979109776978", "9d13b99ba0d33a54dbc8d64d1ce7965d:3883622309091526908", "9d13b99ba0d33a54dbc8d64d1ce7965d:6079570263227356906", "9d13b99ba0d33a54dbc8d64d1ce7965d:512504980426925449"]
+
+[node name="_mesh" type="MeshInstance3D" parent="SM_Env_Tree_Pohutukawa_01_LOD1"]
+mesh = ExtResource("6_5hckn")
+surface_material_override/0 = ExtResource("5_nhvmn")
+
+[node name="SM_Env_Tree_Pohutukawa_01_LOD2" type="Node3D" parent="."]
+visible = false
+metadata/ufile_ids = ["9d13b99ba0d33a54dbc8d64d1ce7965d:4382756019581662709", "9d13b99ba0d33a54dbc8d64d1ce7965d:7632991948454380809", "9d13b99ba0d33a54dbc8d64d1ce7965d:6520646523693777691", "9d13b99ba0d33a54dbc8d64d1ce7965d:3334719610542337521"]
+
+[node name="_mesh" type="MeshInstance3D" parent="SM_Env_Tree_Pohutukawa_01_LOD2"]
+mesh = ExtResource("7_cf7ht")
+surface_material_override/0 = ExtResource("8_uiiaj")

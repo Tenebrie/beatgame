@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://c6aa03w65nyqi"]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonTropicalJungle/Models/SM_Prop_GiantClam_01_mesh/_1675146596307161919.mesh" id="1_ira1g"]
+[ext_resource type="Material" uid="uid://dqudjujj5y6mm" path="res://assets/PolygonTropicalJungle/Materials/PolygonNatureBiomesTropical_Mat_01.tres" id="2_1e4wi"]
+[ext_resource type="ArrayMesh" path="res://assets/PolygonTropicalJungle/Models/SM_Prop_GiantClam_01_mesh/_2777632849309623766.mesh" id="3_mb7cl"]
+[ext_resource type="ArrayMesh" path="res://assets/PolygonTropicalJungle/Models/SM_Prop_GiantClam_01_mesh/_-5242873017067666702.mesh" id="4_t7p0c"]
+
+[node name="SM_Prop_GiantClam_01" type="Node3D"]
+metadata/ufile_ids = ["9b088cd19faafeb4cbaf2865af9da452:4711759793326767689", "9b088cd19faafeb4cbaf2865af9da452:5343617981027312883", "9b088cd19faafeb4cbaf2865af9da452:8560308269077934572", "9b088cd19faafeb4cbaf2865af9da452:5848104769984021798"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_ira1g")
+surface_material_override/0 = ExtResource("2_1e4wi")
+
+[node name="SM_Prop_GiantClam_01_Lid_01" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.220099, -0.34735)
+metadata/ufile_ids = ["9b088cd19faafeb4cbaf2865af9da452:7265737282330351319", "9b088cd19faafeb4cbaf2865af9da452:2287979994051814225", "9b088cd19faafeb4cbaf2865af9da452:3529403168689532729", "9b088cd19faafeb4cbaf2865af9da452:2483241587374778909"]
+
+[node name="_mesh" type="MeshInstance3D" parent="SM_Prop_GiantClam_01_Lid_01"]
+mesh = ExtResource("3_mb7cl")
+surface_material_override/0 = ExtResource("2_1e4wi")
+
+[node name="SM_Prop_GiantClam_01_Pearl_01" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.193079, -0.0958372)
+metadata/ufile_ids = ["9b088cd19faafeb4cbaf2865af9da452:8481395128153344865", "9b088cd19faafeb4cbaf2865af9da452:823164784297057687", "9b088cd19faafeb4cbaf2865af9da452:2536103553637038808", "9b088cd19faafeb4cbaf2865af9da452:4697979700348557593"]
+
+[node name="_mesh" type="MeshInstance3D" parent="SM_Prop_GiantClam_01_Pearl_01"]
+mesh = ExtResource("4_t7p0c")
+surface_material_override/0 = ExtResource("2_1e4wi")

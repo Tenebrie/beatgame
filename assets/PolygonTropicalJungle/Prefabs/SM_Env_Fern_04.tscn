@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://b2siuxebi1thu"]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonTropicalJungle/Models/SM_Env_Fern_04_mesh/_-3523004448690576415.mesh" id="1_psiit"]
+[ext_resource type="Material" uid="uid://4ra8xt2irbef" path="res://assets/PolygonTropicalJungle/Materials/Plants/Palm_Mat_01.tres" id="2_6m105"]
+[ext_resource type="ArrayMesh" path="res://assets/PolygonTropicalJungle/Models/SM_Env_Fern_04_mesh/_2548595909598295927.mesh" id="3_k70tn"]
+[ext_resource type="ArrayMesh" path="res://assets/PolygonTropicalJungle/Models/SM_Env_Fern_04_mesh/_7472137742189755099.mesh" id="4_whlmc"]
+
+[node name="SM_Env_Fern_04" type="Node3D"]
+metadata/ufile_ids = ["171982296903ebc4da00b1364aa4207d:7804729884806554604", "171982296903ebc4da00b1364aa4207d:7423102985493117270", "171982296903ebc4da00b1364aa4207d:3032584820817106077"]
+
+[node name="SM_Env_Fern_04_LOD0" type="Node3D" parent="."]
+metadata/ufile_ids = ["171982296903ebc4da00b1364aa4207d:8895456219415836107", "171982296903ebc4da00b1364aa4207d:4397441119447046622", "171982296903ebc4da00b1364aa4207d:5707682908086182661", "171982296903ebc4da00b1364aa4207d:13363533809598613"]
+
+[node name="_mesh" type="MeshInstance3D" parent="SM_Env_Fern_04_LOD0"]
+mesh = ExtResource("1_psiit")
+surface_material_override/0 = ExtResource("2_6m105")
+
+[node name="SM_Env_Fern_04_LOD1" type="Node3D" parent="."]
+visible = false
+metadata/ufile_ids = ["171982296903ebc4da00b1364aa4207d:9191709519072275453", "171982296903ebc4da00b1364aa4207d:1953733768389231256", "171982296903ebc4da00b1364aa4207d:483095913099308504", "171982296903ebc4da00b1364aa4207d:3237014567290184866"]
+
+[node name="_mesh" type="MeshInstance3D" parent="SM_Env_Fern_04_LOD1"]
+mesh = ExtResource("3_k70tn")
+surface_material_override/0 = ExtResource("2_6m105")
+
+[node name="SM_Env_Fern_04_LOD2" type="Node3D" parent="."]
+visible = false
+metadata/ufile_ids = ["171982296903ebc4da00b1364aa4207d:6488748014068588365", "171982296903ebc4da00b1364aa4207d:6026238512081469995", "171982296903ebc4da00b1364aa4207d:3117474551719813833", "171982296903ebc4da00b1364aa4207d:6603044459641256785"]
+
+[node name="_mesh" type="MeshInstance3D" parent="SM_Env_Fern_04_LOD2"]
+mesh = ExtResource("4_whlmc")
+surface_material_override/0 = ExtResource("2_6m105")

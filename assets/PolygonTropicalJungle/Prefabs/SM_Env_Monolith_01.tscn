@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dt2qbd63xehqs"]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonTropicalJungle/Models/SM_Env_Monolith_01_mesh/_-5760000684039927267.mesh" id="1_eu21l"]
+[ext_resource type="Material" uid="uid://dqudjujj5y6mm" path="res://assets/PolygonTropicalJungle/Materials/PolygonNatureBiomesTropical_Mat_01.tres" id="2_4u2ki"]
+
+[node name="SM_Env_Monolith_01" type="Node3D"]
+metadata/ufile_ids = ["25cbb7cd007b1f141807d65eee830da8:4596864154966606596", "25cbb7cd007b1f141807d65eee830da8:3783172376195406270", "25cbb7cd007b1f141807d65eee830da8:604762193338944673", "25cbb7cd007b1f141807d65eee830da8:3422871280223598699", "25cbb7cd007b1f141807d65eee830da8:-172588387525056577"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_eu21l")
+surface_material_override/0 = ExtResource("2_4u2ki")

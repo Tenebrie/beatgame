@@ -70,11 +70,11 @@ void fragment() {
 	
 	float fr = fresnel(5.0, NORMAL, VIEW);
 	vec3 surface_color = mix(albedo, albedo2, fr);
-	vec3 depth_color_adj = mix(edge_color, color, step(edge_scale, z_diff));
+	//vec3 depth_color_adj = mix(edge_color, color, step(edge_scale, z_diff));
+	vec3 depth_color_adj = vec3(0.0);
 	
 	ALBEDO = clamp(surface_color + depth_color_adj, vec3(0.0), vec3(1.0));
 	METALLIC = metallic;
 	ROUGHNESS = roughness;
 	NORMAL_MAP = normal_blend;
-	// Called for every pixel the material is visible on.
 }

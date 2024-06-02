@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://bt5jgu01siv08"]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonTropicalJungle/Models/SM_Env_Dock_01_mesh/_3420006278148486789.mesh" id="1_7ay43"]
+[ext_resource type="Material" uid="uid://dqudjujj5y6mm" path="res://assets/PolygonTropicalJungle/Materials/PolygonNatureBiomesTropical_Mat_01.tres" id="2_xlh03"]
+
+[node name="SM_Env_Dock_01" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0470917, -0.00782899, -0.0446339)
+metadata/ufile_ids = ["c9901e50a3062a54499d2301aead4430:8491949561704360106", "c9901e50a3062a54499d2301aead4430:9120536427084149264", "c9901e50a3062a54499d2301aead4430:4789205156101302031", "c9901e50a3062a54499d2301aead4430:7319013495204467653", "c9901e50a3062a54499d2301aead4430:2369557047423483093", "c9901e50a3062a54499d2301aead4430:2361329387520571342", "c9901e50a3062a54499d2301aead4430:2222094557172774305"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_7ay43")
+surface_material_override/0 = ExtResource("2_xlh03")

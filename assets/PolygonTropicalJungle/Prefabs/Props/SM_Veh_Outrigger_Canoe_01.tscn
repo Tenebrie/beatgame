@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://blrfx0spc8y5v"]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonTropicalJungle/Models/SM_Veh_Outrigger_Canoe_01_mesh/_-8189604123387477712.mesh" id="1_u4ey8"]
+[ext_resource type="Material" uid="uid://dqudjujj5y6mm" path="res://assets/PolygonTropicalJungle/Materials/PolygonNatureBiomesTropical_Mat_01.tres" id="2_ue6wj"]
+[ext_resource type="ArrayMesh" path="res://assets/PolygonTropicalJungle/Models/SM_Veh_Outrigger_Canoe_01_mesh/_-8783956700865046511.mesh" id="3_yyd7l"]
+
+[node name="SM_Veh_Outrigger_Canoe_01" type="Node3D"]
+metadata/ufile_ids = ["65dda62d80ce41a4fb439fea240a5cfc:1669079993545185896", "65dda62d80ce41a4fb439fea240a5cfc:2045218920533098706", "65dda62d80ce41a4fb439fea240a5cfc:2343588128632591821", "65dda62d80ce41a4fb439fea240a5cfc:532251269216542983", "65dda62d80ce41a4fb439fea240a5cfc:2607613934227723751"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_u4ey8")
+surface_material_override/0 = ExtResource("2_ue6wj")
+
+[node name="SM_Veh_Outrigger_Canoe_01_Canopy_01" type="Node3D" parent="."]
+metadata/ufile_ids = ["65dda62d80ce41a4fb439fea240a5cfc:6409313395537538898", "65dda62d80ce41a4fb439fea240a5cfc:4874701313028165561", "65dda62d80ce41a4fb439fea240a5cfc:2847649750167729629", "65dda62d80ce41a4fb439fea240a5cfc:657040704146923936"]
+
+[node name="_mesh" type="MeshInstance3D" parent="SM_Veh_Outrigger_Canoe_01_Canopy_01"]
+mesh = ExtResource("3_yyd7l")
+surface_material_override/0 = ExtResource("2_ue6wj")

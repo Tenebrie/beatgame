@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://c0nrx4uecs53s"]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonTropicalJungle/Models/SM_Env_Rock_Small_01_mesh/_8289137112500910073.mesh" id="1_yncyd"]
+[ext_resource type="Texture2D" uid="uid://bk3u52cr2736a" path="res://assets/PolygonTropicalJungle/Textures/PolygonNatureBiomes_Tropical_Texture_01.png" id="2_54dbg"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_no406"]
+albedo_texture = ExtResource("2_54dbg")
+
+[node name="SM_Env_Rock_Small_01" type="Node3D"]
+metadata/ufile_ids = ["7a6a882ccff172a4ab88251cbec55e19:9041632340663739334", "7a6a882ccff172a4ab88251cbec55e19:8516733613583268220", "7a6a882ccff172a4ab88251cbec55e19:5392373499819797603", "7a6a882ccff172a4ab88251cbec55e19:7868202416945879209"]
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_yncyd")
+surface_material_override/0 = SubResource("StandardMaterial3D_no406")

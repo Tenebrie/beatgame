@@ -8,10 +8,10 @@ public partial class FightStartTrigger : Area3D
 {
 	public override void _Ready()
 	{
-		BodyExited += OnAreaExited;
+		BodyEntered += OnAreaEntered;
 	}
 
-	private void OnAreaExited(Node3D body)
+	private void OnAreaEntered(Node3D body)
 	{
 		if (body is not PlayerController)
 			return;

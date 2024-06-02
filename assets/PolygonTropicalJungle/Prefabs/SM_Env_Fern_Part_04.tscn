@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://cpbqm7jg1ryqo"]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonTropicalJungle/Models/SM_Env_Fern_Part_04_mesh/_1910074004419880222.mesh" id="1_0ude5"]
+[ext_resource type="Material" uid="uid://4ra8xt2irbef" path="res://assets/PolygonTropicalJungle/Materials/Plants/Palm_Mat_01.tres" id="2_kifo0"]
+[ext_resource type="ArrayMesh" path="res://assets/PolygonTropicalJungle/Models/SM_Env_Fern_Part_04_mesh/_-4634721572643645777.mesh" id="3_23c51"]
+
+[node name="SM_Env_Fern_Part_04" type="Node3D"]
+metadata/ufile_ids = ["4d44dbb9ade01a441a3b05f7bd0ed32b:4036884095662454754", "4d44dbb9ade01a441a3b05f7bd0ed32b:3696949650856750424", "4d44dbb9ade01a441a3b05f7bd0ed32b:9106273064993996947"]
+
+[node name="SM_Env_Fern_Part_04_LOD0" type="Node3D" parent="."]
+metadata/ufile_ids = ["4d44dbb9ade01a441a3b05f7bd0ed32b:5108395967372783434", "4d44dbb9ade01a441a3b05f7bd0ed32b:1801358653062896231", "4d44dbb9ade01a441a3b05f7bd0ed32b:4963906297659271883", "4d44dbb9ade01a441a3b05f7bd0ed32b:1107103241244582586"]
+
+[node name="_mesh" type="MeshInstance3D" parent="SM_Env_Fern_Part_04_LOD0"]
+mesh = ExtResource("1_0ude5")
+surface_material_override/0 = ExtResource("2_kifo0")
+
+[node name="SM_Env_Fern_Part_04_LOD1" type="Node3D" parent="."]
+metadata/ufile_ids = ["4d44dbb9ade01a441a3b05f7bd0ed32b:2872964736348735213", "4d44dbb9ade01a441a3b05f7bd0ed32b:518859638683631827", "4d44dbb9ade01a441a3b05f7bd0ed32b:317173179676643637", "4d44dbb9ade01a441a3b05f7bd0ed32b:2390467707494021960"]
+
+[node name="_mesh" type="MeshInstance3D" parent="SM_Env_Fern_Part_04_LOD1"]
+mesh = ExtResource("3_23c51")
+surface_material_override/0 = ExtResource("2_kifo0")
