@@ -75,8 +75,10 @@ orientation = 2
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 script = ExtResource("1_6ux3w")
 
-[node name="ParticleEmitter" type="GPUParticles3D" parent="."]
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+emitting = false
 amount = 50
+one_shot = true
 explosiveness = 0.89
 randomness = 0.43
 fixed_fps = 60

@@ -27,7 +27,7 @@ public partial class ProjectileImpact : Node3D
 
 	private async void Cleanup()
 	{
-		await ToSignal(GetTree().CreateTimer(2), "timeout");
+		await ToSignal(GetTree().CreateTimer(4), "timeout");
 		QueueFree();
 	}
 }

@@ -54,7 +54,7 @@ public partial class BossCastEliteGuardian : BaseCast
 		rect.OnFinishedPerTargetCallback = (BaseUnit target) =>
 		{
 			target.Health.Damage(10);
-			target.ForcefulMovement.Push(64, forward, 0.5f);
+			target.ForcefulMovement.Push(64, forward, 2f);
 		};
 		rect.OnFinishedCallback = () => guardian.QueueFree();
 	}

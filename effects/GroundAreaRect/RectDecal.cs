@@ -46,6 +46,7 @@ public partial class RectDecal : MeshInstance3D
 
 	public void CleanUp()
 	{
+		fadeValue = 1;
 		fadingIn = false;
 		fadingOut = true;
 	}

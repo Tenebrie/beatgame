@@ -4,11 +4,12 @@ using Godot;
 
 namespace Project;
 
-public partial class TestBossTimeline : BaseTimeline<TestBoss>
+public partial class TestBossTimeline : BaseTimeline<BossAeriel>
 {
-	public TestBossTimeline(TestBoss parent) : base(parent)
+	public TestBossTimeline(BossAeriel parent) : base(parent)
 	{
-		GotoAbleton(42);
+		// GotoAbleton(42);
+		GotoAbleton(86);
 
 		Mark("Debug");
 		Wait(2);
@@ -147,12 +148,12 @@ public partial class TestBossTimeline : BaseTimeline<TestBoss>
 		GotoAbleton(96);
 		Act(() =>
 		{
+			Parent.ReleaseDarkness();
 			EnvironmentController.Singleton.UpdateLights("sun", false);
 			EnvironmentController.Singleton.UpdateLights("arena", true);
 			EnvironmentController.Singleton.SetBiolumenescence(1);
+			EnvironmentController.Singleton.SetFogDensity(0.005f);
 		});
-
-
 
 		// Wait(2);
 
@@ -264,8 +265,31 @@ public partial class TestBossTimeline : BaseTimeline<TestBoss>
 		// Cast(parent.TorrentialRain);
 		// Cast(parent.TorrentialRain);
 
+		// ===================================================
+		// Final Sequence
+		// ===================================================
+
 		GotoAbleton(163);
 		Cast(parent.HardEnrage);
+
+		// GotoAbleton(169);
+		// Act(() => 
+		// {
+		// 	EnvironmentController.Singleton.UpdateLights("sun", false);
+		// 	EnvironmentController.Singleton.UpdateLights("arena", true);
+		// 	EnvironmentController.Singleton.SetBiolumenescence(1);
+		// 	EnvironmentController.Singleton.SetFogDensity(0.005f);
+		// });
+
+		// Wait(1);
+
+		// Act(() => 
+		// {
+		// 	EnvironmentController.Singleton.UpdateLights("sun", false);
+		// 	EnvironmentController.Singleton.UpdateLights("arena", true);
+		// 	EnvironmentController.Singleton.SetBiolumenescence(1);
+		// 	EnvironmentController.Singleton.SetFogDensity(0.005f);
+		// });
 	}
 
 	void RegisterAutoAttacks()

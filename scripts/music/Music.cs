@@ -165,7 +165,7 @@ public partial class Music : Node
 		if (IsStarted)
 			return;
 
-		var bosses = BaseUnit.AllUnits.Where(unit => unit is TestBoss).Cast<TestBoss>().ToList();
+		var bosses = BaseUnit.AllUnits.Where(unit => unit is BossAeriel).Cast<BossAeriel>().ToList();
 		if (bosses.Count > 0)
 			AddChild(new TestBossTimeline(bosses[0]));
 

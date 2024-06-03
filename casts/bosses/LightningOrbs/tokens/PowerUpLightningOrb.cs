@@ -16,6 +16,8 @@ public partial class PowerUpLightningOrb : Node3D
 		TriggerArea.BodyEntered += OnBodyEntered;
 		TriggerArea.BodyExited += OnBodyExited;
 		GroundAreaCircle = GetNode<GroundAreaCircle>("GroundAreaCircle");
+		GroundAreaCircle.Periodic = true;
+		GroundAreaCircle.Alliance = UnitAlliance.Neutral;
 	}
 
 	void OnBodyEntered(Node3D body)
@@ -47,11 +49,13 @@ public partial class PowerUpLightningOrb : Node3D
 		PlayerInRange = null;
 
 		var impact = Lib.Scene(Lib.Effect.EnergyOrbPickupImpact).Instantiate<ProjectileImpact>();
-		impact.Position = GlobalPosition;
+		impact.Position = EnergyOrb.GlobalPosition;
 		GetParent().AddChild(impact);
 
 		RemoveChild(GroundAreaCircle);
+		var position = GroundAreaCircle.GlobalPosition;
 		GetParent().AddChild(GroundAreaCircle);
+		GroundAreaCircle.GlobalPosition = position;
 		GroundAreaCircle.CleanUp();
 
 		RemoveChild(EnergyOrb);

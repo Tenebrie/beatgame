@@ -85,7 +85,7 @@ orientation = 2
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 script = ExtResource("1_6ahbd")
 
-[node name="ParticleEmitter" type="GPUParticles3D" parent="."]
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
 amount = 250
 lifetime = 2.0
 randomness = 0.43

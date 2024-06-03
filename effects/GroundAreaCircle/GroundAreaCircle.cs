@@ -43,6 +43,14 @@ public partial class GroundAreaCircle : BaseTelegraph
 		base._EnterTree();
 	}
 
+	public override void _ExitTree()
+	{
+		hitbox.BodyEntered -= OnBodyEntered;
+		hitbox.BodyExited -= OnBodyExited;
+
+		base._ExitTree();
+	}
+
 	public override void _Process(double delta)
 	{
 		base._Process(delta);

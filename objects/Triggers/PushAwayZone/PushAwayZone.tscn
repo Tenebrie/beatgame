@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bb6lsf73dxd72"]
+
+[ext_resource type="Script" path="res://objects/Triggers/PushAwayZone/PushAwayZone.cs" id="1_8snys"]
+
+[node name="PushAwayZone" type="Area3D"]
+script = ExtResource("1_8snys")

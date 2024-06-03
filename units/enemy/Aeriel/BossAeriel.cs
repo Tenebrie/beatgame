@@ -1,6 +1,8 @@
+using Godot;
+
 namespace Project;
 
-public partial class TestBoss : BasicEnemyController
+public partial class BossAeriel : BasicEnemyController
 {
 	public BossAuto AutoAttack;
 	public BossCastBuster Buster;
@@ -21,7 +23,7 @@ public partial class TestBoss : BasicEnemyController
 	public BossCastGeysers Geysers;
 	public BossCastLightningOrbs LightningOrbs;
 	public BossCastHardEnrage HardEnrage;
-	public TestBoss()
+	public BossAeriel()
 	{
 		AutoAttack = new(this);
 		CastLibrary.Register(AutoAttack);
@@ -90,8 +92,23 @@ public partial class TestBoss : BasicEnemyController
 		HardEnrage = new(this);
 		CastLibrary.Register(HardEnrage);
 
-		FriendlyName = "THE BOSS";
+		FriendlyName = "Aeriel, Eye of the Storm";
 		Health.SetMax(10000);
 		Alliance = UnitAlliance.Hostile;
+	}
+
+	public void ReleaseDarkness()
+	{
+		var darkness = GetNode<GpuParticles3D>("DarknessParticles");
+		darkness.Emitting = false;
+		var impact = Lib.Scene(Lib.Effect.AerielDarknessRelease).Instantiate<ProjectileImpact>();
+		impact.Position = GetNode<GpuParticles3D>("CoreParticles").GlobalPosition;
+		GetTree().CurrentScene.AddChild(impact);
+	}
+
+	public void Reset()
+	{
+		var darkness = GetNode<GpuParticles3D>("DarknessParticles");
+		darkness.Emitting = true;
 	}
 }

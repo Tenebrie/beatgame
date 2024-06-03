@@ -21,6 +21,7 @@ public class EffectLibrary
 	public string FireballProjectileImpact = "res://effects/FireballProjectile/FireballProjectileImpact.tscn";
 	public string HealImpact = "res://effects/HealImpact/HealImpact.tscn";
 	public string EnergyOrbPickupImpact = "res://effects/EnergyOrb/EnergyOrbImpact.tscn";
+	public string AerielDarknessRelease = "res://effects/AerielDarknessRelease/AerielDarknessRelease.tscn";
 }
 
 public class UILibrary

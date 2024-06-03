@@ -1,9 +1,9 @@
-[gd_scene load_steps=35 format=3 uid="uid://b1d3j63byd72g"]
+[gd_scene load_steps=42 format=3 uid="uid://b1d3j63byd72g"]
 
 [ext_resource type="Texture2D" uid="uid://0oq4x3vsrdoj" path="res://assets/PolygonTropicalJungle/Terrain/Sand_Texture_02.png" id="1_kfj03"]
 [ext_resource type="PackedScene" uid="uid://k3tq7jb87g5b" path="res://objects/Triggers/PlayerSpawner/PlayerSpawner.tscn" id="1_rng0i"]
 [ext_resource type="Texture2D" uid="uid://7capj8gkjdma" path="res://assets/PolygonTropicalJungle/Terrain/Sand_Normals_02.png" id="2_rsvkw"]
-[ext_resource type="PackedScene" uid="uid://54vsvup5iam6" path="res://units/enemy/DummyEnemy/TestBoss.tscn" id="2_wx5uw"]
+[ext_resource type="PackedScene" uid="uid://54vsvup5iam6" path="res://units/enemy/Aeriel/BossAeriel.tscn" id="2_wx5uw"]
 [ext_resource type="PackedScene" uid="uid://kv2sxv7kxs57" path="res://assets/PolygonTropicalJungle/Prefabs/SM_Bld_Ruins_Column_02.tscn" id="3_edsgm"]
 [ext_resource type="PackedScene" uid="uid://dd8hi213iqvva" path="res://units/enemy/DummyEnemy/DummyEnemy.tscn" id="3_ondps"]
 [ext_resource type="PackedScene" uid="uid://bue0mn46sn4fj" path="res://objects/Triggers/FightStart/FightStartTrigger.tscn" id="4_xw0ju"]
@@ -23,6 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://d4negrpp6ptix" path="res://objects/Triggers/AerialFaithPlate/AerialFaithPlate.tscn" id="19_ovjkk"]
 [ext_resource type="PackedScene" uid="uid://b270gmemxyd8l" path="res://objects/Triggers/AerialFaithPlate/AerialFaithPlateTarget.tscn" id="20_eepki"]
 [ext_resource type="PackedScene" uid="uid://c5qjexdib0qy8" path="res://scripts/environment/EnvironmentController.tscn" id="23_g5mbb"]
+[ext_resource type="PackedScene" uid="uid://bb6lsf73dxd72" path="res://objects/Triggers/PushAwayZone/PushAwayZone.tscn" id="24_s7k6l"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7i8b0"]
 albedo_texture = ExtResource("1_kfj03")
@@ -35,7 +36,7 @@ material = SubResource("StandardMaterial3D_7i8b0")
 size = Vector3(2, 1, 2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_sgxrx"]
-size = Vector3(2, 0.01, 2)
+size = Vector3(2.13232, 0.01, 2.10596)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_o1fa0"]
 size = Vector3(0.122681, 0.184092, 0.364746)
@@ -65,8 +66,30 @@ sky_rotation = Vector3(0, 1.0472, 0)
 ambient_light_source = 3
 reflected_light_source = 2
 fog_sun_scatter = 0.75
-volumetric_fog_density = 0.0194
-volumetric_fog_length = 95.3
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.0
+volumetric_fog_length = 335.37
+
+[sub_resource type="FogMaterial" id="FogMaterial_tbf20"]
+density = 0.0554
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_jeg5e"]
+noise_type = 3
+frequency = 0.1052
+
+[sub_resource type="NoiseTexture3D" id="NoiseTexture3D_j7wha"]
+noise = SubResource("FastNoiseLite_jeg5e")
+
+[sub_resource type="FogMaterial" id="FogMaterial_7g7vl"]
+density = 0.2328
+density_texture = SubResource("NoiseTexture3D_j7wha")
+
+[sub_resource type="FogMaterial" id="FogMaterial_ki3d4"]
+density = -8.0
+height_falloff = 0.732043
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_b0bss"]
+size = Vector3(100, 1, 100)
 
 [node name="BossArenaAeriel" type="Node3D"]
 
@@ -87,7 +110,7 @@ layers = 1025
 mesh = SubResource("BoxMesh_1t4f2")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Arena"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.009, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0054043, 0, -0.0148926)
 shape = SubResource("BoxShape3D_sgxrx")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Arena"]
@@ -300,6 +323,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.96745, -0.00237915, 4.6489
 Alliance = 0
 
 [node name="FightStartTrigger" parent="." instance=ExtResource("4_xw0ju")]
+input_ray_pickable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="FightStartTrigger"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.114779, 0, 0.0617561)
@@ -313,73 +337,90 @@ transform = Transform3D(0.00305927, 0, -0.00739195, 0, 0.008, 0, 0.00739195, 0, 
 
 [node name="SM_Env_Tree_Forest_03" parent="GiantTreeIsland" instance=ExtResource("12_2bnqk")]
 transform = Transform3D(-0.00105044, 0, -0.00170193, 0, 0.002, 0, 0.00170193, 0, -0.00105044, -0.0110858, 0.00312767, 0.00297713)
-visible = false
 
 [node name="SM_Env_Tree_Forest_09" parent="GiantTreeIsland" instance=ExtResource("12_2bnqk")]
 transform = Transform3D(-0.000525219, 0, -0.000850967, 0, 0.001, 0, 0.000850967, 0, -0.000525219, 0.00284727, 0.00504384, 0.0104662)
-visible = false
 
 [node name="SM_Env_Tree_Forest_05" parent="GiantTreeIsland" instance=ExtResource("12_2bnqk")]
 transform = Transform3D(-0.00105056, 0, -7.2965e-05, 0, 0.00105309, 0, 7.2965e-05, 0, -0.00105056, 0.00876267, 0.00347715, 0.010686)
-visible = false
 
 [node name="SM_Env_Tree_Forest_08" parent="GiantTreeIsland" instance=ExtResource("12_2bnqk")]
 transform = Transform3D(-0.000726274, 0, 0.000762583, 0, 0.00105309, 0, -0.000762583, 0, -0.000726274, -0.00381995, 0.00347715, 0.009702)
-visible = false
 
 [node name="SM_Env_Tree_Forest_04" parent="GiantTreeIsland" instance=ExtResource("12_2bnqk")]
-transform = Transform3D(0.00154187, 0, -0.00127383, 0, 0.002, 0, 0.00127383, 0, 0.00154187, 0.0126626, 0.00312767, -0.00750244)
-visible = false
+transform = Transform3D(0.00154187, 0, -0.00127383, 0, 0.002, 0, 0.00127383, 0, 0.00154187, 0.00882046, 0.00396807, -0.00915068)
 
 [node name="SM_Env_Tree_Forest_07" parent="GiantTreeIsland" instance=ExtResource("12_2bnqk")]
 transform = Transform3D(-0.000379939, 0, -0.00196358, 0, 0.002, 0, 0.00196358, 0, -0.000379939, -0.00419322, 0.00212176, -0.00492834)
-visible = false
 
 [node name="SM_Env_Bush_01" parent="GiantTreeIsland" instance=ExtResource("14_06l6j")]
 transform = Transform3D(0.000954686, 0, -0.00175743, 0, 0.002, 0, 0.00175743, 0, 0.000954686, -0.00212138, 0.00782655, 0.00299183)
-visible = false
 
 [node name="SM_Env_Bush_05" parent="GiantTreeIsland" instance=ExtResource("14_06l6j")]
-transform = Transform3D(-0.00178822, 0, 0.000895706, 0, 0.002, 0, -0.000895706, 0, -0.00178822, -0.000380548, 0.000230577, 0.0120018)
-visible = false
+transform = Transform3D(-0.00178822, 0, 0.000895706, 0, 0.002, 0, -0.000895706, 0, -0.00178822, -0.000206011, 0.00287236, 0.0105256)
 
 [node name="SM_Env_Bush_02" parent="GiantTreeIsland" instance=ExtResource("15_u0dpw")]
-transform = Transform3D(0.002, 0, 0, 0, 0.002, 0, 0, 0, 0.002, -0.0096379, 0.004254, 0.00863852)
-visible = false
+transform = Transform3D(0.002, 0, 0, 0, 0.002, 0, 0, 0, 0.002, -0.00860728, 0.004254, 0.00594949)
 
 [node name="SM_Env_Bush_09" parent="GiantTreeIsland" instance=ExtResource("15_u0dpw")]
-transform = Transform3D(0.002, 0, 0, 0, 0.00197512, -0.000314455, 0, 0.000314455, 0.00197512, -0.00476189, 0.00328318, 0.0105069)
-visible = false
+transform = Transform3D(0.002, 0, 0, 0, 0.00197512, -0.000314455, 0, 0.000314455, 0.00197512, -0.00412607, 0.00471405, 0.00645531)
 
 [node name="SM_Env_Bush_06" parent="GiantTreeIsland" instance=ExtResource("15_u0dpw")]
 transform = Transform3D(0.000697111, 0, -0.00187458, 0, 0.002, 0, 0.00187458, 0, 0.000697111, -0.00688523, 0.00643624, 0.00215179)
-visible = false
 
 [node name="SM_Env_Bush_07" parent="GiantTreeIsland" instance=ExtResource("15_u0dpw")]
 transform = Transform3D(0.000697111, 0, -0.00187458, 0, 0.002, 0, 0.00187458, 0, 0.000697111, 0.00106678, 0.0104156, -0.00129932)
-visible = false
 
 [node name="SM_Env_Bush_08" parent="GiantTreeIsland" instance=ExtResource("15_u0dpw")]
 transform = Transform3D(0.000697111, 0, -0.00187458, 0, 0.002, 0, 0.00187458, 0, 0.000697111, -0.000927441, 0.00650957, 0.00647285)
-visible = false
 
 [node name="SM_Env_Bush_03" parent="GiantTreeIsland" instance=ExtResource("15_u0dpw")]
-transform = Transform3D(0.002, 0, 0, 0, 0.002, 0, 0, 0, 0.002, 0.00688462, 0.004254, 0.0113043)
-visible = false
+transform = Transform3D(0.002, 0, 0, 0, 0.002, 0, 0, 0, 0.002, 0.00630839, 0.00537218, 0.00894703)
 
 [node name="SM_Env_Bush_04" parent="GiantTreeIsland" instance=ExtResource("15_u0dpw")]
 transform = Transform3D(0.00156086, 0, 0.00125049, 0, 0.002, 0, -0.00125049, 0, 0.00156086, 0.00522297, 0.00578608, 0.00439768)
-visible = false
 
 [node name="OmniLight3D" type="OmniLight3D" parent="GiantTreeIsland"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00930297, -0.0214041)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00930297, -0.00931207)
+light_color = Color(0.45098, 1, 1, 1)
 light_energy = 16.0
-omni_range = 114.623
+light_volumetric_fog_energy = 6.149
+omni_range = 202.923
+script = ExtResource("6_j5xyj")
+GroupName = "arena"
+EnabledByDefault = false
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_wvtxm")
+[node name="OmniLight3D2" type="OmniLight3D" parent="GiantTreeIsland"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0735417, -0.00931207)
+light_color = Color(0.45098, 1, 1, 1)
+light_energy = 16.0
+light_volumetric_fog_energy = 6.149
+omni_range = 202.923
+script = ExtResource("6_j5xyj")
+GroupName = "arena"
+EnabledByDefault = false
 
 [node name="EnvironmentController" parent="." instance=ExtResource("23_g5mbb")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="EnvironmentController"]
+environment = SubResource("Environment_wvtxm")
+
+[node name="FogVolume" type="FogVolume" parent="EnvironmentController/WorldEnvironment"]
+visible = false
+shape = 4
+material = SubResource("FogMaterial_tbf20")
+
+[node name="FogVolume2" type="FogVolume" parent="EnvironmentController/WorldEnvironment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.88811, -4.19928, 0)
+visible = false
+size = Vector3(732.44, 10, 1000)
+material = SubResource("FogMaterial_7g7vl")
+
+[node name="ArenaFogNegative" type="FogVolume" parent="EnvironmentController/WorldEnvironment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.68865)
+visible = false
+size = Vector3(109.002, 32, 125.595)
+material = SubResource("FogMaterial_ki3d4")
 
 [node name="WaterSurfaceCentered" parent="." instance=ExtResource("11_p1e04")]
 transform = Transform3D(1000, 0, 0, 0, 1000, 0, 0, 0, 1000, 0, -4.18042, 0)
@@ -389,3 +430,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.01991, 29)
 
 [node name="AerialFaithPlateTarget" parent="AerialFaithPlate" instance=ExtResource("20_eepki")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.929476, -15)
+
+[node name="PushAwayZone" parent="." instance=ExtResource("24_s7k6l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.23444, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PushAwayZone"]
+shape = SubResource("BoxShape3D_b0bss")

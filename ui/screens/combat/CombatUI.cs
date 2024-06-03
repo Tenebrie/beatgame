@@ -36,7 +36,7 @@ public partial class CombatUI : Control
 		{
 			AlliedUnitList.TrackUnit(unit);
 		}
-		else if (unit.Alliance == UnitAlliance.Hostile && unit is TestBoss)
+		else if (unit.Alliance == UnitAlliance.Hostile && unit is BossAeriel)
 		{
 			HostileBossList.TrackUnit(unit);
 			BossCastBarGroup.TrackUnit(unit);
@@ -57,7 +57,7 @@ public partial class CombatUI : Control
 		{
 			AlliedUnitList.UntrackUnit(unit);
 		}
-		else if (unit.Alliance == UnitAlliance.Hostile && unit is TestBoss)
+		else if (unit.Alliance == UnitAlliance.Hostile && unit is BossAeriel)
 		{
 			HostileBossList.UntrackUnit(unit);
 		}
