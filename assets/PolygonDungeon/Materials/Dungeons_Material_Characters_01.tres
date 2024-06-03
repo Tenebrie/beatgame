@@ -1,6 +1,6 @@
-[gd_resource type="StandardMaterial3D" load_steps=2 format=3]
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://c3xg28fkmvve7"]
 
-[ext_resource type="Texture2D" path="res://assets/PolygonDungeon/Textures/Dungeons_Texture_01.tex" id="1_8pgmc"]
+[ext_resource type="Texture2D" uid="uid://c5p714hmii2hg" path="res://assets/PolygonDungeon/Textures/Dungeons_Texture_01.png" id="1_8pgmc"]
 
 [resource]
 resource_name = "Dungeons_Material_Characters_01"

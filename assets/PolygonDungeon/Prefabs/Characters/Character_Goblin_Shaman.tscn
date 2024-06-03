@@ -1,7 +1,7 @@
 [gd_scene load_steps=30 format=3 uid="uid://dxmab7seyvtbb"]
 
 [ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/Characters_mesh/Character_Ghost_01_4300060.mesh" id="1_7x2cq"]
-[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeons_Material_Characters_01.tres" id="2_0pjbl"]
+[ext_resource type="Material" uid="uid://c3xg28fkmvve7" path="res://assets/PolygonDungeon/Materials/Dungeons_Material_Characters_01.tres" id="2_0pjbl"]
 [ext_resource type="ArrayMesh" uid="uid://dgbner6hu42k6" path="res://assets/PolygonDungeon/Models/Characters_mesh/Character_Ghost_02_4300050.mesh" id="3_pniut"]
 [ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/Characters_mesh/Character_Goblin_Female_4300046.mesh" id="4_7x771"]
 [ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/Characters_mesh/Character_Goblin_Male_4300066.mesh" id="5_o2hm8"]

@@ -26,9 +26,10 @@ public partial class TransitionUI : Control
 		fadePlayer.Play("fade_out");
 	}
 
-	private void OnMusicReady()
+	private async void OnMusicReady()
 	{
 		GetTree().ChangeSceneToPacked(transitioningTo);
+		await ToSignal(GetTree().CreateTimer(0), "timeout");
 		SignalBus.Singleton.EmitSignal(SignalBus.SignalName.SceneTransitionFinished, transitioningTo);
 		fadePlayer.Play("fade_in");
 	}

@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=3 format=3 uid="uid://6xwnlxs6eytv"]
 
 [ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Wep_Banner_02_mesh/SM_Wep_Banner_02_4300000.mesh" id="1_s1sgb"]
-[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_4tjkt"]
+[ext_resource type="Material" uid="uid://egwfatbxefmf" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_4tjkt"]
 
 [node name="SM_Wep_Banner_02" type="Node3D"]
 metadata/ufile_ids = ["b5c2c0e653e241e4db3b01145a9263a4:425672", "b5c2c0e653e241e4db3b01145a9263a4:171744", "b5c2c0e653e241e4db3b01145a9263a4:3359204", "b5c2c0e653e241e4db3b01145a9263a4:2355856", "b5c2c0e653e241e4db3b01145a9263a4:64695498565756122"]

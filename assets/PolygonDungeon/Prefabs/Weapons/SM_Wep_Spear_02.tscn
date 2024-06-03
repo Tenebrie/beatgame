@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=3 format=3 uid="uid://d1f1ppqk86rhh"]
 
 [ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Wep_Spear_02_mesh/SM_Wep_Spear_02_4300000.mesh" id="1_k8xwk"]
-[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_ac7rd"]
+[ext_resource type="Material" uid="uid://egwfatbxefmf" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_ac7rd"]
 
 [node name="SM_Wep_Spear_02" type="Node3D"]
 metadata/ufile_ids = ["04355395e22dfe046a9cacf61b90d732:424854", "04355395e22dfe046a9cacf61b90d732:103552", "04355395e22dfe046a9cacf61b90d732:3338270", "04355395e22dfe046a9cacf61b90d732:2392476", "04355395e22dfe046a9cacf61b90d732:64558645563724748"]

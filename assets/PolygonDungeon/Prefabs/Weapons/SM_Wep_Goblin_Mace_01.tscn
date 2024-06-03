@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=3 format=3 uid="uid://u7hauslw0u3e"]
 
 [ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Wep_Goblin_Mace_01_mesh/SM_Wep_Goblin_Mace_01_4300000.mesh" id="1_c011m"]
-[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_lsmkc"]
+[ext_resource type="Material" uid="uid://egwfatbxefmf" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_lsmkc"]
 
 [node name="SM_Wep_Goblin_Mace_01" type="Node3D"]
 metadata/ufile_ids = ["6c4eb298fc2aefa409bcb69e83f42108:471308", "6c4eb298fc2aefa409bcb69e83f42108:190080", "6c4eb298fc2aefa409bcb69e83f42108:3324994", "6c4eb298fc2aefa409bcb69e83f42108:2307140", "6c4eb298fc2aefa409bcb69e83f42108:64075278056857010"]

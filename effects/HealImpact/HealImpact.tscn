@@ -99,8 +99,10 @@ orientation = 2
 script = ExtResource("1_87ksq")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+emitting = false
 amount = 500
 lifetime = 3.0
+one_shot = true
 explosiveness = 1.0
 randomness = 0.43
 fixed_fps = 60

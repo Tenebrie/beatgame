@@ -152,12 +152,15 @@ public partial class Music : Node
 		PlaySceneSong();
 	}
 
-	private void PlaySceneSong()
+	private async void PlaySceneSong()
 	{
 		var scene = GetTree().CurrentScene.Name;
 		CurrentTrack = scene == "BossArenaAeriel" ? musicLibrary.BossArenaAeriel : musicLibrary.TrainingRoom;
 		if (scene == "TrainingRoom")
+		{
+			await ToSignal(GetTree().CreateTimer(1), "timeout");
 			Start();
+		}
 	}
 
 	public void Start()
@@ -190,14 +193,13 @@ public partial class Music : Node
 		CurrentTrack.Stop();
 		CurrentTrack.QueueFree();
 		CurrentTrack = null;
+		IsStarted = false;
 		SignalBus.Singleton.EmitSignal(SignalBus.SignalName.SceneTransitionMusicReady);
 	}
 
 	private void OnSceneTransitionFinished(PackedScene _)
 	{
-		CurrentTrack = new MusicTrackSpaceship();
-		AddChild(CurrentTrack);
-		Start();
+		PlaySceneSong();
 	}
 
 	public double GetNearestBeatIndex()

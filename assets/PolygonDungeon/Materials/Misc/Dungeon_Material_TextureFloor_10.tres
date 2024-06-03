@@ -1,6 +1,6 @@
-[gd_resource type="StandardMaterial3D" load_steps=2 format=3]
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://qklhecs0ksva"]
 
-[ext_resource type="Texture2D" path="res://assets/PolygonDungeon/Textures/Misc/ExtraTiles/Dungeons_Texture_FloorTile_10_01.tex" id="1_kltuu"]
+[ext_resource type="Texture2D" uid="uid://3bm847oi7rti" path="res://assets/PolygonDungeon/Textures/Misc/ExtraTiles/Dungeons_Texture_FloorTile_10_01.png" id="1_kltuu"]
 
 [resource]
 resource_name = "Dungeon_Material_TextureFloor_10"
