@@ -21,6 +21,6 @@ public partial class PushAwayZone : Area3D
 		{
 			Duration = 1,
 		});
-		unit.Health.Damage(25f);
+		unit.Health.Damage(25f, null, null);
 	}
 }

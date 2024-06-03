@@ -17,6 +17,6 @@ public partial class BossAuto : BaseCast
 
 	protected override void OnCastCompleted(CastTargetData target)
 	{
-		target.HostileUnit.Health.Damage(1, Parent);
+		target.HostileUnit.Health.Damage(1, this);
 	}
 }

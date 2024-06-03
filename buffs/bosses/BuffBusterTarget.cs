@@ -7,7 +7,7 @@ public partial class BuffBusterTarget : BaseBuff
 
 	}
 
-	public override void Visit(BuffVisitor visitor)
+	public override void ModifyUnit(BuffUnitStatsVisitor visitor)
 	{
 		// visitor.GravityModifier = 0;
 	}

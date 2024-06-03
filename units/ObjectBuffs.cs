@@ -7,7 +7,7 @@ namespace Project;
 
 public partial class ObjectBuffs : ComposableScript
 {
-	public BuffVisitor State = new();
+	public BuffUnitStatsVisitor State = new();
 
 	readonly List<BaseBuff> Buffs = new();
 
@@ -16,6 +16,21 @@ public partial class ObjectBuffs : ComposableScript
 	public override void _Ready()
 	{
 		base._Ready();
+		Recalculate();
+		Parent.ChildExitingTree += OnChildExitingTree;
+	}
+
+	public override void _ExitTree()
+	{
+		Parent.ChildExitingTree -= OnChildExitingTree;
+	}
+
+	void OnChildExitingTree(Node child)
+	{
+		if (child is not BaseBuff buff)
+			return;
+
+		Buffs.Remove(buff);
 		Recalculate();
 	}
 
@@ -37,11 +52,18 @@ public partial class ObjectBuffs : ComposableScript
 		return Buffs.Count(buff => buff is BuffClass);
 	}
 
-	public void Remove(BaseBuff buff)
+	public static void Remove(BaseBuff buff)
 	{
-		Buffs.Remove(buff);
 		buff.QueueFree();
-		Recalculate();
+	}
+
+	public void RemoveStacks<BuffClass>(int stacks) where BuffClass : BaseBuff
+	{
+		var buffs = Buffs.Where(buff => buff is BuffClass).Take(stacks).ToList();
+		foreach (var buff in buffs)
+		{
+			buff.QueueFree();
+		}
 	}
 
 	public void RemoveAll<BuffClass>() where BuffClass : BaseBuff
@@ -49,20 +71,82 @@ public partial class ObjectBuffs : ComposableScript
 		var buffsToRemove = Buffs.Where(buff => buff is BuffClass).ToList();
 		foreach (var buff in buffsToRemove)
 		{
-			Buffs.Remove(buff);
 			buff.QueueFree();
 		}
-		Recalculate();
 	}
 
 	public void Recalculate()
 	{
-		BuffVisitor visitor = new();
+		BuffUnitStatsVisitor visitor = new();
 
 		foreach (var buff in Buffs)
-			buff.Visit(visitor);
+			buff.ModifyUnit(visitor);
 
 		Parent.Gravity = Parent.BaseGravity * visitor.GravityModifier;
 		State = visitor;
+	}
+
+	public BuffIncomingDamageVisitor ApplyIncomingDamageModifiers(ObjectResourceType type, float value, BaseUnit sourceUnit, BaseCast sourceCast)
+	{
+		var visitor = new BuffIncomingDamageVisitor
+		{
+			ResourceType = type,
+			Value = value,
+			SourceUnit = sourceUnit,
+			SourceCast = sourceCast,
+			Target = Parent,
+		};
+		foreach (var buff in Buffs)
+		{
+			buff.ModifyIncomingDamage(visitor);
+		}
+
+		visitor.Value *= 1 - State.PercentageDamageReduction.GetValueOrDefault(type);
+
+		return visitor;
+	}
+	public BuffOutgoingDamageVisitor ApplyOutgoingDamageModifiers(ObjectResourceType type, float value, BaseUnit target)
+	{
+		var visitor = new BuffOutgoingDamageVisitor
+		{
+			ResourceType = type,
+			Value = value,
+			Target = target,
+		};
+		foreach (var buff in Buffs)
+		{
+			buff.ModifyOutgoingDamage(visitor);
+		}
+		return visitor;
+	}
+	public BuffIncomingRestorationVisitor ApplyIncomingRestorationModifiers(ObjectResourceType type, float value, BaseUnit sourceUnit, BaseCast sourceCast)
+	{
+		var visitor = new BuffIncomingRestorationVisitor
+		{
+			ResourceType = type,
+			Value = value,
+			SourceUnit = sourceUnit,
+			SourceCast = sourceCast,
+			Target = Parent,
+		};
+		foreach (var buff in Buffs)
+		{
+			buff.ModifyIncomingRestoration(visitor);
+		}
+		return visitor;
+	}
+	public BuffOutgoingRestorationVisitor ApplyOutgoingRestorationModifiers(ObjectResourceType type, float value, BaseUnit target)
+	{
+		var visitor = new BuffOutgoingRestorationVisitor
+		{
+			ResourceType = type,
+			Value = value,
+			Target = target,
+		};
+		foreach (var buff in Buffs)
+		{
+			buff.ModifyOutgoingRestoration(visitor);
+		}
+		return visitor;
 	}
 }

@@ -11,7 +11,7 @@ public partial class SelfHeal : BaseCast
 			FriendlyName = "Self Heal",
 			InputType = CastInputType.HoldRelease,
 			TargetType = CastTargetType.None,
-			CastTimings = BeatTime.One,
+			CastTimings = BeatTime.Quarter,
 		};
 	}
 
@@ -21,7 +21,7 @@ public partial class SelfHeal : BaseCast
 		healImpact.AttachForDuration(Parent, .3f, new Vector3(0, 0.25f, 0));
 
 		var healing = Flags.CastSuccessful ? 60 : 30;
-		Parent.Health.Restore(healing);
-		Parent.Mana.Damage(10);
+		Parent.Health.Restore(healing, this);
+		Parent.Mana.Damage(10, this);
 	}
 }

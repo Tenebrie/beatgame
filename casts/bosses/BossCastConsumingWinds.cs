@@ -7,6 +7,7 @@ namespace Project;
 public partial class BossCastConsumingWinds : BaseCast
 {
 	public float Damage = 80;
+	public float PushDistance = 12;
 	public float PullStrength = 1.5f;
 	public float ExtraPullStrength = 2.5f;
 	public float AreaRadius = 12;
@@ -21,7 +22,6 @@ public partial class BossCastConsumingWinds : BaseCast
 			HoldTime = 16,
 			RecastTime = 0,
 			PrepareTime = 8,
-			ChannelingTickTimings = BeatTime.One | BeatTime.Half,
 		};
 	}
 
@@ -42,10 +42,11 @@ public partial class BossCastConsumingWinds : BaseCast
 		circle.Radius = AreaRadius;
 		circle.GrowTime = Settings.HoldTime;
 		circle.Alliance = UnitAlliance.Hostile;
+		circle.TargetValidator = (target) => target.HostileTo(Parent);
 		circle.OnFinishedPerTargetCallback = (BaseUnit target) =>
 		{
-			target.Health.Damage(Damage);
-			target.ForcefulMovement.Push(12, (target.Position - Parent.Position).Flatten(target.Position.Y), 2);
+			target.Health.Damage(Damage, this);
+			target.ForcefulMovement.Push(PushDistance, (target.Position - Parent.Position).Flatten(target.Position.Y), 2);
 		};
 		circle.OnFinishedCallback = () =>
 		{

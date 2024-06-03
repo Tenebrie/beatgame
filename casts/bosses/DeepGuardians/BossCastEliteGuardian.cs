@@ -53,7 +53,7 @@ public partial class BossCastEliteGuardian : BaseCast
 		rect.TargetValidator = (target) => target.HostileTo(Parent);
 		rect.OnFinishedPerTargetCallback = (BaseUnit target) =>
 		{
-			target.Health.Damage(10);
+			target.Health.Damage(10, this);
 			target.ForcefulMovement.Push(64, forward, 2f);
 		};
 		rect.OnFinishedCallback = () => guardian.QueueFree();

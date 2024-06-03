@@ -17,7 +17,7 @@ public partial class BossCastDeepGuardians : BaseCast
 			FriendlyName = "Deep Guardians",
 			InputType = CastInputType.AutoRelease,
 			TargetType = CastTargetType.None,
-			ChannelingTickTimings = BeatTime.One,
+			ChannelingTickTimings = BeatTime.Whole | BeatTime.Half,
 			TickWhilePreparing = true,
 			HoldTime = 8,
 			RecastTime = 0,
@@ -55,7 +55,7 @@ public partial class BossCastDeepGuardians : BaseCast
 
 	protected override void OnCastTicked(CastTargetData targetData, BeatTime time)
 	{
-		if (SpawningGuardians && Music.Singleton.BeatIndex % 2 == 0)
+		if (SpawningGuardians)
 			SpawnGuardian();
 	}
 
@@ -83,11 +83,11 @@ public partial class BossCastDeepGuardians : BaseCast
 		rect.TargetValidator = (target) => target.HostileTo(Parent);
 		rect.OnTargetEntered = (BaseUnit target) =>
 		{
-			target.Health.Damage(3);
+			target.Health.Damage(3, this);
 		};
 		rect.OnFinishedPerTargetCallback = (BaseUnit target) =>
 		{
-			target.Health.Damage(50);
+			target.Health.Damage(50, this);
 			target.ForcefulMovement.Push(8, forward, 1);
 		};
 		rect.OnFinishedCallback = () =>

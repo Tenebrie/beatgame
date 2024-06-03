@@ -6,7 +6,8 @@ using Godot;
 namespace Project;
 public partial class BossCastLightningOrbs : BaseCast
 {
-	readonly List<PowerUpLightningOrb> SpawnedOrbs = new();
+	readonly List<LightningOrbsPylon> SpawnedPylons = new();
+
 	public BossCastLightningOrbs(BaseUnit parent) : base(parent)
 	{
 		Settings = new()
@@ -14,14 +15,13 @@ public partial class BossCastLightningOrbs : BaseCast
 			FriendlyName = "Lightning Orbs",
 			TargetType = CastTargetType.None,
 			InputType = CastInputType.AutoRelease,
-			HoldTime = 32,
+			HoldTime = 31,
 			RecastTime = 0,
 			PrepareTime = 32,
-			ChannelingTickTimings = BeatTime.One | BeatTime.Half,
 		};
 	}
 
-	List<Vector3> GetSpawnPositions()
+	List<Vector3> GetOrbsSpawnPositions()
 	{
 		var list = new List<Vector3>();
 		foreach (var facing in CastUtils.AllArenaFacings())
@@ -35,16 +35,55 @@ public partial class BossCastLightningOrbs : BaseCast
 		return list;
 	}
 
+	static List<Vector3> GetPylonsSpawnPositions()
+	{
+		var list = new List<Vector3>()
+		{
+			new(+4, 0, +4),
+			new(+4, 0, -4),
+			new(-4, 0, +4),
+			new(-4, 0, -4),
+		};
+		return list;
+	}
+
 	protected override void OnCastStarted(CastTargetData _)
 	{
-		var positions = GetSpawnPositions();
+		SpawnedPylons.Clear();
 
-		foreach (var pos in positions)
+		var orbPositions = GetOrbsSpawnPositions();
+		foreach (var pos in orbPositions)
 		{
 			var token = Lib.Scene(Lib.Token.PowerUpLightningOrb).Instantiate<PowerUpLightningOrb>();
 			token.Position = pos;
 			GetTree().CurrentScene.AddChild(token);
-			SpawnedOrbs.Add(token);
+		}
+
+		var pylonPositions = GetPylonsSpawnPositions();
+		foreach (var pos in pylonPositions)
+		{
+			var token = Lib.Scene(Lib.Token.LightningOrbsPylon).Instantiate<LightningOrbsPylon>();
+			token.Position = pos;
+			GetTree().CurrentScene.AddChild(token);
+			SpawnedPylons.Add(token);
+		}
+	}
+
+	protected override void OnPrepCompleted(CastTargetData _)
+	{
+		var pylons = SpawnedPylons.Where(pylon => IsInstanceValid(pylon));
+		foreach (var pylon in pylons)
+		{
+			pylon.Activate();
+		}
+	}
+
+	protected override void OnCastCompleted(CastTargetData _)
+	{
+		var pylons = SpawnedPylons.Where(pylon => IsInstanceValid(pylon));
+		foreach (var pylon in pylons)
+		{
+			pylon.PerformFinalCast();
 		}
 	}
 }

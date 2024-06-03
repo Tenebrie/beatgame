@@ -10,7 +10,7 @@ public partial class Fireblast : BaseCast
 			FriendlyName = "Fireblast",
 			InputType = CastInputType.Instant,
 			TargetType = CastTargetType.HostileUnit,
-			CastTimings = BeatTime.One | BeatTime.Half,
+			CastTimings = BeatTime.Quarter | BeatTime.Eighth,
 			RecastTime = 0.1f,
 		};
 	}
@@ -22,6 +22,6 @@ public partial class Fireblast : BaseCast
 		impact.GlobalPosition = Parent.GlobalPosition;
 
 		var damage = 5f;
-		target.HostileUnit.Health.Damage(damage);
+		target.HostileUnit.Health.Damage(damage, this);
 	}
 }

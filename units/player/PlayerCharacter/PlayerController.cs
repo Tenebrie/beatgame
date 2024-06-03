@@ -18,7 +18,7 @@ public partial class PlayerController : BaseUnit
 		Alliance = UnitAlliance.Player;
 		Targetable.selectionRadius = 0.5f;
 
-		Health.SetMax(200);
+		Health.SetMax(250);
 		Mana.SetMax(100);
 	}
 

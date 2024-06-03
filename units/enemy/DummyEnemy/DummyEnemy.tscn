@@ -32,5 +32,3 @@ mesh = SubResource("BoxMesh_e37df")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00424194, 0.257706, -0.000579834)
 shape = SubResource("BoxShape3D_28ffj")
-
-[node name="DummyEnemy" type="Node3D" parent="."]

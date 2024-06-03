@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Godot;
 
 namespace Project;
@@ -31,9 +32,13 @@ public abstract partial class BaseBuff : Node
 		float time = Time.GetTicksMsec();
 		if (time >= expiresAt)
 		{
-			Parent.Buffs.Remove(this);
+			ObjectBuffs.Remove(this);
 		}
 	}
 
-	public virtual void Visit(BuffVisitor visitor) { }
+	public virtual void ModifyUnit(BuffUnitStatsVisitor unit) { }
+	public virtual void ModifyIncomingDamage(BuffIncomingDamageVisitor damage) { }
+	public virtual void ModifyOutgoingDamage(BuffOutgoingDamageVisitor damage) { }
+	public virtual void ModifyIncomingRestoration(BuffIncomingRestorationVisitor restoration) { }
+	public virtual void ModifyOutgoingRestoration(BuffOutgoingRestorationVisitor restoration) { }
 }

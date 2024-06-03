@@ -5,6 +5,7 @@ namespace Project;
 
 public partial class TrueProjectile : Node3D
 {
+	public BaseCast Source;
 	public UnitAlliance Alliance;
 	public GpuParticles3D Emitter;
 
@@ -33,7 +34,7 @@ public partial class TrueProjectile : Node3D
 		}
 
 		var targetUnit = hitUnits[0];
-		targetUnit.Health.Damage(1);
+		targetUnit.Health.Damage(1, Source);
 		Cleanup();
 
 		// var scene = GD.Load<PackedScene>("res://effects/FireballProjectile/FireballProjectileImpact.tscn");

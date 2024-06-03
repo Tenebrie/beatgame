@@ -10,18 +10,37 @@ public partial class AnimatedTrident : BasicEnemyController
 
 	public override void _Ready()
 	{
+		Alliance = UnitAlliance.Hostile;
 		area = this.CreateGroundCircularArea(this.Position);
 		area.GrowTime = 0;
 		area.Radius = this.GetArenaSize() * 0.16f / 2;
 		area.Periodic = true;
 		area.Alliance = UnitAlliance.Hostile;
+		area.TargetValidator = (unit) => unit.HostileTo(this);
 		area.OnTargetEntered = OnImpactCallback;
 	}
 
 	public void OnImpactCallback(BaseUnit unit)
 	{
-		unit.Health.Damage(50f);
-		unit.ForcefulMovement.Push(2, unit.Position - Position, 0.25f);
+		unit.Health.Damage(50f, this);
+		var vector = Position - unit.Position;
+		unit.ForcefulMovement.Push(Position.FlatDistanceTo(unit.Position), vector.Flatten(unit.Position.Y), 0.5f);
+		unit.Buffs.Add(new BuffTridentTargetSlow());
+
+		var circle = this.CreateGroundCircularArea(this.GetGroundedPosition());
+		circle.Radius = 3;
+		circle.GrowTime = 2;
+		circle.TargetValidator = (unit) => unit.HostileTo(this);
+		circle.OnFinishedPerTargetCallback = (unit) =>
+		{
+			unit.Health.Damage(75f, this);
+			unit.ForcefulMovement.Push(5, Vector3.Up, 1);
+		};
+
+		QueueFree();
+
+		if (IsInstanceValid(area))
+			area.CleanUp();
 	}
 
 	public void Activate(float distance, float time)
@@ -33,7 +52,8 @@ public partial class AnimatedTrident : BasicEnemyController
 	public void SetActive(bool active)
 	{
 		IsMoving = active;
-		area.CleanUp();
+		if (active == false && IsInstanceValid(area))
+			area.CleanUp();
 	}
 
 	public override void _Process(double delta)

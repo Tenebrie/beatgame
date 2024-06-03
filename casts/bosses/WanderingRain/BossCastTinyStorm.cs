@@ -3,19 +3,19 @@ using System.Linq;
 using Godot;
 
 namespace Project;
-public partial class BossCastLightningStorm : BaseCast
+public partial class BossCastTinyStorm : BaseCast
 {
 	int CurrentCircleIndex = 0;
 	double ImpactIndex = 0;
 
-	public BossCastLightningStorm(BaseUnit parent) : base(parent)
+	public BossCastTinyStorm(BaseUnit parent) : base(parent)
 	{
 		Settings = new()
 		{
-			FriendlyName = "Lightning Storm",
+			FriendlyName = "Tiny Storm",
 			InputType = CastInputType.AutoRelease,
 			TargetType = CastTargetType.None,
-			HoldTime = 6,
+			HoldTime = 2,
 			RecastTime = 0,
 			HiddenCastBar = true,
 		};
@@ -36,10 +36,7 @@ public partial class BossCastLightningStorm : BaseCast
 		if (!IsCasting)
 			return;
 
-		if (CurrentCircleIndex <= 5 && time == BeatTime.Sixteenth)
-			return;
-
-		if (CurrentCircleIndex >= 12)
+		if (CurrentCircleIndex >= 3)
 			return;
 
 		Spawn();
@@ -63,10 +60,10 @@ public partial class BossCastLightningStorm : BaseCast
 		{
 			var area = this.CreateGroundCircularArea(pos);
 			area.GrowTime = (float)(ImpactIndex - Music.Singleton.BeatIndex);
-			area.Radius = 1.5f;
+			area.Radius = 1;
 			area.OnFinishedPerTargetCallback = (BaseUnit unit) =>
 			{
-				unit.Health.Damage(7.5f, this);
+				unit.Health.Damage(5, this);
 			};
 		}
 

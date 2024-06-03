@@ -32,18 +32,7 @@ public partial class CastBar : Control
 		if (trackedCast == null || !trackedCast.IsCasting)
 			return;
 
-		var time = (float)Time.GetTicksMsec();
-		var value = (time - prepFinishesAt) / (castFinishesAt - prepFinishesAt);
-		if (time < prepFinishesAt)
-			value = (time - castStartedAt) / (prepFinishesAt - castStartedAt);
-
-		if (trackedCast.Settings.PrepareTime > 0 && time > prepFinishesAt)
-			value = 1 - value;
-
-		if (trackedCast.Settings.ReversedCastBar)
-			value = 1 - value;
-		
-		progressBar.Value = value * 100;
+		UpdateBar();
 	}
 
 	void OnCastStarted(BaseCast cast)
@@ -54,14 +43,29 @@ public partial class CastBar : Control
 		castStartedAt = Time.GetTicksMsec();
 		prepFinishesAt = castStartedAt + cast.Settings.PrepareTime * Music.Singleton.SecondsPerBeat * 1000;
 		castFinishesAt = prepFinishesAt + cast.Settings.HoldTime * Music.Singleton.SecondsPerBeat * 1000;
+		UpdateBar();
+	}
+
+	void UpdateBar()
+	{
+		var time = (float)Time.GetTicksMsec();
+		var value = (time - prepFinishesAt) / (castFinishesAt - prepFinishesAt);
+		if (time < prepFinishesAt)
+			value = (time - castStartedAt) / (prepFinishesAt - castStartedAt);
+
+		if (trackedCast.Settings.PrepareTime > 0 && time > prepFinishesAt)
+			value = 1 - value;
+
+		if (trackedCast.Settings.ReversedCastBar)
+			value = 1 - value;
+
+		progressBar.Value = value * 100;
 	}
 
 	void OnCastPerformed(BaseCast cast)
 	{
 		if (cast != trackedCast)
 			return;
-
-
 	}
 
 	public void TrackCast(BaseCast cast)

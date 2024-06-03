@@ -21,9 +21,9 @@ public partial class WanderingRain : BasicEnemyController
 		area.OnTargetEntered = OnImpactCallback;
 	}
 
-	public static void OnImpactCallback(BaseUnit unit)
+	public void OnImpactCallback(BaseUnit unit)
 	{
-		unit.Health.Damage(10f);
+		unit.Health.Damage(10f, this);
 	}
 
 	public void Activate(float speed)

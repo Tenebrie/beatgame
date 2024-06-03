@@ -8,7 +8,7 @@ public partial class BossCastRaidwide : BaseCast
 {
 	float damageDealt = 0;
 	float damageExpected = 0;
-	float damageTotal = 100;
+	protected float DamageTotal = 100;
 
 	public BossCastRaidwide(BaseUnit parent) : base(parent)
 	{
@@ -30,7 +30,7 @@ public partial class BossCastRaidwide : BaseCast
 		if (!IsCasting || IsPreparing)
 			return;
 
-		damageExpected += damageTotal / Settings.HoldTime * (float)delta / Music.Singleton.SecondsPerBeat;
+		damageExpected += DamageTotal / Settings.HoldTime * (float)delta / Music.Singleton.SecondsPerBeat;
 		if (damageExpected - damageDealt > 1)
 		{
 			ApplyDamage();
@@ -45,7 +45,7 @@ public partial class BossCastRaidwide : BaseCast
 		var targets = BaseUnit.AllUnits.Where(unit => unit.Alliance.HostileTo(Parent.Alliance));
 		foreach (var target in targets)
 		{
-			target.Health.Damage(damageExpected - damageDealt);
+			target.Health.Damage(damageExpected - damageDealt, this);
 		}
 		damageDealt = damageExpected;
 	}

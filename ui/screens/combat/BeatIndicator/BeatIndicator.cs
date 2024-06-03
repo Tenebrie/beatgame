@@ -9,12 +9,15 @@ public partial class BeatIndicator : Control
 	public List<List<BeatBar>> BarGroups = new();
 	public override void _Ready()
 	{
-		Music.Singleton.BeatTimer.Timeout += OnBeat;
+		Music.Singleton.BeatTick += OnBeat;
 		Music.Singleton.VisualBeatTimer.Timeout += OnVisualBeat;
 	}
 
-	public void OnBeat()
+	public void OnBeat(BeatTime time)
 	{
+		if ((time & (BeatTime.Whole | BeatTime.Half | BeatTime.Quarter)) == 0)
+			return;
+
 		if (BarGroups.Count == 0)
 			return;
 
@@ -31,6 +34,7 @@ public partial class BeatIndicator : Control
 		var time = (long)Time.Singleton.GetTicksMsec();
 		var endsAt = time + Music.Singleton.SongDelay;
 
+		// TODO: Fix this, potentially broken
 		var isHalfBeat = Music.Singleton.VisualBeatTimer.TickIndex % 2 == 1;
 		var barGroup = new List<BeatBar>();
 		var rightBar = new BeatBar(mirrored: true, halfBeat: isHalfBeat)

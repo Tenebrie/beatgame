@@ -62,13 +62,8 @@ public partial class PlayerMovement : ComposableScript
 			hardCameraMoving = true;
 			hardCameraMoveStart = GetWindow().GetMousePosition();
 			Input.MouseMode = Input.MouseModeEnum.Hidden;
-			if (softCameraMoving)
-			{
-				Parent.Rotate(Vector3.Up, horizontalCameraPivot.Rotation.Y);
-				RotateCameraHorizontal(-horizontalCameraPivot.Rotation.Y);
-				// Unrotate the horizontal pivot
-				// Rotate parent by the horizontal pivot rotation
-			}
+			Parent.Rotate(Vector3.Up, horizontalCameraPivot.Rotation.Y);
+			RotateCameraHorizontal(-horizontalCameraPivot.Rotation.Y);
 		}
 		if (@event.IsActionReleased("HardCameraMove"))
 		{
@@ -109,7 +104,7 @@ public partial class PlayerMovement : ComposableScript
 
 	private void ProcessMovement(double delta)
 	{
-		var movementSpeed = 2.5f * (float)delta;
+		var movementSpeed = 2.5f * (float)delta * Parent.Buffs.State.MoveSpeedPercentage;
 
 		float movementForward = 0;
 		if (Input.IsActionPressed("MoveForward"))

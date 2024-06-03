@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://cd0ktc24uuduq"]
+
+[ext_resource type="Script" path="res://casts/bosses/LightningOrbs/tokens/LightningOrbsPylon.cs" id="1_cq7e8"]
+[ext_resource type="PackedScene" path="res://assets/PolygonDungeon/Prefabs/Environments/Misc/SM_Env_Gem_Spike_01.tscn" id="1_d5iuk"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_burn3"]
+radius = 0.75
+height = 2.5
+
+[node name="LightningOrbsPylon" type="CharacterBody3D"]
+script = ExtResource("1_cq7e8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.26167, 0)
+shape = SubResource("CapsuleShape3D_burn3")
+
+[node name="SM_Env_Gem_Spike_01" parent="." instance=ExtResource("1_d5iuk")]
+transform = Transform3D(80, 0, 0, 0, 80, 0, 0, 0, 80, 0, 0, 0)

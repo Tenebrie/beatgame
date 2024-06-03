@@ -36,6 +36,11 @@ public partial class ObjectForcefulMovement : ComposableScript
 		});
 	}
 
+	public void AddInertia(float inertia, Vector3 direction)
+	{
+		Parent.Velocity += direction.Normalized() * inertia;
+	}
+
 	public ContinuousMovement PushContinuously(Func<float> speed, Func<Vector3> direction, Func<bool> condition = null)
 	{
 		var movement = new ContinuousMovement()

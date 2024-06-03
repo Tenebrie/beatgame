@@ -28,6 +28,6 @@ public partial class BossCastBuster : BaseCast
 	protected override void OnCastCompleted(CastTargetData targetData)
 	{
 		targetData.HostileUnit.Buffs.RemoveAll<BuffBusterTarget>();
-		targetData.HostileUnit.Health.Damage(Damage);
+		targetData.HostileUnit.Health.Damage(Damage, this);
 	}
 }

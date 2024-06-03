@@ -26,7 +26,7 @@ public partial class CastBarGroup : VBoxContainer
 
 	void OnCastStarted(BaseCast cast)
 	{
-		if (cast.Parent != trackedUnit || cast.Settings.InputType == CastInputType.Instant)
+		if (cast.Parent != trackedUnit || cast.Settings.InputType == CastInputType.Instant || cast.Settings.HiddenCastBar)
 			return;
 
 		var oldBar = activeBars.Find(entry => entry.cast == cast);
@@ -45,7 +45,7 @@ public partial class CastBarGroup : VBoxContainer
 
 	void OnCastPerformed(BaseCast cast)
 	{
-		if (cast.Parent != trackedUnit)
+		if (cast.Parent != trackedUnit || cast.Settings.HiddenCastBar)
 			return;
 
 		var entry = activeBars.Find(entry => entry.cast == cast);

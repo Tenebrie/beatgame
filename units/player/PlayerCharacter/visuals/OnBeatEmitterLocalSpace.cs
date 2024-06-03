@@ -19,6 +19,8 @@ public partial class OnBeatEmitterLocalSpace : GpuParticles3D
 
 	public void OnBeatTick(BeatTime time)
 	{
+		if (time == BeatTime.Eighth || time == BeatTime.Sixteenth)
+			return;
 		EmitParticle(Transform, Vector3.Zero, new Color(1, 1, 1), new Color(1, 1, 1), 0);
 	}
 

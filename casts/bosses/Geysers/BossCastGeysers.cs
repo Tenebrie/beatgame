@@ -56,7 +56,7 @@ public partial class BossCastGeysers : BaseCast
 			{
 				unit.Buffs.Add(new BuffGeyserLevitation()
 				{
-					Duration = Settings.HoldTime + 4,
+					Duration = Settings.HoldTime + 2,
 				});
 				unit.ForcefulMovement.Push(10, Vector3.Up, 3f);
 				affectedUnits.Add(unit);

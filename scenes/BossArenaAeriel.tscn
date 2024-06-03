@@ -1,11 +1,10 @@
-[gd_scene load_steps=42 format=3 uid="uid://b1d3j63byd72g"]
+[gd_scene load_steps=41 format=3 uid="uid://b1d3j63byd72g"]
 
 [ext_resource type="Texture2D" uid="uid://0oq4x3vsrdoj" path="res://assets/PolygonTropicalJungle/Terrain/Sand_Texture_02.png" id="1_kfj03"]
 [ext_resource type="PackedScene" uid="uid://k3tq7jb87g5b" path="res://objects/Triggers/PlayerSpawner/PlayerSpawner.tscn" id="1_rng0i"]
 [ext_resource type="Texture2D" uid="uid://7capj8gkjdma" path="res://assets/PolygonTropicalJungle/Terrain/Sand_Normals_02.png" id="2_rsvkw"]
 [ext_resource type="PackedScene" uid="uid://54vsvup5iam6" path="res://units/enemy/Aeriel/BossAeriel.tscn" id="2_wx5uw"]
 [ext_resource type="PackedScene" uid="uid://kv2sxv7kxs57" path="res://assets/PolygonTropicalJungle/Prefabs/SM_Bld_Ruins_Column_02.tscn" id="3_edsgm"]
-[ext_resource type="PackedScene" uid="uid://dd8hi213iqvva" path="res://units/enemy/DummyEnemy/DummyEnemy.tscn" id="3_ondps"]
 [ext_resource type="PackedScene" uid="uid://bue0mn46sn4fj" path="res://objects/Triggers/FightStart/FightStartTrigger.tscn" id="4_xw0ju"]
 [ext_resource type="PackedScene" uid="uid://behv2icdj5778" path="res://assets/PolygonTropicalJungle/Prefabs/SM_Env_Rock_Pile_03.tscn" id="4_y5dva"]
 [ext_resource type="PackedScene" uid="uid://gj8xxedifnpp" path="res://assets/PolygonDungeon/Prefabs/Props/SM_Prop_Tech_Crystal_01.tscn" id="5_16guk"]
@@ -89,7 +88,7 @@ density = -8.0
 height_falloff = 0.732043
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_b0bss"]
-size = Vector3(100, 1, 100)
+size = Vector3(1000, 1, 1000)
 
 [node name="BossArenaAeriel" type="Node3D"]
 
@@ -317,10 +316,6 @@ transform = Transform3D(1, 0, 0, 0, 0.671979, 0.74057, 0, -0.74057, 0.671979, 0,
 light_color = Color(1, 0.533333, 0.184314, 1)
 script = ExtResource("12_5x64u")
 GroupName = "sun"
-
-[node name="DummyEnemy" parent="." instance=ExtResource("3_ondps")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.96745, -0.00237915, 4.64895)
-Alliance = 0
 
 [node name="FightStartTrigger" parent="." instance=ExtResource("4_xw0ju")]
 input_ray_pickable = false

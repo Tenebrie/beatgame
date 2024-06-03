@@ -10,9 +10,10 @@ public partial class ObjectCastLibrary : ComposableScript
 
 	public ObjectCastLibrary(BaseUnit parent) : base(parent) { }
 
-	public void Register(BaseCast cast)
+	public CastT Register<CastT>(CastT cast) where CastT : BaseCast
 	{
 		Abilities.Add(cast);
 		Parent.AddChild(cast);
+		return cast;
 	}
 }

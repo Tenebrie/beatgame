@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 
 namespace Project;
@@ -8,11 +9,9 @@ public partial class TestBossTimeline : BaseTimeline<BossAeriel>
 {
 	public TestBossTimeline(BossAeriel parent) : base(parent)
 	{
-		// GotoAbleton(42);
-		GotoAbleton(86);
+		GotoAbleton(24);
 
 		Mark("Debug");
-		Wait(2);
 
 		RegisterAutoAttacks();
 		RegisterRaidwides();
@@ -77,16 +76,27 @@ public partial class TestBossTimeline : BaseTimeline<BossAeriel>
 		GotoAbleton(42);
 		Cast(parent.LightningOrbs);
 
+		GotoAbleton(59);
+		Act(() =>
+		{
+			foreach (var unit in BaseUnit.AllUnits)
+				unit.Buffs.RemoveAll<BuffPowerUpLightningOrb>();
+
+			var orbs = GetTree().CurrentScene.GetChildren().Where(node => node is PowerUpLightningOrb).Cast<PowerUpLightningOrb>();
+			foreach (var orb in orbs)
+				orb.QueueFree();
+		});
+
 		// ===================================================
-		// Thrice Consuming Winds
+		// Phase 3
 		// ===================================================
 		GotoAbleton(61);
 		Cast(parent.ThriceConsumingWinds);
 
 		GotoAbleton(65);
-		Act(() => parent.AreaAttack.AreaRadius = 12);
+		Act(() => parent.AreaAttack.AreaRadius = 8);
 		Act(() => parent.AreaAttack.Settings.HoldTime = 8);
-		Target(new Vector3(+16, 0, 0), allowMultitarget: true);
+		Target(new Vector3(+16, 0, 0));
 		Target(new Vector3(-16, 0, 0), allowMultitarget: true);
 		Target(new Vector3(0, 0, +16), allowMultitarget: true);
 		Target(new Vector3(0, 0, -16), allowMultitarget: true);
@@ -155,141 +165,106 @@ public partial class TestBossTimeline : BaseTimeline<BossAeriel>
 			EnvironmentController.Singleton.SetFogDensity(0.005f);
 		});
 
-		// Wait(2);
+		// ===================================================
+		// Lightning Orbs 2
+		// ===================================================
+		GotoAbleton(113);
+		Cast(parent.LightningOrbs, advance: false);
+		Cast(parent.AnimatedTridents);
 
-		// Cast(parent.AutoAttack);
-		// Cast(parent.AutoAttack);
-		// Cast(parent.AutoAttack);
-		// Cast(parent.AutoAttack);
+		GotoAbleton(119);
+		Act(() => parent.AreaAttack.Settings.HoldTime = 8);
+		Act(() => parent.AreaAttack.AreaRadius = 6);
+		Target(new Vector3(+16, 0, 0));
+		Target(new Vector3(-16, 0, 0), allowMultitarget: true);
+		Target(new Vector3(0, 0, +16), allowMultitarget: true);
+		Target(new Vector3(0, 0, -16), allowMultitarget: true);
+		Cast(parent.AreaAttack);
 
-		// Act(() => parent.EliteGuardian.RandomizeOrientation());
-		// Cast(parent.EliteGuardian, advance: false);
-		// Wait(4);
+		GotoAbleton(125);
+		Target(new Vector3(+16, 0, +16));
+		Target(new Vector3(+16, 0, -16), allowMultitarget: true);
+		Target(new Vector3(-16, 0, +16), allowMultitarget: true);
+		Target(new Vector3(-16, 0, -16), allowMultitarget: true);
+		Cast(parent.AreaAttack);
 
-		// Act(() => parent.Geysers.Variation = BossCastGeysers.VariationType.UnderBoss | BossCastGeysers.VariationType.FourSides);
-		// Cast(parent.Geysers);
-		// Wait(4);
+		GotoAbleton(130);
+		Act(() =>
+		{
+			foreach (var unit in BaseUnit.AllUnits)
+				unit.Buffs.RemoveAll<BuffPowerUpLightningOrb>();
 
-		// Cast(parent.RavagingWinds);
-
-		// Cast(parent.AnimatedTridents);
-
-		// Act(() => parent.AreaAttack.Settings.HoldTime = 4);
-		// Target(new Vector3(0, 0, 0), allowMultitarget: true);
-		// Target(new Vector3(+16, 0, 0), allowMultitarget: true);
-		// Target(new Vector3(-16, 0, 0), allowMultitarget: true);
-		// Target(new Vector3(0, 0, +16), allowMultitarget: true);
-		// Target(new Vector3(0, 0, -16), allowMultitarget: true);
-		// Cast(parent.AreaAttack);
-
-		// Act(() => parent.DeepGuardians.Reset());
-		// Cast(parent.DeepGuardians, advance: false);
-
-		// Wait(4);
-
-		// Act(() => parent.DeepGuardiansTwo.Orientation = parent.DeepGuardians.Orientation);
-		// Act(() => parent.DeepGuardiansTwo.AdvanceOrientation());
-		// Cast(parent.DeepGuardiansTwo);
-
-		// Cast(parent.ConsumingWinds);
-
-		// Wait(1);
-		// Cast(parent.AutoAttack);
-		// Cast(parent.AutoAttack);
-		// Cast(parent.AutoAttack);
-		// Cast(parent.AutoAttack);
-		// Wait(1);
-
-		// Cast(parent.TorrentialRain);
-
-		// Wait(1);
-		// Cast(parent.AutoAttack);
-		// Cast(parent.AutoAttack);
-		// Cast(parent.AutoAttack);
-		// Cast(parent.AutoAttack);
-		// Wait(1);
-
-
-		// Wait(1);
-		// Cast(parent.AutoAttack);
-		// Cast(parent.AutoAttack);
-		// Cast(parent.AutoAttack);
-		// Cast(parent.AutoAttack);
-		// Wait(1);
-
-		// Wait(1);
-		// Cast(parent.AutoAttack);
-		// Cast(parent.AutoAttack);
-		// Cast(parent.AutoAttack);
-		// Cast(parent.AutoAttack);
-		// Wait(1);
-
-		// Cast(parent.ConsumingWinds);
-
-		// Wait(1);
-		// Cast(parent.AutoAttack);
-		// Cast(parent.AutoAttack);
-		// Cast(parent.AutoAttack);
-		// Cast(parent.AutoAttack);
-		// Wait(1);
-
-		// Act(() => parent.DeepGuardians.Reset());
-		// Act(() => parent.DeepGuardiansTwo.Reset());
-		// Cast(parent.DeepGuardians, advance: false);
-
-		// Wait(1);
-		// Cast(parent.AutoAttack);
-		// Cast(parent.AutoAttack);
-		// Cast(parent.AutoAttack);
-		// Cast(parent.AutoAttack);
-
-		// Act(() => parent.DeepGuardiansTwo.Orientation = parent.DeepGuardians.Orientation);
-		// Act(() => parent.DeepGuardiansTwo.AdvanceOrientation());
-		// Cast(parent.DeepGuardiansTwo, advance: false);
-
-		// Wait(1);
-		// Cast(parent.AutoAttack);
-		// Cast(parent.AutoAttack);
-		// Cast(parent.AutoAttack);
-		// Cast(parent.AutoAttack);
-		// Wait(1);
-
-		// Wait(1);
-		// Cast(parent.AutoAttack);
-		// Cast(parent.AutoAttack);
-		// Cast(parent.AutoAttack);
-		// Cast(parent.AutoAttack);
-		// Wait(1);
-
-		// Cast(parent.TorrentialRain);
-		// Cast(parent.TorrentialRain);
-		// Cast(parent.TorrentialRain);
+			var orbs = GetTree().CurrentScene.GetChildren().Where(node => node is PowerUpLightningOrb).Cast<PowerUpLightningOrb>();
+			foreach (var orb in orbs)
+				orb.QueueFree();
+		});
 
 		// ===================================================
-		// Final Sequence
+		// Phase 4
 		// ===================================================
+		GotoAbleton(130);
+		Cast(parent.QuickRavagingWinds);
 
+		GotoAbleton(134);
+		Cast(parent.QuickRavagingWinds);
+
+		GotoAbleton(138);
+		Cast(parent.QuickRavagingWinds);
+
+		GotoAbleton(142);
+		Cast(parent.QuickRavagingWinds);
+
+		GotoAbleton(143);
+		Cast(parent.TinyStorm);
+
+		GotoAbleton(144);
+		Cast(parent.TinyStorm);
+
+		GotoAbleton(145);
+		Cast(parent.LightningStorm);
+
+		GotoAbleton(146);
+		Cast(parent.QuickRavagingWinds);
+
+		GotoAbleton(147);
+		Cast(parent.TinyStorm);
+
+		GotoAbleton(148);
+		Cast(parent.TinyStorm);
+
+		GotoAbleton(149);
+		Cast(parent.LightningStorm);
+
+		GotoAbleton(150);
+		Cast(parent.QuickRavagingWinds);
+
+		GotoAbleton(151);
+		Cast(parent.TinyStorm);
+
+		GotoAbleton(152);
+		Cast(parent.TinyStorm);
+
+		GotoAbleton(153);
+		Cast(parent.LightningStorm, advance: false);
+		Cast(parent.Buster);
+
+		GotoAbleton(154);
+		Cast(parent.QuickRavagingWinds);
+
+		GotoAbleton(158);
+		Cast(parent.QuickRavagingWinds);
+
+		GotoAbleton(162);
+		Cast(parent.QuickRavagingWinds);
+
+		GotoAbleton(166);
+		Cast(parent.QuickRavagingWinds);
+
+		// ===================================================
+		// Hard Enrage
+		// ===================================================
 		GotoAbleton(163);
 		Cast(parent.HardEnrage);
-
-		// GotoAbleton(169);
-		// Act(() => 
-		// {
-		// 	EnvironmentController.Singleton.UpdateLights("sun", false);
-		// 	EnvironmentController.Singleton.UpdateLights("arena", true);
-		// 	EnvironmentController.Singleton.SetBiolumenescence(1);
-		// 	EnvironmentController.Singleton.SetFogDensity(0.005f);
-		// });
-
-		// Wait(1);
-
-		// Act(() => 
-		// {
-		// 	EnvironmentController.Singleton.UpdateLights("sun", false);
-		// 	EnvironmentController.Singleton.UpdateLights("arena", true);
-		// 	EnvironmentController.Singleton.SetBiolumenescence(1);
-		// 	EnvironmentController.Singleton.SetFogDensity(0.005f);
-		// });
 	}
 
 	void RegisterAutoAttacks()
@@ -329,7 +304,7 @@ public partial class TestBossTimeline : BaseTimeline<BossAeriel>
 	{
 		List<double> locations = new()
 		{
-			8.3, 12.3, 24.3, 32.3, 99.3, 103.3, 107.3, 128.3,
+			8.3, 12.3, 24.3, 32.3, 99.3, 103.3, 107.3,
 		};
 		foreach (var autoIndex in locations)
 		{

@@ -9,6 +9,7 @@ public class TokenLibrary
 {
 	public string DeepGuardian = "res://casts/bosses/DeepGuardians/tokens/DeepGuardian.tscn";
 	public string AnimatedTrident = "res://casts/bosses/Tridents/tokens/AnimatedTrident.tscn";
+	public string LightningOrbsPylon = "res://casts/bosses/LightningOrbs/tokens/LightningOrbsPylon.tscn";
 	public string PowerUpLightningOrb = "res://casts/bosses/LightningOrbs/tokens/PowerUpLightningOrb.tscn";
 }
 
@@ -20,7 +21,7 @@ public class EffectLibrary
 	public string FireballProjectile = "res://effects/FireballProjectile/FireballProjectile.tscn";
 	public string FireballProjectileImpact = "res://effects/FireballProjectile/FireballProjectileImpact.tscn";
 	public string HealImpact = "res://effects/HealImpact/HealImpact.tscn";
-	public string EnergyOrbPickupImpact = "res://effects/EnergyOrb/EnergyOrbImpact.tscn";
+	public string EnergyOrbPickupImpact = "res://effects/EnergyOrbProjectile/EnergyOrbProjectileImpact.tscn";
 	public string AerielDarknessRelease = "res://effects/AerielDarknessRelease/AerielDarknessRelease.tscn";
 }
 

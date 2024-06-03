@@ -5,19 +5,19 @@ using System.Linq;
 using Godot;
 
 namespace Project;
-public partial class BossCastRavagingWinds : BaseCast
+public partial class BossCastQuickRavagingWinds : BaseCast
 {
 	public float Rotation = 0;
 	public float AreaRadius = 3;
 
-	public BossCastRavagingWinds(BaseUnit parent) : base(parent)
+	public BossCastQuickRavagingWinds(BaseUnit parent) : base(parent)
 	{
 		Settings = new()
 		{
-			FriendlyName = "Ravaging Winds",
+			FriendlyName = "Quickened Ravaging Winds",
 			TargetType = CastTargetType.None,
 			InputType = CastInputType.AutoRelease,
-			HoldTime = 30,
+			HoldTime = 10,
 			RecastTime = 0,
 			PrepareTime = 4,
 			ChannelingTickTimings = BeatTime.Whole | BeatTime.Half,
@@ -71,6 +71,6 @@ public partial class BossCastRavagingWinds : BaseCast
 				target.ForcefulMovement.Push(2, target.Position - Parent.Position, 0.5f);
 			}
 		};
-		Rotation += (float)Math.PI * 2 / Settings.HoldTime * 2;
+		Rotation += (float)Math.PI * 2 / Settings.HoldTime / 4;
 	}
 }

@@ -23,9 +23,10 @@ public partial class BossCastAreaAttack : BaseCast
 			circle.Radius = AreaRadius;
 			circle.GrowTime = Settings.HoldTime;
 			circle.Alliance = UnitAlliance.Hostile;
+			circle.TargetValidator = (target) => target.HostileTo(Parent);
 			circle.OnFinishedPerTargetCallback = (target) =>
 			{
-				target.Health.Damage(40);
+				target.Health.Damage(40, this);
 			};
 		}
 	}

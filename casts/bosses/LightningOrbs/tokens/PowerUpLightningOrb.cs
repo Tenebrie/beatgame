@@ -9,6 +9,7 @@ public partial class PowerUpLightningOrb : Node3D
 	Projectile EnergyOrb;
 	GroundAreaCircle GroundAreaCircle;
 	Area3D TriggerArea;
+
 	public override void _Ready()
 	{
 		EnergyOrb = GetNode<Projectile>("EnergyOrb");
@@ -39,23 +40,20 @@ public partial class PowerUpLightningOrb : Node3D
 
 	public override void _Process(double delta)
 	{
-		if (PlayerInRange == null)
+		if (PlayerInRange == null || IsQueuedForDeletion())
 			return;
 
-		if (PlayerInRange.Buffs.Stacks<BuffEnergyOrbPower>() >= 5)
-			return;
-
-		PlayerInRange.Buffs.Add(new BuffEnergyOrbPower());
+		PlayerInRange.Buffs.Add(new BuffPowerUpLightningOrb());
 		PlayerInRange = null;
 
 		var impact = Lib.Scene(Lib.Effect.EnergyOrbPickupImpact).Instantiate<ProjectileImpact>();
 		impact.Position = EnergyOrb.GlobalPosition;
 		GetParent().AddChild(impact);
 
-		RemoveChild(GroundAreaCircle);
 		var position = GroundAreaCircle.GlobalPosition;
-		GetParent().AddChild(GroundAreaCircle);
-		GroundAreaCircle.GlobalPosition = position;
+		RemoveChild(GroundAreaCircle);
+		GetTree().CurrentScene.AddChild(GroundAreaCircle);
+		GroundAreaCircle.Position = position;
 		GroundAreaCircle.CleanUp();
 
 		RemoveChild(EnergyOrb);

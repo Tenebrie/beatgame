@@ -74,7 +74,7 @@ public partial class BossCastTorrentialRain : BaseCast
 		var targets = BaseUnit.AllUnits.Where(unit => unit.Alliance.HostileTo(Parent.Alliance));
 		foreach (var target in targets)
 		{
-			target.Health.Damage(damageExpected - damageDealt);
+			target.Health.Damage(damageExpected - damageDealt, this);
 		}
 		damageDealt = damageExpected;
 	}

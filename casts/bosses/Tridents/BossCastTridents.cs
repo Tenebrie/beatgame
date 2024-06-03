@@ -1,16 +1,13 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 
 namespace Project;
 public partial class BossCastTridents : BaseCast
 {
-	// On each side of the arena, 3 (5?) tridents appear, alternating direction, combing through the entire side of the arena, but not the corners
-	// Then, corners explode with a large aoe
-	// In the middle of the arena, a puddle of water should exist
-
 	readonly CastAutomata<State> stateMachine;
-	readonly List<AnimatedTrident> tridents = new();
+	readonly List<AnimatedTrident> AllTridents = new();
 
 	public BossCastTridents(BaseUnit parent) : base(parent)
 	{
@@ -19,15 +16,16 @@ public partial class BossCastTridents : BaseCast
 			FriendlyName = "Animated Tridents",
 			InputType = CastInputType.AutoRelease,
 			TargetType = CastTargetType.None,
-			HoldTime = 4,
+			HoldTime = 32,
+			PrepareTime = 8,
 			RecastTime = 0,
 		};
 
 		stateMachine = new(State.Spawning, OnStateTransition, new() {
-			(3, State.Charging),
-			(5, State.Moving),
-			(13, State.Despawning),
-			(15, State.Finished),
+			(9, State.Charging),
+			(17, State.Moving),
+			(33, State.Despawning),
+			(41, State.Finished),
 		});
 	}
 
@@ -55,8 +53,8 @@ public partial class BossCastTridents : BaseCast
 			list.Add((this.GetArenaEdgePosition(new Vector3(+1, 0, 0.4f + 0.05f), facing), this.GetArenaFacingAngle(ArenaFacing.West) + angle));
 			list.Add((this.GetArenaEdgePosition(new Vector3(-1, 0, 0.5f + 0.05f), facing), this.GetArenaFacingAngle(ArenaFacing.East) + angle));
 			list.Add((this.GetArenaEdgePosition(new Vector3(+1, 0, 0.6f + 0.05f), facing), this.GetArenaFacingAngle(ArenaFacing.West) + angle));
-			list.Add((this.GetArenaEdgePosition(new Vector3(-1, 0, 0.7f + 0.05f), facing), this.GetArenaFacingAngle(ArenaFacing.East) + angle));
-			list.Add((this.GetArenaEdgePosition(new Vector3(+1, 0, 0.8f + 0.05f), facing), this.GetArenaFacingAngle(ArenaFacing.West) + angle));
+			// list.Add((this.GetArenaEdgePosition(new Vector3(-1, 0, 0.7f + 0.05f), facing), this.GetArenaFacingAngle(ArenaFacing.East) + angle));
+			// list.Add((this.GetArenaEdgePosition(new Vector3(+1, 0, 0.8f + 0.05f), facing), this.GetArenaFacingAngle(ArenaFacing.West) + angle));
 		}
 		return list;
 	}
@@ -68,14 +66,14 @@ public partial class BossCastTridents : BaseCast
 		{
 			var rect = this.CreateGroundCircularArea(position);
 			rect.Radius = 2;
-			rect.GrowTime = 2;
+			rect.GrowTime = 8;
 			rect.Alliance = UnitAlliance.Hostile;
 			rect.OnFinishedCallback = () =>
 			{
 				foreach (var unit in rect.GetTargets())
 				{
-					unit.Health.Damage(30);
-					unit.ForcefulMovement.Push(2, unit.Position - rect.Position, 0.5f);
+					unit.Health.Damage(30, this);
+					unit.ForcefulMovement.Push(2, unit.Position - rect.Position, 1);
 				}
 			};
 		}
@@ -83,6 +81,7 @@ public partial class BossCastTridents : BaseCast
 
 	void OnStateTransition(State state)
 	{
+		var tridents = AllTridents.Where(trident => IsInstanceValid(trident)).ToList();
 		if (state == State.Charging)
 		{
 			var trident = Lib.Scene(Lib.Token.AnimatedTrident);
@@ -92,14 +91,14 @@ public partial class BossCastTridents : BaseCast
 				instance.Position = position;
 				instance.Rotate(Vector3.Up, rotation);
 				GetTree().CurrentScene.AddChild(instance);
-				tridents.Add(instance);
+				AllTridents.Add(instance);
 			}
 		}
 		if (state == State.Moving)
 		{
 			foreach (var trident in tridents)
 			{
-				trident.Activate(this.GetArenaSize() * 2, 8 * Music.Singleton.SecondsPerBeat);
+				trident.Activate(this.GetArenaSize() * 2, 16 * Music.Singleton.SecondsPerBeat);
 			}
 		}
 		if (state == State.Despawning)
@@ -108,26 +107,19 @@ public partial class BossCastTridents : BaseCast
 			{
 				trident.SetActive(false);
 				var rect = this.CreateGroundCircularArea(trident.Position);
-				rect.Radius = 2;
-				rect.GrowTime = 2;
+				rect.Radius = 4;
+				rect.GrowTime = 8;
 				rect.Alliance = UnitAlliance.Hostile;
 				rect.OnFinishedCallback = () =>
 				{
 					foreach (var unit in rect.GetTargets())
 					{
-						unit.Health.Damage(30);
-						unit.ForcefulMovement.Push(2, unit.Position - rect.Position, 0.5f);
+						unit.Health.Damage(30, this);
+						unit.ForcefulMovement.Push(2, unit.Position - rect.Position, 1f);
 					}
+					trident.QueueFree();
 				};
 			}
-		}
-		if (state == State.Finished)
-		{
-			foreach (var trident in tridents)
-			{
-				trident.QueueFree();
-			}
-			tridents.Clear();
 		}
 	}
 

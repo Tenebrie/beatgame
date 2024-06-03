@@ -34,17 +34,58 @@ public class ObjectResource : ComposableScript
 		SignalBus.Singleton.EmitSignal(SignalBus.SignalName.MaxResourceChanged, Parent, Type.ToVariant(), maximum);
 	}
 
-	public void Damage(float value, BaseUnit source = null)
+	public void Damage(float originalValue, BaseCast sourceCast)
 	{
-		value *= 1 - Parent.Buffs.State.PercentageDamageReduction.GetValueOrDefault(Type);
+		Damage(originalValue, sourceCast.Parent, sourceCast);
+	}
+	public void Damage(float originalValue, BaseUnit sourceUnit)
+	{
+		Damage(originalValue, sourceUnit, null);
+	}
+	public void Damage(float originalValue, BaseUnit sourceUnit, BaseCast sourceCast)
+	{
+		var visitor = sourceUnit.Buffs.ApplyOutgoingDamageModifiers(Type, originalValue, Parent);
+		if (visitor.Target != Parent)
+			throw new NotImplementedException("Redirecting damage target is not implemented");
+		if (visitor.ResourceType != Type)
+			throw new NotImplementedException("Changing resource type is not implemented");
+
+		var result = Parent.Buffs.ApplyIncomingDamageModifiers(Type, visitor.Value, sourceUnit, sourceCast);
+		if (result.Target != Parent)
+			throw new NotImplementedException("Redirecting damage target is not implemented");
+		if (result.ResourceType != Type)
+			throw new NotImplementedException("Changing resource type is not implemented");
+
+		var value = result.Value;
 		current = Math.Max(0, current - value);
 
 		if (ready)
 			SignalBus.Singleton.EmitSignal(SignalBus.SignalName.ResourceChanged, Parent, Type.ToVariant(), current);
 	}
 
-	public void Restore(float value, BaseUnit source = null)
+	public void Restore(float originalValue, BaseCast sourceCast)
 	{
+		Restore(originalValue, sourceCast.Parent, sourceCast);
+	}
+	public void Restore(float originalValue, BaseUnit sourceUnit)
+	{
+		Restore(originalValue, sourceUnit, null);
+	}
+	public void Restore(float originalValue, BaseUnit sourceUnit, BaseCast sourceCast)
+	{
+		var visitor = sourceUnit.Buffs.ApplyOutgoingRestorationModifiers(Type, originalValue, Parent);
+		if (visitor.Target != Parent)
+			throw new NotImplementedException("Redirecting restoration target is not implemented");
+		if (visitor.ResourceType != Type)
+			throw new NotImplementedException("Changing resource type is not implemented");
+
+		var result = Parent.Buffs.ApplyIncomingRestorationModifiers(Type, visitor.Value, sourceUnit, sourceCast);
+		if (result.Target != Parent)
+			throw new NotImplementedException("Redirecting restoration target is not implemented");
+		if (result.ResourceType != Type)
+			throw new NotImplementedException("Changing resource type is not implemented");
+
+		var value = result.Value;
 		current = Math.Min(maximum, current + value);
 
 		if (ready)

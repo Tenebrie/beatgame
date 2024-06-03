@@ -7,6 +7,7 @@ namespace Project;
 public partial class Projectile : Node3D
 {
 	private bool IsEmitting = true;
+	public BaseCast Source;
 	public BaseUnit TargetUnit;
 	public List<GpuParticles3D> Emitters;
 	public float ImpactDamage = 5;
@@ -40,7 +41,10 @@ public partial class Projectile : Node3D
 			GetTree().Root.AddChild(impact);
 			impact.GlobalPosition = GlobalPosition;
 
-			TargetUnit.Health.Damage(ImpactDamage);
+			if (Source == null)
+				GD.PushError("Projectile doesn't have Source set");
+
+			TargetUnit.Health.Damage(ImpactDamage, Source);
 		}
 	}
 

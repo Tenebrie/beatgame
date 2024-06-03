@@ -13,10 +13,12 @@ public partial class BossAeriel : BasicEnemyController
 	public BossCastDeepGuardians DeepGuardiansTwo;
 	public BossCastEliteGuardian EliteGuardian;
 	public BossCastTridents AnimatedTridents;
+	public BossCastTinyStorm TinyStorm;
 	public BossCastLightningStorm LightningStorm;
 	public BossCastTorrentialRain TorrentialRain;
 	public BossCastTorrentialRain OpeningTorrentialRain;
 	public BossCastRavagingWinds RavagingWinds;
+	public BossCastQuickRavagingWinds QuickRavagingWinds;
 	public BossCastConsumingWinds ConsumingWinds;
 	public BossCastConsumingWinds TwiceConsumingWinds;
 	public BossCastConsumingWinds ThriceConsumingWinds;
@@ -34,7 +36,7 @@ public partial class BossAeriel : BasicEnemyController
 		MiniBuster = new(this);
 		CastLibrary.Register(MiniBuster);
 		MiniBuster.Settings.FriendlyName = "Mini Buster";
-		MiniBuster.Damage = 100;
+		MiniBuster.Damage = 50;
 
 		Raidwide = new(this);
 		CastLibrary.Register(Raidwide);
@@ -53,6 +55,9 @@ public partial class BossAeriel : BasicEnemyController
 		AnimatedTridents = new(this);
 		CastLibrary.Register(AnimatedTridents);
 
+		TinyStorm = new(this);
+		CastLibrary.Register(TinyStorm);
+
 		LightningStorm = new(this);
 		CastLibrary.Register(LightningStorm);
 
@@ -67,6 +72,9 @@ public partial class BossAeriel : BasicEnemyController
 		RavagingWinds = new(this);
 		CastLibrary.Register(RavagingWinds);
 
+		QuickRavagingWinds = new(this);
+		CastLibrary.Register(QuickRavagingWinds);
+
 		ConsumingWinds = new(this);
 		CastLibrary.Register(ConsumingWinds);
 
@@ -74,14 +82,15 @@ public partial class BossAeriel : BasicEnemyController
 		CastLibrary.Register(TwiceConsumingWinds);
 		TwiceConsumingWinds.Settings.FriendlyName = "Twice Consuming Winds";
 		TwiceConsumingWinds.AreaRadius += 2;
-		TwiceConsumingWinds.ExtraPullStrength += 0.25f;
+		TwiceConsumingWinds.ExtraPullStrength += 0.10f;
 
 		ThriceConsumingWinds = new(this);
 		CastLibrary.Register(ThriceConsumingWinds);
-		ThriceConsumingWinds.Settings.FriendlyName = "Thrice Consuming Winds";
-		ThriceConsumingWinds.AreaRadius += 4;
+		ThriceConsumingWinds.Settings.FriendlyName = "All Consuming Winds";
+		ThriceConsumingWinds.PushDistance = 32;
+		ThriceConsumingWinds.AreaRadius += 12;
 		ThriceConsumingWinds.ExtraPullStrength += 0.25f;
-		ThriceConsumingWinds.Damage = 20;
+		ThriceConsumingWinds.Damage = 0;
 
 		Geysers = new(this);
 		CastLibrary.Register(Geysers);

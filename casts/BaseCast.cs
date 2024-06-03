@@ -11,10 +11,11 @@ public partial class BaseCast : Node
 		public float HoldTime = 1; // beat
 		public CastInputType InputType = CastInputType.Instant;
 		public CastTargetType TargetType = CastTargetType.None;
-		public BeatTime CastTimings = BeatTime.One;
+		public BeatTime CastTimings = BeatTime.Quarter;
 		public BeatTime ChannelingTickTimings = 0;
 		public float RecastTime = .1f;
 		public bool ReversedCastBar = false;
+		public bool HiddenCastBar = false;
 
 		/// <summary>Only for CastInputType.AutoRelease</summary>
 		public float PrepareTime = 0; // beats
@@ -42,6 +43,7 @@ public partial class BaseCast : Node
 	protected CastFlags Flags = new();
 
 	public readonly BaseUnit Parent;
+	public BaseUnit Unit { get => Parent; }
 
 	public BaseCast(BaseUnit parent)
 	{
@@ -55,7 +57,8 @@ public partial class BaseCast : Node
 
 	public override void _ExitTree()
 	{
-		RemoveChild(RecastTimerHandle);
+		if (RecastTimerHandle != null)
+			RemoveChild(RecastTimerHandle);
 	}
 
 	private void EnsureTimerExists()
