@@ -37,6 +37,8 @@ public partial class ActionButton : Control
 		SignalBus.Singleton.CastAssigned += OnCastAssigned;
 		Music.Singleton.BeatTick += OnBeatStateChanged;
 		Music.Singleton.BeatWindowLock += OnBeatStateChanged;
+
+		IsDisabled = true;
 	}
 
 	private void OnMouseEnter()
@@ -55,8 +57,11 @@ public partial class ActionButton : Control
 
 	private void OnCastAssigned(BaseCast cast, string actionName)
 	{
-		if (actionName == ActionName)
-			AssociatedCast = cast;
+		if (actionName != ActionName)
+			return;
+
+		AssociatedCast = cast;
+		IsDisabled = false;	
 	}
 
 	private void OnBeatStateChanged(BeatTime time)
@@ -113,9 +118,12 @@ public partial class ActionButton : Control
 			DisabledValue = 0;
 		ButtonMaterial.SetShaderParameter("DisabledValue", DisabledValue);
 
+		if (AssociatedCast == null)
+			return;
+
 		if (IsHighlighted)
 			HighlightedValue = Math.Min(1, HighlightedValue + (float)delta * 5);
-		else
+		else if (AssociatedCast.Settings.CastTimings != BeatTime.Free)
 			HighlightedValue = Math.Max(0, HighlightedValue - (float)delta * 5);
 		ButtonMaterial.SetShaderParameter("HighlightedValue", HighlightedValue);
 	}

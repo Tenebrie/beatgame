@@ -6,6 +6,7 @@ uniform vec3 albedo2: source_color;
 uniform float metallic: hint_range(0.0, 1.0) = 0;
 uniform float roughness: hint_range(0.0, 1.0) = 0.02;
 uniform sampler2D wave;
+uniform sampler2D wave2;
 uniform sampler2D texture_normal;
 uniform sampler2D texture_normal2;
 uniform vec2 wave_direction = vec2(2.0, 0.0);
@@ -33,7 +34,9 @@ varying vec3 world_pos;
 
 void vertex() {
 	world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
-	height = texture(wave, world_pos.xz / noise_scale + TIME * time_scale).r * wave_height;
+	float height1 = texture(wave, world_pos.xz / noise_scale + TIME * time_scale * 2.0).r * wave_height;
+	float height2 = texture(wave2, world_pos.xz / noise_scale + TIME * time_scale).r * wave_height;
+	height = (height1 + height2) / 2.0;
 	VERTEX.y += height * height_scale;
 }
 

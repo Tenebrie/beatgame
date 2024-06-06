@@ -29,13 +29,11 @@ public partial class ActionPanel : HBoxContainer
 		{
 			Label = "3",
 			ActionName = "Cast3",
-			IsDisabled = true,
 		};
 		var c4 = new ActionButton()
 		{
 			Label = "4",
 			ActionName = "Cast4",
-			IsDisabled = true,
 		};
 		var sc1 = new ActionButton()
 		{
@@ -51,13 +49,11 @@ public partial class ActionPanel : HBoxContainer
 		{
 			Label = "S3",
 			ActionName = "ShiftCast3",
-			IsDisabled = true,
 		};
 		var sc4 = new ActionButton()
 		{
 			Label = "S4",
 			ActionName = "ShiftCast4",
-			IsDisabled = true,
 		};
 
 		List<ActionButton> buttons = new() { c1, c2, c3, c4, sc1, sc2, sc3, sc4 };

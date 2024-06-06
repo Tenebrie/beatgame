@@ -81,7 +81,7 @@ public partial class BossAeriel : BasicEnemyController
 		TwiceConsumingWinds = new(this);
 		CastLibrary.Register(TwiceConsumingWinds);
 		TwiceConsumingWinds.Settings.FriendlyName = "Twice Consuming Winds";
-		TwiceConsumingWinds.AreaRadius += 2;
+		TwiceConsumingWinds.AreaRadius += 1;
 		TwiceConsumingWinds.ExtraPullStrength += 0.10f;
 
 		ThriceConsumingWinds = new(this);

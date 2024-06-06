@@ -5,5 +5,6 @@ public partial class MusicTrackTest : MusicTrack
 	{
 		BeatsPerMinute = 120;
 		ResourcePath = Lib.Audio.MusicTrackTest;
+		Loop = true;
 	}
 }

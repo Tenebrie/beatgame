@@ -17,5 +17,6 @@ public partial class FightStartTrigger : Area3D
 			return;
 
 		Music.Singleton.Start();
+		EnvironmentController.Singleton.SetEnabled("bg_audio", false);
 	}
 }

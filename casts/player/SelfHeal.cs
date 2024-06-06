@@ -11,7 +11,8 @@ public partial class SelfHeal : BaseCast
 			FriendlyName = "Self Heal",
 			InputType = CastInputType.HoldRelease,
 			TargetType = CastTargetType.None,
-			CastTimings = BeatTime.Quarter,
+			HoldTime = 1,
+			CastTimings = BeatTime.Whole | BeatTime.Half | BeatTime.Quarter,
 		};
 	}
 

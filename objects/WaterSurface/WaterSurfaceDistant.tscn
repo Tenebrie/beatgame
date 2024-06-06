@@ -1,0 +1,65 @@
+[gd_scene load_steps=10 format=3 uid="uid://bk2ho0p6s2wjy"]
+
+[ext_resource type="Shader" path="res://objects/WaterSurface/WaterSurface.gdshader" id="1_pp0qa"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_5atrl"]
+noise_type = 3
+fractal_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_c0yfi"]
+seamless = true
+as_normal_map = true
+bump_strength = 1.5
+noise = SubResource("FastNoiseLite_5atrl")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_rw3h4"]
+noise_type = 3
+seed = 10
+fractal_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_0ndxe"]
+seamless = true
+as_normal_map = true
+bump_strength = 1.5
+noise = SubResource("FastNoiseLite_rw3h4")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_28aw6"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_rg7xf"]
+seamless = true
+noise = SubResource("FastNoiseLite_28aw6")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_f1l3t"]
+render_priority = 0
+shader = ExtResource("1_pp0qa")
+shader_parameter/albedo = Color(0, 0.192157, 0.262745, 1)
+shader_parameter/albedo2 = Color(0, 0.34902, 0.258824, 1)
+shader_parameter/metallic = 0.0
+shader_parameter/roughness = 0.02
+shader_parameter/wave_direction = Vector2(2, 0)
+shader_parameter/wave_direction2 = Vector2(0, 1)
+shader_parameter/time_scale = 0.045
+shader_parameter/noise_scale = 10.0
+shader_parameter/height_scale = 0.0
+shader_parameter/wave_height = 0.0
+shader_parameter/color_deep = Color(0, 0, 0, 1)
+shader_parameter/color_shallow = Color(0, 0.184314, 0.254902, 1)
+shader_parameter/beers_law = 2.0
+shader_parameter/depth_offset = 0.5
+shader_parameter/edge_scale = 0.0
+shader_parameter/near = 1.0
+shader_parameter/far = 100.0
+shader_parameter/edge_color = Color(0, 0.890196, 0.894118, 1)
+shader_parameter/wave = SubResource("NoiseTexture2D_rg7xf")
+shader_parameter/texture_normal = SubResource("NoiseTexture2D_c0yfi")
+shader_parameter/texture_normal2 = SubResource("NoiseTexture2D_0ndxe")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_jw3hj"]
+material = SubResource("ShaderMaterial_f1l3t")
+size = Vector2(1, 1)
+subdivide_width = 2
+subdivide_depth = 2
+
+[node name="WaterSurfaceDistant" type="MeshInstance3D"]
+transform = Transform3D(100, 0, 0, 0, 1, 0, 0, 0, 100, -0.5, 0, -0.5)
+mesh = SubResource("PlaneMesh_jw3hj")

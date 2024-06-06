@@ -44,13 +44,17 @@ public class ObjectResource : ComposableScript
 	}
 	public void Damage(float originalValue, BaseUnit sourceUnit, BaseCast sourceCast)
 	{
-		var visitor = sourceUnit.Buffs.ApplyOutgoingDamageModifiers(Type, originalValue, Parent);
-		if (visitor.Target != Parent)
-			throw new NotImplementedException("Redirecting damage target is not implemented");
-		if (visitor.ResourceType != Type)
-			throw new NotImplementedException("Changing resource type is not implemented");
+		BuffOutgoingDamageVisitor visitor = null;
+		if (sourceUnit != null)
+		{
+			visitor = sourceUnit.Buffs.ApplyOutgoingDamageModifiers(Type, originalValue, Parent);
+			if (visitor.Target != Parent)
+				throw new NotImplementedException("Redirecting damage target is not implemented");
+			if (visitor.ResourceType != Type)
+				throw new NotImplementedException("Changing resource type is not implemented");
+		}
 
-		var result = Parent.Buffs.ApplyIncomingDamageModifiers(Type, visitor.Value, sourceUnit, sourceCast);
+		var result = Parent.Buffs.ApplyIncomingDamageModifiers(Type, visitor?.Value ?? originalValue, sourceUnit, sourceCast);
 		if (result.Target != Parent)
 			throw new NotImplementedException("Redirecting damage target is not implemented");
 		if (result.ResourceType != Type)
@@ -73,13 +77,17 @@ public class ObjectResource : ComposableScript
 	}
 	public void Restore(float originalValue, BaseUnit sourceUnit, BaseCast sourceCast)
 	{
-		var visitor = sourceUnit.Buffs.ApplyOutgoingRestorationModifiers(Type, originalValue, Parent);
-		if (visitor.Target != Parent)
-			throw new NotImplementedException("Redirecting restoration target is not implemented");
-		if (visitor.ResourceType != Type)
-			throw new NotImplementedException("Changing resource type is not implemented");
+		BuffOutgoingRestorationVisitor visitor = null;
+		if (sourceUnit != null)
+		{
+			visitor = sourceUnit.Buffs.ApplyOutgoingRestorationModifiers(Type, originalValue, Parent);
+			if (visitor.Target != Parent)
+				throw new NotImplementedException("Redirecting restoration target is not implemented");
+			if (visitor.ResourceType != Type)
+				throw new NotImplementedException("Changing resource type is not implemented");
+		}
 
-		var result = Parent.Buffs.ApplyIncomingRestorationModifiers(Type, visitor.Value, sourceUnit, sourceCast);
+		var result = Parent.Buffs.ApplyIncomingRestorationModifiers(Type, visitor?.Value ?? originalValue, sourceUnit, sourceCast);
 		if (result.Target != Parent)
 			throw new NotImplementedException("Redirecting restoration target is not implemented");
 		if (result.ResourceType != Type)

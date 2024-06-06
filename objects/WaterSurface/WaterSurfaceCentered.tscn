@@ -3,6 +3,3 @@
 [ext_resource type="PackedScene" uid="uid://d4lr8x11fi1f4" path="res://objects/WaterSurface/WaterSurface.tscn" id="1_opa2g"]
 
 [node name="WaterSurfaceCentered" instance=ExtResource("1_opa2g")]
-
-[node name="WaterSurface" parent="." index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)

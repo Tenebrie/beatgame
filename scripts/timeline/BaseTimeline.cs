@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using Godot;
 
@@ -40,7 +41,6 @@ public partial class BaseTimeline<ParentT> : Node where ParentT : BaseUnit
 	public void Start()
 	{
 		targetData.HostileUnit = PlayerController.AllPlayers[0];
-
 		Elements = Elements.OrderBy(el => el.BeatIndex).ThenBy(el => el.Priority).ToList();
 	}
 
@@ -56,8 +56,15 @@ public partial class BaseTimeline<ParentT> : Node where ParentT : BaseUnit
 
 		while (Elements[CurrentElementIndex].BeatIndex <= beatIndex)
 		{
-			Elements[CurrentElementIndex].Cast?.CastBegin(targetData);
-			Elements[CurrentElementIndex].Action?.Invoke();
+			try
+			{
+				Elements[CurrentElementIndex].Cast?.CastBegin(targetData);
+				Elements[CurrentElementIndex].Action?.Invoke();
+			}
+			catch (Exception ex)
+			{
+				GD.PrintErr(ex.ToString());
+			}
 
 			CurrentElementIndex += 1;
 
@@ -133,7 +140,8 @@ public partial class BaseTimeline<ParentT> : Node where ParentT : BaseUnit
 
 	public void GotoAbleton(double abletonIndex)
 	{
-		string str = abletonIndex.ToString("0.0");
+		string str = abletonIndex.ToString("0.0", CultureInfo.InvariantCulture);
+		GD.Print(str);
 		int wholePart = int.Parse(str.Split(".")[0]) - 1;
 		int subPart = int.Parse(str.Split(".")[1]) - 1;
 		if (subPart == -1)

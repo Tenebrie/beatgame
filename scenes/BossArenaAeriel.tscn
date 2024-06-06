@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://b1d3j63byd72g"]
+[gd_scene load_steps=46 format=3 uid="uid://b1d3j63byd72g"]
 
 [ext_resource type="Texture2D" uid="uid://0oq4x3vsrdoj" path="res://assets/PolygonTropicalJungle/Terrain/Sand_Texture_02.png" id="1_kfj03"]
 [ext_resource type="PackedScene" uid="uid://k3tq7jb87g5b" path="res://objects/Triggers/PlayerSpawner/PlayerSpawner.tscn" id="1_rng0i"]
@@ -12,7 +12,6 @@
 [ext_resource type="Script" path="res://scripts/environment/ControllableOmniLight.cs" id="6_j5xyj"]
 [ext_resource type="PackedScene" path="res://assets/PolygonDungeon/Prefabs/Environments/Floors/SM_Env_GroundMound_Rough_01.tscn" id="7_kdusl"]
 [ext_resource type="PackedScene" uid="uid://dlc1cewn4ggr2" path="res://assets/PolygonTropicalJungle/Prefabs/SM_Env_Rock_Spikes_02.tscn" id="10_qxvsl"]
-[ext_resource type="PackedScene" uid="uid://bv8iuch80marh" path="res://objects/WaterSurface/WaterSurfaceCentered.tscn" id="11_p1e04"]
 [ext_resource type="PackedScene" uid="uid://e86qp0qdejbg" path="res://assets/PolygonTropicalJungle/Prefabs/SM_Env_Tree_Forest_02_Sturdy.tscn" id="11_tgae6"]
 [ext_resource type="PackedScene" uid="uid://06vom8h5v1pw" path="res://assets/PolygonTropicalJungle/Prefabs/SM_Env_Tree_Forest_03.tscn" id="12_2bnqk"]
 [ext_resource type="Script" path="res://scripts/environment/ControllableDirectionalLight.cs" id="12_5x64u"]
@@ -22,7 +21,12 @@
 [ext_resource type="PackedScene" uid="uid://d4negrpp6ptix" path="res://objects/Triggers/AerialFaithPlate/AerialFaithPlate.tscn" id="19_ovjkk"]
 [ext_resource type="PackedScene" uid="uid://b270gmemxyd8l" path="res://objects/Triggers/AerialFaithPlate/AerialFaithPlateTarget.tscn" id="20_eepki"]
 [ext_resource type="PackedScene" uid="uid://c5qjexdib0qy8" path="res://scripts/environment/EnvironmentController.tscn" id="23_g5mbb"]
+[ext_resource type="AudioStream" uid="uid://pujri5asbxpq" path="res://assets/audiofx/ESM_EM_fx_foley_loop_wind_blowing_fluffy_bassy_full.ogg" id="24_kggdy"]
 [ext_resource type="PackedScene" uid="uid://bb6lsf73dxd72" path="res://objects/Triggers/PushAwayZone/PushAwayZone.tscn" id="24_s7k6l"]
+[ext_resource type="Script" path="res://scripts/environment/ControllableAudioStream.cs" id="25_oq4d7"]
+[ext_resource type="AudioStream" uid="uid://bvy478oihp21t" path="res://assets/audiofx/OceanWavesBeach_SFXB.123.ogg" id="25_wxp6v"]
+[ext_resource type="PackedScene" uid="uid://d0mn1jg5e5uej" path="res://objects/WaterSurface/WaterSurface200.tscn" id="27_i67cr"]
+[ext_resource type="PackedScene" uid="uid://bk2ho0p6s2wjy" path="res://objects/WaterSurface/WaterSurfaceDistant.tscn" id="27_m08vi"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7i8b0"]
 albedo_texture = ExtResource("1_kfj03")
@@ -44,7 +48,7 @@ size = Vector3(0.122681, 0.184092, 0.364746)
 size = Vector3(0.125, 0.685, 0.125)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_w20qo"]
-size = Vector3(5.1828, 0.254, 5.4834)
+size = Vector3(3.84801, 0.220727, 5.20862)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_45cbj"]
 size = Vector3(2.29232, 0.254, 0.755249)
@@ -64,10 +68,13 @@ sky = SubResource("Sky_58p3f")
 sky_rotation = Vector3(0, 1.0472, 0)
 ambient_light_source = 3
 reflected_light_source = 2
+glow_normalized = true
 fog_sun_scatter = 0.75
+fog_density = 0.0
 volumetric_fog_enabled = true
 volumetric_fog_density = 0.0
 volumetric_fog_length = 335.37
+volumetric_fog_ambient_inject = 1.01
 
 [sub_resource type="FogMaterial" id="FogMaterial_tbf20"]
 density = 0.0554
@@ -89,6 +96,9 @@ height_falloff = 0.732043
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_b0bss"]
 size = Vector3(1000, 1, 1000)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ui0ng"]
+size = Vector3(100, 20.8182, 100)
 
 [node name="BossArenaAeriel" type="Node3D"]
 
@@ -285,15 +295,20 @@ layers = 1025
 mesh = SubResource("BoxMesh_1t4f2")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerPlatform"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.136201, 0.0335712, -0.135756)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0326322, 0.0169344, -0.273146)
 shape = SubResource("BoxShape3D_w20qo")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="PlayerPlatform"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0296925, 0.0335712, -3.24163)
 shape = SubResource("BoxShape3D_45cbj")
 
-[node name="PlayerSpawner" parent="PlayerPlatform" instance=ExtResource("1_rng0i")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.08165e-12, 1, 1)
+[node name="InCombatPlayerSpawner" parent="PlayerPlatform" instance=ExtResource("1_rng0i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.08165e-12, 0.546217, -3)
+SpawnMode = 0
+
+[node name="OutOfCombatPlayerSpawner" parent="PlayerPlatform" instance=ExtResource("1_rng0i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.08165e-12, 0.440167, 1)
+SpawnMode = 1
 
 [node name="SM_Env_Rock_Pile_03" parent="PlayerPlatform" instance=ExtResource("4_y5dva")]
 transform = Transform3D(0.568691, 0, -0.822551, 0, 1, 0, 0.822551, 0, 0.568691, -0.349854, -1.96053, -0.760616)
@@ -305,7 +320,7 @@ transform = Transform3D(0.393355, 0, 1.77636e-15, 0, 0.393355, 0, -1.77636e-15, 
 transform = Transform3D(-0.393355, 0, -3.43882e-08, 0, 0.393355, 0, 3.43882e-08, 0, -0.393355, 0.140279, -0.670633, -0.843615)
 
 [node name="SM_Env_Rock_Spikes_02" parent="PlayerPlatform" instance=ExtResource("10_qxvsl")]
-transform = Transform3D(-4.37114e-08, 0, 1.241, 0, 1, 0, -1, 0, -5.42458e-08, -0.0666519, -13.391, 5.59251)
+transform = Transform3D(-5.42458e-08, 0, 1.241, 0, 1.241, 0, -1.241, 0, -5.42458e-08, -0.0666519, -16.3825, 7.62108)
 
 [node name="TestBoss" parent="." instance=ExtResource("2_wx5uw")]
 transform = Transform3D(-2.34597, 0, -4.41548, 0, 5, 0, 4.41548, 0, -2.34597, -0.00532163, -0.0024409, -0.178204)
@@ -376,7 +391,7 @@ transform = Transform3D(0.002, 0, 0, 0, 0.002, 0, 0, 0, 0.002, 0.00630839, 0.005
 transform = Transform3D(0.00156086, 0, 0.00125049, 0, 0.002, 0, -0.00125049, 0, 0.00156086, 0.00522297, 0.00578608, 0.00439768)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="GiantTreeIsland"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00930297, -0.00931207)
+transform = Transform3D(0.000351031, 0, 0, 0, 0.000351031, 0, 0, 0, 0.000351031, 0, 0.0185217, -0.0139614)
 light_color = Color(0.45098, 1, 1, 1)
 light_energy = 16.0
 light_volumetric_fog_energy = 6.149
@@ -412,22 +427,44 @@ size = Vector3(732.44, 10, 1000)
 material = SubResource("FogMaterial_7g7vl")
 
 [node name="ArenaFogNegative" type="FogVolume" parent="EnvironmentController/WorldEnvironment"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.68865)
-visible = false
-size = Vector3(109.002, 32, 125.595)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.43778)
+size = Vector3(134.788, 32, 153.925)
 material = SubResource("FogMaterial_ki3d4")
-
-[node name="WaterSurfaceCentered" parent="." instance=ExtResource("11_p1e04")]
-transform = Transform3D(1000, 0, 0, 0, 1000, 0, 0, 0, 1000, 0, -4.18042, 0)
 
 [node name="AerialFaithPlate" parent="." instance=ExtResource("19_ovjkk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.01991, 29)
 
 [node name="AerialFaithPlateTarget" parent="AerialFaithPlate" instance=ExtResource("20_eepki")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.929476, -15)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.929476, -17)
 
 [node name="PushAwayZone" parent="." instance=ExtResource("24_s7k6l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.23444, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PushAwayZone"]
 shape = SubResource("BoxShape3D_b0bss")
+
+[node name="AmbientAudio" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AmbientAudio"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.90912, 0)
+shape = SubResource("BoxShape3D_ui0ng")
+
+[node name="WindBackgroundStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("24_kggdy")
+volume_db = -10.612
+autoplay = true
+script = ExtResource("25_oq4d7")
+GroupName = "bg_audio"
+
+[node name="WavesBackgroundStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("25_wxp6v")
+volume_db = -17.404
+autoplay = true
+script = ExtResource("25_oq4d7")
+GroupName = "bg_audio"
+
+[node name="WaterSurfaceDistant" parent="." instance=ExtResource("27_m08vi")]
+transform = Transform3D(10000, 0, 0, 0, 1, 0, 0, 0, 10000, 0, -1.612, 0)
+
+[node name="WaterSurface" parent="." instance=ExtResource("27_i67cr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.35732, 0)

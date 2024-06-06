@@ -9,7 +9,7 @@ public partial class TestBossTimeline : BaseTimeline<BossAeriel>
 {
 	public TestBossTimeline(BossAeriel parent) : base(parent)
 	{
-		GotoAbleton(24);
+		GotoAbleton(1);
 
 		Mark("Debug");
 
@@ -159,8 +159,8 @@ public partial class TestBossTimeline : BaseTimeline<BossAeriel>
 		Act(() =>
 		{
 			Parent.ReleaseDarkness();
-			EnvironmentController.Singleton.UpdateLights("sun", false);
-			EnvironmentController.Singleton.UpdateLights("arena", true);
+			EnvironmentController.Singleton.SetEnabled("sun", false);
+			EnvironmentController.Singleton.SetEnabled("arena", true);
 			EnvironmentController.Singleton.SetBiolumenescence(1);
 			EnvironmentController.Singleton.SetFogDensity(0.005f);
 		});
@@ -304,7 +304,7 @@ public partial class TestBossTimeline : BaseTimeline<BossAeriel>
 	{
 		List<double> locations = new()
 		{
-			8.3, 12.3, 24.3, 32.3, 99.3, 103.3, 107.3,
+			8.3, 12.3, 24.3, 32.3, 57.4, 99.3, 103.3, 107.3, 128.4,
 		};
 		foreach (var autoIndex in locations)
 		{

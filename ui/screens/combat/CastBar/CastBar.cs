@@ -1,6 +1,6 @@
 using Godot;
-using Project;
-using System;
+
+namespace Project;
 
 public partial class CastBar : Control
 {

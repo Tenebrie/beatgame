@@ -23,6 +23,7 @@ public class EffectLibrary
 	public string HealImpact = "res://effects/HealImpact/HealImpact.tscn";
 	public string EnergyOrbPickupImpact = "res://effects/EnergyOrbProjectile/EnergyOrbProjectileImpact.tscn";
 	public string AerielDarknessRelease = "res://effects/AerielDarknessRelease/AerielDarknessRelease.tscn";
+	public string LightningZap = "res://effects/LightningZap/LightningZapEffect.tscn";
 }
 
 public class UILibrary
@@ -37,5 +38,6 @@ public class AudioLibrary
 {
 	public string MusicTrackTest = "res://assets/music/120bpm-test-track.ogg";
 	public string MusicTrackSpaceship = "res://assets/music/t14d-spaceship.ogg";
+	public string MusicTrackIntermission = "res://assets/music/70bpm-intermission.ogg";
 	public string MusicTrackAeriel = "res://assets/music/120bpm-tidehawk.ogg";
 }

@@ -15,12 +15,8 @@ public partial class PushAwayZone : Area3D
 		if (body is not BaseUnit unit)
 			return;
 
-		unit.ForcefulMovement.Push(5, Vector3.Up, 1);
 		unit.Velocity = new Vector3(unit.Velocity.X, 0, unit.Velocity.Z);
-		unit.Buffs.Add(new BuffPushBackLevitation()
-		{
-			Duration = 1,
-		});
+		unit.ForcefulMovement.AddInertia(18, Vector3.Up);
 		unit.Health.Damage(25f, null, null);
 	}
 }

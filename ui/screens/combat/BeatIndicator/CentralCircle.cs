@@ -35,7 +35,6 @@ public partial class CentralCircle : Control
 
 	public void OnBeatTick(BeatTime time)
 	{
-		this.Log(time);
 		if (time == BeatTime.Half || time == BeatTime.Whole)
 			BeatColor.A = 1;
 		else if (time == BeatTime.Quarter)

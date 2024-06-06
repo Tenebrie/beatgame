@@ -47,6 +47,7 @@ public abstract partial class BaseUnit : ComposableCharacterBody3D
 	}
 
 	public Vector3 ForwardVector { get => -GlobalTransform.Basis.Z.Normalized(); }
+	public Vector3 CastAimPosition { get => new(Position.X, Position.Y + 0.25f, Position.Z); }
 
 	public override void _Ready()
 	{

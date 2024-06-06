@@ -86,12 +86,12 @@ public partial class PlayerMovement : ComposableScript
 			if (Parent.Grounded)
 			{
 				jumpCount = 1;
-				Parent.Velocity = new Vector3(Velocity.X, 3f, Velocity.Z);
+				Parent.Velocity = new Vector3(Velocity.X, 4f, Velocity.Z);
 			}
 			else
 			{
 				jumpCount = 2;
-				Parent.Velocity = new Vector3(Velocity.X, 3.5f, Velocity.Z);
+				Parent.Velocity = new Vector3(Velocity.X, 5f, Velocity.Z);
 			}
 		}
 	}
@@ -104,7 +104,7 @@ public partial class PlayerMovement : ComposableScript
 
 	private void ProcessMovement(double delta)
 	{
-		var movementSpeed = 2.5f * (float)delta * Parent.Buffs.State.MoveSpeedPercentage;
+		var movementSpeed = 2.5f * Parent.Buffs.State.MoveSpeedPercentage;
 
 		float movementForward = 0;
 		if (Input.IsActionPressed("MoveForward"))
@@ -142,11 +142,16 @@ public partial class PlayerMovement : ComposableScript
 		var forwardVector = -GlobalTransform.Basis.Z;
 		var rightVector = GlobalTransform.Basis.X;
 
-		Parent.MoveAndCollide(new Vector3(
+		var velocity = Parent.Velocity;
+		Parent.Velocity = new Vector3(
 			x: forwardVector.X * movementVector.Y + rightVector.X * movementVector.X,
-			y: 0,
+			y: 0.001f,
 			z: forwardVector.Z * movementVector.Y + rightVector.Z * movementVector.X
-		));
+		);
+
+		Parent.MoveAndSlide();
+
+		Parent.Velocity = velocity;
 
 		var rotationSpeed = 2; // radians per second
 		if (Input.IsActionPressed("TurnLeft") && !Input.IsActionPressed("HardCameraMove"))

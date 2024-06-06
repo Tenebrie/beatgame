@@ -34,6 +34,7 @@ public partial class PlayerController : BaseUnit
 
 		Spellcasting.Bind("Cast1", new Fireball(this));
 		Spellcasting.Bind("Cast2", new Fireblast(this));
+		Spellcasting.Bind("Cast3", new CastZap(this));
 		Spellcasting.Bind("ShiftCast1", new SelfHeal(this));
 		Spellcasting.Bind("ShiftCast2", new CastRescue(this));
 

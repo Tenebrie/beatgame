@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 
 namespace Project;
@@ -15,7 +16,7 @@ public partial class EnvironmentController : Node
 		GD.Load<ShaderMaterial>("res://assets/PolygonTropicalJungle/Materials/Plants/Tree_Mat_03.tres"),
 		GD.Load<ShaderMaterial>("res://assets/PolygonTropicalJungle/Materials/Plants/SM_Env_Tree_Forest_02_Sturdy.tres"),
 	};
-	readonly Dictionary<string, List<IControllableLight>> ControllableLights = new();
+	readonly Dictionary<string, List<IControllableEnvironment>> Controllables = new();
 
 	public override void _EnterTree()
 	{
@@ -25,26 +26,27 @@ public partial class EnvironmentController : Node
 	public override void _Ready()
 	{
 		WorldEnvironment = GetNode<WorldEnvironment>("WorldEnvironment");
+		TargetFogDensity = WorldEnvironment.Environment.VolumetricFogDensity;
 	}
 
-	public void RegisterControllableLight(IControllableLight light, string groupName)
+	public void RegisterControllable(IControllableEnvironment light, string groupName)
 	{
-		List<IControllableLight> list;
-		if (ControllableLights.TryGetValue(groupName, out var existingList))
+		List<IControllableEnvironment> list;
+		if (Controllables.TryGetValue(groupName, out var existingList))
 		{
 			list = existingList;
 		}
 		else
 		{
 			list = new();
-			ControllableLights.Add(groupName, list);
+			Controllables.Add(groupName, list);
 		}
 		list.Add(light);
 	}
 
-	public void UpdateLights(string groupName, bool enabled)
+	public void SetEnabled(string groupName, bool enabled)
 	{
-		if (!ControllableLights.TryGetValue(groupName, out var list))
+		if (!Controllables.TryGetValue(groupName, out var list))
 			return;
 
 		foreach (var light in list)
@@ -59,7 +61,8 @@ public partial class EnvironmentController : Node
 	public void SetBiolumenescence(float value)
 	{
 		TargetBiolumenescence = value;
-		foreach (var mat in ControlledMaterials)
+		var materials = ControlledMaterials.Where(mat => mat != null);
+		foreach (var mat in materials)
 		{
 			mat.SetShaderParameter("Leaf_Emmisive_Color", new Color(0, 1, 1));
 		}
@@ -78,7 +81,8 @@ public partial class EnvironmentController : Node
 			env.VolumetricFogDensity += (TargetFogDensity - env.VolumetricFogDensity) * 5.0f * (float)delta;
 		}
 
-		foreach (var mat in ControlledMaterials)
+		var materials = ControlledMaterials.Where(mat => mat != null);
+		foreach (var mat in materials)
 		{
 			var str = (float)mat.GetShaderParameter("Leaf_Emissive_Str");
 			if (str == TargetBiolumenescence)

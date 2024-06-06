@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://b2r4iwxmkcrmp"]
+
+[ext_resource type="Script" path="res://effects/LightningZap/LightningZapEffect.cs" id="1_hxgwe"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bo5cx"]
+resource_local_to_scene = true
+transparency = 1
+blend_mode = 1
+albedo_color = Color(0.235294, 0.337255, 1, 0)
+emission_enabled = true
+emission = Color(0.235294, 0.337255, 1, 1)
+emission_energy_multiplier = 32.0
+
+[node name="LightningZapEffect" type="Node3D"]
+script = ExtResource("1_hxgwe")
+LightningMaterial = SubResource("StandardMaterial3D_bo5cx")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.57735, -0.408248, -0.707106, 0.57735, 0.816496, 2.52368e-08, 0.57735, -0.408248, 0.707106, 0, 0, 0)

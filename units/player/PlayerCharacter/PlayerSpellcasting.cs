@@ -38,7 +38,6 @@ public class PlayerSpellcasting : ComposableScript
 
 	public override void _Input(InputEvent @input)
 	{
-		var beatIndex = Music.Singleton.GetNearestBeatIndex();
 		foreach (var key in CastBindings.Keys)
 		{
 			if (!@input.IsAction(key, true))
@@ -74,7 +73,7 @@ public class PlayerSpellcasting : ComposableScript
 				var currentCastingSpell = GetCurrentCastingSpell();
 				if (currentCastingSpell != null)
 				{
-					CastRelease(currentCastingSpell, beatIndex);
+					CastRelease(currentCastingSpell);
 				}
 
 				cast.CastBegin(targetData);
@@ -83,13 +82,13 @@ public class PlayerSpellcasting : ComposableScript
 			{
 				if (cast.Settings.InputType == CastInputType.HoldRelease && cast.IsCasting)
 				{
-					CastRelease(cast, beatIndex);
+					CastRelease(cast);
 				}
 			}
 		}
 	}
 
-	private static void CastRelease(BaseCast cast, double beatIndex)
+	private static void CastRelease(BaseCast cast)
 	{
 		if (cast.ValidateReleaseTiming())
 			cast.CastPerform();

@@ -18,7 +18,7 @@ public partial class Calibration : Node
 		Music.Singleton.HalfBeatTimer.Timeout += OnBeat;
 	}
 
-	public void OnBeat()
+	public void OnBeat(BeatTime time)
 	{
 		if (LastPlayerInputTime > 0)
 		{

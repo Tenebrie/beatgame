@@ -3,7 +3,7 @@ using Godot;
 
 namespace Project;
 
-public partial class ControllableDirectionalLight : DirectionalLight3D, IControllableLight
+public partial class ControllableDirectionalLight : DirectionalLight3D, IControllableEnvironment
 {
 	[Export]
 	public string GroupName;
@@ -25,7 +25,7 @@ public partial class ControllableDirectionalLight : DirectionalLight3D, IControl
 			GD.PrintErr("ControllableLight is not assigned to a group");
 			return;
 		}
-		EnvironmentController.Singleton.RegisterControllableLight(this, GroupName);
+		EnvironmentController.Singleton.RegisterControllable(this, GroupName);
 	}
 
 	public void TurnOn()

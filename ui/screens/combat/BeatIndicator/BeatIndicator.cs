@@ -29,7 +29,7 @@ public partial class BeatIndicator : Control
 		BarGroups.RemoveAt(0);
 	}
 
-	public void OnVisualBeat()
+	public void OnVisualBeat(BeatTime _)
 	{
 		var time = (long)Time.Singleton.GetTicksMsec();
 		var endsAt = time + Music.Singleton.SongDelay;

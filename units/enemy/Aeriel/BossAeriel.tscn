@@ -7,6 +7,7 @@
 [sub_resource type="SphereShape3D" id="SphereShape3D_5i6hr"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0dci7"]
+size = Vector3(1, 2.07666, 1)
 
 [sub_resource type="Curve" id="Curve_aia4e"]
 max_value = 200.0
@@ -189,7 +190,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00424194, 0.302639, -0.0005
 shape = SubResource("SphereShape3D_5i6hr")
 
 [node name="PlayerCatcherExtraCollision" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00424194, 0.302639, -0.000579834)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00424194, 0.840969, -0.000579834)
 shape = SubResource("BoxShape3D_0dci7")
 
 [node name="DarknessParticles" type="GPUParticles3D" parent="."]

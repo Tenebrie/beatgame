@@ -24,6 +24,16 @@ public static class CastUtils
 		return rect;
 	}
 
+	public static LightningZapEffect CreateZapEffect(this Node node, Vector3 from, Vector3 to)
+	{
+		var zap = Lib.Scene(Lib.Effect.LightningZap).Instantiate<LightningZapEffect>();
+		zap.Position = from;
+		node.GetTree().CurrentScene.AddChild(zap);
+		zap.SetTarget(to);
+		zap.FadeDuration = 0.50f;
+		return zap;
+	}
+
 	public static float GetArenaSize(this Node _)
 	{
 		return 16;

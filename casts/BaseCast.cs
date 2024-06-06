@@ -11,7 +11,7 @@ public partial class BaseCast : Node
 		public float HoldTime = 1; // beat
 		public CastInputType InputType = CastInputType.Instant;
 		public CastTargetType TargetType = CastTargetType.None;
-		public BeatTime CastTimings = BeatTime.Quarter;
+		public BeatTime CastTimings = BeatTime.Free;
 		public BeatTime ChannelingTickTimings = 0;
 		public float RecastTime = .1f;
 		public bool ReversedCastBar = false;
@@ -23,7 +23,6 @@ public partial class BaseCast : Node
 		public bool TickWhilePreparing = false;
 
 		/// <summary>Only for CastInputType.HoldRelease</summary>
-		public BeatTime ReleaseTimings = BeatTime.All;
 		/// <summary>Only for CastInputType.HoldRelease</summary>
 		public bool CastOnFailedRelease = true;
 	}
@@ -78,14 +77,15 @@ public partial class BaseCast : Node
 		if (!IsCasting)
 			return;
 
-		var nearestBeatIndex = Music.Singleton.GetNearestBeatIndex();
-		if ((time & Settings.ChannelingTickTimings) > 0 && (Settings.TickWhilePreparing || nearestBeatIndex > CastStartedAt + Settings.PrepareTime))
+		var beatIndex = Music.Singleton.GetNearestBeatIndex(BeatTime.Sixteenth);
+		var tickIndex = Music.Singleton.GetNearestBeatIndex(Settings.ChannelingTickTimings);
+		if ((time & Settings.ChannelingTickTimings) > 0 && (Settings.TickWhilePreparing || tickIndex > CastStartedAt + Settings.PrepareTime))
 			OnCastTicked(CastTargetData, time);
 
-		if (Settings.PrepareTime > 0 && nearestBeatIndex == CastStartedAt + Settings.PrepareTime)
+		if (Settings.PrepareTime > 0 && beatIndex == CastStartedAt + Settings.PrepareTime)
 			CastPrepare();
 
-		if (Settings.InputType == CastInputType.AutoRelease && nearestBeatIndex == CastStartedAt + Settings.PrepareTime + Settings.HoldTime)
+		if (Settings.InputType == CastInputType.AutoRelease && beatIndex == CastStartedAt + Settings.PrepareTime + Settings.HoldTime)
 			CastPerform();
 	}
 
@@ -124,11 +124,9 @@ public partial class BaseCast : Node
 
 	public bool ValidateReleaseTiming()
 	{
-		var beatIndex = Music.Singleton.GetNearestBeatIndex();
-		if (beatIndex != CastStartedAt + Settings.HoldTime)
-			return false;
-
-		if (Settings.InputType == CastInputType.HoldRelease && !Music.Singleton.IsTimeOpen(Settings.ReleaseTimings))
+		var time = Music.Singleton.SongTime;
+		var targetTime = CastStartedAt * Music.Singleton.SecondsPerBeat * 1000 + Settings.HoldTime * Music.Singleton.SecondsPerBeat * 1000;
+		if (Math.Abs(time - targetTime) > Music.Singleton.TimingWindow)
 			return false;
 
 		return true;
@@ -141,7 +139,7 @@ public partial class BaseCast : Node
 		IsCasting = true;
 		if (Settings.PrepareTime > 0)
 			IsPreparing = true;
-		CastStartedAt = Music.Singleton.GetNearestBeatIndex();
+		CastStartedAt = Music.Singleton.GetNearestBeatIndex(BeatTime.Quarter);
 		CastTargetData = targetData;
 		SignalBus.Singleton.EmitSignal(SignalBus.SignalName.CastStarted, this);
 		OnCastStarted(targetData);

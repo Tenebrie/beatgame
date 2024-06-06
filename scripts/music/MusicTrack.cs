@@ -6,6 +6,7 @@ public partial class MusicTrack : Node
 {
 	public int BeatsPerMinute;
 	public string ResourcePath;
+	public bool Loop;
 
 	private AudioStreamOggVorbis AudioStream;
 	private AudioStreamPlayer AudioPlayer = new();
@@ -13,6 +14,7 @@ public partial class MusicTrack : Node
 	public async void PlayAfterDelay(float delay, float fromPosition)
 	{
 		AudioStream = Lib.Vorbis(ResourcePath);
+		AudioStream.Loop = Loop;
 		AudioPlayer.Stream = AudioStream;
 		AddChild(AudioPlayer);
 

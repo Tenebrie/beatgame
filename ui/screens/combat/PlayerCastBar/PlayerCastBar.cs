@@ -95,8 +95,8 @@ public partial class PlayerCastBar : Control
 			return;
 
 		if (ActiveCast.Settings.ReversedCastBar)
-			Bar.Value = (1 - (float)(time - CastStartedAt) / (CastEndsAt - CastStartedAt)) * Bar.MaxValue;
+			Bar.Value = (1 - (float)(time - CastStartedAt) / (CastEndsAt - CastStartedAt) + 0.01f) * Bar.MaxValue;
 		else
-			Bar.Value = (float)(time - CastStartedAt) / (CastEndsAt - CastStartedAt) * Bar.MaxValue;
+			Bar.Value = ((float)(time - CastStartedAt) / (CastEndsAt - CastStartedAt) + 0.01f) * Bar.MaxValue;
 	}
 }

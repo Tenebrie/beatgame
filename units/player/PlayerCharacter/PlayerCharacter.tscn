@@ -169,6 +169,7 @@ transform = Transform3D(1, -4.3906e-16, 3.36902e-16, 3.36902e-16, 0.965926, 0.25
 
 [node name="SpringArm3D" type="SpringArm3D" parent="HCameraPivot/VCameraPivot"]
 collision_mask = 48
+margin = 1.0
 
 [node name="MainCamera" type="Camera3D" parent="HCameraPivot/VCameraPivot/SpringArm3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.234285, 0)

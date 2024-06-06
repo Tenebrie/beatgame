@@ -7,37 +7,37 @@ namespace Project;
 public partial class AccurateTimer : Node
 {
 	[Signal]
-	public delegate void TimeoutEventHandler();
+	public delegate void TimeoutEventHandler(BeatTime time);
 	[Signal]
-	public delegate void BeatWindowUnlockEventHandler();
+	public delegate void CatchupTickEventHandler(BeatTime time);
 	[Signal]
-	public delegate void BeatWindowLockEventHandler();
+	public delegate void BeatWindowUnlockEventHandler(BeatTime time);
+	[Signal]
+	public delegate void BeatWindowLockEventHandler(BeatTime time);
 
 	public const long TimingWindow = 100; // ms before and after beat
 	public long Calibration = 0;
 	public AccurateTimer PrecedingTimer;
 
+	public BeatTime BeatTime;
 	private bool IsStarted;
 	private long startTime;
 	private long waitTime;
 	public long LastTickedAt;
 	private bool timingWindowLocked = true;
-	private long internalTickIndex = -1;
+	private long publishedTickIndex = -1;
 	public long TickIndex = -1;
+	public float SpeedFactor;
 
-	public void Start(float bpm)
+	public void Start(float bpm, float speedFactor)
 	{
 		IsStarted = true;
-		waitTime = (long)Math.Floor(1 / bpm * 60 * 1000);
+		waitTime = (long)Math.Floor(1 / (bpm * speedFactor) * 60 * 1000);
 		startTime = (long)Time.Singleton.GetTicksMsec();
 		LastTickedAt = startTime;
+		SpeedFactor = speedFactor;
 		TickIndex = -1;
-		internalTickIndex = -1;
-	}
-
-	public void SeekTo(double beatIndex)
-	{
-		
+		publishedTickIndex = -1;
 	}
 
 	public async void Stop(float delay)
@@ -63,26 +63,32 @@ public partial class AccurateTimer : Node
 			return;
 
 		var locked = IsLockedAt(songTime);
-		if (timingWindowLocked && !locked)
+		if (timingWindowLocked && !locked && (PrecedingTimer == null || PrecedingTimer.IsUnlockedNow()))
 		{
 			timingWindowLocked = false;
-			EmitSignal(SignalName.BeatWindowUnlock);
+			EmitSignal(SignalName.BeatWindowUnlock, BeatTime.ToVariant());
 		}
 		else if (!timingWindowLocked && locked)
 		{
 			timingWindowLocked = true;
-			EmitSignal(SignalName.BeatWindowLock);
+			EmitSignal(SignalName.BeatWindowLock, BeatTime.ToVariant());
 		}
 
 		var tickIndex = GetTickIndexAtSongTime(songTime);
-		if (tickIndex > internalTickIndex)
+		if (tickIndex > publishedTickIndex)
 		{
-			internalTickIndex = tickIndex;
 			if (PrecedingTimer == null || PrecedingTimer.IsUnlockedNow())
 			{
-				TickIndex += 1;
+				publishedTickIndex = tickIndex;
 				LastTickedAt = time;
-				EmitSignal(SignalName.Timeout);
+				TickIndex += 1;
+				EmitSignal(SignalName.Timeout, BeatTime.ToVariant());
+
+				// for (var i = 0; i < tickIndex - publishedTickIndex - 1; i++)
+				// {
+				// 	TickIndex += 1;
+				// 	EmitSignal(SignalName.CatchupTick, BeatTime.ToVariant());
+				// }
 			}
 		}
 	}
@@ -117,6 +123,12 @@ public partial class AccurateTimer : Node
 
 	public bool IsUnlockedNow()
 	{
-		return timingWindowLocked;
+		return timingWindowLocked && (PrecedingTimer == null || PrecedingTimer.IsUnlockedNow());
+	}
+
+	public long GetSongTime()
+	{
+		var time = (long)Time.Singleton.GetTicksMsec();
+		return time - startTime + Calibration;
 	}
 }

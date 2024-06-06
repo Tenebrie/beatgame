@@ -24,7 +24,7 @@ public partial class FightEditorUI : Control
 			Visible = EditingMode;
 		}
 
-		var beatIndex = Music.Singleton.GetNearestBeatIndex();
+		var beatIndex = Music.Singleton.GetNearestBeatIndex(BeatTime.Quarter);
 		List<string> castBindings = new() { "AutoAttack", "GroundAttack", "MARK_ONE", "MARK_TWO" };
 
 		if (@event.IsActionPressed("EditorCast1"))

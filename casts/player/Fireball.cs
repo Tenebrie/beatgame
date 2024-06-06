@@ -10,8 +10,7 @@ public partial class Fireball : BaseCast
 			FriendlyName = "Fireball",
 			InputType = CastInputType.AutoRelease,
 			TargetType = CastTargetType.HostileUnit,
-			CastTimings = BeatTime.Quarter | BeatTime.Eighth,
-			ReleaseTimings = BeatTime.Quarter | BeatTime.Eighth,
+			CastTimings = BeatTime.Half | BeatTime.Quarter,
 			HoldTime = 1,
 			RecastTime = 0,
 		};
