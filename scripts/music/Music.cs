@@ -38,16 +38,16 @@ public partial class Music : Node
 	bool IsFadingOut = false;
 
 	private long LongestCalibration;
-	public AccurateTimer FourBeatTimer;
-	public AccurateTimer TwoBeatTimer;
-	public AccurateTimer BeatTimer;
-	public AccurateTimer HalfBeatTimer;
-	public AccurateTimer QuarterBeatTimer;
+	public AccurateTimer WholeNoteTimer;
+	public AccurateTimer HalfNoteTimer;
+	public AccurateTimer QuarterNoteTimer;
+	public AccurateTimer EigthNoteTimer;
+	public AccurateTimer SixteenthNoteTimer;
 	public AccurateTimer VisualBeatTimer;
 
 	public long PreciseBeatIndex = -1;
 	public double BeatIndex { get => PreciseBeatIndex * MinBeatSize; }
-	public long SongTime { get => BeatTimer.GetSongTime(); }
+	public long SongTime { get => WholeNoteTimer.GetSongTime(); }
 	public long TimingWindow { get => AccurateTimer.TimingWindow; }
 	private BeatTime BeatTimeState = BeatTime.Free;
 	public MusicTrack CurrentTrack;
@@ -57,44 +57,40 @@ public partial class Music : Node
 		instance = this;
 		AddChild(musicLibrary);
 
-		FourBeatTimer = new AccurateTimer
+		WholeNoteTimer = new AccurateTimer
 		{
 			Calibration = 0,
 			BeatTime = BeatTime.Whole,
 		};
-		AddChild(FourBeatTimer);
+		AddChild(WholeNoteTimer);
 
-		TwoBeatTimer = new AccurateTimer
+		HalfNoteTimer = new AccurateTimer
 		{
-			PrecedingTimer = FourBeatTimer,
 			Calibration = 0,
 			BeatTime = BeatTime.Half,
 		};
-		AddChild(TwoBeatTimer);
+		AddChild(HalfNoteTimer);
 
-		BeatTimer = new AccurateTimer
+		QuarterNoteTimer = new AccurateTimer
 		{
-			PrecedingTimer = TwoBeatTimer,
 			Calibration = 0,
 			BeatTime = BeatTime.Quarter,
 		};
-		AddChild(BeatTimer);
+		AddChild(QuarterNoteTimer);
 
-		HalfBeatTimer = new AccurateTimer
+		EigthNoteTimer = new AccurateTimer
 		{
-			PrecedingTimer = BeatTimer,
 			Calibration = 0,
 			BeatTime = BeatTime.Eighth,
 		};
-		AddChild(HalfBeatTimer);
+		AddChild(EigthNoteTimer);
 
-		QuarterBeatTimer = new AccurateTimer
+		SixteenthNoteTimer = new AccurateTimer
 		{
-			PrecedingTimer = HalfBeatTimer,
 			Calibration = 0,
 			BeatTime = BeatTime.Sixteenth,
 		};
-		AddChild(QuarterBeatTimer);
+		AddChild(SixteenthNoteTimer);
 
 		VisualBeatTimer = new AccurateTimer
 		{
@@ -104,7 +100,7 @@ public partial class Music : Node
 		AddChild(VisualBeatTimer);
 
 		// Ensure no timer starts in the future
-		List<AccurateTimer> timers = new() { FourBeatTimer, TwoBeatTimer, BeatTimer, HalfBeatTimer, QuarterBeatTimer, VisualBeatTimer };
+		List<AccurateTimer> timers = new() { WholeNoteTimer, HalfNoteTimer, QuarterNoteTimer, EigthNoteTimer, SixteenthNoteTimer, VisualBeatTimer };
 		LongestCalibration = timers.OrderByDescending(timer => timer.Calibration).ToList()[0].Calibration;
 		foreach (var timer in timers)
 			timer.Calibration -= LongestCalibration;
@@ -120,33 +116,32 @@ public partial class Music : Node
 			EmitSignal(SignalName.BeatWindowLock, time.ToVariant());
 		}
 
-		FourBeatTimer.BeatWindowUnlock += OnWindowUnlock;
-		FourBeatTimer.BeatWindowLock += OnWindowLock;
+		WholeNoteTimer.BeatWindowUnlock += OnWindowUnlock;
+		WholeNoteTimer.BeatWindowLock += OnWindowLock;
 
-		TwoBeatTimer.BeatWindowUnlock += OnWindowUnlock;
-		TwoBeatTimer.BeatWindowLock += OnWindowLock;
+		HalfNoteTimer.BeatWindowUnlock += OnWindowUnlock;
+		HalfNoteTimer.BeatWindowLock += OnWindowLock;
 
-		BeatTimer.BeatWindowUnlock += OnWindowUnlock;
-		BeatTimer.BeatWindowLock += OnWindowLock;
+		QuarterNoteTimer.BeatWindowUnlock += OnWindowUnlock;
+		QuarterNoteTimer.BeatWindowLock += OnWindowLock;
 
-		HalfBeatTimer.BeatWindowUnlock += OnWindowUnlock;
-		HalfBeatTimer.BeatWindowLock += OnWindowLock;
+		EigthNoteTimer.BeatWindowUnlock += OnWindowUnlock;
+		EigthNoteTimer.BeatWindowLock += OnWindowLock;
 
-		QuarterBeatTimer.BeatWindowUnlock += OnWindowUnlock;
-		QuarterBeatTimer.BeatWindowLock += OnWindowLock;
+		SixteenthNoteTimer.BeatWindowUnlock += OnWindowUnlock;
+		SixteenthNoteTimer.BeatWindowLock += OnWindowLock;
 
-		FourBeatTimer.Timeout += OnInternalTimerTimeout;
-		TwoBeatTimer.Timeout += OnInternalTimerTimeout;
-		BeatTimer.Timeout += OnInternalTimerTimeout;
-		HalfBeatTimer.Timeout += OnInternalTimerTimeout;
-		QuarterBeatTimer.Timeout += OnInternalTimerTimeout;
+		WholeNoteTimer.Timeout += OnInternalTimerTimeout;
+		HalfNoteTimer.Timeout += OnInternalTimerTimeout;
+		QuarterNoteTimer.Timeout += OnInternalTimerTimeout;
+		EigthNoteTimer.Timeout += OnInternalTimerTimeout;
+		SixteenthNoteTimer.Timeout += OnInternalTimerTimeout;
 
-		// If the timer skipped a number of ticks, this will be called
-		FourBeatTimer.CatchupTick += OnInternalTimerCatchupTick;
-		TwoBeatTimer.CatchupTick += OnInternalTimerCatchupTick;
-		BeatTimer.CatchupTick += OnInternalTimerCatchupTick;
-		HalfBeatTimer.CatchupTick += OnInternalTimerCatchupTick;
-		QuarterBeatTimer.CatchupTick += OnInternalTimerCatchupTick;
+		WholeNoteTimer.CatchUpTick += OnInternalTimerCatchUpTick;
+		HalfNoteTimer.CatchUpTick += OnInternalTimerCatchUpTick;
+		QuarterNoteTimer.CatchUpTick += OnInternalTimerCatchUpTick;
+		EigthNoteTimer.CatchUpTick += OnInternalTimerCatchUpTick;
+		SixteenthNoteTimer.CatchUpTick += OnInternalTimerCatchUpTick;
 
 		SignalBus.Singleton.SceneTransitionStarted += OnSceneTransitionStarted;
 		SignalBus.Singleton.SceneTransitionFinished += OnSceneTransitionFinished;
@@ -158,7 +153,7 @@ public partial class Music : Node
 		EmitSignal(SignalName.BeatTick, beat.ToVariant());
 	}
 
-	private void OnInternalTimerCatchupTick(BeatTime beat)
+	private void OnInternalTimerCatchUpTick(BeatTime beat)
 	{
 		PreciseBeatIndex += 1;
 	}
@@ -200,12 +195,14 @@ public partial class Music : Node
 		PreciseBeatIndex = (long)Math.Round(StartingFromBeat / MinBeatSize) - 1;
 		IsStarted = true;
 		IsFadingOut = false;
-		FourBeatTimer.Start(BeatsPerMinute, 0.25f);
-		TwoBeatTimer.Start(BeatsPerMinute, 0.5f);
-		BeatTimer.Start(BeatsPerMinute, 1);
-		HalfBeatTimer.Start(BeatsPerMinute, 2);
-		QuarterBeatTimer.Start(BeatsPerMinute, 4);
-		VisualBeatTimer.Start(BeatsPerMinute, 1);
+
+		WholeNoteTimer.Start(BeatsPerMinute, speedModifier: 0.25f, 0);
+		HalfNoteTimer.Start(BeatsPerMinute, speedModifier: 0.25f, 1);
+		QuarterNoteTimer.Start(BeatsPerMinute, speedModifier: 0.5f, 1);
+		EigthNoteTimer.Start(BeatsPerMinute, speedModifier: 1f, 1);
+		SixteenthNoteTimer.Start(BeatsPerMinute, speedModifier: 2f, 1);
+
+		VisualBeatTimer.Start(BeatsPerMinute, speedModifier: 1f, 0);
 	}
 
 	public override void _Process(double delta)
@@ -219,11 +216,11 @@ public partial class Music : Node
 	private async void OnSceneTransitionStarted(PackedScene _)
 	{
 		IsFadingOut = true;
-		FourBeatTimer.Stop(-FourBeatTimer.Calibration);
-		TwoBeatTimer.Stop(-TwoBeatTimer.Calibration);
-		BeatTimer.Stop(-BeatTimer.Calibration);
-		HalfBeatTimer.Stop(-HalfBeatTimer.Calibration);
-		QuarterBeatTimer.Stop(-QuarterBeatTimer.Calibration);
+		WholeNoteTimer.Stop(-WholeNoteTimer.Calibration);
+		HalfNoteTimer.Stop(-HalfNoteTimer.Calibration);
+		QuarterNoteTimer.Stop(-QuarterNoteTimer.Calibration);
+		EigthNoteTimer.Stop(-EigthNoteTimer.Calibration);
+		SixteenthNoteTimer.Stop(-SixteenthNoteTimer.Calibration);
 		VisualBeatTimer.Stop(-VisualBeatTimer.Calibration);
 		await ToSignal(GetTree().CreateTimer(LongestCalibration / 1000), "timeout");
 		CurrentTrack.Stop();
@@ -242,28 +239,24 @@ public partial class Music : Node
 	{
 		List<AccurateTimer> timers = new();
 		if ((timings & BeatTime.Whole) > 0)
-			timers.Add(FourBeatTimer);
+			timers.Add(WholeNoteTimer);
 		if ((timings & BeatTime.Half) > 0)
-			timers.Add(TwoBeatTimer);
+			timers.Add(HalfNoteTimer);
 		if ((timings & BeatTime.Quarter) > 0)
-			timers.Add(BeatTimer);
+			timers.Add(QuarterNoteTimer);
 		if ((timings & BeatTime.Eighth) > 0)
-			timers.Add(HalfBeatTimer);
+			timers.Add(EigthNoteTimer);
 		if ((timings & BeatTime.Sixteenth) > 0)
-			timers.Add(QuarterBeatTimer);
+			timers.Add(SixteenthNoteTimer);
 
 		if (timers.Count == 0)
-			return 0;
+			return BeatIndex;
 
 		var beatDuration = (long)(1f / BeatsPerMinute * 60 * 1000);
 		var currentTime = (long)Time.Singleton.GetTicksMsec();
-		var closestTimer = timers.OrderBy(timer =>
-		{
-			var lastTickedAt = timer.LastTickedAt;
-			return Math.Abs(currentTime - lastTickedAt);
-		}).ToList()[0];
+		var closestTimer = timers.OrderBy(timer => Math.Abs(BeatIndex - timer.GetNearestBeatIndex())).ToList()[0];
 
-		return closestTimer.GetNearestTickIndexAtEngineTime() / closestTimer.SpeedFactor;
+		return closestTimer.GetNearestBeatIndex();
 	}
 
 	// Returns the time (in ms) to the nearest beat
@@ -274,26 +267,21 @@ public partial class Music : Node
 
 		List<AccurateTimer> timers = new();
 		if ((timings & BeatTime.Whole) > 0)
-			timers.Add(FourBeatTimer);
+			timers.Add(WholeNoteTimer);
 		if ((timings & BeatTime.Half) > 0)
-			timers.Add(TwoBeatTimer);
+			timers.Add(HalfNoteTimer);
 		if ((timings & BeatTime.Quarter) > 0)
-			timers.Add(BeatTimer);
+			timers.Add(QuarterNoteTimer);
 		if ((timings & BeatTime.Eighth) > 0)
-			timers.Add(HalfBeatTimer);
+			timers.Add(EigthNoteTimer);
 		if ((timings & BeatTime.Sixteenth) > 0)
-			timers.Add(QuarterBeatTimer);
+			timers.Add(SixteenthNoteTimer);
 
 		var beatDuration = (long)(1f / BeatsPerMinute * 60 * 1000);
 		var currentTime = (long)Time.Singleton.GetTicksMsec();
-		return timers.Select(timer =>
-		{
-			var lastTickedAt = timer.LastTickedAt;
-			if (currentTime - lastTickedAt < lastTickedAt + beatDuration - currentTime)
-				return currentTime - lastTickedAt;
-			else
-				return -(lastTickedAt + beatDuration - currentTime);
-		}).OrderBy(offset => Math.Abs(offset)).ToList()[0];
+		var closestTimer = timers.OrderBy(timer => Math.Abs(BeatIndex - timer.GetNearestBeatIndex())).ToList()[0];
+
+		return closestTimer.GetTimeToNearestTick();
 	}
 
 	public void SeekTo(double beatIndex)

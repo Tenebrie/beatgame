@@ -8,7 +8,7 @@ public partial class MusicLibrary : Node
 
 	public override void _EnterTree()
 	{
-		TrainingRoom = new MusicTrackIntermission();
+		TrainingRoom = new MusicTrackTest();
 		AddChild(TrainingRoom);
 		BossArenaAeriel = new MusicTrackAeriel();
 		AddChild(BossArenaAeriel);

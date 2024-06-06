@@ -77,9 +77,9 @@ public partial class BaseCast : Node
 		if (!IsCasting)
 			return;
 
-		var beatIndex = Music.Singleton.GetNearestBeatIndex(BeatTime.Sixteenth);
-		var tickIndex = Music.Singleton.GetNearestBeatIndex(Settings.ChannelingTickTimings);
-		if ((time & Settings.ChannelingTickTimings) > 0 && (Settings.TickWhilePreparing || tickIndex > CastStartedAt + Settings.PrepareTime))
+		// var beatIndex = Music.Singleton.GetNearestBeatIndex(BeatTime.All);
+		var beatIndex = Music.Singleton.BeatIndex;
+		if ((time & Settings.ChannelingTickTimings) > 0 && (Settings.TickWhilePreparing || Music.Singleton.BeatIndex > CastStartedAt + Settings.PrepareTime))
 			OnCastTicked(CastTargetData, time);
 
 		if (Settings.PrepareTime > 0 && beatIndex == CastStartedAt + Settings.PrepareTime)
@@ -113,7 +113,7 @@ public partial class BaseCast : Node
 			return false;
 		}
 
-		if (!Music.Singleton.IsTimeOpen(Settings.CastTimings))
+		if (Math.Abs(Music.Singleton.GetCurrentBeatOffset(Settings.CastTimings)) > Music.Singleton.TimingWindow)
 		{
 			errorMessage = "Bad timing";
 			return false;
@@ -139,7 +139,7 @@ public partial class BaseCast : Node
 		IsCasting = true;
 		if (Settings.PrepareTime > 0)
 			IsPreparing = true;
-		CastStartedAt = Music.Singleton.GetNearestBeatIndex(BeatTime.Quarter);
+		CastStartedAt = Music.Singleton.GetNearestBeatIndex(Settings.CastTimings);
 		CastTargetData = targetData;
 		SignalBus.Singleton.EmitSignal(SignalBus.SignalName.CastStarted, this);
 		OnCastStarted(targetData);

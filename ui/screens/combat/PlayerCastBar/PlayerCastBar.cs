@@ -1,3 +1,4 @@
+using System;
 using System.Diagnostics;
 using Godot;
 
@@ -28,14 +29,13 @@ public partial class PlayerCastBar : Control
 			return;
 
 		ActiveCast = cast;
-		Bar.Value = (float)Music.Singleton.GetCurrentBeatOffset(cast.Settings.CastTimings) / 1000;
 		Bar.MaxValue = cast.Settings.HoldTime * (1f / Music.Singleton.BeatsPerMinute * 60);
 		if (cast.Settings.InputType == CastInputType.HoldRelease)
 			Bar.MaxValue *= 2;
-		CastStartedAt = (long)Time.Singleton.GetTicksMsec() - Music.Singleton.GetCurrentBeatOffset(cast.Settings.CastTimings);
+		CastStartedAt = (long)Time.Singleton.GetTicksMsec() + Music.Singleton.GetCurrentBeatOffset(cast.Settings.CastTimings);
 		CastEndsAt = CastStartedAt + (long)(Bar.MaxValue * 1000);
 
-		Bar.SetFillColor(new Color(255, 255, 75, 1));
+		Bar.SetFillColor(new Color(0.7f, 0.7f, 0.7f, 1));
 		Bar.SetBackgroundOpacity(.5f);
 		GreenZone.SetFillOpacity(.5f);
 
@@ -51,6 +51,7 @@ public partial class PlayerCastBar : Control
 			GreenZone.Size = new Vector2(timingWindow / (float)Bar.MaxValue * totalWidth, GreenZone.Size.Y);
 			GreenZone.Position = new Vector2(Bar.Position.X + totalWidth - GreenZone.Size.X, Bar.Position.Y);
 		}
+		UpdateBarValue();
 	}
 
 	public void OnCastPerformed(BaseCast cast)
@@ -61,7 +62,7 @@ public partial class PlayerCastBar : Control
 		ActiveCast = null;
 		UpdateBarValue();
 
-		Bar.SetFillColor(new Color(0, 255, 0, Bar.GetFillColor().A));
+		Bar.SetFillColor(new Color(0, 1, 0, Bar.GetFillColor().A));
 	}
 
 	public void OnCastFailed(BaseCast cast)
@@ -72,7 +73,7 @@ public partial class PlayerCastBar : Control
 		ActiveCast = null;
 		UpdateBarValue();
 
-		Bar.SetFillColor(new Color(255, 0, 0, Bar.GetFillColor().A));
+		Bar.SetFillColor(new Color(1, 0, 0, Bar.GetFillColor().A));
 	}
 
 	public override void _Process(double delta)
@@ -94,9 +95,16 @@ public partial class PlayerCastBar : Control
 		if (ActiveCast == null)
 			return;
 
+		var value = (float)(time - CastStartedAt) / (CastEndsAt - CastStartedAt);
 		if (ActiveCast.Settings.ReversedCastBar)
-			Bar.Value = (1 - (float)(time - CastStartedAt) / (CastEndsAt - CastStartedAt) + 0.01f) * Bar.MaxValue;
+			Bar.Value = (1 - value + 0.01f) * Bar.MaxValue;
 		else
-			Bar.Value = ((float)(time - CastStartedAt) / (CastEndsAt - CastStartedAt) + 0.01f) * Bar.MaxValue;
+			Bar.Value = (value + 0.01f) * Bar.MaxValue;
+
+		var castEndsAt = ActiveCast.Settings.InputType == CastInputType.AutoRelease ? CastEndsAt : CastEndsAt - (CastEndsAt - CastStartedAt) / 2;
+		if (Math.Abs(castEndsAt - time) <= Music.Singleton.TimingWindow)
+		{
+			Bar.SetFillColor(new Color(0, 0.5f, 0, Bar.GetFillColor().A));
+		}
 	}
 }

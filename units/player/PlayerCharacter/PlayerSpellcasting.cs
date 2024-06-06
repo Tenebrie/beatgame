@@ -66,6 +66,7 @@ public class PlayerSpellcasting : ComposableScript
 				var isValidTiming = cast.ValidateCastTiming(out errorMessage);
 				if (!isValidTiming)
 				{
+					this.Log("INVALID");
 					Debug.WriteLine(errorMessage);
 					return;
 				}

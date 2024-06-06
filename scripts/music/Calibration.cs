@@ -14,8 +14,8 @@ public partial class Calibration : Node
 
 	public override void _Ready()
 	{
-		Music.Singleton.BeatTimer.Timeout += OnBeat;
-		Music.Singleton.HalfBeatTimer.Timeout += OnBeat;
+		Music.Singleton.QuarterNoteTimer.Timeout += OnBeat;
+		Music.Singleton.EigthNoteTimer.Timeout += OnBeat;
 	}
 
 	public void OnBeat(BeatTime time)

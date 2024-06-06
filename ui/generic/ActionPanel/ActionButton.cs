@@ -36,7 +36,6 @@ public partial class ActionButton : Control
 
 		SignalBus.Singleton.CastAssigned += OnCastAssigned;
 		Music.Singleton.BeatTick += OnBeatStateChanged;
-		Music.Singleton.BeatWindowLock += OnBeatStateChanged;
 
 		IsDisabled = true;
 	}
@@ -61,17 +60,15 @@ public partial class ActionButton : Control
 			return;
 
 		AssociatedCast = cast;
-		IsDisabled = false;	
+		IsDisabled = false;
 	}
 
 	private void OnBeatStateChanged(BeatTime time)
 	{
-		if (AssociatedCast == null)
+		if (AssociatedCast == null || AssociatedCast.Settings.CastTimings.IsNot(time))
 			return;
 
-		IsHighlighted = AssociatedCast.ValidateCastTiming(out _);
-		if (IsHighlighted)
-			HighlightedValue = 1;
+		HighlightedValue = 1;
 	}
 
 	public override void _Input(InputEvent @event)
