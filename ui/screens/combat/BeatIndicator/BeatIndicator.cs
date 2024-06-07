@@ -34,8 +34,6 @@ public partial class BeatIndicator : Control
 		var time = (long)Time.Singleton.GetTicksMsec();
 		var endsAt = time + Music.Singleton.SongDelay;
 
-		// TODO: Fix this, potentially broken
-		this.Log(Music.Singleton.VisualBeatTimer.TickIndex);
 		var isHalfBeat = Music.Singleton.VisualBeatTimer.TickIndex % 2 == 1;
 		var barGroup = new List<BeatBar>();
 		var rightBar = new BeatBar(mirrored: true, halfBeat: isHalfBeat)

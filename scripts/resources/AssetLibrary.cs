@@ -31,6 +31,7 @@ public class UILibrary
 	public string UnitCard = "res://ui/generic/UnitCard/UnitCard.tscn";
 	public string CastBar = "res://ui/screens/combat/CastBar/CastBar.tscn";
 	public string ActionButton = "res://ui/generic/ActionPanel/ActionButton.tscn";
+	public string SkillButton = "res://ui/screens/skillForest/SkillButton.tscn";
 	public string MessageListMessage = "res://ui/generic/MessageList/Message.tscn";
 }
 

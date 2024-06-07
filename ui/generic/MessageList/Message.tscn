@@ -16,6 +16,6 @@ script = ExtResource("1_b8423")
 [node name="BodyLabel" type="Label" parent="."]
 custom_minimum_size = Vector2(300, 20)
 layout_mode = 2
-text = "A long piece of text that will hopefully start wrapping and do weird things for me to test stuff on"
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "
 label_settings = SubResource("LabelSettings_1pkg1")
 autowrap_mode = 3
