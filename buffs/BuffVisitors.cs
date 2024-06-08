@@ -9,6 +9,8 @@ public class BuffUnitStatsVisitor
 	public float PercentageCCReduction = 0;
 	public float GravityModifier = 1;
 	public float MoveSpeedPercentage = 1;
+	public float MaximumHealth = 0;
+	public float MaximumMana = 0;
 
 	public BuffUnitStatsVisitor()
 	{

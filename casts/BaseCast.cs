@@ -8,6 +8,7 @@ public partial class BaseCast : Node
 	public class CastSettings
 	{
 		public string FriendlyName = "Unnamed Spell";
+		public string IconPath = "res://assets/ui/ui_icon_background.png";
 		public float HoldTime = 1; // beat
 		public CastInputType InputType = CastInputType.Instant;
 		public CastTargetType TargetType = CastTargetType.None;

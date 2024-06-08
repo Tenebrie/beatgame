@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://dto2pn87f14l"]
+
+[ext_resource type="Script" path="res://ui/screens/skillForest/generated/SkillLinkUI.cs" id="1_sumae"]
+
+[node name="SkillLinkUI" type="Control"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 3
+anchor_right = 0.021
+anchor_bottom = 0.037
+offset_right = 32.68
+offset_bottom = 28.04
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_sumae")

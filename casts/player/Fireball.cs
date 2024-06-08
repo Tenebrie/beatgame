@@ -8,6 +8,7 @@ public partial class Fireball : BaseCast
 		Settings = new()
 		{
 			FriendlyName = "Fireball",
+			IconPath = "res://assets/icons/SpellBook06_15.PNG",
 			InputType = CastInputType.AutoRelease,
 			TargetType = CastTargetType.HostileUnit,
 			CastTimings = BeatTime.Whole | BeatTime.Half,

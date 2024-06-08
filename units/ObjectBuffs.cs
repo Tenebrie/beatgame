@@ -61,18 +61,21 @@ public partial class ObjectBuffs : ComposableScript
 	{
 		var buffs = Buffs.Where(buff => buff is BuffClass).Take(stacks).ToList();
 		foreach (var buff in buffs)
-		{
 			buff.QueueFree();
-		}
+	}
+
+	public void RemoveWithFlag(BaseBuff.Flag flags)
+	{
+		var buffsToRemove = Buffs.Where(buff => (buff.Flags & flags) > 0).ToList();
+		foreach (var buff in buffsToRemove)
+			buff.QueueFree();
 	}
 
 	public void RemoveAll<BuffClass>() where BuffClass : BaseBuff
 	{
 		var buffsToRemove = Buffs.Where(buff => buff is BuffClass).ToList();
 		foreach (var buff in buffsToRemove)
-		{
 			buff.QueueFree();
-		}
 	}
 
 	public void Recalculate()
@@ -83,6 +86,8 @@ public partial class ObjectBuffs : ComposableScript
 			buff.ModifyUnit(visitor);
 
 		Parent.Gravity = Parent.BaseGravity * visitor.GravityModifier;
+		Parent.Health.SetMaxValue(Parent.Health.BaseMaximum + visitor.MaximumHealth);
+		Parent.Mana.SetMaxValue(Parent.Mana.BaseMaximum + visitor.MaximumMana);
 		State = visitor;
 	}
 

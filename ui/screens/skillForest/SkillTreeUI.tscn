@@ -1,12 +1,19 @@
-[gd_scene load_steps=2 format=3 uid="uid://c8goxpqvqyvwe"]
+[gd_scene load_steps=3 format=3 uid="uid://c8goxpqvqyvwe"]
 
 [ext_resource type="Script" path="res://ui/screens/skillForest/SkillTreeUI.cs" id="1_crmwd"]
 
-[node name="SkillTreeUI" type="Control"]
-layout_mode = 3
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bwgyg"]
+bg_color = Color(0, 0, 0, 0.87451)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="SkillTreeUI" type="Panel"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bwgyg")
 script = ExtResource("1_crmwd")

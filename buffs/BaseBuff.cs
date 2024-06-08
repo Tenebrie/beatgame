@@ -6,6 +6,7 @@ namespace Project;
 public abstract partial class BaseBuff : Node
 {
 	public BaseUnit Parent;
+	public Flag Flags = 0;
 
 	float createdAt = -1;
 	float expiresAt = -1;
@@ -41,4 +42,9 @@ public abstract partial class BaseBuff : Node
 	public virtual void ModifyOutgoingDamage(BuffOutgoingDamageVisitor damage) { }
 	public virtual void ModifyIncomingRestoration(BuffIncomingRestorationVisitor restoration) { }
 	public virtual void ModifyOutgoingRestoration(BuffOutgoingRestorationVisitor restoration) { }
+
+	public enum Flag : int
+	{
+		SkillCreated = 1,
+	}
 }

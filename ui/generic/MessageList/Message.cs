@@ -1,3 +1,4 @@
+using System;
 using Godot;
 
 namespace Project;
@@ -22,7 +23,7 @@ public partial class Message : PanelContainer
 	public override void _Process(double delta)
 	{
 		alpha -= (float)delta;
-		Modulate = new Color(Modulate.R, Modulate.G, Modulate.B, alpha);
+		Modulate = new Color(Modulate.R, Modulate.G, Modulate.B, Math.Min(1, alpha));
 		if (alpha <= 0.00f)
 			QueueFree();
 	}

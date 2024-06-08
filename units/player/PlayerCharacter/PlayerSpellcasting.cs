@@ -26,6 +26,12 @@ public class PlayerSpellcasting : ComposableScript
 
 	public void Bind(string input, BaseCast cast)
 	{
+		var hasPreviousBinding = CastBindings.TryGetValue(input, out var existingCast);
+		if (hasPreviousBinding)
+		{
+			CastBindings.Remove(input);
+			Parent.CastLibrary.Unregister(existingCast);
+		}
 		CastBindings.Add(input, cast);
 		Parent.CastLibrary.Register(cast);
 		SignalBus.Singleton.EmitSignal(SignalBus.SignalName.CastAssigned, cast, input);
@@ -38,6 +44,9 @@ public class PlayerSpellcasting : ComposableScript
 
 	public override void _Input(InputEvent @input)
 	{
+		if (SkillForestUI.Singleton.Visible)
+			return;
+
 		foreach (var key in CastBindings.Keys)
 		{
 			if (!@input.IsAction(key, true))

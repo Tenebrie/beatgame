@@ -14,7 +14,7 @@ public partial class LightningOrbsPylon : BasicEnemyController
 	public LightningOrbsPylon()
 	{
 		FriendlyName = "Power Pylon";
-		Health.SetMax(5);
+		Health.SetBaseMaxValue(5);
 		Alliance = UnitAlliance.Hostile;
 		Targetable.selectionRadius = 1.75f;
 	}

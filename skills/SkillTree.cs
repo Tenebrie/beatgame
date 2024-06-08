@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Godot;
 
 namespace Project;
 
@@ -34,16 +35,19 @@ namespace Project;
 public class SkillTree
 {
 	public SkillGroup Group;
-	public List<BaseSkill> Skills = new();
-	public List<ISkillConnectionData<BaseSkill, BaseSkill>> Links;
+	public List<BaseSkill> Skills;
+	public List<SkillConnection> Links = new();
 
-	public SkillTree(SkillGroup group, List<BaseSkill> roots, List<ISkillConnectionData<BaseSkill, BaseSkill>> links)
+	public SkillTree(SkillGroup group, List<BaseSkill> roots, List<IApiSkillConnection<BaseSkill, BaseSkill>> links)
 	{
 		Group = group;
 		Skills = new();
-		Links = links;
-
 		Skills.AddRange(roots);
+
+		foreach (var root in roots)
+		{
+			root.Group = Group;
+		}
 
 		foreach (var link in links)
 		{
@@ -54,30 +58,43 @@ public class SkillTree
 			if (source == null)
 			{
 				source = (BaseSkill)Activator.CreateInstance(t0);
+				source.Group = group;
 				Skills.Add(source);
 			}
 			if (target == null)
 			{
 				target = (BaseSkill)Activator.CreateInstance(t1);
+				target.Group = group;
 				Skills.Add(target);
 			}
 
-			var internalLink = new InternalSkillLink()
+			var internalLink = new SkillConnection()
 			{
 				Source = source,
 				Target = target,
 				PointsRequired = link.PointsRequired,
 				PassivePerPoint = link.PassivePerPoint,
 			};
+			Links.Add(internalLink);
 
-			source.Children.Add(internalLink);
-			target.Parents.Add(internalLink);
+			target.ParentLink = internalLink;
+			source.ChildrenLinks.Add(internalLink);
+		}
+
+		SetupTreePositions(roots);
+	}
+
+	void SetupTreePositions(List<BaseSkill> roots)
+	{
+		foreach (var root in roots)
+		{
+			EvaluateChildrenDepth(root, 0, 0);
 		}
 
 		int EvaluateDescendantCount(BaseSkill skill)
 		{
-			var childrenCount = skill.Children.Count;
-			var subchildrenCount = childrenCount > 0 ? skill.Children.Select(link => EvaluateDescendantCount(link.Target)).Sum() : 1;
+			var childrenCount = skill.ChildrenLinks.Count;
+			var subchildrenCount = childrenCount > 0 ? skill.ChildrenLinks.Select(link => EvaluateDescendantCount(link.Target)).Sum() : 1;
 			return Math.Max(childrenCount, subchildrenCount);
 		}
 
@@ -89,9 +106,9 @@ public class SkillTree
 
 			float currentPos = posX - descendantCount / 2;
 
-			for (var i = 0; i < skill.Children.Count; i++)
+			for (var i = 0; i < skill.ChildrenLinks.Count; i++)
 			{
-				var child = skill.Children[i];
+				var child = skill.ChildrenLinks[i];
 
 				float widthTaken = EvaluateDescendantCount(child.Target);
 
@@ -100,17 +117,59 @@ public class SkillTree
 			}
 		}
 
-		// TODO: Add compacting logic. If the entire subtree can move closer to the middle without overlap, it should
+		//=========================================
+		// Compact the tree (Optional step)
+		//=========================================
 		foreach (var root in roots)
 		{
-			EvaluateChildrenDepth(root, 0, 0);
+			CompactSubTree(root);
 		}
 
-		foreach (var skill in Skills)
+		bool CanCompact(BaseSkill skill, float target, float dist)
 		{
-			this.Log($"{skill.FriendlyName} at {skill.Depth} / {skill.PosX}");
-			this.Log($"{skill.FriendlyName} has {EvaluateDescendantCount(skill)}");
-
+			var newPosX = skill.PosX - dist * Math.Sign(skill.PosX);
+			bool isCloser = Math.Abs(newPosX - target) < Math.Abs(skill.PosX - target);
+			bool willNotOverlap = Skills.All(s => s.Depth != skill.Depth || s.PosX != newPosX);
+			return isCloser && willNotOverlap && skill.ChildrenLinks.All(child => CanCompact(child.Target, newPosX, dist));
 		}
+
+		void DoCompact(BaseSkill skill, float target, float dist)
+		{
+			if (CanCompact(skill, target, dist))
+			{
+				var newPosX = skill.PosX - dist * Math.Sign(skill.PosX);
+				skill.PosX = newPosX;
+			}
+			foreach (var child in skill.ChildrenLinks.Select(child => child.Target))
+			{
+				DoCompact(child, skill.PosX, dist);
+			}
+		}
+
+		void CompactSubTree(BaseSkill skill)
+		{
+			int iterations = 0;
+			bool hasCompacted;
+			do
+			{
+				iterations += 1;
+				hasCompacted = false;
+				foreach (var child in skill.ChildrenLinks.Select(child => child.Target))
+				{
+					if (CanCompact(child, skill.PosX, 1))
+					{
+						hasCompacted = true;
+						DoCompact(child, skill.PosX, 1);
+					}
+				}
+			} while (hasCompacted && iterations < 20);
+		}
+	}
+
+
+	class TreePathNode
+	{
+		public BaseSkill Skill;
+		public SkillConnection Link;
 	}
 }

@@ -10,12 +10,14 @@ anchors_preset = 0
 offset_top = 651.0
 offset_right = 300.0
 offset_bottom = 651.0
+mouse_filter = 2
 script = ExtResource("1_kt257")
 
 [node name="AnimatedVBoxContainer" parent="." instance=ExtResource("1_xnn7i")]
 layout_mode = 1
 offset_top = -650.0
 offset_bottom = 3.0
+mouse_filter = 2
 
 [node name="UnitCard" parent="AnimatedVBoxContainer" instance=ExtResource("1_sut4l")]
 layout_mode = 1
@@ -25,6 +27,6 @@ offset_bottom = 605.331
 
 [node name="UnitCard2" parent="AnimatedVBoxContainer" instance=ExtResource("1_sut4l")]
 layout_mode = 1
-offset_top = 518.001
+offset_top = 518.0
 offset_right = 251.7
-offset_bottom = 535.332
+offset_bottom = 535.331

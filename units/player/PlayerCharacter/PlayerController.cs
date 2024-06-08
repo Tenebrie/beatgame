@@ -18,8 +18,8 @@ public partial class PlayerController : BaseUnit
 		Alliance = UnitAlliance.Player;
 		Targetable.selectionRadius = 0.5f;
 
-		Health.SetMax(250);
-		Mana.SetMax(100);
+		Health.SetBaseMaxValue(250);
+		Mana.SetBaseMaxValue(100);
 	}
 
 	public override void _Ready()

@@ -1,0 +1,44 @@
+[gd_scene load_steps=3 format=3 uid="uid://c74lmickq3mf0"]
+
+[ext_resource type="Script" path="res://ui/screens/skillBinding/SkillBindingNotification.cs" id="1_82627"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oxxhm"]
+bg_color = Color(0.113725, 0, 0.113725, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="SkillBindingNotification" type="Control"]
+layout_mode = 3
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_82627")
+
+[node name="Panel" type="Panel" parent="."]
+custom_minimum_size = Vector2(380, 65)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_oxxhm")
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -2.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Press the hotkey while hovering over the skill
+to assign it to the action bar."
+horizontal_alignment = 1
+vertical_alignment = 1

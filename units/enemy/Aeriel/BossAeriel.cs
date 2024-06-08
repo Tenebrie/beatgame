@@ -102,7 +102,7 @@ public partial class BossAeriel : BasicEnemyController
 		CastLibrary.Register(HardEnrage);
 
 		FriendlyName = "Aeriel, Eye of the Storm";
-		Health.SetMax(10000);
+		Health.SetBaseMaxValue(10000);
 		Alliance = UnitAlliance.Hostile;
 	}
 

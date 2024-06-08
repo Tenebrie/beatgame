@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://cbfod3fo4soc0"]
+[gd_scene load_steps=4 format=3 uid="uid://cbfod3fo4soc0"]
 
 [ext_resource type="Script" path="res://ui/screens/skillForest/SkillForestUI.cs" id="1_5b2kg"]
 [ext_resource type="PackedScene" uid="uid://c8goxpqvqyvwe" path="res://ui/screens/skillForest/SkillTreeUI.tscn" id="2_6cki4"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_rnmv1"]
+font_size = 32
 
 [node name="SkillForestUI" type="Control"]
 layout_mode = 3
@@ -14,13 +17,16 @@ mouse_filter = 2
 script = ExtResource("1_5b2kg")
 
 [node name="TankTree" parent="." instance=ExtResource("2_6cki4")]
-custom_minimum_size = Vector2(500, 1000)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -381.0
+offset_right = 250.0
+offset_bottom = 411.0
 
 [node name="Button" type="Button" parent="TankTree"]
 layout_mode = 1
@@ -35,3 +41,46 @@ offset_right = 4.0
 offset_bottom = 4.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="MagicTree" parent="." instance=ExtResource("2_6cki4")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 270.0
+offset_top = -381.0
+offset_right = 770.0
+offset_bottom = 411.0
+SkillGroup = 3
+
+[node name="Button" type="Button" parent="MagicTree"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SkillPointsLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -115.5
+offset_top = -435.5
+offset_right = 115.5
+offset_bottom = -348.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Skill Points: ???"
+label_settings = SubResource("LabelSettings_rnmv1")

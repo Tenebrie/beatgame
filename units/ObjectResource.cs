@@ -8,6 +8,7 @@ public class ObjectResource : ComposableScript
 	private bool ready = false;
 	private float current = 0;
 	private float maximum = 0;
+	private float baseMaximum = 0;
 
 	public float Current
 	{
@@ -17,6 +18,10 @@ public class ObjectResource : ComposableScript
 	{
 		get => maximum;
 	}
+	public float BaseMaximum
+	{
+		get => baseMaximum;
+	}
 
 	public ObjectResourceType Type;
 
@@ -25,6 +30,7 @@ public class ObjectResource : ComposableScript
 		Type = type;
 		current = max;
 		maximum = max;
+		baseMaximum = max;
 	}
 
 	public override void _Ready()
@@ -100,7 +106,7 @@ public class ObjectResource : ComposableScript
 			SignalBus.Singleton.EmitSignal(SignalBus.SignalName.ResourceChanged, Parent, Type.ToVariant(), current);
 	}
 
-	public void SetMax(float value)
+	public void SetMaxValue(float value)
 	{
 		if (value == maximum)
 			return;
@@ -116,5 +122,11 @@ public class ObjectResource : ComposableScript
 			SignalBus.Singleton.EmitSignal(SignalBus.SignalName.ResourceChanged, Parent, Type.ToVariant(), current);
 			SignalBus.Singleton.EmitSignal(SignalBus.SignalName.MaxResourceChanged, Parent, Type.ToVariant(), maximum);
 		}
+	}
+
+	public void SetBaseMaxValue(float value)
+	{
+		SetMaxValue(value);
+		baseMaximum = value;
 	}
 }

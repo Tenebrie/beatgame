@@ -122,13 +122,26 @@ public partial class ResourceBar : Control
 			return;
 
 		SetMaximum(value);
+		PositiveGhostValue = CurrentValue;
+		NegativeGhostValue = CurrentValue;
+	}
+
+	private void OnBaseResourceChanged(BaseUnit unit, ObjectResourceType type, float value)
+	{
+		// if (unit != TrackedUnit || type != TrackedResource)
+		// 	return;
+
+		// SetMaximum(value);
+		// PositiveGhostValue = value;
+		// NegativeGhostValue = value;
 	}
 
 	public override void _Process(double delta)
 	{
 		float fillSpeed = 50; // Units per second
 
-		if (PositiveTimer.TimeLeft == 0)
+		// if (PositiveTimer.TimeLeft == 0)
+		if (true)
 		{
 			PositiveGhostValue += fillSpeed * (float)delta;
 		}
@@ -138,7 +151,8 @@ public partial class ResourceBar : Control
 			PositiveTimer.Stop();
 		}
 
-		if (NegativeTimer.TimeLeft == 0)
+		// if (NegativeTimer.TimeLeft == 0)
+		if (true)
 		{
 			NegativeGhostValue -= fillSpeed * (float)delta;
 		}

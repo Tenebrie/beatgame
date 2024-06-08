@@ -9,7 +9,8 @@ public partial class ActionButton : Control
 	public string Label;
 	public string ActionName;
 
-	private TextureRect Button;
+	private TextureRect Icon;
+	private TextureRect Overlay;
 	private Label HotkeyLabel;
 	private ShaderMaterial ButtonMaterial;
 
@@ -27,17 +28,19 @@ public partial class ActionButton : Control
 
 	public override void _Ready()
 	{
-		Button = GetNode<TextureRect>("Control/TextureRect");
-		ButtonMaterial = (ShaderMaterial)Button.Material;
-		HotkeyLabel = GetNode<Label>("Control/TextureRect/HotkeyLabel");
+		Icon = GetNode<TextureRect>("Control/IconTextureRect");
+		Overlay = GetNode<TextureRect>("Control/OverlayTextureRect");
+		ButtonMaterial = (ShaderMaterial)Overlay.Material;
+		HotkeyLabel = GetNode<Label>("Control/OverlayTextureRect/HotkeyLabel");
 		HotkeyLabel.Text = Label.ToString();
-		Button.MouseEntered += OnMouseEnter;
-		Button.MouseExited += OnMouseLeave;
+		Overlay.MouseEntered += OnMouseEnter;
+		Overlay.MouseExited += OnMouseLeave;
 
 		SignalBus.Singleton.CastAssigned += OnCastAssigned;
 		Music.Singleton.BeatTick += OnBeatStateChanged;
 
 		IsDisabled = true;
+		Icon.Texture = GD.Load<CompressedTexture2D>("res://assets/ui/ui_icon_background.png");
 	}
 
 	private void OnMouseEnter()
@@ -61,6 +64,10 @@ public partial class ActionButton : Control
 
 		AssociatedCast = cast;
 		IsDisabled = false;
+
+		this.Log(AssociatedCast.Settings.IconPath);
+		if (AssociatedCast.Settings.IconPath != null)
+			Icon.Texture = GD.Load<CompressedTexture2D>(AssociatedCast.Settings.IconPath);
 	}
 
 	private void OnBeatStateChanged(BeatTime time)
@@ -73,6 +80,9 @@ public partial class ActionButton : Control
 
 	public override void _Input(InputEvent @event)
 	{
+		if (SkillForestUI.Singleton.Visible)
+			return;
+
 		if (@event.IsActionPressed("MouseInteract") && IsHovered)
 		{
 			IsPressed = true;

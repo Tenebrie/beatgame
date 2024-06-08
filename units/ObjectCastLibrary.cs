@@ -16,4 +16,11 @@ public partial class ObjectCastLibrary : ComposableScript
 		Parent.AddChild(cast);
 		return cast;
 	}
+
+	public CastT Unregister<CastT>(CastT cast) where CastT : BaseCast
+	{
+		Abilities.Remove(cast);
+		cast.QueueFree();
+		return cast;
+	}
 }
