@@ -87,6 +87,7 @@ public partial class ResourceBar : Control
 		PositiveGhostValue = CurrentValue;
 		NegativeGhostValue = CurrentValue;
 		SignalBus.Singleton.ResourceChanged += OnResourceChanged;
+		SignalBus.Singleton.ResourceRegenerated += OnResourceRegenerated;
 		SignalBus.Singleton.MaxResourceChanged += OnMaxResourceChanged;
 	}
 
@@ -98,6 +99,7 @@ public partial class ResourceBar : Control
 		TrackedUnit = null;
 		TrackedResource = null;
 		SignalBus.Singleton.ResourceChanged -= OnResourceChanged;
+		SignalBus.Singleton.ResourceRegenerated -= OnResourceRegenerated;
 		SignalBus.Singleton.MaxResourceChanged -= OnMaxResourceChanged;
 		SetCurrent(0);
 	}
@@ -112,6 +114,22 @@ public partial class ResourceBar : Control
 	{
 		if (unit != TrackedUnit || type != TrackedResource)
 			return;
+
+		SetCurrent(value);
+	}
+
+	private void OnResourceRegenerated(BaseUnit unit, ObjectResourceType type, float value)
+	{
+		if (unit != TrackedUnit || type != TrackedResource)
+			return;
+
+		var diff = value - CurrentValue;
+		if (diff > 0)
+			PositiveGhostValue += diff;
+		else
+			NegativeGhostValue += diff;
+		PositiveGhost.Value = PositiveGhostValue;
+		NegativeGhost.Value = NegativeGhostValue;
 
 		SetCurrent(value);
 	}

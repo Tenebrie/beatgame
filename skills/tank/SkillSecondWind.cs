@@ -4,7 +4,10 @@ public partial class SkillSecondWind : BaseSkill
 {
 	public SkillSecondWind()
 	{
-		FriendlyName = "Second Wind";
-		IconPath = "res://assets/icons/SpellBook06_07.png";
+		Settings = new()
+		{
+			FriendlyName = "Second Wind",
+			IconPath = "res://assets/icons/SpellBook06_07.png",
+		};
 	}
 }

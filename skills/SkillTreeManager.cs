@@ -31,12 +31,12 @@ public partial class SkillTreeManager : Node
 		var tankTree = new SkillTree
 		(
 			group: SkillGroup.Tank,
-			roots: new() { new SkillGuardUp() },
+			roots: new() { new SkillSentinel() },
 
 			links: new()
 			{
-				Link<SkillGuardUp,          SkillImmovableObject>   (1, BuffFactory.Of<BuffPlus25Health>()),
-				Link<SkillGuardUp,          SkillImprovedGuardUp>   (),
+				Link<SkillSentinel,          SkillImmovableObject>   (1, BuffFactory.Of<BuffPlus25Health>()),
+				Link<SkillSentinel,          SkillImprovedGuardUp>   (),
 				Link<SkillImmovableObject,  SkillManaShield>        (1, BuffFactory.Of<BuffPlus25Health>()),
 				Link<SkillImmovableObject,  SkillCelestialShield>   (1, BuffFactory.Of<BuffPlus25Health>()),
 				Link<SkillImmovableObject,  SkillThorns>            (1, BuffFactory.Of<BuffPlus25Health>()),
@@ -55,8 +55,20 @@ public partial class SkillTreeManager : Node
 			}
 		);
 
+		var healingTree = new SkillTree
+		(
+			group: SkillGroup.Healing,
+			roots: new() { new SkillSelfHeal() },
+
+			links: new()
+			{
+
+			}
+		);
+
 		SkillTrees.Add(tankTree);
 		SkillTrees.Add(magicTree);
+		SkillTrees.Add(healingTree);
 	}
 
 	public override void _Ready()

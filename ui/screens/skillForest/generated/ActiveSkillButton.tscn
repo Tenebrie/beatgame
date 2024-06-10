@@ -1,0 +1,107 @@
+[gd_scene load_steps=10 format=3 uid="uid://tpnpqum0meo3"]
+
+[ext_resource type="Script" path="res://ui/screens/skillForest/generated/SkillButton.cs" id="1_inc04"]
+[ext_resource type="Shader" uid="uid://dr67jmxhu3bag" path="res://ui/generic/ActionPanel/ActionButtonShader.tres" id="2_ewq2c"]
+[ext_resource type="Texture2D" uid="uid://dtrccqj67iym3" path="res://assets/ui/icon-skill-active-placeholder.png" id="3_ui35u"]
+[ext_resource type="Shader" uid="uid://c6c3kalho5qhh" path="res://ui/generic/ActionPanel/ActionButtonIconShader.tres" id="4_lbkox"]
+[ext_resource type="Texture2D" uid="uid://beqewy7krobrj" path="res://assets/ui/icon-skill-active-mask.png" id="5_kfwla"]
+[ext_resource type="Texture2D" uid="uid://br10oc75cmw0v" path="res://assets/icons/SpellBook06_01.PNG" id="6_rd623"]
+[ext_resource type="Texture2D" uid="uid://c4k7ymjgogs8f" path="res://assets/ui/icon-skill-active-border.png" id="7_hq3yk"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ui7f3"]
+resource_local_to_scene = true
+shader = ExtResource("2_ewq2c")
+shader_parameter/HighlightedValue = 0.041
+shader_parameter/DisabledValue = 0.0
+shader_parameter/HoveredValue = 0.0
+shader_parameter/PressedValue = 0.0
+shader_parameter/SelectedValue = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6cda4"]
+resource_local_to_scene = true
+shader = ExtResource("4_lbkox")
+shader_parameter/HighlightedValue = 0.0
+shader_parameter/DisabledValue = 0.0
+shader_parameter/HoveredValue = 0.0
+shader_parameter/PressedValue = 0.0
+shader_parameter/SelectedValue = 0.0
+shader_parameter/IconMask = ExtResource("5_kfwla")
+
+[node name="SkillButton" type="Control"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 3
+anchor_right = 0.031
+anchor_bottom = 0.056
+offset_right = 0.479996
+offset_bottom = -0.480003
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_inc04")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackgroundTextureRect" type="TextureRect" parent="Control"]
+texture_filter = 1
+material = SubResource("ShaderMaterial_ui7f3")
+custom_minimum_size = Vector2(52, 52)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -26.0
+offset_top = -26.0
+offset_right = 26.0
+offset_bottom = 26.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_ui35u")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="IconTextureRect" type="TextureRect" parent="Control"]
+texture_filter = 1
+material = SubResource("ShaderMaterial_6cda4")
+custom_minimum_size = Vector2(52, 52)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -26.0
+offset_top = -26.0
+offset_right = 26.0
+offset_bottom = 26.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_rd623")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="OverlayTextureRect" type="TextureRect" parent="Control"]
+material = SubResource("ShaderMaterial_ui7f3")
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -30.0
+offset_top = -30.0
+offset_right = 30.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 2
+texture = ExtResource("7_hq3yk")
+expand_mode = 1
+stretch_mode = 4

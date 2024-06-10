@@ -31,8 +31,10 @@ public class UILibrary
 	public string UnitCard = "res://ui/generic/UnitCard/UnitCard.tscn";
 	public string CastBar = "res://ui/screens/combat/CastBar/CastBar.tscn";
 	public string ActionButton = "res://ui/generic/ActionPanel/ActionButton.tscn";
-	public string SkillButton = "res://ui/screens/skillForest/generated/SkillButton.tscn";
-	public string SkillLink = "res://ui/screens/skillForest/generated/SkillLinkUI.tscn";
+	public string ActiveSkillButton = "res://ui/screens/skillForest/generated/ActiveSkillButton.tscn";
+	public string PassiveSkillButton = "res://ui/screens/skillForest/generated/PassiveSkillButton.tscn";
+	public string SkillLink = "res://ui/screens/skillForest/generated/SkillLinkVisual.tscn";
+	public string SkillPopup = "res://ui/screens/skillForest/generated/SkillPopup.tscn";
 	public string MessageListMessage = "res://ui/generic/MessageList/Message.tscn";
 	public string SkillBindingNotification = "res://ui/screens/skillBinding/SkillBindingNotification.tscn";
 }

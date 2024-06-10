@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://thgdmkrd4jon"
-path="res://.godot/imported/ui_icon_mask.png-2e0c45d5065a255eaa1973b304db34ed.ctex"
+uid="uid://4mpngmhcsaik"
+path="res://.godot/imported/icon-skill-passive-mask.png-37f29173f9aa36a92ef54c3db3546a43.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ui/ui_icon_mask.png"
-dest_files=["res://.godot/imported/ui_icon_mask.png-2e0c45d5065a255eaa1973b304db34ed.ctex"]
+source_file="res://assets/ui/icon-skill-passive-mask.png"
+dest_files=["res://.godot/imported/icon-skill-passive-mask.png-37f29173f9aa36a92ef54c3db3546a43.ctex"]
 
 [params]
 

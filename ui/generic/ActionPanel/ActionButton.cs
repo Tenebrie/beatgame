@@ -37,10 +37,11 @@ public partial class ActionButton : Control
 		Overlay.MouseExited += OnMouseLeave;
 
 		SignalBus.Singleton.CastAssigned += OnCastAssigned;
+		SignalBus.Singleton.CastUnassigned += OnCastUnassigned;
 		Music.Singleton.BeatTick += OnBeatStateChanged;
 
 		IsDisabled = true;
-		Icon.Texture = GD.Load<CompressedTexture2D>("res://assets/ui/ui_icon_background.png");
+		Icon.Texture = GD.Load<CompressedTexture2D>("res://assets/ui/icon-skill-active-placeholder.png");
 	}
 
 	private void OnMouseEnter()
@@ -65,14 +66,23 @@ public partial class ActionButton : Control
 		AssociatedCast = cast;
 		IsDisabled = false;
 
-		this.Log(AssociatedCast.Settings.IconPath);
 		if (AssociatedCast.Settings.IconPath != null)
 			Icon.Texture = GD.Load<CompressedTexture2D>(AssociatedCast.Settings.IconPath);
 	}
 
+	private void OnCastUnassigned(BaseCast cast, string actionName)
+	{
+		if (actionName != ActionName)
+			return;
+
+		AssociatedCast = null;
+		IsDisabled = true;
+		Icon.Texture = GD.Load<CompressedTexture2D>("res://assets/ui/icon-skill-active-placeholder.png");
+	}
+
 	private void OnBeatStateChanged(BeatTime time)
 	{
-		if (AssociatedCast == null || AssociatedCast.Settings.CastTimings.IsNot(time))
+		if (AssociatedCast == null || AssociatedCast.Settings.CastTimings.HasNot(time))
 			return;
 
 		HighlightedValue = 1;
@@ -125,12 +135,9 @@ public partial class ActionButton : Control
 			DisabledValue = 0;
 		ButtonMaterial.SetShaderParameter("DisabledValue", DisabledValue);
 
-		if (AssociatedCast == null)
-			return;
-
 		if (IsHighlighted)
 			HighlightedValue = Math.Min(1, HighlightedValue + (float)delta * 5);
-		else if (AssociatedCast.Settings.CastTimings != BeatTime.Free)
+		else if (AssociatedCast == null || AssociatedCast.Settings.CastTimings != BeatTime.Free)
 			HighlightedValue = Math.Max(0, HighlightedValue - (float)delta * 5);
 		ButtonMaterial.SetShaderParameter("HighlightedValue", HighlightedValue);
 	}

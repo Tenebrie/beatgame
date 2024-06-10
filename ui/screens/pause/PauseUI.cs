@@ -1,5 +1,6 @@
 using Godot;
-using Project;
+
+namespace Project;
 
 public partial class PauseUI : Control
 {
@@ -34,6 +35,14 @@ public partial class PauseUI : Control
 	}
 
 	public override void _Input(InputEvent @event)
+	{
+		if (@event.IsActionPressed("ToggleSkillForest") && Visible)
+		{
+			Visible = false;
+		}
+	}
+
+	public override void _UnhandledInput(InputEvent @event)
 	{
 		if (@event.IsActionPressed("Escape"))
 		{

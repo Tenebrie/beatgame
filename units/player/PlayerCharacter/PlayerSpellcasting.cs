@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -16,6 +17,12 @@ public class PlayerSpellcasting : ComposableScript
 		Parent = parent as PlayerController;
 	}
 
+	public override void _Ready()
+	{
+		SkillTreeManager.Singleton.SkillUp += OnSkillUp;
+		SkillTreeManager.Singleton.SkillDown += OnSkillDown;
+	}
+
 	public BaseCast GetCurrentCastingSpell()
 	{
 		var castingSpells = CastBindings.Values.Where(cast => cast.IsCasting).ToList();
@@ -24,17 +31,90 @@ public class PlayerSpellcasting : ComposableScript
 		return castingSpells[0];
 	}
 
+	// Automatically bind a new cast to a first available slot
+	void OnSkillUp(BaseSkill skill)
+	{
+		if (skill.Settings.ActiveCast == null)
+			return;
+
+		var bindingSlots = GetPossibleBindings();
+		if (CastBindings.Values.Any(value => value.GetType() == skill.Settings.ActiveCast.CastType))
+			return;
+
+		foreach (var binding in bindingSlots)
+		{
+			var hasValue = CastBindings.TryGetValue(binding, out var _);
+			if (hasValue)
+				continue;
+
+			Bind(binding, skill.Settings.ActiveCast.Create(Parent));
+			break;
+		}
+	}
+
+	// Unbind cast if skill point has been removed
+	void OnSkillDown(BaseSkill skill)
+	{
+		if (skill.Settings.ActiveCast == null)
+			return;
+
+		var bindingSlots = GetPossibleBindings();
+		foreach (var binding in bindingSlots)
+		{
+			var hasValue = CastBindings.TryGetValue(binding, out var _);
+			if (!hasValue)
+				continue;
+
+			Unbind(binding);
+			break;
+		}
+	}
+
+	public void Bind(string input, Type castType)
+	{
+		var factory = CastFactory.Of(castType);
+		Bind(input, factory.Create(Parent));
+	}
+
 	public void Bind(string input, BaseCast cast)
+	{
+		Unbind(input);
+		CastBindings.Add(input, cast);
+		Parent.CastLibrary.Register(cast);
+		SignalBus.Singleton.EmitSignal(SignalBus.SignalName.CastAssigned, cast, input);
+	}
+
+	public void Unbind(string input)
 	{
 		var hasPreviousBinding = CastBindings.TryGetValue(input, out var existingCast);
 		if (hasPreviousBinding)
 		{
 			CastBindings.Remove(input);
 			Parent.CastLibrary.Unregister(existingCast);
+			SignalBus.Singleton.EmitSignal(SignalBus.SignalName.CastUnassigned, existingCast, input);
 		}
-		CastBindings.Add(input, cast);
-		Parent.CastLibrary.Register(cast);
-		SignalBus.Singleton.EmitSignal(SignalBus.SignalName.CastAssigned, cast, input);
+	}
+
+	public void UnbindAll(Type castType)
+	{
+		foreach (var key in CastBindings.Keys)
+		{
+			var hasValue = CastBindings.TryGetValue(key, out var existingCast);
+			if (hasValue && existingCast.GetType() == castType)
+				Unbind(key);
+		}
+	}
+
+	public void LoadBindings(Dictionary<string, BaseCast> dict)
+	{
+		foreach (var key in dict.Keys)
+		{
+			var hasValue = dict.TryGetValue(key, out var existingCast);
+			if (!hasValue)
+				continue;
+
+			Bind(key, existingCast.GetType());
+		}
 	}
 
 	public BaseCast GetBinding(string input)
@@ -103,5 +183,20 @@ public class PlayerSpellcasting : ComposableScript
 			cast.CastPerform();
 		else
 			cast.CastFail();
+	}
+
+	public static List<string> GetPossibleBindings()
+	{
+		return new()
+		{
+			"Cast1",
+			"Cast2",
+			"Cast3",
+			"Cast4",
+			"ShiftCast1",
+			"ShiftCast2",
+			"ShiftCast3",
+			"ShiftCast4",
+		};
 	}
 }

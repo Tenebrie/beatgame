@@ -5,10 +5,12 @@ namespace Project;
 public class BuffFactory
 {
 	readonly Type BuffPrototype;
+	public readonly BaseBuff.BuffSettings Settings;
 
 	public BuffFactory(Type prototype)
 	{
 		BuffPrototype = prototype;
+		Settings = Create().Settings;
 	}
 
 	public BaseBuff Create()

@@ -19,7 +19,9 @@ public partial class PlayerController : BaseUnit
 		Targetable.selectionRadius = 0.5f;
 
 		Health.SetBaseMaxValue(250);
+		Health.Regeneration = 1;
 		Mana.SetBaseMaxValue(100);
+		Mana.Regeneration = 5;
 	}
 
 	public override void _Ready()
@@ -32,11 +34,11 @@ public partial class PlayerController : BaseUnit
 		Composables.Add(Targeting);
 		Composables.Add(Spellcasting);
 
-		Spellcasting.Bind("Cast1", new Fireball(this));
-		Spellcasting.Bind("Cast2", new Fireblast(this));
-		Spellcasting.Bind("Cast3", new CastZap(this));
-		Spellcasting.Bind("ShiftCast1", new SelfHeal(this));
-		Spellcasting.Bind("ShiftCast2", new CastRescue(this));
+		// Spellcasting.Bind("Cast1", new Fireball(this));
+		// Spellcasting.Bind("Cast2", new Fireblast(this));
+		// Spellcasting.Bind("Cast3", new CastZap(this));
+		// Spellcasting.Bind("ShiftCast1", new SelfHeal(this));
+		// Spellcasting.Bind("ShiftCast2", new CastRescue(this));
 
 		AllPlayers.Add(this);
 		base._Ready();
@@ -44,8 +46,8 @@ public partial class PlayerController : BaseUnit
 
 	public override void _ExitTree()
 	{
-		base._ExitTree();
 		AllPlayers.Remove(this);
+		base._ExitTree();
 	}
 
 	protected override void ProcessGravity(double delta)

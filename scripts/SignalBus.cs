@@ -16,6 +16,8 @@ public partial class SignalBus : Node
 	[Signal]
 	public delegate void ResourceChangedEventHandler(BaseUnit unit, ObjectResourceType type, float value);
 	[Signal]
+	public delegate void ResourceRegeneratedEventHandler(BaseUnit unit, ObjectResourceType type, float value);
+	[Signal]
 	public delegate void MaxResourceChangedEventHandler(BaseUnit unit, ObjectResourceType type, float value);
 	[Signal]
 	public delegate void CastStartedEventHandler(BaseCast cast);
@@ -25,6 +27,10 @@ public partial class SignalBus : Node
 	public delegate void CastPerformedEventHandler(BaseCast cast);
 	[Signal]
 	public delegate void CastFailedEventHandler(BaseCast cast);
+	[Signal]
+	public delegate void SkillHoveredEventHandler(BaseSkill skill);
+	[Signal]
+	public delegate void SkillUnhoveredEventHandler(BaseSkill skill);
 	[Signal]
 	public delegate void TrackStartedEventHandler(MusicTrack track);
 	[Signal]
@@ -41,6 +47,8 @@ public partial class SignalBus : Node
 	// Cast assigned to a slot in PlayerSpellcasting
 	[Signal]
 	public delegate void CastAssignedEventHandler(BaseCast cast, string actionName);
+	[Signal]
+	public delegate void CastUnassignedEventHandler(BaseCast cast, string actionName);
 
 	[Signal]
 	public delegate void MessageSentEventHandler(string text);

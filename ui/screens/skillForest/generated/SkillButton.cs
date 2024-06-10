@@ -44,9 +44,9 @@ public partial class SkillButton : Control
 		if (AssociatedSkill != null)
 		{
 			IsDisabled = false;
-			if (AssociatedSkill.IconPath != null)
+			if (AssociatedSkill.Settings.IconPath != null)
 			{
-				Icon.Texture = GD.Load<CompressedTexture2D>(AssociatedSkill.IconPath);
+				Icon.Texture = GD.Load<CompressedTexture2D>(AssociatedSkill.Settings.IconPath);
 			}
 		}
 	}
@@ -70,11 +70,13 @@ public partial class SkillButton : Control
 
 		HoveredValue = 1;
 		IsHovered = true;
+		SignalBus.Singleton.EmitSignal(SignalBus.SignalName.SkillHovered, AssociatedSkill);
 	}
 
 	private void OnMouseLeave()
 	{
 		IsHovered = false;
+		SignalBus.Singleton.EmitSignal(SignalBus.SignalName.SkillUnhovered, AssociatedSkill);
 	}
 
 	public void AssignSkill(BaseSkill skill)
@@ -106,27 +108,18 @@ public partial class SkillButton : Control
 				OnInteractAlt();
 		}
 
-		if (!IsHovered || PlayerController.AllPlayers.Count == 0 || AssociatedSkill.ActiveCast == null)
+		if (!IsHovered || PlayerController.AllPlayers.Count == 0 || AssociatedSkill.Settings.ActiveCast == null)
 			return;
 
-		List<string> CastActions = new()
-		{
-			"Cast1",
-			"Cast2",
-			"Cast3",
-			"Cast4",
-			"ShiftCast1",
-			"ShiftCast2",
-			"ShiftCast3",
-			"ShiftCast4",
-		};
+		List<string> CastActions = PlayerSpellcasting.GetPossibleBindings();
 
 		var player = PlayerController.AllPlayers[0];
 		foreach (var action in CastActions)
 		{
 			if (@event.IsActionPressed(action, exactMatch: true))
 			{
-				player.Spellcasting.Bind(action, AssociatedSkill.ActiveCast.Create(player));
+				player.Spellcasting.UnbindAll(AssociatedSkill.Settings.ActiveCast.CastType);
+				player.Spellcasting.Bind(action, AssociatedSkill.Settings.ActiveCast.Create(player));
 			}
 		}
 	}

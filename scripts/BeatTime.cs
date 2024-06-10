@@ -18,12 +18,12 @@ static class BeatTimeTypeExtensions
 		return (ulong)type;
 	}
 
-	public static bool Is(this BeatTime time, BeatTime comparator)
+	public static bool Has(this BeatTime time, BeatTime comparator)
 	{
 		return (time & comparator) > 0;
 	}
 
-	public static bool IsNot(this BeatTime time, BeatTime comparator)
+	public static bool HasNot(this BeatTime time, BeatTime comparator)
 	{
 		return (time & comparator) == 0;
 	}

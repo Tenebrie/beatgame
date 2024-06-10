@@ -29,11 +29,11 @@ public partial class JumpingDummyEnemy : BasicEnemyController
 		base._Ready();
 
 		raisingTimer = GetNode<Timer>("RaisingTimer");
-		raisingTimer.WaitTime = 1.5f * Music.Singleton.BeatsPerSecond;
+		raisingTimer.WaitTime = 3.0f / Music.Singleton.BeatsPerSecond;
 		raisingTimer.Timeout += OnRaisingTimerTick;
 
 		restingTimer = GetNode<Timer>("RestingTimer");
-		restingTimer.WaitTime = 0.5f * Music.Singleton.BeatsPerSecond;
+		restingTimer.WaitTime = 0.5f / Music.Singleton.BeatsPerSecond;
 		restingTimer.Timeout += OnRestingTimerTick;
 
 		restingTimer.Start();
@@ -64,7 +64,7 @@ public partial class JumpingDummyEnemy : BasicEnemyController
 		raisingTimer.Start();
 		Gravity = -BaseGravity / 10;
 		var circle = this.CreateGroundCircularArea(Position);
-		circle.GrowTime = 1.5f;
+		circle.GrowTime = 3.0f;
 		circle.Radius = 3;
 		circle.SnapToGround();
 		circle.Alliance = UnitAlliance.Hostile;
@@ -77,8 +77,8 @@ public partial class JumpingDummyEnemy : BasicEnemyController
 
 		foreach (var target in targets)
 		{
-			target.Health.Damage(5, this);
-			target.ForcefulMovement.Push(4, target.Position - Position, 1);
+			target.Health.Damage(100, this);
+			target.ForcefulMovement.Push(4, (target.Position - Position).Flatten(target.Position.Y), 1);
 		}
 	}
 }

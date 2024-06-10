@@ -1,0 +1,55 @@
+[gd_scene load_steps=3 format=3 uid="uid://dvl3v66rg8nff"]
+
+[ext_resource type="Script" path="res://ui/generic/Popups/BasePopup.cs" id="1_pisxk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oxxhm"]
+bg_color = Color(0.113725, 0, 0.113725, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="TextPopup" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_pisxk")
+
+[node name="Label" type="RichTextLabel" parent="."]
+clip_contents = false
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.5
+offset_top = -20.0
+offset_right = 520.5
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+bbcode_enabled = true
+text = "Label popup text"
+fit_content = true
+
+[node name="MarginContainer" type="MarginContainer" parent="Label"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.04
+anchor_top = -0.25
+anchor_right = 1.02
+anchor_bottom = 1.25
+offset_right = -6.10352e-05
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Panel" type="Panel" parent="Label/MarginContainer"]
+show_behind_parent = true
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_oxxhm")

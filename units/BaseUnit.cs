@@ -74,7 +74,6 @@ public abstract partial class BaseUnit : ComposableCharacterBody3D
 
 		IsAlive = false;
 		QueueFree();
-		SignalBus.Singleton.EmitSignal(SignalBus.SignalName.UnitDestroyed, this);
 	}
 
 	public override void _Process(double delta)
@@ -86,8 +85,7 @@ public abstract partial class BaseUnit : ComposableCharacterBody3D
 	public override void _ExitTree()
 	{
 		AllUnits.Remove(this);
-		if (IsAlive)
-			SignalBus.Singleton.EmitSignal(SignalBus.SignalName.UnitDestroyed, this);
+		SignalBus.Singleton.EmitSignal(SignalBus.SignalName.UnitDestroyed, this);
 	}
 
 	protected virtual void ProcessGravity(double delta)

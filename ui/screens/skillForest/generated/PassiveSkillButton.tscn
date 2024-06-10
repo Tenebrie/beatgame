@@ -1,16 +1,16 @@
-[gd_scene load_steps=10 format=3 uid="uid://tpnpqum0meo3"]
+[gd_scene load_steps=10 format=3 uid="uid://djwpu4ekleq5b"]
 
-[ext_resource type="Script" path="res://ui/screens/skillForest/generated/SkillButton.cs" id="1_bfngb"]
-[ext_resource type="Shader" uid="uid://dr67jmxhu3bag" path="res://ui/generic/ActionPanel/ActionButtonShader.tres" id="2_7aoot"]
-[ext_resource type="Texture2D" uid="uid://c6k3iyfvo8jpt" path="res://assets/ui/ui_icon_background.png" id="3_t2g2g"]
-[ext_resource type="Texture2D" uid="uid://br10oc75cmw0v" path="res://assets/icons/SpellBook06_01.PNG" id="4_8v1yi"]
-[ext_resource type="Texture2D" uid="uid://ctdwid1ns2oil" path="res://assets/ui/ui_icon_border2.png" id="4_gojqk"]
-[ext_resource type="Texture2D" uid="uid://thgdmkrd4jon" path="res://assets/ui/ui_icon_mask.png" id="4_l0sx8"]
-[ext_resource type="Shader" uid="uid://c6c3kalho5qhh" path="res://ui/generic/ActionPanel/ActionButtonIconShader.tres" id="4_yc0n3"]
+[ext_resource type="Script" path="res://ui/screens/skillForest/generated/SkillButton.cs" id="1_homt3"]
+[ext_resource type="Shader" uid="uid://dr67jmxhu3bag" path="res://ui/generic/ActionPanel/ActionButtonShader.tres" id="2_2wc63"]
+[ext_resource type="Texture2D" uid="uid://cjfquime3451l" path="res://assets/ui/icon-skill-passive-placeholder.png" id="3_oij8g"]
+[ext_resource type="Shader" uid="uid://c6c3kalho5qhh" path="res://ui/generic/ActionPanel/ActionButtonIconShader.tres" id="4_dns1u"]
+[ext_resource type="Texture2D" uid="uid://4mpngmhcsaik" path="res://assets/ui/icon-skill-passive-mask.png" id="5_1x2l0"]
+[ext_resource type="Texture2D" uid="uid://br10oc75cmw0v" path="res://assets/icons/SpellBook06_01.PNG" id="6_s1cjr"]
+[ext_resource type="Texture2D" uid="uid://cwnvp3o14mt6u" path="res://assets/ui/icon-skill-passive-border.png" id="7_blvq4"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ui7f3"]
 resource_local_to_scene = true
-shader = ExtResource("2_7aoot")
+shader = ExtResource("2_2wc63")
 shader_parameter/HighlightedValue = 0.041
 shader_parameter/DisabledValue = 0.0
 shader_parameter/HoveredValue = 0.0
@@ -19,13 +19,13 @@ shader_parameter/SelectedValue = 0.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6cda4"]
 resource_local_to_scene = true
-shader = ExtResource("4_yc0n3")
+shader = ExtResource("4_dns1u")
 shader_parameter/HighlightedValue = 0.0
 shader_parameter/DisabledValue = 0.0
 shader_parameter/HoveredValue = 0.0
 shader_parameter/PressedValue = 0.0
 shader_parameter/SelectedValue = 0.0
-shader_parameter/IconMask = ExtResource("4_l0sx8")
+shader_parameter/IconMask = ExtResource("5_1x2l0")
 
 [node name="SkillButton" type="Control"]
 custom_minimum_size = Vector2(60, 60)
@@ -36,7 +36,7 @@ offset_right = 0.479996
 offset_bottom = -0.480003
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_bfngb")
+script = ExtResource("1_homt3")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 1
@@ -62,27 +62,27 @@ offset_right = 30.0
 offset_bottom = 30.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("3_t2g2g")
+texture = ExtResource("3_oij8g")
 expand_mode = 1
 stretch_mode = 4
 
 [node name="IconTextureRect" type="TextureRect" parent="Control"]
 texture_filter = 1
 material = SubResource("ShaderMaterial_6cda4")
-custom_minimum_size = Vector2(60, 60)
+custom_minimum_size = Vector2(54, 54)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -30.0
-offset_top = -30.0
-offset_right = 30.0
-offset_bottom = 30.0
+offset_left = -27.0
+offset_top = -27.0
+offset_right = 27.0
+offset_bottom = 27.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("4_8v1yi")
+texture = ExtResource("6_s1cjr")
 expand_mode = 1
 stretch_mode = 4
 
@@ -101,6 +101,7 @@ offset_right = 30.0
 offset_bottom = 30.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("4_gojqk")
+mouse_default_cursor_shape = 2
+texture = ExtResource("7_blvq4")
 expand_mode = 1
 stretch_mode = 4

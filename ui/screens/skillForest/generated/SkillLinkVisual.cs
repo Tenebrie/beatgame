@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Project;
 
-public partial class SkillLinkUI : Control
+public partial class SkillLinkVisual : Control
 {
 	public SkillConnection SkillLink;
 	public int Segments;

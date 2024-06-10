@@ -5,6 +5,15 @@ namespace Project;
 
 public abstract partial class BaseBuff : Node
 {
+	public class BuffSettings
+	{
+		public string FriendlyName = "Unnamed Buff";
+		public string Description = "No description";
+		public string IconPath = "res://assets/ui/icon-skill-passive-placeholder.png";
+	}
+
+	public BuffSettings Settings;
+
 	public BaseUnit Parent;
 	public Flag Flags = 0;
 

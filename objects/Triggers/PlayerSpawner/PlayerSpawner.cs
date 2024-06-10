@@ -1,6 +1,7 @@
 using Godot;
 using Project;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace Project;
@@ -10,6 +11,7 @@ public partial class PlayerSpawner : Node3D
 	public Mode SpawnMode = Mode.Always;
 	Node3D Visuals;
 	private PlayerController Player;
+	private Dictionary<string, BaseCast> SavedCastBindings;
 
 	public override void _Ready()
 	{
@@ -25,6 +27,10 @@ public partial class PlayerSpawner : Node3D
 		player.Position = GlobalPosition;
 		GetTree().CurrentScene.AddChild(player);
 
+		if (SavedCastBindings != null)
+			player.Spellcasting.LoadBindings(SavedCastBindings);
+		SavedCastBindings = null;
+
 		Player = player;
 	}
 
@@ -38,9 +44,10 @@ public partial class PlayerSpawner : Node3D
 
 	public void OnUnitDestroyed(BaseUnit unit)
 	{
-		if (unit != Player)
+		if (unit != Player || unit is not PlayerController player)
 			return;
 
+		SavedCastBindings = player.Spellcasting.CastBindings;
 		Player = null;
 	}
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ssj3xefio5ks"
-path="res://.godot/imported/ui_icon_border.png-e34f6bf4fad26797cadfad99a182bb01.ctex"
+uid="uid://beqewy7krobrj"
+path="res://.godot/imported/icon-skill-active-mask.png-d3b75db8524cadab3d643d10f5ac44bf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ui/ui_icon_border.png"
-dest_files=["res://.godot/imported/ui_icon_border.png-e34f6bf4fad26797cadfad99a182bb01.ctex"]
+source_file="res://assets/ui/icon-skill-active-mask.png"
+dest_files=["res://.godot/imported/icon-skill-active-mask.png-d3b75db8524cadab3d643d10f5ac44bf.ctex"]
 
 [params]
 

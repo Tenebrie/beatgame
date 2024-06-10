@@ -9,11 +9,12 @@ public partial class SkillForestUI : Control
 	public override void _EnterTree()
 	{
 		instance = this;
+		Visible = false;
 	}
 
 	public override void _Ready()
 	{
-		SkillPointsLabel = GetNode<Label>("SkillPointsLabel");
+		SkillPointsLabel = GetNode<Label>("HeaderPanel/SkillPointsLabel");
 		SkillTreeManager.Singleton.SkillPointsChanged += OnSkillPointsChanged;
 		OnSkillPointsChanged();
 	}
@@ -28,6 +29,11 @@ public partial class SkillForestUI : Control
 		if (@event.IsActionPressed("ToggleSkillForest"))
 		{
 			Visible = !Visible;
+		}
+		if (@event.IsActionPressed("Escape") && Visible)
+		{
+			Visible = false;
+			GetViewport().SetInputAsHandled();
 		}
 	}
 

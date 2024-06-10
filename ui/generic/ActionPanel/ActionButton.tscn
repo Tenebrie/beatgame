@@ -3,9 +3,9 @@
 [ext_resource type="Script" path="res://ui/generic/ActionPanel/ActionButton.cs" id="1_6pl27"]
 [ext_resource type="Shader" uid="uid://c6c3kalho5qhh" path="res://ui/generic/ActionPanel/ActionButtonIconShader.tres" id="2_cpyuu"]
 [ext_resource type="Texture2D" uid="uid://br10oc75cmw0v" path="res://assets/icons/SpellBook06_01.PNG" id="3_5g7r8"]
-[ext_resource type="Texture2D" uid="uid://thgdmkrd4jon" path="res://assets/ui/ui_icon_mask.png" id="3_rkljo"]
-[ext_resource type="Texture2D" uid="uid://ctdwid1ns2oil" path="res://assets/ui/ui_icon_border2.png" id="4_8vvb6"]
+[ext_resource type="Texture2D" uid="uid://beqewy7krobrj" path="res://assets/ui/icon-skill-active-mask.png" id="3_l5vxh"]
 [ext_resource type="Shader" uid="uid://dr67jmxhu3bag" path="res://ui/generic/ActionPanel/ActionButtonShader.tres" id="4_nj7au"]
+[ext_resource type="Texture2D" uid="uid://c4k7ymjgogs8f" path="res://assets/ui/icon-skill-active-border.png" id="6_2003x"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_psu2t"]
 resource_local_to_scene = true
@@ -15,7 +15,7 @@ shader_parameter/DisabledValue = 0.0
 shader_parameter/HoveredValue = 0.0
 shader_parameter/PressedValue = 0.0
 shader_parameter/SelectedValue = 0.0
-shader_parameter/IconMask = ExtResource("3_rkljo")
+shader_parameter/IconMask = ExtResource("3_l5vxh")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ui7f3"]
 resource_local_to_scene = true
@@ -47,17 +47,17 @@ grow_vertical = 2
 [node name="IconTextureRect" type="TextureRect" parent="Control"]
 texture_filter = 1
 material = SubResource("ShaderMaterial_psu2t")
-custom_minimum_size = Vector2(60, 60)
+custom_minimum_size = Vector2(52, 52)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -30.0
-offset_top = -30.0
-offset_right = 30.0
-offset_bottom = 30.0
+offset_left = -26.0
+offset_top = -26.0
+offset_right = 26.0
+offset_bottom = 26.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_5g7r8")
@@ -80,7 +80,7 @@ offset_right = 30.0
 offset_bottom = 30.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("4_8vvb6")
+texture = ExtResource("6_2003x")
 expand_mode = 1
 stretch_mode = 4
 
@@ -91,10 +91,10 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -37.5
-offset_top = -25.0
-offset_right = -6.5
-offset_bottom = -2.0
+offset_left = -42.5
+offset_top = -30.0
+offset_right = -11.5
+offset_bottom = -7.0
 grow_horizontal = 0
 grow_vertical = 0
 text = "??"

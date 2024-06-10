@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ctdwid1ns2oil"
-path="res://.godot/imported/ui_icon_border2.png-26f2c01007e587a21c6fa49f874c0df2.ctex"
+uid="uid://cjfquime3451l"
+path="res://.godot/imported/icon-skill-passive-placeholder.png-004569c342be24dd303225b8cb42d6e9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ui/ui_icon_border2.png"
-dest_files=["res://.godot/imported/ui_icon_border2.png-26f2c01007e587a21c6fa49f874c0df2.ctex"]
+source_file="res://assets/ui/icon-skill-passive-placeholder.png"
+dest_files=["res://.godot/imported/icon-skill-passive-placeholder.png-004569c342be24dd303225b8cb42d6e9.ctex"]
 
 [params]
 

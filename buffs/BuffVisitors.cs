@@ -5,20 +5,12 @@ namespace Project;
 
 public class BuffUnitStatsVisitor
 {
-	public Dictionary<ObjectResourceType, float> PercentageDamageReduction = new();
+	public Dictionary<ObjectResourceType, float> PercentageDamageReduction = ObjectResource.MakeDictionary<float>(0f);
 	public float PercentageCCReduction = 0;
 	public float GravityModifier = 1;
 	public float MoveSpeedPercentage = 1;
 	public float MaximumHealth = 0;
 	public float MaximumMana = 0;
-
-	public BuffUnitStatsVisitor()
-	{
-		foreach (ObjectResourceType resource in (ObjectResourceType[])Enum.GetValues(typeof(ObjectResourceType)))
-		{
-			PercentageDamageReduction[resource] = 0.00f;
-		}
-	}
 }
 
 public class BuffIncomingDamageVisitor

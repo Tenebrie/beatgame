@@ -9,6 +9,8 @@ public class ObjectResource : ComposableScript
 	private float current = 0;
 	private float maximum = 0;
 	private float baseMaximum = 0;
+	private float regen = 0;
+	private float regenPool = 0;
 
 	public float Current
 	{
@@ -21,6 +23,11 @@ public class ObjectResource : ComposableScript
 	public float BaseMaximum
 	{
 		get => baseMaximum;
+	}
+	public float Regeneration
+	{
+		get => regen;
+		set => regen = value;
 	}
 
 	public ObjectResourceType Type;
@@ -38,6 +45,27 @@ public class ObjectResource : ComposableScript
 		ready = true;
 		SignalBus.Singleton.EmitSignal(SignalBus.SignalName.ResourceChanged, Parent, Type.ToVariant(), current);
 		SignalBus.Singleton.EmitSignal(SignalBus.SignalName.MaxResourceChanged, Parent, Type.ToVariant(), maximum);
+	}
+
+	public override void _Process(double delta)
+	{
+		if (regen == 0)
+			return;
+
+		var resourceMissing = maximum - current;
+		if (resourceMissing == 0)
+		{
+			regenPool = 0;
+			return;
+		}
+
+		regenPool += regen * (float)delta * Music.Singleton.BeatsPerSecond;
+		if (regenPool >= 1f)
+		{
+			current = Math.Min(maximum, current + regenPool);
+			regenPool = 0;
+			SignalBus.Singleton.EmitSignal(SignalBus.SignalName.ResourceRegenerated, Parent, Type.ToVariant(), current);
+		}
 	}
 
 	public void Damage(float originalValue, BaseCast sourceCast)
@@ -128,5 +156,15 @@ public class ObjectResource : ComposableScript
 	{
 		SetMaxValue(value);
 		baseMaximum = value;
+	}
+
+	public static Dictionary<ObjectResourceType, T> MakeDictionary<T>(T defaultValue)
+	{
+		var dict = new Dictionary<ObjectResourceType, T>();
+		foreach (ObjectResourceType resource in (ObjectResourceType[])Enum.GetValues(typeof(ObjectResourceType)))
+		{
+			dict[resource] = defaultValue;
+		}
+		return dict;
 	}
 }

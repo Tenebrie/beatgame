@@ -8,12 +8,14 @@ public partial class BaseCast : Node
 	public class CastSettings
 	{
 		public string FriendlyName = "Unnamed Spell";
-		public string IconPath = "res://assets/ui/ui_icon_background.png";
+		public string Description = "No description";
+		public string IconPath = "res://assets/ui/icon-skill-active-placeholder.png";
 		public float HoldTime = 1; // beat
 		public CastInputType InputType = CastInputType.Instant;
 		public CastTargetType TargetType = CastTargetType.None;
 		public BeatTime CastTimings = BeatTime.Free;
 		public BeatTime ChannelingTickTimings = 0;
+		public Dictionary<ObjectResourceType, float> ResourceCost = ObjectResource.MakeDictionary(0f);
 		public float RecastTime = .1f;
 		public bool ReversedCastBar = false;
 		public bool HiddenCastBar = false;
@@ -49,6 +51,8 @@ public partial class BaseCast : Node
 	{
 		Parent = parent;
 	}
+
+	public static string MakeDescription(params string[] strings) => CastUtils.MakeDescription(strings);
 
 	public override void _EnterTree()
 	{
