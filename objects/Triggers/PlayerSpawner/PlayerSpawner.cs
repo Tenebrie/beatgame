@@ -11,7 +11,7 @@ public partial class PlayerSpawner : Node3D
 	public Mode SpawnMode = Mode.Always;
 	Node3D Visuals;
 	private PlayerController Player;
-	private Dictionary<string, BaseCast> SavedCastBindings;
+	private static Dictionary<string, BaseCast> SavedCastBindings;
 
 	public override void _Ready()
 	{
@@ -30,11 +30,6 @@ public partial class PlayerSpawner : Node3D
 		if (SavedCastBindings != null)
 			player.Spellcasting.LoadBindings(SavedCastBindings);
 		SavedCastBindings = null;
-
-		if (Preferences.Singleton.ChillMode)
-		{
-			
-		}
 
 		Player = player;
 	}

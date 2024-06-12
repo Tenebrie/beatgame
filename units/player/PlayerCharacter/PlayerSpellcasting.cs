@@ -23,6 +23,13 @@ public class PlayerSpellcasting : ComposableScript
 		SkillTreeManager.Singleton.SkillDown += OnSkillDown;
 	}
 
+	public override void _ExitTree()
+	{
+		base._ExitTree();
+		SkillTreeManager.Singleton.SkillUp -= OnSkillUp;
+		SkillTreeManager.Singleton.SkillDown -= OnSkillDown;
+	}
+
 	public BaseCast GetCurrentCastingSpell()
 	{
 		var castingSpells = CastBindings.Values.Where(cast => cast.IsCasting).ToList();

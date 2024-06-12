@@ -85,6 +85,7 @@ public abstract partial class BaseUnit : ComposableCharacterBody3D
 
 	public override void _ExitTree()
 	{
+		base._ExitTree();
 		AllUnits.Remove(this);
 		SignalBus.Singleton.EmitSignal(SignalBus.SignalName.UnitDestroyed, this);
 	}
@@ -100,7 +101,10 @@ public abstract partial class BaseUnit : ComposableCharacterBody3D
 		MoveAndCollide(new Vector3(Velocity.X, 0, Velocity.Z) * (float)delta);
 
 		var newVector = Velocity - 10.00f * new Vector3(Velocity.X, 0, Velocity.Z).Normalized() * (float)delta;
-		Velocity = new Vector3(newVector.X, Velocity.Y, newVector.Z);
+		if (newVector.LengthSquared() <= 0.05f)
+			Velocity = new Vector3(0, Velocity.Y, 0);
+		else
+			Velocity = new Vector3(newVector.X, Velocity.Y, newVector.Z);
 	}
 
 	protected virtual void ProcessGravity(double delta)
