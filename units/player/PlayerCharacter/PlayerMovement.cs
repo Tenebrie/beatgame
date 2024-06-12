@@ -6,11 +6,6 @@ namespace Project;
 
 public partial class PlayerMovement : ComposableScript
 {
-	private NodePath _mainCameraPath = null;
-	private NodePath _baseCameraPath = null;
-
-	Camera3D mainCamera;
-
 	bool softCameraPreMoving = false;
 	bool softCameraMoving = false;
 	Vector2 softCameraMoveStart;
@@ -21,22 +16,20 @@ public partial class PlayerMovement : ComposableScript
 	private Node3D verticalCameraPivot;
 	private SpringArm3D springArm;
 
+	bool autorunEnabled = false;
 	float cameraDistance = 1.5f;
 
 	float jumpCount = 0;
 
 	new readonly PlayerController Parent;
 
-	public PlayerMovement(BaseUnit parent, NodePath mainCameraPath, NodePath baseCameraPath) : base(parent)
+	public PlayerMovement(BaseUnit parent) : base(parent)
 	{
 		Parent = parent as PlayerController;
-		_mainCameraPath = mainCameraPath;
-		_baseCameraPath = baseCameraPath;
 	}
 
 	public override void _Ready()
 	{
-		mainCamera = Parent.GetNode<Camera3D>(_mainCameraPath);
 		horizontalCameraPivot = Parent.GetNode<Node3D>("HCameraPivot");
 		verticalCameraPivot = Parent.GetNode<Node3D>("HCameraPivot/VCameraPivot");
 		springArm = Parent.GetNode<SpringArm3D>("HCameraPivot/VCameraPivot/SpringArm3D");
@@ -138,6 +131,15 @@ public partial class PlayerMovement : ComposableScript
 			movementRight += 1;
 		}
 
+		if (Input.IsActionJustPressed("Autorun"))
+			autorunEnabled = !autorunEnabled;
+
+		if (movementForward != 0 || movementRight != 0)
+			autorunEnabled = false;
+
+		if (autorunEnabled)
+			movementForward = 1;
+
 		var movementVector = new Vector2(movementRight, movementForward).Normalized() * movementSpeed;
 		var forwardVector = -GlobalTransform.Basis.Z;
 		var rightVector = GlobalTransform.Basis.X;
@@ -178,6 +180,10 @@ public partial class PlayerMovement : ComposableScript
 				rotation = -horizontalCameraPivot.Rotation.Y;
 			RotateCameraHorizontal(rotation, true);
 		}
+
+		// If moving, release the casting spell
+		if ((movementForward != 0 || movementRight != 0) && !Parent.Buffs.Has<BuffCastWhileMoving>())
+			Parent.Spellcasting.ReleaseCurrentCastingSpell();
 	}
 
 	private void ProcessCamera(double delta)
@@ -240,6 +246,11 @@ public partial class PlayerMovement : ComposableScript
 			newValue = 0;
 
 		horizontalCameraPivot.Rotation = new Vector3(0, newValue, 0);
+	}
+
+	public void StopAutorun()
+	{
+		autorunEnabled = false;
 	}
 
 	public void ResetJumpCount()

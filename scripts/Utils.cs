@@ -32,6 +32,7 @@ public static class Colors
 	public const string Passive = "#7777AA";
 	public const string Health = "#CCCC50";
 	public const string Mana = "#0099FF";
+	public const string Forbidden = "#BB2525";
 
 	public static string Tag(object text, string color = Value)
 	{

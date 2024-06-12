@@ -39,7 +39,7 @@ public partial class PlayerCastBar : Control
 		Bar.SetBackgroundOpacity(.5f);
 		GreenZone.SetFillOpacity(.5f);
 
-		var timingWindow = (float)AccurateTimer.TimingWindow / 1000;
+		var timingWindow = AccurateTimer.TimingWindow;
 		var totalWidth = Bar.Size.X;
 		if (cast.Settings.InputType == CastInputType.HoldRelease)
 		{
@@ -102,7 +102,7 @@ public partial class PlayerCastBar : Control
 			Bar.Value = (value + 0.01f) * Bar.MaxValue;
 
 		var castEndsAt = ActiveCast.Settings.InputType == CastInputType.AutoRelease ? CastEndsAt : CastEndsAt - (CastEndsAt - CastStartedAt) / 2;
-		if (Math.Abs(castEndsAt - time) <= Music.Singleton.TimingWindow)
+		if (Math.Abs(castEndsAt - time) <= Music.Singleton.TimingWindowMs)
 		{
 			Bar.SetFillColor(new Color(0, 0.5f, 0, Bar.GetFillColor().A));
 		}

@@ -78,6 +78,7 @@ public abstract partial class BaseUnit : ComposableCharacterBody3D
 
 	public override void _Process(double delta)
 	{
+		ProcessInertia(delta);
 		ProcessGravity(delta);
 		base._Process(delta);
 	}
@@ -86,6 +87,20 @@ public abstract partial class BaseUnit : ComposableCharacterBody3D
 	{
 		AllUnits.Remove(this);
 		SignalBus.Singleton.EmitSignal(SignalBus.SignalName.UnitDestroyed, this);
+	}
+
+	protected virtual void ProcessInertia(double delta)
+	{
+		Velocity = new Vector3(
+			x: Velocity.X,
+			y: Velocity.Y,
+			z: Velocity.Z
+		);
+
+		MoveAndCollide(new Vector3(Velocity.X, 0, Velocity.Z) * (float)delta);
+
+		var newVector = Velocity - 10.00f * new Vector3(Velocity.X, 0, Velocity.Z).Normalized() * (float)delta;
+		Velocity = new Vector3(newVector.X, Velocity.Y, newVector.Z);
 	}
 
 	protected virtual void ProcessGravity(double delta)

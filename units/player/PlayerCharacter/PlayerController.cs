@@ -6,9 +6,6 @@ namespace Project;
 
 public partial class PlayerController : BaseUnit
 {
-	[Export] public NodePath _mainCameraPath = null;
-	[Export] public NodePath _baseCameraPath = null;
-
 	public PlayerMovement Movement;
 	public PlayerTargeting Targeting;
 	public PlayerSpellcasting Spellcasting;
@@ -16,29 +13,24 @@ public partial class PlayerController : BaseUnit
 	{
 		FriendlyName = "The Player";
 		Alliance = UnitAlliance.Player;
-		Targetable.selectionRadius = 0.5f;
+		Targetable.selectionRadius = 0.25f;
 
 		Health.SetBaseMaxValue(250);
 		Health.Regeneration = 1;
 		Mana.SetBaseMaxValue(100);
+		Mana.SetMinValue(-250);
 		Mana.Regeneration = 5;
 	}
 
 	public override void _Ready()
 	{
-		Movement = new PlayerMovement(this, _mainCameraPath, _baseCameraPath);
+		Movement = new PlayerMovement(this);
 		Targeting = new PlayerTargeting(this);
 		Spellcasting = new PlayerSpellcasting(this);
 
 		Composables.Add(Movement);
 		Composables.Add(Targeting);
 		Composables.Add(Spellcasting);
-
-		// Spellcasting.Bind("Cast1", new Fireball(this));
-		// Spellcasting.Bind("Cast2", new Fireblast(this));
-		// Spellcasting.Bind("Cast3", new CastZap(this));
-		// Spellcasting.Bind("ShiftCast1", new SelfHeal(this));
-		// Spellcasting.Bind("ShiftCast2", new CastRescue(this));
 
 		AllPlayers.Add(this);
 		base._Ready();

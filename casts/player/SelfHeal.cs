@@ -27,6 +27,5 @@ public partial class SelfHeal : BaseCast
 
 		var healing = Flags.CastSuccessful ? HealAmount : HealAmount / 2;
 		Parent.Health.Restore(healing, this);
-		Parent.Mana.Damage(20, this);
 	}
 }

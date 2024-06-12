@@ -4,7 +4,7 @@
 
 [sub_resource type="Shader" id="Shader_inner_fxf2a"]
 code = "shader_type spatial;
-render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_schlick_ggx;
+render_mode blend_mix, depth_draw_opaque, cull_disabled, diffuse_lambert, specular_schlick_ggx;
 
 instance uniform float COLOR_R : hint_range(0.0, 1.0) = 0;
 instance uniform float COLOR_G : hint_range(0.0, 1.0) = 1;
@@ -14,6 +14,7 @@ instance uniform float RADIUS : hint_range(0.01, 10.0) = 0.5;
 instance uniform float SCALE : hint_range(0.01, 10.0) = 1;
 instance uniform float OUTER_WIDTH : hint_range(0.02, 0.10) = 0.05;
 instance uniform float FADE : hint_range(0.0, 1.0) = 1;
+instance uniform float INNER_ALPHA : hint_range(0.0, 1.0) = 1.0;
 instance uniform float CULL_DIST = 0;
 
 void fragment()
@@ -21,7 +22,7 @@ void fragment()
 	float dist = distance(NODE_POSITION_VIEW, VERTEX);
 	float effectiveRadius = RADIUS * SCALE;
 	float innerLimit = effectiveRadius * PROGRESS;
-	ALPHA = 0.05;
+	ALPHA = 0.05 * INNER_ALPHA;
 	bool outerEdge = dist > float(effectiveRadius - OUTER_WIDTH) && dist < float(effectiveRadius);
 	bool innerCircle = dist < innerLimit;
 	if (outerEdge && !innerCircle)
@@ -66,7 +67,7 @@ void fragment()
 	if (dist < effectiveRadius)
 	{
 		ALBEDO = ALBEDO * vec3(COLOR_R * 0.5, COLOR_G * 0.5, COLOR_B * 0.5);
-		ALPHA = max(ALPHA, float(0.05));
+		ALPHA = max(ALPHA, float(0.05 * INNER_ALPHA));
 	}
 	else
 	{
@@ -92,5 +93,7 @@ shader = SubResource("Shader_inner_fxf2a")
 material = SubResource("ShaderMaterial_nrq6q")
 
 [node name="CircleDecal" type="MeshInstance3D"]
+instance_shader_parameters/INNER_ALPHA = 1.0
+instance_shader_parameters/PROGRESS = 0.5
 mesh = SubResource("PlaneMesh_8pqm6")
 script = ExtResource("1_sq4y0")

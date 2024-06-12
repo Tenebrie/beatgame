@@ -44,6 +44,28 @@ public partial class CircleDecal : MeshInstance3D
 		SetInstanceShaderParameter("CULL_DIST", this.GetArenaSize());
 	}
 
+	public void SetRadius(float radius)
+	{
+		SetInstanceShaderParameter("RADIUS", radius);
+	}
+
+	public void SetInnerAlpha(float value)
+	{
+		SetInstanceShaderParameter("INNER_ALPHA", value);
+	}
+
+	public void SetProgress(float value)
+	{
+		SetInstanceShaderParameter("PROGRESS", value);
+	}
+
+	public void SetColor(Color color)
+	{
+		SetInstanceShaderParameter("COLOR_R", color.R);
+		SetInstanceShaderParameter("COLOR_G", color.G);
+		SetInstanceShaderParameter("COLOR_B", color.B);
+	}
+
 	public void CleanUp()
 	{
 		fadeValue = 1;

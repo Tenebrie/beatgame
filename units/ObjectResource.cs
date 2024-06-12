@@ -6,12 +6,17 @@ namespace Project;
 public class ObjectResource : ComposableScript
 {
 	private bool ready = false;
+	private float minimum = 0;
 	private float current = 0;
 	private float maximum = 0;
 	private float baseMaximum = 0;
 	private float regen = 0;
 	private float regenPool = 0;
 
+	public float Minimum
+	{
+		get => minimum;
+	}
 	public float Current
 	{
 		get => current;
@@ -95,7 +100,7 @@ public class ObjectResource : ComposableScript
 			throw new NotImplementedException("Changing resource type is not implemented");
 
 		var value = result.Value;
-		current = Math.Max(0, current - value);
+		current = Math.Max(minimum, current - value);
 
 		if (ready)
 			SignalBus.Singleton.EmitSignal(SignalBus.SignalName.ResourceChanged, Parent, Type.ToVariant(), current);
@@ -132,6 +137,14 @@ public class ObjectResource : ComposableScript
 
 		if (ready)
 			SignalBus.Singleton.EmitSignal(SignalBus.SignalName.ResourceChanged, Parent, Type.ToVariant(), current);
+	}
+
+	public void SetMinValue(float value)
+	{
+		if (value == minimum)
+			return;
+
+		minimum = value;
 	}
 
 	public void SetMaxValue(float value)

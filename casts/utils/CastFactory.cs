@@ -5,12 +5,14 @@ namespace Project;
 public class CastFactory
 {
 	public readonly Type CastType;
-	public readonly BaseCast.CastSettings Settings;
+	public BaseCast.CastSettings Settings
+	{
+		get => Create(null).Settings;
+	}
 
 	public CastFactory(Type prototype)
 	{
 		CastType = prototype;
-		Settings = Create(null).Settings;
 	}
 
 	public BaseCast Create(BaseUnit parent)

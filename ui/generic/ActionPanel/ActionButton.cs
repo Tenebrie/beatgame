@@ -13,6 +13,7 @@ public partial class ActionButton : Control
 	private TextureRect Overlay;
 	private Label HotkeyLabel;
 	private ShaderMaterial ButtonMaterial;
+	private ProgressBar CooldownProgressBar;
 
 	public bool IsHovered;
 	public float HoveredValue;
@@ -32,6 +33,7 @@ public partial class ActionButton : Control
 		Overlay = GetNode<TextureRect>("Control/OverlayTextureRect");
 		ButtonMaterial = (ShaderMaterial)Overlay.Material;
 		HotkeyLabel = GetNode<Label>("Control/OverlayTextureRect/HotkeyLabel");
+		CooldownProgressBar = GetNode<ProgressBar>("Control/CooldownProgressBar");
 		HotkeyLabel.Text = Label.ToString();
 		Overlay.MouseEntered += OnMouseEnter;
 		Overlay.MouseExited += OnMouseLeave;
@@ -135,10 +137,15 @@ public partial class ActionButton : Control
 			DisabledValue = 0;
 		ButtonMaterial.SetShaderParameter("DisabledValue", DisabledValue);
 
-		if (IsHighlighted)
+		if (IsHighlighted || (AssociatedCast != null && AssociatedCast.Settings.CastTimings == BeatTime.Free))
 			HighlightedValue = Math.Min(1, HighlightedValue + (float)delta * 5);
-		else if (AssociatedCast == null || AssociatedCast.Settings.CastTimings != BeatTime.Free)
+		else
 			HighlightedValue = Math.Max(0, HighlightedValue - (float)delta * 5);
 		ButtonMaterial.SetShaderParameter("HighlightedValue", HighlightedValue);
+
+		if (AssociatedCast == null || AssociatedCast.RecastTimerHandle == null || AssociatedCast.RecastTimerHandle.WaitTime == 0)
+			CooldownProgressBar.Value = 0;
+		else
+			CooldownProgressBar.Value = AssociatedCast.RecastTimerHandle.TimeLeft / AssociatedCast.RecastTimerHandle.WaitTime * 100;
 	}
 }

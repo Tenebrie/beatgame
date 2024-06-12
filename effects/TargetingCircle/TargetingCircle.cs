@@ -3,28 +3,33 @@ using Project;
 using System;
 using System.Diagnostics;
 
+namespace Project;
+
 public partial class TargetingCircle : Node3D
 {
-	[Export] public NodePath _decalPath = null;
-	private Decal decal;
+	private CircleDecal decal;
+
+	public override void _Ready()
+	{
+		decal = GetNode<CircleDecal>("CircleDecal");
+		decal.SetProgress(0);
+		decal.SetInnerAlpha(0);
+	}
+
+	public override void _Process(double delta)
+	{
+		var verticalPos = this.SnapToGround(GlobalPosition).Y;
+		GlobalPosition = new Vector3(GlobalPosition.X, verticalPos, GlobalPosition.Z);
+	}
 
 	public void SetRadius(float radius)
 	{
-		decal = GetNode<Decal>(_decalPath);
-		Scale = new Vector3(radius, radius, radius);
+		decal = GetNode<CircleDecal>("CircleDecal");
+		decal.SetRadius(radius);
 	}
 	public void SetAlliance(UnitAlliance alliance)
 	{
-		decal = GetNode<Decal>(_decalPath);
-		var color = new Color(255, 255, 0);
-		if (alliance == UnitAlliance.Player)
-		{
-			color = new Color(0, 0, 255);
-		}
-		else if (alliance == UnitAlliance.Hostile)
-		{
-			color = new Color(255, 0, 0);
-		}
-		decal.Modulate = color;
+		decal = GetNode<CircleDecal>("CircleDecal");
+		decal.SetColor(CastUtils.GetAllianceColor(alliance));
 	}
 }

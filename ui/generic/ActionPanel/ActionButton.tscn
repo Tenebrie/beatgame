@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bypjme16oq8em"]
+[gd_scene load_steps=11 format=3 uid="uid://bypjme16oq8em"]
 
 [ext_resource type="Script" path="res://ui/generic/ActionPanel/ActionButton.cs" id="1_6pl27"]
 [ext_resource type="Shader" uid="uid://c6c3kalho5qhh" path="res://ui/generic/ActionPanel/ActionButtonIconShader.tres" id="2_cpyuu"]
@@ -16,6 +16,15 @@ shader_parameter/HoveredValue = 0.0
 shader_parameter/PressedValue = 0.0
 shader_parameter/SelectedValue = 0.0
 shader_parameter/IconMask = ExtResource("3_l5vxh")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bb4ws"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g0bqb"]
+bg_color = Color(0, 0, 0, 0.670588)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ui7f3"]
 resource_local_to_scene = true
@@ -39,6 +48,7 @@ script = ExtResource("1_6pl27")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
@@ -63,6 +73,19 @@ grow_vertical = 2
 texture = ExtResource("3_5g7r8")
 expand_mode = 1
 stretch_mode = 4
+
+[node name="CooldownProgressBar" type="ProgressBar" parent="Control"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 7.0
+offset_right = 54.0
+offset_bottom = 53.0
+theme_override_styles/background = SubResource("StyleBoxEmpty_bb4ws")
+theme_override_styles/fill = SubResource("StyleBoxFlat_g0bqb")
+step = 0.0
+value = 50.0
+fill_mode = 3
+show_percentage = false
 
 [node name="OverlayTextureRect" type="TextureRect" parent="Control"]
 texture_filter = 1

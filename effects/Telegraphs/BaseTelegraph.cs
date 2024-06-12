@@ -87,14 +87,7 @@ public abstract partial class BaseTelegraph : Node3D
 
 	void UpdateColor()
 	{
-		var color = new Color(0, 0.7f, 0.7f);
-
-		if (alliance == UnitAlliance.Player)
-			color = new Color(0, 0.7f, 0);
-		else if (alliance == UnitAlliance.Hostile)
-			color = new Color(0.7f, 0.0f, 1.0f);
-
-		SetColor(color);
+		SetColor(CastUtils.GetAllianceColor(alliance));
 	}
 
 	public List<BaseUnit> GetTargets()

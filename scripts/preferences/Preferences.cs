@@ -39,6 +39,17 @@ public partial class Preferences : Node
 		}
 	}
 
+	private bool chillMode = false;
+	public bool ChillMode
+	{
+		get => chillMode;
+		set
+		{
+			chillMode = value;
+			SaveConfig();
+		}
+	}
+
 	public override void _EnterTree()
 	{
 		instance = this;
@@ -52,6 +63,7 @@ public partial class Preferences : Node
 
 		config.SetValue("section", "mainVolume", MainVolume);
 		config.SetValue("section", "cameraHeight", CameraHeight);
+		config.SetValue("section", "chillMode", ChillMode);
 
 		config.Save("user://config.cfg");
 	}
@@ -63,6 +75,8 @@ public partial class Preferences : Node
 
 		mainVolume = (float)config.GetValue("section", "mainVolume", 0.5f);
 		cameraHeight = (float)config.GetValue("section", "cameraHeight", 0.25f);
+		chillMode = (bool)config.GetValue("section", "chillMode", false);
+
 		renderScale = (float)config.GetValue("section", "renderScale", GetDefaultRenderScale());
 	}
 
@@ -71,7 +85,7 @@ public partial class Preferences : Node
 		GetViewport().Scaling3DScale = renderScale;
 	}
 
-	private float GetDefaultRenderScale()
+	private static float GetDefaultRenderScale()
 	{
 		return OS.HasFeature("macos") ? 0.5f : 1;
 	}

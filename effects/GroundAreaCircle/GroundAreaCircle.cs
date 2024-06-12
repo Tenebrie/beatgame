@@ -60,7 +60,7 @@ public partial class GroundAreaCircle : BaseTelegraph
 	private void UpdateRadius()
 	{
 		Scale = new Vector3(radius * 2, radius * 2, radius * 2);
-		decal.SetInstanceShaderParameter("RADIUS", radius);
+		decal.SetRadius(radius);
 	}
 
 	protected override void SetColor(Color color)

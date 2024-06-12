@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Godot;
 namespace Project;
@@ -112,6 +113,15 @@ public static class CastUtils
 		return new Vector3(pos.X, pos.Y + verticalOffset, pos.Z);
 	}
 
+	public static bool HasSkill<T>(this BaseCast _) where T : BaseSkill
+	{
+		var skill = SkillTreeManager.Singleton.Skills.Find(skill => skill is T);
+		if (skill == null)
+			return false;
+
+		return skill.IsLearned;
+	}
+
 	public static string GetReadableCastTimings(this BaseCast.CastSettings settings)
 	{
 		var timings = settings.CastTimings;
@@ -142,6 +152,18 @@ public static class CastUtils
 	public static string MakeDescription(params string[] strings)
 	{
 		return strings.Join(" ");
+	}
+
+	public static Color GetAllianceColor(UnitAlliance alliance)
+	{
+		var color = new Color(0, 0.7f, 0.7f);
+
+		if (alliance == UnitAlliance.Player)
+			color = new Color(0, 0.7f, 0);
+		else if (alliance == UnitAlliance.Hostile)
+			color = new Color(0.7f, 0.0f, 1.0f);
+
+		return color;
 	}
 }
 

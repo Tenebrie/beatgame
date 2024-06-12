@@ -13,9 +13,15 @@ public partial class BaseCast : Node
 		public float HoldTime = 1; // beat
 		public CastInputType InputType = CastInputType.Instant;
 		public CastTargetType TargetType = CastTargetType.None;
-		public BeatTime CastTimings = BeatTime.Free;
+		public BeatTime castTimings = BeatTime.Free;
+		public BeatTime CastTimings
+		{
+			get => Preferences.Singleton.ChillMode ? BeatTime.Free : castTimings;
+			set => castTimings = value;
+		}
 		public BeatTime ChannelingTickTimings = 0;
 		public Dictionary<ObjectResourceType, float> ResourceCost = ObjectResource.MakeDictionary(0f);
+		public int Charges = 1;
 		public float RecastTime = .1f;
 		public bool ReversedCastBar = false;
 		public bool HiddenCastBar = false;
@@ -25,7 +31,6 @@ public partial class BaseCast : Node
 		/// <summary>Only for CastInputType.AutoRelease</summary>
 		public bool TickWhilePreparing = false;
 
-		/// <summary>Only for CastInputType.HoldRelease</summary>
 		/// <summary>Only for CastInputType.HoldRelease</summary>
 		public bool CastOnFailedRelease = true;
 	}
@@ -45,7 +50,6 @@ public partial class BaseCast : Node
 	protected CastFlags Flags = new();
 
 	public readonly BaseUnit Parent;
-	public BaseUnit Unit { get => Parent; }
 
 	public BaseCast(BaseUnit parent)
 	{
@@ -82,12 +86,11 @@ public partial class BaseCast : Node
 		if (!IsCasting)
 			return;
 
-		// var beatIndex = Music.Singleton.GetNearestBeatIndex(BeatTime.All);
 		var beatIndex = Music.Singleton.BeatIndex;
 		if ((time & Settings.ChannelingTickTimings) > 0 && (Settings.TickWhilePreparing || Music.Singleton.BeatIndex > CastStartedAt + Settings.PrepareTime))
 			OnCastTicked(CastTargetData, time);
 
-		if (Settings.PrepareTime > 0 && beatIndex == CastStartedAt + Settings.PrepareTime)
+		if (Settings.PrepareTime > 0 && IsPreparing && beatIndex == CastStartedAt + Settings.PrepareTime)
 			CastPrepare();
 
 		if (Settings.InputType == CastInputType.AutoRelease && beatIndex == CastStartedAt + Settings.PrepareTime + Settings.HoldTime)
@@ -107,18 +110,33 @@ public partial class BaseCast : Node
 		return true;
 	}
 
-	public bool ValidateCastTiming(out string errorMessage)
+	public bool ValidateIfCastIsPossible(CastTargetData target, out string errorMessage)
 	{
-		errorMessage = null;
-
 		EnsureTimerExists();
-		if (!RecastTimerHandle.IsStopped())
+		if (RecastTimerHandle.TimeLeft > Music.Singleton.TimingWindow)
 		{
 			errorMessage = "Cooling down";
 			return false;
 		}
 
-		if (Math.Abs(Music.Singleton.GetCurrentBeatOffset(Settings.CastTimings)) > Music.Singleton.TimingWindow)
+		if (!ValidateTarget(target, out errorMessage))
+		{
+			return false;
+		}
+
+		if (Parent.Health.Current < Settings.ResourceCost[ObjectResourceType.Health])
+		{
+			errorMessage = "Not enough health";
+			return false;
+		}
+		if (Parent.Mana.Current < 0)
+		{
+			errorMessage = "Not enough mana";
+			return false;
+		}
+
+		var beatOffset = Math.Abs(Music.Singleton.GetCurrentBeatOffset(Settings.CastTimings));
+		if (!Preferences.Singleton.ChillMode && beatOffset > Music.Singleton.TimingWindowMs)
 		{
 			errorMessage = "Bad timing";
 			return false;
@@ -131,7 +149,7 @@ public partial class BaseCast : Node
 	{
 		var time = Music.Singleton.SongTime;
 		var targetTime = CastStartedAt * Music.Singleton.SecondsPerBeat * 1000 + Settings.HoldTime * Music.Singleton.SecondsPerBeat * 1000;
-		if (Math.Abs(time - targetTime) > Music.Singleton.TimingWindow)
+		if (Math.Abs(time - targetTime) > Music.Singleton.TimingWindowMs)
 			return false;
 
 		return true;
@@ -144,6 +162,9 @@ public partial class BaseCast : Node
 		IsCasting = true;
 		if (Settings.PrepareTime > 0)
 			IsPreparing = true;
+
+		Parent.Health.Damage(Settings.ResourceCost[ObjectResourceType.Health], this);
+		Parent.Mana.Damage(Settings.ResourceCost[ObjectResourceType.Mana], this);
 		CastStartedAt = Music.Singleton.GetNearestBeatIndex(Settings.CastTimings);
 		CastTargetData = targetData;
 		SignalBus.Singleton.EmitSignal(SignalBus.SignalName.CastStarted, this);
@@ -178,10 +199,15 @@ public partial class BaseCast : Node
 	private void CastPerformInternal()
 	{
 		IsCasting = false;
-		if (Settings.RecastTime > 0)
-			RecastTimerHandle.Start(Settings.RecastTime);
+		StartCooldown();
 
 		OnCastCompleted(CastTargetData);
+	}
+
+	public void StartCooldown()
+	{
+		if (Settings.RecastTime > 0)
+			RecastTimerHandle.Start(Settings.RecastTime * Music.Singleton.SecondsPerBeat);
 	}
 
 	protected virtual void OnCastStarted(CastTargetData _) { }

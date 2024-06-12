@@ -2,6 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 
 namespace Project;
 
@@ -55,12 +56,21 @@ public partial class SkillButton : Control
 	{
 		if (skill == AssociatedSkill)
 			IsSelected = true;
+
+		CheckForIncompatibles();
 	}
 
 	void OnSkillDown(BaseSkill skill)
 	{
 		if (skill == AssociatedSkill)
 			IsSelected = false;
+
+		CheckForIncompatibles();
+	}
+
+	void CheckForIncompatibles()
+	{
+		IsDisabled = SkillTreeManager.Singleton.Skills.Where(skill => skill.IsLearned).Any(s => s.Settings.IncompatibleSkills.Any(wrapper => wrapper.Is(AssociatedSkill)));
 	}
 
 	private void OnMouseEnter()

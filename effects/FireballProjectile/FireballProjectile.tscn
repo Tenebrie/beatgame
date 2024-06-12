@@ -1,7 +1,7 @@
 [gd_scene load_steps=25 format=3 uid="uid://dcip2amav54xc"]
 
 [ext_resource type="Texture2D" uid="uid://bfq8lmy0qmd5b" path="res://assets/fire-particle.tga" id="1_0fy1o"]
-[ext_resource type="Script" path="res://casts/Projectile.cs" id="1_r05pi"]
+[ext_resource type="Script" path="res://casts/projectiles/Projectile.cs" id="1_r05pi"]
 [ext_resource type="Texture2D" uid="uid://dfxjaxm5oxqkv" path="res://assets/particles/fire_01.png" id="2_nkeod"]
 [ext_resource type="Texture2D" uid="uid://bq3stgmkfpwp5" path="res://assets/particles/smoke_01.png" id="3_jlwys"]
 [ext_resource type="Texture2D" uid="uid://dyh7yd6ess6bk" path="res://assets/particles/circle_05.png" id="5_ug3dv"]

@@ -48,7 +48,8 @@ public partial class Music : Node
 	public long PreciseBeatIndex = -1;
 	public double BeatIndex { get => PreciseBeatIndex * MinBeatSize; }
 	public long SongTime { get => WholeNoteTimer.GetSongTime(); }
-	public long TimingWindow { get => AccurateTimer.TimingWindow; }
+	public float TimingWindow { get => AccurateTimer.TimingWindow; }
+	public float TimingWindowMs { get => AccurateTimer.TimingWindow * 1000f; }
 	private BeatTime BeatTimeState = BeatTime.Free;
 	public MusicTrack CurrentTrack;
 
@@ -237,6 +238,9 @@ public partial class Music : Node
 
 	public double GetNearestBeatIndex(BeatTime timings)
 	{
+		if (timings == BeatTime.Free)
+			timings = BeatTime.All;
+
 		List<AccurateTimer> timers = new();
 		if ((timings & BeatTime.Whole) > 0)
 			timers.Add(WholeNoteTimer);
@@ -262,8 +266,8 @@ public partial class Music : Node
 	// Returns the time (in ms) to the nearest beat
 	public long GetCurrentBeatOffset(BeatTime timings)
 	{
-		if ((timings & BeatTime.Free) > 0)
-			return 0;
+		if (timings == BeatTime.Free)
+			timings = BeatTime.All;
 
 		List<AccurateTimer> timers = new();
 		if ((timings & BeatTime.Whole) > 0)

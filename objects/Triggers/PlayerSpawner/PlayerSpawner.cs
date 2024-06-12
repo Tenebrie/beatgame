@@ -31,6 +31,11 @@ public partial class PlayerSpawner : Node3D
 			player.Spellcasting.LoadBindings(SavedCastBindings);
 		SavedCastBindings = null;
 
+		if (Preferences.Singleton.ChillMode)
+		{
+			
+		}
+
 		Player = player;
 	}
 

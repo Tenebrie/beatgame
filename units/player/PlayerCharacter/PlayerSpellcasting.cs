@@ -34,6 +34,7 @@ public class PlayerSpellcasting : ComposableScript
 	// Automatically bind a new cast to a first available slot
 	void OnSkillUp(BaseSkill skill)
 	{
+		RebindAffectedCasts(skill);
 		if (skill.Settings.ActiveCast == null)
 			return;
 
@@ -55,19 +56,40 @@ public class PlayerSpellcasting : ComposableScript
 	// Unbind cast if skill point has been removed
 	void OnSkillDown(BaseSkill skill)
 	{
+		RebindAffectedCasts(skill);
 		if (skill.Settings.ActiveCast == null)
 			return;
 
 		var bindingSlots = GetPossibleBindings();
 		foreach (var binding in bindingSlots)
 		{
-			var hasValue = CastBindings.TryGetValue(binding, out var _);
-			if (!hasValue)
+			var hasValue = CastBindings.TryGetValue(binding, out var value);
+			if (!hasValue || value.GetType() != skill.Settings.ActiveCast.CastType)
 				continue;
 
 			Unbind(binding);
 			break;
 		}
+	}
+
+	void RebindAffectedCasts(BaseSkill skill)
+	{
+		foreach (var cast in skill.Settings.AffectedCasts)
+		{
+			var boundCasts = CastBindings.Where(v => cast.CastType == v.Value.GetType()).ToList();
+			if (boundCasts.Count == 0)
+				continue;
+
+			var boundCast = boundCasts[0];
+			Bind(boundCast.Key, boundCast.Value.GetType());
+		}
+	}
+
+	public void RebindAll()
+	{
+		var array = CastBindings.ToArray();
+		foreach (var cast in array)
+			Bind(cast.Key, cast.Value.GetType());
 	}
 
 	public void Bind(string input, Type castType)
@@ -143,26 +165,17 @@ public class PlayerSpellcasting : ComposableScript
 				Point = Parent.Position, // TODO: Implement ground targeting
 			};
 
-			var isValidTarget = cast.ValidateTarget(targetData, out var errorMessage);
-			if (!isValidTarget)
-			{
-				Debug.WriteLine(errorMessage);
-				return;
-			}
-
 			if (@Input.IsActionJustPressed(key))
 			{
-				var isValidTiming = cast.ValidateCastTiming(out errorMessage);
-				if (!isValidTiming)
-				{
-					Debug.WriteLine(errorMessage);
-					return;
-				}
+				Parent.Movement.StopAutorun();
+				if (cast.Settings.InputType != CastInputType.Instant)
+					ReleaseCurrentCastingSpell();
 
-				var currentCastingSpell = GetCurrentCastingSpell();
-				if (currentCastingSpell != null)
+				var canCast = cast.ValidateIfCastIsPossible(targetData, out var errorMessage);
+				if (!canCast)
 				{
-					CastRelease(currentCastingSpell);
+					SignalBus.SendMessage(errorMessage);
+					return;
 				}
 
 				cast.CastBegin(targetData);
@@ -171,10 +184,24 @@ public class PlayerSpellcasting : ComposableScript
 			{
 				if (cast.Settings.InputType == CastInputType.HoldRelease && cast.IsCasting)
 				{
+					var isValidTarget = cast.ValidateTarget(targetData, out var errorMessage);
+					if (!isValidTarget)
+					{
+						SignalBus.SendMessage(errorMessage);
+						return;
+					}
+
 					CastRelease(cast);
 				}
 			}
 		}
+	}
+
+	public void ReleaseCurrentCastingSpell()
+	{
+		var currentCastingSpell = GetCurrentCastingSpell();
+		if (currentCastingSpell != null)
+			CastRelease(currentCastingSpell);
 	}
 
 	private static void CastRelease(BaseCast cast)

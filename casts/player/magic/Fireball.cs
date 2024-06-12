@@ -15,7 +15,7 @@ public partial class Fireball : BaseCast
 			TargetType = CastTargetType.HostileUnit,
 			CastTimings = BeatTime.Whole | BeatTime.Half,
 			HoldTime = 2,
-			RecastTime = 0,
+			RecastTime = 2,
 		};
 		Settings.ResourceCost[ObjectResourceType.Mana] = 10;
 	}

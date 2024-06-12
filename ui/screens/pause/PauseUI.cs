@@ -4,9 +4,10 @@ namespace Project;
 
 public partial class PauseUI : Control
 {
-	private Button ExitButton;
 	private HSlider VolumeSlider;
 	private HSlider CameraHeightSlider;
+	private Button ChillModeButton;
+	private Button ExitButton;
 
 	public override void _EnterTree()
 	{
@@ -14,14 +15,17 @@ public partial class PauseUI : Control
 	}
 	public override void _Ready()
 	{
-		ExitButton = GetNode<Button>("Panel/ExitGameButton");
-		ExitButton.Pressed += OnExitButtonPressed;
-		VolumeSlider = GetNode<HSlider>("Panel/VolumeSlider");
+		VolumeSlider = GetNode<HSlider>("Panel/VBoxContainer/Volume/Slider");
 		VolumeSlider.Value = Preferences.Singleton.MainVolume * 100;
 		VolumeSlider.ValueChanged += OnVolumeChanged;
-		CameraHeightSlider = GetNode<HSlider>("Panel/CameraHeightSlider");
+		CameraHeightSlider = GetNode<HSlider>("Panel/VBoxContainer/CameraHeight/Slider");
 		CameraHeightSlider.Value = Preferences.Singleton.CameraHeight * 100;
 		CameraHeightSlider.ValueChanged += (double value) => Preferences.Singleton.CameraHeight = (float)value / 100;
+		ChillModeButton = GetNode<Button>("Panel/VBoxContainer/ChillMode/CheckButton");
+		ChillModeButton.SetPressedNoSignal(Preferences.Singleton.ChillMode);
+		ChillModeButton.Toggled += (bool value) => Preferences.Singleton.ChillMode = value;
+		ExitButton = GetNode<Button>("Panel/ExitGameButton");
+		ExitButton.Pressed += OnExitButtonPressed;
 	}
 
 	private void OnExitButtonPressed()

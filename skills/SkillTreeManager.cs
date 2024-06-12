@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 
 namespace Project;
@@ -19,6 +20,7 @@ public partial class SkillTreeManager : Node
 
 	const int BaseSkillPoints = 9;
 	public int SkillPoints;
+	public List<BaseSkill> Skills = new();
 	public List<SkillTree> SkillTrees = new();
 
 	public override void _EnterTree()
@@ -35,8 +37,9 @@ public partial class SkillTreeManager : Node
 
 			links: new()
 			{
-				Link<SkillSentinel,          SkillImmovableObject>   (1, BuffFactory.Of<BuffPlus25Health>()),
-				Link<SkillSentinel,          SkillImprovedGuardUp>   (),
+				Link<SkillSentinel,         SkillSentinelCharges>   (),
+				Link<SkillSentinel,         SkillImmovableObject>   (1, BuffFactory.Of<BuffPlus25Health>()),
+				Link<SkillSentinel,         SkillSentinelMana>      (),
 				Link<SkillImmovableObject,  SkillManaShield>        (1, BuffFactory.Of<BuffPlus25Health>()),
 				Link<SkillImmovableObject,  SkillCelestialShield>   (1, BuffFactory.Of<BuffPlus25Health>()),
 				Link<SkillImmovableObject,  SkillThorns>            (1, BuffFactory.Of<BuffPlus25Health>()),
@@ -51,7 +54,8 @@ public partial class SkillTreeManager : Node
 
 			links: new()
 			{
-
+				Link<SkillFireball, SkillSpiritwalkersGrace>(3, BuffFactory.Of<BuffPlus10Mana>()),
+				Link<SkillSpiritwalkersGrace, SkillSpiritrunnersGrace>(2, BuffFactory.Of<BuffPlus10Mana>()),
 			}
 		);
 
@@ -66,9 +70,27 @@ public partial class SkillTreeManager : Node
 			}
 		);
 
+		var utilityTree = new SkillTree
+		(
+			group: SkillGroup.Utility,
+			roots: new() { new SkillQuickDash() },
+
+			links: new()
+			{
+
+			}
+		);
+
 		SkillTrees.Add(tankTree);
 		SkillTrees.Add(magicTree);
 		SkillTrees.Add(healingTree);
+		SkillTrees.Add(utilityTree);
+
+		Skills = SkillTrees.Aggregate(new List<BaseSkill>(), (total, tree) =>
+		{
+			total.AddRange(tree.Skills);
+			return total;
+		});
 	}
 
 	public override void _Ready()
@@ -132,9 +154,8 @@ public partial class SkillTreeManager : Node
 		{
 			if (node.Skill != null)
 			{
-				node.Skill.IsLearned = true;
 				SkillPoints -= 1;
-				EmitSignal(SignalName.SkillUp, node.Skill);
+				node.Skill.Learn();
 			}
 
 			if (node.Link != null)
@@ -160,8 +181,7 @@ public partial class SkillTreeManager : Node
 
 	public void UnlearnSkillRecursively(BaseSkill skill)
 	{
-		skill.IsLearned = false;
-		EmitSignal(SignalName.SkillDown, skill);
+		skill.Unlearn();
 		foreach (var link in skill.ChildrenLinks)
 		{
 			link.PointsInvested = 0;
@@ -182,10 +202,16 @@ public partial class SkillTreeManager : Node
 		{
 			foreach (var skill in skillTree.Skills)
 			{
-				if (skill.IsLearned)
-				{
-					skillPoints -= 1;
-				}
+				if (!skill.IsLearned)
+					continue;
+
+				skillPoints -= 1;
+				if (skill.Settings.PassiveBuff == null)
+					continue;
+
+				var newBuff = skill.Settings.PassiveBuff.Create();
+				newBuff.Flags |= BaseBuff.Flag.SkillCreated;
+				affectedUnit.Buffs.Add(newBuff);
 			}
 			foreach (var link in skillTree.Links)
 			{
