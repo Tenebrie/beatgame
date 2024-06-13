@@ -9,7 +9,6 @@ public partial class PlayerTargeting : ComposableScript
 
 	public BaseUnit hoveredUnit;
 	public BaseUnit targetedUnit;
-	Timer repeatCastTimer;
 
 	public PlayerTargeting(BaseUnit parent) : base(parent)
 	{
@@ -91,63 +90,5 @@ public partial class PlayerTargeting : ComposableScript
 				enemyUnits[^1].Targetable.MakeTargeted();
 			}
 		}
-
-		// TODO: Refactor everything below this line
-		if (@event.IsActionPressed("ShiftCast1", exactMatch: true))
-		{
-
-		}
-
-		// if (@event.IsActionPressed("Cast2", exactMatch: true))
-		// {
-		// 	if (repeatCastTimer != null)
-		// 	{
-		// 		return;
-		// 	}
-		// 	repeatCastTimer = new Timer();
-		// 	Parent.AddChild(repeatCastTimer);
-		// 	repeatCastTimer.Timeout += OnRepeatCastTimer;
-		// 	repeatCastTimer.WaitTime = 0.02;
-		// 	repeatCastTimer.Start();
-		// }
-		// if (@event.IsActionReleased("Cast2", exactMatch: true))
-		// {
-		// 	if (repeatCastTimer == null)
-		// 	{
-		// 		return;
-		// 	}
-		// 	repeatCastTimer.Stop();
-		// 	repeatCastTimer.QueueFree();
-		// 	repeatCastTimer = null;
-		// }
-
-		if (targetedUnit == null)
-		{
-			return;
-		}
-
-		// TODO: Better casting please
-		// if (@event.IsActionPressed("Cast1", exactMatch: true))
-		// {
-		// 	var scene = GD.Load<PackedScene>("res://effects/FireballProjectile/FireballProjectile.tscn");
-		// 	var fireball = scene.Instantiate() as Projectile;
-		// 	GetTree().Root.AddChild(fireball);
-		// 	fireball.GlobalPosition = GlobalPosition + new Vector3(0, 0.5f, 0);
-		// 	fireball.TargetUnit = targetedUnit;
-		// }
 	}
-
-	private void OnRepeatCastTimer()
-	{
-		var scene = GD.Load<PackedScene>("res://effects/Flamethrower/FlamethrowerProjectile.tscn");
-		var fireball = scene.Instantiate() as TrueProjectile;
-		GetTree().Root.AddChild(fireball);
-		fireball.GlobalPosition = GlobalPosition + new Vector3(0, 0.5f, 0);
-		fireball.GlobalTransform = GlobalTransform;
-		fireball.Position = new Vector3(Position.X, Position.Y + 0.5f, Position.Z);
-		fireball.Alliance = UnitAlliance.Player;
-	}
-
-	// (this curly brace is fine)
-	/*{*/
 }

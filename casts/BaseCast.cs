@@ -9,6 +9,7 @@ public partial class BaseCast : Node
 	{
 		public string FriendlyName = "Unnamed Spell";
 		public string Description = "No description";
+		public string LoreDescription = null;
 		public string IconPath = "res://assets/ui/icon-skill-active-placeholder.png";
 		public float HoldTime = 1; // beat
 		public CastInputType InputType = CastInputType.Instant;
@@ -21,6 +22,7 @@ public partial class BaseCast : Node
 		}
 		public BeatTime ChannelingTickTimings = 0;
 		public Dictionary<ObjectResourceType, float> ResourceCost = ObjectResource.MakeDictionary(0f);
+		public Dictionary<ObjectResourceType, float> ResourceCostPerBeat = ObjectResource.MakeDictionary(0f);
 		public int Charges = 1;
 		public float RecastTime = .1f;
 		public bool ReversedCastBar = false;
@@ -90,11 +92,38 @@ public partial class BaseCast : Node
 		if ((time & Settings.ChannelingTickTimings) > 0 && (Settings.TickWhilePreparing || Music.Singleton.BeatIndex > CastStartedAt + Settings.PrepareTime))
 			OnCastTicked(CastTargetData, time);
 
+		if (!IsCasting)
+			return;
+
 		if (Settings.PrepareTime > 0 && IsPreparing && beatIndex == CastStartedAt + Settings.PrepareTime)
 			CastPrepare();
 
+		if (!IsCasting)
+			return;
+
 		if (Settings.InputType == CastInputType.AutoRelease && beatIndex == CastStartedAt + Settings.PrepareTime + Settings.HoldTime)
-			CastPerform();
+			CastComplete();
+
+		if (!IsCasting)
+			return;
+
+		// Resource cost per beat
+		if (Settings.ResourceCostPerBeat[ObjectResourceType.Health] > 0)
+		{
+			var damage = Settings.ResourceCostPerBeat[ObjectResourceType.Health] * (float)Music.MinBeatSize;
+			if (Parent.Health.Current > damage)
+				Parent.Health.Damage(damage, this);
+			else
+				CastFail();
+		}
+		if (Settings.ResourceCostPerBeat[ObjectResourceType.Mana] > 0)
+		{
+			var damage = Settings.ResourceCostPerBeat[ObjectResourceType.Mana] * (float)Music.MinBeatSize;
+			if (Parent.Mana.Current > 0)
+				Parent.Mana.Damage(damage, this);
+			else
+				CastFail();
+		}
 	}
 
 	public bool ValidateTarget(CastTargetData target, out string errorMessage)
@@ -124,7 +153,7 @@ public partial class BaseCast : Node
 			return false;
 		}
 
-		if (Parent.Health.Current < Settings.ResourceCost[ObjectResourceType.Health])
+		if (Parent.Health.Current <= Settings.ResourceCost[ObjectResourceType.Health])
 		{
 			errorMessage = "Not enough health";
 			return false;
@@ -170,7 +199,7 @@ public partial class BaseCast : Node
 		SignalBus.Singleton.EmitSignal(SignalBus.SignalName.CastStarted, this);
 		OnCastStarted(targetData);
 		if (Settings.InputType == CastInputType.Instant || (Settings.InputType == CastInputType.AutoRelease && Settings.HoldTime == 0))
-			CastPerform();
+			CastComplete();
 	}
 
 	public void CastPrepare()
@@ -179,11 +208,11 @@ public partial class BaseCast : Node
 		OnPrepCompleted(CastTargetData);
 	}
 
-	public void CastPerform()
+	public void CastComplete()
 	{
 		Flags.CastSuccessful = true;
 		SignalBus.Singleton.EmitSignal(SignalBus.SignalName.CastPerformed, this);
-		CastPerformInternal();
+		CastCompleteInternal();
 	}
 
 	public void CastFail()
@@ -192,20 +221,24 @@ public partial class BaseCast : Node
 		Flags.CastSuccessful = false;
 		SignalBus.Singleton.EmitSignal(SignalBus.SignalName.CastFailed, this);
 
+		OnCastFailed(CastTargetData);
+		OnCastCompletedOrFailed(CastTargetData);
 		if (Settings.InputType == CastInputType.HoldRelease && Settings.CastOnFailedRelease)
-			CastPerformInternal();
+			CastCompleteInternal();
 	}
 
-	private void CastPerformInternal()
+	private void CastCompleteInternal()
 	{
 		IsCasting = false;
 		StartCooldown();
 
 		OnCastCompleted(CastTargetData);
+		OnCastCompletedOrFailed(CastTargetData);
 	}
 
 	public void StartCooldown()
 	{
+		EnsureTimerExists();
 		if (Settings.RecastTime > 0)
 			RecastTimerHandle.Start(Settings.RecastTime * Music.Singleton.SecondsPerBeat);
 	}
@@ -214,4 +247,6 @@ public partial class BaseCast : Node
 	protected virtual void OnCastTicked(CastTargetData _, BeatTime time) { }
 	protected virtual void OnPrepCompleted(CastTargetData _) { }
 	protected virtual void OnCastCompleted(CastTargetData _) { }
+	protected virtual void OnCastFailed(CastTargetData _) { }
+	protected virtual void OnCastCompletedOrFailed(CastTargetData _) { }
 }

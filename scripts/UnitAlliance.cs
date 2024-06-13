@@ -6,6 +6,13 @@ public enum UnitAlliance
 	Hostile,
 }
 
+public enum UnitHostility
+{
+	SameFaction,
+	Neutral,
+	Hostile,
+}
+
 static class UnitAllianceExtensions
 {
 	public static bool HostileTo(this UnitAlliance alliance, UnitAlliance another)

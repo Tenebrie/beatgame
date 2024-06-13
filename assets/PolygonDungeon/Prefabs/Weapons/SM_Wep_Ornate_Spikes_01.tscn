@@ -1,11 +1,19 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=4 format=3 uid="uid://bpgkplxdl7jj0"]
 
 [ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Wep_Ornate_Spikes_01_mesh/SM_Wep_Ornate_Spikes_01_4300000.mesh" id="1_52qs5"]
-[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_tyws8"]
+[ext_resource type="Material" uid="uid://egwfatbxefmf" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_tyws8"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_pm3ff"]
+points = PackedVector3Array(-5.59085e-08, 0.00566486, 0.00255295, 0.000247368, 0.00566486, 0.00136521, -5.59085e-08, 0.00716125, 0.00149318, -0.000247424, 0.00566486, 0.00136521, -0.000228752, -0.00131565, -4.99887e-07, -0.000114432, -0.00131565, 0.000197958, -3.82931e-05, -0.00180528, 6.59861e-05, 3.82372e-05, -0.00180528, 6.59861e-05, 0.00011432, -0.00131565, 0.000197958, 0.000228697, -0.00131565, -4.99887e-07, 0.000247368, 0.00703074, -4.99887e-07, 0.000197727, 0.00656858, 0.000900807, 0.000281636, 0.00347965, -4.99887e-07, 0.000285493, 0.00451387, -4.99887e-07, 0.000285493, 0.00474348, -4.99887e-07, -5.59085e-08, 0.00821902, -4.99887e-07, -0.000247424, 0.00703074, -4.99887e-07, -0.000197782, 0.00656858, 0.000900807, -0.000285549, 0.00474348, -4.99887e-07, -0.000285549, 0.00451387, -4.99887e-07, -0.000281692, 0.00344629, -4.99887e-07, -0.000114432, -0.00131565, -0.000198457, -7.65862e-05, -0.00180528, -4.99887e-07, -0.000247424, 0.00566486, -0.00136571, -5.59085e-08, 0.00566486, -0.00255345, 7.65303e-05, -0.00180528, -4.99887e-07, 0.00011432, -0.00131565, -0.000198457, 0.000247368, 0.00566486, -0.00136571, 0.000197727, 0.00656564, -0.000904306, -5.59085e-08, 0.0071583, -0.00149718, -0.000197782, 0.00656564, -0.000904306, -3.82931e-05, -0.00180528, -6.64857e-05, 3.82372e-05, -0.00180528, -6.64857e-05)
 
 [node name="SM_Wep_Ornate_Spikes_01" type="Node3D"]
 metadata/ufile_ids = ["c022f1fb1d1c9ed43968cee781855787:448048", "c022f1fb1d1c9ed43968cee781855787:139086", "c022f1fb1d1c9ed43968cee781855787:3316716", "c022f1fb1d1c9ed43968cee781855787:2370496", "c022f1fb1d1c9ed43968cee781855787:64117120027482174"]
 
 [node name="_mesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
 mesh = ExtResource("1_52qs5")
 surface_material_override/0 = ExtResource("2_tyws8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_pm3ff")

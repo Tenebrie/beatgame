@@ -138,7 +138,7 @@ public partial class SkillButton : Control
 	{
 		if (!AssociatedSkill.IsLearned)
 			SkillTreeManager.Singleton.LearnSkill(AssociatedSkill);
-		else
+		else if (AssociatedSkill.Settings.ActiveCast != null)
 		{
 			var msg = Lib.Scene(Lib.UI.SkillBindingNotification).Instantiate<Control>();
 			msg.Position = GetViewport().GetMousePosition() + new Vector2(0, -50);

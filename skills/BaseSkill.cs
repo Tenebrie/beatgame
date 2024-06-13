@@ -80,11 +80,15 @@ public partial class BaseSkill : Node
 				// Resource cost
 				if (castSettings.ResourceCost[ObjectResourceType.Mana] > 0)
 					builder.Append($"\n[color={Colors.Mana}]Mana cost:[/color] ").Append(castSettings.ResourceCost[ObjectResourceType.Mana]);
+
+				// Lore
+				if (castSettings.LoreDescription != null)
+					builder.Append("\n\n").Append(Colors.Lore(castSettings.LoreDescription));
 			}
-			if (Settings.ActiveCast != null && Settings.PassiveBuff != null)
-				builder.Append("\n\n");
 			if (Settings.PassiveBuff != null)
 			{
+				if (builder.ToString().Length > 0)
+					builder.Append("\n\n");
 				builder.Append($"[color={Colors.Passive}]Passive:[/color] ").Append(Settings.PassiveBuff.Settings.Description);
 			}
 			return builder.ToString();

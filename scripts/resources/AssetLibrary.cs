@@ -3,6 +3,7 @@ namespace Project;
 public class UnitLibrary
 {
 	public string PlayerCharacter = "res://units/player/PlayerCharacter/PlayerCharacter.tscn";
+	public string StationarySummon = "res://units/player/StationarySummon/UnitStationarySummon.tscn";
 }
 
 public class TokenLibrary
@@ -11,18 +12,19 @@ public class TokenLibrary
 	public string AnimatedTrident = "res://casts/bosses/Tridents/tokens/AnimatedTrident.tscn";
 	public string LightningOrbsPylon = "res://casts/bosses/LightningOrbs/tokens/LightningOrbsPylon.tscn";
 	public string PowerUpLightningOrb = "res://casts/bosses/LightningOrbs/tokens/PowerUpLightningOrb.tscn";
+	public string EffectFlamethrowerWithHitbox = "uid://drx1hwgr4pt6e";
 }
 
 public class EffectLibrary
 {
 	public string TargetingCircle = "res://effects/TargetingCircle/TargetingCircle.tscn";
-	public string GroundAreaRect = "res://effects/GroundAreaRect/GroundAreaRect.tscn";
-	public string GroundAreaCircle = "res://effects/GroundAreaCircle/GroundAreaCircle.tscn";
-	public string FireballProjectile = "res://effects/FireballProjectile/FireballProjectile.tscn";
-	public string FireballProjectileImpact = "res://effects/FireballProjectile/FireballProjectileImpact.tscn";
-	public string HealImpact = "res://effects/HealImpact/HealImpact.tscn";
-	public string EnergyOrbPickupImpact = "res://effects/EnergyOrbProjectile/EnergyOrbProjectileImpact.tscn";
-	public string AerielDarknessRelease = "res://effects/AerielDarknessRelease/AerielDarknessRelease.tscn";
+	public string GroundAreaRect = "uid://h3ilmtoftd77";
+	public string GroundAreaCircle = "uid://i7uo3ra8dvfu";
+	public string FireballProjectile = "uid://dcip2amav54xc";
+	public string FireballProjectileImpact = "uid://dwcfa4po3yivl";
+	public string HealImpact = "uid://dtpt851lanhr3";
+	public string EnergyOrbPickupImpact = "uid://bsydded5w4p61";
+	public string AerielDarknessRelease = "uid://br0yb56fj0miy";
 	public string LightningZap = "res://effects/LightningZap/LightningZapEffect.tscn";
 }
 

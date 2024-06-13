@@ -8,4 +8,5 @@ public enum SkillGroup
 	MagicalDamage,
 	Summoning,
 	Utility,
+	Secret,
 }

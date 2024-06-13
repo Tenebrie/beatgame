@@ -7,6 +7,7 @@ public enum BeatTime : ulong
 	Quarter = 4,
 	Eighth = 8,
 	Sixteenth = 16,
+	EveryBeat = 7,
 	All = 1023,
 	Free = 1024,
 }

@@ -6,20 +6,20 @@ namespace Project;
 
 public partial class ObjectCastLibrary : ComposableScript
 {
-	public List<BaseCast> Abilities = new();
+	public List<BaseCast> Casts = new();
 
 	public ObjectCastLibrary(BaseUnit parent) : base(parent) { }
 
 	public CastT Register<CastT>(CastT cast) where CastT : BaseCast
 	{
-		Abilities.Add(cast);
+		Casts.Add(cast);
 		Parent.AddChild(cast);
 		return cast;
 	}
 
 	public CastT Unregister<CastT>(CastT cast) where CastT : BaseCast
 	{
-		Abilities.Remove(cast);
+		Casts.Remove(cast);
 		cast.QueueFree();
 		return cast;
 	}

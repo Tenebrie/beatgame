@@ -7,5 +7,6 @@
 metadata/ufile_ids = ["bcaaef6ff4b03be43871886bf6d918eb:494102", "bcaaef6ff4b03be43871886bf6d918eb:144458", "bcaaef6ff4b03be43871886bf6d918eb:3353052", "bcaaef6ff4b03be43871886bf6d918eb:2365474", "bcaaef6ff4b03be43871886bf6d918eb:64556955706186764"]
 
 [node name="_mesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
 mesh = ExtResource("1_hw5fm")
 surface_material_override/0 = ExtResource("2_lg6nl")

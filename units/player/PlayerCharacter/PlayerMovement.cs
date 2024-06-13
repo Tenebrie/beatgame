@@ -200,7 +200,7 @@ public partial class PlayerMovement : ComposableScript
 		else if (softCameraPreMoving)
 		{
 			var mouseDelta = mousePos - softCameraMoveStart;
-			if (mouseDelta.Length() > 5)
+			if (mouseDelta.Length() > 10)
 			{
 				softCameraPreMoving = false;
 				softCameraMoving = true;

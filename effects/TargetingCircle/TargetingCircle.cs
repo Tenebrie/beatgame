@@ -25,7 +25,7 @@ public partial class TargetingCircle : Node3D
 	public void SetRadius(float radius)
 	{
 		decal = GetNode<CircleDecal>("CircleDecal");
-		decal.SetRadius(radius);
+		decal.Radius = radius;
 	}
 	public void SetAlliance(UnitAlliance alliance)
 	{

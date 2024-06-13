@@ -1,11 +1,12 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=3 format=3 uid="uid://hkuob1l02ip5"]
 
 [ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Wep_Straightsword_01_mesh/SM_Wep_Straightsword_01_4300000.mesh" id="1_wh5j0"]
-[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_i1ad6"]
+[ext_resource type="Material" uid="uid://egwfatbxefmf" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_i1ad6"]
 
 [node name="SM_Wep_Straightsword_01" type="Node3D"]
 metadata/ufile_ids = ["92cd70a481699ac4b93380dc1184f864:420254", "92cd70a481699ac4b93380dc1184f864:148790", "92cd70a481699ac4b93380dc1184f864:3377730", "92cd70a481699ac4b93380dc1184f864:2383060", "92cd70a481699ac4b93380dc1184f864:64158722655683774"]
 
 [node name="_mesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
 mesh = ExtResource("1_wh5j0")
 surface_material_override/0 = ExtResource("2_i1ad6")

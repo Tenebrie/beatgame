@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://45cw2fy2lyeq"]
 
 [ext_resource type="Script" path="res://casts/bosses/LightningOrbs/tokens/PowerUpLightningOrb.cs" id="1_hylq5"]
-[ext_resource type="PackedScene" uid="uid://dbf4kocl48bm8" path="res://effects/EnergyOrbProjectile/EnergyOrbProjectile.tscn" id="1_m68en"]
-[ext_resource type="PackedScene" uid="uid://i7uo3ra8dvfu" path="res://effects/GroundAreaCircle/GroundAreaCircle.tscn" id="2_gadha"]
+[ext_resource type="PackedScene" uid="uid://dbf4kocl48bm8" path="res://casts/bosses/LightningOrbs/tokens/EnergyOrbPickup.tscn" id="1_m68en"]
+[ext_resource type="PackedScene" uid="uid://i7uo3ra8dvfu" path="res://effects/Telegraphs/GroundAreaCircle/GroundAreaCircle.tscn" id="2_gadha"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xyssa"]
 

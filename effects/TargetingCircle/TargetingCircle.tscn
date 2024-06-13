@@ -1,9 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://dbfqfhttv1u2a"]
 
 [ext_resource type="Script" path="res://effects/TargetingCircle/TargetingCircle.cs" id="1_r84vi"]
-[ext_resource type="PackedScene" uid="uid://d0518ise2jvew" path="res://effects/GroundAreaCircle/CircleDecal.tscn" id="2_kd5rw"]
+[ext_resource type="PackedScene" uid="uid://d0518ise2jvew" path="res://effects/Telegraphs/GroundAreaCircle/CircleDecal.tscn" id="2_kd5rw"]
 
 [node name="Node" type="Node3D"]
 script = ExtResource("1_r84vi")
 
 [node name="CircleDecal" parent="." instance=ExtResource("2_kd5rw")]
+instance_shader_parameters/FADE = 0.0

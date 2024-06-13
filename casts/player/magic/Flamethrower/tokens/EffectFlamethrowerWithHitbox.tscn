@@ -1,0 +1,101 @@
+[gd_scene load_steps=17 format=3 uid="uid://drx1hwgr4pt6e"]
+
+[ext_resource type="PackedScene" uid="uid://c0rxfm0hgvaeq" path="res://casts/player/magic/Flamethrower/tokens/EffectFlamethrower.tscn" id="1_6hkb2"]
+[ext_resource type="Script" path="res://casts/player/magic/Flamethrower/tokens/EffectFlamethrowerWithHitbox.cs" id="1_yn7as"]
+[ext_resource type="PackedScene" uid="uid://d0518ise2jvew" path="res://effects/Telegraphs/GroundAreaCircle/CircleDecal.tscn" id="2_b2ko5"]
+[ext_resource type="Shader" path="res://effects/Telegraphs/GroundAreaCircle/CircleDecal.gdshader" id="4_kkqnw"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nrq6q"]
+render_priority = 0
+shader = ExtResource("4_kkqnw")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_2fxm8"]
+resource_local_to_scene = true
+material = SubResource("ShaderMaterial_nrq6q")
+size = Vector2(10, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ortry"]
+size = Vector3(2, 0.95, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cf3w3"]
+size = Vector3(1.8, 0.9, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_otxjg"]
+size = Vector3(1.6, 0.85, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hdjum"]
+size = Vector3(1.4, 0.8, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8kel2"]
+size = Vector3(1.2, 0.75, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ajh8m"]
+size = Vector3(1, 0.7, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hsoom"]
+size = Vector3(0.8, 0.65, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_43aj5"]
+size = Vector3(0.6, 0.6, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7d7cg"]
+size = Vector3(0.4, 0.55, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qccos"]
+size = Vector3(0.2, 0.5, 0.5)
+
+[node name="EffectFlamethrowerWithHitbox" type="Area3D"]
+script = ExtResource("1_yn7as")
+
+[node name="EffectFlamethrower" parent="." instance=ExtResource("1_6hkb2")]
+
+[node name="CircleDecal" parent="." instance=ExtResource("2_b2ko5")]
+instance_shader_parameters/FADE = 0.0
+instance_shader_parameters/PROGRESS = 1.0
+instance_shader_parameters/RADIUS = 5.0
+instance_shader_parameters/SECTOR = 0.203
+mesh = SubResource("PlaneMesh_2fxm8")
+skeleton = NodePath("")
+Persistent = true
+Radius = 5.0
+ConeAngle = 0.203
+
+[node name="CollisionShape3D1" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.71053)
+shape = SubResource("BoxShape3D_ortry")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.20893)
+shape = SubResource("BoxShape3D_cf3w3")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.71108)
+shape = SubResource("BoxShape3D_otxjg")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.20879)
+shape = SubResource("BoxShape3D_hdjum")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.70806)
+shape = SubResource("BoxShape3D_8kel2")
+
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.20511)
+shape = SubResource("BoxShape3D_ajh8m")
+
+[node name="CollisionShape3D7" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.7021)
+shape = SubResource("BoxShape3D_hsoom")
+
+[node name="CollisionShape3D8" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.20112)
+shape = SubResource("BoxShape3D_43aj5")
+
+[node name="CollisionShape3D9" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.701904)
+shape = SubResource("BoxShape3D_7d7cg")
+
+[node name="CollisionShape3D10" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.203393)
+shape = SubResource("BoxShape3D_qccos")

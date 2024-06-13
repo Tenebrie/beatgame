@@ -165,11 +165,4 @@ public class SkillTree
 			} while (hasCompacted && iterations < 20);
 		}
 	}
-
-
-	class TreePathNode
-	{
-		public BaseSkill Skill;
-		public SkillConnection Link;
-	}
 }

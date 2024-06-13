@@ -38,4 +38,9 @@ public static class Colors
 	{
 		return $"[color={color}]{text}[/color]";
 	}
+
+	public static string Lore(object text)
+	{
+		return Tag(text, "#595959");
+	}
 }

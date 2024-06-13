@@ -11,6 +11,7 @@ public class BuffUnitStatsVisitor
 	public float MoveSpeedPercentage = 1;
 	public float MaximumHealth = 0;
 	public float MaximumMana = 0;
+	public float SummonHealth = 0;
 }
 
 public class BuffIncomingDamageVisitor

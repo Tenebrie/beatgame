@@ -17,6 +17,8 @@ public partial class BossCastConsumingWinds : BaseCast
 		Settings = new()
 		{
 			FriendlyName = "Consuming Winds",
+			Description = $"Pull enemies closer to finish them off with a powerful blast.",
+			IconPath = "res://assets/icons/SpellBook06_97.png",
 			TargetType = CastTargetType.None,
 			InputType = CastInputType.AutoRelease,
 			HoldTime = 16,
@@ -41,7 +43,7 @@ public partial class BossCastConsumingWinds : BaseCast
 		var circle = this.CreateGroundCircularArea(Parent.GetGroundedPosition());
 		circle.Radius = AreaRadius;
 		circle.GrowTime = Settings.HoldTime;
-		circle.Alliance = UnitAlliance.Hostile;
+		circle.Alliance = Parent.Alliance;
 		circle.TargetValidator = (target) => target.HostileTo(Parent);
 		circle.OnFinishedPerTargetCallback = (BaseUnit target) =>
 		{

@@ -1,11 +1,12 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=3 format=3 uid="uid://kedprqdvd7q4"]
 
 [ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Wep_Ornate_Spikes_Long_01_mesh/SM_Wep_Ornate_Spikes_Long_01_4300000.mesh" id="1_057wh"]
-[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_dodwp"]
+[ext_resource type="Material" uid="uid://egwfatbxefmf" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_dodwp"]
 
 [node name="SM_Wep_Ornate_Spikes_Long_01" type="Node3D"]
 metadata/ufile_ids = ["e424689f401e2c3489f80be092782c5e:455364", "e424689f401e2c3489f80be092782c5e:162090", "e424689f401e2c3489f80be092782c5e:3384152", "e424689f401e2c3489f80be092782c5e:2370694", "e424689f401e2c3489f80be092782c5e:64073430614599052"]
 
 [node name="_mesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
 mesh = ExtResource("1_057wh")
 surface_material_override/0 = ExtResource("2_dodwp")

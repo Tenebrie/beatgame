@@ -214,7 +214,7 @@ public class PlayerSpellcasting : ComposableScript
 	private static void CastRelease(BaseCast cast)
 	{
 		if (cast.ValidateReleaseTiming())
-			cast.CastPerform();
+			cast.CastComplete();
 		else
 			cast.CastFail();
 	}

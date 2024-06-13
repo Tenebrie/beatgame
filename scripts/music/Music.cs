@@ -19,7 +19,7 @@ public partial class Music : Node
 	private MusicLibrary musicLibrary = new();
 
 	public readonly long SongDelay = 2000; // ms
-	public const double MinBeatSize = 0.25;
+	public const float MinBeatSize = 0.25f;
 	public double StartingFromBeat = 0;
 
 	public float BeatsPerMinute
@@ -187,7 +187,7 @@ public partial class Music : Node
 
 		var bosses = BaseUnit.AllUnits.Where(unit => unit is BossAeriel).Cast<BossAeriel>().ToList();
 		if (bosses.Count > 0)
-			AddChild(new TestBossTimeline(bosses[0]));
+			AddChild(new BossAerielTimeline(bosses[0]));
 
 		var startTime = (float)StartingFromBeat * SecondsPerBeat;
 		CurrentTrack.PlayAfterDelay((float)SongDelay / 1000, startTime);

@@ -57,8 +57,6 @@ offset_left = 1951.0
 offset_top = 366.0
 offset_right = 1951.0
 offset_bottom = 366.0
-grow_horizontal = 1
-grow_vertical = 1
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 custom_minimum_size = Vector2(1800, 830)
@@ -202,6 +200,28 @@ layout_mode = 2
 SkillGroup = 5
 
 [node name="Button" type="Button" parent="ScrollContainer/HBoxContainer/MarginContainer6/UtilityTree"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SecretTreeContainer" type="MarginContainer" parent="ScrollContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SecretTree" parent="ScrollContainer/HBoxContainer/SecretTreeContainer" instance=ExtResource("2_6cki4")]
+layout_mode = 2
+SkillGroup = 6
+
+[node name="Button" type="Button" parent="ScrollContainer/HBoxContainer/SecretTreeContainer/SecretTree"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

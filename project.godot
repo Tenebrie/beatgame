@@ -53,6 +53,7 @@ project/assembly_name="BeatGame"
 
 folder_colors={
 "res://assets/": "green",
+"res://bosses/": "red",
 "res://buffs/": "gray",
 "res://buffs/bosses/": "orange",
 "res://buffs/player/": "blue",

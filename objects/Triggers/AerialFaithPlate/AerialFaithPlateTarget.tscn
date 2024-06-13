@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://b270gmemxyd8l"]
 
 [ext_resource type="Script" path="res://objects/Triggers/AerialFaithPlate/AerialFaithPlateTarget.cs" id="1_euh41"]
-[ext_resource type="PackedScene" uid="uid://i7uo3ra8dvfu" path="res://effects/GroundAreaCircle/GroundAreaCircle.tscn" id="2_kyhk7"]
+[ext_resource type="PackedScene" uid="uid://i7uo3ra8dvfu" path="res://effects/Telegraphs/GroundAreaCircle/GroundAreaCircle.tscn" id="2_kyhk7"]
 
 [node name="AerialFaithPlateTarget" type="Node3D"]
 script = ExtResource("1_euh41")

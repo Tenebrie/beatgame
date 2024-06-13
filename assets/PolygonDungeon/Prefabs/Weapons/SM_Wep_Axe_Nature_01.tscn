@@ -1,11 +1,12 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=3 format=3 uid="uid://jaq0xrsb78tn"]
 
 [ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Wep_Axe_Nature_01_mesh/SM_Wep_Axe_Nature_01_4300000.mesh" id="1_knxuv"]
-[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_8sjqj"]
+[ext_resource type="Material" uid="uid://egwfatbxefmf" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_8sjqj"]
 
 [node name="SM_Wep_Axe_Nature_01" type="Node3D"]
 metadata/ufile_ids = ["984357422a249c34e96a5e3550b4420b:456244", "984357422a249c34e96a5e3550b4420b:153132", "984357422a249c34e96a5e3550b4420b:3351282", "984357422a249c34e96a5e3550b4420b:2335884", "984357422a249c34e96a5e3550b4420b:64551505280003938"]
 
 [node name="_mesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
 mesh = ExtResource("1_knxuv")
 surface_material_override/0 = ExtResource("2_8sjqj")

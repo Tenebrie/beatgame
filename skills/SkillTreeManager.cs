@@ -55,6 +55,7 @@ public partial class SkillTreeManager : Node
 			links: new()
 			{
 				Link<SkillFireball, SkillSpiritwalkersGrace>(3, BuffFactory.Of<BuffPlus10Mana>()),
+				Link<SkillFireball, SkillFlamethrower>(2, BuffFactory.Of<BuffPlus10Mana>()),
 				Link<SkillSpiritwalkersGrace, SkillSpiritrunnersGrace>(2, BuffFactory.Of<BuffPlus10Mana>()),
 			}
 		);
@@ -70,6 +71,19 @@ public partial class SkillTreeManager : Node
 			}
 		);
 
+		var summoningTree = new SkillTree
+		(
+			group: SkillGroup.Summoning,
+			roots: new() { new SkillSummonStationary() },
+
+			links: new()
+			{
+				Link<SkillSummonStationary, SkillSummonFireball>(),
+				Link<SkillSummonStationary, SkillRescue>(1, BuffFactory.Of<BuffPlus10SummonHealth>()),
+				Link<SkillSummonStationary, SkillFriendsWithShields>(3, BuffFactory.Of<BuffPlus10SummonHealth>()),
+			}
+		);
+
 		var utilityTree = new SkillTree
 		(
 			group: SkillGroup.Utility,
@@ -81,10 +95,24 @@ public partial class SkillTreeManager : Node
 			}
 		);
 
+		var secretTree = new SkillTree(
+			group: SkillGroup.Secret,
+			roots: new() { new SecretSkillUnlimitedPower0() },
+
+			links: new()
+			{
+				Link<SecretSkillUnlimitedPower0, SecretSkillUnlimitedPower1>(),
+				Link<SecretSkillUnlimitedPower1, SecretSkillUnlimitedPower2>(),
+				Link<SecretSkillUnlimitedPower2, SecretSkillUnlimitedPower3>(),
+			}
+		);
+
 		SkillTrees.Add(tankTree);
 		SkillTrees.Add(magicTree);
 		SkillTrees.Add(healingTree);
+		SkillTrees.Add(summoningTree);
 		SkillTrees.Add(utilityTree);
+		SkillTrees.Add(secretTree);
 
 		Skills = SkillTrees.Aggregate(new List<BaseSkill>(), (total, tree) =>
 		{
