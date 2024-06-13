@@ -1,12 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://bywhfpl71rth1"]
+[gd_scene load_steps=2 format=3 uid="uid://bywhfpl71rth1"]
 
-[ext_resource type="AudioStream" uid="uid://78p8t6kh7tgl" path="res://assets/music/70bpm-intermission.ogg" id="1_rgur4"]
-[ext_resource type="AudioStream" uid="uid://b4g07hj30jpc1" path="res://assets/music/120bpm-tidehawk.ogg" id="2_oaewr"]
+[ext_resource type="PackedScene" uid="uid://k3tq7jb87g5b" path="res://objects/Triggers/PlayerSpawner/PlayerSpawner.tscn" id="1_yj5or"]
 
 [node name="DummyScene" type="Node3D"]
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("1_rgur4")
-
-[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_oaewr")
+[node name="PlayerSpawner" parent="." instance=ExtResource("1_yj5or")]
