@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://dd8hi213iqvva"]
+[gd_scene load_steps=7 format=3 uid="uid://dd8hi213iqvva"]
 
 [ext_resource type="Script" path="res://units/enemy/DummyEnemy/DummyEnemy.cs" id="1_hrpc5"]
 [ext_resource type="Material" uid="uid://hrprhmwst7jk" path="res://assets/materials/HoverableUnitMaterial.tres" id="2_eooxv"]
+[ext_resource type="PackedScene" uid="uid://cqu5y0rbgi8pp" path="res://units/common/UnitCastAimPosition.tscn" id="3_e02vm"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gw003"]
 next_pass = ExtResource("2_eooxv")
@@ -32,3 +33,7 @@ mesh = SubResource("BoxMesh_e37df")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00424194, 0.257706, -0.000579834)
 shape = SubResource("BoxShape3D_28ffj")
+
+[node name="UnitCastAimPosition" parent="." instance=ExtResource("3_e02vm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45365, 0)
+visible = false

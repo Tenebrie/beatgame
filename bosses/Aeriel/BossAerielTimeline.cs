@@ -9,7 +9,7 @@ public partial class BossAerielTimeline : BaseTimeline<BossAeriel>
 {
 	public BossAerielTimeline(BossAeriel parent) : base(parent)
 	{
-		GotoAbleton(1);
+		GotoAbleton(38);
 
 		Mark("Debug");
 
@@ -105,14 +105,14 @@ public partial class BossAerielTimeline : BaseTimeline<BossAeriel>
 		GotoAbleton(69);
 		Cast(parent.MiniBuster);
 
-		GotoAbleton(71);
-		Cast(parent.MiniBuster);
+		// GotoAbleton(71);
+		// Cast(parent.MiniBuster);
 
 		GotoAbleton(73);
 		Cast(parent.MiniBuster);
 
-		GotoAbleton(75);
-		Cast(parent.MiniBuster);
+		// GotoAbleton(75);
+		// Cast(parent.MiniBuster);
 
 		GotoAbleton(77);
 		Cast(parent.MiniBuster);

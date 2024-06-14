@@ -61,7 +61,7 @@ public partial class BossCastDeepGuardians : BaseCast
 
 	private void SpawnGuardian()
 	{
-		var guardian = Lib.Scene(Lib.Token.DeepGuardian).Instantiate<DeepGuardian>();
+		var guardian = Lib.LoadScene(Lib.Token.DeepGuardian).Instantiate<DeepGuardian>();
 		var effectiveIndex = (GuardianCount - 1.5f) * (Mirrored ? -1 : 1);
 		guardian.Position = this.GetArenaEdgePosition(new Vector3(0.5f * effectiveIndex, 0, 0), Orientation);
 		GetTree().CurrentScene.AddChild(guardian);

@@ -16,7 +16,7 @@ public partial class SummonCastZap : BaseCast
 
 	void SpawnZap(CastTargetData target)
 	{
-		var zap = Lib.Scene(Lib.Effect.LightningZap).Instantiate<LightningZapEffect>();
+		var zap = Lib.LoadScene(Lib.Effect.LightningZap).Instantiate<LightningZapEffect>();
 		zap.Position = Parent.GlobalCastAimPosition;
 		GetTree().CurrentScene.AddChild(zap);
 		zap.SetTarget(target.HostileUnit.GlobalCastAimPosition);

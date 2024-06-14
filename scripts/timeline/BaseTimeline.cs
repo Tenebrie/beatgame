@@ -141,7 +141,6 @@ public partial class BaseTimeline<ParentT> : Node where ParentT : BaseUnit
 	public void GotoAbleton(double abletonIndex)
 	{
 		string str = abletonIndex.ToString("0.0", CultureInfo.InvariantCulture);
-		GD.Print(str);
 		int wholePart = int.Parse(str.Split(".")[0]) - 1;
 		int subPart = int.Parse(str.Split(".")[1]) - 1;
 		if (subPart == -1)

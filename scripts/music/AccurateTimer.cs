@@ -28,7 +28,7 @@ public partial class AccurateTimer : Node
 	public long LastTickedAt;
 	private bool timingWindowLocked = true;
 	public long TickIndex = -1;
-	private float SpeedModifier;
+	public float SpeedModifier;
 
 	public void Start(float bpm, float speedModifier, int halfOffsets)
 	{
@@ -43,7 +43,7 @@ public partial class AccurateTimer : Node
 
 		TickIndex = -1;
 		if (halfOffsets > 0)
-			TickIndex = 0;
+			TickIndex += 1;
 	}
 
 	public async void Stop(float delay)
@@ -93,11 +93,11 @@ public partial class AccurateTimer : Node
 		var offset = tickOffset > 0 ? 0.5f : 0;
 		if (deltaTime <= 0)
 		{
-			return (TickIndex - offset) / SpeedModifier;
+			return (TickIndex - offset) / SpeedModifier + Music.Singleton.StartingFromBeat;
 		}
 		else
 		{
-			return (TickIndex + 1 - offset) / SpeedModifier;
+			return (TickIndex + 1 - offset) / SpeedModifier + Music.Singleton.StartingFromBeat;
 		}
 	}
 

@@ -30,7 +30,7 @@ public partial class SkillTreeUI : Control
 
 		foreach (var link in tree.Links)
 		{
-			var linkUI = Lib.Scene(Lib.UI.SkillLink).Instantiate<SkillLinkVisual>();
+			var linkUI = Lib.LoadScene(Lib.UI.SkillLink).Instantiate<SkillLinkVisual>();
 			linkUI.SkillLink = link;
 			linkUI.Position = new Vector2(link.Source.PosX, link.Source.Depth) * GridSize + DrawOffset + new Vector2(38, 85);
 			linkUI.Target = new Vector2(link.Target.PosX - link.Source.PosX, link.Target.Depth - link.Source.Depth) * GridSize + new Vector2(0, -60);
@@ -40,7 +40,7 @@ public partial class SkillTreeUI : Control
 		foreach (var skill in tree.Skills)
 		{
 			var buttonType = skill.SkillType == BaseSkill.Type.Active ? Lib.UI.ActiveSkillButton : Lib.UI.PassiveSkillButton;
-			var button = Lib.Scene(buttonType).Instantiate<SkillButton>();
+			var button = Lib.LoadScene(buttonType).Instantiate<SkillButton>();
 			button.Position = new Vector2(skill.PosX, skill.Depth) * GridSize + DrawOffset;
 			button.AssignSkill(skill);
 			AddChild(button);

@@ -7,7 +7,9 @@ namespace Project;
 public partial class UnitStationarySummon : BaseUnit
 {
 	int currentCastIndex = 0;
-	UnitHostility hostility;
+	public UnitHostility hostility;
+	BaseUnit lastTarget;
+	Node3D spinningGem;
 
 	public UnitStationarySummon()
 	{
@@ -17,6 +19,9 @@ public partial class UnitStationarySummon : BaseUnit
 	public override void _Ready()
 	{
 		base._Ready();
+
+		spinningGem = GetNode<Node3D>("SpinningGem");
+
 		Music.Singleton.BeatTick += OnBeatTick;
 		Targetable.selectionRadius = 0.3f;
 	}
@@ -25,6 +30,17 @@ public partial class UnitStationarySummon : BaseUnit
 	{
 		base._ExitTree();
 		Music.Singleton.BeatTick -= OnBeatTick;
+	}
+
+	public override void _Process(double delta)
+	{
+		spinningGem.Rotate(Vector3.Up, (float)(Math.PI * delta));
+
+		if (lastTarget == null || !IsInstanceValid(lastTarget))
+			return;
+
+		LookAt(lastTarget.GlobalCastAimPosition);
+		Rotation = new Vector3(0, Rotation.Y, 0);
 	}
 
 	void OnBeatTick(BeatTime time)
@@ -44,8 +60,10 @@ public partial class UnitStationarySummon : BaseUnit
 		if (casts.Count == 0)
 			return;
 
-		if (currentCastIndex >= casts.Count)
+		if (casts.Count == 1)
 			currentCastIndex = 0;
+		else if (currentCastIndex >= casts.Count)
+			currentCastIndex = 1;
 
 		var targetCast = casts[currentCastIndex++];
 
@@ -54,5 +72,11 @@ public partial class UnitStationarySummon : BaseUnit
 			return;
 
 		targetCast.CastBegin(data);
+		if (targetCast.Settings.TargetType == CastTargetType.HostileUnit)
+			lastTarget = data.HostileUnit;
+		else if (targetCast.Settings.TargetType == CastTargetType.AlliedUnit)
+			lastTarget = data.HostileUnit;
+		else if (targetCast.Settings.TargetType == CastTargetType.None)
+			lastTarget = null;
 	}
 }

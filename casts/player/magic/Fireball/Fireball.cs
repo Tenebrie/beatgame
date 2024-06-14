@@ -22,7 +22,7 @@ public partial class Fireball : BaseCast
 
 	protected override void OnCastCompleted(CastTargetData target)
 	{
-		var fireball = Lib.Scene(Lib.Effect.FireballProjectile).Instantiate() as Projectile;
+		var fireball = Lib.LoadScene(Lib.Effect.FireballProjectile).Instantiate() as Projectile;
 		GetTree().Root.AddChild(fireball);
 		fireball.GlobalPosition = Parent.GlobalPosition + new Vector3(0, 0.5f, 0);
 		fireball.Source = this;

@@ -37,7 +37,7 @@ public partial class Projectile : Node3D
 		{
 			CleanUp();
 
-			var impact = Lib.Scene(Lib.Effect.FireballProjectileImpact).Instantiate() as ProjectileImpact;
+			var impact = Lib.LoadScene(Lib.Effect.FireballProjectileImpact).Instantiate() as ProjectileImpact;
 			GetTree().Root.AddChild(impact);
 			impact.GlobalPosition = GlobalPosition;
 

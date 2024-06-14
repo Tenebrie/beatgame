@@ -84,7 +84,7 @@ public partial class BossCastTridents : BaseCast
 		var tridents = AllTridents.Where(trident => IsInstanceValid(trident)).ToList();
 		if (state == State.Charging)
 		{
-			var trident = Lib.Scene(Lib.Token.AnimatedTrident);
+			var trident = Lib.LoadScene(Lib.Token.AnimatedTrident);
 			foreach (var (position, rotation) in GetSpawnPositions())
 			{
 				var instance = trident.Instantiate<AnimatedTrident>();

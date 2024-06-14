@@ -17,7 +17,7 @@ public partial class Fireblast : BaseCast
 
 	protected override void OnCastCompleted(CastTargetData target)
 	{
-		var impact = Lib.Scene(Lib.Effect.FireballProjectileImpact).Instantiate() as ProjectileImpact;
+		var impact = Lib.LoadScene(Lib.Effect.FireballProjectileImpact).Instantiate() as ProjectileImpact;
 		GetTree().Root.AddChild(impact);
 		impact.GlobalPosition = Parent.GlobalPosition;
 

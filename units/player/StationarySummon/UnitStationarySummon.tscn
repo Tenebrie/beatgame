@@ -1,18 +1,46 @@
-[gd_scene load_steps=4 format=3 uid="uid://k6nb6nedwtug"]
+[gd_scene load_steps=8 format=3 uid="uid://k6nb6nedwtug"]
 
 [ext_resource type="PackedScene" uid="uid://bpgkplxdl7jj0" path="res://assets/PolygonDungeon/Prefabs/Weapons/SM_Wep_Ornate_Spikes_01.tscn" id="1_3xwq1"]
 [ext_resource type="Script" path="res://units/player/StationarySummon/UnitStationarySummon.cs" id="1_gxcud"]
+[ext_resource type="PackedScene" uid="uid://cqu5y0rbgi8pp" path="res://units/common/UnitCastAimPosition.tscn" id="3_p72ys"]
+[ext_resource type="PackedScene" path="res://assets/PolygonDungeon/Prefabs/Props/SM_Prop_Gem_01.tscn" id="4_piln6"]
+[ext_resource type="Texture2D" uid="uid://c5p714hmii2hg" path="res://assets/PolygonDungeon/Textures/Dungeons_Texture_01.png" id="5_h3hhi"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_42tjp"]
 radius = 0.104614
 height = 0.79864
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ql1u2"]
+resource_name = "Dungeon_Material_01"
+albedo_texture = ExtResource("5_h3hhi")
+emission_enabled = true
+emission = Color(0.973797, 0.206062, 0.825933, 1)
+emission_energy_multiplier = 8.65
+
 [node name="StationarySummon" type="CharacterBody3D"]
 script = ExtResource("1_gxcud")
 
 [node name="SM_Wep_Ornate_Spikes_01" parent="." instance=ExtResource("1_3xwq1")]
-transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0.144661, 0)
+transform = Transform3D(-1.74846e-07, 0, 4, 0, 4, 0, -4, 0, -1.74846e-07, 0, 0.144661, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00114441, 0.399208, 0.00431442)
 shape = SubResource("CapsuleShape3D_42tjp")
+
+[node name="UnitCastAimPosition" parent="." instance=ExtResource("3_p72ys")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.609315, 0)
+visible = false
+
+[node name="SpinningGem" parent="." instance=ExtResource("4_piln6")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0.59532, 0)
+
+[node name="_mesh" parent="SpinningGem" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_ql1u2")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.610707, 0)
+light_color = Color(1, 0.235294, 1, 1)
+light_energy = 0.475
+omni_range = 0.15
+
+[editable path="SpinningGem"]

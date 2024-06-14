@@ -1,8 +1,9 @@
-[gd_scene load_steps=27 format=3 uid="uid://54vsvup5iam6"]
+[gd_scene load_steps=28 format=3 uid="uid://54vsvup5iam6"]
 
 [ext_resource type="Texture2D" uid="uid://dyh7yd6ess6bk" path="res://assets/particles/circle_05.png" id="2_6mvho"]
 [ext_resource type="Script" path="res://bosses/Aeriel/BossAeriel.cs" id="2_2251c"]
 [ext_resource type="Texture2D" uid="uid://bfq8lmy0qmd5b" path="res://assets/fire-particle.tga" id="3_te8rn"]
+[ext_resource type="PackedScene" uid="uid://cqu5y0rbgi8pp" path="res://units/common/UnitCastAimPosition.tscn" id="4_n0moj"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_5i6hr"]
 
@@ -226,3 +227,7 @@ draw_order = 3
 trail_lifetime = 4.24
 process_material = SubResource("ParticleProcessMaterial_qpi01")
 draw_pass_1 = SubResource("PlaneMesh_abq3i")
+
+[node name="UnitCastAimPosition" parent="." instance=ExtResource("4_n0moj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.340124, 0)
+visible = false

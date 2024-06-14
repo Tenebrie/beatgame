@@ -29,7 +29,7 @@ public partial class CastSummonStationary : BaseCast
 
 	protected override void OnCastCompleted(CastTargetData target)
 	{
-		var summon = Lib.Scene(Lib.Unit.StationarySummon).Instantiate<UnitStationarySummon>();
+		var summon = Lib.LoadScene(Lib.Unit.StationarySummon).Instantiate<UnitStationarySummon>();
 		summon.Position = target.Point;
 		summon.Alliance = Parent.Alliance;
 		GetTree().CurrentScene.AddChild(summon);
@@ -40,6 +40,9 @@ public partial class CastSummonStationary : BaseCast
 
 		summon.CastLibrary.Register(new SummonCastZap(summon));
 		if (this.HasSkill<SkillSummonFireball>())
+		{
+			summon.hostility = UnitHostility.Hostile;
 			summon.CastLibrary.Register(new Fireball(summon));
+		}
 	}
 }

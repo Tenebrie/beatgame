@@ -46,7 +46,7 @@ public partial class PowerUpLightningOrb : Node3D
 		PlayerInRange.Buffs.Add(new BuffPowerUpLightningOrb());
 		PlayerInRange = null;
 
-		var impact = Lib.Scene(Lib.Effect.EnergyOrbPickupImpact).Instantiate<ProjectileImpact>();
+		var impact = Lib.LoadScene(Lib.Effect.EnergyOrbPickupImpact).Instantiate<ProjectileImpact>();
 		impact.Position = EnergyOrb.GlobalPosition;
 		GetParent().AddChild(impact);
 

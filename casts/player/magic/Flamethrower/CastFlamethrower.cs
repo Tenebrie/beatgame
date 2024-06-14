@@ -32,7 +32,7 @@ public partial class CastFlamethrower : BaseCast
 
 	protected override void OnCastStarted(CastTargetData target)
 	{
-		effect = Lib.Scene(Lib.Token.EffectFlamethrowerWithHitbox).Instantiate<EffectFlamethrowerWithHitbox>();
+		effect = Lib.LoadScene(Lib.Token.EffectFlamethrowerWithHitbox).Instantiate<EffectFlamethrowerWithHitbox>();
 		effect.TargetUnit = target.HostileUnit;
 		effect.DamagePerBeat = DamagePerBeat;
 		effect.FollowedUnit = Parent;

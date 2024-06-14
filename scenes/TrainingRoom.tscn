@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://bcrvev26qnfr0"]
+[gd_scene load_steps=24 format=3 uid="uid://bcrvev26qnfr0"]
 
 [ext_resource type="PackedScene" uid="uid://bly86m2hi4wkh" path="res://objects/Environment/WallStone02.tscn" id="3_fvbi3"]
 [ext_resource type="PackedScene" uid="uid://brm5ywm6ylnrg" path="res://objects/Environment/WallStone03.tscn" id="4_lh2l6"]
@@ -20,7 +20,6 @@
 [ext_resource type="PackedScene" uid="uid://ducyw438mwduj" path="res://objects/Triggers/SceneTransition/SceneTransition.tscn" id="20_tekqx"]
 [ext_resource type="PackedScene" uid="uid://dd8hi213iqvva" path="res://units/enemy/DummyEnemy/DummyEnemy.tscn" id="20_u8i6y"]
 [ext_resource type="PackedScene" uid="uid://bigoodfgf85ex" path="res://units/enemy/DummyEnemy/JumpingDummyEnemy.tscn" id="21_1cqso"]
-[ext_resource type="PackedScene" uid="uid://b1d3j63byd72g" path="res://scenes/BossArenaAeriel.tscn" id="21_2cl6q"]
 
 [sub_resource type="Environment" id="Environment_nxlol"]
 ambient_light_energy = 0.91
@@ -1060,7 +1059,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.010752, 1.1261, 0.0234984)
 
 [node name="SceneTransition" parent="." instance=ExtResource("20_tekqx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.177972, 0.00719925, -14.952)
-TransitionTo = ExtResource("21_2cl6q")
+TransitionTo = 1
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SceneTransition"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.393017, 1.64715, -2.03025)

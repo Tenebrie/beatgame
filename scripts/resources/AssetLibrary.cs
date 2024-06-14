@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace Project;
 
 public class UnitLibrary
@@ -26,6 +28,7 @@ public class EffectLibrary
 	public string EnergyOrbPickupImpact = "uid://bsydded5w4p61";
 	public string AerielDarknessRelease = "uid://br0yb56fj0miy";
 	public string LightningZap = "res://effects/LightningZap/LightningZapEffect.tscn";
+	public string BusterTarget = "uid://bd1pneojwsjum";
 }
 
 public class UILibrary
@@ -47,4 +50,28 @@ public class AudioLibrary
 	public string MusicTrackSpaceship = "res://assets/music/t14d-spaceship.ogg";
 	public string MusicTrackIntermission = "res://assets/music/70bpm-intermission.ogg";
 	public string MusicTrackAeriel = "res://assets/music/120bpm-tidehawk.ogg";
+}
+
+public enum PlayableScene
+{
+	TrainingRoom,
+	BossArenaAeriel,
+}
+
+public class SceneLibrary
+{
+	public readonly Dictionary<PlayableScene, string> Values = new()
+	{
+		{ PlayableScene.TrainingRoom,  "uid://bcrvev26qnfr0" },
+		{ PlayableScene.BossArenaAeriel,  "uid://b1d3j63byd72g" },
+	};
+
+	public string GetPath(PlayableScene scene)
+	{
+		var hasValue = Values.TryGetValue(scene, out var result);
+		if (!hasValue)
+			throw new System.Exception($"No scene path provided for {scene}.");
+
+		return result;
+	}
 }

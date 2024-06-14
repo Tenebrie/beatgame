@@ -22,7 +22,7 @@ public partial class SelfHeal : BaseCast
 
 	protected override void OnCastCompleted(CastTargetData _)
 	{
-		var healImpact = Lib.Scene(Lib.Effect.HealImpact).Instantiate() as ProjectileImpact;
+		var healImpact = Lib.LoadScene(Lib.Effect.HealImpact).Instantiate() as ProjectileImpact;
 		healImpact.AttachForDuration(Parent, .3f, new Vector3(0, 0.25f, 0));
 
 		var healing = Flags.CastSuccessful ? HealAmount : HealAmount / 2;

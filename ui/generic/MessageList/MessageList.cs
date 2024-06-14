@@ -15,7 +15,7 @@ public partial class MessageList : VBoxContainer
 
 	public void AddMessage(string text)
 	{
-		var message = Lib.Scene(Lib.UI.MessageListMessage).Instantiate<Message>();
+		var message = Lib.LoadScene(Lib.UI.MessageListMessage).Instantiate<Message>();
 		AddChild(message);
 		MoveChild(message, 0);
 		message.Body = text;

@@ -89,7 +89,7 @@ public partial class ObjectTargetable : ComposableScript
 
 		if (targeted)
 		{
-			selectionModel = Lib.Scene(Lib.Effect.TargetingCircle).Instantiate() as TargetingCircle;
+			selectionModel = Lib.LoadScene(Lib.Effect.TargetingCircle).Instantiate() as TargetingCircle;
 			selectionModel.SetAlliance(Parent.Alliance);
 			selectionModel.SetRadius(selectionRadius);
 			Parent.AddChild(selectionModel);

@@ -47,7 +47,7 @@ public partial class Music : Node
 
 	public long PreciseBeatIndex = -1;
 	public double BeatIndex { get => PreciseBeatIndex * MinBeatSize; }
-	public long SongTime { get => WholeNoteTimer.GetSongTime(); }
+	public long SongTime { get => WholeNoteTimer.GetSongTime() + (long)(StartingFromBeat * SecondsPerBeat * 1000); }
 	public float TimingWindow { get => AccurateTimer.TimingWindow; }
 	public float TimingWindowMs { get => AccurateTimer.TimingWindow * 1000f; }
 	private BeatTime BeatTimeState = BeatTime.Free;

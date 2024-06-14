@@ -13,7 +13,7 @@ public partial class MusicTrack : Node
 
 	public async void PlayAfterDelay(float delay, float fromPosition)
 	{
-		AudioStream = Lib.Vorbis(ResourcePath);
+		AudioStream = Lib.LoadVorbis(ResourcePath);
 		AudioStream.Loop = Loop;
 		AudioPlayer.Stream = AudioStream;
 		AddChild(AudioPlayer);

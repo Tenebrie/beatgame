@@ -1,3 +1,4 @@
+using System;
 using System.Diagnostics;
 using Godot;
 using Project;
@@ -16,8 +17,9 @@ public partial class TransitionUI : Control
 		fadePlayer = GetNode<AnimationPlayer>("SceneTransitionRect/AnimationPlayer");
 		fadePlayer.AnimationFinished += OnAnimationFinished;
 		SignalBus.Singleton.SceneTransitionStarted += OnSceneTransitionStarted;
-		SignalBus.Singleton.SceneTransitionMusicReady += OnMusicReady;
-
+		SignalBus.Singleton.SceneTransitionMusicReady += OnMusicFadedOut;
+		LoadingManager.Singleton.LoadingProgressed += OnLoadingProgressed;
+		LoadingManager.Singleton.LoadingCompleted += OnLoadingCompleted;
 	}
 
 	private void OnSceneTransitionStarted(PackedScene toScene)
@@ -26,11 +28,30 @@ public partial class TransitionUI : Control
 		fadePlayer.Play("fade_out");
 	}
 
-	private async void OnMusicReady()
+	private void OnMusicFadedOut()
 	{
 		GetTree().ChangeSceneToPacked(transitioningTo);
-		await ToSignal(GetTree().CreateTimer(0), "timeout");
-		SignalBus.Singleton.EmitSignal(SignalBus.SignalName.SceneTransitionFinished, transitioningTo);
+		LoadingManager.Singleton.TriggerLoadingScreen();
+	}
+
+	private void OnLoadingProgressed(float current, float total)
+	{
+		SignalBus.SendMessage($"Loading assets: {Math.Round(current / total * 100)}%.");
+	}
+
+	private void OnLoadingCompleted()
+	{
+		FadeIn();
+	}
+
+	private async void FadeIn()
+	{
+		await ToSignal(GetTree().CreateTimer(0.5f), "timeout");
+		try
+		{
+			SignalBus.Singleton.EmitSignal(SignalBus.SignalName.SceneTransitionFinished, transitioningTo);
+		}
+		catch (Exception) { }
 		fadePlayer.Play("fade_in");
 	}
 

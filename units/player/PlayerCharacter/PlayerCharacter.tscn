@@ -1,9 +1,10 @@
-[gd_scene load_steps=20 format=3 uid="uid://ci21idu6kwex5"]
+[gd_scene load_steps=21 format=3 uid="uid://ci21idu6kwex5"]
 
 [ext_resource type="Script" path="res://units/player/PlayerCharacter/PlayerController.cs" id="1_2gcyd"]
 [ext_resource type="Texture2D" uid="uid://dyh7yd6ess6bk" path="res://assets/particles/circle_05.png" id="2_5ogvt"]
 [ext_resource type="Script" path="res://units/player/PlayerCharacter/visuals/Visuals.cs" id="2_yi0ob"]
 [ext_resource type="Script" path="res://units/player/PlayerCharacter/visuals/OnBeatEmitterLocalSpace.cs" id="3_4yyta"]
+[ext_resource type="PackedScene" uid="uid://cqu5y0rbgi8pp" path="res://units/common/UnitCastAimPosition.tscn" id="5_kvutq"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_moeg2"]
 
@@ -102,8 +103,6 @@ orientation = 2
 [node name="CharacterBody3D" type="CharacterBody3D"]
 floor_block_on_wall = false
 script = ExtResource("1_2gcyd")
-_mainCameraPath = NodePath("HCameraPivot/VCameraPivot/SpringArm3D/MainCamera")
-_baseCameraPath = NodePath("BaseCamera")
 
 [node name="PlayerUnit" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.2, 0, 0, 0, 0.5, 0, 0, 0, 0.2, 0, 0.252011, 0)
@@ -159,6 +158,10 @@ mesh = SubResource("PlaneMesh_2yssi")
 
 [node name="BaseCamera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+visible = false
+
+[node name="UnitCastAimPosition" parent="." instance=ExtResource("5_kvutq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.24896, 0)
 visible = false
 
 [node name="HCameraPivot" type="Node3D" parent="."]

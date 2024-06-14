@@ -1,0 +1,92 @@
+[gd_scene load_steps=13 format=3 uid="uid://bd1pneojwsjum"]
+
+[ext_resource type="Script" path="res://effects/BaseEffect.cs" id="1_8rymk"]
+[ext_resource type="Texture2D" uid="uid://b041umxoeub2o" path="res://assets/particles/flare_01.png" id="2_ncpin"]
+[ext_resource type="Texture2D" uid="uid://bfq8lmy0qmd5b" path="res://assets/fire-particle.tga" id="3_o50qq"]
+
+[sub_resource type="Curve" id="Curve_3qo16"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.429687, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_ncnqb"]
+curve = SubResource("Curve_3qo16")
+
+[sub_resource type="Curve" id="Curve_yb1x2"]
+max_value = 100.0
+_data = [Vector2(0.00370371, 0), 0.0, 0.0, 0, 0, Vector2(0.99999, 20.7317), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_h4t5k"]
+curve = SubResource("Curve_yb1x2")
+
+[sub_resource type="Curve" id="Curve_gx2fp"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.125, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_q6m4u"]
+curve = SubResource("Curve_gx2fp")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_lwlwe"]
+emission_shape = 6
+emission_ring_axis = Vector3(0, 1, 0)
+emission_ring_height = 0.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 1.0
+direction = Vector3(0, -1, 0)
+spread = 0.0
+initial_velocity_min = 5.0
+initial_velocity_max = 5.0
+gravity = Vector3(0, 0, 0)
+radial_accel_min = -10.0
+radial_accel_max = -10.0
+tangential_accel_min = 5.0
+tangential_accel_max = 5.0
+damping_min = 3.0
+damping_max = 3.0
+damping_curve = SubResource("CurveTexture_h4t5k")
+attractor_interaction_enabled = false
+scale_min = 0.4
+scale_max = 0.4
+scale_curve = SubResource("CurveTexture_q6m4u")
+alpha_curve = SubResource("CurveTexture_ncnqb")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vkxsc"]
+transparency = 1
+blend_mode = 1
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.999996, 0.176562, 0.603486, 1)
+albedo_texture = ExtResource("2_ncpin")
+emission_enabled = true
+emission = Color(0.803922, 0.207843, 0.839216, 1)
+emission_energy_multiplier = 0.12
+emission_texture = ExtResource("2_ncpin")
+rim_tint = 0.0
+detail_mask = ExtResource("3_o50qq")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+grow_amount = -6.575
+proximity_fade_distance = 674.32
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_725l8"]
+lightmap_size_hint = Vector2i(2, 2)
+material = SubResource("StandardMaterial3D_vkxsc")
+size = Vector2(3, 3)
+orientation = 2
+
+[node name="EffectBuster" type="Node3D" node_paths=PackedStringArray("Emitter")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+script = ExtResource("1_8rymk")
+Emitter = NodePath("GPUParticles3D")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.862927, 0)
+amount = 250
+lifetime = 0.8
+randomness = 0.43
+fixed_fps = 60
+visibility_aabb = AABB(-1, -1, -1, 2, 2, 2)
+process_material = SubResource("ParticleProcessMaterial_lwlwe")
+draw_pass_1 = SubResource("PlaneMesh_725l8")

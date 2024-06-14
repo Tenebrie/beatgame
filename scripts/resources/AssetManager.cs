@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Reflection;
 using Godot;
 
@@ -12,14 +14,15 @@ public static class Lib
 	public readonly static EffectLibrary Effect = new();
 	public readonly static UILibrary UI = new();
 	public readonly static AudioLibrary Audio = new();
+	public readonly static SceneLibrary Scene = new();
 
-	public static PackedScene Scene(string path)
+	public static PackedScene LoadScene(string path)
 	{
 		AssertResourceStatus(path);
 		return GD.Load<PackedScene>(path);
 	}
 
-	public static AudioStreamOggVorbis Vorbis(string path)
+	public static AudioStreamOggVorbis LoadVorbis(string path)
 	{
 		AssertResourceStatus(path);
 		return GD.Load<AudioStreamOggVorbis>(path);
@@ -44,29 +47,48 @@ public partial class AssetManager : Node
 	public override void _Ready()
 	{
 		foreach (var field in typeof(UnitLibrary).GetFields())
-			PreloadResource((string)field.GetValue(Lib.Unit));
+			PreloadResource(field.GetValue(Lib.Unit));
 		foreach (var field in typeof(TokenLibrary).GetFields())
-			PreloadResource((string)field.GetValue(Lib.Token));
+			PreloadResource(field.GetValue(Lib.Token));
 		foreach (var field in typeof(EffectLibrary).GetFields())
-			PreloadResource((string)field.GetValue(Lib.Effect));
+			PreloadResource(field.GetValue(Lib.Effect));
 		foreach (var field in typeof(UILibrary).GetFields())
-			PreloadResource((string)field.GetValue(Lib.UI));
+			PreloadResource(field.GetValue(Lib.UI));
 		foreach (var field in typeof(AudioLibrary).GetFields())
-			PreloadResource((string)field.GetValue(Lib.Audio));
+			PreloadResource(field.GetValue(Lib.Audio));
+		foreach (var field in typeof(SceneLibrary).GetFields())
+			PreloadResource(field.GetValue(Lib.Scene));
 
 		CheckLoadingStatus();
 	}
 
-	private void PreloadResource(string name)
+	private void PreloadResource(object value)
 	{
-		TotalResourceCount += 1;
-		ResourceLoader.LoadThreadedRequest(name);
+		if (value is string v)
+		{
+			TotalResourceCount += 1;
+			ResourceLoader.LoadThreadedRequest(v, useSubThreads: true);
+		}
+		else if (value is Dictionary<PlayableScene, string> dictionary)
+		{
+			foreach (var name in dictionary.Values)
+				PreloadResource(name);
+		}
 	}
 
-	private static float GetResourceProgress(string name)
+	private static float GetResourceProgress(object value)
 	{
 		var array = new Godot.Collections.Array();
-		ResourceLoader.LoadThreadedGetStatus(name, array);
+
+		if (value is string v)
+		{
+			ResourceLoader.LoadThreadedGetStatus(v, array);
+			return (float)array[0];
+		}
+		else if (value is Dictionary<PlayableScene, string> dictionary)
+		{
+			return dictionary.Values.Aggregate(0f, (total, val) => total + GetResourceProgress(val));
+		}
 		return (float)array[0];
 	}
 
@@ -82,15 +104,17 @@ public partial class AssetManager : Node
 	{
 		float currentlyLoaded = 0;
 		foreach (var field in typeof(UnitLibrary).GetFields())
-			currentlyLoaded += GetResourceProgress((string)field.GetValue(Lib.Unit));
+			currentlyLoaded += GetResourceProgress(field.GetValue(Lib.Unit));
 		foreach (var field in typeof(TokenLibrary).GetFields())
-			currentlyLoaded += GetResourceProgress((string)field.GetValue(Lib.Token));
+			currentlyLoaded += GetResourceProgress(field.GetValue(Lib.Token));
 		foreach (var field in typeof(EffectLibrary).GetFields())
-			currentlyLoaded += GetResourceProgress((string)field.GetValue(Lib.Effect));
+			currentlyLoaded += GetResourceProgress(field.GetValue(Lib.Effect));
 		foreach (var field in typeof(UILibrary).GetFields())
-			currentlyLoaded += GetResourceProgress((string)field.GetValue(Lib.UI));
+			currentlyLoaded += GetResourceProgress(field.GetValue(Lib.UI));
 		foreach (var field in typeof(AudioLibrary).GetFields())
-			currentlyLoaded += GetResourceProgress((string)field.GetValue(Lib.Audio));
+			currentlyLoaded += GetResourceProgress(field.GetValue(Lib.Audio));
+		foreach (var field in typeof(SceneLibrary).GetFields())
+			currentlyLoaded += GetResourceProgress(field.GetValue(Lib.Scene));
 
 		if (currentlyLoaded >= TotalResourceCount)
 		{
@@ -102,5 +126,18 @@ public partial class AssetManager : Node
 			var percentage = Math.Round(currentlyLoaded / TotalResourceCount * 100);
 			Debug.WriteLine($"Loading assets: {percentage}%");
 		}
+	}
+
+	public static List<string> GetAllSceneResources()
+	{
+		List<string> resources = new();
+		foreach (var field in typeof(UnitLibrary).GetFields())
+			resources.Add((string)field.GetValue(Lib.Unit));
+		foreach (var field in typeof(TokenLibrary).GetFields())
+			resources.Add((string)field.GetValue(Lib.Token));
+		foreach (var field in typeof(EffectLibrary).GetFields())
+			resources.Add((string)field.GetValue(Lib.Effect));
+
+		return resources;
 	}
 }

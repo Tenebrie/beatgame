@@ -59,7 +59,7 @@ public partial class ActionPanel : HBoxContainer
 		List<ActionButton> buttons = new() { c1, c2, c3, c4, sc1, sc2, sc3, sc4 };
 		var instances = buttons.Select(btn =>
 		{
-			var instance = Lib.Scene(Lib.UI.ActionButton).Instantiate<ActionButton>();
+			var instance = Lib.LoadScene(Lib.UI.ActionButton).Instantiate<ActionButton>();
 			instance.Label = btn.Label;
 			instance.ActionName = btn.ActionName;
 			instance.IsDisabled = btn.IsDisabled;

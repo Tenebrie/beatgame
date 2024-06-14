@@ -140,7 +140,7 @@ public partial class SkillButton : Control
 			SkillTreeManager.Singleton.LearnSkill(AssociatedSkill);
 		else if (AssociatedSkill.Settings.ActiveCast != null)
 		{
-			var msg = Lib.Scene(Lib.UI.SkillBindingNotification).Instantiate<Control>();
+			var msg = Lib.LoadScene(Lib.UI.SkillBindingNotification).Instantiate<Control>();
 			msg.Position = GetViewport().GetMousePosition() + new Vector2(0, -50);
 			GetTree().CurrentScene.AddChild(msg);
 			SignalBus.SendMessage("Press the hotkey while hovering over the skill to assign it to the action bar.");

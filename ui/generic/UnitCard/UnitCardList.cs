@@ -17,7 +17,7 @@ public partial class UnitCardList : Control
 
 	public void TrackUnit(BaseUnit unit)
 	{
-		var unitCard = Lib.Scene(Lib.UI.UnitCard).Instantiate<UnitCard>();
+		var unitCard = Lib.LoadScene(Lib.UI.UnitCard).Instantiate<UnitCard>();
 		unitCard.TrackUnit(unit);
 		Container.AddChild(unitCard);
 		UnitCards.Add(unit, unitCard);

@@ -33,7 +33,7 @@ public partial class CastBarGroup : VBoxContainer
 		if (oldBar != null)
 			return;
 
-		var newBar = Lib.Scene(Lib.UI.CastBar).Instantiate<CastBar>();
+		var newBar = Lib.LoadScene(Lib.UI.CastBar).Instantiate<CastBar>();
 		AddChild(newBar);
 		newBar.TrackCast(cast);
 		activeBars.Add(new CastBarEntry()

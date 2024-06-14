@@ -76,7 +76,7 @@ void fragment()
 	{
 		float d2 = (abs(pos.z) - prog * SIZE_Z + smoothOver) / smoothOver;
 		float toLimit = prog - d2;
-		ALPHA = min(1, toLimit) * 1.0;
+		ALPHA = min(0.5, toLimit) * 1.0;
 		
 		float d3 = (abs(pos.x) - prog * SIZE_X + smoothOver) / smoothOver;
 		float toLimit2 = prog - d3;
@@ -89,19 +89,19 @@ void fragment()
 		float d3 = sqrt(d1 * d1 + d2 * d2);
 		if (d3 < 0.5)
 		{
-			ALBEDO = vec3(COLOR_R, COLOR_G, COLOR_B);
 			ALPHA = 1.0;
 		}
 		else
 		{
 			float a = (1.0 -d3) * 2.0;
 			float b = min(1, d3 * 2.0 * a + (1.0 - d3) * 2.0);
-			ALBEDO = vec3(b * COLOR_R, b * COLOR_G, b * COLOR_B);
+			ALBEDO = vec3(b, b, b);
 			ALPHA = max(0, a);
 		}
 		
 		transparent = true;
 	}
+	float a = 1.0;
 	
 	ALBEDO = ALBEDO * vec3(COLOR_R * 0.5, COLOR_G * 0.5, COLOR_B * 0.5);
 	if (!transparent)

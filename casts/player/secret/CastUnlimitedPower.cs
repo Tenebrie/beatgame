@@ -22,7 +22,7 @@ public partial class CastUnlimitedPower : BaseCast
 
 	void SpawnZap()
 	{
-		var zap = Lib.Scene(Lib.Effect.LightningZap).Instantiate<LightningZapEffect>();
+		var zap = Lib.LoadScene(Lib.Effect.LightningZap).Instantiate<LightningZapEffect>();
 		zap.Position = Parent.GlobalCastAimPosition;
 		GetTree().CurrentScene.AddChild(zap);
 		zap.SetTarget(Target.GlobalCastAimPosition);

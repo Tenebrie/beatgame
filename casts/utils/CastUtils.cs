@@ -10,7 +10,7 @@ public static class CastUtils
 
 	public static GroundAreaCircle CreateGroundCircularArea(this Node node, Vector3 point)
 	{
-		var circle = Lib.Scene(Lib.Effect.GroundAreaCircle).Instantiate<GroundAreaCircle>();
+		var circle = Lib.LoadScene(Lib.Effect.GroundAreaCircle).Instantiate<GroundAreaCircle>();
 		circle.Position = point;
 		node.GetTree().CurrentScene.AddChild(circle);
 		circle.EnableCulling();
@@ -19,7 +19,7 @@ public static class CastUtils
 
 	public static GroundAreaRect CreateGroundRectangularArea(this Node node, Vector3 point)
 	{
-		var rect = Lib.Scene(Lib.Effect.GroundAreaRect).Instantiate<GroundAreaRect>();
+		var rect = Lib.LoadScene(Lib.Effect.GroundAreaRect).Instantiate<GroundAreaRect>();
 		rect.Position = point;
 		node.GetTree().CurrentScene.AddChild(rect);
 		rect.EnableCulling();
@@ -28,7 +28,7 @@ public static class CastUtils
 
 	public static LightningZapEffect CreateZapEffect(this Node node, Vector3 from, Vector3 to)
 	{
-		var zap = Lib.Scene(Lib.Effect.LightningZap).Instantiate<LightningZapEffect>();
+		var zap = Lib.LoadScene(Lib.Effect.LightningZap).Instantiate<LightningZapEffect>();
 		zap.Position = from;
 		node.GetTree().CurrentScene.AddChild(zap);
 		zap.SetTarget(to);

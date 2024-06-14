@@ -36,7 +36,7 @@ public partial class BossAeriel : BasicEnemyController
 		MiniBuster = new(this);
 		CastLibrary.Register(MiniBuster);
 		MiniBuster.Settings.FriendlyName = "Mini Buster";
-		MiniBuster.Damage = 50;
+		MiniBuster.Damage = 120;
 
 		Raidwide = new(this);
 		CastLibrary.Register(Raidwide);
@@ -107,7 +107,7 @@ public partial class BossAeriel : BasicEnemyController
 	{
 		var darkness = GetNode<GpuParticles3D>("DarknessParticles");
 		darkness.Emitting = false;
-		var impact = Lib.Scene(Lib.Effect.AerielDarknessRelease).Instantiate<ProjectileImpact>();
+		var impact = Lib.LoadScene(Lib.Effect.AerielDarknessRelease).Instantiate<ProjectileImpact>();
 		impact.Position = GetNode<GpuParticles3D>("CoreParticles").GlobalPosition;
 		GetTree().CurrentScene.AddChild(impact);
 	}
