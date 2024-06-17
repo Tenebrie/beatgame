@@ -21,10 +21,8 @@ public partial class ControllableOmniLight : OmniLight3D, IControllableEnvironme
 		TargetEnergy = LightEnergy;
 
 		if (GroupName == null)
-		{
-			GD.PrintErr("ControllableLight is not assigned to a group");
 			return;
-		}
+
 		EnvironmentController.Singleton.RegisterControllable(this, GroupName);
 	}
 
@@ -36,6 +34,14 @@ public partial class ControllableOmniLight : OmniLight3D, IControllableEnvironme
 	public void TurnOff()
 	{
 		TargetEnergy = 0;
+	}
+
+	public void Toggle()
+	{
+		if (TargetEnergy == 0)
+			TurnOn();
+		else
+			TurnOff();
 	}
 
 	public override void _Process(double delta)

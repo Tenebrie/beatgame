@@ -1,10 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://dbfqfhttv1u2a"]
+[gd_scene load_steps=6 format=3 uid="uid://dbfqfhttv1u2a"]
 
 [ext_resource type="Script" path="res://effects/TargetingCircle/TargetingCircle.cs" id="1_r84vi"]
 [ext_resource type="PackedScene" uid="uid://d0518ise2jvew" path="res://effects/Telegraphs/GroundAreaCircle/CircleDecal.tscn" id="2_kd5rw"]
+[ext_resource type="Shader" path="res://effects/Telegraphs/GroundAreaCircle/CircleDecal.gdshader" id="3_sln5v"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nrq6q"]
+render_priority = 0
+shader = ExtResource("3_sln5v")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_0tkqo"]
+resource_local_to_scene = true
+material = SubResource("ShaderMaterial_nrq6q")
+size = Vector2(1, 1)
 
 [node name="Node" type="Node3D"]
 script = ExtResource("1_r84vi")
 
 [node name="CircleDecal" parent="." instance=ExtResource("2_kd5rw")]
 instance_shader_parameters/FADE = 0.0
+mesh = SubResource("PlaneMesh_0tkqo")

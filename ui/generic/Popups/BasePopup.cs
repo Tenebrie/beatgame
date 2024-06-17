@@ -19,6 +19,17 @@ public partial class BasePopup : Control
 		label = GetNode<RichTextLabel>("Label");
 		marginContainer = GetNode<MarginContainer>("Label/MarginContainer");
 		RecalculateOffsets();
+		SignalBus.Singleton.CameraMovingStarted += OnCameraMovingStarted;
+	}
+
+	void OnCameraMovingStarted()
+	{
+		Visible = false;
+	}
+
+	public override void _ExitTree()
+	{
+		SignalBus.Singleton.CameraMovingStarted -= OnCameraMovingStarted;
 	}
 
 	public void MoveTo(Vector2 pos)

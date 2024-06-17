@@ -4,6 +4,10 @@ namespace Project;
 public partial class SignalBus : Node
 {
 	[Signal]
+	public delegate void CameraMovingStartedEventHandler();
+	[Signal]
+	public delegate void CameraMovingFinishedEventHandler();
+	[Signal]
 	public delegate void UnitCreatedEventHandler(BaseUnit unit);
 	[Signal]
 	public delegate void UnitDestroyedEventHandler(BaseUnit unit);

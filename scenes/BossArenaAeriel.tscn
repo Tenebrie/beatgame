@@ -488,6 +488,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.35732, 0)
 
 [node name="CircleDecal" parent="." instance=ExtResource("28_bvkhp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.19635, -6.6881, 4.11628)
+instance_shader_parameters/FADE = 0.0
 mesh = SubResource("PlaneMesh_yhp8d")
 skeleton = NodePath("../RectDecal")
 

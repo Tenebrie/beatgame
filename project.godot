@@ -36,6 +36,7 @@ SkillForestUI="*res://ui/screens/skillForest/SkillForestUI.tscn"
 FightEditorUI="*res://ui/screens/fightEditor/FightEditorUI.tscn"
 PauseUI="*res://ui/screens/pause/PauseUI.tscn"
 TransitionUI="*res://ui/screens/transition/TransitionUI.tscn"
+InteractableObjectPopup="*res://objects/Interactables/InteractableObjectPopup.tscn"
 
 [debug]
 

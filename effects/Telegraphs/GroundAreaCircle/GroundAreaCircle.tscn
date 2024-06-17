@@ -1,7 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://i7uo3ra8dvfu"]
+[gd_scene load_steps=7 format=3 uid="uid://i7uo3ra8dvfu"]
 
 [ext_resource type="Script" path="res://effects/Telegraphs/GroundAreaCircle/GroundAreaCircle.cs" id="1_5q0qf"]
 [ext_resource type="PackedScene" uid="uid://d0518ise2jvew" path="res://effects/Telegraphs/GroundAreaCircle/CircleDecal.tscn" id="2_3jjub"]
+[ext_resource type="Shader" path="res://effects/Telegraphs/GroundAreaCircle/CircleDecal.gdshader" id="3_fmm8w"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nrq6q"]
+render_priority = 0
+shader = ExtResource("3_fmm8w")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_m3kt6"]
+resource_local_to_scene = true
+material = SubResource("ShaderMaterial_nrq6q")
+size = Vector2(1, 1)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_0hdw0"]
 
@@ -10,8 +20,10 @@ script = ExtResource("1_5q0qf")
 
 [node name="CircleDecal" parent="." instance=ExtResource("2_3jjub")]
 instance_shader_parameters/FADE = 0.0
+mesh = SubResource("PlaneMesh_m3kt6")
 
 [node name="Hitbox" type="Area3D" parent="."]
+input_ray_pickable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
 shape = SubResource("SphereShape3D_0hdw0")

@@ -9,6 +9,7 @@ public partial class PlayerMovement : ComposableScript
 	bool softCameraPreMoving = false;
 	bool softCameraMoving = false;
 	Vector2 softCameraMoveStart;
+	bool hardCameraPreMoving = false;
 	bool hardCameraMoving = false;
 	Vector2 hardCameraMoveStart;
 
@@ -52,14 +53,12 @@ public partial class PlayerMovement : ComposableScript
 
 		if (@event.IsActionPressed("HardCameraMove"))
 		{
-			hardCameraMoving = true;
+			hardCameraPreMoving = true;
 			hardCameraMoveStart = GetWindow().GetMousePosition();
-			Input.MouseMode = Input.MouseModeEnum.Hidden;
-			Parent.Rotate(Vector3.Up, horizontalCameraPivot.Rotation.Y);
-			RotateCameraHorizontal(-horizontalCameraPivot.Rotation.Y);
 		}
 		if (@event.IsActionReleased("HardCameraMove"))
 		{
+			hardCameraPreMoving = false;
 			hardCameraMoving = false;
 			if (!softCameraMoving)
 				Input.MouseMode = Input.MouseModeEnum.Visible;
@@ -189,7 +188,20 @@ public partial class PlayerMovement : ComposableScript
 	private void ProcessCamera(double delta)
 	{
 		var mousePos = GetWindow().GetMousePosition();
-		if (hardCameraMoving)
+		if (hardCameraPreMoving)
+		{
+			var mouseDelta = mousePos - hardCameraMoveStart;
+			if (mouseDelta.Length() > 10 || softCameraMoving)
+			{
+				hardCameraPreMoving = false;
+				hardCameraMoving = true;
+				Input.MouseMode = Input.MouseModeEnum.Hidden;
+				Parent.Rotate(Vector3.Up, horizontalCameraPivot.Rotation.Y);
+				RotateCameraHorizontal(-horizontalCameraPivot.Rotation.Y);
+				SignalBus.Singleton.EmitSignal(SignalBus.SignalName.CameraMovingStarted);
+			}
+		}
+		else if (hardCameraMoving)
 		{
 			var mouseDelta = mousePos - hardCameraMoveStart;
 			Input.WarpMouse(hardCameraMoveStart * GetTree().Root.ContentScaleFactor);
@@ -200,11 +212,12 @@ public partial class PlayerMovement : ComposableScript
 		else if (softCameraPreMoving)
 		{
 			var mouseDelta = mousePos - softCameraMoveStart;
-			if (mouseDelta.Length() > 10)
+			if (mouseDelta.Length() > 10 || hardCameraMoving)
 			{
 				softCameraPreMoving = false;
 				softCameraMoving = true;
 				Input.MouseMode = Input.MouseModeEnum.Hidden;
+				SignalBus.Singleton.EmitSignal(SignalBus.SignalName.CameraMovingStarted);
 			}
 		}
 		else if (softCameraMoving)
@@ -256,5 +269,10 @@ public partial class PlayerMovement : ComposableScript
 	public void ResetJumpCount()
 	{
 		jumpCount = 0;
+	}
+
+	public bool IsMovingCamera()
+	{
+		return softCameraMoving || hardCameraMoving;
 	}
 }

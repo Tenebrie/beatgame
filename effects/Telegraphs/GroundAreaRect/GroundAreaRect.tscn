@@ -11,6 +11,7 @@ script = ExtResource("1_w3v76")
 [node name="RectDecal" parent="." instance=ExtResource("2_b8mfb")]
 
 [node name="Hitbox" type="Area3D" parent="."]
+input_ray_pickable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
 shape = SubResource("BoxShape3D_6bur2")
