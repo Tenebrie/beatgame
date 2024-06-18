@@ -16,6 +16,8 @@ public partial class BaseSkill : Node
 		public CastFactory ActiveCast;
 		public List<CastFactory> AffectedCasts = new();
 		public BuffFactory PassiveBuff;
+		public bool RebindsAllCasts = false;
+
 		public List<SkillWrapper> IncompatibleSkills = new();
 	}
 
@@ -61,7 +63,7 @@ public partial class BaseSkill : Node
 				builder.Append($"[color={Colors.Active}]Active:[/color] ").Append(castSettings.Description);
 
 				// Input type
-				builder.Append($"\n[color={Colors.Passive}]Input:[/color] ");
+				builder.Append($"\n\n[color={Colors.Passive}]Input:[/color] ");
 				if (castSettings.InputType == CastInputType.Instant)
 					builder.Append("Instant");
 				else if (castSettings.InputType == CastInputType.AutoRelease)
@@ -93,18 +95,6 @@ public partial class BaseSkill : Node
 			}
 			return builder.ToString();
 		}
-	}
-
-	public void Learn()
-	{
-		IsLearned = true;
-		SkillTreeManager.Singleton.EmitSignal(SkillTreeManager.SignalName.SkillUp, this);
-	}
-
-	public void Unlearn()
-	{
-		IsLearned = false;
-		SkillTreeManager.Singleton.EmitSignal(SkillTreeManager.SignalName.SkillDown, this);
 	}
 
 	public static string MakeDescription(params string[] strings) => CastUtils.MakeDescription(strings);

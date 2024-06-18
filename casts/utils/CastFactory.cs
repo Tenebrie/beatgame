@@ -7,7 +7,8 @@ public class CastFactory
 	public readonly Type CastType;
 	public BaseCast.CastSettings Settings
 	{
-		get => Create(null).Settings;
+		get => Create(PlayerController.AllPlayers.Count > 0 ? PlayerController.AllPlayers[0] : null).Settings;
+
 	}
 
 	public CastFactory(Type prototype)
@@ -17,7 +18,10 @@ public class CastFactory
 
 	public BaseCast Create(BaseUnit parent)
 	{
-		return (BaseCast)Activator.CreateInstance(CastType, parent);
+		var cast = (BaseCast)Activator.CreateInstance(CastType, parent);
+		if (parent != null)
+			cast.PrepareSettings();
+		return cast;
 	}
 
 	public static CastFactory Of<T>() where T : BaseCast

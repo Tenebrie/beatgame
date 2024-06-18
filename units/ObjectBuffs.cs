@@ -36,6 +36,11 @@ public partial class ObjectBuffs : ComposableScript
 
 	public void Add(BaseBuff buff)
 	{
+		if (buff.Settings.PreventStacking)
+			RemoveAll(buff.GetType());
+		if (buff.Settings.RefreshOthersWhenAdded)
+			RefreshDuration(buff.GetType());
+
 		buff.Parent = Parent;
 		Buffs.Add(buff);
 		Parent.AddChild(buff);
@@ -50,6 +55,13 @@ public partial class ObjectBuffs : ComposableScript
 	public int Stacks<BuffClass>() where BuffClass : BaseBuff
 	{
 		return Buffs.Count(buff => buff is BuffClass);
+	}
+
+	public void RefreshDuration(Type buffType)
+	{
+		var buffsToRefresh = Buffs.Where(buff => buff.GetType().IsInstanceOfType(buffType)).ToList();
+		foreach (var buff in buffsToRefresh)
+			buff.RefreshDuration();
 	}
 
 	public static void Remove(BaseBuff buff)
@@ -67,6 +79,13 @@ public partial class ObjectBuffs : ComposableScript
 	public void RemoveWithFlag(BaseBuff.Flag flags)
 	{
 		var buffsToRemove = Buffs.Where(buff => (buff.Flags & flags) > 0).ToList();
+		foreach (var buff in buffsToRemove)
+			buff.QueueFree();
+	}
+
+	public void RemoveAll(Type buffType)
+	{
+		var buffsToRemove = Buffs.Where(buff => buff.GetType() == buffType).ToList();
 		foreach (var buff in buffsToRemove)
 			buff.QueueFree();
 	}
@@ -97,6 +116,7 @@ public partial class ObjectBuffs : ComposableScript
 		{
 			ResourceType = type,
 			Value = value,
+			BaseValue = value,
 			SourceUnit = sourceUnit,
 			SourceCast = sourceCast,
 			Target = Parent,
@@ -116,6 +136,7 @@ public partial class ObjectBuffs : ComposableScript
 		{
 			ResourceType = type,
 			Value = value,
+			BaseValue = value,
 			Target = target,
 		};
 		foreach (var buff in Buffs)
@@ -130,6 +151,7 @@ public partial class ObjectBuffs : ComposableScript
 		{
 			ResourceType = type,
 			Value = value,
+			BaseValue = value,
 			SourceUnit = sourceUnit,
 			SourceCast = sourceCast,
 			Target = Parent,
@@ -146,6 +168,7 @@ public partial class ObjectBuffs : ComposableScript
 		{
 			ResourceType = type,
 			Value = value,
+			BaseValue = value,
 			Target = target,
 		};
 		foreach (var buff in Buffs)

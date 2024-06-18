@@ -152,6 +152,9 @@ transform = Transform3D(2, 0, 3.49691e-07, 0, 2, 0, -3.49691e-07, 0, 2, -4, -0.0
 [node name="WallStone30" parent="Environment/Arena/Walls" instance=ExtResource("5_goo8m")]
 transform = Transform3D(2, 0, 3.49691e-07, 0, 2, 0, -3.49691e-07, 0, 2, 4, -0.0637312, -10)
 
+[node name="WallStone124" parent="Environment/Arena/Walls" instance=ExtResource("5_goo8m")]
+transform = Transform3D(2, 0, 3.49691e-07, 0, 2, 0, -3.49691e-07, 0, 2, 4, -0.0637312, -10)
+
 [node name="WallStone31" parent="Environment/Arena/Walls" instance=ExtResource("5_goo8m")]
 transform = Transform3D(2, 0, 3.49691e-07, 0, 2, 0, -3.49691e-07, 0, 2, 8, -0.0637312, -10)
 
@@ -169,6 +172,9 @@ transform = Transform3D(-4, 0, 6.03983e-07, 0, 4, 0, -6.03983e-07, 0, -4, 2, -0.
 
 [node name="TunnelStone02" parent="Environment/Arena/Walls" instance=ExtResource("6_dkicd")]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -2, -0.0637312, -18)
+
+[node name="TunnelStone03" parent="Environment/Arena/Walls" instance=ExtResource("6_dkicd")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -2, -0.0637312, -22)
 
 [node name="DungeonFloor05" parent="Environment/Arena/Walls" instance=ExtResource("7_114ms")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -2, -0.0428007, -12)
@@ -196,6 +202,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
 
 [node name="DungeonFloor08" parent="Environment/Arena/Walls/DungeonFloor05" instance=ExtResource("7_114ms")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -3)
+
+[node name="DungeonFloor128" parent="Environment/Arena/Walls/DungeonFloor05" instance=ExtResource("7_114ms")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
+
+[node name="DungeonFloor129" parent="Environment/Arena/Walls/DungeonFloor05" instance=ExtResource("8_4dx6v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -4)
+
+[node name="DungeonFloor130" parent="Environment/Arena/Walls/DungeonFloor05" instance=ExtResource("9_ul8n3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5)
+
+[node name="DungeonFloor131" parent="Environment/Arena/Walls/DungeonFloor05" instance=ExtResource("7_114ms")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -5)
 
 [node name="DungeonFloor09" parent="Environment/Arena/Walls/DungeonFloor05" instance=ExtResource("8_4dx6v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 4)
@@ -655,6 +673,18 @@ transform = Transform3D(2, 0, 3.49691e-07, 0, 2, 0, -3.49691e-07, 0, 2, 2, 1.936
 
 [node name="WallStone73" parent="Environment/Arena/Walls" instance=ExtResource("5_goo8m")]
 transform = Transform3D(2, 0, 3.49691e-07, 0, 2, 0, -3.49691e-07, 0, 2, 6, 1.93627, -10)
+
+[node name="WallStone133" parent="Environment/Arena/Walls" instance=ExtResource("5_goo8m")]
+transform = Transform3D(2, 0, 3.49691e-07, 0, 2, 0, -3.49691e-07, 0, 2, -2, -0.0637312, -22)
+
+[node name="WallStone134" parent="Environment/Arena/Walls" instance=ExtResource("4_lh2l6")]
+transform = Transform3D(2, 0, 3.49691e-07, 0, 2, 0, -3.49691e-07, 0, 2, 0, -0.0637312, -22)
+
+[node name="WallStone135" parent="Environment/Arena/Walls" instance=ExtResource("4_lh2l6")]
+transform = Transform3D(2, 0, 3.49691e-07, 0, 2, 0, -3.49691e-07, 0, 2, -2, 1.93627, -22)
+
+[node name="WallStone136" parent="Environment/Arena/Walls" instance=ExtResource("5_goo8m")]
+transform = Transform3D(2, 0, 3.49691e-07, 0, 2, 0, -3.49691e-07, 0, 2, 0, 1.93627, -22)
 
 [node name="WallStone74" parent="Environment/Arena/Walls" instance=ExtResource("4_lh2l6")]
 transform = Transform3D(2, 0, 3.49691e-07, 0, 2, 0, -3.49691e-07, 0, 2, -8, 1.93627, -10)

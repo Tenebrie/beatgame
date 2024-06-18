@@ -90,6 +90,13 @@ public class PlayerSpellcasting : ComposableScript
 			var boundCast = boundCasts[0];
 			Bind(boundCast.Key, boundCast.Value.GetType());
 		}
+
+		if (!skill.Settings.RebindsAllCasts)
+			return;
+
+		var entries = CastBindings.ToList();
+		foreach (var cast in entries)
+			Bind(cast.Key, cast.Value.GetType());
 	}
 
 	public void RebindAll()

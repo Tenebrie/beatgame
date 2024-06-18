@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using Godot;
 namespace Project;
 
@@ -151,7 +153,14 @@ public static class CastUtils
 
 	public static string MakeDescription(params string[] strings)
 	{
-		return strings.Join(" ");
+		var valueRegex = new Regex("{([^}]+)}");
+		var passiveRegex = new Regex("\\(\\(([^}]+)\\)\\)");
+		return strings.Select(str =>
+		{
+			var s1 = valueRegex.Replace(str, (q) => $"{Colors.Tag(q.Groups[1])}");
+			var s2 = passiveRegex.Replace(s1, (q) => $"{Colors.Lore(q.Groups[1])}");
+			return s2;
+		}).ToArray().Join(" ");
 	}
 
 	public static Color GetAllianceColor(UnitAlliance alliance)
@@ -164,6 +173,11 @@ public static class CastUtils
 			color = new Color(0.7f, 0.0f, 1.0f);
 
 		return color;
+	}
+
+	public static async Task NextFrame(this Node node)
+	{
+		await node.ToSignal(node.GetTree().CreateTimer(0), "timeout");
 	}
 }
 

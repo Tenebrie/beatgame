@@ -21,7 +21,7 @@ public partial class SkillTreeUI : Control
 			return;
 
 		TreeReady = true;
-		Vector2 GridSize = new(80, 150);
+		Vector2 GridSize = new(80, 140);
 		Vector2 DrawOffset = new(this.Size.X / 2 - 38, 10);
 
 		var tree = SkillTreeManager.Singleton.SkillTrees.Find(tree => tree.Group == SkillGroup);
@@ -32,8 +32,8 @@ public partial class SkillTreeUI : Control
 		{
 			var linkUI = Lib.LoadScene(Lib.UI.SkillLink).Instantiate<SkillLinkVisual>();
 			linkUI.SkillLink = link;
-			linkUI.Position = new Vector2(link.Source.PosX, link.Source.Depth) * GridSize + DrawOffset + new Vector2(38, 85);
-			linkUI.Target = new Vector2(link.Target.PosX - link.Source.PosX, link.Target.Depth - link.Source.Depth) * GridSize + new Vector2(0, -60);
+			linkUI.Position = new Vector2(link.Source.PosX, link.Source.Depth) * GridSize + DrawOffset + new Vector2(37, 83);
+			linkUI.Target = new Vector2(link.Target.PosX - link.Source.PosX, link.Target.Depth - link.Source.Depth) * GridSize + new Vector2(-1, -58);
 			AddChild(linkUI);
 		}
 

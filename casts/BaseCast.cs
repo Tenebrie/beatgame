@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 namespace Project;
 
@@ -21,6 +22,7 @@ public partial class BaseCast : Node
 			set => castTimings = value;
 		}
 		public BeatTime ChannelingTickTimings = 0;
+		public bool ChannelWhileNotCasting = false;
 		public Dictionary<ObjectResourceType, float> ResourceCost = ObjectResource.MakeDictionary(0f);
 		public Dictionary<ObjectResourceType, float> ResourceCostPerBeat = ObjectResource.MakeDictionary(0f);
 		public int Charges = 1;
@@ -60,13 +62,24 @@ public partial class BaseCast : Node
 
 	public static string MakeDescription(params string[] strings) => CastUtils.MakeDescription(strings);
 
+	bool settingsPrepared = false;
+	public void PrepareSettings()
+	{
+		settingsPrepared = true;
+		Settings.ResourceCost[ObjectResourceType.Mana] = Settings.ResourceCost.GetValueOrDefault(ObjectResourceType.Mana) * (1 - Parent.Buffs.State.CastManaEfficiency);
+	}
+
 	public override void _EnterTree()
 	{
+		if (!settingsPrepared)
+			PrepareSettings();
+
 		Music.Singleton.BeatTick += OnBeatTick;
 	}
 
 	public override void _ExitTree()
 	{
+		Music.Singleton.BeatTick -= OnBeatTick;
 		if (RecastTimerHandle != null)
 			RemoveChild(RecastTimerHandle);
 	}
@@ -85,11 +98,15 @@ public partial class BaseCast : Node
 
 	private void OnBeatTick(BeatTime time)
 	{
-		if (!IsCasting)
+		if (!IsCasting && !Settings.ChannelWhileNotCasting)
 			return;
 
 		var beatIndex = Music.Singleton.BeatIndex;
-		if ((time & Settings.ChannelingTickTimings) > 0 && (Settings.TickWhilePreparing || Music.Singleton.BeatIndex > CastStartedAt + Settings.PrepareTime))
+		if ((time & Settings.ChannelingTickTimings) > 0 && (
+				Settings.ChannelWhileNotCasting ||
+				Settings.TickWhilePreparing ||
+				Music.Singleton.BeatIndex > CastStartedAt + Settings.PrepareTime)
+			)
 			OnCastTicked(CastTargetData, time);
 
 		if (!IsCasting)

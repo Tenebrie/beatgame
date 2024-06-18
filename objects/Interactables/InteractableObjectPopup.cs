@@ -25,7 +25,6 @@ public partial class InteractableObjectPopup : BasePopup
 
 		var box = label.GetThemeDefaultFont().GetStringSize(interactable.labelText, width: 200);
 		label.Size = box;
-		this.Log(box);
 		SetBody(interactable.labelText);
 		MakeVisible();
 	}

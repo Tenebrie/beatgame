@@ -18,7 +18,7 @@ public partial class SkillTreeManager : Node
 	[Signal]
 	public delegate void SkillLinkDownEventHandler(SkillConnection connection);
 
-	const int BaseSkillPoints = 9;
+	const int BaseSkillPoints = 30;
 	public int SkillPoints;
 	public List<BaseSkill> Skills = new();
 	public List<SkillTree> SkillTrees = new();
@@ -54,9 +54,33 @@ public partial class SkillTreeManager : Node
 
 			links: new()
 			{
-				Link<SkillFireball, SkillSpiritwalkersGrace>(3, BuffFactory.Of<BuffPlus10Mana>()),
-				Link<SkillFireball, SkillFlamethrower>(2, BuffFactory.Of<BuffPlus10Mana>()),
+				// L1
+				Link<SkillFireball, SkillIgnitingFireball>(3, BuffFactory.Of<BuffPlus10Mana>()),
+				Link<SkillFireball, SkillIgnite>(2, BuffFactory.Of<BuffPlus10Mana>()),
+				Link<SkillFireball, SkillFlamethrower>(4, BuffFactory.Of<BuffPlus10Mana>()),
+
+				// L2 Left
+				Link<SkillIgnitingFireball, SkillTwinFireball>(3, BuffFactory.Of<BuffPlus10Mana>()),
+
+				// L2 Main
+				Link<SkillIgnite, SkillManaEfficiency>(1, BuffFactory.Of<BuffPlus10Mana>()),
+
+				// L3
+				Link<SkillManaEfficiency, SkillEtherealFocus>(2, BuffFactory.Of<BuffPlus10Mana>()),
+				Link<SkillManaEfficiency, SkillVaporize>(1, BuffFactory.Of<BuffPlus10Mana>()),
+				Link<SkillManaEfficiency, SkillSpiritwalkersGrace>(2, BuffFactory.Of<BuffPlus10Mana>()),
+
+				// L4 Left
+				Link<SkillEtherealFocus, SkillEtherealDarkness>(2, BuffFactory.Of<BuffPlus10Mana>()),
+
+				// L4 Main
+				Link<SkillVaporize, SkillFireballMastery>(1, BuffFactory.Of<BuffPlus10Mana>()),
+
+				// L4 Right
 				Link<SkillSpiritwalkersGrace, SkillSpiritrunnersGrace>(2, BuffFactory.Of<BuffPlus10Mana>()),
+
+				// L5
+				Link<SkillFireballMastery, SkillManaFrenzy>(2, BuffFactory.Of<BuffPlus10Mana>()),
 			}
 		);
 
@@ -119,6 +143,9 @@ public partial class SkillTreeManager : Node
 			total.AddRange(tree.Skills);
 			return total;
 		});
+
+		foreach (var skill in Skills)
+			AddChild(skill);
 	}
 
 	public override void _Ready()
@@ -177,13 +204,15 @@ public partial class SkillTreeManager : Node
 		} while (iterationCount < 30);
 
 		path.Reverse();
+		List<BaseSkill> skillsToLearn = new();
 
 		foreach (var node in path)
 		{
 			if (node.Skill != null)
 			{
 				SkillPoints -= 1;
-				node.Skill.Learn();
+				node.Skill.IsLearned = true;
+				skillsToLearn.Add(node.Skill);
 			}
 
 			if (node.Link != null)
@@ -199,22 +228,28 @@ public partial class SkillTreeManager : Node
 		}
 
 		Recalculate();
+		foreach (var s in skillsToLearn)
+			EmitSignal(SignalName.SkillUp, s);
 	}
 
 	public void UnlearnSkill(BaseSkill skill)
 	{
-		UnlearnSkillRecursively(skill);
+		List<BaseSkill> skillsToUnlearn = new();
+		UnlearnSkillRecursively(skill, skillsToUnlearn);
 		Recalculate();
+		foreach (var s in skillsToUnlearn)
+			EmitSignal(SignalName.SkillDown, s);
 	}
 
-	public void UnlearnSkillRecursively(BaseSkill skill)
+	public void UnlearnSkillRecursively(BaseSkill skill, List<BaseSkill> unlearnedSkills)
 	{
-		skill.Unlearn();
+		skill.IsLearned = false;
+		unlearnedSkills.Add(skill);
 		foreach (var link in skill.ChildrenLinks)
 		{
 			link.PointsInvested = 0;
 			EmitSignal(SignalName.SkillLinkDown, link);
-			UnlearnSkill(link.Target);
+			UnlearnSkillRecursively(link.Target, unlearnedSkills);
 		}
 	}
 

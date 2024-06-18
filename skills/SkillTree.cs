@@ -129,7 +129,7 @@ public class SkillTree
 		{
 			var newPosX = skill.PosX - dist * Math.Sign(skill.PosX);
 			bool isCloser = Math.Abs(newPosX - target) < Math.Abs(skill.PosX - target);
-			bool willNotOverlap = Skills.All(s => s.Depth != skill.Depth || s.PosX != newPosX);
+			bool willNotOverlap = Skills.All(s => s == skill || s.Depth != skill.Depth || Math.Abs(s.PosX - newPosX) >= 1.0f);
 			return isCloser && willNotOverlap && skill.ChildrenLinks.All(child => CanCompact(child.Target, newPosX, dist));
 		}
 
@@ -156,10 +156,10 @@ public class SkillTree
 				hasCompacted = false;
 				foreach (var child in skill.ChildrenLinks.Select(child => child.Target))
 				{
-					if (CanCompact(child, skill.PosX, 1))
+					if (CanCompact(child, skill.PosX, 0.25f))
 					{
 						hasCompacted = true;
-						DoCompact(child, skill.PosX, 1);
+						DoCompact(child, skill.PosX, 0.25f);
 					}
 				}
 			} while (hasCompacted && iterations < 20);

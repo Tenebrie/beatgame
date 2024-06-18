@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Godot;
 
 namespace Project;
@@ -10,11 +9,15 @@ public abstract partial class BaseBuff : Node
 		public string FriendlyName = "Unnamed Buff";
 		public string Description = "No description";
 		public string IconPath = "res://assets/ui/icon-skill-passive-placeholder.png";
+		public bool TicksOnBeat = false;
+		public bool PreventStacking = false;
+		public bool RefreshOthersWhenAdded = false;
 	}
 
 	public BuffSettings Settings;
 
 	public BaseUnit Parent;
+	public BaseCast SourceCast;
 	public Flag Flags = 0;
 
 	float createdAt = -1;
@@ -25,13 +28,32 @@ public abstract partial class BaseBuff : Node
 		createdAt = Time.GetTicksMsec();
 	}
 
+	public override void _Ready()
+	{
+		if (Settings.TicksOnBeat)
+			Music.Singleton.BeatTick += OnBeatTick;
+	}
+
+	public override void _ExitTree()
+	{
+		if (Settings.TicksOnBeat)
+			Music.Singleton.BeatTick -= OnBeatTick;
+	}
+
+	float defaultDuration;
 	public float Duration
 	{
 		set
 		{
 			float time = Time.GetTicksMsec();
 			expiresAt = time + value * Music.Singleton.SecondsPerBeat * 1000;
+			defaultDuration = value;
 		}
+	}
+
+	public void RefreshDuration()
+	{
+		Duration = defaultDuration;
 	}
 
 	public override void _Process(double delta)
@@ -51,6 +73,7 @@ public abstract partial class BaseBuff : Node
 	public virtual void ModifyOutgoingDamage(BuffOutgoingDamageVisitor damage) { }
 	public virtual void ModifyIncomingRestoration(BuffIncomingRestorationVisitor restoration) { }
 	public virtual void ModifyOutgoingRestoration(BuffOutgoingRestorationVisitor restoration) { }
+	protected virtual void OnBeatTick(BeatTime time) { }
 
 	public enum Flag : int
 	{

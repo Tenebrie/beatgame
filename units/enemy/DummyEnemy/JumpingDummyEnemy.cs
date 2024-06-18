@@ -38,7 +38,7 @@ public partial class JumpingDummyEnemy : BasicEnemyController
 
 		restingTimer.Start();
 
-		Health.SetMaxValue(5000);
+		Health.SetBaseMaxValue(5000);
 	}
 
 	public override void _Process(double delta)

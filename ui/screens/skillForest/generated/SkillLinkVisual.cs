@@ -7,8 +7,6 @@ namespace Project;
 public partial class SkillLinkVisual : Control
 {
 	public SkillConnection SkillLink;
-	public int Segments;
-	public int SegmentsFilled;
 	public Vector2 Target;
 
 	public override void _Ready()
@@ -33,17 +31,24 @@ public partial class SkillLinkVisual : Control
 
 	public override void _Draw()
 	{
-		Segments = SkillLink.PointsRequired;
-
 		var filledColor = new Color(1.0f, 0.5f, 0.0f);
 		var unfilledColor = new Color(0.7f, 0.7f, 0.7f);
 
 		List<Vector2> circlePositions = new();
 		var segmentStartsAt = new Vector2(0, 0);
-		var segmentsToDraw = Segments + 1;
+
+		var direction = Target.Normalized();
+
+		var totalSpaceWithCircles = (SkillLink.PointsRequired - 1) * 15f;
+		var segmentStep = SkillLink.PointsRequired > 1 ? totalSpaceWithCircles / (SkillLink.PointsRequired - 1) : 0;
+		var segmentsToDraw = SkillLink.PointsRequired + 1;
+		var middleOfTheLine = Target / 2f;
 		for (var i = 0; i < segmentsToDraw; i++)
 		{
-			var segmentsEndsAt = segmentStartsAt + Target / segmentsToDraw;
+			var segmentsEndsAt = middleOfTheLine - direction * totalSpaceWithCircles / 2f + direction * segmentStep * i;
+			if (i == segmentsToDraw - 1)
+				segmentsEndsAt = Target;
+
 			var isFilled = SkillLink.PointsInvested >= i + 1 || SkillLink.Target.IsLearned;
 
 			var color = isFilled ? filledColor : unfilledColor;
@@ -58,7 +63,8 @@ public partial class SkillLinkVisual : Control
 			var pos = circlePositions[i];
 			var isFilled = SkillLink.PointsInvested >= i + 1 || SkillLink.Target.IsLearned;
 			var color = isFilled ? filledColor : unfilledColor;
-			DrawCircle(pos, 5, color);
+			DrawCircle(pos, 3, color);
+			DrawArc(pos, 4, 0, (float)Math.PI * 2, 10, color, 1, true);
 		}
 	}
 

@@ -29,7 +29,7 @@ public partial class Projectile : Node3D
 		}
 
 		var speed = 6f * (float)delta;
-		var targetPos = TargetUnit.GlobalPosition + new Vector3(0, 0.5f, 0);
+		var targetPos = TargetUnit.GlobalCastAimPosition;
 		var direction = GlobalPosition.DirectionTo(targetPos);
 
 		Position += direction * speed;
@@ -45,6 +45,14 @@ public partial class Projectile : Node3D
 				GD.PushError("Projectile doesn't have Source set");
 
 			TargetUnit.Health.Damage(ImpactDamage, Source);
+
+			if (Source is Fireball && Source.HasSkill<SkillIgnitingFireball>())
+			{
+				TargetUnit.Buffs.Add(new BuffMinorIgnite()
+				{
+					SourceCast = Source,
+				});
+			}
 		}
 	}
 
