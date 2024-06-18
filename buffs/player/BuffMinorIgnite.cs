@@ -2,9 +2,9 @@ namespace Project;
 
 public partial class BuffMinorIgnite : BaseBuff
 {
-	public const float DamagePerBeat = 5;
+	public const float DamagePerBeat = 2;
 	public const float BurnDuration = 8;
-	
+
 	public BuffMinorIgnite()
 	{
 		Settings = new()
@@ -15,11 +15,11 @@ public partial class BuffMinorIgnite : BaseBuff
 		Duration = BurnDuration;
 	}
 
-	protected override void OnBeatTick(BeatTime time)
+	public override void OnBeatTick(BeatTime time, int stacks)
 	{
-		if (time.HasNot(BeatTime.Quarter))
+		if (time.HasNot(BeatTime.EveryFullBeat))
 			return;
 
-		Parent.Health.Damage(DamagePerBeat, SourceCast);
+		Parent.Health.Damage(DamagePerBeat * stacks, SourceCast);
 	}
 }

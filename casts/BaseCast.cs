@@ -36,7 +36,7 @@ public partial class BaseCast : Node
 		public bool TickWhilePreparing = false;
 
 		/// <summary>Only for CastInputType.HoldRelease</summary>
-		public bool CastOnFailedRelease = true;
+		public bool CastOnFailedRelease = false;
 	}
 
 	protected class CastFlags
@@ -175,7 +175,7 @@ public partial class BaseCast : Node
 			errorMessage = "Not enough health";
 			return false;
 		}
-		if (Parent.Mana.Current < 0)
+		if (Parent.Mana.Current < 0 && Settings.ResourceCost[ObjectResourceType.Mana] > 0)
 		{
 			errorMessage = "Not enough mana";
 			return false;

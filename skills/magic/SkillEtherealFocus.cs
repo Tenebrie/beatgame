@@ -8,6 +8,7 @@ public partial class SkillEtherealFocus : BaseSkill
 		{
 			FriendlyName = "Ethereal Focus",
 			IconPath = "res://assets/icons/SpellBook06_46.PNG",
+			ActiveCast = CastFactory.Of<CastEtherealFocus>(),
 		};
 	}
 }

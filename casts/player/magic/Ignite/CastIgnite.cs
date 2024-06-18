@@ -20,6 +20,7 @@ public partial class CastIgnite : BaseCast
 			CastTimings = BeatTime.Quarter | BeatTime.Eighth,
 			RecastTime = 1,
 		};
+		Settings.ResourceCost[ObjectResourceType.Mana] = 20;
 	}
 
 	protected override void OnCastCompleted(CastTargetData target)

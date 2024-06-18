@@ -35,7 +35,16 @@ public static class CastUtils
 		node.GetTree().CurrentScene.AddChild(zap);
 		zap.SetTarget(to);
 		zap.FadeDuration = 0.50f;
+		node.CreateEffect(Lib.Effect.LightningZapImpact, to);
 		return zap;
+	}
+
+	public static BaseEffect CreateEffect(this Node node, string resourcePath, Vector3 target)
+	{
+		var impact = Lib.LoadScene(resourcePath).Instantiate<BaseEffect>();
+		impact.Position = target;
+		node.GetTree().CurrentScene.AddChild(impact);
+		return impact;
 	}
 
 	public static float GetArenaSize(this Node _)

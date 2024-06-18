@@ -20,6 +20,8 @@ public partial class ControllableDirectionalLight : DirectionalLight3D, IControl
 
 		TargetEnergy = LightEnergy;
 
+
+
 		if (GroupName == null)
 		{
 			GD.PrintErr("ControllableLight is not assigned to a group");

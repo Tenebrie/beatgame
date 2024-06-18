@@ -16,7 +16,7 @@ public partial class BaseSkill : Node
 		public CastFactory ActiveCast;
 		public List<CastFactory> AffectedCasts = new();
 		public BuffFactory PassiveBuff;
-		public bool RebindsAllCasts = false;
+		public bool RebindsAllCasts = true;
 
 		public List<SkillWrapper> IncompatibleSkills = new();
 	}
@@ -60,10 +60,16 @@ public partial class BaseSkill : Node
 					builder.Append("\n\n");
 				var castSettings = Settings.ActiveCast.Settings;
 				// Description
-				builder.Append($"[color={Colors.Active}]Active:[/color] ").Append(castSettings.Description);
+				builder.Append($"[color={Colors.Active}]Active:[/color] ").Append(castSettings.Description).Append('\n');
+
+				// Resource cost
+				if (castSettings.ResourceCost[ObjectResourceType.Health] > 0)
+					builder.Append($"\n[color={Colors.Health}]Health cost:[/color] ").Append(castSettings.ResourceCost[ObjectResourceType.Health]);
+				if (castSettings.ResourceCost[ObjectResourceType.Mana] > 0)
+					builder.Append($"\n[color={Colors.Mana}]Mana cost:[/color] ").Append(castSettings.ResourceCost[ObjectResourceType.Mana]);
 
 				// Input type
-				builder.Append($"\n\n[color={Colors.Passive}]Input:[/color] ");
+				builder.Append($"\n[color={Colors.Passive}]Input:[/color] ");
 				if (castSettings.InputType == CastInputType.Instant)
 					builder.Append("Instant");
 				else if (castSettings.InputType == CastInputType.AutoRelease)
@@ -78,10 +84,6 @@ public partial class BaseSkill : Node
 				// Recast time
 				if (castSettings.RecastTime >= 0.25f)
 					builder.Append($"\n[color={Colors.Passive}]Cooldown:[/color] ").Append($"{castSettings.RecastTime} beat{(castSettings.RecastTime == 1 ? "" : "s")}");
-
-				// Resource cost
-				if (castSettings.ResourceCost[ObjectResourceType.Mana] > 0)
-					builder.Append($"\n[color={Colors.Mana}]Mana cost:[/color] ").Append(castSettings.ResourceCost[ObjectResourceType.Mana]);
 
 				// Lore
 				if (castSettings.LoreDescription != null)

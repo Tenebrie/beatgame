@@ -28,18 +28,6 @@ public abstract partial class BaseBuff : Node
 		createdAt = Time.GetTicksMsec();
 	}
 
-	public override void _Ready()
-	{
-		if (Settings.TicksOnBeat)
-			Music.Singleton.BeatTick += OnBeatTick;
-	}
-
-	public override void _ExitTree()
-	{
-		if (Settings.TicksOnBeat)
-			Music.Singleton.BeatTick -= OnBeatTick;
-	}
-
 	float defaultDuration;
 	public float Duration
 	{
@@ -73,7 +61,7 @@ public abstract partial class BaseBuff : Node
 	public virtual void ModifyOutgoingDamage(BuffOutgoingDamageVisitor damage) { }
 	public virtual void ModifyIncomingRestoration(BuffIncomingRestorationVisitor restoration) { }
 	public virtual void ModifyOutgoingRestoration(BuffOutgoingRestorationVisitor restoration) { }
-	protected virtual void OnBeatTick(BeatTime time) { }
+	public virtual void OnBeatTick(BeatTime time, int stacks) { }
 
 	public enum Flag : int
 	{

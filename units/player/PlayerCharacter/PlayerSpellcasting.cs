@@ -181,6 +181,9 @@ public class PlayerSpellcasting : ComposableScript
 
 			if (@Input.IsActionJustPressed(key))
 			{
+				if (cast.IsCasting)
+					return;
+
 				Parent.Movement.StopAutorun();
 				if (cast.Settings.InputType != CastInputType.Instant)
 					ReleaseCurrentCastingSpell();

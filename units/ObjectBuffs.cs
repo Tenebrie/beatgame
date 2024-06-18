@@ -10,6 +10,7 @@ public partial class ObjectBuffs : ComposableScript
 	public BuffUnitStatsVisitor State = new();
 
 	readonly List<BaseBuff> Buffs = new();
+	readonly List<(BaseBuff, int)> BeatTickingBuffs = new();
 
 	public ObjectBuffs(BaseUnit parent) : base(parent) { }
 
@@ -18,11 +19,13 @@ public partial class ObjectBuffs : ComposableScript
 		base._Ready();
 		Recalculate();
 		Parent.ChildExitingTree += OnChildExitingTree;
+		Music.Singleton.BeatTick += OnBeatTick;
 	}
 
 	public override void _ExitTree()
 	{
 		Parent.ChildExitingTree -= OnChildExitingTree;
+		Music.Singleton.BeatTick -= OnBeatTick;
 	}
 
 	void OnChildExitingTree(Node child)
@@ -32,6 +35,12 @@ public partial class ObjectBuffs : ComposableScript
 
 		Buffs.Remove(buff);
 		Recalculate();
+	}
+
+	void OnBeatTick(BeatTime time)
+	{
+		foreach (var buff in BeatTickingBuffs)
+			buff.Item1.OnBeatTick(time, buff.Item2);
 	}
 
 	public void Add(BaseBuff buff)
@@ -100,9 +109,21 @@ public partial class ObjectBuffs : ComposableScript
 	public void Recalculate()
 	{
 		BuffUnitStatsVisitor visitor = new();
+		HashSet<Type> beatTickingBuffTypes = new();
 
 		foreach (var buff in Buffs)
+		{
 			buff.ModifyUnit(visitor);
+			if (buff.Settings.TicksOnBeat)
+				beatTickingBuffTypes.Add(buff.GetType());
+		}
+
+		BeatTickingBuffs.Clear();
+		foreach (var buffType in beatTickingBuffTypes)
+		{
+			var matchingBuffs = Buffs.Where(b => b.GetType() == buffType);
+			BeatTickingBuffs.Add((matchingBuffs.First(), matchingBuffs.Count()));
+		}
 
 		Parent.Gravity = Parent.BaseGravity * visitor.GravityModifier;
 		Parent.Health.SetMaxValue(Parent.Health.BaseMaximum + visitor.MaximumHealth);

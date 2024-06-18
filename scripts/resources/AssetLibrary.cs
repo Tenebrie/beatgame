@@ -28,7 +28,10 @@ public class EffectLibrary
 	public string EnergyOrbPickupImpact = "uid://bsydded5w4p61";
 	public string AerielDarknessRelease = "uid://br0yb56fj0miy";
 	public string LightningZap = "res://effects/LightningZap/LightningZapEffect.tscn";
+	public string LightningZapImpact = "uid://cx2fo4dymkanp";
 	public string BusterTarget = "uid://bd1pneojwsjum";
+	public string EtherealFocusBurst = "uid://bsdk74dv5et2a";
+	public string EtherealFocusChannel = "uid://cwk748e7folsj";
 }
 
 public class UILibrary

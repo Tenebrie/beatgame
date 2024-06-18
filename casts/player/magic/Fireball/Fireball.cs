@@ -3,7 +3,7 @@ using Godot;
 namespace Project;
 public partial class Fireball : BaseCast
 {
-	public const float Damage = 10;
+	public const float Damage = 40;
 	BaseUnit TwinFireballTarget;
 
 	public Fireball(BaseUnit parent) : base(parent)
@@ -21,7 +21,7 @@ public partial class Fireball : BaseCast
 			HoldTime = 2,
 			RecastTime = 2,
 		};
-		Settings.ResourceCost[ObjectResourceType.Mana] = 10;
+		Settings.ResourceCost[ObjectResourceType.Mana] = 25;
 		if (this.HasSkill<SkillIgnitingFireball>())
 			Settings.ResourceCost[ObjectResourceType.Mana] += SkillIgnitingFireball.ExtraManaCost;
 		if (this.HasSkill<SkillTwinFireball>())

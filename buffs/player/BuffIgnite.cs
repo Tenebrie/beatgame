@@ -2,8 +2,8 @@ namespace Project;
 
 public partial class BuffIgnite : BaseBuff
 {
-	public const float DamagePerBeat = 10;
-	public const float BurnDuration = 32;
+	public const float DamagePerBeat = 5;
+	public const float BurnDuration = 16;
 
 	public BuffIgnite()
 	{
@@ -16,11 +16,11 @@ public partial class BuffIgnite : BaseBuff
 		Duration = BurnDuration;
 	}
 
-	protected override void OnBeatTick(BeatTime time)
+	public override void OnBeatTick(BeatTime time, int stacks)
 	{
 		if (time.HasNot(BeatTime.EveryFullBeat))
 			return;
 
-		Parent.Health.Damage(DamagePerBeat, SourceCast);
+		Parent.Health.Damage(DamagePerBeat * stacks, SourceCast);
 	}
 }

@@ -39,6 +39,6 @@ public partial class BossCastBuster : BaseCast
 	{
 		targetData.HostileUnit.Buffs.RemoveAll<BuffBusterTarget>();
 		targetData.HostileUnit.Health.Damage(Damage, this);
-		effect.CleanUp();
+		effect.FreeAfterDelay();
 	}
 }

@@ -40,8 +40,8 @@ public partial class ResourceBar : Control
 	private void OnTrackStarted(MusicTrack track)
 	{
 		// var waitTime = track.BeatDuration * 3;
-		PositiveTimer.WaitTime = 0.01f;
-		NegativeTimer.WaitTime = 0.25f;
+		PositiveTimer.WaitTime = 1.00f;
+		NegativeTimer.WaitTime = 1.00f;
 	}
 
 	public void SetCurrent(float value)
