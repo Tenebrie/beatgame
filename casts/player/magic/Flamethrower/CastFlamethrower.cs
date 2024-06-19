@@ -3,7 +3,7 @@ using Godot;
 namespace Project;
 public partial class CastFlamethrower : BaseCast
 {
-	float DamagePerBeat = 20;
+	float DamagePerBeat = 40;
 	EffectFlamethrowerWithHitbox effect;
 
 	public CastFlamethrower(BaseUnit parent) : base(parent)
@@ -24,7 +24,7 @@ public partial class CastFlamethrower : BaseCast
 			CastTimings = BeatTime.Whole | BeatTime.Half,
 			ChannelingTickTimings = BeatTime.All,
 			HoldTime = 8,
-			RecastTime = 4
+			RecastTime = 16
 		};
 		Settings.ResourceCost[ObjectResourceType.Mana] = 10;
 		Settings.ResourceCostPerBeat[ObjectResourceType.Mana] = 10;

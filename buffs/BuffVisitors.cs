@@ -1,9 +1,10 @@
 using System;
 using System.Collections.Generic;
+using Godot;
 
 namespace Project;
 
-public class BuffUnitStatsVisitor
+public partial class BuffUnitStatsVisitor : RefCounted
 {
 	public Dictionary<ObjectResourceType, float> PercentageDamageReduction = ObjectResource.MakeDictionary<float>(0f);
 	public float CastManaEfficiency = 0;
@@ -15,7 +16,7 @@ public class BuffUnitStatsVisitor
 	public float SummonHealth = 0;
 }
 
-public class BuffIncomingDamageVisitor
+public partial class BuffIncomingDamageVisitor : RefCounted
 {
 	public float Value;
 	public float BaseValue;
@@ -25,7 +26,7 @@ public class BuffIncomingDamageVisitor
 	public ObjectResourceType ResourceType;
 }
 
-public class BuffOutgoingDamageVisitor
+public partial class BuffOutgoingDamageVisitor : RefCounted
 {
 	public float Value;
 	public float BaseValue;
@@ -33,7 +34,7 @@ public class BuffOutgoingDamageVisitor
 	public ObjectResourceType ResourceType;
 }
 
-public class BuffIncomingRestorationVisitor
+public partial class BuffIncomingRestorationVisitor : RefCounted
 {
 	public float Value;
 	public float BaseValue;
@@ -43,7 +44,7 @@ public class BuffIncomingRestorationVisitor
 	public ObjectResourceType ResourceType;
 }
 
-public class BuffOutgoingRestorationVisitor
+public partial class BuffOutgoingRestorationVisitor : RefCounted
 {
 	public float Value;
 	public float BaseValue;

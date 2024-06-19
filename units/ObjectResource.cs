@@ -103,7 +103,10 @@ public class ObjectResource : ComposableScript
 		current = Math.Max(minimum, current - value);
 
 		if (ready)
+		{
+			SignalBus.Singleton.EmitSignal(SignalBus.SignalName.DamageTaken, result);
 			SignalBus.Singleton.EmitSignal(SignalBus.SignalName.ResourceChanged, Parent, Type.ToVariant(), current);
+		}
 	}
 
 	public void Restore(float originalValue, BaseCast sourceCast)

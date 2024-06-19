@@ -227,30 +227,28 @@ public partial class BaseCast : Node
 
 	public void CastComplete()
 	{
+		IsCasting = false;
+		StartCooldown();
 		Flags.CastSuccessful = true;
 		SignalBus.Singleton.EmitSignal(SignalBus.SignalName.CastPerformed, this);
-		CastCompleteInternal();
+		OnCastCompleted(CastTargetData);
+		OnCastCompletedOrFailed(CastTargetData);
 	}
 
 	public void CastFail()
 	{
 		IsCasting = false;
+		StartCooldown();
 		Flags.CastSuccessful = false;
 		SignalBus.Singleton.EmitSignal(SignalBus.SignalName.CastFailed, this);
 
 		OnCastFailed(CastTargetData);
 		OnCastCompletedOrFailed(CastTargetData);
 		if (Settings.InputType == CastInputType.HoldRelease && Settings.CastOnFailedRelease)
-			CastCompleteInternal();
-	}
-
-	private void CastCompleteInternal()
-	{
-		IsCasting = false;
-		StartCooldown();
-
-		OnCastCompleted(CastTargetData);
-		OnCastCompletedOrFailed(CastTargetData);
+		{
+			OnCastCompleted(CastTargetData);
+			OnCastCompletedOrFailed(CastTargetData);
+		}
 	}
 
 	public void StartCooldown()

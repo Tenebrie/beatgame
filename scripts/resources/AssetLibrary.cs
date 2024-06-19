@@ -45,6 +45,7 @@ public class UILibrary
 	public string SkillPopup = "res://ui/screens/skillForest/generated/SkillPopup.tscn";
 	public string MessageListMessage = "res://ui/generic/MessageList/Message.tscn";
 	public string SkillBindingNotification = "res://ui/screens/skillBinding/SkillBindingNotification.tscn";
+	public string DpsMeterCast = "uid://dfoorpkl82w6j";
 }
 
 public class AudioLibrary

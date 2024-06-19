@@ -47,6 +47,7 @@ public partial class SkillTreeManager : Node
 			}
 		);
 
+		// TODO: Add lifesteal to damage tree
 		var magicTree = new SkillTree
 		(
 			group: SkillGroup.MagicalDamage,

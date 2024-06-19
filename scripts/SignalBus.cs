@@ -18,6 +18,8 @@ public partial class SignalBus : Node
 	[Signal]
 	public delegate void ObjectUntargetedEventHandler();
 	[Signal]
+	public delegate void DamageTakenEventHandler(BuffIncomingDamageVisitor data);
+	[Signal]
 	public delegate void ResourceChangedEventHandler(BaseUnit unit, ObjectResourceType type, float value);
 	[Signal]
 	public delegate void ResourceRegeneratedEventHandler(BaseUnit unit, ObjectResourceType type, float value);

@@ -1,0 +1,192 @@
+[gd_scene load_steps=3 format=3 uid="uid://ctkdqk8ubqwic"]
+
+[ext_resource type="PackedScene" uid="uid://dfoorpkl82w6j" path="res://ui/screens/dpsMeter/DpsMeterCast.tscn" id="1_d31m4"]
+[ext_resource type="Script" path="res://ui/screens/dpsMeter/DpsMeterUI.cs" id="1_krd3a"]
+
+[node name="DpsMeterUI" type="Control" node_paths=PackedStringArray("castContainer", "totalDamageLabel", "combatTimeLabel", "damagePerSecondLabel", "clearButton")]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_krd3a")
+castContainer = NodePath("Control/Panel/CastList/CastContainer")
+totalDamageLabel = NodePath("Control/Panel/TotalStats/MarginContainer/VBoxContainer/TotalDamage/Value")
+combatTimeLabel = NodePath("Control/Panel/TotalStats/MarginContainer/VBoxContainer/CombatTime/Value")
+damagePerSecondLabel = NodePath("Control/Panel/TotalStats/MarginContainer/VBoxContainer/DamagePerSecond/Value")
+clearButton = NodePath("Control/Panel/Controls/MarginContainer/ClearButton")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -309.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = 515.0
+grow_horizontal = 0
+
+[node name="Panel" type="Panel" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CastList" type="Control" parent="Control/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -118.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/Panel/CastList"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 5
+
+[node name="CastContainer" type="VBoxContainer" parent="Control/Panel/CastList"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DpsMeterCast" parent="Control/Panel/CastList/CastContainer" instance=ExtResource("1_d31m4")]
+layout_mode = 2
+
+[node name="DpsMeterCast2" parent="Control/Panel/CastList/CastContainer" instance=ExtResource("1_d31m4")]
+layout_mode = 2
+
+[node name="DpsMeterCast3" parent="Control/Panel/CastList/CastContainer" instance=ExtResource("1_d31m4")]
+layout_mode = 2
+
+[node name="TotalStats" type="Control" parent="Control/Panel"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -113.0
+offset_bottom = -38.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="HSeparator" type="HSeparator" parent="Control/Panel/TotalStats"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 9.0
+offset_right = -9.0
+offset_bottom = 4.0
+grow_horizontal = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/Panel/TotalStats"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/Panel/TotalStats/MarginContainer"]
+layout_mode = 2
+
+[node name="TotalDamage" type="Control" parent="Control/Panel/TotalStats/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="Control/Panel/TotalStats/MarginContainer/VBoxContainer/TotalDamage"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Total Damage:"
+
+[node name="Value" type="Label" parent="Control/Panel/TotalStats/MarginContainer/VBoxContainer/TotalDamage"]
+layout_mode = 0
+offset_left = 168.0
+offset_right = 280.0
+offset_bottom = 23.0
+text = "0"
+
+[node name="CombatTime" type="Control" parent="Control/Panel/TotalStats/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="Control/Panel/TotalStats/MarginContainer/VBoxContainer/CombatTime"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Time:"
+
+[node name="Value" type="Label" parent="Control/Panel/TotalStats/MarginContainer/VBoxContainer/CombatTime"]
+layout_mode = 0
+offset_left = 168.0
+offset_right = 280.0
+offset_bottom = 23.0
+text = "0"
+
+[node name="DamagePerSecond" type="Control" parent="Control/Panel/TotalStats/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="Control/Panel/TotalStats/MarginContainer/VBoxContainer/DamagePerSecond"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+tooltip_text = "Damage Per Beat"
+mouse_filter = 1
+text = "DPB:"
+
+[node name="Value" type="Label" parent="Control/Panel/TotalStats/MarginContainer/VBoxContainer/DamagePerSecond"]
+layout_mode = 0
+offset_left = 168.0
+offset_right = 280.0
+offset_bottom = 23.0
+text = "0"
+
+[node name="Controls" type="Control" parent="Control/Panel"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/Panel/Controls"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 5
+
+[node name="ClearButton" type="Button" parent="Control/Panel/Controls/MarginContainer"]
+layout_mode = 2
+focus_mode = 0
+text = "Clear"
