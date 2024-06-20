@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Project;
 
-// [Tool] 
+[Tool]
 public partial class LightningZapEffect : Node3D
 {
 	[Export]
