@@ -1,6 +1,6 @@
 namespace Project;
 
-public partial class BuffPlus25Health : BaseBuff
+public partial class BuffTankTreeHealth : BaseBuff
 {
 	public override void ModifyUnit(BuffUnitStatsVisitor unit)
 	{

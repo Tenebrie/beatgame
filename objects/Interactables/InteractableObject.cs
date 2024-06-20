@@ -52,7 +52,7 @@ public abstract partial class InteractableObject : Area3D
 		IsHovered = true;
 		SetHoverHighlight(1.0f);
 
-		if (PlayerController.AllPlayers[0] == null || !PlayerController.AllPlayers[0].Movement.IsMovingCamera())
+		if (labelText != null && labelText.Length > 0 && (PlayerController.AllPlayers.Count == 0 || !PlayerController.AllPlayers[0].Movement.IsMovingCamera()))
 			InteractableObjectPopup.Singleton.AddObject(this);
 	}
 

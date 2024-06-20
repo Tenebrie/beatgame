@@ -1,33 +1,112 @@
 using Godot;
-using System;
-using System.Diagnostics;
 
 namespace Project;
+
 public partial class UnitCard : Control
 {
+	[Export]
 	public Label NameLabel;
+	[Export]
 	public ResourceBar HealthBar;
-	public BaseUnit TrackedUnit;
+	[Export]
+	public Panel BackgroundPanel;
 
-	public override void _Ready()
+	bool isHovered = false;
+	bool isPressed = false;
+	bool isTargeted = false;
+	BaseUnit trackedUnit;
+
+	Color hoveredAlliedColor = new(0.1f, 0.4f, 0.4f);
+	Color hoveredHostileColor = new(0.4f, 0.1f, 0.1f);
+	Color targetedAlliedColor = new(0.1f, 0.7f, 0.7f);
+	Color targetedHostileColor = new(0.7f, 0.1f, 0.1f);
+	Color normalColor = new(0.5f, 0.5f, 0.5f);
+
+	public override void _EnterTree()
 	{
-		NameLabel = GetNode<Label>("NameLabel");
-		HealthBar = GetNode<ResourceBar>("HealthBar");
+		MouseEntered += OnMouseEntered;
+		MouseExited += OnMouseExited;
+		SignalBus.Singleton.ObjectTargeted += OnObjectTargeted;
+		SignalBus.Singleton.ObjectUntargeted += OnObjectUntargeted;
+		UpdateHoverValue();
+	}
 
-		if (TrackedUnit != null) {
-			NameLabel.Text = TrackedUnit.FriendlyName;
-			HealthBar.TrackUnit(TrackedUnit, ObjectResourceType.Health);
+	public override void _ExitTree()
+	{
+		SignalBus.Singleton.ObjectTargeted -= OnObjectTargeted;
+	}
+
+	void OnObjectTargeted(BaseUnit unit, TargetedUnitAlliance alliance)
+	{
+		if (isTargeted && !trackedUnit.Alliance.EqualsTo(alliance))
+			return;
+
+		isTargeted = unit == trackedUnit;
+		UpdateHoverValue();
+	}
+
+	void OnObjectUntargeted(TargetedUnitAlliance alliance)
+	{
+		if (alliance.EqualsTo(trackedUnit.Alliance))
+			isTargeted = false;
+		UpdateHoverValue();
+	}
+
+	public override void _Input(InputEvent @event)
+	{
+		if (isHovered && @event.IsActionPressed("MouseInteract"))
+		{
+			isPressed = true;
+			UpdateHoverValue();
 		}
+		else if (@event.IsActionReleased("MouseInteract"))
+		{
+			isPressed = false;
+			if (isHovered)
+				trackedUnit.Targetable.MakeTargeted();
+			UpdateHoverValue();
+		}
+	}
+
+	void OnMouseEntered()
+	{
+		isHovered = true;
+		UpdateHoverValue();
+	}
+
+	void OnMouseExited()
+	{
+		isHovered = false;
+		UpdateHoverValue();
+	}
+
+	void UpdateHoverValue()
+	{
+		var stylebox = (StyleBoxFlat)BackgroundPanel.GetThemeStylebox("panel");
+		var color = normalColor;
+		if (isTargeted && trackedUnit.Alliance != UnitAlliance.Hostile)
+			color = targetedAlliedColor;
+		else if (isTargeted && trackedUnit.Alliance == UnitAlliance.Hostile)
+			color = targetedHostileColor;
+		else if (isHovered && trackedUnit.Alliance != UnitAlliance.Hostile)
+			color = hoveredAlliedColor;
+		else if (isHovered && trackedUnit.Alliance == UnitAlliance.Hostile)
+			color = hoveredHostileColor;
+
+		color = new Color(color);
+		if (isPressed)
+			color *= 0.75f;
+
+		stylebox.BorderColor = color;
+		BackgroundPanel.AddThemeStyleboxOverride("panel", stylebox);
 	}
 
 	public void TrackUnit(BaseUnit unit)
 	{
-		TrackedUnit = unit;
+		trackedUnit = unit;
 
-		if (NameLabel != null) {
-			NameLabel.Text = TrackedUnit.FriendlyName;
-			HealthBar.TrackUnit(TrackedUnit, ObjectResourceType.Health);
-		}
+		NameLabel.Text = trackedUnit.FriendlyName;
+		HealthBar.TrackUnit(trackedUnit, ObjectResourceType.Health);
 	}
 
 	public void UntrackUnit()

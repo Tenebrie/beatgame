@@ -125,6 +125,8 @@ public class PlayerSpellcasting : ComposableScript
 		var hasPreviousBinding = CastBindings.TryGetValue(input, out var existingCast);
 		if (hasPreviousBinding)
 		{
+			if (existingCast.IsCasting)
+				existingCast.CastFail();
 			CastBindings.Remove(input);
 			Parent.CastLibrary.Unregister(existingCast);
 			SignalBus.Singleton.EmitSignal(SignalBus.SignalName.CastUnassigned, existingCast, input);
@@ -172,10 +174,13 @@ public class PlayerSpellcasting : ComposableScript
 			if (!binding)
 				return;
 
+			var alliedTarget = Parent.Targeting.targetedAlliedUnit ?? (PlayerController.AllPlayers.Count > 0 ? PlayerController.AllPlayers[0] : null);
+			var hostileTarget = Parent.Targeting.targetedHostileUnit ?? BaseUnit.AllUnits.Where(unit => unit is BasicEnemyController enemy && enemy.IsBoss).FirstOrDefault();
+
 			var targetData = new CastTargetData()
 			{
-				AlliedUnit = Parent.Targeting.targetedUnit,
-				HostileUnit = Parent.Targeting.targetedUnit,
+				AlliedUnit = alliedTarget,
+				HostileUnit = hostileTarget,
 				Point = Parent.Position, // TODO: Implement ground targeting
 			};
 
@@ -184,16 +189,16 @@ public class PlayerSpellcasting : ComposableScript
 				if (cast.IsCasting)
 					return;
 
-				Parent.Movement.StopAutorun();
-				if (cast.Settings.InputType != CastInputType.Instant)
-					ReleaseCurrentCastingSpell();
-
 				var canCast = cast.ValidateIfCastIsPossible(targetData, out var errorMessage);
 				if (!canCast)
 				{
 					SignalBus.SendMessage(errorMessage);
 					return;
 				}
+
+				Parent.Movement.StopAutorun();
+				if (cast.Settings.InputType != CastInputType.Instant || cast.Settings.GlobalCooldown)
+					ReleaseCurrentCastingSpell();
 
 				cast.CastBegin(targetData);
 			}
@@ -219,6 +224,14 @@ public class PlayerSpellcasting : ComposableScript
 		var currentCastingSpell = GetCurrentCastingSpell();
 		if (currentCastingSpell != null)
 			CastRelease(currentCastingSpell);
+	}
+
+	public void TriggerGlobalCooldown()
+	{
+		foreach (var cast in CastBindings.Values)
+		{
+			cast.StartGlobalCooldown();
+		}
 	}
 
 	private static void CastRelease(BaseCast cast)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://c2m17h2hubigh"]
+[gd_scene load_steps=7 format=3 uid="uid://c2m17h2hubigh"]
 
 [ext_resource type="Script" path="res://ui/generic/UnitCard/UnitCard.cs" id="1_pma0p"]
 [ext_resource type="PackedScene" uid="uid://b7e338e230e43" path="res://ui/generic/ResourceBar/ResourceBar.tscn" id="1_sliwq"]
@@ -19,7 +19,20 @@ corner_detail = 5
 [sub_resource type="Theme" id="Theme_xk5fw"]
 Panel/styles/panel = SubResource("StyleBoxFlat_ihkyo")
 
-[node name="UnitCard" type="Control"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g2wh2"]
+resource_local_to_scene = true
+bg_color = Color(0.158472, 0.158472, 0.158472, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.462291, 0.462291, 0.462291, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[node name="UnitCard" type="Control" node_paths=PackedStringArray("NameLabel", "HealthBar", "BackgroundPanel")]
 custom_minimum_size = Vector2(100, 65)
 layout_mode = 3
 anchor_right = 0.161
@@ -29,6 +42,9 @@ offset_bottom = -8.84
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_pma0p")
+NameLabel = NodePath("NameLabel")
+HealthBar = NodePath("HealthBar")
+BackgroundPanel = NodePath("BackgroundPanel")
 
 [node name="BackgroundPanel" type="Panel" parent="."]
 layout_mode = 1
@@ -37,7 +53,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme = SubResource("Theme_xk5fw")
+theme_override_styles/panel = SubResource("StyleBoxFlat_g2wh2")
 
 [node name="NameLabel" type="Label" parent="."]
 layout_mode = 0
@@ -58,4 +76,5 @@ offset_top = -28.0
 offset_right = -9.0
 offset_bottom = -10.0
 grow_vertical = 0
+mouse_filter = 2
 theme = ExtResource("3_bxv2x")

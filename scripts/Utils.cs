@@ -22,9 +22,15 @@ public static class ObjectExtensions
 	public static void Log(this object _, object message)
 	{
 		if (message == null)
+		{
 			Debug.WriteLine("null");
+			SignalBus.SendMessage("null");
+		}
 		else
+		{
 			Debug.WriteLine(message.ToString());
+			SignalBus.SendMessage(message.ToString());
+		}
 	}
 }
 

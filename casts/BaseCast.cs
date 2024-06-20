@@ -26,7 +26,8 @@ public partial class BaseCast : Node
 		public Dictionary<ObjectResourceType, float> ResourceCost = ObjectResource.MakeDictionary(0f);
 		public Dictionary<ObjectResourceType, float> ResourceCostPerBeat = ObjectResource.MakeDictionary(0f);
 		public int Charges = 1;
-		public float RecastTime = .1f;
+		public float RecastTime = 0;
+		public bool GlobalCooldown = true;
 		public bool ReversedCastBar = false;
 		public bool HiddenCastBar = false;
 
@@ -147,6 +148,11 @@ public partial class BaseCast : Node
 	{
 		errorMessage = null;
 
+		if ((Settings.TargetType & CastTargetType.AlliedUnit) > 0 && (target.AlliedUnit == null || target.AlliedUnit is PlayerController))
+		{
+			errorMessage = "Needs an allied target";
+			return false;
+		}
 		if ((Settings.TargetType & CastTargetType.HostileUnit) > 0 && target.HostileUnit == null)
 		{
 			errorMessage = "Needs a hostile target";
@@ -254,8 +260,17 @@ public partial class BaseCast : Node
 	public void StartCooldown()
 	{
 		EnsureTimerExists();
-		if (Settings.RecastTime > 0)
+		if (Settings.GlobalCooldown && Parent is PlayerController player)
+			player.Spellcasting.TriggerGlobalCooldown();
+		if (Settings.RecastTime > 0 && RecastTimerHandle.TimeLeft < Settings.RecastTime * Music.Singleton.SecondsPerBeat)
 			RecastTimerHandle.Start(Settings.RecastTime * Music.Singleton.SecondsPerBeat);
+	}
+
+	public void StartGlobalCooldown()
+	{
+		EnsureTimerExists();
+		if (RecastTimerHandle.TimeLeft < 2f * Music.Singleton.SecondsPerBeat)
+			RecastTimerHandle.Start(2f * Music.Singleton.SecondsPerBeat);
 	}
 
 	protected virtual void OnCastStarted(CastTargetData _) { }

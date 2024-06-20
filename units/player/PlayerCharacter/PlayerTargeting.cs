@@ -8,7 +8,9 @@ public partial class PlayerTargeting : ComposableScript
 	new readonly PlayerController Parent;
 
 	public BaseUnit hoveredUnit;
-	public BaseUnit targetedUnit;
+	// public BaseUnit targetedUnit;
+	public BaseUnit targetedAlliedUnit;
+	public BaseUnit targetedHostileUnit;
 
 	public PlayerTargeting(BaseUnit parent) : base(parent)
 	{
@@ -36,20 +38,28 @@ public partial class PlayerTargeting : ComposableScript
 		hoveredUnit = unit;
 	}
 
-	private void OnObjectTargeted(BaseUnit unit)
+	private void OnObjectTargeted(BaseUnit unit, TargetedUnitAlliance alliance)
 	{
-		targetedUnit = unit;
+		if (alliance == TargetedUnitAlliance.Player)
+			targetedAlliedUnit = unit;
+		else
+			targetedHostileUnit = unit;
 	}
 
-	private void OnObjectUntargeted()
+	private void OnObjectUntargeted(TargetedUnitAlliance alliance)
 	{
-		targetedUnit = null;
+		if (alliance == TargetedUnitAlliance.Player)
+			targetedAlliedUnit = null;
+		else
+			targetedHostileUnit = null;
 	}
 
 	private void OnUnitDestroyed(BaseUnit unit)
 	{
-		if (unit == targetedUnit)
-			targetedUnit = null;
+		if (unit == targetedAlliedUnit)
+			targetedAlliedUnit = null;
+		if (unit == targetedHostileUnit)
+			targetedHostileUnit = null;
 		if (unit == hoveredUnit)
 			hoveredUnit = null;
 	}
@@ -62,7 +72,7 @@ public partial class PlayerTargeting : ComposableScript
 			if (enemyUnits.Count == 0)
 				return;
 
-			var indexOfCurrentTarget = enemyUnits.IndexOf(targetedUnit);
+			var indexOfCurrentTarget = enemyUnits.IndexOf(targetedHostileUnit);
 			if (indexOfCurrentTarget < enemyUnits.Count - 1)
 			{
 				var nextUnit = enemyUnits[indexOfCurrentTarget + 1];
@@ -79,7 +89,7 @@ public partial class PlayerTargeting : ComposableScript
 			if (enemyUnits.Count == 0)
 				return;
 
-			var indexOfCurrentTarget = enemyUnits.IndexOf(targetedUnit);
+			var indexOfCurrentTarget = enemyUnits.IndexOf(targetedHostileUnit);
 			if (indexOfCurrentTarget > 0)
 			{
 				var nextUnit = enemyUnits[indexOfCurrentTarget - 1];
@@ -88,6 +98,24 @@ public partial class PlayerTargeting : ComposableScript
 			else
 			{
 				enemyUnits[^1].Targetable.MakeTargeted();
+			}
+		}
+		if (@event.IsActionPressed("TabTargetAllyNext", exactMatch: true))
+		{
+			var alliedUnits = BaseUnit.AllUnits.FindAll(unit => unit.Alliance == Parent.Alliance);
+			if (alliedUnits.Count == 0)
+				return;
+
+			var indexOfCurrentTarget = alliedUnits.IndexOf(targetedAlliedUnit);
+			if (indexOfCurrentTarget < alliedUnits.Count - 1)
+			{
+				var nextUnit = alliedUnits[indexOfCurrentTarget + 1];
+				nextUnit.Targetable.MakeTargeted();
+			}
+			else
+			{
+				// SignalBus.Singleton.EmitSignal(SignalBus.SignalName.ObjectUntargeted, TargetedUnitAlliance.Player.ToVariant());
+				alliedUnits[0].Targetable.MakeTargeted();
 			}
 		}
 	}

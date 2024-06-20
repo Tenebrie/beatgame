@@ -10,7 +10,7 @@ public class ObjectResource : ComposableScript
 	private float current = 0;
 	private float maximum = 0;
 	private float baseMaximum = 0;
-	private float regen = 0;
+	private float baseRegen = 0;
 	private float regenPool = 0;
 
 	public float Minimum
@@ -31,11 +31,11 @@ public class ObjectResource : ComposableScript
 	}
 	public float Regeneration
 	{
-		get => regen;
-		set => regen = value;
+		get => baseRegen * Parent.Buffs.State.PercentageResourceRegen[Type];
+		set => baseRegen = value;
 	}
 
-	public ObjectResourceType Type;
+	public readonly ObjectResourceType Type;
 
 	public ObjectResource(BaseUnit parent, ObjectResourceType type, float max) : base(parent)
 	{
@@ -54,7 +54,8 @@ public class ObjectResource : ComposableScript
 
 	public override void _Process(double delta)
 	{
-		if (regen == 0)
+		var currentRegen = Regeneration;
+		if (currentRegen == 0)
 			return;
 
 		var resourceMissing = maximum - current;
@@ -64,7 +65,7 @@ public class ObjectResource : ComposableScript
 			return;
 		}
 
-		regenPool += regen * (float)delta * Music.Singleton.BeatsPerSecond;
+		regenPool += currentRegen * (float)delta * Music.Singleton.BeatsPerSecond;
 		if (regenPool >= 1f)
 		{
 			current = Math.Min(maximum, current + regenPool);
@@ -83,6 +84,9 @@ public class ObjectResource : ComposableScript
 	}
 	public void Damage(float originalValue, BaseUnit sourceUnit, BaseCast sourceCast)
 	{
+		if (originalValue <= 0)
+			return;
+
 		BuffOutgoingDamageVisitor visitor = null;
 		if (sourceUnit != null)
 		{
@@ -119,6 +123,9 @@ public class ObjectResource : ComposableScript
 	}
 	public void Restore(float originalValue, BaseUnit sourceUnit, BaseCast sourceCast)
 	{
+		if (originalValue <= 0)
+			return;
+
 		BuffOutgoingRestorationVisitor visitor = null;
 		if (sourceUnit != null)
 		{

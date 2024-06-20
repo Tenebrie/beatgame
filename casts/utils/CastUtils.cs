@@ -35,7 +35,7 @@ public static class CastUtils
 		node.GetTree().CurrentScene.AddChild(zap);
 		zap.SetTarget(to);
 		zap.FadeDuration = 0.50f;
-		node.CreateEffect(Lib.Effect.LightningZapImpact, to);
+		node.CreateEffect(Lib.Effect.LightningZapImpact, to).SetLifetime(0.05f);
 		return zap;
 	}
 

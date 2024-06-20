@@ -8,6 +8,7 @@ public partial class SummonCastZap : BaseCast
 		Settings = new()
 		{
 			FriendlyName = "Zap",
+			IconPath = "res://assets/icons/SpellBook06_50.PNG",
 			InputType = CastInputType.Instant,
 			TargetType = CastTargetType.HostileUnit,
 			CastTimings = BeatTime.Whole,
@@ -16,13 +17,8 @@ public partial class SummonCastZap : BaseCast
 
 	void SpawnZap(CastTargetData target)
 	{
-		var zap = Lib.LoadScene(Lib.Effect.LightningZap).Instantiate<LightningZapEffect>();
-		zap.Position = Parent.GlobalCastAimPosition;
-		GetTree().CurrentScene.AddChild(zap);
-		zap.SetTarget(target.HostileUnit.GlobalCastAimPosition);
-		zap.FadeDuration = 0.50f;
-
-		target.HostileUnit.Health.Damage(1f, this);
+		this.CreateZapEffect(Parent.GlobalCastAimPosition, target.HostileUnit.GlobalCastAimPosition);
+		target.HostileUnit.Health.Damage(Damage, this);
 	}
 
 	protected override void OnCastCompleted(CastTargetData target)

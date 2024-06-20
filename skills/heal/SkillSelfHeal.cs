@@ -6,9 +6,9 @@ public partial class SkillSelfHeal : BaseSkill
 	{
 		Settings = new()
 		{
-			FriendlyName = "Introspection",
+			FriendlyName = "Healing Touch",
 			IconPath = "res://assets/icons/SpellBook06_55.png",
-			ActiveCast = CastFactory.Of<SelfHeal>(),
+			ActiveCast = CastFactory.Of<CastHealingTouch>(),
 		};
 	}
 }

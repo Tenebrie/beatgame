@@ -6,6 +6,12 @@ namespace Project;
 [Tool]
 public partial class ThemedProgressBar : Control
 {
+	[Export] public ProgressBar Bar;
+	[Export] public ProgressBar PositiveGhost;
+	[Export] public ProgressBar NegativeGhost;
+	[Export] public Label PositiveComboLabel;
+	[Export] public Label NegativeComboLabel;
+
 	public override void _Draw()
 	{
 		base._Draw();
@@ -38,14 +44,10 @@ public partial class ThemedProgressBar : Control
 			negativeGhostStyle = defaultTheme.GetStylebox("ghost_negative", "GhostBar");
 		}
 
-		var fill = GetNode<ProgressBar>("Bar");
-		var positiveGhost = GetNode<ProgressBar>("PositiveGhost");
-		var negativeGhost = GetNode<ProgressBar>("NegativeGhost");
-
-		fill.AddThemeStyleboxOverride("fill", fillStyle);
-		positiveGhost.AddThemeStyleboxOverride("fill", positiveGhostStyle);
-		negativeGhost.AddThemeStyleboxOverride("fill", negativeGhostStyle);
-		negativeGhost.AddThemeStyleboxOverride("background", backgroundStyle);
+		Bar.AddThemeStyleboxOverride("fill", fillStyle);
+		PositiveGhost.AddThemeStyleboxOverride("fill", positiveGhostStyle);
+		NegativeGhost.AddThemeStyleboxOverride("fill", negativeGhostStyle);
+		NegativeGhost.AddThemeStyleboxOverride("background", backgroundStyle);
 
 	}
 }

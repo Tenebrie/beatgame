@@ -1,6 +1,6 @@
 [gd_scene load_steps=17 format=3 uid="uid://cx2fo4dymkanp"]
 
-[ext_resource type="Script" path="res://casts/projectiles/ProjectileImpact.cs" id="1_uljdo"]
+[ext_resource type="Script" path="res://effects/BaseEffect.cs" id="1_vevws"]
 [ext_resource type="Texture2D" uid="uid://bv2kmx3q23d25" path="res://assets/particles/star_09.png" id="2_gixfq"]
 [ext_resource type="Texture2D" uid="uid://dyh7yd6ess6bk" path="res://assets/particles/circle_05.png" id="3_74atc"]
 
@@ -81,7 +81,7 @@ size = Vector2(0.1, 0.1)
 orientation = 2
 
 [node name="EffectLightningZapImpact" type="Node3D"]
-script = ExtResource("1_uljdo")
+script = ExtResource("1_vevws")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
 amount = 25

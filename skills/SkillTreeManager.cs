@@ -38,12 +38,12 @@ public partial class SkillTreeManager : Node
 			links: new()
 			{
 				Link<SkillSentinel,         SkillSentinelCharges>   (),
-				Link<SkillSentinel,         SkillImmovableObject>   (1, BuffFactory.Of<BuffPlus25Health>()),
+				Link<SkillSentinel,         SkillImmovableObject>   (1, BuffFactory.Of<BuffTankTreeHealth>()),
 				Link<SkillSentinel,         SkillSentinelMana>      (),
-				Link<SkillImmovableObject,  SkillManaShield>        (1, BuffFactory.Of<BuffPlus25Health>()),
-				Link<SkillImmovableObject,  SkillCelestialShield>   (1, BuffFactory.Of<BuffPlus25Health>()),
-				Link<SkillImmovableObject,  SkillThorns>            (1, BuffFactory.Of<BuffPlus25Health>()),
-				Link<SkillCelestialShield,  SkillSecondWind>        (3, BuffFactory.Of<BuffPlus25Health>()),
+				Link<SkillImmovableObject,  SkillManaShield>        (1, BuffFactory.Of<BuffTankTreeHealth>()),
+				Link<SkillImmovableObject,  SkillCelestialShield>   (1, BuffFactory.Of<BuffTankTreeHealth>()),
+				Link<SkillImmovableObject,  SkillThorns>            (1, BuffFactory.Of<BuffTankTreeHealth>()),
+				Link<SkillCelestialShield,  SkillSecondWind>        (3, BuffFactory.Of<BuffTankTreeHealth>()),
 			}
 		);
 
@@ -56,32 +56,32 @@ public partial class SkillTreeManager : Node
 			links: new()
 			{
 				// L1
-				Link<SkillFireball, SkillIgnitingFireball>(3, BuffFactory.Of<BuffPlus10Mana>()),
-				Link<SkillFireball, SkillIgnite>(2, BuffFactory.Of<BuffPlus10Mana>()),
-				Link<SkillFireball, SkillFlamethrower>(4, BuffFactory.Of<BuffPlus10Mana>()),
+				Link<SkillFireball, SkillIgnitingFireball>(3, BuffFactory.Of<BuffMagicTreeManaRegen>()),
+				Link<SkillFireball, SkillIgnite>(2, BuffFactory.Of<BuffMagicTreeManaRegen>()),
+				Link<SkillFireball, SkillFlamethrower>(4, BuffFactory.Of<BuffMagicTreeManaRegen>()),
 
 				// L2 Left
-				Link<SkillIgnitingFireball, SkillTwinFireball>(3, BuffFactory.Of<BuffPlus10Mana>()),
+				Link<SkillIgnitingFireball, SkillTwinFireball>(3, BuffFactory.Of<BuffMagicTreeManaRegen>()),
 
 				// L2 Main
-				Link<SkillIgnite, SkillManaEfficiency>(1, BuffFactory.Of<BuffPlus10Mana>()),
+				Link<SkillIgnite, SkillManaEfficiency1>(1, BuffFactory.Of<BuffMagicTreeManaRegen>()),
 
 				// L3
-				Link<SkillManaEfficiency, SkillEtherealFocus>(2, BuffFactory.Of<BuffPlus10Mana>()),
-				Link<SkillManaEfficiency, SkillVaporize>(1, BuffFactory.Of<BuffPlus10Mana>()),
-				Link<SkillManaEfficiency, SkillSpiritwalkersGrace>(2, BuffFactory.Of<BuffPlus10Mana>()),
+				// Link<SkillManaEfficiency1, SkillEtherealFocus>(2, BuffFactory.Of<BuffMagicTreeManaRegen>()),
+				Link<SkillManaEfficiency1, SkillVaporize>(1, BuffFactory.Of<BuffMagicTreeManaRegen>()),
+				Link<SkillManaEfficiency1, SkillSpiritwalkersGrace>(2, BuffFactory.Of<BuffMagicTreeManaRegen>()),
 
 				// L4 Left
-				Link<SkillEtherealFocus, SkillEtherealDarkness>(2, BuffFactory.Of<BuffPlus10Mana>()),
+				// Link<SkillEtherealFocus, SkillEtherealDarkness>(2, BuffFactory.Of<BuffMagicTreeManaRegen>()),
 
 				// L4 Main
-				Link<SkillVaporize, SkillFireballMastery>(1, BuffFactory.Of<BuffPlus10Mana>()),
+				Link<SkillVaporize, SkillFireballMastery>(1, BuffFactory.Of<BuffMagicTreeManaRegen>()),
 
 				// L4 Right
-				Link<SkillSpiritwalkersGrace, SkillSpiritrunnersGrace>(2, BuffFactory.Of<BuffPlus10Mana>()),
+				Link<SkillSpiritwalkersGrace, SkillSpiritrunnersGrace>(2, BuffFactory.Of<BuffMagicTreeManaRegen>()),
 
 				// L5
-				Link<SkillFireballMastery, SkillManaFrenzy>(2, BuffFactory.Of<BuffPlus10Mana>()),
+				Link<SkillFireballMastery, SkillManaFrenzy>(2, BuffFactory.Of<BuffMagicTreeManaRegen>()),
 			}
 		);
 
@@ -92,7 +92,10 @@ public partial class SkillTreeManager : Node
 
 			links: new()
 			{
-
+				Link<SkillSelfHeal, SkillKindness>(1, BuffFactory.Of<BuffHealTreeExtraMana>()),
+				Link<SkillSelfHeal, SkillManaEfficiency2>(1, BuffFactory.Of<BuffHealTreeExtraMana>()),
+				Link<SkillManaEfficiency2, SkillEtherealFocus>(2, BuffFactory.Of<BuffHealTreeExtraMana>()),
+				Link<SkillEtherealFocus, SkillEtherealDarkness>(2, BuffFactory.Of<BuffHealTreeExtraMana>()),
 			}
 		);
 
@@ -104,8 +107,8 @@ public partial class SkillTreeManager : Node
 			links: new()
 			{
 				Link<SkillSummonStationary, SkillSummonFireball>(),
-				Link<SkillSummonStationary, SkillRescue>(1, BuffFactory.Of<BuffPlus10SummonHealth>()),
-				Link<SkillSummonStationary, SkillFriendsWithShields>(3, BuffFactory.Of<BuffPlus10SummonHealth>()),
+				Link<SkillSummonStationary, SkillRescue>(1, BuffFactory.Of<BuffSummonTreeSummonHealth>()),
+				Link<SkillSummonStationary, SkillFriendsWithShields>(3, BuffFactory.Of<BuffSummonTreeSummonHealth>()),
 			}
 		);
 

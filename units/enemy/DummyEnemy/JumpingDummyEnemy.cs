@@ -21,7 +21,7 @@ public partial class JumpingDummyEnemy : BasicEnemyController
 
 	public JumpingDummyEnemy()
 	{
-		FriendlyName = "Jumping Dummy Enemy";
+		FriendlyName = "Jumping Enemy";
 	}
 
 	public override void _Ready()

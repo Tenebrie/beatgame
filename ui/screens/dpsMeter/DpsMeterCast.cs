@@ -23,7 +23,10 @@ public partial class DpsMeterCast : Control
 	public void SetCast(BaseCast cast)
 	{
 		castIconRect.Texture = GD.Load<CompressedTexture2D>(cast.Settings.IconPath);
-		castNameLabel.Text = cast.Settings.FriendlyName;
+		if (cast.Parent is PlayerController)
+			castNameLabel.Text = cast.Settings.FriendlyName;
+		else
+			castNameLabel.Text = cast.Parent.FriendlyName + ": " + cast.Settings.FriendlyName;
 	}
 
 	public void SetFractionOfHighestDamageCast(float value)

@@ -1,8 +1,8 @@
 namespace Project;
 
-public partial class SkillManaEfficiency : BaseSkill
+public partial class SkillManaEfficiency1 : BaseSkill
 {
-	public SkillManaEfficiency()
+	public SkillManaEfficiency1()
 	{
 		Settings = new()
 		{

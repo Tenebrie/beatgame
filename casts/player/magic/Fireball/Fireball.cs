@@ -19,7 +19,6 @@ public partial class Fireball : BaseCast
 			ChannelingTickTimings = BeatTime.Eighth,
 			ChannelWhileNotCasting = true,
 			HoldTime = 2,
-			RecastTime = 2,
 		};
 		Settings.ResourceCost[ObjectResourceType.Mana] = 25;
 		if (this.HasSkill<SkillIgnitingFireball>())
@@ -28,6 +27,7 @@ public partial class Fireball : BaseCast
 			Settings.ResourceCost[ObjectResourceType.Mana] += SkillTwinFireball.ExtraManaCost;
 		if (this.HasSkill<SkillFireballMastery>())
 		{
+			Settings.GlobalCooldown = false;
 			Settings.HoldTime = 0;
 			Settings.InputType = CastInputType.Instant;
 		}

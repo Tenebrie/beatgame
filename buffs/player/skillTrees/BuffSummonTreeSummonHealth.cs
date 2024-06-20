@@ -1,9 +1,9 @@
 namespace Project;
 
-public partial class BuffPlus10SummonHealth : BaseBuff
+public partial class BuffSummonTreeSummonHealth : BaseBuff
 {
 	public const float HealthPerStack = 10;
-	public BuffPlus10SummonHealth()
+	public BuffSummonTreeSummonHealth()
 	{
 		Settings = new()
 		{

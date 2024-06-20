@@ -6,7 +6,7 @@ public partial class SkillSummonStationary : BaseSkill
 	{
 		Settings = new()
 		{
-			FriendlyName = "Summon Stationary",
+			FriendlyName = "Summon Totem",
 			IconPath = "res://assets/icons/SpellBook06_44.PNG",
 			ActiveCast = CastFactory.Of<CastSummonStationary>(),
 		};

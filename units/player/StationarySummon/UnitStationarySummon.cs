@@ -34,6 +34,7 @@ public partial class UnitStationarySummon : BaseUnit
 
 	public override void _Process(double delta)
 	{
+		base._Process(delta);
 		spinningGem.Rotate(Vector3.Up, (float)(Math.PI * delta));
 
 		if (lastTarget == null || !IsInstanceValid(lastTarget))
@@ -75,7 +76,7 @@ public partial class UnitStationarySummon : BaseUnit
 		if (targetCast.Settings.TargetType == CastTargetType.HostileUnit)
 			lastTarget = data.HostileUnit;
 		else if (targetCast.Settings.TargetType == CastTargetType.AlliedUnit)
-			lastTarget = data.HostileUnit;
+			lastTarget = data.AlliedUnit;
 		else if (targetCast.Settings.TargetType == CastTargetType.None)
 			lastTarget = null;
 	}

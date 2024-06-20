@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://c2m17h2hubigh" path="res://ui/generic/UnitCard/UnitCard.tscn" id="1_sut4l"]
 [ext_resource type="PackedScene" uid="uid://cwwxuc73k2wca" path="res://ui/generic/AnimatedVBoxContainer/AnimatedVBoxContainer.tscn" id="1_xnn7i"]
 
-[node name="Control" type="Control"]
+[node name="Control" type="Control" node_paths=PackedStringArray("Container")]
 layout_mode = 3
 anchors_preset = 0
 offset_top = 651.0
@@ -12,6 +12,7 @@ offset_right = 300.0
 offset_bottom = 651.0
 mouse_filter = 2
 script = ExtResource("1_kt257")
+Container = NodePath("AnimatedVBoxContainer")
 
 [node name="AnimatedVBoxContainer" parent="." instance=ExtResource("1_xnn7i")]
 layout_mode = 1
@@ -21,14 +22,12 @@ mouse_filter = 2
 
 [node name="UnitCard" parent="AnimatedVBoxContainer" instance=ExtResource("1_sut4l")]
 layout_mode = 1
-offset_left = -330.0
-offset_top = 540.331
-offset_right = -30.0
+offset_top = 588.0
+offset_right = 251.7
 offset_bottom = 605.331
 
 [node name="UnitCard2" parent="AnimatedVBoxContainer" instance=ExtResource("1_sut4l")]
 layout_mode = 1
-offset_left = -330.0
-offset_top = 540.331
-offset_right = -30.0
-offset_bottom = 605.331
+offset_top = 518.0
+offset_right = 251.7
+offset_bottom = 535.331

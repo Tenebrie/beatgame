@@ -16,7 +16,7 @@ public partial class DpsMeterUI : Control
 	bool isStarted = false;
 	float currentTime = 0;
 	float totalDamageDealt = 0;
-	readonly Dictionary<BaseCast, DpsMeterCast> damageDealtPerCast = new();
+	readonly Dictionary<string, DpsMeterCast> damageDealtPerCast = new();
 
 	public override void _Ready()
 	{
@@ -26,8 +26,6 @@ public partial class DpsMeterUI : Control
 
 		SignalBus.Singleton.DamageTaken += OnDamageTaken;
 		Music.Singleton.BeatTick += OnBeatTick;
-		SkillTreeManager.Singleton.SkillUp += (BaseSkill skill) => Reset();
-		SkillTreeManager.Singleton.SkillDown += (BaseSkill skill) => Reset();
 		clearButton.Pressed += Reset;
 	}
 
@@ -53,17 +51,18 @@ public partial class DpsMeterUI : Control
 
 	void OnDamageTaken(BuffIncomingDamageVisitor data)
 	{
-		if (data.Target is PlayerController || data.SourceUnit is not PlayerController || data.SourceCast == null)
+		if (data.ResourceType != ObjectResourceType.Health || data.SourceUnit.Alliance != UnitAlliance.Player || data.SourceCast == null)
 			return;
 
 		isStarted = true;
-		var meterExists = damageDealtPerCast.TryGetValue(data.SourceCast, out var affectedMeter);
+		var castId = data.SourceUnit.GetType().ToString() + data.SourceCast.GetType();
+		var meterExists = damageDealtPerCast.TryGetValue(castId, out var affectedMeter);
 		if (!meterExists)
 		{
 			affectedMeter = Lib.LoadScene(Lib.UI.DpsMeterCast).Instantiate<DpsMeterCast>();
 			castContainer.AddChild(affectedMeter);
 			affectedMeter.SetCast(data.SourceCast);
-			damageDealtPerCast.Add(data.SourceCast, affectedMeter);
+			damageDealtPerCast.Add(castId, affectedMeter);
 		}
 		affectedMeter.DamageDealt += data.Value;
 		totalDamageDealt += data.Value;

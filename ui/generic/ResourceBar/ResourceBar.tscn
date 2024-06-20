@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://ui/generic/ResourceBar/ResourceBar.cs" id="1_gq8v1"]
 [ext_resource type="PackedScene" uid="uid://b1tx6lwtwrftd" path="res://ui/generic/ResourceBar/ThemedProgressBar.tscn" id="5_0s0ij"]
 
-[node name="ResourceBar" type="Control"]
+[node name="ResourceBar" type="Control" node_paths=PackedStringArray("ThemedProgressBar", "CurrentValueLabel", "MaximumValueLabel", "PositiveTimer", "NegativeTimer")]
 layout_mode = 3
 anchor_right = 0.104
 anchor_bottom = 0.039
@@ -12,6 +12,11 @@ offset_bottom = -0.120001
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_gq8v1")
+ThemedProgressBar = NodePath("ThemedProgressBar")
+CurrentValueLabel = NodePath("CurrentLabel")
+MaximumValueLabel = NodePath("MaximumLabel")
+PositiveTimer = NodePath("PositiveTimer")
+NegativeTimer = NodePath("NegativeTimer")
 
 [node name="ThemedProgressBar" parent="." instance=ExtResource("5_0s0ij")]
 layout_mode = 1
@@ -20,6 +25,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_right = 0.0
 offset_bottom = 0.0
+mouse_filter = 2
 
 [node name="CurrentLabel" type="Label" parent="."]
 layout_mode = 1

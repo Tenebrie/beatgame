@@ -5,41 +5,41 @@ using System.Diagnostics;
 namespace Project;
 public partial class ResourceBar : Control
 {
-	public ProgressBar Bar;
-	public ProgressBar PositiveGhost;
-	public ProgressBar NegativeGhost;
-	public Label CurrentValueLabel;
-	public Label MaximumValueLabel;
-	public Timer PositiveTimer;
-	public Timer NegativeTimer;
-	public Label PositiveComboLabel;
-	public Label NegativeComboLabel;
+	ProgressBar Bar;
+	ProgressBar PositiveGhost;
+	ProgressBar NegativeGhost;
+	Label PositiveComboLabel;
+	Label NegativeComboLabel;
+	[Export] public ThemedProgressBar ThemedProgressBar;
+	[Export] public Label CurrentValueLabel;
+	[Export] public Label MaximumValueLabel;
+	[Export] public Timer PositiveTimer;
+	[Export] public Timer NegativeTimer;
 
 	private float CurrentValue = 100;
 	private float PositiveGhostValue = 100;
 	private float NegativeGhostValue = 100;
-	private float MaximumValue = 100;
+
+	public override void _EnterTree()
+	{
+		Bar = ThemedProgressBar.Bar;
+		PositiveGhost = ThemedProgressBar.PositiveGhost;
+		NegativeGhost = ThemedProgressBar.NegativeGhost;
+		PositiveComboLabel = ThemedProgressBar.PositiveComboLabel;
+		NegativeComboLabel = ThemedProgressBar.NegativeComboLabel;
+	}
+
 	public override void _Ready()
 	{
-		Bar = GetNode<ProgressBar>("ThemedProgressBar/Bar");
-		PositiveGhost = GetNode<ProgressBar>("ThemedProgressBar/PositiveGhost");
-		NegativeGhost = GetNode<ProgressBar>("ThemedProgressBar/NegativeGhost");
-		CurrentValueLabel = GetNode<Label>("CurrentLabel");
-		MaximumValueLabel = GetNode<Label>("MaximumLabel");
-		PositiveTimer = GetNode<Timer>("PositiveTimer");
-		NegativeTimer = GetNode<Timer>("NegativeTimer");
 		PositiveTimer.OneShot = true;
 		NegativeTimer.OneShot = true;
 		PositiveTimer.WaitTime = 1;
 		NegativeTimer.WaitTime = 1;
-		PositiveComboLabel = GetNode<Label>("ThemedProgressBar/PositiveComboLabel");
-		NegativeComboLabel = GetNode<Label>("ThemedProgressBar/NegativeComboLabel");
 		SignalBus.Singleton.TrackStarted += OnTrackStarted;
 	}
 
 	private void OnTrackStarted(MusicTrack track)
 	{
-		// var waitTime = track.BeatDuration * 3;
 		PositiveTimer.WaitTime = 1.00f;
 		NegativeTimer.WaitTime = 1.00f;
 	}
@@ -144,16 +144,6 @@ public partial class ResourceBar : Control
 		NegativeGhostValue = CurrentValue;
 	}
 
-	private void OnBaseResourceChanged(BaseUnit unit, ObjectResourceType type, float value)
-	{
-		// if (unit != TrackedUnit || type != TrackedResource)
-		// 	return;
-
-		// SetMaximum(value);
-		// PositiveGhostValue = value;
-		// NegativeGhostValue = value;
-	}
-
 	public override void _Process(double delta)
 	{
 		float fillSpeed = 50; // Units per second
@@ -180,6 +170,7 @@ public partial class ResourceBar : Control
 			NegativeTimer.Stop();
 		}
 
+		Bar.Value = CurrentValue;
 		PositiveGhost.Value = PositiveGhostValue;
 		NegativeGhost.Value = NegativeGhostValue;
 

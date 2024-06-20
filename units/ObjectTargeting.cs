@@ -5,9 +5,10 @@ namespace Project;
 
 public partial class ObjectTargetable : ComposableScript
 {
-	public bool isHovered = false;
-	public bool isTargeted = false;
-	public float hoverHighlight = 0.00f;
+	public bool isHovered;
+	public bool isTargeted;
+	public TargetedUnitAlliance? targetedAs;
+	public float hoverHighlight;
 
 	public TargetingCircle selectionModel = null;
 	public float selectionRadius = 1f;
@@ -34,20 +35,20 @@ public partial class ObjectTargetable : ComposableScript
 			hoverHighlight = Math.Min(1.0f, hoverHighlight + 5.00f * (float)delta);
 			UpdateHoverHighlight();
 		}
-		else if (!isTargeted)
+		else
 		{
 			hoverHighlight = Math.Max(0.0f, hoverHighlight - 5.00f * (float)delta);
 			UpdateHoverHighlight();
 		}
 	}
 
-	public override void _Input(InputEvent @event)
-	{
-		if (@event.IsActionPressed("MouseInteract") && !Input.IsActionPressed("HardCameraMove"))
-		{
-			SetTargeted(false);
-		}
-	}
+	// public override void _UnhandledInput(InputEvent @event)
+	// {
+	// 	if (@event.IsActionPressed("MouseInteract") && !Input.IsActionPressed("HardCameraMove"))
+	// 	{
+	// 		SetTargeted(false, targetedAs);
+	// 	}
+	// }
 
 	private void UpdateHoverHighlight()
 	{
@@ -61,9 +62,13 @@ public partial class ObjectTargetable : ComposableScript
 		}
 	}
 
-	private void OnObjectTargeted(BaseUnit unit)
+	private void OnObjectTargeted(BaseUnit unit, TargetedUnitAlliance alliance)
 	{
-		SetTargeted(unit == Parent);
+		if (isTargeted && alliance != targetedAs)
+			return;
+
+		if (Parent is not PlayerController)
+			SetTargeted(unit == Parent, alliance);
 	}
 
 	private void OnMouseEntered()
@@ -78,14 +83,13 @@ public partial class ObjectTargetable : ComposableScript
 		isHovered = false;
 	}
 
-	private void SetTargeted(bool targeted)
+	private void SetTargeted(bool targeted, TargetedUnitAlliance? alliance)
 	{
 		if (isTargeted == targeted)
-		{
 			return;
-		}
 
 		isTargeted = targeted;
+		targetedAs = alliance;
 
 		if (targeted)
 		{
@@ -96,6 +100,7 @@ public partial class ObjectTargetable : ComposableScript
 		}
 		else if (selectionModel != null && GodotObject.IsInstanceValid(selectionModel))
 		{
+			targetedAs = null;
 			Parent.RemoveChild(selectionModel);
 			selectionModel.QueueFree();
 			selectionModel = null;
@@ -104,7 +109,15 @@ public partial class ObjectTargetable : ComposableScript
 
 	public void MakeTargeted()
 	{
-		SignalBus.Singleton.EmitSignal(SignalBus.SignalName.ObjectTargeted, Parent);
+		// Treat neutral targets as hostile
+		var alliance = Parent.Alliance switch
+		{
+			UnitAlliance.Player => TargetedUnitAlliance.Player,
+			UnitAlliance.Neutral => TargetedUnitAlliance.Hostile,
+			UnitAlliance.Hostile => TargetedUnitAlliance.Hostile,
+			_ => throw new NotImplementedException(),
+		};
+		SignalBus.Singleton.EmitSignal(SignalBus.SignalName.ObjectTargeted, Parent, alliance.ToVariant());
 	}
 
 	private void OnInputEvent(Node camera, InputEvent @event, Vector3 position, Vector3 normal, long shapeIdx)

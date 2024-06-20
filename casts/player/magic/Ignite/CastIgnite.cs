@@ -18,7 +18,6 @@ public partial class CastIgnite : BaseCast
 			InputType = CastInputType.Instant,
 			TargetType = CastTargetType.HostileUnit,
 			CastTimings = BeatTime.Quarter | BeatTime.Eighth,
-			RecastTime = 1,
 		};
 		Settings.ResourceCost[ObjectResourceType.Mana] = 20;
 	}

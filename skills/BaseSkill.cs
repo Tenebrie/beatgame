@@ -68,6 +68,12 @@ public partial class BaseSkill : Node
 				if (castSettings.ResourceCost[ObjectResourceType.Mana] > 0)
 					builder.Append($"\n[color={Colors.Mana}]Mana cost:[/color] ").Append(castSettings.ResourceCost[ObjectResourceType.Mana]);
 
+				// Resource cost per beat
+				if (castSettings.ResourceCostPerBeat[ObjectResourceType.Health] > 0)
+					builder.Append($"\n[color={Colors.Health}]Channeling Health cost:[/color] ").Append(castSettings.ResourceCostPerBeat[ObjectResourceType.Health]).Append(" / beat");
+				if (castSettings.ResourceCostPerBeat[ObjectResourceType.Mana] > 0)
+					builder.Append($"\n[color={Colors.Mana}]Channeling Mana cost:[/color] ").Append(castSettings.ResourceCostPerBeat[ObjectResourceType.Mana]).Append(" / beat");
+
 				// Input type
 				builder.Append($"\n[color={Colors.Passive}]Input:[/color] ");
 				if (castSettings.InputType == CastInputType.Instant)

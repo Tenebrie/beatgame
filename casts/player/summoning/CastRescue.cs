@@ -26,6 +26,9 @@ public partial class CastRescue : BaseCast
 	{
 		var targetUnit = target.AlliedUnit;
 		targetUnit.ForcefulMovement.Push(targetUnit.Position.FlatDistanceTo(Parent.Position), Parent.Position - targetUnit.Position, 1);
+		this.Log(targetUnit);
+		this.Log((Parent.Position - targetUnit.Position).Length());
+		this.Log(targetUnit.Position.FlatDistanceTo(Parent.Position));
 		targetUnit.Buffs.Add(new BuffPushImmunity()
 		{
 			Duration = 1,

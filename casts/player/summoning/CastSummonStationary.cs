@@ -9,7 +9,7 @@ public partial class CastSummonStationary : BaseCast
 	{
 		Settings = new()
 		{
-			FriendlyName = "Summon Stationary",
+			FriendlyName = "Summon Totem",
 			Description = MakeDescription(
 				$"Fighting the powerful entities with your bare spells is a task too taxing. To compensate for being alone, you decide to summon some help.",
 				$"\nSummon a stationary ally that casts spells for you.",
@@ -30,7 +30,7 @@ public partial class CastSummonStationary : BaseCast
 	protected override void OnCastCompleted(CastTargetData target)
 	{
 		var summon = Lib.LoadScene(Lib.Unit.StationarySummon).Instantiate<UnitStationarySummon>();
-		summon.Position = target.Point;
+		summon.Position = target.Point + Parent.ForwardVector.Flatten(target.Point.Y).Normalized() * 0.5f;
 		summon.Alliance = Parent.Alliance;
 		GetTree().CurrentScene.AddChild(summon);
 

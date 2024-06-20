@@ -27,6 +27,8 @@ public partial class BossAeriel : BasicEnemyController
 	public BossCastHardEnrage HardEnrage;
 	public BossAeriel()
 	{
+		IsBoss = true;
+
 		AutoAttack = new(this);
 		CastLibrary.Register(AutoAttack);
 

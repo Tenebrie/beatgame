@@ -7,6 +7,7 @@ namespace Project;
 public partial class BuffUnitStatsVisitor : RefCounted
 {
 	public Dictionary<ObjectResourceType, float> PercentageDamageReduction = ObjectResource.MakeDictionary<float>(0f);
+	public Dictionary<ObjectResourceType, float> PercentageResourceRegen = ObjectResource.MakeDictionary<float>(1f);
 	public float CastManaEfficiency = 0;
 	public float PercentageCCReduction = 0;
 	public float GravityModifier = 1;

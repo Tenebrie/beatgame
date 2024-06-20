@@ -107,7 +107,7 @@ public partial class PlayerMovement : ComposableScript
 		{
 			movementForward -= 1;
 		}
-		if (Input.IsActionPressed("SoftCameraMove") && Input.IsActionPressed("HardCameraMove"))
+		if ((softCameraPreMoving || softCameraMoving) && (hardCameraPreMoving || hardCameraMoving))
 		{
 			movementForward += 1;
 		}
@@ -130,11 +130,10 @@ public partial class PlayerMovement : ComposableScript
 			movementRight += 1;
 		}
 
+		if (Input.IsActionJustPressed("MoveForward") || Input.IsActionJustPressed("MoveBackward"))
+			autorunEnabled = false;
 		if (Input.IsActionJustPressed("Autorun"))
 			autorunEnabled = !autorunEnabled;
-
-		if (movementForward != 0 || movementRight != 0)
-			autorunEnabled = false;
 
 		if (autorunEnabled)
 			movementForward = 1;
@@ -155,14 +154,14 @@ public partial class PlayerMovement : ComposableScript
 		Parent.Velocity = velocity;
 
 		var rotationSpeed = 2; // radians per second
-		if (Input.IsActionPressed("TurnLeft") && !Input.IsActionPressed("HardCameraMove"))
+		if (Input.IsActionPressed("TurnLeft") && !hardCameraPreMoving && !hardCameraMoving)
 		{
 			var rotation = rotationSpeed * (float)delta;
 			Parent.Rotate(Vector3.Up, rotation);
 			if (Input.IsActionPressed("SoftCameraMove"))
 				RotateCameraHorizontal(-rotation);
 		}
-		if (Input.IsActionPressed("TurnRight") && !Input.IsActionPressed("HardCameraMove"))
+		if (Input.IsActionPressed("TurnRight") && !hardCameraPreMoving && !hardCameraMoving)
 		{
 			var rotation = -rotationSpeed * (float)delta;
 			Parent.Rotate(Vector3.Up, rotation);
@@ -170,7 +169,7 @@ public partial class PlayerMovement : ComposableScript
 				RotateCameraHorizontal(-rotation);
 		}
 
-		if (!Input.IsActionPressed("SoftCameraMove") && !Input.IsActionPressed("HardCameraMove") && movementVector.Length() > 0)
+		if (!softCameraPreMoving && !softCameraMoving && !hardCameraPreMoving && !hardCameraMoving && movementVector.Length() > 0)
 		{
 			var unrotationSpeed = 3f; // radians per second
 
