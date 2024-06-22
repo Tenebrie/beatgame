@@ -14,7 +14,7 @@ public partial class BuffSentinel : BaseBuff
 		Settings = new()
 		{
 			Description = MakeDescription(
-				$"Increases your damage reduction by flat {{{Math.Round(DamageReduction * 100) + "%"}}}."
+				$"Increases your damage reduction by {{{Math.Round(DamageReduction * 100) + "%"}}}."
 			),
 		};
 		Duration = EffectDuration;
@@ -22,6 +22,6 @@ public partial class BuffSentinel : BaseBuff
 
 	public override void ModifyUnit(BuffUnitStatsVisitor unit)
 	{
-		unit.PercentageDamageReduction[ObjectResourceType.Health] += DamageReduction;
+		unit.PercentageDamageTaken[ObjectResourceType.Health] *= DamageReduction;
 	}
 }

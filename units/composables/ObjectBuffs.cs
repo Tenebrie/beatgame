@@ -147,7 +147,7 @@ public partial class ObjectBuffs : ComposableScript
 			buff.ModifyIncomingDamage(visitor);
 		}
 
-		visitor.Value *= 1 - State.PercentageDamageReduction.GetValueOrDefault(type);
+		visitor.Value *= State.PercentageDamageTaken.GetValueOrDefault(type);
 
 		return visitor;
 	}

@@ -1,3 +1,4 @@
+using System;
 using Godot;
 
 namespace Project;
@@ -25,10 +26,8 @@ public partial class CastRescue : BaseCast
 	protected override void OnCastCompleted(CastTargetData target)
 	{
 		var targetUnit = target.AlliedUnit;
-		targetUnit.ForcefulMovement.Push(targetUnit.Position.FlatDistanceTo(Parent.Position), Parent.Position - targetUnit.Position, 1);
-		this.Log(targetUnit);
-		this.Log((Parent.Position - targetUnit.Position).Length());
-		this.Log(targetUnit.Position.FlatDistanceTo(Parent.Position));
+		var vector = (Parent.Position - targetUnit.Position).Flatten(Math.Max(Parent.Position.Y, targetUnit.Position.Y));
+		targetUnit.ForcefulMovement.Push(vector.Length(), vector, 1);
 		targetUnit.Buffs.Add(new BuffPushImmunity()
 		{
 			Duration = 1,

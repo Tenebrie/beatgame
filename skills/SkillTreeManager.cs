@@ -33,24 +33,43 @@ public partial class SkillTreeManager : Node
 		var tankTree = new SkillTree
 		(
 			group: SkillGroup.Tank,
-			roots: new() { new SkillShieldBash() },
+			roots: new() { new SkillShieldBash(), new SkillSentinel() },
+			rootOffset: -0.25f,
 
 			links: new()
 			{
-				Link<SkillShieldBash,       SkillSentinel>              (),
-				Link<SkillShieldBash,       SkillShieldBashRange>       (),
+				// Shield bash
+				Link<SkillShieldBash,       SkillShieldBashRange>       (1, BuffFactory.Of<BuffTankTreeHealth>()),
 				Link<SkillShieldBashRange,  SkillShieldBashMulticast>   (4, BuffFactory.Of<BuffTankTreeHealth>()),
+				Link<SkillShieldBashRange,  SkillShieldBashActivate>    (2, BuffFactory.Of<BuffTankTreeHealth>()),
+
+				// L1
 				Link<SkillSentinel,         SkillSentinelCharges>       (),
-				Link<SkillSentinel,         SkillImmovableObject>       (1, BuffFactory.Of<BuffTankTreeHealth>()),
+				Link<SkillSentinel,         SkillHealthRegen1>          (1, BuffFactory.Of<BuffTankTreeHealth>()),
 				Link<SkillSentinel,         SkillSentinelMana>          (),
-				Link<SkillImmovableObject,  SkillManaShield>            (1, BuffFactory.Of<BuffTankTreeHealth>()),
-				Link<SkillImmovableObject,  SkillCelestialShield>       (1, BuffFactory.Of<BuffTankTreeHealth>()),
-				Link<SkillImmovableObject,  SkillThorns>                (1, BuffFactory.Of<BuffTankTreeHealth>()),
-				Link<SkillCelestialShield,  SkillSecondWind>            (3, BuffFactory.Of<BuffTankTreeHealth>()),
+
+				// L2
+				Link<SkillHealthRegen1,  SkillHealthRegen2>             (1, BuffFactory.Of<BuffTankTreeHealth>()),
+				Link<SkillHealthRegen1,  SkillImmovableObject>          (1, BuffFactory.Of<BuffTankTreeHealth>()),
+
+				// L3
+				// Link<SkillImmovableObject,  SkillManaShield>         (1, BuffFactory.Of<BuffTankTreeHealth>()),
+				// Link<SkillImmovableObject,  SkillCelestialShield>    (1, BuffFactory.Of<BuffTankTreeHealth>()),
+
+				// L3
+				Link<SkillHealthRegen2,  SkillManaShield>               (1, BuffFactory.Of<BuffTankTreeHealth>()),
+				Link<SkillHealthRegen2,  SkillHealthRegen3>             (1, BuffFactory.Of<BuffTankTreeHealth>()),
+				Link<SkillHealthRegen2,  SkillThorns>                   (1, BuffFactory.Of<BuffTankTreeHealth>()),
+
+				// L4
+				// Next time you take damage, block 100% of it and return it as retaliation damage.
+				Link<SkillThorns,       SkillActiveThorns>                (1, BuffFactory.Of<BuffTankTreeHealth>()),
+				Link<SkillHealthRegen3,  SkillCelestialShield>          (3, BuffFactory.Of<BuffTankTreeHealth>()),
+				// Link<SkillHealthRegen3,  SkillBerserkersRage>           (2, BuffFactory.Of<BuffTankTreeHealth>(), length: 2),
+				// TODO: Health regen passive, berserker's rage (increase damage when taking damage), implement thorns, move mana shield to another tree
 			}
 		);
 
-		// TODO: Add lifesteal to damage tree
 		var magicTree = new SkillTree
 		(
 			group: SkillGroup.MagicalDamage,
@@ -70,12 +89,12 @@ public partial class SkillTreeManager : Node
 				Link<SkillIgnite, SkillManaEfficiency1>(1, BuffFactory.Of<BuffMagicTreeManaRegen>()),
 
 				// L3
-				// Link<SkillManaEfficiency1, SkillEtherealFocus>(2, BuffFactory.Of<BuffMagicTreeManaRegen>()),
+				Link<SkillManaEfficiency1, SkillVampiricEssence>(2, BuffFactory.Of<BuffMagicTreeManaRegen>()),
 				Link<SkillManaEfficiency1, SkillVaporize>(1, BuffFactory.Of<BuffMagicTreeManaRegen>()),
 				Link<SkillManaEfficiency1, SkillSpiritwalkersGrace>(2, BuffFactory.Of<BuffMagicTreeManaRegen>()),
 
 				// L4 Left
-				// Link<SkillEtherealFocus, SkillEtherealDarkness>(2, BuffFactory.Of<BuffMagicTreeManaRegen>()),
+				Link<SkillVampiricEssence, SkillAllConsumingFlame>(2, BuffFactory.Of<BuffMagicTreeManaRegen>()),
 
 				// L4 Main
 				Link<SkillVaporize, SkillFireballMastery>(1, BuffFactory.Of<BuffMagicTreeManaRegen>()),
@@ -305,9 +324,9 @@ public partial class SkillTreeManager : Node
 	{
 		return new ApiSkillConnection<T1, T2>();
 	}
-	static ApiSkillConnection<T1, T2> Link<T1, T2>(int pointsRequired, BuffFactory factory) where T1 : BaseSkill, new() where T2 : BaseSkill, new()
+	static ApiSkillConnection<T1, T2> Link<T1, T2>(int pointsRequired, BuffFactory factory, float offset = 0, int length = 1) where T1 : BaseSkill, new() where T2 : BaseSkill, new()
 	{
-		return new ApiSkillConnection<T1, T2>(pointsRequired, factory);
+		return new ApiSkillConnection<T1, T2>(pointsRequired, factory, offset, length);
 	}
 
 	private static SkillTreeManager instance = null;

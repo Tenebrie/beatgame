@@ -29,6 +29,7 @@ public partial class Fireball : BaseCast
 		{
 			Settings.GlobalCooldown = false;
 			Settings.HoldTime = 0;
+			Settings.RecastTime = 1;
 			Settings.InputType = CastInputType.Instant;
 		}
 	}

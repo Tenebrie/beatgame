@@ -146,10 +146,10 @@ public partial class ResourceBar : Control
 
 	public override void _Process(double delta)
 	{
-		float fillSpeed = 50; // Units per second
+		float fillSpeed = 150; // Units per second
 
-		if (PositiveTimer.TimeLeft == 0)
-		// if (true)
+		// if (PositiveTimer.TimeLeft == 0)
+		if (true)
 		{
 			PositiveGhostValue += fillSpeed * (float)delta;
 		}

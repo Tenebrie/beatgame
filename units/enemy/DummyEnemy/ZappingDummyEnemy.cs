@@ -32,7 +32,7 @@ public partial class ZappingDummyEnemy : BasicEnemyController
 
 	public override void _ExitTree()
 	{
-		base._EnterTree();
+		base._ExitTree();
 		circle.CleanUp();
 	}
 

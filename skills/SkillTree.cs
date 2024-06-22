@@ -37,12 +37,14 @@ public class SkillTree
 	public SkillGroup Group;
 	public List<BaseSkill> Skills;
 	public List<SkillConnection> Links = new();
+	public float RootOffset;
 
-	public SkillTree(SkillGroup group, List<BaseSkill> roots, List<IApiSkillConnection<BaseSkill, BaseSkill>> links)
+	public SkillTree(SkillGroup group, List<BaseSkill> roots, List<IApiSkillConnection<BaseSkill, BaseSkill>> links, float rootOffset = 0)
 	{
 		Group = group;
 		Skills = new();
 		Skills.AddRange(roots);
+		RootOffset = rootOffset;
 
 		foreach (var root in roots)
 		{
@@ -74,6 +76,8 @@ public class SkillTree
 				Target = target,
 				PointsRequired = link.PointsRequired,
 				PassivePerPoint = link.PassivePerPoint,
+				LinkLength = link.LinkLength,
+				LinkOffset = link.LinkOffset,
 			};
 			Links.Add(internalLink);
 
@@ -86,9 +90,16 @@ public class SkillTree
 
 	void SetupTreePositions(List<BaseSkill> roots)
 	{
+		float total = 0;
 		foreach (var root in roots)
 		{
-			EvaluateChildrenDepth(root, 0, 0);
+			var count = (float)EvaluateDescendantCount(root);
+			EvaluateChildrenDepth(root, 0, total + count / 2);
+			total += count;
+		}
+		foreach (var skill in Skills)
+		{
+			skill.PosX -= total / 2;
 		}
 
 		int EvaluateDescendantCount(BaseSkill skill)
@@ -112,42 +123,89 @@ public class SkillTree
 
 				float widthTaken = EvaluateDescendantCount(child.Target);
 
-				EvaluateChildrenDepth(child.Target, depth + 1, currentPos + widthTaken / 2);
+				EvaluateChildrenDepth(child.Target, depth + child.LinkLength, currentPos + widthTaken / 2);
 				currentPos += widthTaken;
 			}
 		}
 
 		//=========================================
-		// Compact the tree (Optional step)
+		// Compact the tree
 		//=========================================
+		CompactTree();
+
 		foreach (var root in roots)
 		{
-			CompactSubTree(root);
+			root.PosX += RootOffset;
+			foreach (var child in root.ChildrenLinks)
+				ApplyOffset(child, RootOffset);
 		}
 
-		bool CanCompact(BaseSkill skill, float target, float dist)
+		void ApplyOffset(SkillConnection link, float cumulativeOffset)
 		{
-			var newPosX = skill.PosX - dist * Math.Sign(skill.PosX);
+			link.Target.PosX += link.LinkOffset + cumulativeOffset;
+			foreach (var child in link.Target.ChildrenLinks)
+				ApplyOffset(child, cumulativeOffset + link.LinkOffset);
+		}
+
+
+		bool CanCompact(BaseSkill skill, float target, float dist, List<BaseSkill> ignored)
+		{
+			var delta = -dist * Math.Sign(skill.PosX - target);
+			var newPosX = skill.PosX + delta;
 			bool isCloser = Math.Abs(newPosX - target) < Math.Abs(skill.PosX - target);
-			bool willNotOverlap = Skills.All(s => s == skill || s.Depth != skill.Depth || Math.Abs(s.PosX - newPosX) >= 1.0f);
-			return isCloser && willNotOverlap && skill.ChildrenLinks.All(child => CanCompact(child.Target, newPosX, dist));
+			bool willNotOverlap = Skills.All(s => ignored.Contains(s) || s.Depth != skill.Depth || Math.Abs(s.PosX - newPosX) >= 1.0f);
+			return isCloser && willNotOverlap && skill.ChildrenLinks.All(child => CanMove(child.Target, delta, skill.ChildrenLinks.Select(c => c.Target).ToList()));
 		}
 
-		void DoCompact(BaseSkill skill, float target, float dist)
+		bool CanMove(BaseSkill skill, float delta, List<BaseSkill> ignored)
 		{
-			if (CanCompact(skill, target, dist))
+			bool willNotOverlap = Skills.All(s => ignored.Contains(s) || s.Depth != skill.Depth || Math.Abs(s.PosX - skill.PosX - delta) >= 1.0f);
+			return willNotOverlap && skill.ChildrenLinks.All(child => CanMove(child.Target, delta, skill.ChildrenLinks.Select(c => c.Target).ToList()));
+		}
+
+		bool DoCompact(BaseSkill skill, float target, float dist)
+		{
+			bool hasCompacted = false;
+			if (CanCompact(skill, target, dist, new() { skill }))
 			{
-				var newPosX = skill.PosX - dist * Math.Sign(skill.PosX);
+				var delta = -dist * Math.Sign(skill.PosX);
+				var newPosX = skill.PosX + delta;
 				skill.PosX = newPosX;
+				hasCompacted = true;
+				DoMoveChildren(skill, delta);
+			}
+			return hasCompacted;
+		}
+
+		void DoMoveChildren(BaseSkill skill, float offset)
+		{
+			foreach (var child in skill.ChildrenLinks.Select(l => l.Target))
+			{
+				child.PosX += offset;
+				DoMoveChildren(child, offset);
 			}
 		}
 
-		void DoCompactChildren(BaseSkill skill, float target, float dist)
+		bool DoCompactChildren(BaseSkill skill, float target, float dist)
 		{
+			bool hasCompacted = false;
 			foreach (var child in skill.ChildrenLinks.Select(child => child.Target))
 			{
-				DoCompact(child, skill.PosX, dist);
+				hasCompacted = DoCompact(child, target, dist) || hasCompacted;
+				hasCompacted = DoCompactChildren(child, child.PosX, dist) || hasCompacted;
 			}
+			return hasCompacted;
+		}
+
+		void CompactTree()
+		{
+			BaseSkill virtualSkill = new()
+			{
+				PosX = 0,
+				Depth = -1,
+				ChildrenLinks = roots.Select(s => new SkillConnection() { Target = s }).ToList(),
+			};
+			CompactSubTree(virtualSkill);
 		}
 
 		void CompactSubTree(BaseSkill skill)
@@ -158,15 +216,9 @@ public class SkillTree
 			{
 				iterations += 1;
 				hasCompacted = false;
-				foreach (var child in skill.ChildrenLinks.Select(child => child.Target))
-				{
-					if (CanCompact(child, skill.PosX, 0.25f))
-					{
-						hasCompacted = true;
-						DoCompact(child, skill.PosX, 0.25f);
-					}
-					DoCompactChildren(child, skill.PosX, 0.25f);
-				}
+				hasCompacted = DoCompactChildren(skill, skill.PosX, 0.25f);
+				// foreach (var child in skill.ChildrenLinks.Select(child => child.Target))
+				// 	hasCompacted = DoCompact(child, 0, 0.25f) || hasCompacted;
 			} while (hasCompacted && iterations < 20);
 		}
 	}

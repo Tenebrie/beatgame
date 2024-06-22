@@ -16,41 +16,37 @@ public abstract class ComposableScript
 	public virtual void _Ready()
 	{
 		foreach (var composable in Composables)
-		{
 			composable._Ready();
-		}
 	}
 
 	public virtual void _Process(double delta)
 	{
 		foreach (var composable in Composables)
-		{
 			composable._Process(delta);
-		}
 	}
 
 	public virtual void _Input(InputEvent @event)
 	{
 		foreach (var composable in Composables)
-		{
 			composable._Input(@event);
-		}
 	}
 
 	public virtual void _UnhandledInput(InputEvent @event)
 	{
 		foreach (var composable in Composables)
-		{
 			composable._UnhandledInput(@event);
-		}
+	}
+
+	public virtual void _EnterTree()
+	{
+		foreach (var composable in Composables)
+			composable._EnterTree();
 	}
 
 	public virtual void _ExitTree()
 	{
 		foreach (var composable in Composables)
-		{
 			composable._ExitTree();
-		}
 	}
 
 	public SceneTree GetTree() => Parent.GetTree();

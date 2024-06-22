@@ -47,6 +47,7 @@ public abstract partial class BaseUnit : ComposableCharacterBody3D
 		Composables.Add(ForcefulMovement);
 		Composables.Add(CastLibrary);
 		Composables.Add(Components);
+		Composables.Add(new ObjectReactions(this));
 	}
 
 	public Vector3 ForwardVector { get => -GlobalTransform.Basis.Z.Normalized(); }

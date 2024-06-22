@@ -6,6 +6,9 @@ public class UnitLibrary
 {
 	public string PlayerCharacter = "res://units/player/PlayerCharacter/PlayerCharacter.tscn";
 	public string StationarySummon = "res://units/player/StationarySummon/UnitStationarySummon.tscn";
+	public string DummyEnemy = "uid://dd8hi213iqvva";
+	public string JumpingDummyEnemy = "uid://bigoodfgf85ex";
+	public string ZappingDummyEnemy = "uid://b63tmrk7key7v";
 }
 
 public class TokenLibrary

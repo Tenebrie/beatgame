@@ -13,3 +13,6 @@ one_shot = true
 [node name="RestingTimer" type="Timer" parent="." index="5"]
 wait_time = 0.5
 one_shot = true
+
+[node name="RespawningUnitBehaviour" parent="." index="7"]
+sceneToSpawn = "uid://bigoodfgf85ex"

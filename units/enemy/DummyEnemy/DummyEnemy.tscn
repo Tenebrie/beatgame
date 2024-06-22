@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://dd8hi213iqvva"]
+[gd_scene load_steps=8 format=3 uid="uid://dd8hi213iqvva"]
 
 [ext_resource type="Script" path="res://units/enemy/DummyEnemy/DummyEnemy.cs" id="1_hrpc5"]
 [ext_resource type="Material" uid="uid://hrprhmwst7jk" path="res://assets/materials/HoverableUnitMaterial.tres" id="2_eooxv"]
 [ext_resource type="PackedScene" uid="uid://cqu5y0rbgi8pp" path="res://units/common/UnitCastAimPosition.tscn" id="3_e02vm"]
+[ext_resource type="PackedScene" uid="uid://dhuqkh7rhtgsa" path="res://units/behaviours/RespawningUnitBehaviour.tscn" id="4_xljhy"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gw003"]
 next_pass = ExtResource("2_eooxv")
@@ -37,3 +38,6 @@ shape = SubResource("BoxShape3D_28ffj")
 [node name="UnitCastAimPosition" parent="." instance=ExtResource("3_e02vm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45365, 0)
 visible = false
+
+[node name="RespawningUnitBehaviour" parent="." instance=ExtResource("4_xljhy")]
+sceneToSpawn = "uid://dd8hi213iqvva"
