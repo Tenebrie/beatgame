@@ -1,0 +1,36 @@
+[gd_scene load_steps=8 format=3 uid="uid://d367s1inshkoi"]
+
+[ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Wep_Shield_Spike_01_mesh/SM_Wep_Shield_Spike_01_4300000.mesh" id="1_c7rt1"]
+[ext_resource type="Script" path="res://casts/player/tank/ShieldBash/ShieldBashEffect.cs" id="1_ogxg1"]
+[ext_resource type="Shader" path="res://effects/GhostWeaponMat.gdshader" id="2_l2hm1"]
+[ext_resource type="Texture2D" uid="uid://cnrkgbc0l3p06" path="res://assets/PolygonDungeon/Textures/Dungeons_Texture_02.png" id="3_3fph7"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_yj7rs"]
+noise_type = 3
+frequency = 0.0158
+fractal_octaves = 8
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_foi4e"]
+noise = SubResource("FastNoiseLite_yj7rs")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jj4np"]
+render_priority = 0
+shader = ExtResource("2_l2hm1")
+shader_parameter/FADE_COLOR = Color(0.240008, 0.505868, 1, 1)
+shader_parameter/ALBEDO_SAMPLER = ExtResource("3_3fph7")
+shader_parameter/FADE_NOISE = SubResource("NoiseTexture2D_foi4e")
+
+[node name="ShieldBashEffect" type="Node3D" node_paths=PackedStringArray("timer", "Mesh")]
+script = ExtResource("1_ogxg1")
+timer = NodePath("Timer")
+Mesh = NodePath("_mesh")
+
+[node name="_mesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(-40, 0, -6.03983e-06, 0, 40, 0, 6.03983e-06, 0, -40, 0, 0, 0)
+instance_shader_parameters/FADE = 0.0
+instance_shader_parameters/VELOCITY = Vector3(0, 0, 0)
+mesh = ExtResource("1_c7rt1")
+surface_material_override/0 = SubResource("ShaderMaterial_jj4np")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true

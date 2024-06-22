@@ -189,16 +189,16 @@ public class PlayerSpellcasting : ComposableScript
 				if (cast.IsCasting)
 					return;
 
+				Parent.Movement.StopAutorun();
+				if (cast.Settings.InputType != CastInputType.Instant || cast.Settings.GlobalCooldown)
+					ReleaseCurrentCastingSpell();
+
 				var canCast = cast.ValidateIfCastIsPossible(targetData, out var errorMessage);
 				if (!canCast)
 				{
 					SignalBus.SendMessage(errorMessage);
 					return;
 				}
-
-				Parent.Movement.StopAutorun();
-				if (cast.Settings.InputType != CastInputType.Instant || cast.Settings.GlobalCooldown)
-					ReleaseCurrentCastingSpell();
 
 				cast.CastBegin(targetData);
 			}

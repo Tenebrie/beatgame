@@ -6,7 +6,7 @@ public partial class CastEtherealFocus : BaseCast
 	public const float ManaPerBeat = 10;
 	public const float ManaBurst = 50;
 
-	BaseEffect channelEffect;
+	SimpleParticleEffect channelEffect;
 
 	public CastEtherealFocus(BaseUnit parent) : base(parent)
 	{
@@ -35,7 +35,8 @@ public partial class CastEtherealFocus : BaseCast
 
 	protected override void OnCastStarted(CastTargetData _)
 	{
-		channelEffect = this.CreateEffect(Lib.Effect.EtherealFocusChannel, Parent.GlobalCastAimPosition).Attach(Parent);
+		channelEffect = this.CreateSimpleParticleEffect(Lib.Effect.EtherealFocusChannel, Parent.GlobalCastAimPosition);
+		channelEffect.Attach(Parent);
 	}
 
 	protected override void OnCastTicked(CastTargetData _, BeatTime time)
@@ -46,7 +47,7 @@ public partial class CastEtherealFocus : BaseCast
 	protected override void OnCastCompleted(CastTargetData target)
 	{
 		Parent.Mana.Restore(ManaBurst, this);
-		this.CreateEffect(Lib.Effect.EtherealFocusBurst, Parent.GlobalCastAimPosition).SetLifetime(1);
+		this.CreateSimpleParticleEffect(Lib.Effect.EtherealFocusBurst, Parent.GlobalCastAimPosition).SetLifetime(1);
 	}
 
 	protected override void OnCastCompletedOrFailed(CastTargetData target)

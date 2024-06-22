@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=3 format=3 uid="uid://cq785vcnf5a0"]
 
 [ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Item_Inkwell_01_mesh/SM_Item_Inkwell_01_4300000.mesh" id="1_mr3h4"]
-[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_d2anr"]
+[ext_resource type="Material" uid="uid://egwfatbxefmf" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_d2anr"]
 
 [node name="SM_Item_Inkwell_01" type="Node3D"]
 metadata/ufile_ids = ["67e9d0b0d7ee4da4d82f258ee2471dec:410506", "67e9d0b0d7ee4da4d82f258ee2471dec:165626", "67e9d0b0d7ee4da4d82f258ee2471dec:3313518", "67e9d0b0d7ee4da4d82f258ee2471dec:2330322", "67e9d0b0d7ee4da4d82f258ee2471dec:64210920137424936"]

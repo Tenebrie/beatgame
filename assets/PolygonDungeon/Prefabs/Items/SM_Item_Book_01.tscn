@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=3 format=3 uid="uid://dflxnow5rt0hs"]
 
 [ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Item_Book_01_mesh/SM_Item_Book_01_4300000.mesh" id="1_yafx2"]
-[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_4scib"]
+[ext_resource type="Material" uid="uid://egwfatbxefmf" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_4scib"]
 
 [node name="SM_Item_Book_01" type="Node3D"]
 metadata/ufile_ids = ["432e90641b77e1641bbe326c4647207e:417370", "432e90641b77e1641bbe326c4647207e:166544", "432e90641b77e1641bbe326c4647207e:3362724", "432e90641b77e1641bbe326c4647207e:2345602", "432e90641b77e1641bbe326c4647207e:64840494048121712"]

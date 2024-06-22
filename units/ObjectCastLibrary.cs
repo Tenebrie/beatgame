@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using Godot;
 namespace Project;
 
@@ -22,5 +23,11 @@ public partial class ObjectCastLibrary : ComposableScript
 		Casts.Remove(cast);
 		cast.QueueFree();
 		return cast;
+	}
+
+	public CastT Get<CastT>() where CastT : BaseCast
+	{
+		var cast = Casts.Where(cast => cast is CastT).FirstOrDefault() ?? throw new Exception("Unable to find cast");
+		return (CastT)cast;
 	}
 }

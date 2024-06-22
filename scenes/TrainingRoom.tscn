@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://bcrvev26qnfr0"]
+[gd_scene load_steps=27 format=3 uid="uid://bcrvev26qnfr0"]
 
 [ext_resource type="PackedScene" uid="uid://bly86m2hi4wkh" path="res://objects/Environment/WallStone02.tscn" id="3_fvbi3"]
 [ext_resource type="PackedScene" uid="uid://brm5ywm6ylnrg" path="res://objects/Environment/WallStone03.tscn" id="4_lh2l6"]
@@ -22,6 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://ducyw438mwduj" path="res://objects/Triggers/SceneTransition/SceneTransition.tscn" id="20_tekqx"]
 [ext_resource type="PackedScene" uid="uid://dd8hi213iqvva" path="res://units/enemy/DummyEnemy/DummyEnemy.tscn" id="20_u8i6y"]
 [ext_resource type="PackedScene" uid="uid://bigoodfgf85ex" path="res://units/enemy/DummyEnemy/JumpingDummyEnemy.tscn" id="21_1cqso"]
+[ext_resource type="PackedScene" uid="uid://b63tmrk7key7v" path="res://units/enemy/DummyEnemy/ZappingDummyEnemy.tscn" id="23_2mukf"]
 
 [sub_resource type="Environment" id="Environment_nxlol"]
 ambient_light_energy = 0.91
@@ -1023,11 +1024,11 @@ environment = SubResource("Environment_nxlol")
 camera_attributes = SubResource("CameraAttributesPractical_dlc6d")
 
 [node name="DummyEnemy4" parent="." instance=ExtResource("20_u8i6y")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.80834, -0.00244141, -0.0771254)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.06391, -0.00244141, -2.95622)
 Alliance = 0
 
 [node name="DummyEnemy5" parent="." instance=ExtResource("20_u8i6y")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.48398, -0.00244153, 0.134433)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.229, -0.00244153, 2.97937)
 Alliance = 2
 
 [node name="DummyEnemy6" parent="." instance=ExtResource("21_1cqso")]
@@ -1044,3 +1045,7 @@ TransitionTo = 1
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SceneTransition"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.393017, 1.64715, -2.03025)
 shape = SubResource("BoxShape3D_50btq")
+
+[node name="ZappingDummyEnemy" parent="." instance=ExtResource("23_2mukf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.96748, 0.00719949, -0.0127659)
+Alliance = 2

@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://bd1pneojwsjum"]
 
-[ext_resource type="Script" path="res://effects/BaseEffect.cs" id="1_8rymk"]
+[ext_resource type="Script" path="res://effects/SimpleParticleEffect.cs" id="1_xrsdb"]
 [ext_resource type="Texture2D" uid="uid://b041umxoeub2o" path="res://assets/particles/flare_01.png" id="2_ncpin"]
 [ext_resource type="Texture2D" uid="uid://bfq8lmy0qmd5b" path="res://assets/fire-particle.tga" id="3_o50qq"]
 
@@ -78,7 +78,7 @@ orientation = 2
 
 [node name="EffectBuster" type="Node3D" node_paths=PackedStringArray("Emitter")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
-script = ExtResource("1_8rymk")
+script = ExtResource("1_xrsdb")
 Emitter = NodePath("GPUParticles3D")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]

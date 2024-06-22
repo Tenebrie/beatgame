@@ -140,6 +140,10 @@ public class SkillTree
 				var newPosX = skill.PosX - dist * Math.Sign(skill.PosX);
 				skill.PosX = newPosX;
 			}
+		}
+
+		void DoCompactChildren(BaseSkill skill, float target, float dist)
+		{
 			foreach (var child in skill.ChildrenLinks.Select(child => child.Target))
 			{
 				DoCompact(child, skill.PosX, dist);
@@ -161,6 +165,7 @@ public class SkillTree
 						hasCompacted = true;
 						DoCompact(child, skill.PosX, 0.25f);
 					}
+					DoCompactChildren(child, skill.PosX, 0.25f);
 				}
 			} while (hasCompacted && iterations < 20);
 		}

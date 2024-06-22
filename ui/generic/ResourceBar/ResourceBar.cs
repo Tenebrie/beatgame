@@ -40,8 +40,8 @@ public partial class ResourceBar : Control
 
 	private void OnTrackStarted(MusicTrack track)
 	{
-		PositiveTimer.WaitTime = 1.00f;
-		NegativeTimer.WaitTime = 1.00f;
+		PositiveTimer.WaitTime = 0.25f;
+		NegativeTimer.WaitTime = 0.25f;
 	}
 
 	public void SetCurrent(float value)
@@ -148,8 +148,8 @@ public partial class ResourceBar : Control
 	{
 		float fillSpeed = 50; // Units per second
 
-		// if (PositiveTimer.TimeLeft == 0)
-		if (true)
+		if (PositiveTimer.TimeLeft == 0)
+		// if (true)
 		{
 			PositiveGhostValue += fillSpeed * (float)delta;
 		}
@@ -159,8 +159,8 @@ public partial class ResourceBar : Control
 			PositiveTimer.Stop();
 		}
 
-		// if (NegativeTimer.TimeLeft == 0)
-		if (true)
+		if (NegativeTimer.TimeLeft == 0)
+		// if (true)
 		{
 			NegativeGhostValue -= fillSpeed * (float)delta;
 		}

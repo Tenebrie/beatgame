@@ -1,9 +1,10 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=3 format=3 uid="uid://dcygbj5d2d32o"]
 
 [ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Item_Jar_01_mesh/SM_Item_Jar_01_4300000.mesh" id="1_v6vwj"]
-[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_627pb"]
+[ext_resource type="Material" uid="uid://egwfatbxefmf" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_627pb"]
 
 [node name="SM_Item_Jar_01" type="Node3D"]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
 metadata/ufile_ids = ["fd4d597a58050a1499656d04f83150c7:474960", "fd4d597a58050a1499656d04f83150c7:193604", "fd4d597a58050a1499656d04f83150c7:3370652", "fd4d597a58050a1499656d04f83150c7:2335416", "fd4d597a58050a1499656d04f83150c7:64282541997947488"]
 
 [node name="_mesh" type="MeshInstance3D" parent="."]

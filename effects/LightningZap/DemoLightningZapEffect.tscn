@@ -8,5 +8,5 @@
 script = ExtResource("1_8ni0f")
 
 [node name="Target" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.6371, 3.21488, -2.43177)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.30483, 0.776151, -1.11239)
 mesh = SubResource("SphereMesh_v8qii")

@@ -8,6 +8,7 @@ public partial class SkillImmovableObject : BaseSkill
 		{
 			FriendlyName = "Immovable Object",
 			IconPath = "res://assets/icons/SpellBook06_74.png",
+			ActiveCast = CastFactory.Of<CastImmovableObject>(),
 		};
 	}
 }

@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=2 format=3 uid="uid://d2cgwe2t4508r"]
 
 [ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Item_Horn_mesh/_6519804257193634337.mesh" id="1_lbo0n"]
 

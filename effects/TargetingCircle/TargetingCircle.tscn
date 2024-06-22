@@ -17,5 +17,4 @@ size = Vector2(1, 1)
 script = ExtResource("1_r84vi")
 
 [node name="CircleDecal" parent="." instance=ExtResource("2_kd5rw")]
-instance_shader_parameters/FADE = 0.0
 mesh = SubResource("PlaneMesh_0tkqo")

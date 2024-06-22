@@ -13,8 +13,8 @@ material = SubResource("ShaderMaterial_nrq6q")
 size = Vector2(1, 1)
 
 [node name="CircleDecal" type="MeshInstance3D"]
-instance_shader_parameters/COLOR_B = 1.0
-instance_shader_parameters/COLOR_G = 1.0
+instance_shader_parameters/COLOR_B = 0.7
+instance_shader_parameters/COLOR_G = 0.7
 instance_shader_parameters/COLOR_R = 0.0
 instance_shader_parameters/FADE = 1.0
 instance_shader_parameters/INNER_ALPHA = 1.0

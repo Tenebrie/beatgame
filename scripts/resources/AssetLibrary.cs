@@ -32,6 +32,8 @@ public class EffectLibrary
 	public string BusterTarget = "uid://bd1pneojwsjum";
 	public string EtherealFocusBurst = "uid://bsdk74dv5et2a";
 	public string EtherealFocusChannel = "uid://cwk748e7folsj";
+	public string ShieldBashWeapon = "uid://d367s1inshkoi";
+	public string ShieldBashImpact = "uid://c73m8sv3vj7a3";
 }
 
 public class UILibrary

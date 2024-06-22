@@ -35,13 +35,13 @@ public static class CastUtils
 		node.GetTree().CurrentScene.AddChild(zap);
 		zap.SetTarget(to);
 		zap.FadeDuration = 0.50f;
-		node.CreateEffect(Lib.Effect.LightningZapImpact, to).SetLifetime(0.05f);
+		zap.AnimationFinished += () => node.CreateSimpleParticleEffect(Lib.Effect.LightningZapImpact, to).SetLifetime(0.05f);
 		return zap;
 	}
 
-	public static BaseEffect CreateEffect(this Node node, string resourcePath, Vector3 target)
+	public static SimpleParticleEffect CreateSimpleParticleEffect(this Node node, string resourcePath, Vector3 target)
 	{
-		var impact = Lib.LoadScene(resourcePath).Instantiate<BaseEffect>();
+		var impact = Lib.LoadScene(resourcePath).Instantiate<SimpleParticleEffect>();
 		impact.Position = target;
 		node.GetTree().CurrentScene.AddChild(impact);
 		return impact;
@@ -184,9 +184,10 @@ public static class CastUtils
 		return color;
 	}
 
-	public static async Task NextFrame(this Node node)
+	public static async void NextFrame(this Node node, Action action = null)
 	{
 		await node.ToSignal(node.GetTree().CreateTimer(0), "timeout");
+		action?.Invoke();
 	}
 }
 

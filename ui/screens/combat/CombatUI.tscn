@@ -81,14 +81,16 @@ grow_vertical = 0
 AnimationType = 1
 
 [node name="UnitCard" parent="AllyTargeting/AnimatedVBoxContainer" index="0"]
-offset_top = 722.0
-offset_right = 142.63
+offset_left = 200.0
+offset_top = 664.549
+offset_right = 370.0
 offset_bottom = 729.549
 
 [node name="UnitCard2" parent="AllyTargeting/AnimatedVBoxContainer" index="1"]
-offset_top = 652.0
-offset_right = 142.63
-offset_bottom = 659.549
+offset_left = 200.0
+offset_top = 664.549
+offset_right = 370.0
+offset_bottom = 729.549
 
 [node name="HostileTargeting" parent="." instance=ExtResource("3_jpa8i")]
 layout_mode = 1

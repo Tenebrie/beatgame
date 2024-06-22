@@ -2,7 +2,7 @@ using Godot;
 
 namespace Project;
 
-[Tool]
+// [Tool]
 public partial class DemoLightningZapEffect : Node3D
 {
 	MeshInstance3D Target;
@@ -16,7 +16,7 @@ public partial class DemoLightningZapEffect : Node3D
 	public override void _Process(double delta)
 	{
 		UpdateTimer += (float)delta;
-		if (UpdateTimer >= 1)
+		if (UpdateTimer >= 2)
 		{
 			UpdateTimer = 0;
 			Zap = GD.Load<PackedScene>("res://effects/LightningZap/LightningZapEffect.tscn").Instantiate<LightningZapEffect>();

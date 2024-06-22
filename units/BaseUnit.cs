@@ -14,6 +14,7 @@ public abstract partial class BaseUnit : ComposableCharacterBody3D
 	public ObjectTargetable Targetable;
 	public ObjectForcefulMovement ForcefulMovement;
 	public ObjectCastLibrary CastLibrary;
+	public ObjectComponentLibrary Components;
 
 	[Export]
 	public UnitAlliance Alliance = UnitAlliance.Neutral;
@@ -31,12 +32,13 @@ public abstract partial class BaseUnit : ComposableCharacterBody3D
 
 	public BaseUnit()
 	{
-		Health = new ObjectResource(this, ObjectResourceType.Health, max: 100);
-		Mana = new ObjectResource(this, ObjectResourceType.Mana, max: 0);
-		Buffs = new ObjectBuffs(this);
-		Targetable = new ObjectTargetable(this);
-		ForcefulMovement = new ObjectForcefulMovement(this);
-		CastLibrary = new ObjectCastLibrary(this);
+		Health = new(this, ObjectResourceType.Health, max: 100);
+		Mana = new(this, ObjectResourceType.Mana, max: 0);
+		Buffs = new(this);
+		Targetable = new(this);
+		ForcefulMovement = new(this);
+		CastLibrary = new(this);
+		Components = new(this);
 
 		Composables.Add(Buffs);
 		Composables.Add(Health);
@@ -44,6 +46,7 @@ public abstract partial class BaseUnit : ComposableCharacterBody3D
 		Composables.Add(Targetable);
 		Composables.Add(ForcefulMovement);
 		Composables.Add(CastLibrary);
+		Composables.Add(Components);
 	}
 
 	public Vector3 ForwardVector { get => -GlobalTransform.Basis.Z.Normalized(); }
@@ -59,6 +62,12 @@ public abstract partial class BaseUnit : ComposableCharacterBody3D
 
 		AllUnits.Add(this);
 		SignalBus.Singleton.EmitSignal(SignalBus.SignalName.UnitCreated, this);
+	}
+
+	public override void _EnterTree()
+	{
+		base._EnterTree();
+		Music.Singleton.BeatTick += ProcessBeatTick;
 	}
 
 	private void OnResourceChanged(BaseUnit unit, ObjectResourceType type, float value)
@@ -88,6 +97,7 @@ public abstract partial class BaseUnit : ComposableCharacterBody3D
 	public override void _ExitTree()
 	{
 		base._ExitTree();
+		Music.Singleton.BeatTick -= ProcessBeatTick;
 		AllUnits.Remove(this);
 		SignalBus.Singleton.EmitSignal(SignalBus.SignalName.UnitDestroyed, this);
 	}
@@ -142,6 +152,8 @@ public abstract partial class BaseUnit : ComposableCharacterBody3D
 			Position = new Vector3(0, 1, 0);
 		}
 	}
+
+	protected virtual void ProcessBeatTick(BeatTime time) { }
 
 	public static readonly List<BaseUnit> AllUnits = new();
 }

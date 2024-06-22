@@ -1,0 +1,27 @@
+using System;
+using Godot;
+using Project;
+
+namespace Project;
+
+public partial class BuffSentinel : BaseBuff
+{
+	public const float DamageReduction = 0.5f;
+	public const float EffectDuration = 4;
+
+	public BuffSentinel()
+	{
+		Settings = new()
+		{
+			Description = MakeDescription(
+				$"Increases your damage reduction by flat {{{Math.Round(DamageReduction * 100) + "%"}}}."
+			),
+		};
+		Duration = EffectDuration;
+	}
+
+	public override void ModifyUnit(BuffUnitStatsVisitor unit)
+	{
+		unit.PercentageDamageReduction[ObjectResourceType.Health] += DamageReduction;
+	}
+}

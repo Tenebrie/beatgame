@@ -33,17 +33,20 @@ public partial class SkillTreeManager : Node
 		var tankTree = new SkillTree
 		(
 			group: SkillGroup.Tank,
-			roots: new() { new SkillSentinel() },
+			roots: new() { new SkillShieldBash() },
 
 			links: new()
 			{
-				Link<SkillSentinel,         SkillSentinelCharges>   (),
-				Link<SkillSentinel,         SkillImmovableObject>   (1, BuffFactory.Of<BuffTankTreeHealth>()),
-				Link<SkillSentinel,         SkillSentinelMana>      (),
-				Link<SkillImmovableObject,  SkillManaShield>        (1, BuffFactory.Of<BuffTankTreeHealth>()),
-				Link<SkillImmovableObject,  SkillCelestialShield>   (1, BuffFactory.Of<BuffTankTreeHealth>()),
-				Link<SkillImmovableObject,  SkillThorns>            (1, BuffFactory.Of<BuffTankTreeHealth>()),
-				Link<SkillCelestialShield,  SkillSecondWind>        (3, BuffFactory.Of<BuffTankTreeHealth>()),
+				Link<SkillShieldBash,       SkillSentinel>              (),
+				Link<SkillShieldBash,       SkillShieldBashRange>       (),
+				Link<SkillShieldBashRange,  SkillShieldBashMulticast>   (4, BuffFactory.Of<BuffTankTreeHealth>()),
+				Link<SkillSentinel,         SkillSentinelCharges>       (),
+				Link<SkillSentinel,         SkillImmovableObject>       (1, BuffFactory.Of<BuffTankTreeHealth>()),
+				Link<SkillSentinel,         SkillSentinelMana>          (),
+				Link<SkillImmovableObject,  SkillManaShield>            (1, BuffFactory.Of<BuffTankTreeHealth>()),
+				Link<SkillImmovableObject,  SkillCelestialShield>       (1, BuffFactory.Of<BuffTankTreeHealth>()),
+				Link<SkillImmovableObject,  SkillThorns>                (1, BuffFactory.Of<BuffTankTreeHealth>()),
+				Link<SkillCelestialShield,  SkillSecondWind>            (3, BuffFactory.Of<BuffTankTreeHealth>()),
 			}
 		);
 

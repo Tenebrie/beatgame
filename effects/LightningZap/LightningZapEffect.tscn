@@ -1,19 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://b2r4iwxmkcrmp"]
+[gd_scene load_steps=4 format=3 uid="uid://b2r4iwxmkcrmp"]
 
 [ext_resource type="Script" path="res://effects/LightningZap/LightningZapEffect.cs" id="1_hxgwe"]
+[ext_resource type="Shader" path="res://effects/LightningZap/LightningZapEffect.gdshader" id="2_x27vp"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bo5cx"]
-resource_local_to_scene = true
-transparency = 1
-blend_mode = 1
-albedo_color = Color(0.235294, 0.337255, 1, 0)
-emission_enabled = true
-emission = Color(0.235294, 0.337255, 1, 1)
-emission_energy_multiplier = 32.0
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m5bcq"]
+render_priority = 0
+shader = ExtResource("2_x27vp")
 
 [node name="LightningZapEffect" type="Node3D"]
 script = ExtResource("1_hxgwe")
-LightningMaterial = SubResource("StandardMaterial3D_bo5cx")
+LightningMaterial = SubResource("ShaderMaterial_m5bcq")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.57735, -0.408248, -0.707106, 0.57735, 0.816496, 2.52368e-08, 0.57735, -0.408248, 0.707106, 0, 0, 0)

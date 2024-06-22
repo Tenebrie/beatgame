@@ -14,7 +14,7 @@ public abstract partial class BaseBuff : Node
 		public bool RefreshOthersWhenAdded = false;
 	}
 
-	public BuffSettings Settings;
+	public BuffSettings Settings = new();
 
 	public BaseUnit Parent;
 	public BaseCast SourceCast;
@@ -27,6 +27,8 @@ public abstract partial class BaseBuff : Node
 	{
 		createdAt = Time.GetTicksMsec();
 	}
+
+	public static string MakeDescription(params string[] strings) => CastUtils.MakeDescription(strings);
 
 	float defaultDuration;
 	public float Duration

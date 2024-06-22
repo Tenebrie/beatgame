@@ -1,11 +1,12 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=3 format=3 uid="uid://dbr1va65e4umu"]
 
 [ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Wep_Shield_Chitin_01_mesh/SM_Wep_Shield_Chitin_01_4300000.mesh" id="1_opgt4"]
-[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_r7tyq"]
+[ext_resource type="Material" uid="uid://egwfatbxefmf" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_r7tyq"]
 
 [node name="SM_Wep_Shield_Chitin_01" type="Node3D"]
 metadata/ufile_ids = ["35230b9677512fb4a80d28a9f766e8b6:435174", "35230b9677512fb4a80d28a9f766e8b6:107784", "35230b9677512fb4a80d28a9f766e8b6:3316996", "35230b9677512fb4a80d28a9f766e8b6:2313824", "35230b9677512fb4a80d28a9f766e8b6:64342698624304248"]
 
 [node name="_mesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
 mesh = ExtResource("1_opgt4")
 surface_material_override/0 = ExtResource("2_r7tyq")

@@ -1,5 +1,8 @@
+using System;
+
 namespace Project;
 
+[Flags]
 public enum BeatTime : ulong
 {
 	Whole = 1,

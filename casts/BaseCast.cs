@@ -6,6 +6,8 @@ namespace Project;
 
 public partial class BaseCast : Node
 {
+	public const float GlobalCooldownDuration = 2f;
+
 	public class CastSettings
 	{
 		public string FriendlyName = "Unnamed Spell";
@@ -30,6 +32,7 @@ public partial class BaseCast : Node
 		public bool GlobalCooldown = true;
 		public bool ReversedCastBar = false;
 		public bool HiddenCastBar = false;
+		public float MaximumRange = Mathf.Inf;
 
 		/// <summary>Only for CastInputType.AutoRelease</summary>
 		public float PrepareTime = 0; // beats
@@ -74,7 +77,7 @@ public partial class BaseCast : Node
 	{
 		if (!settingsPrepared)
 			PrepareSettings();
-
+		EnsureTimerExists();
 		Music.Singleton.BeatTick += OnBeatTick;
 	}
 
@@ -159,12 +162,34 @@ public partial class BaseCast : Node
 			return false;
 		}
 
+		if (double.IsFinite(Settings.MaximumRange))
+		{
+			Vector3? targetPoint = null;
+			float selectionDistance = 0;
+			if ((Settings.TargetType & CastTargetType.AlliedUnit) > 0)
+			{
+				targetPoint = target.AlliedUnit.GlobalCastAimPosition;
+				selectionDistance = target.AlliedUnit.Targetable.selectionRadius;
+			}
+			else if ((Settings.TargetType & CastTargetType.HostileUnit) > 0)
+			{
+				targetPoint = target.HostileUnit.GlobalCastAimPosition;
+				selectionDistance = target.HostileUnit.Targetable.selectionRadius;
+			}
+
+			float dist = Parent.GlobalCastAimPosition.DistanceTo(targetPoint ?? Vector3.Zero);
+			if (targetPoint != null && dist > Settings.MaximumRange + selectionDistance + Parent.Targetable.selectionRadius)
+			{
+				errorMessage = "Out of range";
+				return false;
+			}
+		}
+
 		return true;
 	}
 
 	public bool ValidateIfCastIsPossible(CastTargetData target, out string errorMessage)
 	{
-		EnsureTimerExists();
 		if (RecastTimerHandle.TimeLeft > Music.Singleton.TimingWindow)
 		{
 			errorMessage = "Cooling down";
@@ -259,7 +284,6 @@ public partial class BaseCast : Node
 
 	public void StartCooldown()
 	{
-		EnsureTimerExists();
 		if (Settings.GlobalCooldown && Parent is PlayerController player)
 			player.Spellcasting.TriggerGlobalCooldown();
 		if (Settings.RecastTime > 0 && RecastTimerHandle.TimeLeft < Settings.RecastTime * Music.Singleton.SecondsPerBeat)
@@ -268,9 +292,8 @@ public partial class BaseCast : Node
 
 	public void StartGlobalCooldown()
 	{
-		EnsureTimerExists();
-		if (RecastTimerHandle.TimeLeft < 2f * Music.Singleton.SecondsPerBeat)
-			RecastTimerHandle.Start(2f * Music.Singleton.SecondsPerBeat);
+		if (RecastTimerHandle.TimeLeft < GlobalCooldownDuration * Music.Singleton.SecondsPerBeat)
+			RecastTimerHandle.Start(GlobalCooldownDuration * Music.Singleton.SecondsPerBeat);
 	}
 
 	protected virtual void OnCastStarted(CastTargetData _) { }

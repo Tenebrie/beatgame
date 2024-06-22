@@ -43,6 +43,18 @@ public partial class CircleDecal : MeshInstance3D
 		}
 	}
 
+	UnitAlliance alliance = UnitAlliance.Neutral;
+	[Export]
+	public UnitAlliance Alliance
+	{
+		get => alliance;
+		set
+		{
+			alliance = value;
+			SetColor(CastUtils.GetAllianceColor(value));
+		}
+	}
+
 	bool fadingIn = true;
 	bool fadingOut = false;
 
@@ -51,6 +63,9 @@ public partial class CircleDecal : MeshInstance3D
 
 	public override void _Ready()
 	{
+		if (Engine.IsEditorHint())
+			return;
+
 		SetInstanceShaderParameter("FADE", fadeValue);
 	}
 

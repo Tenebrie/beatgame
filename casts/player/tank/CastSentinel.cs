@@ -1,12 +1,10 @@
+using System;
 using Godot;
 
 namespace Project;
 
 public partial class CastSentinel : BaseCast
 {
-	float DamageMitigation = 0.5f;
-	float Duration = 4;
-
 	public const float ManaCost = 85;
 
 	public CastSentinel(BaseUnit parent) : base(parent)
@@ -16,7 +14,8 @@ public partial class CastSentinel : BaseCast
 			FriendlyName = "Sentinel",
 			Description = MakeDescription(
 				$"Prepare your defenses for an incoming attack.",
-				$"For the next {Colors.Tag(Duration)} beats, you gain {Colors.Tag(DamageMitigation * 100 + "%")} damage reduction."
+				$"For the next {{{BuffSentinel.EffectDuration}}} beats,",
+				$"you gain {{{Math.Round(BuffSentinel.DamageReduction * 100) + "%"}}} damage reduction."
 			),
 			IconPath = "res://assets/icons/SpellBook06_78.png",
 			InputType = CastInputType.Instant,
@@ -24,6 +23,7 @@ public partial class CastSentinel : BaseCast
 			CastTimings = BeatTime.Free,
 			RecastTime = 16,
 			Charges = 1,
+			GlobalCooldown = false,
 		};
 
 		if (this.HasSkill<SkillSentinelCharges>())
@@ -35,5 +35,13 @@ public partial class CastSentinel : BaseCast
 			Settings.RecastTime = 1;
 			Settings.ResourceCost[ObjectResourceType.Mana] = ManaCost;
 		}
+	}
+
+	protected override void OnCastCompleted(CastTargetData _)
+	{
+		Parent.Buffs.Add(new BuffSentinel()
+		{
+			SourceCast = this,
+		});
 	}
 }

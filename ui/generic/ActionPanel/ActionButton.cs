@@ -143,9 +143,20 @@ public partial class ActionButton : Control
 			HighlightedValue = Math.Max(0, HighlightedValue - (float)delta * 5);
 		ButtonMaterial.SetShaderParameter("HighlightedValue", HighlightedValue);
 
-		if (AssociatedCast == null || AssociatedCast.RecastTimerHandle == null || AssociatedCast.RecastTimerHandle.WaitTime == 0)
+		if (AssociatedCast == null)
+		{
 			CooldownProgressBar.Value = 0;
-		else
-			CooldownProgressBar.Value = AssociatedCast.RecastTimerHandle.TimeLeft / AssociatedCast.RecastTimerHandle.WaitTime * 100;
+			return;
+		}
+
+		double value = 0;
+		var currentCastingSpell = ((PlayerController)AssociatedCast.Parent).Spellcasting.GetCurrentCastingSpell();
+		if (AssociatedCast.RecastTimerHandle.TimeLeft > 0)
+			value = AssociatedCast.RecastTimerHandle.TimeLeft / AssociatedCast.RecastTimerHandle.WaitTime;
+		if (currentCastingSpell != null && currentCastingSpell.Settings.GlobalCooldown
+			&& (AssociatedCast.RecastTimerHandle.TimeLeft < BaseCast.GlobalCooldownDuration * Music.Singleton.SecondsPerBeat))
+			value = 1;
+
+		CooldownProgressBar.Value = value * 100;
 	}
 }

@@ -18,6 +18,6 @@ public partial class BossAuto : BaseCast
 	protected override void OnCastCompleted(CastTargetData target)
 	{
 		this.CreateZapEffect(Parent.GlobalCastAimPosition, target.HostileUnit.GlobalCastAimPosition);
-		target.HostileUnit.Health.Damage(1, this);
+		target.HostileUnit.Health.Damage(5, this);
 	}
 }
