@@ -13,6 +13,7 @@ public partial class BuffSentinel : BaseBuff
 	{
 		Settings = new()
 		{
+			FriendlyName = "Sentinel",
 			Description = MakeDescription(
 				$"Increases your damage reduction by {{{Math.Round(DamageReduction * 100) + "%"}}}."
 			),

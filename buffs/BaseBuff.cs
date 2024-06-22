@@ -54,15 +54,21 @@ public abstract partial class BaseBuff : Node
 		float time = Time.GetTicksMsec();
 		if (time >= expiresAt)
 		{
-			ObjectBuffs.Remove(this);
+			OnDurationExpired();
+			Parent.Buffs.Remove(this);
 		}
 	}
 
+	public virtual void OnDurationExpired() { }
 	public virtual void ModifyUnit(BuffUnitStatsVisitor unit) { }
 	public virtual void ModifyIncomingDamage(BuffIncomingDamageVisitor damage) { }
 	public virtual void ModifyOutgoingDamage(BuffOutgoingDamageVisitor damage) { }
 	public virtual void ModifyIncomingRestoration(BuffIncomingRestorationVisitor restoration) { }
 	public virtual void ModifyOutgoingRestoration(BuffOutgoingRestorationVisitor restoration) { }
+	public virtual void ReactToIncomingDamage(BuffIncomingDamageVisitor damage) { }
+	public virtual void ReactToOutgoingDamage(BuffOutgoingDamageVisitor damage) { }
+	public virtual void ReactToIncomingRestoration(BuffIncomingRestorationVisitor restoration) { }
+	public virtual void ReactToOutgoingRestoration(BuffOutgoingRestorationVisitor restoration) { }
 	public virtual void OnBeatTick(BeatTime time, int stacks) { }
 
 	public enum Flag : int

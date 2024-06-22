@@ -30,6 +30,7 @@ public partial class BaseCast : Node
 		public int Charges = 1;
 		public float RecastTime = 0;
 		public bool GlobalCooldown = true;
+		public bool CooldownOnCancel = true;
 		public bool ReversedCastBar = false;
 		public bool HiddenCastBar = false;
 		public float MaximumRange = Mathf.Inf;
@@ -269,7 +270,8 @@ public partial class BaseCast : Node
 	public void CastFail()
 	{
 		IsCasting = false;
-		StartCooldown();
+		if (Settings.CooldownOnCancel)
+			StartCooldown();
 		Flags.CastSuccessful = false;
 		SignalBus.Singleton.EmitSignal(SignalBus.SignalName.CastFailed, this);
 

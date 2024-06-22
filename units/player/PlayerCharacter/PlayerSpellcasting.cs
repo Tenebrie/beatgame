@@ -228,7 +228,7 @@ public class PlayerSpellcasting : ComposableScript
 
 	public void TriggerGlobalCooldown()
 	{
-		foreach (var cast in CastBindings.Values)
+		foreach (var cast in CastBindings.Values.Where(cast => cast.Settings.GlobalCooldown))
 		{
 			cast.StartGlobalCooldown();
 		}

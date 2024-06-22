@@ -73,37 +73,38 @@ public partial class ObjectBuffs : ComposableScript
 			buff.RefreshDuration();
 	}
 
-	public static void Remove(BaseBuff buff)
+	public void Remove(BaseBuff buff)
 	{
 		buff.QueueFree();
+		Buffs.Remove(buff);
 	}
 
 	public void RemoveStacks<BuffClass>(int stacks) where BuffClass : BaseBuff
 	{
 		var buffs = Buffs.Where(buff => buff is BuffClass).Take(stacks).ToList();
 		foreach (var buff in buffs)
-			buff.QueueFree();
+			Remove(buff);
 	}
 
 	public void RemoveWithFlag(BaseBuff.Flag flags)
 	{
 		var buffsToRemove = Buffs.Where(buff => (buff.Flags & flags) > 0).ToList();
 		foreach (var buff in buffsToRemove)
-			buff.QueueFree();
+			Remove(buff);
 	}
 
 	public void RemoveAll(Type buffType)
 	{
 		var buffsToRemove = Buffs.Where(buff => buff.GetType() == buffType).ToList();
 		foreach (var buff in buffsToRemove)
-			buff.QueueFree();
+			Remove(buff);
 	}
 
 	public void RemoveAll<BuffClass>() where BuffClass : BaseBuff
 	{
 		var buffsToRemove = Buffs.Where(buff => buff is BuffClass).ToList();
 		foreach (var buff in buffsToRemove)
-			buff.QueueFree();
+			Remove(buff);
 	}
 
 	public void Recalculate()
@@ -118,6 +119,13 @@ public partial class ObjectBuffs : ComposableScript
 				beatTickingBuffTypes.Add(buff.GetType());
 		}
 
+		foreach (ObjectResourceType resource in (ObjectResourceType[])Enum.GetValues(typeof(ObjectResourceType)))
+		{
+			visitor.PercentageDamageTaken[resource] = Math.Clamp(visitor.PercentageDamageTaken[resource], 0, 10);
+			visitor.PercentageResourceRegen[resource] = Math.Clamp(visitor.PercentageResourceRegen[resource], 0, 10);
+		}
+		visitor.MoveSpeedPercentage = Math.Clamp(visitor.MoveSpeedPercentage, 0, 10);
+
 		BeatTickingBuffs.Clear();
 		foreach (var buffType in beatTickingBuffTypes)
 		{
@@ -128,6 +136,7 @@ public partial class ObjectBuffs : ComposableScript
 		Parent.Gravity = Parent.BaseGravity * visitor.GravityModifier;
 		Parent.Health.SetMaxValue(Parent.Health.BaseMaximum + visitor.MaximumHealth);
 		Parent.Mana.SetMaxValue(Parent.Mana.BaseMaximum + visitor.MaximumMana);
+
 		State = visitor;
 	}
 
@@ -143,9 +152,9 @@ public partial class ObjectBuffs : ComposableScript
 			Target = Parent,
 		};
 		foreach (var buff in Buffs)
-		{
 			buff.ModifyIncomingDamage(visitor);
-		}
+		foreach (var buff in Buffs)
+			buff.ReactToIncomingDamage(visitor);
 
 		visitor.Value *= State.PercentageDamageTaken.GetValueOrDefault(type);
 
@@ -161,9 +170,9 @@ public partial class ObjectBuffs : ComposableScript
 			Target = target,
 		};
 		foreach (var buff in Buffs)
-		{
 			buff.ModifyOutgoingDamage(visitor);
-		}
+		foreach (var buff in Buffs)
+			buff.ReactToOutgoingDamage(visitor);
 		return visitor;
 	}
 	public BuffIncomingRestorationVisitor ApplyIncomingRestorationModifiers(ObjectResourceType type, float value, BaseUnit sourceUnit, BaseCast sourceCast)
@@ -178,9 +187,9 @@ public partial class ObjectBuffs : ComposableScript
 			Target = Parent,
 		};
 		foreach (var buff in Buffs)
-		{
 			buff.ModifyIncomingRestoration(visitor);
-		}
+		foreach (var buff in Buffs)
+			buff.ReactToIncomingRestoration(visitor);
 		return visitor;
 	}
 	public BuffOutgoingRestorationVisitor ApplyOutgoingRestorationModifiers(ObjectResourceType type, float value, BaseUnit target)
@@ -193,9 +202,9 @@ public partial class ObjectBuffs : ComposableScript
 			Target = target,
 		};
 		foreach (var buff in Buffs)
-		{
 			buff.ModifyOutgoingRestoration(visitor);
-		}
+		foreach (var buff in Buffs)
+			buff.ReactToOutgoingRestoration(visitor);
 		return visitor;
 	}
 }

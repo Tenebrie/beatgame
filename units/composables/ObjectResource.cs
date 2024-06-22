@@ -31,7 +31,7 @@ public class ObjectResource : ComposableScript
 	}
 	public float Regeneration
 	{
-		get => baseRegen * Parent.Buffs.State.PercentageResourceRegen[Type];
+		get => (baseRegen + Parent.Buffs.State.FlatResourceRegen[Type]) * Parent.Buffs.State.PercentageResourceRegen[Type];
 		set => baseRegen = value;
 	}
 

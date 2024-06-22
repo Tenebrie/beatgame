@@ -7,6 +7,7 @@ namespace Project;
 public partial class BuffUnitStatsVisitor : RefCounted
 {
 	public Dictionary<ObjectResourceType, float> PercentageDamageTaken = ObjectResource.MakeDictionary<float>(1f);
+	public Dictionary<ObjectResourceType, float> FlatResourceRegen = ObjectResource.MakeDictionary<float>(0f);
 	public Dictionary<ObjectResourceType, float> PercentageResourceRegen = ObjectResource.MakeDictionary<float>(1f);
 	public float CastManaEfficiency = 0;
 	public float PercentageCCReduction = 0;
@@ -16,6 +17,7 @@ public partial class BuffUnitStatsVisitor : RefCounted
 	public float MaximumMana = 0;
 	public float SummonHealth = 0;
 	public float LifeLeechFraction = 0;
+	public float RetaliateDamageFraction = 0;
 }
 
 public partial class BuffIncomingDamageVisitor : RefCounted

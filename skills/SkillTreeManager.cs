@@ -34,38 +34,34 @@ public partial class SkillTreeManager : Node
 		(
 			group: SkillGroup.Tank,
 			roots: new() { new SkillShieldBash(), new SkillSentinel() },
-			rootOffset: -0.25f,
+			// rootOffset: -0.25f,
 
 			links: new()
 			{
 				// Shield bash
-				Link<SkillShieldBash,       SkillShieldBashRange>       (1, BuffFactory.Of<BuffTankTreeHealth>()),
-				Link<SkillShieldBashRange,  SkillShieldBashMulticast>   (4, BuffFactory.Of<BuffTankTreeHealth>()),
 				Link<SkillShieldBashRange,  SkillShieldBashActivate>    (2, BuffFactory.Of<BuffTankTreeHealth>()),
+				Link<SkillShieldBashRange,  SkillParry>                 (2, BuffFactory.Of<BuffTankTreeHealth>()),
+				Link<SkillShieldBash,       SkillShieldBashRange>       (1, BuffFactory.Of<BuffTankTreeHealth>()),
+				Link<SkillShieldBashActivate,  SkillShieldBashMulticast>(4, BuffFactory.Of<BuffTankTreeHealth>()),
 
 				// L1
 				Link<SkillSentinel,         SkillSentinelCharges>       (),
-				Link<SkillSentinel,         SkillHealthRegen1>          (1, BuffFactory.Of<BuffTankTreeHealth>()),
+				Link<SkillSentinel,         SkillImmovableObject>          (1, BuffFactory.Of<BuffTankTreeHealth>()),
 				Link<SkillSentinel,         SkillSentinelMana>          (),
 
 				// L2
-				Link<SkillHealthRegen1,  SkillHealthRegen2>             (1, BuffFactory.Of<BuffTankTreeHealth>()),
-				Link<SkillHealthRegen1,  SkillImmovableObject>          (1, BuffFactory.Of<BuffTankTreeHealth>()),
+				Link<SkillImmovableObject,  SkillHealthRegen1>             (1, BuffFactory.Of<BuffTankTreeHealth>()),
 
 				// L3
-				// Link<SkillImmovableObject,  SkillManaShield>         (1, BuffFactory.Of<BuffTankTreeHealth>()),
-				// Link<SkillImmovableObject,  SkillCelestialShield>    (1, BuffFactory.Of<BuffTankTreeHealth>()),
-
-				// L3
-				Link<SkillHealthRegen2,  SkillManaShield>               (1, BuffFactory.Of<BuffTankTreeHealth>()),
-				Link<SkillHealthRegen2,  SkillHealthRegen3>             (1, BuffFactory.Of<BuffTankTreeHealth>()),
-				Link<SkillHealthRegen2,  SkillThorns>                   (1, BuffFactory.Of<BuffTankTreeHealth>()),
+				// Link<SkillHealthRegen1,  SkillManaShield>               (1, BuffFactory.Of<BuffTankTreeHealth>()),
+				Link<SkillHealthRegen1,  SkillJuggernaut>               (1, BuffFactory.Of<BuffTankTreeHealth>()),
+				Link<SkillHealthRegen1,  SkillCelestialShield>          (1, BuffFactory.Of<BuffTankTreeHealth>()),
+				Link<SkillHealthRegen1,  SkillThorns>                   (1, BuffFactory.Of<BuffTankTreeHealth>()),
 
 				// L4
 				// Next time you take damage, block 100% of it and return it as retaliation damage.
-				Link<SkillThorns,       SkillActiveThorns>                (1, BuffFactory.Of<BuffTankTreeHealth>()),
-				Link<SkillHealthRegen3,  SkillCelestialShield>          (3, BuffFactory.Of<BuffTankTreeHealth>()),
-				// Link<SkillHealthRegen3,  SkillBerserkersRage>           (2, BuffFactory.Of<BuffTankTreeHealth>(), length: 2),
+				Link<SkillThorns,       SkillBerserkersRage>                (1, BuffFactory.Of<BuffTankTreeHealth>()),
+
 				// TODO: Health regen passive, berserker's rage (increase damage when taking damage), implement thorns, move mana shield to another tree
 			}
 		);
