@@ -45,8 +45,10 @@ public partial class ObjectBuffs : ComposableScript
 
 	public void Add(BaseBuff buff)
 	{
-		if (buff.Settings.PreventStacking)
-			RemoveAll(buff.GetType());
+		var stacks = Stacks(buff.GetType());
+		var stacksToRemove = stacks - buff.Settings.MaximumStacks + 1;
+		if (stacksToRemove > 0)
+			RemoveStacks(buff.GetType(), stacksToRemove);
 		if (buff.Settings.RefreshOthersWhenAdded)
 			RefreshDuration(buff.GetType());
 
@@ -66,6 +68,11 @@ public partial class ObjectBuffs : ComposableScript
 		return Buffs.Count(buff => buff is BuffClass);
 	}
 
+	public int Stacks(Type buffType)
+	{
+		return Buffs.Count(buff => buff.GetType() == buffType);
+	}
+
 	public void RefreshDuration(Type buffType)
 	{
 		var buffsToRefresh = Buffs.Where(buff => buff.GetType().IsInstanceOfType(buffType)).ToList();
@@ -79,9 +86,16 @@ public partial class ObjectBuffs : ComposableScript
 		Buffs.Remove(buff);
 	}
 
+	public void RemoveStacks(Type buffType, int stacks)
+	{
+		var buffs = Buffs.Where(buff => buff.GetType() == buffType).OrderBy(buff => buff.ExpiresAt).Take(stacks).ToList();
+		foreach (var buff in buffs)
+			Remove(buff);
+	}
+
 	public void RemoveStacks<BuffClass>(int stacks) where BuffClass : BaseBuff
 	{
-		var buffs = Buffs.Where(buff => buff is BuffClass).Take(stacks).ToList();
+		var buffs = Buffs.Where(buff => buff is BuffClass).OrderBy(buff => buff.ExpiresAt).Take(stacks).ToList();
 		foreach (var buff in buffs)
 			Remove(buff);
 	}

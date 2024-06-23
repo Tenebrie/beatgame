@@ -11,7 +11,7 @@ public partial class BuffIgnite : BaseBuff
 		{
 			Description = $"Deals {Colors.Tag(DamagePerBeat)} Fire damage per beat.",
 			TicksOnBeat = true,
-			PreventStacking = true,
+			MaximumStacks = 1,
 		};
 		Duration = BurnDuration;
 	}

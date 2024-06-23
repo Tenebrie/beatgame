@@ -8,6 +8,7 @@ public partial class SkillThorns : BaseSkill
 		{
 			FriendlyName = "Thorns",
 			IconPath = "res://assets/icons/SpellBook06_66.png",
+			PassiveBuff = BuffFactory.Of<BuffThorns>()
 		};
 	}
 }

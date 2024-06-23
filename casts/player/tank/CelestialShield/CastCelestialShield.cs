@@ -13,10 +13,10 @@ public partial class CastCelestialShield : BaseCast
 		{
 			FriendlyName = "Celestial Shield",
 			Description = MakeDescription(
-				$"A short breather is all you need.",
-				$"For the next {{{BuffCelestialShield.EffectDuration}}} beats,",
+				$"For the next {{{Buff.EffectDuration}}} beats,",
 				$"you are completely invulnerable, immune to movement effects and do not consume Mana for any casts."
 			),
+			LoreDescription = "Invoke the power of the celestial.",
 			IconPath = "res://assets/icons/SpellBook06_12.png",
 			InputType = CastInputType.AutoRelease,
 			TargetType = CastTargetType.None,
@@ -30,10 +30,34 @@ public partial class CastCelestialShield : BaseCast
 
 	protected override void OnCastCompleted(CastTargetData _)
 	{
-		Parent.Buffs.Add(new BuffJuggernaut()
+		Parent.Buffs.Add(new Buff()
 		{
-			ExtraHealthRegen = Parent.Health.Maximum / 250,
 			SourceCast = this,
 		});
+	}
+
+	public partial class Buff : BaseBuff
+	{
+		public const float EffectDuration = 8;
+
+		public Buff()
+		{
+			Settings = new()
+			{
+				FriendlyName = "Celestial Shield",
+				Description = MakeDescription(
+					$"You are completely invulnerable."
+				),
+				IconPath = "res://assets/icons/SpellBook06_12.png",
+			};
+			Duration = EffectDuration;
+		}
+
+		public override void ModifyUnit(BuffUnitStatsVisitor visitor)
+		{
+			visitor.PercentageDamageTaken[ObjectResourceType.Health] = 0;
+			visitor.PercentageDamageTaken[ObjectResourceType.Mana] = 0;
+			visitor.PercentageCCReduction = 1;
+		}
 	}
 }
