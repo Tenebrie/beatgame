@@ -1,0 +1,68 @@
+[gd_scene load_steps=6 format=3 uid="uid://cdk7om6b48eic"]
+
+[ext_resource type="Script" path="res://ui/generic/BuffContainer/BuffButton.cs" id="1_goslb"]
+[ext_resource type="Shader" uid="uid://c6c3kalho5qhh" path="res://ui/generic/ActionPanel/ActionButtonIconShader.tres" id="2_gc381"]
+[ext_resource type="Texture2D" uid="uid://beqewy7krobrj" path="res://assets/ui/icon-skill-active-mask.png" id="3_nevic"]
+[ext_resource type="Texture2D" uid="uid://br10oc75cmw0v" path="res://assets/icons/SpellBook06_01.PNG" id="4_f7cev"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_psu2t"]
+resource_local_to_scene = true
+shader = ExtResource("2_gc381")
+shader_parameter/Progress = 0.0
+shader_parameter/HighlightedValue = 0.0
+shader_parameter/DisabledValue = 0.0
+shader_parameter/HoveredValue = 0.0
+shader_parameter/PressedValue = 0.0
+shader_parameter/SelectedValue = 0.0
+shader_parameter/IconMask = ExtResource("3_nevic")
+
+[node name="BuffButton" type="Control" node_paths=PackedStringArray("Icon", "StacksLabel")]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 3
+anchor_right = 0.016
+anchor_bottom = 0.028
+offset_right = -0.720001
+offset_bottom = -0.240002
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_goslb")
+Icon = NodePath("Control/IconTextureRect")
+StacksLabel = NodePath("Control/StacksLabel")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="IconTextureRect" type="TextureRect" parent="Control"]
+texture_filter = 1
+material = SubResource("ShaderMaterial_psu2t")
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -13.0
+offset_top = -13.0
+offset_right = 13.0
+offset_bottom = 13.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_f7cev")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="StacksLabel" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 10.0
+offset_right = 28.0
+offset_bottom = 30.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 14
+text = "15"
+horizontal_alignment = 2

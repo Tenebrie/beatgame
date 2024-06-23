@@ -19,7 +19,7 @@ public partial class SkillTreeManager : Node
 	public delegate void SkillLinkDownEventHandler(SkillConnection connection);
 
 	const int BaseSkillPoints = 30;
-	public int SkillPoints;
+	public int SkillPoints = BaseSkillPoints;
 	public List<BaseSkill> Skills = new();
 	public List<SkillTree> SkillTrees = new();
 

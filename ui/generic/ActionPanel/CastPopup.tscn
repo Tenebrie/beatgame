@@ -1,0 +1,87 @@
+[gd_scene load_steps=3 format=3 uid="uid://deufihg0k6wo5"]
+
+[ext_resource type="Script" path="res://ui/generic/ActionPanel/CastPopup.cs" id="1_uwhs4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oxxhm"]
+bg_color = Color(0.113725, 0, 0.113725, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="CastPopup" type="Control" node_paths=PackedStringArray("castNameLabel", "castMetadataLabel")]
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 2
+script = ExtResource("1_uwhs4")
+castNameLabel = NodePath("Label/CastNameLabel")
+castMetadataLabel = NodePath("Label/VBoxContainer/CastMetadataLabel")
+
+[node name="Label" type="RichTextLabel" parent="."]
+clip_contents = false
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -34.0
+offset_right = 420.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+bbcode_enabled = true
+text = "
+
+Cast description"
+fit_content = true
+
+[node name="CastNameLabel" type="RichTextLabel" parent="Label"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_right = -105.0
+offset_bottom = 34.0
+grow_horizontal = 2
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "Cast name"
+fit_content = true
+scroll_active = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Label"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 330.0
+offset_bottom = 34.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="CastMetadataLabel" type="RichTextLabel" parent="Label/VBoxContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[center]||||||[/center]"
+fit_content = true
+scroll_active = false
+
+[node name="MarginContainer" type="MarginContainer" parent="Label"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -10.0
+offset_right = 20.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Panel" type="Panel" parent="Label/MarginContainer"]
+show_behind_parent = true
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_oxxhm")

@@ -189,6 +189,11 @@ public static class CastUtils
 		await node.ToSignal(node.GetTree().CreateTimer(0), "timeout");
 		action?.Invoke();
 	}
+
+	public static float GetTicksSec()
+	{
+		return ((float)Time.GetTicksMsec()) / 1000;
+	}
 }
 
 public enum ArenaFacing : int

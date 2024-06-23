@@ -3,10 +3,16 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using Godot;
+
 namespace Project;
 
 public partial class ObjectBuffs : ComposableScript
 {
+	[Signal]
+	public delegate void BuffAddedEventHandler(BaseBuff buff);
+	[Signal]
+	public delegate void BuffRemovedEventHandler(BaseBuff buff);
+
 	public BuffUnitStatsVisitor State = new();
 
 	readonly List<BaseBuff> Buffs = new();
@@ -35,6 +41,7 @@ public partial class ObjectBuffs : ComposableScript
 
 		Buffs.Remove(buff);
 		Recalculate();
+		EmitSignal(SignalName.BuffRemoved, buff);
 	}
 
 	void OnBeatTick(BeatTime time)
@@ -56,11 +63,17 @@ public partial class ObjectBuffs : ComposableScript
 		Buffs.Add(buff);
 		Parent.AddChild(buff);
 		Recalculate();
+		EmitSignal(SignalName.BuffAdded, buff);
 	}
 
 	public bool Has<BuffClass>() where BuffClass : BaseBuff
 	{
 		return Buffs.Find(buff => buff is BuffClass) != null;
+	}
+
+	public BaseBuff Find(Type buffType)
+	{
+		return Buffs.Find(buff => buff.GetType() == buffType);
 	}
 
 	public int Stacks<BuffClass>() where BuffClass : BaseBuff
@@ -75,7 +88,7 @@ public partial class ObjectBuffs : ComposableScript
 
 	public void RefreshDuration(Type buffType)
 	{
-		var buffsToRefresh = Buffs.Where(buff => buff.GetType().IsInstanceOfType(buffType)).ToList();
+		var buffsToRefresh = Buffs.Where(buff => buff.GetType() == buffType).ToList();
 		foreach (var buff in buffsToRefresh)
 			buff.RefreshDuration();
 	}

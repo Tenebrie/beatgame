@@ -30,26 +30,6 @@ public abstract partial class BaseUnit : ComposableCharacterBody3D
 	public bool IsAlive = true;
 	public bool IsDead { get => !IsAlive; }
 
-	public BaseUnit()
-	{
-		Health = new(this, ObjectResourceType.Health, max: 100);
-		Mana = new(this, ObjectResourceType.Mana, max: 0);
-		Buffs = new(this);
-		Targetable = new(this);
-		ForcefulMovement = new(this);
-		CastLibrary = new(this);
-		Components = new(this);
-
-		Composables.Add(Buffs);
-		Composables.Add(Health);
-		Composables.Add(Mana);
-		Composables.Add(Targetable);
-		Composables.Add(ForcefulMovement);
-		Composables.Add(CastLibrary);
-		Composables.Add(Components);
-		Composables.Add(new ObjectReactions(this));
-	}
-
 	public Vector3 ForwardVector { get => -GlobalTransform.Basis.Z.Normalized(); }
 
 	public Vector3 CastAimPosition = new();
@@ -58,6 +38,23 @@ public abstract partial class BaseUnit : ComposableCharacterBody3D
 	public override void _Ready()
 	{
 		base._Ready();
+
+		Health = new(this, ObjectResourceType.Health, max: 100);
+		Mana = new(this, ObjectResourceType.Mana, max: 0);
+		Buffs = new(this);
+		Targetable = new(this);
+		ForcefulMovement = new(this);
+		CastLibrary = new(this);
+		Components = new(this);
+
+		AddChild(Buffs);
+		AddChild(Health);
+		AddChild(Mana);
+		AddChild(Targetable);
+		AddChild(ForcefulMovement);
+		AddChild(CastLibrary);
+		AddChild(Components);
+		AddChild(new ObjectReactions(this));
 
 		SignalBus.Singleton.ResourceChanged += OnResourceChanged;
 

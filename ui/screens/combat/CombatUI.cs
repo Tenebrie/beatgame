@@ -5,22 +5,17 @@ using Godot;
 namespace Project;
 public partial class CombatUI : Control
 {
-	private ResourceBar HealthBar;
-	private ResourceBar ManaBar;
-	private UnitCardList AlliedUnitList;
-	private UnitCardList HostileUnitList;
-	private UnitCardList HostileBossList;
-	private CastBarGroup BossCastBarGroup;
+	[Export] ResourceBar HealthBar;
+	[Export] ResourceBar ManaBar;
+	[Export] UnitCardList AlliedUnitList;
+	[Export] UnitCardList HostileUnitList;
+	[Export] UnitCardList HostileBossList;
+	[Export] CastBarGroup BossCastBarGroup;
+	[Export] BuffContainer PlayerBuffContainer;
 
 	public override void _Ready()
 	{
 		GetTree().Root.ContentScaleFactor = DisplayServer.ScreenGetScale();
-		HealthBar = GetNode<ResourceBar>("HealthBar");
-		ManaBar = GetNode<ResourceBar>("ManaBar");
-		AlliedUnitList = GetNode<UnitCardList>("AllyTargeting");
-		HostileUnitList = GetNode<UnitCardList>("HostileTargeting");
-		HostileBossList = GetNode<UnitCardList>("BossTargeting");
-		BossCastBarGroup = GetNode<CastBarGroup>("BossCastBarGroup");
 		SignalBus.Singleton.UnitCreated += OnUnitCreated;
 		SignalBus.Singleton.UnitDestroyed += OnUnitDestroyed;
 	}
@@ -31,6 +26,7 @@ public partial class CombatUI : Control
 		{
 			HealthBar.TrackUnit(unit, ObjectResourceType.Health);
 			ManaBar.TrackUnit(unit, ObjectResourceType.Mana);
+			PlayerBuffContainer.TrackUnit(unit);
 		}
 		else if (unit.Alliance == UnitAlliance.Player)
 		{

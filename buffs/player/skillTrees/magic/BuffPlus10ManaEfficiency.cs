@@ -6,7 +6,8 @@ public partial class BuffPlus10ManaEfficiency : BaseBuff
 	{
 		Settings = new()
 		{
-			Description = $"Reduces all Mana costs by {Colors.Tag("10%")}."
+			Description = $"Reduces all Mana costs by {Colors.Tag("10%")}.",
+			Hidden = true,
 		};
 	}
 	public override void ModifyUnit(BuffUnitStatsVisitor unit)

@@ -24,7 +24,7 @@ public partial class CastJuggernaut : BaseCast
 			RecastTime = 32,
 			GlobalCooldown = true,
 		};
-		Settings.ResourceCost[ObjectResourceType.Mana] = 200;
+		Settings.ResourceCost[ObjectResourceType.Mana] = 100;
 	}
 
 	protected override void OnCastCompleted(CastTargetData _)
@@ -49,6 +49,7 @@ public partial class CastJuggernaut : BaseCast
 				Description = MakeDescription(
 					$"Increases your base Health regeneration by {{{Math.Round(ExtraHealthRegen)}}} per beat."
 				),
+				IconPath = "res://assets/icons/SpellBook06_112.png",
 			};
 			Duration = EffectDuration;
 		}

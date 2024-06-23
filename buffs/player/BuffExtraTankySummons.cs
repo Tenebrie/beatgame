@@ -7,7 +7,8 @@ public partial class BuffExtraTankySummons : BaseBuff
 	{
 		Settings = new()
 		{
-			Description = $"Increase your summons' Health by [color={Colors.Health}]{HealthPerStack}[/color]."
+			Description = $"Increase your summons' Health by [color={Colors.Health}]{HealthPerStack}[/color].",
+			Hidden = true,
 		};
 	}
 

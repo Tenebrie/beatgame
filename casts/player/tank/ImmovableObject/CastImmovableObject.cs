@@ -15,7 +15,7 @@ public partial class CastImmovableObject : BaseCast
 				$"{{{Buff.EffectDuration}}} beats.",
 				"However, you also lose the ability to move yourself for the duration."
 			),
-			IconPath = "res://assets/icons/SpellBook06_78.png",
+			IconPath = "res://assets/icons/SpellBook06_74.png",
 			InputType = CastInputType.Instant,
 			TargetType = CastTargetType.None,
 			CastTimings = BeatTime.Free,
@@ -45,6 +45,7 @@ public partial class CastImmovableObject : BaseCast
 				Description = MakeDescription(
 					$"Increases your crowd control resistance by {{{Math.Round(EffectPower * 100) + "%"}}}."
 				),
+				IconPath = "res://assets/icons/SpellBook06_74.png",
 			};
 			Duration = EffectDuration;
 			// if (!SourceCast.HasSkill<EquivalentMobility>())

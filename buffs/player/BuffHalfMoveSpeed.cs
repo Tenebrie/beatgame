@@ -6,12 +6,13 @@ public partial class BuffHalfMoveSpeed : BaseBuff
 	{
 		Settings = new()
 		{
-			Description = "Your movespeed is halved."
+			Description = "Your movespeed is halved.",
+			Hidden = true,
 		};
 	}
 
-    public override void ModifyUnit(BuffUnitStatsVisitor unit)
-    {
-        unit.MoveSpeedPercentage *= 0.5f;
-    }
+	public override void ModifyUnit(BuffUnitStatsVisitor unit)
+	{
+		unit.MoveSpeedPercentage *= 0.5f;
+	}
 }

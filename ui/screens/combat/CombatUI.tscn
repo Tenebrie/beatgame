@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://ct45j83s2dkvg"]
+[gd_scene load_steps=14 format=3 uid="uid://ct45j83s2dkvg"]
 
 [ext_resource type="Script" path="res://ui/screens/combat/CombatUI.cs" id="1_mfjmv"]
 [ext_resource type="PackedScene" uid="uid://b7e338e230e43" path="res://ui/generic/ResourceBar/ResourceBar.tscn" id="2_vq7ps"]
@@ -10,8 +10,11 @@
 [ext_resource type="PackedScene" uid="uid://c2xpek74a5i4s" path="res://ui/generic/ActionPanel/ActionPanel.tscn" id="8_ukig5"]
 [ext_resource type="PackedScene" uid="uid://tv4bwu6rkj5t" path="res://ui/generic/MessageList/MessageList.tscn" id="9_aquqd"]
 [ext_resource type="PackedScene" uid="uid://cvvveopdhteji" path="res://ui/screens/combat/CastBarGroup/CastBarGroup.tscn" id="10_xqgft"]
+[ext_resource type="PackedScene" uid="uid://ci0iad02t4yvv" path="res://ui/generic/BuffContainer/BuffContainer.tscn" id="11_8grjo"]
+[ext_resource type="PackedScene" uid="uid://xcuhiveymisj" path="res://ui/generic/BuffContainer/BuffPopup.tscn" id="12_1788a"]
+[ext_resource type="PackedScene" uid="uid://deufihg0k6wo5" path="res://ui/generic/ActionPanel/CastPopup.tscn" id="13_c0n7f"]
 
-[node name="CombatUI" type="Control"]
+[node name="CombatUI" type="Control" node_paths=PackedStringArray("HealthBar", "ManaBar", "AlliedUnitList", "HostileUnitList", "HostileBossList", "BossCastBarGroup", "PlayerBuffContainer")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -20,6 +23,13 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("1_mfjmv")
+HealthBar = NodePath("HealthBar")
+ManaBar = NodePath("ManaBar")
+AlliedUnitList = NodePath("AllyTargeting")
+HostileUnitList = NodePath("HostileTargeting")
+HostileBossList = NodePath("BossTargeting")
+BossCastBarGroup = NodePath("BossCastBarGroup")
+PlayerBuffContainer = NodePath("PlayerBuffContainer")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 1
@@ -81,16 +91,14 @@ grow_vertical = 0
 AnimationType = 1
 
 [node name="UnitCard" parent="AllyTargeting/AnimatedVBoxContainer" index="0"]
-offset_left = 200.0
-offset_top = 664.549
-offset_right = 370.0
+offset_top = 722.0
+offset_right = 142.63
 offset_bottom = 729.549
 
 [node name="UnitCard2" parent="AllyTargeting/AnimatedVBoxContainer" index="1"]
-offset_left = 200.0
-offset_top = 664.549
-offset_right = 370.0
-offset_bottom = 729.549
+offset_top = 652.0
+offset_right = 142.63
+offset_bottom = 659.549
 
 [node name="HostileTargeting" parent="." instance=ExtResource("3_jpa8i")]
 layout_mode = 1
@@ -180,5 +188,22 @@ offset_right = 121.5
 offset_bottom = 206.0
 grow_horizontal = 2
 mouse_filter = 2
+
+[node name="PlayerBuffContainer" parent="." instance=ExtResource("11_8grjo")]
+layout_mode = 1
+offset_left = 708.0
+offset_top = 906.0
+offset_right = -706.0
+offset_bottom = -113.0
+
+[node name="BuffPopup" parent="." instance=ExtResource("12_1788a")]
+offset_left = 2.0
+offset_top = -87.0
+offset_right = 2.0
+offset_bottom = -87.0
+
+[node name="CastPopup" parent="." instance=ExtResource("13_c0n7f")]
+offset_top = -204.0
+offset_bottom = -204.0
 
 [editable path="AllyTargeting"]

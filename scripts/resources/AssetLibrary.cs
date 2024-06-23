@@ -51,6 +51,7 @@ public class UILibrary
 	public string MessageListMessage = "res://ui/generic/MessageList/Message.tscn";
 	public string SkillBindingNotification = "res://ui/screens/skillBinding/SkillBindingNotification.tscn";
 	public string DpsMeterCast = "uid://dfoorpkl82w6j";
+	public string BuffButton = "uid://cdk7om6b48eic";
 }
 
 public class AudioLibrary

@@ -9,7 +9,9 @@ public partial class BuffMinorIgnite : BaseBuff
 	{
 		Settings = new()
 		{
+			FriendlyName = "Minor Ignite",
 			Description = $"Deals {Colors.Tag(DamagePerBeat)} Fire damage per beat.",
+			IconPath = "res://assets/icons/SpellBook06_29.PNG",
 			TicksOnBeat = true,
 		};
 		Duration = BurnDuration;

@@ -12,6 +12,7 @@ public abstract partial class BaseBuff : Node
 		public bool TicksOnBeat = false;
 		public bool RefreshOthersWhenAdded = false;
 		public int MaximumStacks = 100;
+		public bool Hidden = false;
 	}
 
 	public BuffSettings Settings = new();
@@ -25,7 +26,7 @@ public abstract partial class BaseBuff : Node
 
 	public BaseBuff()
 	{
-		CreatedAt = Time.GetTicksMsec();
+		CreatedAt = CastUtils.GetTicksSec();
 	}
 
 	public static string MakeDescription(params string[] strings) => CastUtils.MakeDescription(strings);
@@ -35,8 +36,8 @@ public abstract partial class BaseBuff : Node
 	{
 		set
 		{
-			float time = Time.GetTicksMsec();
-			ExpiresAt = time + value * Music.Singleton.SecondsPerBeat * 1000;
+			float time = CastUtils.GetTicksSec();
+			ExpiresAt = time + value * Music.Singleton.SecondsPerBeat;
 			defaultDuration = value;
 		}
 	}
@@ -51,7 +52,7 @@ public abstract partial class BaseBuff : Node
 		if (ExpiresAt == -1)
 			return;
 
-		float time = Time.GetTicksMsec();
+		float time = CastUtils.GetTicksSec();
 		if (time >= ExpiresAt)
 		{
 			OnDurationExpired();

@@ -46,18 +46,6 @@ public partial class SkillPopup : BasePopup
 			SetSkillMetadata(skill.Settings.ActiveCast.Settings.GetReadableCastTimings());
 		else
 			SetSkillMetadata("");
-
-		var mousePos = GetViewport().GetMousePosition();
-		var screenSize = GetViewport().GetVisibleRect().Size;
-		if (mousePos.X < screenSize.X / 2)
-			SetHorizontalAnchor(Anchor.Begin);
-		else
-			SetHorizontalAnchor(Anchor.End);
-
-		if (mousePos.Y < screenSize.Y / 2)
-			SetVerticalAnchor(Anchor.Begin);
-		else
-			SetVerticalAnchor(Anchor.End);
 	}
 
 	void OnSkillUnhovered(BaseSkill skill)

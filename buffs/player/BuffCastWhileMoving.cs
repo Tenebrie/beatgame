@@ -7,7 +7,9 @@ public partial class BuffCastWhileMoving : BaseBuff
 	{
 		Settings = new()
 		{
-			Description = "You can cast while moving."
+			FriendlyName = "Swift Feet",
+			Description = "You can cast while moving.",
+			IconPath = "res://assets/icons/SpellBook06_13.png",
 		};
 	}
 }

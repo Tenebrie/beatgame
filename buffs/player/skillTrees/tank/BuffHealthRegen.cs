@@ -11,6 +11,7 @@ public partial class BuffHealthRegen : BaseBuff
 			FriendlyName = "Regeneration",
 			Description = MakeDescription($"Increase your Health regeneration by {{{Regen * 100}%}}."),
 			IconPath = "res://assets/icons/SpellBook06_07.png",
+			Hidden = true,
 		};
 	}
 

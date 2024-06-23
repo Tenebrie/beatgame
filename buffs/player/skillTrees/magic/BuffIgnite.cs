@@ -9,7 +9,9 @@ public partial class BuffIgnite : BaseBuff
 	{
 		Settings = new()
 		{
+			FriendlyName = "Ignite",
 			Description = $"Deals {Colors.Tag(DamagePerBeat)} Fire damage per beat.",
+			IconPath = "res://assets/icons/SpellBook06_29.PNG",
 			TicksOnBeat = true,
 			MaximumStacks = 1,
 		};

@@ -44,6 +44,7 @@ public partial class ShieldsUp : BaseCast
 				Description = MakeDescription(
 					$"Increases your damage reduction by {{{Math.Round(DamageReduction * 100) + "%"}}}."
 				),
+				IconPath = "res://assets/icons/SpellBook06_09.png",
 			};
 			Duration = EffectDuration;
 		}

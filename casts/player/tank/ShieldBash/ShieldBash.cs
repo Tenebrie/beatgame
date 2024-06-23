@@ -95,6 +95,7 @@ public partial class ShieldBash : BaseCast
 				Description = MakeDescription(
 					$"Whenever you take damage, deal {{{Math.Round(RetaliateDamageFraction * 100) + "%"}}} of it back to the attacker."
 				),
+				IconPath = "res://assets/icons/SpellBook06_05.png",
 				RefreshOthersWhenAdded = true,
 				MaximumStacks = MaxStacks,
 			};

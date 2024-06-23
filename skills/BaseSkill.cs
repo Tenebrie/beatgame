@@ -58,42 +58,7 @@ public partial class BaseSkill : Node
 			{
 				if (builder.ToString().Length > 0)
 					builder.Append("\n\n");
-				var castSettings = Settings.ActiveCast.Settings;
-				// Description
-				builder.Append($"[color={Colors.Active}]Active:[/color] ").Append(castSettings.Description).Append('\n');
-
-				// Resource cost
-				if (castSettings.ResourceCost[ObjectResourceType.Health] > 0)
-					builder.Append($"\n[color={Colors.Health}]Health cost:[/color] ").Append(castSettings.ResourceCost[ObjectResourceType.Health]);
-				if (castSettings.ResourceCost[ObjectResourceType.Mana] > 0)
-					builder.Append($"\n[color={Colors.Mana}]Mana cost:[/color] ").Append(castSettings.ResourceCost[ObjectResourceType.Mana]);
-
-				// Resource cost per beat
-				if (castSettings.ResourceCostPerBeat[ObjectResourceType.Health] > 0)
-					builder.Append($"\n[color={Colors.Health}]Channeling Health cost:[/color] ").Append(castSettings.ResourceCostPerBeat[ObjectResourceType.Health]).Append(" / beat");
-				if (castSettings.ResourceCostPerBeat[ObjectResourceType.Mana] > 0)
-					builder.Append($"\n[color={Colors.Mana}]Channeling Mana cost:[/color] ").Append(castSettings.ResourceCostPerBeat[ObjectResourceType.Mana]).Append(" / beat");
-
-				// Input type
-				builder.Append($"\n[color={Colors.Passive}]Input:[/color] ");
-				if (castSettings.InputType == CastInputType.Instant)
-					builder.Append("Instant");
-				else if (castSettings.InputType == CastInputType.AutoRelease)
-					builder.Append($"Cast ({castSettings.HoldTime} beat{(castSettings.HoldTime == 1 ? "" : "s")})");
-				else if (castSettings.InputType == CastInputType.HoldRelease)
-					builder.Append($"Hold ({castSettings.HoldTime} beat{(castSettings.HoldTime == 1 ? "" : "s")})");
-
-				// Charges
-				if (castSettings.Charges > 1)
-					builder.Append($"\n[color={Colors.Passive}]Charges:[/color] ").Append($"{castSettings.Charges}");
-
-				// Recast time
-				if (castSettings.RecastTime >= 0.25f)
-					builder.Append($"\n[color={Colors.Passive}]Cooldown:[/color] ").Append($"{castSettings.RecastTime} beat{(castSettings.RecastTime == 1 ? "" : "s")}");
-
-				// Lore
-				if (castSettings.LoreDescription != null)
-					builder.Append("\n\n").Append(Colors.Lore(castSettings.LoreDescription));
+				builder.Append($"[color={Colors.Active}]Active:[/color] ").Append(BaseCast.GetDescription(Settings.ActiveCast.Settings));
 			}
 			if (Settings.PassiveBuff != null)
 			{

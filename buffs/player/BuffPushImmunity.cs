@@ -6,7 +6,8 @@ public partial class BuffPushImmunity : BaseBuff
 	{
 		Settings = new()
 		{
-			Description = "Immune to push effects."
+			Description = "Immune to push effects.",
+			Hidden = true,
 		};
 	}
 

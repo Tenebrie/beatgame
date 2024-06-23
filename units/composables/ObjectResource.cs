@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Project;
 
-public class ObjectResource : ComposableScript
+public partial class ObjectResource : ComposableScript
 {
 	private bool ready = false;
 	private float minimum = 0;

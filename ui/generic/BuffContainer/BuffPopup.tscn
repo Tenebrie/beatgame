@@ -1,0 +1,71 @@
+[gd_scene load_steps=3 format=3 uid="uid://xcuhiveymisj"]
+
+[ext_resource type="Script" path="res://ui/generic/BuffContainer/BuffPopup.cs" id="1_gffyh"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oxxhm"]
+bg_color = Color(0.113725, 0, 0.113725, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="BuffPopup" type="Control" node_paths=PackedStringArray("buffNameLabel")]
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 2
+script = ExtResource("1_gffyh")
+buffNameLabel = NodePath("Label/BuffNameLabel")
+
+[node name="Label" type="RichTextLabel" parent="."]
+clip_contents = false
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -34.0
+offset_right = 420.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+bbcode_enabled = true
+text = "
+
+Buff description"
+fit_content = true
+
+[node name="BuffNameLabel" type="RichTextLabel" parent="Label"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 1.0
+offset_right = -105.0
+offset_bottom = 35.0
+grow_horizontal = 2
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "Buff name"
+fit_content = true
+scroll_active = false
+
+[node name="MarginContainer" type="MarginContainer" parent="Label"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -10.0
+offset_right = 20.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Panel" type="Panel" parent="Label/MarginContainer"]
+show_behind_parent = true
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_oxxhm")

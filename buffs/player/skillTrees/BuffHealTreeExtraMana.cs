@@ -6,7 +6,8 @@ public partial class BuffHealTreeExtraMana : BaseBuff
 	{
 		Settings = new()
 		{
-			Description = $"Increase your maximum Mana by [color={Colors.Mana}]{10}[/color]."
+			Description = $"Increase your maximum Mana by [color={Colors.Mana}]{10}[/color].",
+			Hidden = true,
 		};
 	}
 	public override void ModifyUnit(BuffUnitStatsVisitor unit)

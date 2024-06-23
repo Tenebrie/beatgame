@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using Godot;
 namespace Project;
 
@@ -66,6 +67,47 @@ public partial class BaseCast : Node
 	}
 
 	public static string MakeDescription(params string[] strings) => CastUtils.MakeDescription(strings);
+	public static string GetDescription(CastSettings castSettings)
+	{
+		StringBuilder builder = new();
+		// Description
+		builder.Append(castSettings.Description).Append('\n');
+
+		// Resource cost
+		if (castSettings.ResourceCost[ObjectResourceType.Health] > 0)
+			builder.Append($"\n[color={Colors.Health}]Health cost:[/color] ").Append(castSettings.ResourceCost[ObjectResourceType.Health]);
+		if (castSettings.ResourceCost[ObjectResourceType.Mana] > 0)
+			builder.Append($"\n[color={Colors.Mana}]Mana cost:[/color] ").Append(castSettings.ResourceCost[ObjectResourceType.Mana]);
+
+		// Resource cost per beat
+		if (castSettings.ResourceCostPerBeat[ObjectResourceType.Health] > 0)
+			builder.Append($"\n[color={Colors.Health}]Channeling Health cost:[/color] ").Append(castSettings.ResourceCostPerBeat[ObjectResourceType.Health]).Append(" / beat");
+		if (castSettings.ResourceCostPerBeat[ObjectResourceType.Mana] > 0)
+			builder.Append($"\n[color={Colors.Mana}]Channeling Mana cost:[/color] ").Append(castSettings.ResourceCostPerBeat[ObjectResourceType.Mana]).Append(" / beat");
+
+		// Input type
+		builder.Append($"\n[color={Colors.Passive}]Input:[/color] ");
+		if (castSettings.InputType == CastInputType.Instant)
+			builder.Append("Instant");
+		else if (castSettings.InputType == CastInputType.AutoRelease)
+			builder.Append($"Cast ({castSettings.HoldTime} beat{(castSettings.HoldTime == 1 ? "" : "s")})");
+		else if (castSettings.InputType == CastInputType.HoldRelease)
+			builder.Append($"Hold ({castSettings.HoldTime} beat{(castSettings.HoldTime == 1 ? "" : "s")})");
+
+		// Charges
+		if (castSettings.Charges > 1)
+			builder.Append($"\n[color={Colors.Passive}]Charges:[/color] ").Append($"{castSettings.Charges}");
+
+		// Recast time
+		if (castSettings.RecastTime >= 0.25f)
+			builder.Append($"\n[color={Colors.Passive}]Cooldown:[/color] ").Append($"{castSettings.RecastTime} beat{(castSettings.RecastTime == 1 ? "" : "s")}");
+
+		// Lore
+		if (castSettings.LoreDescription != null)
+			builder.Append("\n\n").Append(Colors.Lore(castSettings.LoreDescription));
+
+		return builder.ToString();
+	}
 
 	bool settingsPrepared = false;
 	public void PrepareSettings()

@@ -10,7 +10,8 @@ public partial class BuffMagicTreeManaRegen : BaseBuff
 	{
 		Settings = new()
 		{
-			Description = $"Increase your Mana regeneration by [color={Colors.Mana}]{Math.Round(Regen * 100) + "%"}[/color]."
+			Description = $"Increase your Mana regeneration by [color={Colors.Mana}]{Math.Round(Regen * 100) + "%"}[/color].",
+			Hidden = true,
 		};
 	}
 	public override void ModifyUnit(BuffUnitStatsVisitor unit)

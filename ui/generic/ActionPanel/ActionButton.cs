@@ -53,11 +53,13 @@ public partial class ActionButton : Control
 
 		HoveredValue = 1;
 		IsHovered = true;
+		SignalBus.Singleton.EmitSignal(SignalBus.SignalName.CastHovered, AssociatedCast);
 	}
 
 	private void OnMouseLeave()
 	{
 		IsHovered = false;
+		SignalBus.Singleton.EmitSignal(SignalBus.SignalName.CastUnhovered, AssociatedCast);
 	}
 
 	private void OnCastAssigned(BaseCast cast, string actionName)

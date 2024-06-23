@@ -16,6 +16,7 @@ public partial class BuffThorns : BaseBuff
 			Description = MakeDescription(
 				$"Whenever you take damage, deal {{{Math.Round(RetaliateDamageFraction * 100) + "%"}}} of it back to the attacker."
 			),
+			Hidden = true,
 		};
 	}
 

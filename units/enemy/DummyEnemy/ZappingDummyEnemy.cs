@@ -10,15 +10,11 @@ public partial class ZappingDummyEnemy : BasicEnemyController
 
 	GroundAreaCircle circle;
 
-	public ZappingDummyEnemy()
-	{
-		FriendlyName = "Zapping Enemy";
-		Health.SetBaseMaxValue(300);
-	}
-
 	public override void _Ready()
 	{
 		base._Ready();
+		FriendlyName = "Zapping Enemy";
+		Health.SetBaseMaxValue(300);
 		CastLibrary.Register(new BossAuto(this));
 		this.NextFrame(() =>
 		{

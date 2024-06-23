@@ -1,45 +1,30 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 
 namespace Project;
 
 public abstract partial class ComposableCharacterBody3D : CharacterBody3D
 {
-	public List<ComposableScript> Composables = new();
-
-	public override void _Ready()
+	public ComposablesManager Composables;
+	public ComposableCharacterBody3D()
 	{
-		foreach (var composable in Composables)
-			composable._Ready();
+		Composables = new(this);
 	}
 
-	public override void _Process(double delta)
+	public class ComposablesManager
 	{
-		foreach (var composable in Composables)
-			composable._Process(delta);
-	}
+		readonly Node3D Parent;
 
-	public override void _Input(InputEvent @event)
-	{
-		foreach (var composable in Composables)
-			composable._Input(@event);
-	}
+		public ComposablesManager(Node3D parent)
+		{
+			Parent = parent;
+		}
 
-	public override void _UnhandledInput(InputEvent @event)
-	{
-		foreach (var composable in Composables)
-			composable._UnhandledInput(@event);
-	}
-
-	public override void _EnterTree()
-	{
-		foreach (var composable in Composables)
-			composable._EnterTree();
-	}
-
-	public override void _ExitTree()
-	{
-		foreach (var composable in Composables)
-			composable._ExitTree();
+		public ComposableScript Find(Func<ComposableScript, bool> predicate)
+		{
+			return Parent.GetChildren().Where(child => child is ComposableScript script && predicate(script)).Cast<ComposableScript>().FirstOrDefault();
+		}
 	}
 }

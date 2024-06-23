@@ -34,6 +34,14 @@ public partial class SignalBus : Node
 	[Signal]
 	public delegate void CastFailedEventHandler(BaseCast cast);
 	[Signal]
+	public delegate void CastHoveredEventHandler(BaseCast cast);
+	[Signal]
+	public delegate void CastUnhoveredEventHandler(BaseCast cast);
+	[Signal]
+	public delegate void BuffHoveredEventHandler(BaseBuff buff);
+	[Signal]
+	public delegate void BuffUnhoveredEventHandler(BaseBuff buff);
+	[Signal]
 	public delegate void SkillHoveredEventHandler(BaseSkill skill);
 	[Signal]
 	public delegate void SkillUnhoveredEventHandler(BaseSkill skill);

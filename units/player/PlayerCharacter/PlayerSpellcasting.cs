@@ -6,7 +6,7 @@ using Godot;
 
 namespace Project;
 
-public class PlayerSpellcasting : ComposableScript
+public partial class PlayerSpellcasting : ComposableScript
 {
 	public readonly Dictionary<string, BaseCast> CastBindings = new(); // Dictionary<InputName, BaseCast>
 

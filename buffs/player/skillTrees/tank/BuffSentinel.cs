@@ -17,6 +17,7 @@ public partial class BuffSentinel : BaseBuff
 			Description = MakeDescription(
 				$"Increases your damage reduction by {{{Math.Round(DamageReduction * 100) + "%"}}}."
 			),
+			IconPath = "res://assets/icons/SpellBook06_78.png",
 		};
 		Duration = EffectDuration;
 	}

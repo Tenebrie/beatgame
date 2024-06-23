@@ -27,23 +27,24 @@ public partial class SkillBerserkersRage : BaseSkill
 					$"for the next {{{RageBuff.EffectDuration}}} beats, stacking infinitely.",
 					$"\n((This effect can only trigger once per beat))"
 				),
+				Hidden = true,
 			};
 		}
 
-        public override void ReactToIncomingDamage(BuffIncomingDamageVisitor damage)
-        {
-            if (damage.SourceUnit == Parent)
+		public override void ReactToIncomingDamage(BuffIncomingDamageVisitor damage)
+		{
+			if (damage.SourceUnit == Parent)
 				return;
-			
+
 			var time = ((float)Time.GetTicksMsec()) / 1000;
 			if (time - LastTriggerAt > Music.Singleton.SecondsPerBeat)
 				return;
-			
+
 			LastTriggerAt = time;
 			Parent.Buffs.Add(new RageBuff());
-        }
+		}
 
-        public partial class RageBuff : BaseBuff
+		public partial class RageBuff : BaseBuff
 		{
 			public const float DamageBoost = 0.01f;
 			public const float EffectDuration = 16;
