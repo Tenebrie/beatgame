@@ -163,18 +163,12 @@ public class SkillTree
 			return willNotOverlap && skill.ChildrenLinks.All(child => CanMove(child.Target, delta, skill.ChildrenLinks.Select(c => c.Target).ToList()));
 		}
 
-		bool DoCompact(BaseSkill skill, float target, float dist)
+		void DoCompact(BaseSkill skill, float target, float dist)
 		{
-			bool hasCompacted = false;
-			if (CanCompact(skill, target, dist, new() { skill }))
-			{
-				var delta = -dist * Math.Sign(skill.PosX);
-				var newPosX = skill.PosX + delta;
-				skill.PosX = newPosX;
-				hasCompacted = true;
-				DoMoveChildren(skill, delta);
-			}
-			return hasCompacted;
+			var delta = -dist * Math.Sign(skill.PosX - target);
+			var newPosX = skill.PosX + delta;
+			skill.PosX = newPosX;
+			DoMoveChildren(skill, delta);
 		}
 
 		void DoMoveChildren(BaseSkill skill, float offset)
@@ -189,11 +183,14 @@ public class SkillTree
 		bool DoCompactChildren(BaseSkill skill, float target, float dist)
 		{
 			bool hasCompacted = false;
-			foreach (var child in skill.ChildrenLinks.Select(child => child.Target))
+			if (skill.ChildrenLinks.All(c => c.LinkLength > 1 || c.Target.PosX == skill.PosX || CanCompact(c.Target, skill.PosX, dist, new() { c.Target })))
 			{
-				hasCompacted = DoCompact(child, target, dist) || hasCompacted;
-				hasCompacted = DoCompactChildren(child, child.PosX, dist) || hasCompacted;
+				hasCompacted = true;
+				foreach (var child in skill.ChildrenLinks.Select(child => child.Target))
+					DoCompact(child, skill.PosX, dist);
 			}
+			foreach (var child in skill.ChildrenLinks.Select(child => child.Target))
+				hasCompacted = DoCompactChildren(child, child.PosX, dist) || hasCompacted;
 			return hasCompacted;
 		}
 
@@ -217,9 +214,25 @@ public class SkillTree
 				iterations += 1;
 				hasCompacted = false;
 				hasCompacted = DoCompactChildren(skill, skill.PosX, 0.25f);
-				// foreach (var child in skill.ChildrenLinks.Select(child => child.Target))
-				// 	hasCompacted = DoCompact(child, 0, 0.25f) || hasCompacted;
 			} while (hasCompacted && iterations < 20);
+		}
+
+		//=========================================
+		// Center the trees
+		//=========================================
+		float leftMostSkill = Mathf.Inf;
+		float rightMostSkill = -Mathf.Inf;
+		foreach (var skill in Skills)
+		{
+			if (skill.PosX > rightMostSkill)
+				rightMostSkill = skill.PosX;
+			if (skill.PosX < leftMostSkill)
+				leftMostSkill = skill.PosX;
+		}
+		float centerOffset = (leftMostSkill + rightMostSkill) / 2;
+		foreach (var skill in Skills)
+		{
+			skill.PosX -= centerOffset;
 		}
 	}
 }

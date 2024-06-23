@@ -46,7 +46,7 @@ public partial class SkillTreeManager : Node
 
 				// L1
 				Link<SkillSentinel,         SkillSentinelCharges>       (),
-				Link<SkillSentinel,         SkillImmovableObject>          (1, BuffFactory.Of<BuffTankTreeHealth>()),
+				Link<SkillSentinel,         SkillImmovableObject>          (1, BuffFactory.Of<BuffTankTreeHealth>(), length: 2),
 				Link<SkillSentinel,         SkillSentinelMana>          (),
 
 				// L2
