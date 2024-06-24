@@ -82,6 +82,12 @@ public abstract partial class BaseUnit : ComposableCharacterBody3D
 			return;
 
 		IsAlive = false;
+		HandleDeath();
+		SignalBus.Singleton.EmitSignal(SignalBus.SignalName.UnitKilled, this);
+	}
+
+	protected virtual void HandleDeath()
+	{
 		QueueFree();
 	}
 

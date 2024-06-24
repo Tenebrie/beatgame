@@ -10,7 +10,7 @@
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0492611, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="CurveTexture" id="CurveTexture_ncnqb"]
+[sub_resource type="CurveTexture" id="CurveTexture_ijv1e"]
 curve = SubResource("Curve_3qo16")
 
 [sub_resource type="Curve" id="Curve_4cu2c"]
@@ -18,7 +18,7 @@ max_value = 200.0
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.951852, 200), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_86hov"]
+[sub_resource type="CurveTexture" id="CurveTexture_b4p6g"]
 curve = SubResource("Curve_4cu2c")
 
 [sub_resource type="Curve" id="Curve_yb1x2"]
@@ -26,14 +26,14 @@ max_value = 100.0
 _data = [Vector2(0.00370371, 0), 0.0, 0.0, 0, 0, Vector2(0.99999, 20.7317), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="CurveTexture" id="CurveTexture_h4t5k"]
+[sub_resource type="CurveTexture" id="CurveTexture_cih62"]
 curve = SubResource("Curve_yb1x2")
 
 [sub_resource type="Curve" id="Curve_s7b7f"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.219737, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_h1cmy"]
+[sub_resource type="CurveTexture" id="CurveTexture_kphvq"]
 curve = SubResource("Curve_s7b7f")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_lwlwe"]
@@ -45,16 +45,16 @@ initial_velocity_max = 0.8
 gravity = Vector3(0, 1, 0)
 damping_min = 1.0
 damping_max = 2.0
-damping_curve = SubResource("CurveTexture_h4t5k")
+damping_curve = SubResource("CurveTexture_cih62")
 scale_min = 0.4
 scale_max = 0.4
 scale_over_velocity_min = 0.5
 scale_over_velocity_max = 1.0
-scale_over_velocity_curve = SubResource("CurveTexture_h1cmy")
-alpha_curve = SubResource("CurveTexture_ncnqb")
-anim_speed_curve = SubResource("CurveTexture_86hov")
+scale_over_velocity_curve = SubResource("CurveTexture_kphvq")
+alpha_curve = SubResource("CurveTexture_ijv1e")
+anim_speed_curve = SubResource("CurveTexture_b4p6g")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vkxsc"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_617ev"]
 transparency = 1
 blend_mode = 1
 vertex_color_use_as_albedo = true
@@ -76,7 +76,7 @@ proximity_fade_distance = 674.32
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_725l8"]
 lightmap_size_hint = Vector2i(2, 2)
-material = SubResource("StandardMaterial3D_vkxsc")
+material = SubResource("StandardMaterial3D_617ev")
 size = Vector2(3, 3)
 orientation = 2
 
@@ -84,7 +84,7 @@ orientation = 2
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_grstq"]
+[sub_resource type="CurveTexture" id="CurveTexture_k6xsl"]
 curve = SubResource("Curve_mxoxt")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xsg2p"]
@@ -92,12 +92,12 @@ angle_max = 360.0
 direction = Vector3(0, 0, 0)
 spread = 180.0
 gravity = Vector3(0, 0.5, 0)
-damping_curve = SubResource("CurveTexture_h4t5k")
+damping_curve = SubResource("CurveTexture_cih62")
 scale_min = 0.4
 scale_max = 0.4
-alpha_curve = SubResource("CurveTexture_grstq")
+alpha_curve = SubResource("CurveTexture_k6xsl")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yisk4"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8k7st"]
 transparency = 1
 blend_mode = 1
 vertex_color_use_as_albedo = true
@@ -118,7 +118,7 @@ proximity_fade_distance = 674.32
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_bplgv"]
 lightmap_size_hint = Vector2i(2, 2)
-material = SubResource("StandardMaterial3D_yisk4")
+material = SubResource("StandardMaterial3D_8k7st")
 size = Vector2(1.5, 1.5)
 orientation = 2
 
@@ -129,16 +129,16 @@ angle_max = 360.0
 direction = Vector3(0, 0, 0)
 spread = 180.0
 gravity = Vector3(0, 0.15, 0)
-damping_curve = SubResource("CurveTexture_h4t5k")
+damping_curve = SubResource("CurveTexture_cih62")
 attractor_interaction_enabled = false
 scale_min = 0.4
 scale_max = 0.4
-alpha_curve = SubResource("CurveTexture_ncnqb")
-anim_speed_curve = SubResource("CurveTexture_86hov")
+alpha_curve = SubResource("CurveTexture_ijv1e")
+anim_speed_curve = SubResource("CurveTexture_b4p6g")
 turbulence_initial_displacement_min = 1.0
 turbulence_initial_displacement_max = 1.0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b4w7p"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6o2rf"]
 transparency = 1
 blend_mode = 1
 vertex_color_use_as_albedo = true
@@ -161,7 +161,7 @@ proximity_fade_distance = 674.32
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_en4g7"]
 lightmap_size_hint = Vector2i(2, 2)
-material = SubResource("StandardMaterial3D_b4w7p")
+material = SubResource("StandardMaterial3D_6o2rf")
 size = Vector2(0.1, 0.1)
 orientation = 2
 

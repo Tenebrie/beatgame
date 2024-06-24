@@ -13,6 +13,7 @@ public partial class CastBarGroup : VBoxContainer
 	{
 		SignalBus.Singleton.CastStarted += OnCastStarted;
 		SignalBus.Singleton.CastPerformed += OnCastPerformed;
+		SignalBus.Singleton.UnitDestroyed += OnUnitDestroyed;
 
 		foreach (var child in GetChildren())
 			RemoveChild(child);
@@ -22,6 +23,7 @@ public partial class CastBarGroup : VBoxContainer
 	{
 		SignalBus.Singleton.CastStarted -= OnCastStarted;
 		SignalBus.Singleton.CastPerformed -= OnCastPerformed;
+		SignalBus.Singleton.UnitDestroyed -= OnUnitDestroyed;
 	}
 
 	void OnCastStarted(BaseCast cast)
@@ -59,6 +61,19 @@ public partial class CastBarGroup : VBoxContainer
 	public void TrackUnit(BaseUnit unit)
 	{
 		trackedUnit = unit;
+	}
+
+	public void UntrackUnit()
+	{
+		foreach (var entry in activeBars)
+			entry.bar.QueueFree();
+		activeBars.Clear();
+	}
+
+	public void OnUnitDestroyed(BaseUnit unit)
+	{
+		if (unit == trackedUnit)
+			UntrackUnit();
 	}
 
 	class CastBarEntry

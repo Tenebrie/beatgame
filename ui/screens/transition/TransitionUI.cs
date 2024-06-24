@@ -3,6 +3,8 @@ using System.Diagnostics;
 using Godot;
 using Project;
 
+namespace Project;
+
 public partial class TransitionUI : Control
 {
 	private ColorRect colorRect;

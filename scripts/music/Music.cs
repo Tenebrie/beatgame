@@ -166,14 +166,19 @@ public partial class Music : Node
 
 	public override void _Ready()
 	{
-		PlaySceneSong();
+		var scene = GetTree().CurrentScene.SceneFilePath;
+		PrepareSceneSong(scene);
+		PlaySceneSong(scene);
 	}
 
-	private async void PlaySceneSong()
+	private void PrepareSceneSong(string scenePath)
 	{
-		var scene = GetTree().CurrentScene.Name;
-		CurrentTrack = scene == "BossArenaAeriel" ? musicLibrary.BossArenaAeriel : musicLibrary.TrainingRoom;
-		if (scene == "TrainingRoom")
+		CurrentTrack = Lib.Scene.Is(PlayableScene.BossArenaAeriel, scenePath) ? musicLibrary.BossArenaAeriel : musicLibrary.TrainingRoom;
+	}
+
+	private async void PlaySceneSong(string scenePath)
+	{
+		if (Lib.Scene.Is(PlayableScene.TrainingRoom, scenePath))
 		{
 			await ToSignal(GetTree().CreateTimer(1), "timeout");
 			Start();
@@ -184,10 +189,6 @@ public partial class Music : Node
 	{
 		if (IsStarted)
 			return;
-
-		var bosses = BaseUnit.AllUnits.Where(unit => unit is BossAeriel).Cast<BossAeriel>().ToList();
-		if (bosses.Count > 0)
-			AddChild(new BossAerielTimeline(bosses[0]));
 
 		var startTime = (float)StartingFromBeat * SecondsPerBeat;
 		CurrentTrack.PlayAfterDelay((float)SongDelay / 1000, startTime);
@@ -208,13 +209,13 @@ public partial class Music : Node
 
 	public override void _Process(double delta)
 	{
-		if (!IsFadingOut || CurrentTrack == null)
+		if (!IsFadingOut || CurrentTrack == null || !IsStarted)
 			return;
 
 		CurrentTrack.Volume -= Preferences.Singleton.MainVolume * 0.5f * (float)delta;
 	}
 
-	private async void OnSceneTransitionStarted(PackedScene _)
+	private async void OnSceneTransitionStarted(PackedScene targetScene)
 	{
 		IsFadingOut = true;
 		WholeNoteTimer.Stop(-WholeNoteTimer.Calibration);
@@ -225,15 +226,16 @@ public partial class Music : Node
 		VisualBeatTimer.Stop(-VisualBeatTimer.Calibration);
 		await ToSignal(GetTree().CreateTimer(LongestCalibration / 1000), "timeout");
 		CurrentTrack.Stop();
-		CurrentTrack.QueueFree();
 		CurrentTrack = null;
 		IsStarted = false;
+
+		PrepareSceneSong(targetScene.ResourcePath);
 		SignalBus.Singleton.EmitSignal(SignalBus.SignalName.SceneTransitionMusicReady);
 	}
 
-	private void OnSceneTransitionFinished(PackedScene _)
+	private void OnSceneTransitionFinished(PackedScene targetScene)
 	{
-		PlaySceneSong();
+		PlaySceneSong(targetScene.ResourcePath);
 	}
 
 	public double GetNearestBeatIndex(BeatTime timings)

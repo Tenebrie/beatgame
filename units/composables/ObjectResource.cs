@@ -9,6 +9,7 @@ public partial class ObjectResource : ComposableScript
 	private float minimum = 0;
 	private float current = 0;
 	private float maximum = 0;
+	private float damageOverflow = 0;
 	private float baseMaximum = 0;
 	private float baseRegen = 0;
 	private float regenPool = 0;
@@ -24,6 +25,13 @@ public partial class ObjectResource : ComposableScript
 	public float Maximum
 	{
 		get => maximum;
+	}
+	/// <summary>
+	/// Whenever this resource takes damage which would take it below minimum, the excess is recorded here
+	/// </summary>
+	public float DamageOverflow
+	{
+		get => damageOverflow;
 	}
 	public float BaseMaximum
 	{
@@ -103,9 +111,10 @@ public partial class ObjectResource : ComposableScript
 		if (result.ResourceType != Type)
 			throw new NotImplementedException("Changing resource type is not implemented");
 
-		result.Value = Math.Min(result.Value, current);
-		var value = result.Value;
-		current = Math.Max(minimum, current - value);
+		var beforeDamage = current;
+		current = Math.Max(minimum, current - result.Value);
+		damageOverflow += result.Value - (beforeDamage - current);
+		result.Value = beforeDamage - current;
 
 		if (ready)
 		{

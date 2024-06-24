@@ -162,7 +162,7 @@ public partial class PlayerSpellcasting : ComposableScript
 
 	public override void _Input(InputEvent @input)
 	{
-		if (SkillForestUI.Singleton.Visible)
+		if (SkillForestUI.Singleton.Visible || Parent.Buffs.Has<BuffRigorMortis>())
 			return;
 
 		foreach (var key in CastBindings.Keys)

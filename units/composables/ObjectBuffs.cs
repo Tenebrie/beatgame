@@ -93,6 +93,13 @@ public partial class ObjectBuffs : ComposableScript
 			buff.RefreshDuration();
 	}
 
+	public void RefreshDuration<BuffClass>() where BuffClass : BaseBuff
+	{
+		var buffsToRefresh = Buffs.Where(buff => buff is BuffClass).ToList();
+		foreach (var buff in buffsToRefresh)
+			buff.RefreshDuration();
+	}
+
 	public void Remove(BaseBuff buff)
 	{
 		buff.QueueFree();

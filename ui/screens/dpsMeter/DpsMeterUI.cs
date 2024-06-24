@@ -51,7 +51,7 @@ public partial class DpsMeterUI : Control
 
 	void OnDamageTaken(BuffIncomingDamageVisitor data)
 	{
-		if (data.ResourceType != ObjectResourceType.Health || data.SourceUnit.Alliance != UnitAlliance.Player || data.SourceCast == null)
+		if (data.ResourceType != ObjectResourceType.Health || data.SourceUnit == null || data.SourceUnit.Alliance != UnitAlliance.Player || data.SourceCast == null)
 			return;
 
 		isStarted = true;

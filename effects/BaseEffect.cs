@@ -55,7 +55,7 @@ public partial class BaseEffect : Node3D
 	}
 
 
-	protected async void FreeAfterDelayAsync(float seconds)
+	protected async void FreeAfterDelayAsync(float seconds = 4)
 	{
 		await ToSignal(GetTree().CreateTimer(seconds), "timeout");
 		QueueFree();

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Project;
 
@@ -29,24 +30,22 @@ public partial class PlayerController : BaseUnit
 		AddChild(Movement);
 		AddChild(Targeting);
 		AddChild(Spellcasting);
-
-		AllPlayers.Add(this);
 	}
 
-	public override void _ExitTree()
+	protected override void HandleDeath()
 	{
-		AllPlayers.Remove(this);
-		base._ExitTree();
+		Buffs.Add(new BuffRigorMortis());
 	}
 
 	protected override void ProcessGravity(double delta)
 	{
 		base.ProcessGravity(delta);
 		if (Grounded)
-		{
 			Movement.ResetJumpCount();
-		}
 	}
 
-	public static readonly List<PlayerController> AllPlayers = new();
+	public static List<PlayerController> AllPlayers
+	{
+		get => AllUnits.Where(unit => unit is PlayerController).Cast<PlayerController>().ToList();
+	}
 }

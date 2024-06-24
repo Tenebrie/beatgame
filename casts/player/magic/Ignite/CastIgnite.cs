@@ -34,5 +34,8 @@ public partial class CastIgnite : BaseCast
 		{
 			SourceCast = this,
 		});
+
+		if (this.HasSkill<SkillManaFrenzy>())
+			Parent.Buffs.Add(new BuffManaFrenzy());
 	}
 }

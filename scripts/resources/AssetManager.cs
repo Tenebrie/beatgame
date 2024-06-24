@@ -33,6 +33,8 @@ public static class Lib
 		if (OS.IsDebugBuild())
 		{
 			var status = ResourceLoader.LoadThreadedGetStatus(path);
+			if (status == ResourceLoader.ThreadLoadStatus.InvalidResource)
+				GD.PushWarning($"Attempting to load resource {path} which has not been preloaded.");
 			if (status != ResourceLoader.ThreadLoadStatus.Loaded)
 				GD.PushWarning($"Attempting to load resource {path} which has not finished loading yet.");
 		}

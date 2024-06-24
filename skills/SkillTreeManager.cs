@@ -81,32 +81,32 @@ public partial class SkillTreeManager : Node
 			links: new()
 			{
 				// L1
-				Link<SkillFireball, SkillIgnitingFireball>(3, BuffFactory.Of<BuffMagicTreeManaRegen>()),
-				Link<SkillFireball, SkillIgnite>(2, BuffFactory.Of<BuffMagicTreeManaRegen>()),
-				Link<SkillFireball, SkillFlamethrower>(4, BuffFactory.Of<BuffMagicTreeManaRegen>()),
+				Link<SkillFireball, SkillIgnitingFireball>              (1, BuffFactory.Of<BuffMagicTreeManaRegen>()),
+				Link<SkillFireball, SkillIgnite>                        (2, BuffFactory.Of<BuffMagicTreeManaRegen>()),
+				Link<SkillFireball, SkillFlamethrower>                  (3, BuffFactory.Of<BuffMagicTreeManaRegen>()),
 
 				// L2 Left
-				Link<SkillIgnitingFireball, SkillTwinFireball>(3, BuffFactory.Of<BuffMagicTreeManaRegen>()),
+				Link<SkillIgnitingFireball, SkillTwinFireball>          (1, BuffFactory.Of<BuffMagicTreeManaRegen>()),
 
 				// L2 Main
-				Link<SkillIgnite, SkillManaEfficiency1>(1, BuffFactory.Of<BuffMagicTreeManaRegen>()),
+				Link<SkillIgnite, SkillManaEfficiency1>                 (1, BuffFactory.Of<BuffMagicTreeManaRegen>()),
 
 				// L3
-				Link<SkillManaEfficiency1, SkillVampiricEssence>(2, BuffFactory.Of<BuffMagicTreeManaRegen>()),
-				Link<SkillManaEfficiency1, SkillVaporize>(1, BuffFactory.Of<BuffMagicTreeManaRegen>()),
-				Link<SkillManaEfficiency1, SkillSpiritwalkersGrace>(2, BuffFactory.Of<BuffMagicTreeManaRegen>()),
+				Link<SkillManaEfficiency1, SkillVampiricEssence>        (2, BuffFactory.Of<BuffMagicTreeManaRegen>()),
+				Link<SkillManaEfficiency1, SkillVaporize>               (1, BuffFactory.Of<BuffMagicTreeManaRegen>()),
+				Link<SkillManaEfficiency1, SkillSpiritwalkersGrace>     (2, BuffFactory.Of<BuffMagicTreeManaRegen>()),
 
 				// L4 Left
-				Link<SkillVampiricEssence, SkillAllConsumingFlame>(2, BuffFactory.Of<BuffMagicTreeManaRegen>()),
+				Link<SkillVampiricEssence, SkillAllConsumingFlame>      (2, BuffFactory.Of<BuffMagicTreeManaRegen>()),
 
 				// L4 Main
-				Link<SkillVaporize, SkillFireballMastery>(1, BuffFactory.Of<BuffMagicTreeManaRegen>()),
+				Link<SkillVaporize, SkillFireballMastery>               (1, BuffFactory.Of<BuffMagicTreeManaRegen>()),
 
 				// L4 Right
-				Link<SkillSpiritwalkersGrace, SkillSpiritrunnersGrace>(2, BuffFactory.Of<BuffMagicTreeManaRegen>()),
+				Link<SkillSpiritwalkersGrace, SkillSpiritrunnersGrace>  (2, BuffFactory.Of<BuffMagicTreeManaRegen>()),
 
 				// L5
-				Link<SkillFireballMastery, SkillManaFrenzy>(2, BuffFactory.Of<BuffMagicTreeManaRegen>()),
+				Link<SkillFireballMastery, SkillManaFrenzy>             (2, BuffFactory.Of<BuffMagicTreeManaRegen>()),
 			}
 		));
 

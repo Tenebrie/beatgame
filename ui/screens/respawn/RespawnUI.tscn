@@ -1,0 +1,93 @@
+[gd_scene load_steps=2 format=3 uid="uid://cklb0s4jubvp8"]
+
+[ext_resource type="Script" path="res://ui/screens/respawn/RespawnUI.cs" id="1_2u5gg"]
+
+[node name="RespawnUI" type="Control" node_paths=PackedStringArray("SpawnButton", "RestartButton")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_2u5gg")
+SpawnButton = NodePath("Panel/MarginContainer/CenterContainer/HBoxContainer/RespawnButton")
+RestartButton = NodePath("Panel/MarginContainer/CenterContainer/HBoxContainer/ResetButton")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -250.0
+offset_top = 168.0
+offset_right = 250.0
+offset_bottom = 381.0
+grow_horizontal = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 8
+
+[node name="CenterContainer" type="CenterContainer" parent="Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer/CenterContainer"]
+layout_mode = 2
+
+[node name="RespawnButton" type="Button" parent="Panel/MarginContainer/CenterContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Spawn"
+
+[node name="ResetButton" type="Button" parent="Panel/MarginContainer/CenterContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Restart"
+
+[node name="MarginContainer2" type="MarginContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -53.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 8
+
+[node name="Control" type="Control" parent="Panel/MarginContainer2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/MarginContainer2/Control"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 40.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.701961, 0, 0, 1)
+theme_override_font_sizes/font_size = 29
+text = "You are dead"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Panel/MarginContainer2/Control"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 48.0
+offset_bottom = 97.0
+grow_horizontal = 2
+text = "You may choose to respawn, or restart the current fight from the beginning.
+Respawning during the fight is only allowed in training mode."
+autowrap_mode = 2

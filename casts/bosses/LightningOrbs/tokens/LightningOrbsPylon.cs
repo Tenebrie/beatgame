@@ -11,17 +11,15 @@ public partial class LightningOrbsPylon : BasicEnemyController
 	BossAuto BossAuto;
 	EnergyExpulsion AreaAttack;
 
-	public LightningOrbsPylon()
+	public override void _Ready()
 	{
 		FriendlyName = "Power Pylon";
+		base._Ready();
+
 		Health.SetBaseMaxValue(5);
 		Alliance = UnitAlliance.Hostile;
 		Targetable.selectionRadius = 1.75f;
-	}
 
-	public override void _Ready()
-	{
-		base._Ready();
 		Buffs.Add(new BuffLightningOrbsPylonInvuln());
 		BossAuto = CastLibrary.Register(new BossAuto(this));
 		AreaAttack = CastLibrary.Register(new EnergyExpulsion(this));

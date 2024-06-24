@@ -20,7 +20,7 @@ public partial class BossCastHardEnrage : BaseCast
 
 	protected override void OnCastCompleted(CastTargetData target)
 	{
-		var targets = BaseUnit.AllUnits.Where(unit => unit.IsAlive && unit.HostileTo(Parent));
+		var targets = BaseUnit.AllUnits.Where(unit => unit.HostileTo(Parent));
 
 		foreach (var t in targets)
 		{

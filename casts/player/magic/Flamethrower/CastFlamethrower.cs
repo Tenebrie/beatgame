@@ -40,10 +40,18 @@ public partial class CastFlamethrower : BaseCast
 		effect.TargetValidator = (unit) => unit.HostileTo(Parent);
 		effect.Position = Parent.CastAimPosition;
 		Parent.AddChild(effect);
+		Parent.Buffs.RefreshDuration<BuffManaFrenzy>();
+	}
+
+	protected override void OnCastCompleted(CastTargetData _)
+	{
+		if (this.HasSkill<SkillManaFrenzy>())
+			Parent.Buffs.Add(new BuffManaFrenzy());
 	}
 
 	protected override void OnCastTicked(CastTargetData target, BeatTime time)
 	{
+		Parent.Buffs.RefreshDuration<BuffManaFrenzy>();
 		if (!IsInstanceValid(target.HostileUnit))
 			CastComplete();
 	}

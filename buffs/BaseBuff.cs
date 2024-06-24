@@ -51,6 +51,7 @@ public abstract partial class BaseBuff : Node
 
 	public void RefreshDuration()
 	{
+		CreatedAt = CastUtils.GetTicksSec();
 		Duration = defaultDuration;
 	}
 

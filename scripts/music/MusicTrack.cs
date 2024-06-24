@@ -11,13 +11,16 @@ public partial class MusicTrack : Node
 	private AudioStreamOggVorbis AudioStream;
 	private AudioStreamPlayer AudioPlayer = new();
 
-	public async void PlayAfterDelay(float delay, float fromPosition)
+	public override void _EnterTree()
 	{
 		AudioStream = Lib.LoadVorbis(ResourcePath);
 		AudioStream.Loop = Loop;
 		AudioPlayer.Stream = AudioStream;
 		AddChild(AudioPlayer);
+	}
 
+	public async void PlayAfterDelay(float delay, float fromPosition)
+	{
 		await ToSignal(GetTree().CreateTimer(delay), "timeout");
 
 		SignalBus.Singleton.EmitSignal(SignalBus.SignalName.TrackStarted, this);

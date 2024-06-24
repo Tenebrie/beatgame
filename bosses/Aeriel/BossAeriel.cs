@@ -25,9 +25,17 @@ public partial class BossAeriel : BasicEnemyController
 	public BossCastGeysers Geysers;
 	public BossCastLightningOrbs LightningOrbs;
 	public BossCastHardEnrage HardEnrage;
-	public BossAeriel()
+
+	public override void _Ready()
 	{
 		IsBoss = true;
+
+		FriendlyName = "Aeriel, Eye of the Storm";
+		Alliance = UnitAlliance.Hostile;
+
+		base._Ready();
+
+		Health.SetBaseMaxValue(10000);
 
 		AutoAttack = new(this);
 		CastLibrary.Register(AutoAttack);
@@ -99,10 +107,6 @@ public partial class BossAeriel : BasicEnemyController
 
 		HardEnrage = new(this);
 		CastLibrary.Register(HardEnrage);
-
-		FriendlyName = "Aeriel, Eye of the Storm";
-		Health.SetBaseMaxValue(10000);
-		Alliance = UnitAlliance.Hostile;
 	}
 
 	public void ReleaseDarkness()

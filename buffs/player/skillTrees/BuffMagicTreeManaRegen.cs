@@ -4,7 +4,7 @@ namespace Project;
 
 public partial class BuffMagicTreeManaRegen : BaseBuff
 {
-	public const float Regen = 0.05f;
+	public const float Regen = 0.075f;
 
 	public BuffMagicTreeManaRegen()
 	{

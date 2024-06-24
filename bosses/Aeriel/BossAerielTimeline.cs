@@ -9,9 +9,9 @@ public partial class BossAerielTimeline : BaseTimeline<BossAeriel>
 {
 	public BossAerielTimeline(BossAeriel parent) : base(parent)
 	{
-		GotoAbleton(38);
+		GotoAbleton(1);
 
-		Mark("Debug");
+		Mark("Start");
 
 		RegisterAutoAttacks();
 		RegisterRaidwides();
@@ -317,7 +317,7 @@ public partial class BossAerielTimeline : BaseTimeline<BossAeriel>
 	public override void _Ready()
 	{
 		Start();
-		var targetIndex = GetMarkBeatIndex("Debug");
+		var targetIndex = GetMarkBeatIndex("Start");
 		Music.Singleton.SeekTo(targetIndex);
 	}
 }

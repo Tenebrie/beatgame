@@ -5,7 +5,7 @@ namespace Project;
 
 public partial class CastAllConsumingFlame : BaseCast
 {
-	public const float ManaCost = 85;
+	public const float ManaCost = 20;
 
 	public CastAllConsumingFlame(BaseUnit parent) : base(parent)
 	{

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Godot;
 
 namespace Project;
 
@@ -38,6 +39,7 @@ public class EffectLibrary
 	public string ShieldBashWeapon = "uid://d367s1inshkoi";
 	public string ShieldBashImpact = "uid://c73m8sv3vj7a3";
 	public string NukeOfTheGreatTree = "uid://coyww8dlf7ojb";
+	public string Vaporize = "uid://bg8p6fjana5hg";
 }
 
 public class UILibrary
@@ -74,9 +76,27 @@ public class SceneLibrary
 {
 	public readonly Dictionary<PlayableScene, string> Values = new()
 	{
-		{ PlayableScene.TrainingRoom,  "uid://bcrvev26qnfr0" },
-		{ PlayableScene.BossArenaAeriel,  "uid://b1d3j63byd72g" },
+		{ PlayableScene.TrainingRoom,  "res://scenes/TrainingRoom.tscn" },
+		{ PlayableScene.BossArenaAeriel,  "res://scenes/BossArenaAeriel.tscn" },
 	};
+
+	public bool Is(PlayableScene target, string scenePath)
+	{
+		var hasValue = Values.TryGetValue(target, out var result);
+		if (!hasValue)
+			throw new System.Exception($"No scene path provided for {target}.");
+
+		return scenePath == result;
+	}
+
+	public bool Is(PlayableScene target, PackedScene scene)
+	{
+		var hasValue = Values.TryGetValue(target, out var result);
+		if (!hasValue)
+			throw new System.Exception($"No scene path provided for {target}.");
+
+		return scene.ResourcePath == result;
+	}
 
 	public string GetPath(PlayableScene scene)
 	{

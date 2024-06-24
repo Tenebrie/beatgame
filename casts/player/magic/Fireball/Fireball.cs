@@ -34,12 +34,19 @@ public partial class Fireball : BaseCast
 		}
 	}
 
+	protected override void OnCastStarted(CastTargetData _)
+	{
+		Parent.Buffs.RefreshDuration<BuffManaFrenzy>();
+	}
+
 	protected override void OnCastCompleted(CastTargetData target)
 	{
 		SendFireballAt(target.HostileUnit);
 
 		if (this.HasSkill<SkillTwinFireball>())
 			TwinFireballTarget = target.HostileUnit;
+		if (this.HasSkill<SkillManaFrenzy>())
+			Parent.Buffs.Add(new BuffManaFrenzy());
 	}
 
 	void SendFireballAt(BaseUnit target)

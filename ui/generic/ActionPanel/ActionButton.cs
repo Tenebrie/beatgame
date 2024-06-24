@@ -155,7 +155,7 @@ public partial class ActionButton : Control
 		var currentCastingSpell = ((PlayerController)AssociatedCast.Parent).Spellcasting.GetCurrentCastingSpell();
 		if (AssociatedCast.RecastTimerHandle.TimeLeft > 0)
 			value = AssociatedCast.RecastTimerHandle.TimeLeft / AssociatedCast.RecastTimerHandle.WaitTime;
-		if (currentCastingSpell != null && currentCastingSpell.Settings.GlobalCooldown
+		if (currentCastingSpell != null && currentCastingSpell.Settings.GlobalCooldown && AssociatedCast.Settings.GlobalCooldown
 			&& (AssociatedCast.RecastTimerHandle.TimeLeft < BaseCast.GlobalCooldownDuration * Music.Singleton.SecondsPerBeat))
 			value = 1;
 

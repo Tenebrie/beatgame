@@ -37,6 +37,9 @@ public partial class RespawningUnitBehaviour : Node
 
 		public async void SpawnWithDelay()
 		{
+			if (!IsInsideTree())
+				return;
+
 			await ToSignal(GetTree().CreateTimer(2), "timeout");
 			var newUnit = Lib.LoadScene(sceneToSpawn).Instantiate<BaseUnit>();
 			newUnit.Alliance = alliance;

@@ -11,13 +11,11 @@ public partial class BuffContainer : Control
 	FlowContainer container;
 
 	BaseUnit trackedUnit;
-	Dictionary<Type, BuffButton> buttonDict = new();
+	readonly Dictionary<Type, BuffButton> buttonDict = new();
 
 	public override void _Ready()
 	{
-		var children = container.GetChildren();
-		foreach (var child in children)
-			child.QueueFree();
+		ClearAllBuffs();
 	}
 
 	public void TrackUnit(BaseUnit unit)
@@ -31,6 +29,15 @@ public partial class BuffContainer : Control
 	{
 		trackedUnit.Buffs.BuffAdded -= OnBuffAdded;
 		trackedUnit.Buffs.BuffRemoved -= OnBuffRemoved;
+		ClearAllBuffs();
+	}
+
+	void ClearAllBuffs()
+	{
+		buttonDict.Clear();
+		var children = container.GetChildren();
+		foreach (var child in children)
+			child.QueueFree();
 	}
 
 	void OnBuffAdded(BaseBuff buff)
