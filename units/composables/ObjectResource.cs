@@ -103,6 +103,7 @@ public partial class ObjectResource : ComposableScript
 		if (result.ResourceType != Type)
 			throw new NotImplementedException("Changing resource type is not implemented");
 
+		result.Value = Math.Min(result.Value, current);
 		var value = result.Value;
 		current = Math.Max(minimum, current - value);
 

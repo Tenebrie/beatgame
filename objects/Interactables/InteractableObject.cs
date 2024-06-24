@@ -12,6 +12,7 @@ public abstract partial class InteractableObject : Area3D
 
 	bool IsHovered = false;
 	bool IsPressed = false;
+	bool IsInteractable = true;
 	float hoverHighlight = 0.0f;
 
 	readonly List<MeshInstance3D> meshes = new();
@@ -49,6 +50,9 @@ public abstract partial class InteractableObject : Area3D
 
 	public override void _MouseEnter()
 	{
+		if (!IsInteractable)
+			return;
+
 		IsHovered = true;
 		SetHoverHighlight(1.0f);
 
@@ -60,6 +64,13 @@ public abstract partial class InteractableObject : Area3D
 	{
 		IsHovered = false;
 		InteractableObjectPopup.Singleton.RemoveObject(this);
+	}
+
+	protected void MakeNonInteractable()
+	{
+		IsInteractable = false;
+		if (IsHovered)
+			_MouseExit();
 	}
 
 	public override void _Process(double delta)
@@ -86,7 +97,8 @@ public abstract partial class InteractableObject : Area3D
 		if (IsPressed && @event.IsActionReleased("MouseInteractAlt"))
 		{
 			IsPressed = false;
-			OnInteract();
+			if (IsHovered)
+				OnInteract();
 		}
 	}
 

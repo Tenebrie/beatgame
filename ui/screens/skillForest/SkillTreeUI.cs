@@ -6,7 +6,7 @@ namespace Project;
 public partial class SkillTreeUI : Control
 {
 	[Export]
-	public SkillGroup SkillGroup = SkillGroup.Tank;
+	public SkillGroup SkillGroup;
 
 	bool TreeReady = false;
 

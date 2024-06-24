@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://bcrvev26qnfr0"]
+[gd_scene load_steps=28 format=3 uid="uid://bcrvev26qnfr0"]
 
 [ext_resource type="PackedScene" uid="uid://bly86m2hi4wkh" path="res://objects/Environment/WallStone02.tscn" id="3_fvbi3"]
 [ext_resource type="PackedScene" uid="uid://brm5ywm6ylnrg" path="res://objects/Environment/WallStone03.tscn" id="4_lh2l6"]
@@ -23,6 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://dd8hi213iqvva" path="res://units/enemy/DummyEnemy/DummyEnemy.tscn" id="20_u8i6y"]
 [ext_resource type="PackedScene" uid="uid://bigoodfgf85ex" path="res://units/enemy/DummyEnemy/JumpingDummyEnemy.tscn" id="21_1cqso"]
 [ext_resource type="PackedScene" uid="uid://b63tmrk7key7v" path="res://units/enemy/DummyEnemy/ZappingDummyEnemy.tscn" id="23_2mukf"]
+[ext_resource type="PackedScene" uid="uid://dgrskeod8a12e" path="res://objects/Interactables/world/SecretTreeChest.tscn" id="24_ax25i"]
 
 [sub_resource type="Environment" id="Environment_nxlol"]
 ambient_light_energy = 0.91
@@ -877,7 +878,6 @@ light_energy = 10.0
 light_indirect_energy = 0.0
 light_specular = 3.826
 shadow_enabled = true
-omni_range = 6.0
 
 [node name="WallTorch10" parent="Environment/Arena/Walls" instance=ExtResource("11_hpi26")]
 transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 9.94378, 4, 13.9449)
@@ -889,7 +889,6 @@ light_energy = 10.0
 light_indirect_energy = 0.0
 light_specular = 3.826
 shadow_enabled = true
-omni_range = 6.0
 
 [node name="WallTorch01SecretLever4" parent="Environment/Arena/Walls" instance=ExtResource("9_akkep")]
 transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 9.93562, 0, -0.0551233)
@@ -1036,7 +1035,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.6974, -0.00244102, -0.00303
 Alliance = 2
 
 [node name="PlayerSpawner" parent="." instance=ExtResource("20_b5ew1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.010752, 1.1261, 0.0234984)
 
 [node name="SceneTransition" parent="." instance=ExtResource("20_tekqx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.177972, 0.00719925, -14.952)
@@ -1049,3 +1047,12 @@ shape = SubResource("BoxShape3D_50btq")
 [node name="ZappingDummyEnemy" parent="." instance=ExtResource("23_2mukf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.96748, 0.00719949, -0.0127659)
 Alliance = 2
+
+[node name="SecretTreeChest" parent="." instance=ExtResource("24_ax25i")]
+transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, 2.99731, 4.03058, 15.9924)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="SecretTreeChest"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.201035, 0)
+light_color = Color(1, 0.658824, 0.192157, 1)
+light_energy = 2.0
+omni_range = 1.0

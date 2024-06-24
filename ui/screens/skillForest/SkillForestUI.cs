@@ -4,24 +4,31 @@ namespace Project;
 
 public partial class SkillForestUI : Control
 {
-	Label SkillPointsLabel;
+	[Export] HBoxContainer container;
+	[Export] Label skillPointsLabel;
+
+	int skillTreeCount = 0;
 
 	public override void _EnterTree()
 	{
 		instance = this;
 		Visible = false;
-	}
 
-	public override void _Ready()
-	{
-		SkillPointsLabel = GetNode<Label>("HeaderPanel/SkillPointsLabel");
 		SkillTreeManager.Singleton.SkillPointsChanged += OnSkillPointsChanged;
+		SkillTreeManager.Singleton.SkillTreeUnlocked += OnSkillTreeUnlocked;
 		OnSkillPointsChanged();
 	}
 
-	public void OnSkillPointsChanged()
+	void OnSkillPointsChanged()
 	{
-		SkillPointsLabel.Text = $"Skill points: {SkillTreeManager.Singleton.SkillPoints}";
+		skillPointsLabel.Text = $"Skill points: {SkillTreeManager.Singleton.SkillPoints}";
+	}
+
+	void OnSkillTreeUnlocked(SkillGroup group)
+	{
+		var tree = Lib.LoadScene(Lib.UI.SkillTree).Instantiate<SkillTreeUI>();
+		tree.SkillGroup = group;
+		container.AddChild(tree);
 	}
 
 	public override void _Input(InputEvent @event)

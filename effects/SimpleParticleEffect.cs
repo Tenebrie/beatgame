@@ -8,6 +8,12 @@ public partial class SimpleParticleEffect : BaseEffect
 	[Export]
 	public GpuParticles3D Emitter;
 
+	public override void _Ready()
+	{
+		base._Ready();
+		Emitter.Restart();
+	}
+
 	public SimpleParticleEffect Stop()
 	{
 		Emitter.Emitting = false;

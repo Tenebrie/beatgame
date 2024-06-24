@@ -17,6 +17,8 @@ public partial class SkillTreeManager : Node
 	public delegate void SkillLinkUpEventHandler(SkillConnection connection);
 	[Signal]
 	public delegate void SkillLinkDownEventHandler(SkillConnection connection);
+	[Signal]
+	public delegate void SkillTreeUnlockedEventHandler(SkillGroup group);
 
 	const int BaseSkillPoints = 30;
 	public int SkillPoints = BaseSkillPoints;
@@ -26,14 +28,14 @@ public partial class SkillTreeManager : Node
 	public override void _EnterTree()
 	{
 		instance = this;
+	}
 
-		// =================================
-		// Tank tree
-		// =================================
-		var tankTree = new SkillTree
+	public override void _Ready()
+	{
+		RegisterSkillTree(new SkillTree
 		(
-			group: SkillGroup.Tank,
-			roots: new() { new SkillShieldBash(), new SkillSentinel() },
+			group: SkillGroup.TankDamage,
+			roots: new() { new SkillShieldBash() },
 
 			links: new()
 			{
@@ -42,7 +44,16 @@ public partial class SkillTreeManager : Node
 				Link<SkillShieldBashRange,  SkillParry>                 (2, BuffFactory.Of<BuffTankTreeHealth>()),
 				Link<SkillShieldBash,       SkillShieldBashRange>       (1, BuffFactory.Of<BuffTankTreeHealth>()),
 				Link<SkillShieldsUp,        SkillShieldBashMulticast>   (4, BuffFactory.Of<BuffTankTreeHealth>()),
+			}
+		));
 
+		RegisterSkillTree(new SkillTree
+		(
+			group: SkillGroup.TankSurvival,
+			roots: new() { new SkillSentinel() },
+
+			links: new()
+			{
 				// L1
 				Link<SkillSentinel,         SkillSentinelCharges>       (),
 				Link<SkillSentinel,         SkillImmovableObject>       (1, BuffFactory.Of<BuffTankTreeHealth>(), length: 2),
@@ -60,9 +71,9 @@ public partial class SkillTreeManager : Node
 				// L4
 				Link<SkillThorns,           SkillBerserkersRage>        (1, BuffFactory.Of<BuffTankTreeHealth>()),
 			}
-		);
+		));
 
-		var magicTree = new SkillTree
+		RegisterSkillTree(new SkillTree
 		(
 			group: SkillGroup.MagicalDamage,
 			roots: new() { new SkillFireball() },
@@ -97,9 +108,9 @@ public partial class SkillTreeManager : Node
 				// L5
 				Link<SkillFireballMastery, SkillManaFrenzy>(2, BuffFactory.Of<BuffMagicTreeManaRegen>()),
 			}
-		);
+		));
 
-		var healingTree = new SkillTree
+		RegisterSkillTree(new SkillTree
 		(
 			group: SkillGroup.Healing,
 			roots: new() { new SkillSelfHeal() },
@@ -111,9 +122,9 @@ public partial class SkillTreeManager : Node
 				Link<SkillManaEfficiency2, SkillEtherealFocus>(2, BuffFactory.Of<BuffHealTreeExtraMana>()),
 				Link<SkillEtherealFocus, SkillEtherealDarkness>(2, BuffFactory.Of<BuffHealTreeExtraMana>()),
 			}
-		);
+		));
 
-		var summoningTree = new SkillTree
+		RegisterSkillTree(new SkillTree
 		(
 			group: SkillGroup.Summoning,
 			roots: new() { new SkillSummonStationary() },
@@ -124,9 +135,9 @@ public partial class SkillTreeManager : Node
 				Link<SkillSummonStationary, SkillRescue>(1, BuffFactory.Of<BuffSummonTreeSummonHealth>()),
 				Link<SkillSummonStationary, SkillFriendsWithShields>(3, BuffFactory.Of<BuffSummonTreeSummonHealth>()),
 			}
-		);
+		));
 
-		var utilityTree = new SkillTree
+		RegisterSkillTree(new SkillTree
 		(
 			group: SkillGroup.Utility,
 			roots: new() { new SkillQuickDash() },
@@ -135,40 +146,20 @@ public partial class SkillTreeManager : Node
 			{
 
 			}
-		);
+		));
 
-		var secretTree = new SkillTree(
-			group: SkillGroup.Secret,
-			roots: new() { new SecretSkillUnlimitedPower0() },
-
-			links: new()
-			{
-				Link<SecretSkillUnlimitedPower0, SecretSkillUnlimitedPower1>(),
-				Link<SecretSkillUnlimitedPower1, SecretSkillUnlimitedPower2>(),
-				Link<SecretSkillUnlimitedPower2, SecretSkillUnlimitedPower3>(),
-			}
-		);
-
-		SkillTrees.Add(tankTree);
-		SkillTrees.Add(magicTree);
-		SkillTrees.Add(healingTree);
-		SkillTrees.Add(summoningTree);
-		SkillTrees.Add(utilityTree);
-		SkillTrees.Add(secretTree);
-
-		Skills = SkillTrees.Aggregate(new List<BaseSkill>(), (total, tree) =>
-		{
-			total.AddRange(tree.Skills);
-			return total;
-		});
-
-		foreach (var skill in Skills)
-			AddChild(skill);
+		SignalBus.Singleton.UnitCreated += OnUnitCreated;
 	}
 
-	public override void _Ready()
+	public void RegisterSkillTree(SkillTree tree)
 	{
-		SignalBus.Singleton.UnitCreated += OnUnitCreated;
+		SkillTrees.Add(tree);
+		foreach (var skill in tree.Skills)
+		{
+			Skills.Add(skill);
+			AddChild(skill);
+		}
+		EmitSignal(SignalName.SkillTreeUnlocked, tree.Group.ToVariant());
 	}
 
 	void OnUnitCreated(BaseUnit unit)
@@ -312,11 +303,11 @@ public partial class SkillTreeManager : Node
 		EmitSignal(SignalName.SkillPointsChanged);
 	}
 
-	static ApiSkillConnection<T1, T2> Link<T1, T2>() where T1 : BaseSkill, new() where T2 : BaseSkill, new()
+	public static ApiSkillConnection<T1, T2> Link<T1, T2>() where T1 : BaseSkill, new() where T2 : BaseSkill, new()
 	{
 		return new ApiSkillConnection<T1, T2>();
 	}
-	static ApiSkillConnection<T1, T2> Link<T1, T2>(int pointsRequired, BuffFactory factory, float offset = 0, int length = 1) where T1 : BaseSkill, new() where T2 : BaseSkill, new()
+	public static ApiSkillConnection<T1, T2> Link<T1, T2>(int pointsRequired, BuffFactory factory, float offset = 0, int length = 1) where T1 : BaseSkill, new() where T2 : BaseSkill, new()
 	{
 		return new ApiSkillConnection<T1, T2>(pointsRequired, factory, offset, length);
 	}

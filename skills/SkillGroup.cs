@@ -1,12 +1,20 @@
 namespace Project;
 
-public enum SkillGroup
+public enum SkillGroup : int
 {
-	Tank,
-	Healing,
-	PhysicalDamage,
+	TankDamage,
+	TankSurvival,
 	MagicalDamage,
+	Healing,
 	Summoning,
 	Utility,
 	Secret,
+}
+
+static class SkillGroupExtensions
+{
+	public static int ToVariant(this SkillGroup type)
+	{
+		return (int)type;
+	}
 }

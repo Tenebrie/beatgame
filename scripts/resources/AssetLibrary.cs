@@ -37,6 +37,7 @@ public class EffectLibrary
 	public string EtherealFocusChannel = "uid://cwk748e7folsj";
 	public string ShieldBashWeapon = "uid://d367s1inshkoi";
 	public string ShieldBashImpact = "uid://c73m8sv3vj7a3";
+	public string NukeOfTheGreatTree = "uid://coyww8dlf7ojb";
 }
 
 public class UILibrary
@@ -48,6 +49,7 @@ public class UILibrary
 	public string PassiveSkillButton = "res://ui/screens/skillForest/generated/PassiveSkillButton.tscn";
 	public string SkillLink = "res://ui/screens/skillForest/generated/SkillLinkVisual.tscn";
 	public string SkillPopup = "res://ui/screens/skillForest/generated/SkillPopup.tscn";
+	public string SkillTree = "uid://c8goxpqvqyvwe";
 	public string MessageListMessage = "res://ui/generic/MessageList/Message.tscn";
 	public string SkillBindingNotification = "res://ui/screens/skillBinding/SkillBindingNotification.tscn";
 	public string DpsMeterCast = "uid://dfoorpkl82w6j";

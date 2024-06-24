@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://cbfod3fo4soc0"]
+[gd_scene load_steps=5 format=3 uid="uid://cbfod3fo4soc0"]
 
 [ext_resource type="Script" path="res://ui/screens/skillForest/SkillForestUI.cs" id="1_5b2kg"]
-[ext_resource type="PackedScene" uid="uid://c8goxpqvqyvwe" path="res://ui/screens/skillForest/SkillTreeUI.tscn" id="2_6cki4"]
 [ext_resource type="PackedScene" uid="uid://coakkqgoc8rcy" path="res://ui/screens/skillForest/generated/SkillPopup.tscn" id="3_as0j1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vrxm4"]
@@ -14,7 +13,7 @@ corner_radius_bottom_left = 8
 [sub_resource type="LabelSettings" id="LabelSettings_rnmv1"]
 font_size = 32
 
-[node name="SkillForestUI" type="Control"]
+[node name="SkillForestUI" type="Control" node_paths=PackedStringArray("container", "skillPointsLabel")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -23,6 +22,8 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_5b2kg")
+container = NodePath("ScrollContainer/HBoxContainer")
+skillPointsLabel = NodePath("HeaderPanel/SkillPointsLabel")
 
 [node name="HeaderPanel" type="Panel" parent="."]
 layout_mode = 1
@@ -76,161 +77,7 @@ mouse_filter = 0
 mouse_force_pass_scroll_events = false
 
 [node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer"]
-custom_minimum_size = Vector2(2500, 0)
 layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 0
 alignment = 1
-
-[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="TankTree" parent="ScrollContainer/HBoxContainer/MarginContainer" instance=ExtResource("2_6cki4")]
-layout_mode = 2
-
-[node name="Button" type="Button" parent="ScrollContainer/HBoxContainer/MarginContainer/TankTree"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -4.0
-offset_top = -4.0
-offset_right = 4.0
-offset_bottom = 4.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="MarginContainer2" type="MarginContainer" parent="ScrollContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="PhysicalTree" parent="ScrollContainer/HBoxContainer/MarginContainer2" instance=ExtResource("2_6cki4")]
-layout_mode = 2
-SkillGroup = 2
-
-[node name="Button" type="Button" parent="ScrollContainer/HBoxContainer/MarginContainer2/PhysicalTree"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -4.0
-offset_top = -4.0
-offset_right = 4.0
-offset_bottom = 4.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="MarginContainer3" type="MarginContainer" parent="ScrollContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="MagicTree" parent="ScrollContainer/HBoxContainer/MarginContainer3" instance=ExtResource("2_6cki4")]
-layout_mode = 2
-SkillGroup = 3
-
-[node name="Button" type="Button" parent="ScrollContainer/HBoxContainer/MarginContainer3/MagicTree"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -4.0
-offset_top = -4.0
-offset_right = 4.0
-offset_bottom = 4.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="MarginContainer4" type="MarginContainer" parent="ScrollContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="HealingTree" parent="ScrollContainer/HBoxContainer/MarginContainer4" instance=ExtResource("2_6cki4")]
-layout_mode = 2
-SkillGroup = 1
-
-[node name="Button" type="Button" parent="ScrollContainer/HBoxContainer/MarginContainer4/HealingTree"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -4.0
-offset_top = -4.0
-offset_right = 4.0
-offset_bottom = 4.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="MarginContainer5" type="MarginContainer" parent="ScrollContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="SummonTree" parent="ScrollContainer/HBoxContainer/MarginContainer5" instance=ExtResource("2_6cki4")]
-layout_mode = 2
-SkillGroup = 4
-
-[node name="Button" type="Button" parent="ScrollContainer/HBoxContainer/MarginContainer5/SummonTree"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -4.0
-offset_top = -4.0
-offset_right = 4.0
-offset_bottom = 4.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="MarginContainer6" type="MarginContainer" parent="ScrollContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="UtilityTree" parent="ScrollContainer/HBoxContainer/MarginContainer6" instance=ExtResource("2_6cki4")]
-layout_mode = 2
-SkillGroup = 5
-
-[node name="Button" type="Button" parent="ScrollContainer/HBoxContainer/MarginContainer6/UtilityTree"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -4.0
-offset_top = -4.0
-offset_right = 4.0
-offset_bottom = 4.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="SecretTreeContainer" type="MarginContainer" parent="ScrollContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="SecretTree" parent="ScrollContainer/HBoxContainer/SecretTreeContainer" instance=ExtResource("2_6cki4")]
-layout_mode = 2
-SkillGroup = 6
-
-[node name="Button" type="Button" parent="ScrollContainer/HBoxContainer/SecretTreeContainer/SecretTree"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -4.0
-offset_top = -4.0
-offset_right = 4.0
-offset_bottom = 4.0
-grow_horizontal = 2
-grow_vertical = 2
