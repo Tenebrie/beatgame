@@ -41,8 +41,8 @@ public partial class ShieldsUp : BaseCast
 			Settings = new()
 			{
 				FriendlyName = "Shields Up",
-				Description = MakeDescription(
-					$"Increases your damage reduction by {{{Math.Round(DamageReduction * 100) + "%"}}}."
+				DynamicDesc = () => MakeDescription(
+					$"Increases your damage reduction by {{{Math.Round(DamageReduction * Stacks * 100) + "%"}}}."
 				),
 				IconPath = "res://assets/icons/SpellBook06_09.png",
 			};

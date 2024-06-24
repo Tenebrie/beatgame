@@ -1,3 +1,4 @@
+using System;
 using Godot;
 
 namespace Project;
@@ -7,11 +8,12 @@ public abstract partial class BaseBuff : Node
 	public class BuffSettings
 	{
 		public string FriendlyName = "Unnamed Buff";
-		public string Description = "No description";
+		public string Description = null;
+		public Func<string> DynamicDesc = null;
 		public string IconPath = "res://assets/ui/icon-skill-passive-placeholder.png";
 		public bool TicksOnBeat = false;
 		public bool RefreshOthersWhenAdded = false;
-		public int MaximumStacks = 100;
+		public int MaximumStacks = 999;
 		public bool Hidden = false;
 	}
 
@@ -40,6 +42,11 @@ public abstract partial class BaseBuff : Node
 			ExpiresAt = time + value * Music.Singleton.SecondsPerBeat;
 			defaultDuration = value;
 		}
+	}
+
+	public int Stacks
+	{
+		get => Parent?.Buffs.Stacks(GetType()) ?? 1;
 	}
 
 	public void RefreshDuration()

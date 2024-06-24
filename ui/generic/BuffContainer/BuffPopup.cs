@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Text;
 
 namespace Project;
 
@@ -34,7 +35,15 @@ public partial class BuffPopup : BasePopup
 	{
 		MakeVisible();
 		SetBuffName(buff.Settings.FriendlyName);
-		SetBody(buff.Settings.Description);
+
+		StringBuilder builder = new();
+		if (buff.Settings.Description != null)
+			builder.Append(buff.Settings.Description);
+		if (buff.Settings.Description != null && buff.Settings.DynamicDesc != null)
+			builder.Append('\n');
+		if (buff.Settings.DynamicDesc != null)
+			builder.Append(buff.Settings.DynamicDesc());
+		SetBody(builder.ToString());
 	}
 
 	void OnBuffUnhovered(BaseBuff buff)

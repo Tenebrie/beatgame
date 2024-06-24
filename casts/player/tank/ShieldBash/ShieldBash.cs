@@ -92,8 +92,8 @@ public partial class ShieldBash : BaseCast
 			Settings = new()
 			{
 				FriendlyName = "Thorned Shield",
-				Description = MakeDescription(
-					$"Whenever you take damage, deal {{{Math.Round(RetaliateDamageFraction * 100) + "%"}}} of it back to the attacker."
+				DynamicDesc = () => MakeDescription(
+					$"Whenever you take damage, deal {{{Math.Round(RetaliateDamageFraction * Stacks * 100) + "%"}}} of it back to the attacker."
 				),
 				IconPath = "res://assets/icons/SpellBook06_05.png",
 				RefreshOthersWhenAdded = true,

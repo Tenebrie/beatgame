@@ -24,7 +24,7 @@ public partial class SkillBerserkersRage : BaseSkill
 			{
 				Description = MakeDescription(
 					$"Whenever you take damage, gain {{Rage}}, increasing all your damage dealt by {{{RageBuff.DamageBoost * 100}%}}",
-					$"for the next {{{RageBuff.EffectDuration}}} beats, stacking infinitely.",
+					$"for the next {{{RageBuff.EffectDuration}}} beats, stacking up to {{{RageBuff.MaximumStacks}}}.",
 					$"\n((This effect can only trigger once per beat))"
 				),
 				Hidden = true,
@@ -33,21 +33,22 @@ public partial class SkillBerserkersRage : BaseSkill
 
 		public override void ReactToIncomingDamage(BuffIncomingDamageVisitor damage)
 		{
-			if (damage.SourceUnit == Parent)
+			if (damage.ResourceType != ObjectResourceType.Health)
 				return;
 
 			var time = ((float)Time.GetTicksMsec()) / 1000;
-			if (time - LastTriggerAt > Music.Singleton.SecondsPerBeat)
+			if (time - LastTriggerAt < Music.Singleton.SecondsPerBeat - AccurateTimer.TimingWindow)
 				return;
 
 			LastTriggerAt = time;
-			Parent.Buffs.Add(new RageBuff());
+			this.NextFrame(() => Parent.Buffs.Add(new RageBuff()));
 		}
 
 		public partial class RageBuff : BaseBuff
 		{
 			public const float DamageBoost = 0.01f;
 			public const float EffectDuration = 16;
+			public const int MaximumStacks = 300;
 
 			public RageBuff()
 			{
@@ -57,13 +58,16 @@ public partial class SkillBerserkersRage : BaseSkill
 					Description = MakeDescription(
 						$"All your damage is increased by {{{DamageBoost * 100}%}}."
 					),
+					IconPath = "res://assets/icons/SpellBook06_65.png",
+					RefreshOthersWhenAdded = true,
+					MaximumStacks = MaximumStacks,
 				};
 				Duration = EffectDuration;
 			}
 
 			public override void ModifyOutgoingDamage(BuffOutgoingDamageVisitor damage)
 			{
-				if (damage.Target == Parent)
+				if (damage.Target == Parent || damage.ResourceType != ObjectResourceType.Health)
 					return;
 
 				damage.Value += damage.BaseValue * DamageBoost;

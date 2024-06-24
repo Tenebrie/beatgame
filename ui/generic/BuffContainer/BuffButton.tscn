@@ -31,6 +31,7 @@ StacksLabel = NodePath("Control/StacksLabel")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
@@ -58,11 +59,11 @@ stretch_mode = 4
 
 [node name="StacksLabel" type="Label" parent="Control"]
 layout_mode = 0
-offset_left = 12.0
+offset_left = 4.0
 offset_top = 10.0
 offset_right = 28.0
 offset_bottom = 30.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 14
-text = "15"
+text = "999"
 horizontal_alignment = 2

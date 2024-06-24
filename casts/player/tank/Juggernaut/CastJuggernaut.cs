@@ -46,7 +46,7 @@ public partial class CastJuggernaut : BaseCast
 			Settings = new()
 			{
 				FriendlyName = "Juggernaut",
-				Description = MakeDescription(
+				DynamicDesc = () => MakeDescription(
 					$"Increases your base Health regeneration by {{{Math.Round(ExtraHealthRegen)}}} per beat."
 				),
 				IconPath = "res://assets/icons/SpellBook06_112.png",

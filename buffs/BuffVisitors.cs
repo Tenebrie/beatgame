@@ -6,6 +6,7 @@ namespace Project;
 
 public partial class BuffUnitStatsVisitor : RefCounted
 {
+	// TODO: Make the dictionaries lists of multipliers instead of one multiplier
 	public Dictionary<ObjectResourceType, float> PercentageDamageTaken = ObjectResource.MakeDictionary<float>(1f);
 	public Dictionary<ObjectResourceType, float> FlatResourceRegen = ObjectResource.MakeDictionary<float>(0f);
 	public Dictionary<ObjectResourceType, float> PercentageResourceRegen = ObjectResource.MakeDictionary<float>(1f);
