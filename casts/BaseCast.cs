@@ -13,7 +13,6 @@ public partial class BaseCast : Node
 	{
 		public string FriendlyName = "Unnamed Spell";
 		public string Description = null;
-		public Func<string> DynamicDesc = null;
 		public string LoreDescription = null;
 		public string IconPath = "res://assets/ui/icon-skill-active-placeholder.png";
 		public float HoldTime = 1; // beat
@@ -72,10 +71,7 @@ public partial class BaseCast : Node
 	{
 		StringBuilder builder = new();
 		// Description
-		if (castSettings.Description != null)
-			builder.Append(castSettings.Description).Append('\n');
-		if (castSettings.DynamicDesc != null)
-			builder.Append(castSettings.DynamicDesc()).Append('\n');
+		builder.Append(castSettings.Description).Append('\n');
 
 		// Resource cost
 		if (castSettings.ResourceCost[ObjectResourceType.Health] > 0)
