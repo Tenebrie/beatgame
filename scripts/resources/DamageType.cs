@@ -7,3 +7,16 @@ public enum DamageType : int
 	Night = 4,
 	All = 1023,
 }
+
+public enum SilentDamageReason : int
+{
+	Retaliate,
+}
+
+static class SilentDamageTypeExtensions
+{
+	public static int ToVariant(this SilentDamageReason type)
+	{
+		return (int)type;
+	}
+}

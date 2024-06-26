@@ -14,14 +14,16 @@ public partial class LightningOrbsPylon : BasicEnemyController
 	public override void _Ready()
 	{
 		FriendlyName = "Power Pylon";
+		Alliance = UnitAlliance.Hostile;
+
 		base._Ready();
 
 		Health.SetBaseMaxValue(5);
-		Alliance = UnitAlliance.Hostile;
-		Targetable.selectionRadius = 1.75f;
+		Targetable.selectionRadius = 1.00f;
 
 		Buffs.Add(new BuffLightningOrbsPylonInvuln());
 		BossAuto = CastLibrary.Register(new BossAuto(this));
+		BossAuto.Damage = 3;
 		AreaAttack = CastLibrary.Register(new EnergyExpulsion(this));
 		Music.Singleton.BeatTick += OnBeatTick;
 	}

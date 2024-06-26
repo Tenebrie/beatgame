@@ -22,12 +22,13 @@ public partial class SignalBus : Node
 	[Signal] public delegate void ObjectTargetedEventHandler(BaseUnit unit, TargetedUnitAlliance alliance);
 	[Signal] public delegate void ObjectUntargetedEventHandler(TargetedUnitAlliance alliance);
 	[Signal] public delegate void DamageTakenEventHandler(BuffIncomingDamageVisitor data);
+	[Signal] public delegate void SilentDamageTakenEventHandler(BuffIncomingDamageVisitor data, SilentDamageReason damageType);
 	[Signal] public delegate void ResourceChangedEventHandler(BaseUnit unit, ObjectResourceType type, float value);
 	[Signal] public delegate void ResourceRegeneratedEventHandler(BaseUnit unit, ObjectResourceType type, float value);
 	[Signal] public delegate void MaxResourceChangedEventHandler(BaseUnit unit, ObjectResourceType type, float value);
 	[Signal] public delegate void CastStartedEventHandler(BaseCast cast);
-	[Signal] public delegate void CastCancelledEventHandler(BaseCast cast);
-	[Signal] public delegate void CastPerformedEventHandler(BaseCast cast);
+	[Signal] public delegate void CastCompletedEventHandler(BaseCast cast);
+	[Signal] public delegate void CastInterruptedEventHandler(BaseCast cast);
 	[Signal] public delegate void CastFailedEventHandler(BaseCast cast);
 	[Signal] public delegate void CastHoveredEventHandler(BaseCast cast);
 	[Signal] public delegate void CastUnhoveredEventHandler(BaseCast cast);

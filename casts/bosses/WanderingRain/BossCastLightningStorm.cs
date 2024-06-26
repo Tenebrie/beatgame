@@ -66,7 +66,8 @@ public partial class BossCastLightningStorm : BaseCast
 			area.Radius = 1.5f;
 			area.OnFinishedPerTargetCallback = (BaseUnit unit) =>
 			{
-				unit.Health.Damage(7.5f, this);
+				unit.Health.Damage(30, this);
+				this.CreateZapEffect(pos + new Vector3(0, 5, 0), pos);
 			};
 		}
 

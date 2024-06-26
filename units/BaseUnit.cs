@@ -7,6 +7,9 @@ namespace Project;
 
 public abstract partial class BaseUnit : ComposableCharacterBody3D
 {
+	[Signal] public delegate void UnitKilledEventHandler();
+	[Signal] public delegate void UnitDestroyedEventHandler();
+
 	public string FriendlyName = "Unnamed unit";
 	public ObjectResource Health;
 	public ObjectResource Mana;
@@ -83,6 +86,7 @@ public abstract partial class BaseUnit : ComposableCharacterBody3D
 
 		IsAlive = false;
 		HandleDeath();
+		EmitSignal(SignalName.UnitKilled);
 		SignalBus.Singleton.EmitSignal(SignalBus.SignalName.UnitKilled, this);
 	}
 
@@ -103,6 +107,7 @@ public abstract partial class BaseUnit : ComposableCharacterBody3D
 		base._ExitTree();
 		Music.Singleton.BeatTick -= ProcessBeatTick;
 		AllUnits.Remove(this);
+		EmitSignal(SignalName.UnitDestroyed);
 		SignalBus.Singleton.EmitSignal(SignalBus.SignalName.UnitDestroyed, this);
 	}
 

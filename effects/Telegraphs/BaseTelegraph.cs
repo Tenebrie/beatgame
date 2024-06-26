@@ -92,7 +92,7 @@ public abstract partial class BaseTelegraph : Node3D
 
 	public List<BaseUnit> GetTargets()
 	{
-		return targets.Distinct().Where(target => TargetValidator == null || TargetValidator(target)).ToList();
+		return targets.Distinct().Where(target => target != null && IsInstanceValid(target) && TargetValidator == null || TargetValidator(target)).ToList();
 	}
 
 	public void SnapToGround()

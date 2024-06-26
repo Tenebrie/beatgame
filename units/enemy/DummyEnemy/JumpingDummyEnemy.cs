@@ -21,9 +21,9 @@ public partial class JumpingDummyEnemy : BasicEnemyController
 
 	public override void _Ready()
 	{
-		base._Ready();
-
 		FriendlyName = "Jumping Enemy";
+
+		base._Ready();
 
 		raisingTimer = GetNode<Timer>("RaisingTimer");
 		raisingTimer.WaitTime = 3.0f / Music.Singleton.BeatsPerSecond;

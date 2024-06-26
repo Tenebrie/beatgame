@@ -17,6 +17,7 @@ public partial class BaseSkill : Node
 		public List<CastFactory> AffectedCasts = new();
 		public BuffFactory PassiveBuff;
 		public bool RebindsAllCasts = true;
+		public bool Disabled = false;
 
 		public List<SkillWrapper> IncompatibleSkills = new();
 	}

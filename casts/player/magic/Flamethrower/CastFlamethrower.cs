@@ -3,7 +3,7 @@ using Godot;
 namespace Project;
 public partial class CastFlamethrower : BaseCast
 {
-	float DamagePerBeat = 40;
+	float DamagePerBeat = 50;
 	EffectFlamethrowerWithHitbox effect;
 
 	public CastFlamethrower(BaseUnit parent) : base(parent)

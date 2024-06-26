@@ -3,7 +3,7 @@ using Godot;
 namespace Project;
 public partial class Fireball : BaseCast
 {
-	public const float Damage = 40;
+	public const float Damage = 30;
 	BaseUnit TwinFireballTarget;
 
 	public Fireball(BaseUnit parent) : base(parent)

@@ -8,8 +8,8 @@ public partial class BossCastConsumingWinds : BaseCast
 {
 	public float Damage = 80;
 	public float PushDistance = 12;
-	public float PullStrength = 1.5f;
-	public float ExtraPullStrength = 2.5f;
+	public float PullStrength = 0.5f;
+	public float ExtraPullStrength = 1.5f;
 	public float AreaRadius = 12;
 
 	public BossCastConsumingWinds(BaseUnit parent) : base(parent)
@@ -36,8 +36,8 @@ public partial class BossCastConsumingWinds : BaseCast
 			Vector3 getVector() => (Parent.Position - target.Position).Flatten(target.Position.Y);
 			var movement = target.ForcefulMovement.PushContinuously(() => PullStrength, getVector);
 			movements.Add(movement);
-			var jumpingMovement = target.ForcefulMovement.PushContinuously(() => ExtraPullStrength, getVector, () => target.Grounded);
-			movements.Add(jumpingMovement);
+			var onlyGroundedMovement = target.ForcefulMovement.PushContinuously(() => ExtraPullStrength, getVector, () => target.Grounded);
+			movements.Add(onlyGroundedMovement);
 		}
 
 		var circle = this.CreateGroundCircularArea(Parent.GetGroundedPosition());

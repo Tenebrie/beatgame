@@ -293,7 +293,6 @@ public partial class Music : Node
 	public void SeekTo(double beatIndex)
 	{
 		StartingFromBeat = beatIndex;
-		EmitSignal(SignalName.CurrentTrackPositionChanged, beatIndex);
 	}
 
 	private static Music instance = null;

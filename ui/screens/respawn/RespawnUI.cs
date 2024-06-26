@@ -7,6 +7,7 @@ public partial class RespawnUI : Control
 {
 	[Export] Button SpawnButton;
 	[Export] Button RestartButton;
+	[Export] Button TrainingRoomButton;
 
 	public override void _Ready()
 	{
@@ -14,6 +15,7 @@ public partial class RespawnUI : Control
 		SignalBus.Singleton.UnitKilled += OnUnitKilled;
 		SpawnButton.Pressed += OnSpawn;
 		RestartButton.Pressed += OnRestart;
+		TrainingRoomButton.Pressed += OnReturnToTrainingRoom;
 	}
 
 	void OnUnitKilled(BaseUnit unit)
@@ -34,6 +36,14 @@ public partial class RespawnUI : Control
 	void OnRestart()
 	{
 		TimelineManager.Singleton.ResetFight();
+		Visible = false;
+	}
+
+	void OnReturnToTrainingRoom()
+	{
+		TimelineManager.Singleton.StopFight();
+		var transitionToScene = Lib.LoadScene(Lib.Scene.GetPath(PlayableScene.TrainingRoom));
+		SignalBus.Singleton.EmitSignal(SignalBus.SignalName.SceneTransitionStarted, transitionToScene);
 		Visible = false;
 	}
 }

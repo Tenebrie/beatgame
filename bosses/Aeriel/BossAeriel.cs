@@ -35,7 +35,8 @@ public partial class BossAeriel : BasicEnemyController
 
 		base._Ready();
 
-		Health.SetBaseMaxValue(10000);
+		Health.SetBaseMaxValue(15000);
+		Targetable.selectionRadius = 3.00f;
 
 		AutoAttack = new(this);
 		CastLibrary.Register(AutoAttack);
@@ -109,6 +110,8 @@ public partial class BossAeriel : BasicEnemyController
 		CastLibrary.Register(HardEnrage);
 	}
 
+	protected override void HandleDeath() { }
+
 	public void ReleaseDarkness()
 	{
 		var darkness = GetNode<GpuParticles3D>("DarknessParticles");
@@ -118,9 +121,8 @@ public partial class BossAeriel : BasicEnemyController
 		GetTree().CurrentScene.AddChild(impact);
 	}
 
-	public void Reset()
+	public void VictorySequence()
 	{
-		var darkness = GetNode<GpuParticles3D>("DarknessParticles");
-		darkness.Emitting = true;
+		// TODO: Sequence
 	}
 }

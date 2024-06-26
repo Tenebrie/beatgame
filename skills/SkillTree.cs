@@ -214,7 +214,7 @@ public class SkillTree
 				iterations += 1;
 				hasCompacted = false;
 				hasCompacted = DoCompactChildren(skill, skill.PosX, 0.25f);
-			} while (hasCompacted && iterations < 20);
+			} while (hasCompacted && iterations < 40);
 		}
 
 		//=========================================

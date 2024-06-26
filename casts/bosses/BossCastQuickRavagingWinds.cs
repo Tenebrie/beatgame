@@ -68,7 +68,7 @@ public partial class BossCastQuickRavagingWinds : BaseCast
 			foreach (var target in targets)
 			{
 				target.Health.Damage(30, this);
-				target.ForcefulMovement.Push(2, target.Position - Parent.Position, 0.5f);
+				target.ForcefulMovement.Push(2, (target.Position - Parent.Position).Flatten(target.Position.Y), 0.5f);
 			}
 		};
 		Rotation += (float)Math.PI * 2 / Settings.HoldTime / 4;

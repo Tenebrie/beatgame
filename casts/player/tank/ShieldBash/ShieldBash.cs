@@ -4,9 +4,9 @@ using Godot;
 namespace Project;
 public partial class ShieldBash : BaseCast
 {
-	public const float InstantDamage = 5;
-	public const float ExtraSkillDamage = 5;
-	public const float IncreasedRange = 4.5f;
+	public const float InstantDamage = 15;
+	public const float ExtraSkillDamage = 20;
+	public const float IncreasedRange = 9.0f;
 
 	float damage;
 	bool mirrorNextCast = false;
@@ -29,9 +29,8 @@ public partial class ShieldBash : BaseCast
 			InputType = CastInputType.Instant,
 			TargetType = CastTargetType.HostileUnit,
 			CastTimings = BeatTime.EveryFullBeat,
-			MaximumRange = 1.5f,
+			MaximumRange = 3.0f,
 		};
-		Settings.ResourceCost[ObjectResourceType.Mana] = 10;
 
 		if (this.HasSkill<SkillShieldBashRange>())
 		{
@@ -83,7 +82,7 @@ public partial class ShieldBash : BaseCast
 
 	public partial class Buff : BaseBuff
 	{
-		public const float RetaliateDamageFraction = 0.1f;
+		public const float RetaliateDamageFraction = 0.15f;
 		public const float EffectDuration = 8;
 		public const int MaxStacks = 5;
 

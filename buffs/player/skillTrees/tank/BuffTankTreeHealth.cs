@@ -6,7 +6,7 @@ public partial class BuffTankTreeHealth : BaseBuff
 	{
 		Settings = new()
 		{
-			Description = $"Increase your maximum Health by [color={Colors.Health}]{25}[/color].",
+			Description = $"Every minor node in this tree increases your maximum Health by [color={Colors.Health}]{25}[/color].",
 			Hidden = true,
 		};
 	}

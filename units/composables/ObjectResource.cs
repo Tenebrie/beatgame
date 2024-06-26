@@ -1,10 +1,15 @@
 using System;
 using System.Collections.Generic;
+using Godot;
 
 namespace Project;
 
 public partial class ObjectResource : ComposableScript
 {
+	[Signal] public delegate void ResourceChangedEventHandler(float value);
+	[Signal] public delegate void ResourceRegeneratedEventHandler(float value);
+	[Signal] public delegate void MaxResourceChangedEventHandler(float value);
+
 	private bool ready = false;
 	private float minimum = 0;
 	private float current = 0;
@@ -56,6 +61,8 @@ public partial class ObjectResource : ComposableScript
 	public override void _Ready()
 	{
 		ready = true;
+		EmitSignal(SignalName.ResourceChanged, current);
+		EmitSignal(SignalName.MaxResourceChanged, maximum);
 		SignalBus.Singleton.EmitSignal(SignalBus.SignalName.ResourceChanged, Parent, Type.ToVariant(), current);
 		SignalBus.Singleton.EmitSignal(SignalBus.SignalName.MaxResourceChanged, Parent, Type.ToVariant(), maximum);
 	}
@@ -78,6 +85,7 @@ public partial class ObjectResource : ComposableScript
 		{
 			current = Math.Min(maximum, current + regenPool);
 			regenPool = 0;
+			EmitSignal(SignalName.ResourceRegenerated, current);
 			SignalBus.Singleton.EmitSignal(SignalBus.SignalName.ResourceRegenerated, Parent, Type.ToVariant(), current);
 		}
 	}
@@ -90,11 +98,32 @@ public partial class ObjectResource : ComposableScript
 	{
 		Damage(originalValue, sourceUnit, null);
 	}
-	public void Damage(float originalValue, BaseUnit sourceUnit, BaseCast sourceCast)
+	public void Damage(float value, BaseUnit sourceUnit, BaseCast sourceCast)
 	{
-		if (originalValue <= 0)
+		if (value <= 0)
 			return;
 
+		var result = ApplyDamage(value, sourceUnit, sourceCast);
+		if (ready)
+			SignalBus.Singleton.EmitSignal(SignalBus.SignalName.DamageTaken, result);
+	}
+
+	/// <summary>
+	/// Silent damage does not trigger reactions, such as life leech and retaliation damage.
+	/// Damage from retaliation is considered silent damage.
+	/// </summary>
+	public void DamageSilently(float value, BaseUnit sourceUnit, BaseCast sourceCast, SilentDamageReason silentDamageReason)
+	{
+		if (value <= 0)
+			return;
+
+		var result = ApplyDamage(value, sourceUnit, sourceCast);
+		if (ready)
+			SignalBus.Singleton.EmitSignal(SignalBus.SignalName.SilentDamageTaken, result, silentDamageReason.ToVariant());
+	}
+
+	BuffIncomingDamageVisitor ApplyDamage(float originalValue, BaseUnit sourceUnit, BaseCast sourceCast)
+	{
 		BuffOutgoingDamageVisitor visitor = null;
 		if (sourceUnit != null)
 		{
@@ -111,16 +140,18 @@ public partial class ObjectResource : ComposableScript
 		if (result.ResourceType != Type)
 			throw new NotImplementedException("Changing resource type is not implemented");
 
+		var value = result.Value;
+
 		var beforeDamage = current;
-		current = Math.Max(minimum, current - result.Value);
-		damageOverflow += result.Value - (beforeDamage - current);
-		result.Value = beforeDamage - current;
+		current = Math.Max(minimum, current - value);
+		damageOverflow += value - (beforeDamage - current);
 
 		if (ready)
 		{
-			SignalBus.Singleton.EmitSignal(SignalBus.SignalName.DamageTaken, result);
+			EmitSignal(SignalName.ResourceChanged, current);
 			SignalBus.Singleton.EmitSignal(SignalBus.SignalName.ResourceChanged, Parent, Type.ToVariant(), current);
 		}
+		return result;
 	}
 
 	public void Restore(float originalValue, BaseCast sourceCast)
@@ -156,7 +187,10 @@ public partial class ObjectResource : ComposableScript
 		current = Math.Min(maximum, current + value);
 
 		if (ready)
+		{
+			EmitSignal(SignalName.ResourceChanged, current);
 			SignalBus.Singleton.EmitSignal(SignalBus.SignalName.ResourceChanged, Parent, Type.ToVariant(), current);
+		}
 	}
 
 	public void SetMinValue(float value)
@@ -180,6 +214,8 @@ public partial class ObjectResource : ComposableScript
 		current += delta;
 		if (ready)
 		{
+			EmitSignal(SignalName.ResourceChanged, current);
+			EmitSignal(SignalName.MaxResourceChanged, maximum);
 			SignalBus.Singleton.EmitSignal(SignalBus.SignalName.ResourceChanged, Parent, Type.ToVariant(), current);
 			SignalBus.Singleton.EmitSignal(SignalBus.SignalName.MaxResourceChanged, Parent, Type.ToVariant(), maximum);
 		}

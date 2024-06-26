@@ -6,6 +6,7 @@ public partial class BuffManaFrenzy : BaseBuff
 {
 	public const float DamageIncrease = 0.01f;
 	public const float FrenzyDuration = 16;
+	public const int MaximumStacks = 100;
 	public BuffManaFrenzy()
 	{
 		Settings = new()
@@ -14,7 +15,7 @@ public partial class BuffManaFrenzy : BaseBuff
 			DynamicDesc = () => MakeDescription($"Increases damage by {Colors.Tag(Math.Round(DamageIncrease * Stacks * 100) + "%")}."),
 			IconPath = "res://assets/icons/SpellBook06_53.PNG",
 			RefreshOthersWhenAdded = true,
-			MaximumStacks = 300,
+			MaximumStacks = MaximumStacks,
 		};
 		Duration = FrenzyDuration;
 	}

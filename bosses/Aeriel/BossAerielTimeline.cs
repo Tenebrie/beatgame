@@ -7,6 +7,8 @@ namespace Project;
 
 public partial class BossAerielTimeline : BaseTimeline<BossAeriel>
 {
+	GroundAreaRect puddleRect;
+
 	public BossAerielTimeline(BossAeriel parent) : base(parent)
 	{
 		GotoAbleton(1);
@@ -28,6 +30,8 @@ public partial class BossAerielTimeline : BaseTimeline<BossAeriel>
 			rect.Length = 8;
 			rect.Width = 8;
 			rect.Periodic = true;
+			rect.TargetValidator = (unit) => unit.HostileTo(parent);
+			puddleRect = rect;
 		});
 		Cast(parent.OpeningTorrentialRain);
 
@@ -265,6 +269,16 @@ public partial class BossAerielTimeline : BaseTimeline<BossAeriel>
 		// ===================================================
 		GotoAbleton(163);
 		Cast(parent.HardEnrage);
+
+		// ===================================================
+		// Victory
+		// ===================================================
+		GotoAbleton(171);
+		Act(() =>
+		{
+			if (Parent.IsDead)
+				Parent.VictorySequence();
+		});
 	}
 
 	void RegisterAutoAttacks()
@@ -314,10 +328,25 @@ public partial class BossAerielTimeline : BaseTimeline<BossAeriel>
 		}
 	}
 
+	protected override void HandleBeatTick(BeatTime time)
+	{
+		if (puddleRect == null)
+			return;
+
+		foreach (var target in puddleRect.GetTargets())
+		{
+			target.Health.Damage(5f, Parent);
+			var effect = Lib.LoadScene(Lib.Effect.ShieldBashImpact).Instantiate<SimpleParticleEffect>();
+			GetTree().CurrentScene.AddChild(effect);
+			effect.SetLifetime(0.01f);
+			effect.Position = target.GlobalCastAimPosition;
+		}
+	}
+
 	public override void _Ready()
 	{
-		Start();
 		var targetIndex = GetMarkBeatIndex("Start");
 		Music.Singleton.SeekTo(targetIndex);
+		Start(targetIndex);
 	}
 }

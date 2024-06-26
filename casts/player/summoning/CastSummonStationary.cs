@@ -15,7 +15,7 @@ public partial class CastSummonStationary : BaseCast
 				$"\nSummon a stationary ally that casts spells for you.",
 				$"The ally has {Colors.Tag(BaseMaxHealth, Colors.Health)} Health and casts a spell every {Colors.Tag(8)} beats.",
 				"If it doesn't have other spells available, the ally will use the basic attack.",
-				$"\n\n{Colors.Tag("Basic Attack:", Colors.Active)} Deal {Colors.Tag(SummonCastZap.Damage)} Damage to an enemy.\n"
+				$"\n\n{Colors.Tag("Basic Attack:", Colors.Active)} Deal {Colors.Tag(SummonCastZap.Damage)} Damage to an enemy."
 			),
 			IconPath = "res://assets/icons/SpellBook06_44.PNG",
 			InputType = CastInputType.AutoRelease,

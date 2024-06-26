@@ -63,7 +63,8 @@ public partial class BossCastTinyStorm : BaseCast
 			area.Radius = 1;
 			area.OnFinishedPerTargetCallback = (BaseUnit unit) =>
 			{
-				unit.Health.Damage(5, this);
+				unit.Health.Damage(20, this);
+				this.CreateZapEffect(pos + new Vector3(0, 5, 0), pos);
 			};
 		}
 

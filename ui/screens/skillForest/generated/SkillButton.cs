@@ -44,11 +44,9 @@ public partial class SkillButton : Control
 		IsDisabled = true;
 		if (AssociatedSkill != null)
 		{
-			IsDisabled = false;
 			if (AssociatedSkill.Settings.IconPath != null)
-			{
 				Icon.Texture = GD.Load<CompressedTexture2D>(AssociatedSkill.Settings.IconPath);
-			}
+			CheckForIncompatibles();
 		}
 	}
 
@@ -70,14 +68,14 @@ public partial class SkillButton : Control
 
 	void CheckForIncompatibles()
 	{
-		IsDisabled = SkillTreeManager.Singleton.Skills.Where(skill => skill.IsLearned).Any(s => s.Settings.IncompatibleSkills.Any(wrapper => wrapper.Is(AssociatedSkill)));
+		IsDisabled = AssociatedSkill.Settings.Disabled ||
+			SkillTreeManager.Singleton.Skills
+				.Where(skill => skill.IsLearned)
+				.Any(s => s.Settings.IncompatibleSkills.Any(wrapper => wrapper.Is(AssociatedSkill)));
 	}
 
 	private void OnMouseEnter()
 	{
-		if (IsDisabled)
-			return;
-
 		HoveredValue = 1;
 		IsHovered = true;
 		SignalBus.Singleton.EmitSignal(SignalBus.SignalName.SkillHovered, AssociatedSkill);
@@ -92,12 +90,11 @@ public partial class SkillButton : Control
 	public void AssignSkill(BaseSkill skill)
 	{
 		AssociatedSkill = skill;
-		IsDisabled = false;
 	}
 
 	public override void _Input(InputEvent @event)
 	{
-		if (@event.IsActionPressed("MouseInteract") && IsHovered)
+		if (@event.IsActionPressed("MouseInteract") && IsHovered && !IsDisabled)
 		{
 			IsPressed = true;
 		}
@@ -107,7 +104,7 @@ public partial class SkillButton : Control
 			if (IsHovered)
 				OnInteract();
 		}
-		if (@event.IsActionPressed("MouseInteractAlt") && IsHovered)
+		if (@event.IsActionPressed("MouseInteractAlt") && IsHovered && !IsDisabled)
 		{
 			IsPressedAlt = true;
 		}

@@ -4,7 +4,7 @@ namespace Project;
 
 public partial class CastHealingTouch : BaseCast
 {
-	float HealAmount = 40;
+	float HealAmount = 150;
 	public CastHealingTouch(BaseUnit parent) : base(parent)
 	{
 		Settings = new()

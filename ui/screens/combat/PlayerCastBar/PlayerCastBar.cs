@@ -19,7 +19,7 @@ public partial class PlayerCastBar : Control
 		Bar = GetNode<ProgressBar>("ProgressBar");
 		GreenZone = GetNode<ProgressBar>("GreenZone");
 		SignalBus.Singleton.CastStarted += OnCastStarted;
-		SignalBus.Singleton.CastPerformed += OnCastPerformed;
+		SignalBus.Singleton.CastCompleted += OnCastCompleted;
 		SignalBus.Singleton.CastFailed += OnCastFailed;
 	}
 
@@ -54,7 +54,7 @@ public partial class PlayerCastBar : Control
 		UpdateBarValue();
 	}
 
-	public void OnCastPerformed(BaseCast cast)
+	public void OnCastCompleted(BaseCast cast)
 	{
 		if (cast != ActiveCast)
 			return;

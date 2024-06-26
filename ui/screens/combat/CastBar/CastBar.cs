@@ -4,6 +4,8 @@ namespace Project;
 
 public partial class CastBar : Control
 {
+	[Signal] public delegate void FinishedEventHandler();
+
 	ProgressBar progressBar;
 	Label label;
 
@@ -12,38 +14,23 @@ public partial class CastBar : Control
 	float castFinishesAt;
 	float prepFinishesAt;
 
+	bool isFinished;
+	bool isInterrupted;
+	float fadeOutSpeed = 1;
+
 	public override void _Ready()
 	{
-		SignalBus.Singleton.CastStarted += OnCastStarted;
-		SignalBus.Singleton.CastPerformed += OnCastPerformed;
-
 		progressBar = GetNode<ProgressBar>("ProgressBar");
 		label = GetNode<Label>("Label");
 	}
 
-	public override void _ExitTree()
-	{
-		SignalBus.Singleton.CastStarted -= OnCastStarted;
-		SignalBus.Singleton.CastPerformed -= OnCastPerformed;
-	}
-
 	public override void _Process(double delta)
 	{
-		if (trackedCast == null || !trackedCast.IsCasting)
-			return;
+		if (!isFinished || !isInterrupted)
+			UpdateBar();
 
-		UpdateBar();
-	}
-
-	void OnCastStarted(BaseCast cast)
-	{
-		if (cast != trackedCast)
-			return;
-
-		castStartedAt = Time.GetTicksMsec();
-		prepFinishesAt = castStartedAt + cast.Settings.PrepareTime * Music.Singleton.SecondsPerBeat * 1000;
-		castFinishesAt = prepFinishesAt + cast.Settings.HoldTime * Music.Singleton.SecondsPerBeat * 1000;
-		UpdateBar();
+		if (isFinished)
+			FadeOut((float)delta);
 	}
 
 	void UpdateBar()
@@ -62,19 +49,63 @@ public partial class CastBar : Control
 		progressBar.Value = value * 100;
 	}
 
-	void OnCastPerformed(BaseCast cast)
+	void FadeOut(float delta)
 	{
-		if (cast != trackedCast)
-			return;
+		var color = progressBar.Modulate;
+		var newColor = new Color(color.R, color.G, color.B, color.A - delta * fadeOutSpeed);
+		progressBar.Modulate = newColor;
+		label.Modulate = newColor;
+		if (newColor.A <= 0)
+			QueueFree();
 	}
 
 	public void TrackCast(BaseCast cast)
 	{
 		trackedCast = cast;
 		label.Text = trackedCast.Settings.FriendlyName;
-		if (cast.IsCasting)
-		{
-			OnCastStarted(cast);
-		}
+
+		castStartedAt = Time.GetTicksMsec();
+		prepFinishesAt = castStartedAt + trackedCast.Settings.PrepareTime * Music.Singleton.SecondsPerBeat * 1000;
+		castFinishesAt = prepFinishesAt + trackedCast.Settings.HoldTime * Music.Singleton.SecondsPerBeat * 1000;
+		UpdateBar();
+
+		cast.Completed += OnCastCompleted;
+		cast.Interrupted += OnCastInterrupted;
+		cast.Failed += OnCastFailed;
+	}
+
+	void UntrackCast()
+	{
+		if (trackedCast == null)
+			return;
+
+		trackedCast.Completed -= OnCastCompleted;
+		trackedCast.Interrupted -= OnCastInterrupted;
+		trackedCast.Failed -= OnCastFailed;
+
+		isFinished = true;
+		EmitSignal(SignalName.Finished);
+	}
+
+	void OnCastCompleted()
+	{
+		fadeOutSpeed = 4;
+		progressBar.SetFillColor(new Color(0, 0.75f, 0, progressBar.GetFillColor().A));
+		UntrackCast();
+	}
+
+	void OnCastInterrupted()
+	{
+		isInterrupted = true;
+		fadeOutSpeed = 0.25f;
+		progressBar.SetFillColor(new Color(0.75f, 0, 0, progressBar.GetFillColor().A));
+		UntrackCast();
+	}
+
+	void OnCastFailed()
+	{
+		fadeOutSpeed = 2;
+		progressBar.SetFillColor(new Color(0.75f, 0, 0, progressBar.GetFillColor().A));
+		UntrackCast();
 	}
 }

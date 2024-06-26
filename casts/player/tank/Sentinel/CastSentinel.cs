@@ -21,7 +21,7 @@ public partial class CastSentinel : BaseCast
 			InputType = CastInputType.Instant,
 			TargetType = CastTargetType.None,
 			CastTimings = BeatTime.Free,
-			RecastTime = 16,
+			RecastTime = 32,
 			Charges = 1,
 			GlobalCooldown = false,
 		};

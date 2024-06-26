@@ -67,8 +67,8 @@ public partial class BossCastRavagingWinds : BaseCast
 			var targets = circleGroup.SelectMany(circle => circle.GetTargets()).Distinct().Where(unit => unit.HostileTo(Parent));
 			foreach (var target in targets)
 			{
-				target.Health.Damage(30, this);
-				target.ForcefulMovement.Push(2, target.Position - Parent.Position, 0.5f);
+				target.Health.Damage(50, this);
+				target.ForcefulMovement.Push(2, (target.Position - Parent.Position).Flatten(target.Position.Y), 1f);
 			}
 		};
 		Rotation += (float)Math.PI * 2 / Settings.HoldTime * 2;

@@ -6,8 +6,8 @@ namespace Project;
 
 public partial class BuffSentinel : BaseBuff
 {
-	public const float DamageReduction = 0.5f;
-	public const float EffectDuration = 4;
+	public const float DamageReduction = 0.75f;
+	public const float EffectDuration = 8;
 
 	public BuffSentinel()
 	{
@@ -24,6 +24,6 @@ public partial class BuffSentinel : BaseBuff
 
 	public override void ModifyUnit(BuffUnitStatsVisitor unit)
 	{
-		unit.PercentageDamageTaken[ObjectResourceType.Health] *= DamageReduction;
+		unit.PercentageDamageTaken[ObjectResourceType.Health] -= DamageReduction;
 	}
 }

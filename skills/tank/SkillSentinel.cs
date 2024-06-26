@@ -9,6 +9,7 @@ public partial class SkillSentinel : BaseSkill
 			FriendlyName = "Sentinel",
 			IconPath = "res://assets/icons/SpellBook06_78.png",
 			ActiveCast = CastFactory.Of<CastSentinel>(),
+			PassiveBuff = BuffFactory.Of<BuffTankTreeHealth>(descriptionOnly: true)
 		};
 	}
 }

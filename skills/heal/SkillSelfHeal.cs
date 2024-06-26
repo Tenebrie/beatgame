@@ -9,6 +9,7 @@ public partial class SkillSelfHeal : BaseSkill
 			FriendlyName = "Healing Touch",
 			IconPath = "res://assets/icons/SpellBook06_55.png",
 			ActiveCast = CastFactory.Of<CastHealingTouch>(),
+			PassiveBuff = BuffFactory.Of<BuffHealTreeExtraMana>(descriptionOnly: true)
 		};
 	}
 }

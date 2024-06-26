@@ -21,7 +21,7 @@ public partial class CastAllConsumingFlame : BaseCast
 			InputType = CastInputType.Instant,
 			TargetType = CastTargetType.None,
 			CastTimings = BeatTime.Free,
-			RecastTime = 16,
+			RecastTime = 32,
 			GlobalCooldown = false,
 		};
 		Settings.ResourceCost[ObjectResourceType.Mana] = ManaCost;

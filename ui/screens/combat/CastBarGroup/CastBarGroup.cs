@@ -12,8 +12,6 @@ public partial class CastBarGroup : VBoxContainer
 	public override void _Ready()
 	{
 		SignalBus.Singleton.CastStarted += OnCastStarted;
-		SignalBus.Singleton.CastPerformed += OnCastPerformed;
-		SignalBus.Singleton.UnitDestroyed += OnUnitDestroyed;
 
 		foreach (var child in GetChildren())
 			RemoveChild(child);
@@ -22,8 +20,6 @@ public partial class CastBarGroup : VBoxContainer
 	public override void _ExitTree()
 	{
 		SignalBus.Singleton.CastStarted -= OnCastStarted;
-		SignalBus.Singleton.CastPerformed -= OnCastPerformed;
-		SignalBus.Singleton.UnitDestroyed -= OnUnitDestroyed;
 	}
 
 	void OnCastStarted(BaseCast cast)
@@ -38,6 +34,7 @@ public partial class CastBarGroup : VBoxContainer
 		var newBar = Lib.LoadScene(Lib.UI.CastBar).Instantiate<CastBar>();
 		AddChild(newBar);
 		newBar.TrackCast(cast);
+		newBar.Finished += () => OnCastBarFinished(newBar);
 		activeBars.Add(new CastBarEntry()
 		{
 			cast = cast,
@@ -45,35 +42,28 @@ public partial class CastBarGroup : VBoxContainer
 		});
 	}
 
-	void OnCastPerformed(BaseCast cast)
+	void OnCastBarFinished(CastBar castBar)
 	{
-		if (cast.Parent != trackedUnit || cast.Settings.HiddenCastBar)
-			return;
-
-		var entry = activeBars.Find(entry => entry.cast == cast);
+		var entry = activeBars.Find(entry => entry.bar == castBar);
 		if (entry == null)
 			return;
 
-		entry.bar.QueueFree();
 		activeBars.Remove(entry);
 	}
 
 	public void TrackUnit(BaseUnit unit)
 	{
 		trackedUnit = unit;
+		unit.UnitDestroyed += UntrackUnit;
 	}
 
 	public void UntrackUnit()
 	{
+		trackedUnit = null;
+
 		foreach (var entry in activeBars)
 			entry.bar.QueueFree();
 		activeBars.Clear();
-	}
-
-	public void OnUnitDestroyed(BaseUnit unit)
-	{
-		if (unit == trackedUnit)
-			UntrackUnit();
 	}
 
 	class CastBarEntry

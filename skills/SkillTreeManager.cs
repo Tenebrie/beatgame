@@ -40,10 +40,10 @@ public partial class SkillTreeManager : Node
 			links: new()
 			{
 				// Shield bash
-				Link<SkillShieldBashRange,  SkillShieldsUp>             (2, BuffFactory.Of<BuffTankTreeHealth>()),
-				Link<SkillShieldBashRange,  SkillParry>                 (2, BuffFactory.Of<BuffTankTreeHealth>()),
-				Link<SkillShieldBash,       SkillShieldBashRange>       (1, BuffFactory.Of<BuffTankTreeHealth>()),
-				Link<SkillShieldsUp,        SkillShieldBashMulticast>   (4, BuffFactory.Of<BuffTankTreeHealth>()),
+				Link<SkillShieldBash,       SkillShieldsUp>             (2, BuffFactory.Of<BuffTankTreeHealthRegen>()),
+				Link<SkillShieldBash,       SkillShieldBashRange>       (1, BuffFactory.Of<BuffTankTreeHealthRegen>()),
+				Link<SkillShieldBash,       SkillParry>                 (2, BuffFactory.Of<BuffTankTreeHealthRegen>()),
+				Link<SkillShieldBashRange,  SkillShieldBashMulticast>   (3, BuffFactory.Of<BuffTankTreeHealthRegen>()),
 			}
 		));
 
@@ -55,9 +55,9 @@ public partial class SkillTreeManager : Node
 			links: new()
 			{
 				// L1
-				Link<SkillSentinel,         SkillSentinelCharges>       (),
-				Link<SkillSentinel,         SkillImmovableObject>       (1, BuffFactory.Of<BuffTankTreeHealth>(), length: 2),
-				Link<SkillSentinel,         SkillSentinelMana>          (),
+				Link<SkillSentinel,         SkillSentinelCharges>       (1, BuffFactory.Of<BuffTankTreeHealth>()),
+				Link<SkillSentinel,         SkillImmovableObject>       (1, BuffFactory.Of<BuffTankTreeHealth>()),
+				Link<SkillSentinel,         SkillSentinelMana>          (1, BuffFactory.Of<BuffTankTreeHealth>()),
 
 				// L2
 				Link<SkillImmovableObject,  SkillHealthRegen1>          (1, BuffFactory.Of<BuffTankTreeHealth>()),
@@ -69,7 +69,7 @@ public partial class SkillTreeManager : Node
 				Link<SkillHealthRegen1,     SkillThorns>                (1, BuffFactory.Of<BuffTankTreeHealth>()),
 
 				// L4
-				Link<SkillThorns,           SkillBerserkersRage>        (1, BuffFactory.Of<BuffTankTreeHealth>()),
+				Link<SkillThorns,           SkillBerserkersRage>        (2, BuffFactory.Of<BuffTankTreeHealth>()),
 			}
 		));
 
@@ -133,7 +133,7 @@ public partial class SkillTreeManager : Node
 			{
 				Link<SkillSummonStationary, SkillSummonFireball>(),
 				Link<SkillSummonStationary, SkillRescue>(1, BuffFactory.Of<BuffSummonTreeSummonHealth>()),
-				Link<SkillSummonStationary, SkillFriendsWithShields>(3, BuffFactory.Of<BuffSummonTreeSummonHealth>()),
+				// Link<SkillSummonStationary, SkillFriendsWithShields>(3, BuffFactory.Of<BuffSummonTreeSummonHealth>()),
 			}
 		));
 
@@ -278,7 +278,7 @@ public partial class SkillTreeManager : Node
 					continue;
 
 				skillPoints -= 1;
-				if (skill.Settings.PassiveBuff == null)
+				if (skill.Settings.PassiveBuff == null || skill.Settings.PassiveBuff.DescriptionOnly)
 					continue;
 
 				var newBuff = skill.Settings.PassiveBuff.Create();

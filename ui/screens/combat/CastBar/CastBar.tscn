@@ -10,6 +10,7 @@ corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kivl2"]
+resource_local_to_scene = true
 bg_color = Color(0.521569, 0.329412, 0, 1)
 corner_radius_top_left = 6
 corner_radius_top_right = 6

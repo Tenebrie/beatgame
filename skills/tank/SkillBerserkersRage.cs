@@ -47,8 +47,8 @@ public partial class SkillBerserkersRage : BaseSkill
 		public partial class RageBuff : BaseBuff
 		{
 			public const float DamageBoost = 0.01f;
-			public const float EffectDuration = 16;
-			public const int MaximumStacks = 300;
+			public const float EffectDuration = 24;
+			public const int MaximumStacks = 100;
 
 			public RageBuff()
 			{

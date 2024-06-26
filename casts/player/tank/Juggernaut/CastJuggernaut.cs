@@ -5,7 +5,7 @@ namespace Project;
 
 public partial class CastJuggernaut : BaseCast
 {
-	public const float HealthThreshold = 50;
+	public const float HealthThreshold = 40;
 
 	public CastJuggernaut(BaseUnit parent) : base(parent)
 	{
@@ -21,10 +21,10 @@ public partial class CastJuggernaut : BaseCast
 			InputType = CastInputType.Instant,
 			TargetType = CastTargetType.None,
 			CastTimings = BeatTime.Free,
-			RecastTime = 32,
+			RecastTime = 48,
 			GlobalCooldown = true,
 		};
-		Settings.ResourceCost[ObjectResourceType.Mana] = 100;
+		Settings.ResourceCost[ObjectResourceType.Mana] = 80;
 	}
 
 	protected override void OnCastCompleted(CastTargetData _)
@@ -39,7 +39,7 @@ public partial class CastJuggernaut : BaseCast
 	public partial class Buff : BaseBuff
 	{
 		public float ExtraHealthRegen;
-		public const float EffectDuration = 16;
+		public const float EffectDuration = 12;
 
 		public Buff()
 		{

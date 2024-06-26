@@ -6,7 +6,7 @@ using Godot;
 namespace Project;
 public partial class BossCastBuster : BaseCast
 {
-	public float Damage = 220;
+	public float Damage = 210;
 	public BaseEffect effect;
 
 	public BossCastBuster(BaseUnit parent) : base(parent)
@@ -31,7 +31,7 @@ public partial class BossCastBuster : BaseCast
 	protected override void OnCastStarted(CastTargetData targetData)
 	{
 		targetData.HostileUnit.Buffs.Add(new BuffBusterTarget(this));
-		effect = Lib.LoadScene(Lib.Effect.BusterTarget).Instantiate<BaseEffect>();
+		effect = Lib.LoadScene(Lib.Effect.BusterTarget).Instantiate<SimpleParticleEffect>();
 		effect.Attach(targetData.HostileUnit, targetData.HostileUnit.CastAimPosition);
 	}
 
@@ -39,6 +39,6 @@ public partial class BossCastBuster : BaseCast
 	{
 		targetData.HostileUnit.Buffs.RemoveAll<BuffBusterTarget>();
 		targetData.HostileUnit.Health.Damage(Damage, this);
-		effect.FreeAfterDelay();
+		effect.SetLifetime(0.01f);
 	}
 }

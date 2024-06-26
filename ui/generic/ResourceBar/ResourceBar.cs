@@ -12,11 +12,14 @@ public partial class ResourceBar : Control
 	Label NegativeComboLabel;
 	[Export] public ThemedProgressBar ThemedProgressBar;
 	[Export] public Label CurrentValueLabel;
+	[Export] public Label SeparatorLabel;
 	[Export] public Label MaximumValueLabel;
+	[Export] public Label OverkillLabel;
 	[Export] public Timer PositiveTimer;
 	[Export] public Timer NegativeTimer;
 
 	private float CurrentValue = 100;
+	private float MaximumValue = 100;
 	private float PositiveGhostValue = 100;
 	private float NegativeGhostValue = 100;
 
@@ -56,24 +59,34 @@ public partial class ResourceBar : Control
 		}
 
 		CurrentValue = value;
-		PositiveGhostValue = Math.Min(PositiveGhostValue, CurrentValue);
+		PositiveGhostValue = value;
+		// PositiveGhostValue = Math.Min(PositiveGhostValue, CurrentValue);
 		NegativeGhostValue = Math.Max(NegativeGhostValue, CurrentValue);
 		CurrentValueLabel.Text = Math.Round(value).ToString();
 
 		Bar.Value = value;
 	}
 
+	public void SetOverflow(float value)
+	{
+		SetCurrent(value % MaximumValue);
+		PositiveGhostValue = value;
+		NegativeGhostValue = TrackedResource.Current;
+		OverkillLabel.Text = $"+{Math.Round(value)}";
+	}
+
 	public void SetMaximum(float value)
 	{
 		MaximumValueLabel.Text = Math.Round(value).ToString();
 
+		MaximumValue = value;
 		Bar.MaxValue = value;
 		PositiveGhost.MaxValue = value;
 		NegativeGhost.MaxValue = value;
 	}
 
 	private BaseUnit TrackedUnit = null;
-	private ObjectResourceType? TrackedResource = null;
+	private ObjectResource TrackedResource = null;
 
 	public void TrackUnit(BaseUnit unit, ObjectResourceType resourceType)
 	{
@@ -81,14 +94,19 @@ public partial class ResourceBar : Control
 			?? throw new Exception("The requested resource does not exist on this unit.");
 
 		TrackedUnit = unit;
-		TrackedResource = resourceType;
+		TrackedResource = resource;
 		SetMaximum(resource.Maximum);
 		SetCurrent(resource.Current);
 		PositiveGhostValue = CurrentValue;
 		NegativeGhostValue = CurrentValue;
-		SignalBus.Singleton.ResourceChanged += OnResourceChanged;
-		SignalBus.Singleton.ResourceRegenerated += OnResourceRegenerated;
-		SignalBus.Singleton.MaxResourceChanged += OnMaxResourceChanged;
+		OverkillLabel.Visible = false;
+		CurrentValueLabel.Visible = true;
+		SeparatorLabel.Visible = true;
+		MaximumValueLabel.Visible = true;
+		unit.UnitKilled += OnTrackedUnitKilled;
+		resource.ResourceChanged += OnResourceChanged;
+		resource.ResourceRegenerated += OnResourceRegenerated;
+		resource.MaxResourceChanged += OnMaxResourceChanged;
 	}
 
 	public void UntrackUnit()
@@ -96,11 +114,13 @@ public partial class ResourceBar : Control
 		if (TrackedUnit == null || TrackedResource == null)
 			return;
 
+		TrackedUnit.UnitKilled -= OnTrackedUnitKilled;
+		TrackedResource.ResourceChanged -= OnResourceChanged;
+		TrackedResource.ResourceRegenerated -= OnResourceRegenerated;
+		TrackedResource.MaxResourceChanged -= OnMaxResourceChanged;
+
 		TrackedUnit = null;
 		TrackedResource = null;
-		SignalBus.Singleton.ResourceChanged -= OnResourceChanged;
-		SignalBus.Singleton.ResourceRegenerated -= OnResourceRegenerated;
-		SignalBus.Singleton.MaxResourceChanged -= OnMaxResourceChanged;
 		SetCurrent(0);
 	}
 
@@ -110,19 +130,28 @@ public partial class ResourceBar : Control
 		SignalBus.Singleton.TrackStarted -= OnTrackStarted;
 	}
 
-	private void OnResourceChanged(BaseUnit unit, ObjectResourceType type, float value)
+	private void OnTrackedUnitKilled()
 	{
-		if (unit != TrackedUnit || type != TrackedResource)
-			return;
-
-		SetCurrent(value);
+		if (TrackedUnit.Alliance != UnitAlliance.Player)
+		{
+			OverkillLabel.Visible = true;
+			CurrentValueLabel.Visible = false;
+			SeparatorLabel.Visible = false;
+			MaximumValueLabel.Visible = false;
+		}
+		SetOverflow(0);
 	}
 
-	private void OnResourceRegenerated(BaseUnit unit, ObjectResourceType type, float value)
+	private void OnResourceChanged(float value)
 	{
-		if (unit != TrackedUnit || type != TrackedResource)
-			return;
+		if (TrackedUnit.IsAlive)
+			SetCurrent(value);
+		else
+			SetOverflow(TrackedResource.DamageOverflow);
+	}
 
+	private void OnResourceRegenerated(float value)
+	{
 		var diff = value - CurrentValue;
 		if (diff > 0)
 			PositiveGhostValue += diff;
@@ -134,11 +163,8 @@ public partial class ResourceBar : Control
 		SetCurrent(value);
 	}
 
-	private void OnMaxResourceChanged(BaseUnit unit, ObjectResourceType type, float value)
+	private void OnMaxResourceChanged(float value)
 	{
-		if (unit != TrackedUnit || type != TrackedResource)
-			return;
-
 		SetMaximum(value);
 		PositiveGhostValue = CurrentValue;
 		NegativeGhostValue = CurrentValue;

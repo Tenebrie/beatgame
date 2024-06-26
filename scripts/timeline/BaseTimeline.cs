@@ -14,14 +14,26 @@ public partial class BaseTimeline<ParentT> : Node where ParentT : BaseUnit
 	public int CurrentElementIndex = 0;
 	public double EditorPointer = 0;
 
+	bool isStarted = false;
 	public CastTargetData targetData = new();
 
 	public BaseTimeline(ParentT parent)
 	{
 		Parent = parent;
+	}
+
+	public override void _EnterTree()
+	{
+		base._EnterTree();
 		Music.Singleton.BeatTick += OnBeatTick;
-		Music.Singleton.CurrentTrackPositionChanged += OnPositionChanged;
 		SignalBus.Singleton.UnitCreated += OnUnitCreated;
+	}
+
+	public override void _ExitTree()
+	{
+		base._ExitTree();
+		Music.Singleton.BeatTick -= OnBeatTick;
+		SignalBus.Singleton.UnitCreated -= OnUnitCreated;
 	}
 
 	void OnUnitCreated(BaseUnit unit)
@@ -38,15 +50,17 @@ public partial class BaseTimeline<ParentT> : Node where ParentT : BaseUnit
 		return beatIndex;
 	}
 
-	public void Start()
+	public void Start(double targetIndex)
 	{
+		isStarted = true;
 		targetData.HostileUnit = PlayerController.AllPlayers[0];
 		Elements = Elements.OrderBy(el => el.BeatIndex).ThenBy(el => el.Priority).ToList();
+		FastForwardTo(targetIndex);
 	}
 
 	public void OnBeatTick(BeatTime time)
 	{
-		if (FightEditorUI.Singleton.EditingMode)
+		if (FightEditorUI.Singleton.EditingMode || !isStarted)
 			return;
 
 		var beatIndex = Music.Singleton.BeatIndex;
@@ -71,9 +85,10 @@ public partial class BaseTimeline<ParentT> : Node where ParentT : BaseUnit
 			if (Elements.ElementAtOrDefault(CurrentElementIndex) == null)
 				break;
 		}
+		HandleBeatTick(time);
 	}
 
-	public void OnPositionChanged(double beatIndex)
+	public void FastForwardTo(double beatIndex)
 	{
 		if (Elements.Count == 0)
 			return;
@@ -94,6 +109,8 @@ public partial class BaseTimeline<ParentT> : Node where ParentT : BaseUnit
 
 		CurrentElementIndex = number;
 	}
+
+	protected virtual void HandleBeatTick(BeatTime time) { }
 
 	public void Wait(double beatIndex)
 	{

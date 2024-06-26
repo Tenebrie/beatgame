@@ -14,7 +14,7 @@ public partial class CastParry : BaseCast
 			FriendlyName = "Parry",
 			Description = MakeDescription(
 				$"For the next {{{1}}} beat, block all incoming damage.",
-				$"When you finish the cast, release {{{BuffParry.RetaliateDamageFraction * 100 + "%"}}} of it back at the enemy."
+				$"When you finish the cast, release {{{BuffParry.RetaliateDamageFraction * 100 + "%"}}} of it at your target."
 			),
 			LoreDescription = "With a lightning-fast strike, you block the enemy attack and riposte at the same moment.",
 			IconPath = "res://assets/icons/SpellBook06_123.png",
@@ -22,10 +22,10 @@ public partial class CastParry : BaseCast
 			TargetType = CastTargetType.None,
 			CastTimings = BeatTime.EveryFullBeat,
 			HoldTime = 1,
-			RecastTime = 8,
+			RecastTime = 4,
 			GlobalCooldown = true,
 		};
-		Settings.ResourceCost[ObjectResourceType.Mana] = 50;
+		Settings.ResourceCost[ObjectResourceType.Mana] = 40;
 	}
 
 	protected override void OnCastStarted(CastTargetData _)

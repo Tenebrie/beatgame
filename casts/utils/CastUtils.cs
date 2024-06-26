@@ -185,6 +185,18 @@ public static class CastUtils
 		return color;
 	}
 
+	public static Color GetAltAllianceColor(UnitAlliance alliance)
+	{
+		var color = new Color(0, 0.7f, 0.7f);
+
+		if (alliance == UnitAlliance.Player)
+			color = new Color(0.7f, 0.7f, 0);
+		else if (alliance == UnitAlliance.Hostile)
+			color = new Color(0.7f, 0.0f, 0.0f);
+
+		return color;
+	}
+
 	public static async void NextFrame(this Node node, Action action = null)
 	{
 		await node.ToSignal(node.GetTree().CreateTimer(0), "timeout");

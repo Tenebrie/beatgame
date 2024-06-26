@@ -68,13 +68,10 @@ public partial class BossCastTridents : BaseCast
 			rect.Radius = 2;
 			rect.GrowTime = 8;
 			rect.Alliance = UnitAlliance.Hostile;
-			rect.OnFinishedCallback = () =>
+			rect.OnFinishedPerTargetCallback = (unit) =>
 			{
-				foreach (var unit in rect.GetTargets())
-				{
-					unit.Health.Damage(30, this);
-					unit.ForcefulMovement.Push(2, unit.Position - rect.Position, 1);
-				}
+				unit.Health.Damage(30, this);
+				unit.ForcefulMovement.Push(2, unit.Position - rect.Position, 1);
 			};
 		}
 	}
@@ -110,15 +107,12 @@ public partial class BossCastTridents : BaseCast
 				rect.Radius = 4;
 				rect.GrowTime = 8;
 				rect.Alliance = UnitAlliance.Hostile;
-				rect.OnFinishedCallback = () =>
+				rect.OnFinishedPerTargetCallback = (unit) =>
 				{
-					foreach (var unit in rect.GetTargets())
-					{
-						unit.Health.Damage(30, this);
-						unit.ForcefulMovement.Push(2, unit.Position - rect.Position, 1f);
-					}
-					trident.QueueFree();
+					unit.Health.Damage(30, this);
+					unit.ForcefulMovement.Push(2, unit.Position - rect.Position, 1f);
 				};
+				rect.OnFinishedCallback = () => trident.QueueFree();
 			}
 		}
 	}

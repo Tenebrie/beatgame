@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://ui/screens/respawn/RespawnUI.cs" id="1_2u5gg"]
 
-[node name="RespawnUI" type="Control" node_paths=PackedStringArray("SpawnButton", "RestartButton")]
+[node name="RespawnUI" type="Control" node_paths=PackedStringArray("SpawnButton", "RestartButton", "TrainingRoomButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -13,6 +13,7 @@ mouse_filter = 2
 script = ExtResource("1_2u5gg")
 SpawnButton = NodePath("Panel/MarginContainer/CenterContainer/HBoxContainer/RespawnButton")
 RestartButton = NodePath("Panel/MarginContainer/CenterContainer/HBoxContainer/ResetButton")
+TrainingRoomButton = NodePath("Panel/MarginContainer/CenterContainer/HBoxContainer/TrainingRoomButton")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -47,12 +48,17 @@ layout_mode = 2
 [node name="RespawnButton" type="Button" parent="Panel/MarginContainer/CenterContainer/HBoxContainer"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
-text = "Spawn"
+text = "Revive"
 
 [node name="ResetButton" type="Button" parent="Panel/MarginContainer/CenterContainer/HBoxContainer"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "Restart"
+
+[node name="TrainingRoomButton" type="Button" parent="Panel/MarginContainer/CenterContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Training Room"
 
 [node name="MarginContainer2" type="MarginContainer" parent="Panel"]
 layout_mode = 1

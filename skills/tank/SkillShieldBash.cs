@@ -9,6 +9,7 @@ public partial class SkillShieldBash : BaseSkill
 			FriendlyName = "Shield Bash",
 			IconPath = "res://assets/icons/SpellBook06_05.png",
 			ActiveCast = CastFactory.Of<ShieldBash>(),
+			PassiveBuff = BuffFactory.Of<BuffTankTreeHealthRegen>(descriptionOnly: true),
 		};
 	}
 }

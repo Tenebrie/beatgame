@@ -119,6 +119,11 @@ public partial class CircleDecal : MeshInstance3D
 		SetInstanceShaderParameter("COLOR_B", color.B);
 	}
 
+	public void SetOuterWidth(float value)
+	{
+		SetInstanceShaderParameter("OUTER_WIDTH", value / 20);
+	}
+
 	public void CleanUp()
 	{
 		fadeValue = 1;

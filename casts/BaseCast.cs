@@ -9,6 +9,10 @@ public partial class BaseCast : Node
 {
 	public const float GlobalCooldownDuration = 2f;
 
+	[Signal] public delegate void CompletedEventHandler();
+	[Signal] public delegate void InterruptedEventHandler();
+	[Signal] public delegate void FailedEventHandler();
+
 	public class CastSettings
 	{
 		public string FriendlyName = "Unnamed Spell";
@@ -51,6 +55,7 @@ public partial class BaseCast : Node
 	};
 
 	public Timer RecastTimerHandle;
+	public int ChargesRemaining;
 	public double CastStartedAt; // beat index
 	public bool IsCasting;
 	public bool IsPreparing;
@@ -136,10 +141,17 @@ public partial class BaseCast : Node
 		if (RecastTimerHandle != null)
 			return;
 
+		ChargesRemaining = Settings.Charges;
 		RecastTimerHandle = new Timer
 		{
 			OneShot = true
 		};
+		// RecastTimerHandle.Timeout += () =>
+		// {
+		// 	ChargesRemaining += 1;
+		// 	if (ChargesRemaining < Settings.Charges)
+		// 		RecastTimerHandle.Start(Settings.RecastTime * Music.Singleton.SecondsPerBeat);
+		// };
 		AddChild(RecastTimerHandle);
 	}
 
@@ -304,9 +316,11 @@ public partial class BaseCast : Node
 		IsCasting = false;
 		StartCooldown();
 		Flags.CastSuccessful = true;
-		SignalBus.Singleton.EmitSignal(SignalBus.SignalName.CastPerformed, this);
 		OnCastCompleted(CastTargetData);
 		OnCastCompletedOrFailed(CastTargetData);
+
+		EmitSignal(SignalName.Completed);
+		SignalBus.Singleton.EmitSignal(SignalBus.SignalName.CastCompleted, this);
 	}
 
 	public void CastFail()
@@ -315,7 +329,6 @@ public partial class BaseCast : Node
 		if (Settings.CooldownOnCancel)
 			StartCooldown();
 		Flags.CastSuccessful = false;
-		SignalBus.Singleton.EmitSignal(SignalBus.SignalName.CastFailed, this);
 
 		OnCastFailed(CastTargetData);
 		OnCastCompletedOrFailed(CastTargetData);
@@ -324,6 +337,23 @@ public partial class BaseCast : Node
 			OnCastCompleted(CastTargetData);
 			OnCastCompletedOrFailed(CastTargetData);
 		}
+
+		EmitSignal(SignalName.Failed);
+		SignalBus.Singleton.EmitSignal(SignalBus.SignalName.CastFailed, this);
+	}
+
+	public void CastInterrupt()
+	{
+		IsCasting = false;
+		if (Settings.CooldownOnCancel)
+			StartCooldown();
+		Flags.CastSuccessful = false;
+
+		OnCastFailed(CastTargetData);
+		OnCastCompletedOrFailed(CastTargetData);
+
+		EmitSignal(SignalName.Interrupted);
+		SignalBus.Singleton.EmitSignal(SignalBus.SignalName.CastInterrupted, this);
 	}
 
 	public void StartCooldown()

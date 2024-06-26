@@ -23,7 +23,7 @@ public partial class DpsMeterCast : Control
 	public void SetCast(BaseCast cast)
 	{
 		castIconRect.Texture = GD.Load<CompressedTexture2D>(cast.Settings.IconPath);
-		if (cast.Parent is PlayerController)
+		if (cast.Parent is PlayerController || cast.Parent == null)
 			castNameLabel.Text = cast.Settings.FriendlyName;
 		else
 			castNameLabel.Text = cast.Parent.FriendlyName + ": " + cast.Settings.FriendlyName;

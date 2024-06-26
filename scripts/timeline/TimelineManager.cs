@@ -22,13 +22,13 @@ public partial class TimelineManager : Node
 		if (fightStarted)
 			return;
 
-		fightStarted = true;
-		Music.Singleton.Start();
-		EnvironmentController.Singleton.SetEnabled("bg_audio", false);
-
 		var bosses = BaseUnit.AllUnits.Where(unit => unit is BossAeriel).Cast<BossAeriel>().ToList();
 		if (bosses.Count > 0)
 			AddChild(new BossAerielTimeline(bosses[0]));
+
+		fightStarted = true;
+		Music.Singleton.Start();
+		EnvironmentController.Singleton.SetEnabled("bg_audio", false);
 	}
 
 	public void ResetFight()
@@ -36,6 +36,11 @@ public partial class TimelineManager : Node
 		fightStarted = false;
 		var transitionToScene = Lib.LoadScene(GetTree().CurrentScene.SceneFilePath);
 		SignalBus.Singleton.EmitSignal(SignalBus.SignalName.SceneTransitionStarted, transitionToScene);
+	}
+
+	public void StopFight()
+	{
+		fightStarted = false;
 	}
 
 	private static TimelineManager instance = null;

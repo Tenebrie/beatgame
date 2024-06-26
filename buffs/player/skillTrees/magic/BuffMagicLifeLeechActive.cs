@@ -4,8 +4,8 @@ namespace Project;
 
 public partial class BuffMagicLifeLeechActive : BaseBuff
 {
-	public const float LifeLeech = 0.9f;
-	public const float EffectDuration = 4;
+	public const float LifeLeech = 0.5f;
+	public const float EffectDuration = 16;
 	public BuffMagicLifeLeechActive()
 	{
 		Settings = new()

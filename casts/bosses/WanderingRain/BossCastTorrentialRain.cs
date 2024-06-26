@@ -10,7 +10,7 @@ public partial class BossCastTorrentialRain : BaseCast
 	float dropletsExpected = 0;
 	float damageDealt = 0;
 	float damageExpected = 0;
-	float damageTotal = 250;
+	float damageTotal = 300;
 
 	public BossCastTorrentialRain(BaseUnit parent) : base(parent)
 	{

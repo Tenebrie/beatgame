@@ -6,7 +6,7 @@ namespace Project;
 
 public partial class BuffThorns : BaseBuff
 {
-	public const float RetaliateDamageFraction = 0.1f;
+	public const float RetaliateDamageFraction = 0.50f;
 
 	public BuffThorns()
 	{

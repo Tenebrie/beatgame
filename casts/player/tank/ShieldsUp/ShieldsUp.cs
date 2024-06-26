@@ -51,7 +51,7 @@ public partial class ShieldsUp : BaseCast
 
 		public override void ModifyUnit(BuffUnitStatsVisitor unit)
 		{
-			unit.PercentageDamageTaken[ObjectResourceType.Health] *= DamageReduction;
+			unit.PercentageDamageTaken[ObjectResourceType.Health] -= DamageReduction;
 		}
 	}
 }

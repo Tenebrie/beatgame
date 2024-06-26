@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://bcrvev26qnfr0"]
+[gd_scene load_steps=29 format=3 uid="uid://bcrvev26qnfr0"]
 
 [ext_resource type="PackedScene" uid="uid://bly86m2hi4wkh" path="res://objects/Environment/WallStone02.tscn" id="3_fvbi3"]
 [ext_resource type="PackedScene" uid="uid://brm5ywm6ylnrg" path="res://objects/Environment/WallStone03.tscn" id="4_lh2l6"]
@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://dqhojeplm586p" path="res://objects/Environment/PillarStone01.tscn" id="18_l61wd"]
 [ext_resource type="PackedScene" uid="uid://c5qjexdib0qy8" path="res://scripts/environment/EnvironmentController.tscn" id="19_fwy4q"]
 [ext_resource type="PackedScene" uid="uid://k3tq7jb87g5b" path="res://objects/Triggers/PlayerSpawner/PlayerSpawner.tscn" id="20_b5ew1"]
+[ext_resource type="Script" path="res://units/enemy/DummyEnemy/UnkillableDummyEnemy.cs" id="20_jp6i1"]
 [ext_resource type="PackedScene" uid="uid://ducyw438mwduj" path="res://objects/Triggers/SceneTransition/SceneTransition.tscn" id="20_tekqx"]
 [ext_resource type="PackedScene" uid="uid://dd8hi213iqvva" path="res://units/enemy/DummyEnemy/DummyEnemy.tscn" id="20_u8i6y"]
 [ext_resource type="PackedScene" uid="uid://bigoodfgf85ex" path="res://units/enemy/DummyEnemy/JumpingDummyEnemy.tscn" id="21_1cqso"]
@@ -1023,15 +1024,20 @@ environment = SubResource("Environment_nxlol")
 camera_attributes = SubResource("CameraAttributesPractical_dlc6d")
 
 [node name="DummyEnemy4" parent="." instance=ExtResource("20_u8i6y")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.06391, -0.00244141, -2.95622)
+transform = Transform3D(5.76205e-08, 0, -1, 0, 1, 0, 1, 0, 5.76205e-08, -4.06391, -0.00244141, -1.95622)
 Alliance = 0
 
 [node name="DummyEnemy5" parent="." instance=ExtResource("20_u8i6y")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.229, -0.00244153, 2.97937)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4.229, -0.00244153, 1.97937)
+Alliance = 2
+
+[node name="UnkillableDummy" parent="." instance=ExtResource("20_u8i6y")]
+transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, -2.229, -0.00244153, 3.97937)
+script = ExtResource("20_jp6i1")
 Alliance = 2
 
 [node name="DummyEnemy6" parent="." instance=ExtResource("21_1cqso")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.6974, -0.00244102, -0.00303364)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 7.6974, -0.00244102, -0.00303364)
 Alliance = 2
 
 [node name="PlayerSpawner" parent="." instance=ExtResource("20_b5ew1")]
@@ -1045,7 +1051,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.393017, 1.64715, -2.03025)
 shape = SubResource("BoxShape3D_50btq")
 
 [node name="ZappingDummyEnemy" parent="." instance=ExtResource("23_2mukf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.96748, 0.00719949, -0.0127659)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -7.96748, 0.00719949, -0.0127659)
 Alliance = 2
 
 [node name="SecretTreeChest" parent="." instance=ExtResource("24_ax25i")]

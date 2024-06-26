@@ -7,7 +7,7 @@ public partial class BuffSummonTreeSummonHealth : BaseBuff
 	{
 		Settings = new()
 		{
-			Description = $"Increase your summons' Health by [color={Colors.Health}]{HealthPerStack}[/color].",
+			Description = $"Every minor node in this tree increases your summons' Health by [color={Colors.Health}]{HealthPerStack}[/color].",
 			Hidden = true,
 		};
 	}

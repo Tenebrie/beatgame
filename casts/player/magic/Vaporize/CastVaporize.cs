@@ -3,7 +3,7 @@ using Godot;
 namespace Project;
 public partial class CastVaporize : BaseCast
 {
-	const float BaseDamage = 70;
+	const float BaseDamage = 120;
 	const int IgniteStacks = 3;
 
 	public CastVaporize(BaseUnit parent) : base(parent)

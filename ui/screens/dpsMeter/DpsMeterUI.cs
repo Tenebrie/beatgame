@@ -18,6 +18,8 @@ public partial class DpsMeterUI : Control
 	float totalDamageDealt = 0;
 	readonly Dictionary<string, DpsMeterCast> damageDealtPerCast = new();
 
+	readonly Dictionary<SilentDamageReason, VirtualCastRetaliation> virtualCasts = new();
+
 	public override void _Ready()
 	{
 		Visible = false;
@@ -25,8 +27,11 @@ public partial class DpsMeterUI : Control
 			castContainer.GetChild(i).QueueFree();
 
 		SignalBus.Singleton.DamageTaken += OnDamageTaken;
+		SignalBus.Singleton.SilentDamageTaken += OnSilentDamageTaken;
 		Music.Singleton.BeatTick += OnBeatTick;
 		clearButton.Pressed += Reset;
+
+		virtualCasts.Add(SilentDamageReason.Retaliate, new VirtualCastRetaliation(null));
 	}
 
 	void OnBeatTick(BeatTime time)
@@ -44,9 +49,17 @@ public partial class DpsMeterUI : Control
 		if (@event.IsActionPressed("ToggleDpsMeter"))
 		{
 			Visible = !Visible;
-			if (!Visible)
-				Reset();
 		}
+	}
+
+	void OnSilentDamageTaken(BuffIncomingDamageVisitor data, SilentDamageReason reason)
+	{
+		if (data.ResourceType != ObjectResourceType.Health || data.SourceUnit == null || data.SourceUnit.Alliance != UnitAlliance.Player)
+			return;
+
+		var castId = data.SourceUnit.GetType().ToString() + "-silent-" + reason;
+		BaseCast virtualSourceCast = virtualCasts.GetValueOrDefault(reason);
+		ProcessDamage(data.Value, virtualSourceCast, castId);
 	}
 
 	void OnDamageTaken(BuffIncomingDamageVisitor data)
@@ -54,19 +67,24 @@ public partial class DpsMeterUI : Control
 		if (data.ResourceType != ObjectResourceType.Health || data.SourceUnit == null || data.SourceUnit.Alliance != UnitAlliance.Player || data.SourceCast == null)
 			return;
 
-		isStarted = true;
 		var castId = data.SourceUnit.GetType().ToString() + data.SourceCast.GetType();
+		ProcessDamage(data.Value, data.SourceCast, castId);
+	}
+
+	void ProcessDamage(float value, BaseCast sourceCast, string castId)
+	{
+		isStarted = true;
 		var meterExists = damageDealtPerCast.TryGetValue(castId, out var affectedMeter);
 		if (!meterExists)
 		{
 			affectedMeter = Lib.LoadScene(Lib.UI.DpsMeterCast).Instantiate<DpsMeterCast>();
 			castContainer.AddChild(affectedMeter);
-			affectedMeter.SetCast(data.SourceCast);
+			affectedMeter.SetCast(sourceCast);
 			damageDealtPerCast.Add(castId, affectedMeter);
 		}
-		affectedMeter.DamageDealt += data.Value;
-		totalDamageDealt += data.Value;
-		totalDamageLabel.Text = totalDamageDealt.ToString();
+		affectedMeter.DamageDealt += value;
+		totalDamageDealt += value;
+		totalDamageLabel.Text = Math.Round(totalDamageDealt).ToString();
 
 		var highestDamageDealt = damageDealtPerCast.Values.Select(val => val.DamageDealt).OrderByDescending(val => val).First();
 		foreach (var meter in damageDealtPerCast.Values)
