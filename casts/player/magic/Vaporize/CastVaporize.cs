@@ -14,7 +14,7 @@ public partial class CastVaporize : BaseCast
 			Description = MakeDescription(
 				$"Momentarily opens a rift to the plane of flame underneath the target, dealing {{{BaseDamage}}} Fire damage to every enemy in proximity",
 				$"and applying {{{IgniteStacks}}} stacks of {{Minor Ignite}}, dealing",
-				$"{{{BuffMinorIgnite.DamagePerBeat * IgniteStacks}}} damage per beat for {BuffMinorIgnite.BurnDuration} beats."
+				$"{{{BuffMinorIgnite.DamagePerBeat * IgniteStacks}}} damage per beat for {{{BuffMinorIgnite.BurnDuration}}} beats."
 			),
 			IconPath = "res://assets/icons/SpellBook06_23.PNG",
 			InputType = CastInputType.AutoRelease,

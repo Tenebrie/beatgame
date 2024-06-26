@@ -4,12 +4,11 @@ namespace Project;
 
 public partial class UnitCard : Control
 {
-	[Export]
-	public Label NameLabel;
-	[Export]
-	public ResourceBar HealthBar;
-	[Export]
-	public Panel BackgroundPanel;
+	[Export] Control MouseSurface;
+	[Export] Label NameLabel;
+	[Export] ResourceBar HealthBar;
+	[Export] Panel BackgroundPanel;
+	[Export] BuffContainer BuffCard;
 
 	bool isHovered = false;
 	bool isPressed = false;
@@ -24,8 +23,8 @@ public partial class UnitCard : Control
 
 	public override void _EnterTree()
 	{
-		MouseEntered += OnMouseEntered;
-		MouseExited += OnMouseExited;
+		MouseSurface.MouseEntered += OnMouseEntered;
+		MouseSurface.MouseExited += OnMouseExited;
 		SignalBus.Singleton.ObjectTargeted += OnObjectTargeted;
 		SignalBus.Singleton.ObjectUntargeted += OnObjectUntargeted;
 		UpdateHoverValue();
@@ -34,6 +33,7 @@ public partial class UnitCard : Control
 	public override void _ExitTree()
 	{
 		SignalBus.Singleton.ObjectTargeted -= OnObjectTargeted;
+		SignalBus.Singleton.ObjectUntargeted -= OnObjectUntargeted;
 	}
 
 	void OnObjectTargeted(BaseUnit unit, TargetedUnitAlliance alliance)
@@ -107,10 +107,12 @@ public partial class UnitCard : Control
 
 		NameLabel.Text = trackedUnit.FriendlyName;
 		HealthBar.TrackUnit(trackedUnit, ObjectResourceType.Health);
+		BuffCard.TrackUnit(trackedUnit);
 	}
 
 	public void UntrackUnit()
 	{
 		HealthBar.UntrackUnit();
+		BuffCard.UntrackUnit();
 	}
 }

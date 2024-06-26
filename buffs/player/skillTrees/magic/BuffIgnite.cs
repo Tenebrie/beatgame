@@ -3,7 +3,7 @@ namespace Project;
 public partial class BuffIgnite : BaseBuff
 {
 	public const float DamagePerBeat = 5;
-	public const float BurnDuration = 16;
+	public const float BurnDuration = 32;
 
 	public BuffIgnite()
 	{

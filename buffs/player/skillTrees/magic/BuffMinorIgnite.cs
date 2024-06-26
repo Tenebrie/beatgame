@@ -3,14 +3,14 @@ namespace Project;
 public partial class BuffMinorIgnite : BaseBuff
 {
 	public const float DamagePerBeat = 2;
-	public const float BurnDuration = 8;
+	public const float BurnDuration = 12;
 
 	public BuffMinorIgnite()
 	{
 		Settings = new()
 		{
 			FriendlyName = "Minor Ignite",
-			Description = $"Deals {Colors.Tag(DamagePerBeat)} Fire damage per beat.",
+			DynamicDesc = () => $"Deals {Colors.Tag(DamagePerBeat * Stacks)} Fire damage per beat.",
 			IconPath = "res://assets/icons/SpellBook06_29.PNG",
 			TicksOnBeat = true,
 		};

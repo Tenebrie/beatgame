@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://c2m17h2hubigh"]
+[gd_scene load_steps=8 format=3 uid="uid://c2m17h2hubigh"]
 
 [ext_resource type="Script" path="res://ui/generic/UnitCard/UnitCard.cs" id="1_pma0p"]
 [ext_resource type="PackedScene" uid="uid://b7e338e230e43" path="res://ui/generic/ResourceBar/ResourceBar.tscn" id="1_sliwq"]
 [ext_resource type="Theme" uid="uid://bujrbuaekms73" path="res://ui/generic/ResourceBar/themes/HealthBar.tres" id="3_bxv2x"]
+[ext_resource type="PackedScene" uid="uid://ci0iad02t4yvv" path="res://ui/generic/BuffContainer/BuffContainer.tscn" id="4_00sdq"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ihkyo"]
 content_margin_left = 0.0
@@ -32,21 +33,31 @@ corner_radius_top_right = 6
 corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
 
-[node name="UnitCard" type="Control" node_paths=PackedStringArray("NameLabel", "HealthBar", "BackgroundPanel")]
+[node name="UnitCard" type="Control" node_paths=PackedStringArray("MouseSurface", "NameLabel", "HealthBar", "BackgroundPanel", "BuffCard")]
 custom_minimum_size = Vector2(100, 65)
 layout_mode = 3
 anchor_right = 0.161
 anchor_bottom = 0.073
-offset_right = -3.12003
+offset_right = 149.88
 offset_bottom = -8.84
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_pma0p")
-NameLabel = NodePath("NameLabel")
-HealthBar = NodePath("HealthBar")
-BackgroundPanel = NodePath("BackgroundPanel")
+MouseSurface = NodePath("Control")
+NameLabel = NodePath("Control/NameLabel")
+HealthBar = NodePath("Control/HealthBar")
+BackgroundPanel = NodePath("Control/BackgroundPanel")
+BuffCard = NodePath("BuffContainer")
 
-[node name="BackgroundPanel" type="Panel" parent="."]
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchor_right = 0.664
+anchor_bottom = 1.0
+offset_right = 0.223999
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackgroundPanel" type="Panel" parent="Control"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -57,7 +68,7 @@ mouse_filter = 2
 theme = SubResource("Theme_xk5fw")
 theme_override_styles/panel = SubResource("StyleBoxFlat_g2wh2")
 
-[node name="NameLabel" type="Label" parent="."]
+[node name="NameLabel" type="Label" parent="Control"]
 layout_mode = 0
 offset_left = 11.0
 offset_top = 10.0
@@ -65,7 +76,7 @@ offset_right = 261.0
 offset_bottom = 33.0
 text = "Unit name"
 
-[node name="HealthBar" parent="." instance=ExtResource("1_sliwq")]
+[node name="HealthBar" parent="Control" instance=ExtResource("1_sliwq")]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -78,3 +89,13 @@ offset_bottom = -10.0
 grow_vertical = 0
 mouse_filter = 2
 theme = ExtResource("3_bxv2x")
+
+[node name="BuffContainer" parent="." instance=ExtResource("4_00sdq")]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.669
+offset_left = -0.0710144
+offset_top = 5.0
+offset_right = -1.0
+offset_bottom = -4.0
