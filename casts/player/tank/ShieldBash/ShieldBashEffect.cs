@@ -43,7 +43,7 @@ public partial class ShieldBashEffect : GhostWeaponEffect
 
 		if (state == State.Accelerating)
 		{
-			Position += velocity * (float)delta;
+			GlobalPosition += velocity * (float)delta;
 		}
 		if (state == State.Despawning)
 		{

@@ -54,7 +54,7 @@ public partial class ShieldBash : BaseCast
 	void SpawnShield(CastTargetData target, float rotation, bool applyDamage)
 	{
 		var weapon = Lib.LoadScene(Lib.Effect.ShieldBashWeapon).Instantiate() as ShieldBashEffect;
-		GetTree().CurrentScene.AddChild(weapon);
+		target.HostileUnit.AddChild(weapon);
 		Vector3 spawnPosition;
 		if (this.HasSkill<SkillShieldBashRange>())
 		{
