@@ -14,8 +14,8 @@ public partial class BuffSentinel : BaseBuff
 		Settings = new()
 		{
 			FriendlyName = "Sentinel",
-			Description = MakeDescription(
-				$"Increases your damage reduction by {{{Math.Round(DamageReduction * 100) + "%"}}}."
+			DynamicDesc = () => MakeDescription(
+				$"Increases your damage reduction by {{{Math.Round(DamageReduction * Stacks * 100) + "%"}}}."
 			),
 			IconPath = "res://assets/icons/SpellBook06_78.png",
 		};

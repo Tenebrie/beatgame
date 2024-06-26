@@ -153,10 +153,11 @@ public partial class ActionButton : Control
 
 		double value = 0;
 		var currentCastingSpell = ((PlayerController)AssociatedCast.Parent).Spellcasting.GetCurrentCastingSpell();
-		if (AssociatedCast.RecastTimerHandle.TimeLeft > 0)
-			value = AssociatedCast.RecastTimerHandle.TimeLeft / AssociatedCast.RecastTimerHandle.WaitTime;
+		var cooldownTimeLeft = AssociatedCast.GetCooldownTimeLeft();
+		if (cooldownTimeLeft > 0)
+			value = cooldownTimeLeft / AssociatedCast.GetCooldownWaitTime();
 		if (currentCastingSpell != null && currentCastingSpell.Settings.GlobalCooldown && AssociatedCast.Settings.GlobalCooldown
-			&& (AssociatedCast.RecastTimerHandle.TimeLeft < BaseCast.GlobalCooldownDuration * Music.Singleton.SecondsPerBeat))
+			&& (cooldownTimeLeft < BaseCast.GlobalCooldownDuration * Music.Singleton.SecondsPerBeat))
 			value = 1;
 
 		CooldownProgressBar.Value = value * 100;

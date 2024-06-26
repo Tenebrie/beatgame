@@ -54,7 +54,8 @@ public partial class BaseCast : Node
 		public bool CastSuccessful;
 	};
 
-	public Timer RecastTimerHandle;
+	Timer GlobalCooldownTimerHandle;
+	Timer ChargesTimerHandle;
 	public int ChargesRemaining;
 	public double CastStartedAt; // beat index
 	public bool IsCasting;
@@ -132,27 +133,29 @@ public partial class BaseCast : Node
 	public override void _ExitTree()
 	{
 		Music.Singleton.BeatTick -= OnBeatTick;
-		if (RecastTimerHandle != null)
-			RemoveChild(RecastTimerHandle);
+		if (GlobalCooldownTimerHandle != null)
+			RemoveChild(GlobalCooldownTimerHandle);
+		if (ChargesTimerHandle != null)
+			RemoveChild(ChargesTimerHandle);
 	}
 
 	private void EnsureTimerExists()
 	{
-		if (RecastTimerHandle != null)
+		if (ChargesTimerHandle != null && GlobalCooldownTimerHandle != null)
 			return;
 
 		ChargesRemaining = Settings.Charges;
-		RecastTimerHandle = new Timer
+		ChargesTimerHandle = new Timer { OneShot = true };
+		GlobalCooldownTimerHandle = new Timer { OneShot = true };
+
+		ChargesTimerHandle.Timeout += () =>
 		{
-			OneShot = true
+			ChargesRemaining += 1;
+			if (ChargesRemaining < Settings.Charges)
+				ChargesTimerHandle.Start(Settings.RecastTime * Music.Singleton.SecondsPerBeat);
 		};
-		// RecastTimerHandle.Timeout += () =>
-		// {
-		// 	ChargesRemaining += 1;
-		// 	if (ChargesRemaining < Settings.Charges)
-		// 		RecastTimerHandle.Start(Settings.RecastTime * Music.Singleton.SecondsPerBeat);
-		// };
-		AddChild(RecastTimerHandle);
+		AddChild(ChargesTimerHandle);
+		AddChild(GlobalCooldownTimerHandle);
 	}
 
 	private void OnBeatTick(BeatTime time)
@@ -245,7 +248,12 @@ public partial class BaseCast : Node
 
 	public bool ValidateIfCastIsPossible(CastTargetData target, out string errorMessage)
 	{
-		if (RecastTimerHandle.TimeLeft > Music.Singleton.TimingWindow)
+		if (ChargesRemaining == 0 && ChargesTimerHandle.TimeLeft > Music.Singleton.TimingWindow)
+		{
+			errorMessage = "No charges available";
+			return false;
+		}
+		if (GlobalCooldownTimerHandle.TimeLeft > Music.Singleton.TimingWindow)
 		{
 			errorMessage = "Cooling down";
 			return false;
@@ -360,14 +368,32 @@ public partial class BaseCast : Node
 	{
 		if (Settings.GlobalCooldown && Parent is PlayerController player)
 			player.Spellcasting.TriggerGlobalCooldown();
-		if (Settings.RecastTime > 0 && RecastTimerHandle.TimeLeft < Settings.RecastTime * Music.Singleton.SecondsPerBeat)
-			RecastTimerHandle.Start(Settings.RecastTime * Music.Singleton.SecondsPerBeat);
+		if (Settings.RecastTime > 0)
+		{
+			ChargesRemaining -= 1;
+			if (ChargesTimerHandle.IsStopped())
+				ChargesTimerHandle.Start(Settings.RecastTime * Music.Singleton.SecondsPerBeat);
+		}
 	}
 
 	public void StartGlobalCooldown()
 	{
-		if (RecastTimerHandle.TimeLeft < GlobalCooldownDuration * Music.Singleton.SecondsPerBeat)
-			RecastTimerHandle.Start(GlobalCooldownDuration * Music.Singleton.SecondsPerBeat);
+		GlobalCooldownTimerHandle.Start(GlobalCooldownDuration * Music.Singleton.SecondsPerBeat);
+	}
+
+	public float GetCooldownTimeLeft()
+	{
+		if (ChargesRemaining > 0)
+			return (float)GlobalCooldownTimerHandle.TimeLeft;
+
+		return (float)Math.Max(ChargesTimerHandle.TimeLeft, GlobalCooldownTimerHandle.TimeLeft);
+	}
+
+	public float GetCooldownWaitTime()
+	{
+		if (!Settings.GlobalCooldown)
+			return (float)ChargesTimerHandle.WaitTime;
+		return (float)Math.Max(ChargesTimerHandle.WaitTime, GlobalCooldownTimerHandle.WaitTime);
 	}
 
 	protected virtual void OnCastStarted(CastTargetData _) { }
