@@ -29,7 +29,8 @@ public partial class CastVaporize : BaseCast
 
 	protected override void OnCastStarted(CastTargetData targetData)
 	{
-		Parent.Buffs.RefreshDuration<BuffManaFrenzy>();
+		if (this.HasSkill<SkillManaFrenzy>())
+			Parent.Buffs.RefreshDuration<BuffManaFrenzy>();
 		var circle = this.CreateGroundCircularArea(targetData.HostileUnit.GetGroundedPosition());
 		circle.Radius = 1;
 		circle.Alliance = Parent.Alliance;
@@ -47,7 +48,8 @@ public partial class CastVaporize : BaseCast
 
 	protected override void OnCastTicked(CastTargetData _, BeatTime time)
 	{
-		Parent.Buffs.RefreshDuration<BuffManaFrenzy>();
+		if (this.HasSkill<SkillManaFrenzy>())
+			Parent.Buffs.RefreshDuration<BuffManaFrenzy>();
 	}
 
 	protected override void OnCastCompleted(CastTargetData target)

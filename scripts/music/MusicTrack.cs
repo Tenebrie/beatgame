@@ -14,9 +14,9 @@ public partial class MusicTrack : Node
 	public override void _EnterTree()
 	{
 		AudioStream = Lib.LoadVorbis(ResourcePath);
-		AudioStream.Loop = Loop;
 		AudioPlayer.Stream = AudioStream;
 		AddChild(AudioPlayer);
+		AudioPlayer.Finished += OnFinished;
 	}
 
 	public async void PlayAfterDelay(float delay, float fromPosition)
@@ -32,6 +32,16 @@ public partial class MusicTrack : Node
 	public void Stop()
 	{
 		AudioPlayer.Stop();
+	}
+
+	async void OnFinished()
+	{
+		Music.Singleton.Stop();
+		if (Loop)
+		{
+			await ToSignal(GetTree().CreateTimer(2), "timeout");
+			Music.Singleton.Start();
+		}
 	}
 
 	public float Volume

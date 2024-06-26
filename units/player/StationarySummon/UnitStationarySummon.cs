@@ -49,6 +49,9 @@ public partial class UnitStationarySummon : BaseUnit
 		if (time != BeatTime.Whole)
 			return;
 
+		if (CastLibrary.Casts.Count > 1 && currentCastIndex == 0)
+			currentCastIndex = 1;
+
 		var hostileTargets = AllUnits.Where(unit => unit.HostileTo(this)).ToList();
 
 		CastTargetData data = new()

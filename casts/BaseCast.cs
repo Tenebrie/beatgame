@@ -248,6 +248,11 @@ public partial class BaseCast : Node
 
 	public bool ValidateIfCastIsPossible(CastTargetData target, out string errorMessage)
 	{
+		if (!Music.Singleton.IsStarted)
+		{
+			errorMessage = "Song has not started yet";
+			return false;
+		}
 		if (ChargesRemaining == 0 && ChargesTimerHandle.TimeLeft > Music.Singleton.TimingWindow)
 		{
 			errorMessage = "No charges available";

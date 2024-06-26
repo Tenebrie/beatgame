@@ -36,7 +36,8 @@ public partial class Fireball : BaseCast
 
 	protected override void OnCastStarted(CastTargetData _)
 	{
-		Parent.Buffs.RefreshDuration<BuffManaFrenzy>();
+		if (this.HasSkill<SkillManaFrenzy>())
+			Parent.Buffs.RefreshDuration<BuffManaFrenzy>();
 	}
 
 	protected override void OnCastCompleted(CastTargetData target)

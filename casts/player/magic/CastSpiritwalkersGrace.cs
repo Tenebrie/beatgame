@@ -3,7 +3,7 @@ using Godot;
 namespace Project;
 public partial class CastSpiritwalkersGrace : BaseCast
 {
-	float duration = 16;
+	float duration = 32;
 	public CastSpiritwalkersGrace(BaseUnit parent) : base(parent)
 	{
 		Settings = new()
@@ -18,7 +18,7 @@ public partial class CastSpiritwalkersGrace : BaseCast
 			InputType = CastInputType.Instant,
 			CastTimings = BeatTime.Free,
 			HoldTime = 0,
-			RecastTime = 64,
+			RecastTime = 48,
 			GlobalCooldown = false,
 		};
 	}

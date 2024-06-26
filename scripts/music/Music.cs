@@ -207,6 +207,17 @@ public partial class Music : Node
 		VisualBeatTimer.Start(BeatsPerMinute, speedModifier: 1f, 0);
 	}
 
+	public void Stop()
+	{
+		IsStarted = false;
+		WholeNoteTimer.Stop(-WholeNoteTimer.Calibration);
+		HalfNoteTimer.Stop(-HalfNoteTimer.Calibration);
+		QuarterNoteTimer.Stop(-QuarterNoteTimer.Calibration);
+		EigthNoteTimer.Stop(-EigthNoteTimer.Calibration);
+		SixteenthNoteTimer.Stop(-SixteenthNoteTimer.Calibration);
+		VisualBeatTimer.Stop(-VisualBeatTimer.Calibration);
+	}
+
 	public override void _Process(double delta)
 	{
 		if (!IsFadingOut || CurrentTrack == null || !IsStarted)

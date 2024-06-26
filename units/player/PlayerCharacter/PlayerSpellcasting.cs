@@ -217,7 +217,7 @@ public partial class PlayerSpellcasting : ComposableScript
 
 	public void CastInputReleased(BaseCast cast)
 	{
-		if (cast.IsCasting)
+		if (!cast.IsCasting)
 			return;
 
 		var targetData = GetTargetData();
