@@ -25,6 +25,8 @@ public partial class ActionButton : Control
 	public bool IsHighlighted;
 	public float HighlightedValue;
 
+	Timer tooltipDelayTimer;
+
 	private BaseCast AssociatedCast;
 
 	public override void _Ready()
@@ -44,6 +46,20 @@ public partial class ActionButton : Control
 
 		IsDisabled = true;
 		Icon.Texture = GD.Load<CompressedTexture2D>("res://assets/ui/icon-skill-active-placeholder.png");
+
+		tooltipDelayTimer = new Timer()
+		{
+			WaitTime = 0.75f,
+			OneShot = true,
+		};
+		tooltipDelayTimer.Timeout += () =>
+		{
+			if (!IsHovered)
+				return;
+
+			SignalBus.Singleton.EmitSignal(SignalBus.SignalName.CastHovered, AssociatedCast);
+		};
+		AddChild(tooltipDelayTimer);
 	}
 
 	private void OnMouseEnter()
@@ -53,7 +69,7 @@ public partial class ActionButton : Control
 
 		HoveredValue = 1;
 		IsHovered = true;
-		SignalBus.Singleton.EmitSignal(SignalBus.SignalName.CastHovered, AssociatedCast);
+		tooltipDelayTimer.Start();
 	}
 
 	private void OnMouseLeave()
@@ -94,16 +110,20 @@ public partial class ActionButton : Control
 
 	public override void _Input(InputEvent @event)
 	{
-		if (SkillForestUI.Singleton.Visible)
+		if (SkillForestUI.Singleton.Visible || AssociatedCast == null)
 			return;
 
 		if (@event.IsActionPressed("MouseInteract") && IsHovered)
 		{
 			IsPressed = true;
+			if (PlayerController.AllPlayers.Count > 0)
+				PlayerController.AllPlayers[0].Spellcasting.CastInputPressed(AssociatedCast);
 		}
 		if (@event.IsActionReleased("MouseInteract") && IsPressed)
 		{
 			IsPressed = false;
+			if (PlayerController.AllPlayers.Count > 0)
+				PlayerController.AllPlayers[0].Spellcasting.CastInputReleased(AssociatedCast);
 		}
 
 		if (@event.IsActionPressed(ActionName, exactMatch: true))

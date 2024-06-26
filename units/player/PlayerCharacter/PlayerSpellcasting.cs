@@ -174,48 +174,64 @@ public partial class PlayerSpellcasting : ComposableScript
 			if (!binding)
 				return;
 
-			var alliedTarget = Parent.Targeting.targetedAlliedUnit ?? (PlayerController.AllPlayers.Count > 0 ? PlayerController.AllPlayers[0] : null);
-			var hostileTarget = Parent.Targeting.targetedHostileUnit ?? BaseUnit.AllUnits.Where(unit => unit is BasicEnemyController enemy && enemy.IsBoss).FirstOrDefault();
-
-			var targetData = new CastTargetData()
-			{
-				AlliedUnit = alliedTarget,
-				HostileUnit = hostileTarget,
-				Point = Parent.Position, // TODO: Implement ground targeting
-			};
-
 			if (@Input.IsActionJustPressed(key))
-			{
-				if (cast.IsCasting)
-					return;
-
-				Parent.Movement.StopAutorun();
-				if (cast.Settings.InputType != CastInputType.Instant || cast.Settings.GlobalCooldown)
-					ReleaseCurrentCastingSpell();
-
-				var canCast = cast.ValidateIfCastIsPossible(targetData, out var errorMessage);
-				if (!canCast)
-				{
-					SignalBus.SendMessage(errorMessage);
-					return;
-				}
-
-				cast.CastBegin(targetData);
-			}
+				CastInputPressed(cast);
 			else if (@Input.IsActionJustReleased(key))
-			{
-				if (cast.Settings.InputType == CastInputType.HoldRelease && cast.IsCasting)
-				{
-					var isValidTarget = cast.ValidateTarget(targetData, out var errorMessage);
-					if (!isValidTarget)
-					{
-						SignalBus.SendMessage(errorMessage);
-						return;
-					}
+				CastInputReleased(cast);
+		}
+	}
 
-					CastRelease(cast);
-				}
+	CastTargetData GetTargetData()
+	{
+		var alliedTarget = Parent.Targeting.targetedAlliedUnit ?? (PlayerController.AllPlayers.Count > 0 ? PlayerController.AllPlayers[0] : null);
+		var hostileTarget = Parent.Targeting.targetedHostileUnit ?? BaseUnit.AllUnits.Where(unit => unit is BasicEnemyController enemy && enemy.IsBoss).FirstOrDefault();
+
+		return new CastTargetData()
+		{
+			AlliedUnit = alliedTarget,
+			HostileUnit = hostileTarget,
+			Point = Parent.Position, // TODO: Implement ground targeting
+		};
+	}
+
+	public void CastInputPressed(BaseCast cast)
+	{
+		if (cast.IsCasting)
+			return;
+
+		var targetData = GetTargetData();
+
+		Parent.Movement.StopAutorun();
+		if (cast.Settings.InputType != CastInputType.Instant || cast.Settings.GlobalCooldown)
+			ReleaseCurrentCastingSpell();
+
+		var canCast = cast.ValidateIfCastIsPossible(targetData, out var errorMessage);
+		if (!canCast)
+		{
+			SignalBus.SendMessage(errorMessage);
+			return;
+		}
+
+		cast.CastBegin(targetData);
+	}
+
+	public void CastInputReleased(BaseCast cast)
+	{
+		if (cast.IsCasting)
+			return;
+
+		var targetData = GetTargetData();
+
+		if (cast.Settings.InputType == CastInputType.HoldRelease)
+		{
+			var isValidTarget = cast.ValidateTarget(targetData, out var errorMessage);
+			if (!isValidTarget)
+			{
+				SignalBus.SendMessage(errorMessage);
+				return;
 			}
+
+			CastRelease(cast);
 		}
 	}
 
