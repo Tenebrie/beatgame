@@ -24,7 +24,7 @@ public partial class MusicTrack : Node
 		await ToSignal(GetTree().CreateTimer(delay), "timeout");
 
 		SignalBus.Singleton.EmitSignal(SignalBus.SignalName.TrackStarted, this);
-		Volume = Preferences.Singleton.MainVolume;
+		Volume = Preferences.Singleton.MusicVolume;
 		AudioPlayer.Play();
 		AudioPlayer.Seek(fromPosition);
 	}

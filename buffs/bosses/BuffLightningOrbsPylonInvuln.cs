@@ -12,9 +12,9 @@ public partial class BuffLightningOrbsPylonInvuln : BaseBuff
 
 	public override void ModifyIncomingDamage(BuffIncomingDamageVisitor damage)
 	{
-		var buffCount = Math.Min(damage.SourceCast.Parent.Buffs.Stacks<BuffPowerUpLightningOrb>(), (int)Math.Round(Parent.Health.Current));
+		var buffCount = Math.Min(damage.SourceUnit.Buffs.Stacks<BuffPowerUpLightningOrb>(), (int)Math.Round(Parent.Health.Current));
 
 		damage.Value = buffCount;
-		damage.SourceCast.Parent.Buffs.RemoveStacks<BuffPowerUpLightningOrb>(buffCount);
+		damage.SourceUnit.Buffs.RemoveStacks<BuffPowerUpLightningOrb>(buffCount);
 	}
 }

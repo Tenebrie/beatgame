@@ -7,7 +7,7 @@ public partial class BuffRigorMortis : BaseBuff
 		Settings = new()
 		{
 			FriendlyName = "Rigor Mortis",
-			Description = MakeDescription("Unfortunately, you are afflicted by death. But don't worry, we can get you back up! For just $1.99."),
+			Description = MakeDescription("Unfortunately, you are afflicted by death. But don't worry, we can get you back up for just {{$0.99}}!"),
 			IconPath = "res://assets/icons/SpellBook06_41.PNG",
 			MaximumStacks = 1
 		};

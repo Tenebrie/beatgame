@@ -16,7 +16,9 @@ public partial class SceneTransition : Area3D
 		if (body is not PlayerController)
 			return;
 
-		var transitionToScene = Lib.LoadScene(Lib.Scene.GetPath(TransitionTo));
-		SignalBus.Singleton.EmitSignal(SignalBus.SignalName.SceneTransitionStarted, transitionToScene);
+		SignalBus.SendMessage("The boss is not yet available, come back later!", 5);
+
+		// var transitionToScene = Lib.LoadScene(Lib.Scene.GetPath(TransitionTo));
+		// SignalBus.Singleton.EmitSignal(SignalBus.SignalName.SceneTransitionStarted, transitionToScene);
 	}
 }

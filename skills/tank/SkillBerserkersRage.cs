@@ -25,7 +25,7 @@ public partial class SkillBerserkersRage : BaseSkill
 				Description = MakeDescription(
 					$"Whenever you take damage, gain {{Rage}}, increasing all your damage dealt by {{{RageBuff.DamageBoost * 100}%}}",
 					$"for the next {{{RageBuff.EffectDuration}}} beats, stacking up to {{{RageBuff.MaximumStacks}}}.",
-					$"\n((This effect can only trigger once per beat))"
+					$"\n\n((This effect can only trigger once per beat))"
 				),
 				Hidden = true,
 			};
@@ -43,35 +43,35 @@ public partial class SkillBerserkersRage : BaseSkill
 			LastTriggerAt = time;
 			this.NextFrame(() => Parent.Buffs.Add(new RageBuff()));
 		}
+	}
 
-		public partial class RageBuff : BaseBuff
+	public partial class RageBuff : BaseBuff
+	{
+		public const float DamageBoost = 0.01f;
+		public const float EffectDuration = 24;
+		public const int MaximumStacks = 100;
+
+		public RageBuff()
 		{
-			public const float DamageBoost = 0.01f;
-			public const float EffectDuration = 24;
-			public const int MaximumStacks = 100;
-
-			public RageBuff()
+			Settings = new()
 			{
-				Settings = new()
-				{
-					FriendlyName = "Rage",
-					Description = MakeDescription(
-						$"All your damage is increased by {{{DamageBoost * 100}%}}."
-					),
-					IconPath = "res://assets/icons/SpellBook06_65.png",
-					RefreshOthersWhenAdded = true,
-					MaximumStacks = MaximumStacks,
-				};
-				Duration = EffectDuration;
-			}
+				FriendlyName = "Rage",
+				Description = MakeDescription(
+					$"All your damage is increased by {{{DamageBoost * 100}%}}."
+				),
+				IconPath = "res://assets/icons/SpellBook06_65.png",
+				RefreshOthersWhenAdded = true,
+				MaximumStacks = MaximumStacks,
+			};
+			Duration = EffectDuration;
+		}
 
-			public override void ModifyOutgoingDamage(BuffOutgoingDamageVisitor damage)
-			{
-				if (damage.Target == Parent || damage.ResourceType != ObjectResourceType.Health)
-					return;
+		public override void ModifyOutgoingDamage(BuffOutgoingDamageVisitor damage)
+		{
+			if (damage.Target == Parent || damage.ResourceType != ObjectResourceType.Health)
+				return;
 
-				damage.Value += damage.BaseValue * DamageBoost;
-			}
+			damage.Value += damage.BaseValue * DamageBoost;
 		}
 	}
 }

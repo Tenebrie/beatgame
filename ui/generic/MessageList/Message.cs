@@ -5,7 +5,7 @@ namespace Project;
 
 public partial class Message : PanelContainer
 {
-	float alpha = 2.0f;
+	float alpha = 1f;
 	public string Body
 	{
 		get => BodyLabel.Text;
@@ -13,6 +13,10 @@ public partial class Message : PanelContainer
 	}
 
 	public Label BodyLabel;
+	public float Duration
+	{
+		set => alpha = value;
+	}
 
 	public override void _EnterTree()
 	{

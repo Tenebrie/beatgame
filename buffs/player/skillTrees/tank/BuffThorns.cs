@@ -14,7 +14,8 @@ public partial class BuffThorns : BaseBuff
 		{
 			FriendlyName = "Thorns",
 			Description = MakeDescription(
-				$"Whenever you take damage, deal {{{Math.Round(RetaliateDamageFraction * 100) + "%"}}} of it back to the attacker."
+				$"Whenever you take damage, deal {{{Math.Round(RetaliateDamageFraction * 100) + "%"}}} of it back to the attacker.",
+				$"\n\n((Retaliation damage is a reaction, and will not trigger other reactions.))"
 			),
 			Hidden = true,
 		};

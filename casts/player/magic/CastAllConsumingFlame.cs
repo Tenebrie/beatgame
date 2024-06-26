@@ -15,7 +15,8 @@ public partial class CastAllConsumingFlame : BaseCast
 			Description = MakeDescription(
 				$"Infuse your magic with an even more powerful vampiric essence.",
 				$"For the next {{{BuffMagicLifeLeechActive.EffectDuration}}} beats,",
-				$"you regain {{{BuffMagicLifeLeechActive.LifeLeech * 100}%}} of all damage dealt as Health."
+				$"you regain {{{BuffMagicLifeLeechActive.LifeLeech * 100}%}} of all damage dealt as Health.",
+				$"\n\n((Life leech is a reaction, and will not trigger other reactions.))"
 			),
 			IconPath = "res://assets/icons/SpellBook06_105.png",
 			InputType = CastInputType.Instant,

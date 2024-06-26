@@ -192,7 +192,7 @@ public partial class Music : Node
 
 		var startTime = (float)StartingFromBeat * SecondsPerBeat;
 		CurrentTrack.PlayAfterDelay((float)SongDelay / 1000, startTime);
-		CurrentTrack.Volume = Preferences.Singleton.MainVolume;
+		CurrentTrack.Volume = Preferences.Singleton.MusicVolume;
 
 		PreciseBeatIndex = (long)Math.Round(StartingFromBeat / MinBeatSize) - 1;
 		IsStarted = true;
@@ -212,7 +212,7 @@ public partial class Music : Node
 		if (!IsFadingOut || CurrentTrack == null || !IsStarted)
 			return;
 
-		CurrentTrack.Volume -= Preferences.Singleton.MainVolume * 0.5f * (float)delta;
+		CurrentTrack.Volume -= Preferences.Singleton.MusicVolume * 0.5f * (float)delta;
 	}
 
 	private async void OnSceneTransitionStarted(PackedScene targetScene)

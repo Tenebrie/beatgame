@@ -22,8 +22,9 @@ public partial class ShieldBash : BaseCast
 			FriendlyName = "Shield Bash",
 			Description = MakeDescription(
 				$"Throw an ephemeral shield at your enemy, dealing {{{damage}}} Spirit damage on impact.",
-				$"You gain {{Thorned Shield}}, returning {{{Buff.RetaliateDamageFraction * 100}%}} of all damage taken back to the enemy.",
-				$"Stacks up to {{{Buff.MaxStacks}}} times."
+				$"You gain {{Thorned Shield}}, returning {{{Math.Round(Buff.RetaliateDamageFraction * 100)}%}} of all damage taken back to the enemy.",
+				$"Stacks up to {{{Buff.MaxStacks}}} times.",
+				$"\n\n((Retaliation damage is a reaction, and will not trigger other reactions.))"
 			),
 			IconPath = "res://assets/icons/SpellBook06_05.png",
 			InputType = CastInputType.Instant,

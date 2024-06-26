@@ -77,6 +77,9 @@ public partial class BuffButton : Control
 	public override void _Process(double delta)
 	{
 		var time = CastUtils.GetTicksSec();
+		if (AssociatedBuff == null)
+			return;
+
 		var progress = (time - AssociatedBuff.CreatedAt) / (AssociatedBuff.ExpiresAt - AssociatedBuff.CreatedAt);
 		ButtonMaterial.SetShaderParameter("Progress", progress);
 

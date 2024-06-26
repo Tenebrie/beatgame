@@ -10,7 +10,10 @@ public partial class BuffMagicLifeLeechPassive : BaseBuff
 		Settings = new()
 		{
 			FriendlyName = "Vampiric Essence",
-			Description = MakeDescription($"Regain {{{LifeLeech * 100}%}} of all damage dealt as Health."),
+			Description = MakeDescription(
+				$"Regain {{{LifeLeech * 100}%}} of all damage dealt as Health.",
+				$"\n\n((Life leech is a reaction, and will not trigger other reactions.))"
+			),
 			IconPath = "res://assets/icons/SpellBook06_105.png",
 			Hidden = true,
 		};

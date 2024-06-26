@@ -11,6 +11,18 @@ public partial class Preferences : Node
 		set
 		{
 			mainVolume = value;
+			AudioServer.SetBusVolumeDb(0, Mathf.LinearToDb(value));
+			SaveConfig();
+		}
+	}
+
+	private float musicVolume = 1.0f;
+	public float MusicVolume
+	{
+		get => musicVolume;
+		set
+		{
+			musicVolume = value;
 			Music.Singleton.CurrentTrack.Volume = value;
 			SaveConfig();
 		}
@@ -39,7 +51,7 @@ public partial class Preferences : Node
 		}
 	}
 
-	private bool chillMode = false;
+	private bool chillMode = true;
 	public bool ChillMode
 	{
 		get => chillMode;
@@ -62,6 +74,7 @@ public partial class Preferences : Node
 		var config = new ConfigFile();
 
 		config.SetValue("section", "mainVolume", MainVolume);
+		config.SetValue("section", "musicVolume", musicVolume);
 		config.SetValue("section", "cameraHeight", CameraHeight);
 		config.SetValue("section", "chillMode", ChillMode);
 
@@ -74,14 +87,16 @@ public partial class Preferences : Node
 		config.Load("user://config.cfg");
 
 		mainVolume = (float)config.GetValue("section", "mainVolume", 0.5f);
+		musicVolume = (float)config.GetValue("section", "musicVolume", 1.0f);
 		cameraHeight = (float)config.GetValue("section", "cameraHeight", 0.25f);
-		chillMode = (bool)config.GetValue("section", "chillMode", false);
+		chillMode = (bool)config.GetValue("section", "chillMode", true);
 
 		renderScale = (float)config.GetValue("section", "renderScale", GetDefaultRenderScale());
 	}
 
 	public void ApplyPreferences()
 	{
+		AudioServer.SetBusVolumeDb(0, Mathf.LinearToDb(mainVolume));
 		GetViewport().Scaling3DScale = renderScale;
 	}
 

@@ -25,6 +25,6 @@ public partial class SecretTreeChest : InteractableObject
 			}
 		);
 		SkillTreeManager.Singleton.RegisterSkillTree(secretTree);
-		SignalBus.SendMessage("Secret skill tree unlocked!");
+		SignalBus.SendMessage("Secret skill tree unlocked!", 5);
 	}
 }
