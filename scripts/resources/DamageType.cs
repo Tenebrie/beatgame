@@ -10,6 +10,7 @@ public enum DamageType : int
 
 public enum SilentDamageReason : int
 {
+	ResourceCost,
 	Retaliate,
 }
 

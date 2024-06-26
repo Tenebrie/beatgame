@@ -27,7 +27,7 @@ public partial class SimpleParticleEffect : BaseEffect
 		return this;
 	}
 
-	private async void StopAfterDelayAsync(float seconds)
+	protected async void StopAfterDelayAsync(float seconds)
 	{
 		await ToSignal(GetTree().CreateTimer(seconds), "timeout");
 		Stop();

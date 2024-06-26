@@ -276,6 +276,7 @@ public partial class BossAerielTimeline : BaseTimeline<BossAeriel>
 		GotoAbleton(171);
 		Act(() =>
 		{
+			puddleRect.CleanUp();
 			if (Parent.IsDead)
 				Parent.VictorySequence();
 		});

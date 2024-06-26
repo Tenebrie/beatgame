@@ -7,7 +7,7 @@ namespace Project;
 
 public partial class BuffParry : BaseBuff
 {
-	public const float RetaliateDamageFraction = 3.0f;
+	public const float RetaliateDamageFraction = 5.0f;
 
 	public readonly Dictionary<BaseUnit, float> StoredDamage = new();
 

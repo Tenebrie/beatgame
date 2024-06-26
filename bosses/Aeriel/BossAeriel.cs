@@ -121,8 +121,23 @@ public partial class BossAeriel : BasicEnemyController
 		GetTree().CurrentScene.AddChild(impact);
 	}
 
-	public void VictorySequence()
+	public async void VictorySequence()
 	{
-		// TODO: Sequence
+		GetNode<GpuParticles3D>("CoreParticles").Emitting = false;
+		await ToSignal(GetTree().CreateTimer(2), "timeout");
+
+		Buffs.Add(new BuffGeyserLevitation());
+		ForcefulMovement.Push(100, Vector3.Up, 8);
+
+		await ToSignal(GetTree().CreateTimer(8 * Music.Singleton.SecondsPerBeat), "timeout");
+
+		GetNode<GpuParticles3D>("InnerSoulParticles").Emitting = false;
+
+		var impact = Lib.LoadScene(Lib.Effect.AerielDeathExplosion).Instantiate<Node3D>();
+		GetTree().CurrentScene.AddChild(impact);
+		impact.GlobalPosition = GlobalCastAimPosition;
+
+		await ToSignal(GetTree().CreateTimer(1), "timeout");
+		QueueFree();
 	}
 }

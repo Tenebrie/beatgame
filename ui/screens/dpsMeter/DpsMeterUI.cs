@@ -57,6 +57,9 @@ public partial class DpsMeterUI : Control
 		if (data.ResourceType != ObjectResourceType.Health || data.SourceUnit == null || data.SourceUnit.Alliance != UnitAlliance.Player)
 			return;
 
+		if (reason == SilentDamageReason.ResourceCost)
+			return;
+
 		var castId = data.SourceUnit.GetType().ToString() + "-silent-" + reason;
 		BaseCast virtualSourceCast = virtualCasts.GetValueOrDefault(reason);
 		ProcessDamage(data.Value, virtualSourceCast, castId);
@@ -73,6 +76,8 @@ public partial class DpsMeterUI : Control
 
 	void ProcessDamage(float value, BaseCast sourceCast, string castId)
 	{
+		if (!isStarted)
+			currentTime = 0;
 		isStarted = true;
 		var meterExists = damageDealtPerCast.TryGetValue(castId, out var affectedMeter);
 		if (!meterExists)

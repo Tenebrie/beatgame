@@ -191,7 +191,7 @@ public partial class BaseCast : Node
 		{
 			var damage = Settings.ResourceCostPerBeat[ObjectResourceType.Health] * (float)Music.MinBeatSize;
 			if (Parent.Health.Current > damage)
-				Parent.Health.Damage(damage, this);
+				Parent.Health.DamageSilently(damage, Parent, this, SilentDamageReason.ResourceCost);
 			else
 				CastFail();
 		}
@@ -199,7 +199,7 @@ public partial class BaseCast : Node
 		{
 			var damage = Settings.ResourceCostPerBeat[ObjectResourceType.Mana] * (float)Music.MinBeatSize;
 			if (Parent.Mana.Current > 0)
-				Parent.Mana.Damage(damage, this);
+				Parent.Mana.DamageSilently(damage, Parent, this, SilentDamageReason.ResourceCost);
 			else
 				CastFail();
 		}

@@ -9,7 +9,7 @@ max_value = 200.0
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.951852, 200), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_86hov"]
+[sub_resource type="CurveTexture" id="CurveTexture_s8qxm"]
 curve = SubResource("Curve_aia4e")
 
 [sub_resource type="Curve" id="Curve_hud1b"]
@@ -17,7 +17,7 @@ max_value = 100.0
 _data = [Vector2(0.00370371, 0), 0.0, 0.0, 0, 0, Vector2(0.99999, 20.7317), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="CurveTexture" id="CurveTexture_h4t5k"]
+[sub_resource type="CurveTexture" id="CurveTexture_y6dyy"]
 curve = SubResource("Curve_hud1b")
 
 [sub_resource type="Curve" id="Curve_1fonx"]
@@ -34,7 +34,7 @@ max_value = 2.0
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_oulld"]
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_hydmx"]
 curve_x = SubResource("Curve_1fonx")
 curve_y = SubResource("Curve_s67y0")
 curve_z = SubResource("Curve_gabow")
@@ -43,7 +43,7 @@ curve_z = SubResource("Curve_gabow")
 _data = [Vector2(0.00492611, 0), 0.0, 0.0, 0, 0, Vector2(0.0172414, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="CurveTexture" id="CurveTexture_v4xtx"]
+[sub_resource type="CurveTexture" id="CurveTexture_tpiq2"]
 curve = SubResource("Curve_7pq0n")
 
 [sub_resource type="Curve" id="Curve_rq4nt"]
@@ -52,7 +52,7 @@ max_value = 10.0
 _data = [Vector2(0, 5.01504), 0.0, 0.0, 0, 0, Vector2(1, 5.01504), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_b6gep"]
+[sub_resource type="CurveTexture" id="CurveTexture_rk7vi"]
 curve = SubResource("Curve_rq4nt")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3et0g"]
@@ -65,16 +65,16 @@ direction = Vector3(1, 1, 1)
 spread = 180.0
 initial_velocity_min = 1.0
 initial_velocity_max = 15.0
-orbit_velocity_curve = SubResource("CurveXYZTexture_oulld")
+orbit_velocity_curve = SubResource("CurveXYZTexture_hydmx")
 gravity = Vector3(0, 10, 0)
-tangential_accel_curve = SubResource("CurveTexture_b6gep")
+tangential_accel_curve = SubResource("CurveTexture_rk7vi")
 damping_min = 1.0
 damping_max = 2.0
-damping_curve = SubResource("CurveTexture_h4t5k")
-scale_curve = SubResource("CurveTexture_v4xtx")
-anim_speed_curve = SubResource("CurveTexture_86hov")
+damping_curve = SubResource("CurveTexture_y6dyy")
+scale_curve = SubResource("CurveTexture_tpiq2")
+anim_speed_curve = SubResource("CurveTexture_s8qxm")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vkxsc"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jkysw"]
 transparency = 1
 blend_mode = 2
 vertex_color_use_as_albedo = true
@@ -96,11 +96,11 @@ proximity_fade_distance = 674.32
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_1b3dy"]
 lightmap_size_hint = Vector2i(2, 2)
-material = SubResource("StandardMaterial3D_vkxsc")
+material = SubResource("StandardMaterial3D_jkysw")
 size = Vector2(3, 3)
 orientation = 2
 
-[node name="Node3D" type="Node3D"]
+[node name="Node3D2" type="Node3D"]
 script = ExtResource("1_6vyj6")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
@@ -112,7 +112,7 @@ one_shot = true
 explosiveness = 1.0
 randomness = 0.43
 fixed_fps = 60
-visibility_aabb = AABB(-10, -10, -10, 20, 20, 20)
+visibility_aabb = AABB(-40, -40, -40, 80, 80, 80)
 draw_order = 3
 trail_lifetime = 4.24
 process_material = SubResource("ParticleProcessMaterial_3et0g")

@@ -17,42 +17,42 @@ public partial class ActionPanel : HBoxContainer
 	{
 		var c1 = new ActionButton()
 		{
-			Label = "1",
+			Label = "Q",
 			ActionName = "Cast1",
 		};
 		var c2 = new ActionButton()
 		{
-			Label = "2",
+			Label = "E",
 			ActionName = "Cast2",
 		};
 		var c3 = new ActionButton()
 		{
-			Label = "3",
+			Label = "R",
 			ActionName = "Cast3",
 		};
 		var c4 = new ActionButton()
 		{
-			Label = "4",
+			Label = "F",
 			ActionName = "Cast4",
 		};
 		var sc1 = new ActionButton()
 		{
-			Label = "S1",
+			Label = "1",
 			ActionName = "ShiftCast1",
 		};
 		var sc2 = new ActionButton()
 		{
-			Label = "S2",
+			Label = "2",
 			ActionName = "ShiftCast2",
 		};
 		var sc3 = new ActionButton()
 		{
-			Label = "S3",
+			Label = "3",
 			ActionName = "ShiftCast3",
 		};
 		var sc4 = new ActionButton()
 		{
-			Label = "S4",
+			Label = "4",
 			ActionName = "ShiftCast4",
 		};
 

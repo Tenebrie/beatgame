@@ -7,7 +7,7 @@ namespace Project;
 public partial class CastFlagellation : BaseCast
 {
 	public const float SelfDamage = 20;
-	public const float EnemyDamage = 50;
+	public const float EnemyDamage = 70;
 
 	public CastFlagellation(BaseUnit parent) : base(parent)
 	{

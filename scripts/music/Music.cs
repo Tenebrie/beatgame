@@ -151,7 +151,11 @@ public partial class Music : Node
 	private void OnInternalTimerTimeout(BeatTime beat)
 	{
 		PreciseBeatIndex += 1;
-		EmitSignal(SignalName.BeatTick, beat.ToVariant());
+		try
+		{
+			EmitSignal(SignalName.BeatTick, beat.ToVariant());
+		}
+		catch (Exception) { }
 	}
 
 	private void OnInternalTimerCatchUpTick(BeatTime beat)
