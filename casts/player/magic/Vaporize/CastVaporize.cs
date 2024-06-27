@@ -21,7 +21,7 @@ public partial class CastVaporize : BaseCast
 			TargetType = CastTargetType.HostileUnit,
 			CastTimings = BeatTime.Whole,
 			ChannelingTickTimings = BeatTime.EveryFullBeat,
-			HoldTime = 8,
+			HoldTime = 4,
 			RecastTime = 16,
 		};
 		Settings.ResourceCost[ObjectResourceType.Mana] = 50;

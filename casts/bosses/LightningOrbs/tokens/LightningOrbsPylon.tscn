@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cd0ktc24uuduq"]
+[gd_scene load_steps=5 format=3 uid="uid://cd0ktc24uuduq"]
 
 [ext_resource type="Script" path="res://casts/bosses/LightningOrbs/tokens/LightningOrbsPylon.cs" id="1_cq7e8"]
 [ext_resource type="PackedScene" path="res://assets/PolygonDungeon/Prefabs/Environments/Misc/SM_Env_Gem_Spike_01.tscn" id="1_d5iuk"]
+[ext_resource type="PackedScene" uid="uid://cqu5y0rbgi8pp" path="res://units/common/UnitCastAimPosition.tscn" id="3_8jdwq"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_burn3"]
 radius = 0.75
@@ -16,3 +17,6 @@ shape = SubResource("CapsuleShape3D_burn3")
 
 [node name="SM_Env_Gem_Spike_01" parent="." instance=ExtResource("1_d5iuk")]
 transform = Transform3D(80, 0, 0, 0, 80, 0, 0, 0, 80, 0, 0, 0)
+
+[node name="UnitCastAimPosition" parent="." instance=ExtResource("3_8jdwq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.21529, 0)

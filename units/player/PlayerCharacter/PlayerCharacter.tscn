@@ -21,17 +21,19 @@ curve = SubResource("Curve_ipfuf")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qk6o4"]
 emission_shape = 1
-emission_sphere_radius = 0.05
+emission_sphere_radius = 0.03
 gravity = Vector3(0, 0, 0)
 scale_curve = SubResource("CurveTexture_6541r")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ojsb4"]
 transparency = 1
 blend_mode = 1
-albedo_color = Color(1, 0, 1, 1)
+shading_mode = 0
+specular_mode = 2
+disable_ambient_light = true
+disable_fog = true
+albedo_color = Color(1, 0.447059, 1, 1)
 albedo_texture = ExtResource("2_5ogvt")
-emission_enabled = true
-emission = Color(0.490196, 0.27451, 0.478431, 1)
 billboard_mode = 3
 billboard_keep_scale = true
 particles_anim_h_frames = 1
@@ -118,8 +120,8 @@ script = ExtResource("2_yi0ob")
 
 [node name="MainEmitterGlobalSpaceLarge" type="GPUParticles3D" parent="Visuals"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
-amount = 50
-lifetime = 0.5
+amount = 75
+lifetime = 0.4
 process_material = SubResource("ParticleProcessMaterial_qk6o4")
 draw_pass_1 = SubResource("PlaneMesh_vgtqq")
 
@@ -155,6 +157,12 @@ draw_pass_1 = SubResource("PlaneMesh_d40ro")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
 visible = false
 mesh = SubResource("PlaneMesh_2yssi")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Visuals"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25024, 0)
+light_energy = 0.1
+light_specular = 0.0
+omni_range = 2.0
 
 [node name="BaseCamera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)

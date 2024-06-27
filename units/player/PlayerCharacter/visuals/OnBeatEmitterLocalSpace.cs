@@ -9,7 +9,7 @@ public partial class OnBeatEmitterLocalSpace : GpuParticles3D
 		Music.Singleton.BeatWindowUnlock += OnBeatTick;
 		Emitting = false;
 		EmitParticle(Transform, Vector3.Zero, new Color(1, 1, 1), new Color(1, 1, 1), 0);
-		((StandardMaterial3D)DrawPass1.SurfaceGetMaterial(0)).Emission = new Color(GD.Randf(), GD.Randf(), GD.Randf());
+		RandomizeColor();
 	}
 
 	public override void _ExitTree()
@@ -28,12 +28,16 @@ public partial class OnBeatEmitterLocalSpace : GpuParticles3D
 	{
 		if (@event.IsActionPressed("RandomizeColor"))
 		{
-			((StandardMaterial3D)DrawPass1.SurfaceGetMaterial(0)).Emission = new Color(GD.Randf(), GD.Randf(), GD.Randf());
+			RandomizeColor();
 		}
 	}
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
+	void RandomizeColor()
 	{
+		var color = new Color(GD.Randf(), GD.Randf(), GD.Randf());
+		((StandardMaterial3D)DrawPass1.SurfaceGetMaterial(0)).AlbedoColor = color;
+		((StandardMaterial3D)DrawPass1.SurfaceGetMaterial(0)).Emission = color;
+		var light = GetParent().GetNode<OmniLight3D>("OmniLight3D");
+		light.LightColor = color;
 	}
 }

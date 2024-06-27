@@ -1,5 +1,5 @@
 shader_type spatial;
-render_mode blend_add;
+render_mode blend_add, unshaded;
 
 instance uniform float FADE = 1.0;
 instance uniform float LENGTH = 0.0;
@@ -10,7 +10,7 @@ void vertex() {
 }
 
 void fragment() {
-	ALBEDO = vec3(1.0, 1.0, 1.0);
+	ALBEDO = vec3(0.01, 0.03, 1.0) * 32.0;
 	EMISSION = vec3(0.01, 0.03, 1.0) * 32.0 * FADE;
 	
 	vec3 world = (INV_VIEW_MATRIX * vec4(VERTEX, 1.0)).xyz;
@@ -22,7 +22,6 @@ void fragment() {
 	else
 		ALPHA = 0.25 - min(0.25, abs(dist - currentCenter) / 512.0);
 	ALPHA *= FADE;
-	
 }
 
 //void light() {

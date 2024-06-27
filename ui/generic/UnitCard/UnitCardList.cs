@@ -9,10 +9,6 @@ public partial class UnitCardList : Control
 
 	readonly Dictionary<BaseUnit, UnitCard> UnitCards = new();
 
-	public override void _Ready()
-	{
-	}
-
 	public void TrackUnit(BaseUnit unit)
 	{
 		var unitCard = Lib.LoadScene(Lib.UI.UnitCard).Instantiate<UnitCard>();

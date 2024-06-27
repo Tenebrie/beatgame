@@ -68,6 +68,7 @@ public partial class BossCastTridents : BaseCast
 			rect.Radius = 2;
 			rect.GrowTime = 8;
 			rect.Alliance = UnitAlliance.Hostile;
+			rect.TargetValidator = (unit) => unit.HostileTo(Parent);
 			rect.OnFinishedPerTargetCallback = (unit) =>
 			{
 				unit.Health.Damage(30, this);

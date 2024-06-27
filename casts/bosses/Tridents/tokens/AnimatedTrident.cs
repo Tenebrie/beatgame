@@ -11,7 +11,12 @@ public partial class AnimatedTrident : BasicEnemyController
 	public override void _Ready()
 	{
 		Alliance = UnitAlliance.Hostile;
-		area = this.CreateGroundCircularArea(this.Position);
+
+		base._Ready();
+
+		Targetable.Untargetable = true;
+
+		area = this.CreateGroundCircularArea(Position);
 		area.GrowTime = 0;
 		area.Radius = this.GetArenaSize() * 0.16f / 2;
 		area.Periodic = true;
@@ -34,7 +39,7 @@ public partial class AnimatedTrident : BasicEnemyController
 		circle.OnFinishedPerTargetCallback = (unit) =>
 		{
 			unit.Health.Damage(75f, this);
-			unit.ForcefulMovement.Push(5, Vector3.Up, 1);
+			unit.ForcefulMovement.AddInertia(5, Vector3.Up);
 		};
 
 		QueueFree();

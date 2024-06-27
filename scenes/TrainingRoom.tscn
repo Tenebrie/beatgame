@@ -42,11 +42,9 @@ size = Vector3(4.2522, 3.51804, 2.15479)
 
 [node name="TrainingRoom" type="Node3D"]
 
-[node name="Environment" type="Node" parent="."]
+[node name="Environment" type="Node3D" parent="."]
 
-[node name="WaterPlane" type="Node" parent="Environment"]
-
-[node name="Arena" type="Node" parent="Environment"]
+[node name="Arena" type="Node3D" parent="Environment"]
 
 [node name="Walls" type="Node3D" parent="Environment/Arena"]
 
@@ -1056,6 +1054,7 @@ Alliance = 2
 
 [node name="SecretTreeChest" parent="." instance=ExtResource("24_ax25i")]
 transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, 2.99731, 4.03058, 15.9924)
+visible = false
 
 [node name="OmniLight3D" type="OmniLight3D" parent="SecretTreeChest"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.201035, 0)

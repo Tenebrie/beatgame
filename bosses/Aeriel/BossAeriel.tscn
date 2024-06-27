@@ -83,14 +83,10 @@ anim_speed_curve = SubResource("CurveTexture_86hov")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vkxsc"]
 transparency = 1
 blend_mode = 2
+shading_mode = 0
 vertex_color_use_as_albedo = true
-albedo_color = Color(0.196078, 0.337255, 0.466667, 1)
+albedo_color = Color(0.657585, 0.783129, 0.904505, 1)
 albedo_texture = ExtResource("2_6mvho")
-emission_enabled = true
-emission = Color(0.196078, 0.337255, 0.466667, 1)
-emission_energy_multiplier = 0.16
-emission_texture = ExtResource("2_6mvho")
-rim_tint = 0.0
 detail_mask = ExtResource("3_te8rn")
 billboard_mode = 3
 billboard_keep_scale = true
@@ -125,14 +121,10 @@ anim_speed_curve = SubResource("CurveTexture_86hov")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pecd3"]
 transparency = 1
 blend_mode = 1
+shading_mode = 0
 vertex_color_use_as_albedo = true
 albedo_color = Color(0.941176, 0.235294, 0.341176, 1)
 albedo_texture = ExtResource("2_6mvho")
-emission_enabled = true
-emission = Color(0.941176, 0.235294, 0.341176, 1)
-emission_energy_multiplier = 0.0
-emission_texture = ExtResource("2_6mvho")
-rim_tint = 0.0
 detail_mask = ExtResource("3_te8rn")
 billboard_mode = 3
 billboard_keep_scale = true
@@ -145,7 +137,7 @@ proximity_fade_distance = 674.32
 [sub_resource type="PlaneMesh" id="PlaneMesh_bhk6t"]
 lightmap_size_hint = Vector2i(2, 2)
 material = SubResource("StandardMaterial3D_pecd3")
-size = Vector2(4, 4)
+size = Vector2(3, 3)
 orientation = 2
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qpi01"]

@@ -8,7 +8,6 @@ using Project;
 namespace Project;
 public partial class GroundAreaCircle : BaseTelegraph
 {
-	// private Decal outerCircle;
 	private CircleDecal decal;
 	private Area3D hitbox;
 

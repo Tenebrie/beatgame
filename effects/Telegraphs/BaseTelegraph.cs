@@ -56,12 +56,17 @@ public abstract partial class BaseTelegraph : Node3D
 		if (GrowPercentage >= 1 && !endReached)
 		{
 			endReached = true;
-			OnFinishedCallback?.Invoke();
-			if (OnFinishedPerTargetCallback != null)
+			try
 			{
-				foreach (var target in GetTargets())
-					OnFinishedPerTargetCallback(target);
+				OnFinishedCallback?.Invoke();
+				if (OnFinishedPerTargetCallback != null)
+				{
+					foreach (var target in GetTargets())
+						OnFinishedPerTargetCallback(target);
+				}
 			}
+			catch (Exception ex) { GD.PrintErr(ex); }
+
 			if (!Periodic)
 				CleanUp();
 		}
@@ -73,8 +78,15 @@ public abstract partial class BaseTelegraph : Node3D
 			return;
 
 		targets.Add(unit);
-		if (TargetValidator == null || TargetValidator(unit))
-			OnTargetEntered?.Invoke(unit);
+		try
+		{
+			if (TargetValidator == null || TargetValidator(unit))
+				OnTargetEntered?.Invoke(unit);
+		}
+		catch (Exception ex)
+		{
+			GD.PrintErr(ex);
+		}
 	}
 
 	protected void OnBodyExited(Node3D body)

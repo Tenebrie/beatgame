@@ -10,7 +10,7 @@ public partial class BuffLightningOrbsPylonInvuln : BaseBuff
 		Settings = new()
 		{
 			FriendlyName = "Storm Protection",
-			Description = "Invulnerable to everything other than the {{power of the storm}} itself.",
+			Description = MakeDescription("Invulnerable to everything other than the {{power of the storm}} itself."),
 			IconPath = "res://assets/icons/SpellBook06_119.PNG",
 		};
 	}

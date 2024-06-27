@@ -10,7 +10,7 @@ font_size = 8
 
 [sub_resource type="LabelSettings" id="LabelSettings_41mo3"]
 
-[node name="PauseUI" type="Control" node_paths=PackedStringArray("MainVolumeSlider", "MusicVolumeSlider", "CameraHeightSlider", "ChillModeButton", "ExitButton")]
+[node name="PauseUI" type="Control" node_paths=PackedStringArray("MainVolumeSlider", "MusicVolumeSlider", "CameraHeightSlider", "ChillModeButton", "MsaaSlider", "ExitButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -24,6 +24,7 @@ MainVolumeSlider = NodePath("Panel/VBoxContainer/MainVolume/MainVolumeSlider")
 MusicVolumeSlider = NodePath("Panel/VBoxContainer/MusicVolume/MusicVolumeSlider")
 CameraHeightSlider = NodePath("Panel/VBoxContainer/CameraHeight/CameraHeightSlider")
 ChillModeButton = NodePath("Panel/VBoxContainer/ChillMode/ChillModeToggle")
+MsaaSlider = NodePath("Panel/VBoxContainer/MsaaLevel/MsaaLevelSlider")
 ExitButton = NodePath("Panel/ExitGameButton")
 
 [node name="Panel" type="Panel" parent="."]
@@ -198,6 +199,37 @@ anchor_bottom = 1.0
 offset_left = 152.0
 offset_right = 196.0
 grow_vertical = 2
+
+[node name="MsaaLevel" type="Control" parent="Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer/MsaaLevel"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_top = -1.0
+offset_right = 150.0
+offset_bottom = -1.0
+grow_vertical = 2
+mouse_filter = 1
+text = "MSAA"
+label_settings = SubResource("LabelSettings_41mo3")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="MsaaLevelSlider" type="HSlider" parent="Panel/VBoxContainer/MsaaLevel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 160.0
+offset_right = -18.0
+grow_horizontal = 2
+grow_vertical = 2
+max_value = 3.0
+value = 2.0
+ticks_on_borders = true
 
 [node name="ExitGameButton" type="Button" parent="Panel"]
 layout_mode = 1

@@ -155,7 +155,7 @@ public partial class Music : Node
 		{
 			EmitSignal(SignalName.BeatTick, beat.ToVariant());
 		}
-		catch (Exception) { }
+		catch (Exception ex) { GD.PrintErr(ex); }
 	}
 
 	private void OnInternalTimerCatchUpTick(BeatTime beat)

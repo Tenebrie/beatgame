@@ -5,6 +5,8 @@ namespace Project;
 
 public partial class ObjectTargetable : ComposableScript
 {
+	public bool Untargetable = false;
+
 	public bool isHovered;
 	public bool isTargeted;
 	public TargetedUnitAlliance? targetedAs;

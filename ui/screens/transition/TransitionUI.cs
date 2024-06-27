@@ -53,7 +53,7 @@ public partial class TransitionUI : Control
 		{
 			SignalBus.Singleton.EmitSignal(SignalBus.SignalName.SceneTransitionFinished, transitioningTo);
 		}
-		catch (Exception) { }
+		catch (Exception ex) { GD.PrintErr(ex); }
 		fadePlayer.Play("fade_in");
 	}
 

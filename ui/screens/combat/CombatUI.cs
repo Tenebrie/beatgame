@@ -16,12 +16,17 @@ public partial class CombatUI : Control
 	public override void _Ready()
 	{
 		GetTree().Root.ContentScaleFactor = DisplayServer.ScreenGetScale();
-		SignalBus.Singleton.UnitCreated += OnUnitCreated;
-		SignalBus.Singleton.UnitDestroyed += OnUnitDestroyed;
+		SignalBus.Singleton.Connect(SignalBus.SignalName.UnitCreated, Callable.From<BaseUnit>(OnUnitCreated), (uint)ConnectFlags.Deferred);
+		SignalBus.Singleton.Connect(SignalBus.SignalName.UnitDestroyed, Callable.From<BaseUnit>(OnUnitDestroyed), (uint)ConnectFlags.Deferred);
+		// SignalBus.Singleton.UnitCreated += OnUnitCreated;
+		// SignalBus.Singleton.UnitDestroyed += OnUnitDestroyed;
 	}
 
 	private void OnUnitCreated(BaseUnit unit)
 	{
+		if (unit.Targetable.Untargetable)
+			return;
+
 		if (unit is PlayerController)
 		{
 			HealthBar.TrackUnit(unit, ObjectResourceType.Health);
@@ -61,19 +66,5 @@ public partial class CombatUI : Control
 		{
 			HostileUnitList.UntrackUnit(unit);
 		}
-	}
-
-	public void SetHealth(float value)
-	{
-
-	}
-
-	public void SetMaxHealth(float value)
-	{
-
-	}
-
-	public override void _Process(double delta)
-	{
 	}
 }
