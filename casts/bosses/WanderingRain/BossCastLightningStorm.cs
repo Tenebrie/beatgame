@@ -14,7 +14,6 @@ public partial class BossCastLightningStorm : BaseCast
 		{
 			FriendlyName = "Lightning Storm",
 			InputType = CastInputType.AutoRelease,
-			TargetType = CastTargetType.None,
 			HoldTime = 6,
 			RecastTime = 0,
 			HiddenCastBar = true,

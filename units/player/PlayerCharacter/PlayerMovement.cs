@@ -1,6 +1,5 @@
 using Godot;
 using System;
-using System.Diagnostics;
 
 namespace Project;
 
@@ -186,9 +185,9 @@ public partial class PlayerMovement : ComposableScript
 
 	private void ProcessCamera(double delta)
 	{
-		var mousePos = GetWindow().GetMousePosition();
 		if (hardCameraPreMoving)
 		{
+			var mousePos = GetWindow().GetMousePosition();
 			var mouseDelta = mousePos - hardCameraMoveStart;
 			if (mouseDelta.Length() > 10 || softCameraMoving)
 			{
@@ -202,6 +201,7 @@ public partial class PlayerMovement : ComposableScript
 		}
 		else if (hardCameraMoving)
 		{
+			var mousePos = GetWindow().GetMousePosition();
 			var mouseDelta = mousePos - hardCameraMoveStart;
 			Input.WarpMouse(hardCameraMoveStart * GetTree().Root.ContentScaleFactor);
 			Parent.Rotate(Vector3.Up, -mouseDelta.X / 500);
@@ -210,6 +210,7 @@ public partial class PlayerMovement : ComposableScript
 		}
 		else if (softCameraPreMoving)
 		{
+			var mousePos = GetWindow().GetMousePosition();
 			var mouseDelta = mousePos - softCameraMoveStart;
 			if (mouseDelta.Length() > 10 || hardCameraMoving)
 			{
@@ -221,6 +222,7 @@ public partial class PlayerMovement : ComposableScript
 		}
 		else if (softCameraMoving)
 		{
+			var mousePos = GetWindow().GetMousePosition();
 			var mouseDelta = mousePos - softCameraMoveStart;
 			Input.WarpMouse(softCameraMoveStart * GetTree().Root.ContentScaleFactor);
 			RotateCameraHorizontal(-mouseDelta.X / 500);
@@ -228,13 +230,18 @@ public partial class PlayerMovement : ComposableScript
 			verticalCameraPivot.Rotation = new Vector3(verticalRotation, 0, 0);
 		}
 
-		var effectiveHeight = Preferences.Singleton.CameraHeight + 0.25f; // TODO: Should be generic 'unit center height'
-		var minSnapDistance = 1.5f;
-		var maxSnapDistance = 2.5f;
-		if (cameraDistance < minSnapDistance)
-			effectiveHeight -= (1 - (cameraDistance / minSnapDistance)) * Preferences.Singleton.CameraHeight;
-		if (cameraDistance > maxSnapDistance)
-			effectiveHeight += cameraDistance - maxSnapDistance;
+		var effectiveHeight = Preferences.Singleton.CameraHeight + Parent.CastAimPosition.Y;
+		const float minSnapDistance = 1.5f;
+		const float maxSnapDistance = 2.5f;
+		switch (cameraDistance)
+		{
+			case < minSnapDistance:
+				effectiveHeight -= (1 - (cameraDistance / minSnapDistance)) * Preferences.Singleton.CameraHeight;
+				break;
+			case > maxSnapDistance:
+				effectiveHeight += cameraDistance - maxSnapDistance;
+				break;
+		}
 
 		horizontalCameraPivot.Position = new Vector3(0, effectiveHeight, 0);
 		springArm.SpringLength = cameraDistance;

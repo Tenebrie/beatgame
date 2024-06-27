@@ -17,7 +17,7 @@ public abstract partial class BaseUnit : ComposableCharacterBody3D
 	public ObjectTargetable Targetable;
 	public ObjectForcefulMovement ForcefulMovement;
 	public ObjectCastLibrary CastLibrary;
-	public ObjectComponentLibrary Components;
+	private ObjectComponentLibrary Components;
 
 	[Export]
 	public UnitAlliance Alliance = UnitAlliance.Neutral;

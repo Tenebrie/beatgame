@@ -11,5 +11,6 @@ export_presets.cfg
 
 # Mono-specific ignores
 .mono/
+.idea/
 data_*/
 mono_crash.*.json
