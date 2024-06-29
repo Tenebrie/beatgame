@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="BeatGame"
-run/main_scene="res://scenes/TrainingRoom.tscn"
+run/main_scene="res://scenes/MainMenu.tscn"
 config/features=PackedStringArray("4.2", "C#", "Forward Plus")
 run/max_fps=165
 boot_splash/bg_color=Color(0, 0, 0, 1)
@@ -32,6 +32,7 @@ Music="*res://scripts/music/Music.cs"
 Calibration="*res://scripts/music/Calibration.cs"
 CheatsController="*res://scripts/cheats/CheatsController.cs"
 TimelineManager="*res://scripts/timeline/TimelineManager.cs"
+MainMenuUI="*res://ui/screens/mainMenu/MainMenuUI.tscn"
 CombatUI="*res://ui/screens/combat/CombatUI.tscn"
 FightEditorUI="*res://ui/screens/fightEditor/FightEditorUI.tscn"
 DpsMeterUI="*res://ui/screens/dpsMeter/DpsMeterUI.tscn"

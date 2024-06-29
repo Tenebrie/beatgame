@@ -1054,7 +1054,7 @@ Alliance = 2
 
 [node name="SceneTransition" parent="." instance=ExtResource("20_tekqx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.177972, 0.00719925, -14.952)
-TransitionTo = 1
+TransitionTo = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SceneTransition"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.393017, 1.64715, -2.03025)

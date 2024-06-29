@@ -157,13 +157,8 @@ public partial class Music : Node
 		LoadingManager.Singleton.SceneTransitionFinished += OnSceneTransitionFinished;
 
 		var scene = Lib.Scene.ToEnum(GetTree().CurrentScene.SceneFilePath);
-		if (scene == null)
-		{
-			GD.PushError($"Current scene '{GetTree().CurrentScene.SceneFilePath}' is not present in asset library");
-			return;
-		}
-		PrepareSceneSong((PlayableScene)scene);
-		PlaySceneSong((PlayableScene)scene);
+		PrepareSceneSong(scene);
+		PlaySceneSong(scene);
 	}
 
 	private void OnInternalTimerTimeout(BeatTime beat)

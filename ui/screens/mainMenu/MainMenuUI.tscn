@@ -1,0 +1,83 @@
+[gd_scene load_steps=2 format=3 uid="uid://cpp1xu51268y7"]
+
+[ext_resource type="Script" path="res://ui/screens/mainMenu/MainMenuUI.cs" id="1_4au24"]
+
+[node name="MainMenuUI" type="Control" node_paths=PackedStringArray("ContinueButton", "NewGameButton", "LoadGameButton", "SettingsButton", "ExitButton")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4au24")
+ContinueButton = NodePath("VBoxContainer/ContinueButton")
+NewGameButton = NodePath("VBoxContainer/NewGameButton")
+LoadGameButton = NodePath("VBoxContainer/LoadGameButton")
+SettingsButton = NodePath("VBoxContainer/SettingsButton")
+ExitButton = NodePath("VBoxContainer/ExitButton")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+offset_left = 240.0
+offset_top = 721.0
+offset_right = 417.0
+offset_bottom = 865.0
+grow_vertical = 0
+
+[node name="ContinueButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+text = "Continue"
+
+[node name="NewGameButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+text = "New Game"
+
+[node name="LoadGameButton" type="Button" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+focus_mode = 0
+text = "Load Game"
+
+[node name="SettingsButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+text = "Settings"
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="ExitButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+text = "Exit Game"
+
+[node name="Panel" type="Panel" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 128.0
+offset_top = 809.0
+offset_right = 337.0
+offset_bottom = 969.0
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 61.0
+offset_top = 72.0
+offset_right = 748.0
+offset_bottom = 148.0
+theme_override_font_sizes/font_size = 48
+text = "Untitled Rhythmish Game"

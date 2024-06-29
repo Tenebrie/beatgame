@@ -69,16 +69,11 @@ public class AudioLibrary
 	public string MusicTrackAeriel = "res://assets/music/120bpm-tidehawk.ogg";
 }
 
-public enum PlayableScene
-{
-	TrainingRoom,
-	BossArenaAeriel,
-}
-
 public class SceneLibrary
 {
 	public readonly Dictionary<PlayableScene, string> Values = new()
 	{
+		{ PlayableScene.MainMenu,  "res://scenes/MainMenu.tscn" },
 		{ PlayableScene.TrainingRoom,  "res://scenes/TrainingRoom.tscn" },
 		{ PlayableScene.BossArenaAeriel,  "res://scenes/BossArenaAeriel.tscn" },
 	};
@@ -110,9 +105,9 @@ public class SceneLibrary
 		return result;
 	}
 
-	public PlayableScene? ToEnum(string path)
+	public PlayableScene ToEnum(string path)
 	{
 		try { return Values.Where(entry => entry.Value == path).First().Key; }
-		catch (Exception) { return null; }
+		catch (Exception) { throw new Exception($"Unable to find a PlayableScene with path {path}"); }
 	}
 }

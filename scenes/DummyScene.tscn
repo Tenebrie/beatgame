@@ -1,7 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://bywhfpl71rth1"]
-
-[ext_resource type="PackedScene" uid="uid://k3tq7jb87g5b" path="res://objects/Triggers/PlayerSpawner/PlayerSpawner.tscn" id="1_yj5or"]
-
-[node name="DummyScene" type="Node3D"]
-
-[node name="PlayerSpawner" parent="." instance=ExtResource("1_yj5or")]

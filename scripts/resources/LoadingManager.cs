@@ -7,6 +7,7 @@ namespace Project;
 public partial class LoadingManager : Node
 {
 	[Signal] public delegate void SceneTransitionStartedEventHandler(PlayableScene scene);
+	[Signal] public delegate void SceneTransitionedEventHandler(PlayableScene scene);
 	[Signal] public delegate void SceneTransitionFinishedEventHandler(PlayableScene scene);
 	[Signal] public delegate void StateChangedEventHandler(State state);
 	[Signal] public delegate void ResourceLoadingProgressedEventHandler(float current, float total);
@@ -32,8 +33,15 @@ public partial class LoadingManager : Node
 				return;
 
 			SetState(State.Loaded);
-			EmitSignal(SignalName.SceneTransitionFinished, (int)TransitioningTo);
+			EmitSignal(SignalName.SceneTransitionFinished, TransitioningTo.ToVariant());
 		};
+	}
+
+	public override void _Ready()
+	{
+		var path = GetTree().CurrentScene.SceneFilePath;
+		var playableScene = Lib.Scene.ToEnum(path);
+		EmitSignal(SignalName.SceneTransitioned, playableScene.ToVariant());
 	}
 
 	public void TransitionToCurrentScene()
@@ -50,10 +58,10 @@ public partial class LoadingManager : Node
 	public void TransitionToScene(PackedScene scene)
 	{
 		var playableScene = Lib.Scene.ToEnum(scene.ResourcePath);
-		TransitioningTo = playableScene ?? throw new Exception($"Playable scene {playableScene} does not have an entry in AssetLibrary");
+		TransitioningTo = playableScene;
 		SetState(State.FadeOutStarted);
 		ReadyComponents.Clear();
-		EmitSignal(SignalName.SceneTransitionStarted, (int)playableScene);
+		EmitSignal(SignalName.SceneTransitionStarted, playableScene.ToVariant());
 	}
 
 	void MarkComponentAsReady(FadeOutComponent component)
@@ -99,6 +107,7 @@ public partial class LoadingManager : Node
 
 		var targetScene = GD.Load<PackedScene>(Lib.Scene.ToPath(TransitioningTo));
 		GetTree().ChangeSceneToPacked(targetScene);
+		EmitSignal(SignalName.SceneTransitioned, TransitioningTo.ToVariant());
 		await ToSignal(GetTree().CreateTimer(0.5f), "timeout");
 		SetState(State.FadeInStarted);
 	}

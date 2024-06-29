@@ -16,7 +16,6 @@ public partial class SceneTransition : Area3D
 		if (body is not PlayerController)
 			return;
 
-
 		LoadingManager.Singleton.TransitionToScene(TransitionTo);
 	}
 }

@@ -11,7 +11,7 @@ public partial class MessageList : VBoxContainer
 			RemoveChild(child);
 
 		SignalBus.Singleton.MessageSent += AddMessage;
-		AddMessage("Controls: \n- WASD to move\n- Mouse to look around\n- Tab to cycle enemies\n- Mouse 4 to cycle allies\n- K to open the skill tree\n- M to open the DPS meter", 20);
+		// AddMessage("Controls: \n- WASD to move\n- Mouse to look around\n- Tab to cycle enemies\n- Mouse 4 to cycle allies\n- K to open the skill tree\n- M to open the DPS meter", 20);
 	}
 
 	public void AddMessage(string text, float duration)
