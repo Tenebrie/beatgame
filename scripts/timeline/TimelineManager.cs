@@ -34,8 +34,7 @@ public partial class TimelineManager : Node
 	public void ResetFight()
 	{
 		fightStarted = false;
-		var transitionToScene = Lib.LoadScene(GetTree().CurrentScene.SceneFilePath);
-		SignalBus.Singleton.EmitSignal(SignalBus.SignalName.SceneTransitionStarted, transitionToScene);
+		LoadingManager.Singleton.TransitionToCurrentScene();
 	}
 
 	public void StopFight()

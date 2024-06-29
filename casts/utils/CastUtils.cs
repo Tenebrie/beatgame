@@ -198,7 +198,7 @@ public static class CastUtils
 		return color;
 	}
 
-	public static async void NextFrame(this Node node, Action action = null)
+	public static async void CallDeferred(this Node node, Action action = null)
 	{
 		await node.ToSignal(node.GetTree().CreateTimer(0), "timeout");
 		action?.Invoke();

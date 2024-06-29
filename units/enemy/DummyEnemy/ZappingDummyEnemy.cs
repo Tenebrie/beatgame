@@ -18,7 +18,7 @@ public partial class ZappingDummyEnemy : BasicEnemyController
 
 		Health.SetBaseMaxValue(300);
 		CastLibrary.Register(new BossAuto(this));
-		this.NextFrame(() =>
+		this.CallDeferred(() =>
 		{
 			var area = this.CreateGroundCircularArea(this.SnapToGround(Position));
 			area.Radius = ZappingRadius;

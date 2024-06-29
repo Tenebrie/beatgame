@@ -33,6 +33,9 @@ public partial class BuffPopup : BasePopup
 
 	void OnBuffHovered(BaseBuff buff)
 	{
+		if (buff == null)
+			return;
+
 		MakeVisible();
 		SetBuffName(buff.Settings.FriendlyName);
 

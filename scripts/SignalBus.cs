@@ -37,8 +37,6 @@ public partial class SignalBus : Node
 	[Signal] public delegate void SkillHoveredEventHandler(BaseSkill skill);
 	[Signal] public delegate void SkillUnhoveredEventHandler(BaseSkill skill);
 	[Signal] public delegate void TrackStartedEventHandler(MusicTrack track);
-	[Signal] public delegate void SceneTransitionStartedEventHandler(PackedScene scene);
-	[Signal] public delegate void SceneTransitionFinishedEventHandler(PackedScene scene);
 	[Signal] public delegate void SceneTransitionMusicReadyEventHandler();
 	[Signal] public delegate void SceneFadeOutFinishedEventHandler();
 	[Signal] public delegate void SceneFadeInFinishedEventHandler();

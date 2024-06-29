@@ -11,7 +11,7 @@ public partial class RespawningUnitBehaviour : Node
 
 	public override void _EnterTree()
 	{
-		this.NextFrame(() =>
+		this.CallDeferred(() =>
 		{
 			var parent = (BaseUnit)GetParent();
 			spawner = new()

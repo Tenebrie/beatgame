@@ -34,8 +34,13 @@ public partial class Music : Node
 	{
 		get => 1 / BeatsPerSecond;
 	}
-	public bool IsStarted = false;
+	bool IsStarted = false;
 	bool IsFadingOut = false;
+
+	public bool IsPlaying
+	{
+		get => IsStarted && PreciseBeatIndex > 0;
+	}
 
 	private long LongestCalibration;
 	public AccurateTimer WholeNoteTimer;
@@ -56,6 +61,10 @@ public partial class Music : Node
 	public override void _EnterTree()
 	{
 		instance = this;
+	}
+
+	public override void _Ready()
+	{
 		AddChild(musicLibrary);
 
 		WholeNoteTimer = new AccurateTimer
@@ -144,8 +153,17 @@ public partial class Music : Node
 		EigthNoteTimer.CatchUpTick += OnInternalTimerCatchUpTick;
 		SixteenthNoteTimer.CatchUpTick += OnInternalTimerCatchUpTick;
 
-		SignalBus.Singleton.SceneTransitionStarted += OnSceneTransitionStarted;
-		SignalBus.Singleton.SceneTransitionFinished += OnSceneTransitionFinished;
+		LoadingManager.Singleton.SceneTransitionStarted += OnSceneTransitionStarted;
+		LoadingManager.Singleton.SceneTransitionFinished += OnSceneTransitionFinished;
+
+		var scene = Lib.Scene.ToEnum(GetTree().CurrentScene.SceneFilePath);
+		if (scene == null)
+		{
+			GD.PushError($"Current scene '{GetTree().CurrentScene.SceneFilePath}' is not present in asset library");
+			return;
+		}
+		PrepareSceneSong((PlayableScene)scene);
+		PlaySceneSong((PlayableScene)scene);
 	}
 
 	private void OnInternalTimerTimeout(BeatTime beat)
@@ -168,21 +186,14 @@ public partial class Music : Node
 		return (BeatTimeState & time) > 0;
 	}
 
-	public override void _Ready()
+	private void PrepareSceneSong(PlayableScene scene)
 	{
-		var scene = GetTree().CurrentScene.SceneFilePath;
-		PrepareSceneSong(scene);
-		PlaySceneSong(scene);
+		CurrentTrack = scene == PlayableScene.BossArenaAeriel ? musicLibrary.BossArenaAeriel : musicLibrary.TrainingRoom;
 	}
 
-	private void PrepareSceneSong(string scenePath)
+	private async void PlaySceneSong(PlayableScene scene)
 	{
-		CurrentTrack = Lib.Scene.Is(PlayableScene.BossArenaAeriel, scenePath) ? musicLibrary.BossArenaAeriel : musicLibrary.TrainingRoom;
-	}
-
-	private async void PlaySceneSong(string scenePath)
-	{
-		if (Lib.Scene.Is(PlayableScene.TrainingRoom, scenePath))
+		if (scene == PlayableScene.TrainingRoom)
 		{
 			await ToSignal(GetTree().CreateTimer(1), "timeout");
 			Start();
@@ -230,7 +241,7 @@ public partial class Music : Node
 		CurrentTrack.Volume -= Preferences.Singleton.MusicVolume * 0.5f * (float)delta;
 	}
 
-	private async void OnSceneTransitionStarted(PackedScene targetScene)
+	private async void OnSceneTransitionStarted(PlayableScene scene)
 	{
 		IsFadingOut = true;
 		WholeNoteTimer.Stop(-WholeNoteTimer.Calibration);
@@ -244,13 +255,13 @@ public partial class Music : Node
 		CurrentTrack = null;
 		IsStarted = false;
 
-		PrepareSceneSong(targetScene.ResourcePath);
+		PrepareSceneSong(scene);
 		SignalBus.Singleton.EmitSignal(SignalBus.SignalName.SceneTransitionMusicReady);
 	}
 
-	private void OnSceneTransitionFinished(PackedScene targetScene)
+	private void OnSceneTransitionFinished(PlayableScene targetScene)
 	{
-		PlaySceneSong(targetScene.ResourcePath);
+		PlaySceneSong(targetScene);
 	}
 
 	public double GetNearestBeatIndex(BeatTime timings)

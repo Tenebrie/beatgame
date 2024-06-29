@@ -248,7 +248,7 @@ public partial class BaseCast : Node
 
 	public bool ValidateIfCastIsPossible(CastTargetData target, out string errorMessage)
 	{
-		if (!Music.Singleton.IsStarted)
+		if (!Music.Singleton.IsPlaying)
 		{
 			errorMessage = "Song has not started yet";
 			return false;

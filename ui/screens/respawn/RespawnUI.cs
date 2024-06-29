@@ -42,8 +42,7 @@ public partial class RespawnUI : Control
 	void OnReturnToTrainingRoom()
 	{
 		TimelineManager.Singleton.StopFight();
-		var transitionToScene = Lib.LoadScene(Lib.Scene.GetPath(PlayableScene.TrainingRoom));
-		SignalBus.Singleton.EmitSignal(SignalBus.SignalName.SceneTransitionStarted, transitionToScene);
+		LoadingManager.Singleton.TransitionToScene(PlayableScene.TrainingRoom);
 		Visible = false;
 	}
 }

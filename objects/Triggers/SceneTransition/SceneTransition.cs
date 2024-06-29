@@ -16,7 +16,7 @@ public partial class SceneTransition : Area3D
 		if (body is not PlayerController)
 			return;
 
-		var transitionToScene = Lib.LoadScene(Lib.Scene.GetPath(TransitionTo));
-		SignalBus.Singleton.EmitSignal(SignalBus.SignalName.SceneTransitionStarted, transitionToScene);
+
+		LoadingManager.Singleton.TransitionToScene(TransitionTo);
 	}
 }

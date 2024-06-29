@@ -1,6 +1,21 @@
-[gd_scene load_steps=5 format=3 uid="uid://riy8pgt2rs8q"]
+[gd_scene load_steps=6 format=3 uid="uid://riy8pgt2rs8q"]
 
 [ext_resource type="Script" path="res://ui/screens/transition/TransitionUI.cs" id="1_lcm4o"]
+
+[sub_resource type="Animation" id="Animation_i3sus"]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(1, 1, 1, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_0b1aj"]
 resource_name = "fade"
@@ -15,11 +30,11 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 0), Color(0, 0, 0, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_i3sus"]
-resource_name = "fade_in"
+[sub_resource type="Animation" id="Animation_qvqdk"]
+resource_name = "fade_in_game_start"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -27,15 +42,16 @@ tracks/0/path = NodePath(".:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.3, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xt6gr"]
 _data = {
 "fade_in": SubResource("Animation_i3sus"),
+"fade_in_game_start": SubResource("Animation_qvqdk"),
 "fade_out": SubResource("Animation_0b1aj")
 }
 
@@ -50,6 +66,7 @@ mouse_filter = 2
 script = ExtResource("1_lcm4o")
 
 [node name="SceneTransitionRect" type="ColorRect" parent="."]
+modulate = Color(0, 0, 0, 1)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -57,8 +74,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+color = Color(0, 0, 0, 1)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="SceneTransitionRect"]
 libraries = {
 "": SubResource("AnimationLibrary_xt6gr")
 }
+autoplay = "fade_in_game_start"

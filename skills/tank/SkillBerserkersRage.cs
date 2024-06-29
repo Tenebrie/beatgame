@@ -41,7 +41,7 @@ public partial class SkillBerserkersRage : BaseSkill
 				return;
 
 			LastTriggerAt = time;
-			this.NextFrame(() => Parent.Buffs.Add(new RageBuff()));
+			this.CallDeferred(() => Parent.Buffs.Add(new RageBuff()));
 		}
 	}
 

@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 
 namespace Project;
@@ -85,7 +87,7 @@ public class SceneLibrary
 	{
 		var hasValue = Values.TryGetValue(target, out var result);
 		if (!hasValue)
-			throw new System.Exception($"No scene path provided for {target}.");
+			throw new Exception($"No scene path provided for {target}.");
 
 		return scenePath == result;
 	}
@@ -94,17 +96,23 @@ public class SceneLibrary
 	{
 		var hasValue = Values.TryGetValue(target, out var result);
 		if (!hasValue)
-			throw new System.Exception($"No scene path provided for {target}.");
+			throw new Exception($"No scene path provided for {target}.");
 
 		return scene.ResourcePath == result;
 	}
 
-	public string GetPath(PlayableScene scene)
+	public string ToPath(PlayableScene scene)
 	{
 		var hasValue = Values.TryGetValue(scene, out var result);
 		if (!hasValue)
-			throw new System.Exception($"No scene path provided for {scene}.");
+			throw new Exception($"No scene path provided for {scene}.");
 
 		return result;
+	}
+
+	public PlayableScene? ToEnum(string path)
+	{
+		try { return Values.Where(entry => entry.Value == path).First().Key; }
+		catch (Exception) { return null; }
 	}
 }

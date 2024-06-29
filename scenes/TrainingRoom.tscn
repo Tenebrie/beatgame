@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://bcrvev26qnfr0"]
+[gd_scene load_steps=30 format=3 uid="uid://bcrvev26qnfr0"]
 
 [ext_resource type="PackedScene" uid="uid://bly86m2hi4wkh" path="res://objects/Environment/WallStone02.tscn" id="3_fvbi3"]
 [ext_resource type="PackedScene" uid="uid://brm5ywm6ylnrg" path="res://objects/Environment/WallStone03.tscn" id="4_lh2l6"]
@@ -25,6 +25,7 @@
 [ext_resource type="PackedScene" uid="uid://bigoodfgf85ex" path="res://units/enemy/DummyEnemy/JumpingDummyEnemy.tscn" id="21_1cqso"]
 [ext_resource type="PackedScene" uid="uid://b63tmrk7key7v" path="res://units/enemy/DummyEnemy/ZappingDummyEnemy.tscn" id="23_2mukf"]
 [ext_resource type="PackedScene" uid="uid://dgrskeod8a12e" path="res://objects/Interactables/world/SecretTreeChest.tscn" id="24_ax25i"]
+[ext_resource type="PackedScene" uid="uid://b6wd8lq8n0vbs" path="res://objects/Environment/ClayPot01.tscn" id="26_ktblm"]
 
 [sub_resource type="Environment" id="Environment_nxlol"]
 ambient_light_energy = 0.91
@@ -1000,6 +1001,17 @@ transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, -4, 0, -4)
 [node name="PillarStone04" parent="Environment/Arena" instance=ExtResource("18_l61wd")]
 transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, -4, 0, 4)
 
+[node name="Decorations" type="Node3D" parent="Environment/Arena"]
+
+[node name="ClayPot01_03" parent="Environment/Arena/Decorations" instance=ExtResource("26_ktblm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.60297, 0, 9.57278)
+
+[node name="ClayPot01_02" parent="Environment/Arena/Decorations" instance=ExtResource("26_ktblm")]
+transform = Transform3D(1.2428, 0, 0, 0, 1.2428, 0, 0, 0, 1.2428, -9.76092, 0, 9.40626)
+
+[node name="ClayPot01_01" parent="Environment/Arena/Decorations" instance=ExtResource("26_ktblm")]
+transform = Transform3D(1.33151, 0, 0, 0, 1.33151, 0, 0, 0, 1.33151, -9.74604, 5.96046e-08, 9.76665)
+
 [node name="SpotLight3D" type="SpotLight3D" parent="Environment"]
 transform = Transform3D(-1, 0, 8.74228e-08, 5.91002e-08, 0.736876, 0.676028, -6.44198e-08, 0.676028, -0.736876, 0, 4.17512, -22.4409)
 light_energy = 16.0
@@ -1054,7 +1066,6 @@ Alliance = 2
 
 [node name="SecretTreeChest" parent="." instance=ExtResource("24_ax25i")]
 transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, 2.99731, 4.03058, 15.9924)
-visible = false
 
 [node name="OmniLight3D" type="OmniLight3D" parent="SecretTreeChest"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.201035, 0)

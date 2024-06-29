@@ -18,42 +18,24 @@ public partial class TransitionUI : Control
 		colorRect.Modulate = new Color(1, 1, 1, 0);
 		fadePlayer = GetNode<AnimationPlayer>("SceneTransitionRect/AnimationPlayer");
 		fadePlayer.AnimationFinished += OnAnimationFinished;
-		SignalBus.Singleton.SceneTransitionStarted += OnSceneTransitionStarted;
-		SignalBus.Singleton.SceneTransitionMusicReady += OnMusicFadedOut;
-		LoadingManager.Singleton.LoadingProgressed += OnLoadingProgressed;
-		LoadingManager.Singleton.LoadingCompleted += OnLoadingCompleted;
+		LoadingManager.Singleton.StateChanged += OnLoadingStateChanged;
 	}
 
-	private void OnSceneTransitionStarted(PackedScene toScene)
+	void OnLoadingStateChanged(LoadingManager.State state)
 	{
-		transitioningTo = toScene;
+		if (state == LoadingManager.State.FadeOutStarted)
+			FadeOut();
+		if (state == LoadingManager.State.FadeInStarted)
+			FadeIn();
+	}
+
+	private void FadeOut()
+	{
 		fadePlayer.Play("fade_out");
 	}
 
-	private void OnMusicFadedOut()
+	private void FadeIn()
 	{
-		GetTree().ChangeSceneToPacked(transitioningTo);
-		LoadingManager.Singleton.TriggerLoadingScreen();
-	}
-
-	private void OnLoadingProgressed(float current, float total)
-	{
-		SignalBus.SendMessage($"Loading assets: {Math.Round(current / total * 100)}%.");
-	}
-
-	private void OnLoadingCompleted()
-	{
-		FadeIn();
-	}
-
-	private async void FadeIn()
-	{
-		await ToSignal(GetTree().CreateTimer(0.5f), "timeout");
-		try
-		{
-			SignalBus.Singleton.EmitSignal(SignalBus.SignalName.SceneTransitionFinished, transitioningTo);
-		}
-		catch (Exception ex) { GD.PrintErr(ex); }
 		fadePlayer.Play("fade_in");
 	}
 

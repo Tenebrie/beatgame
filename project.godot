@@ -14,7 +14,7 @@ config/name="BeatGame"
 run/main_scene="res://scenes/TrainingRoom.tscn"
 config/features=PackedStringArray("4.2", "C#", "Forward Plus")
 run/max_fps=165
-boot_splash/bg_color=Color(0.478431, 0.478431, 0.478431, 1)
+boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/show_image=false
 boot_splash/image="res://assets/logo.png"
 boot_splash/fullsize=false
@@ -281,3 +281,4 @@ Autorun={
 
 lights_and_shadows/directional_shadow/soft_shadow_filter_quality=4
 lights_and_shadows/positional_shadow/soft_shadow_filter_quality=4
+anti_aliasing/quality/msaa_3d=2

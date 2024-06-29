@@ -44,7 +44,7 @@ public partial class SkillTreeManager : Node
 				Link<SkillShieldBash,       SkillShieldBashRange>       (1, BuffFactory.Of<BuffTankTreeHealthRegen>()),
 				Link<SkillShieldBash,       SkillFlagellation>          (2, BuffFactory.Of<BuffTankTreeHealthRegen>()),
 				Link<SkillShieldBashRange,  SkillShieldBashMulticast>   (3, BuffFactory.Of<BuffTankTreeHealthRegen>()),
-				Link<SkillShieldsUp,        SkillParry>          		(1, BuffFactory.Of<BuffTankTreeHealthRegen>()),
+				Link<SkillShieldsUp,        SkillParry>                 (1, BuffFactory.Of<BuffTankTreeHealthRegen>()),
 			}
 		));
 
@@ -169,7 +169,7 @@ public partial class SkillTreeManager : Node
 	void OnUnitCreated(BaseUnit unit)
 	{
 		if (unit is PlayerController)
-			this.NextFrame(() => Recalculate());
+			this.CallDeferred(() => Recalculate());
 	}
 
 	public void LearnSkill(BaseSkill skill)

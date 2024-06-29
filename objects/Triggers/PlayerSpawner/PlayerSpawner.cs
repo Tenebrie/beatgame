@@ -53,7 +53,7 @@ public partial class PlayerSpawner : Node3D
 
 	public override void _Process(double delta)
 	{
-		var isInCombat = Music.Singleton.IsStarted;
+		var isInCombat = Music.Singleton.IsPlaying;
 		var shouldSpawnInCombat = SpawnMode == Mode.InCombat;
 		if (Player == null && (SpawnMode == Mode.Always || isInCombat == shouldSpawnInCombat))
 			SpawnPlayer();

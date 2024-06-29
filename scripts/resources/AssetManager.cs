@@ -35,7 +35,7 @@ public static class Lib
 			var status = ResourceLoader.LoadThreadedGetStatus(path);
 			if (status == ResourceLoader.ThreadLoadStatus.InvalidResource)
 				GD.PushWarning($"Attempting to load resource {path} which has not been preloaded.");
-			if (status != ResourceLoader.ThreadLoadStatus.Loaded)
+			else if (status != ResourceLoader.ThreadLoadStatus.Loaded)
 				GD.PushWarning($"Attempting to load resource {path} which has not finished loading yet.");
 		}
 	}
@@ -46,7 +46,7 @@ public partial class AssetManager : Node
 	private bool Loaded = false;
 	private int TotalResourceCount = 0;
 
-	public override void _Ready()
+	public override void _EnterTree()
 	{
 		foreach (var field in typeof(UnitLibrary).GetFields())
 			PreloadResource(field.GetValue(Lib.Unit));
