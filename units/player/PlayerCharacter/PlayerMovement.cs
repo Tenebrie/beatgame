@@ -131,6 +131,8 @@ public partial class PlayerMovement : ComposableScript
 
 		if (Input.IsActionJustPressed("MoveForward") || Input.IsActionJustPressed("MoveBackward"))
 			autorunEnabled = false;
+		if ((Input.IsActionJustPressed("SoftCameraMove") && hardCameraMoving) || (Input.IsActionJustPressed("HardCameraMove") && softCameraMoving))
+			autorunEnabled = false;
 		if (Input.IsActionJustPressed("Autorun"))
 			autorunEnabled = !autorunEnabled;
 

@@ -2,7 +2,11 @@ using Godot;
 
 namespace Project;
 
-public partial class RespawningUnitBehaviour : Node
+/// <summary>
+/// When destroyed, this unit will respawn after a short delay.
+/// Expected to be used for training dummies in the hub room.
+/// </summary>
+public partial class RespawningUnitBehaviour : BaseBehaviour<BaseUnit>
 {
 	[Export]
 	public string sceneToSpawn;

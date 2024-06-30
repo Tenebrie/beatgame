@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://bkeh5udd43y7c"]
+
+[ext_resource type="PackedScene" uid="uid://cjwroydhrme57" path="res://assets/meshes/dummy01.glb" id="1_7kb6p"]
+[ext_resource type="Material" uid="uid://dtiin7xhovkuw" path="res://assets/PolygonDungeon/Materials/Alternatives/Dungeon_Material_01_A.tres" id="2_gjhc0"]
+
+[node name="DummyVisuals" instance=ExtResource("1_7kb6p")]
+
+[node name="Skeleton3D" parent="Armature" index="0"]
+bones/0/position = Vector3(-0.195131, -0.18056, 0.204078)
+bones/0/rotation = Quaternion(-0.0151131, -0.495088, 0.0398183, 0.867799)
+bones/1/rotation = Quaternion(0.0273159, -0.97698, 0.00323178, 0.211552)
+bones/2/rotation = Quaternion(-0.00391739, -1.92123e-08, 0.00186838, 0.999991)
+bones/3/rotation = Quaternion(0.0224338, 0.245565, 0.0416471, 0.968225)
+bones/3/scale = Vector3(1, 1, 1)
+bones/4/rotation = Quaternion(0.0746104, 0.0822958, 0.655446, 0.747028)
+bones/5/rotation = Quaternion(-0.076589, 0.0609506, -0.760227, 0.642241)
+
+[node name="Cylinder" parent="Armature/Skeleton3D" index="0"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+surface_material_override/0 = ExtResource("2_gjhc0")

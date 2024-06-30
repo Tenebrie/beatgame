@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://bntofxyj3l1jr"]
+[gd_scene load_steps=37 format=3 uid="uid://bntofxyj3l1jr"]
 
 [ext_resource type="PackedScene" uid="uid://dur06rjn7cp0y" path="res://assets/PolygonTropicalJungle/Prefabs/SM_Env_Rock_Arch_01.tscn" id="1_3cih3"]
 [ext_resource type="PackedScene" uid="uid://bmt32aexhe21t" path="res://assets/PolygonTropicalJungle/Prefabs/SM_Env_Rock_Cliff_01.tscn" id="2_evk0u"]
@@ -19,7 +19,6 @@
 [ext_resource type="PackedScene" uid="uid://bkj2dnlynulyr" path="res://assets/PolygonTropicalJungle/Prefabs/SM_Env_Grass_Tall_Clump_03.tscn" id="15_ktsfq"]
 [ext_resource type="PackedScene" uid="uid://culaiwenc0uwp" path="res://assets/PolygonTropicalJungle/Prefabs/SM_Env_Grass_Tall_Clump_02.tscn" id="16_mm6kr"]
 [ext_resource type="PackedScene" uid="uid://dxufj8co46a6" path="res://assets/PolygonTropicalJungle/Prefabs/SM_Env_Grass_Tall_Clump_01.tscn" id="17_u3un0"]
-[ext_resource type="PackedScene" uid="uid://chl176ponels8" path="res://assets/PolygonTropicalJungle/Prefabs/SM_Bld_Ruins_Wall_01.tscn" id="20_ianj7"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ktukb"]
 albedo_texture = ExtResource("4_jfhoq")
@@ -3863,6 +3862,3 @@ transform = Transform3D(0.374276, -0.116775, 0.919935, 0.0440071, 0.993158, 0.10
 light_color = Color(1, 0.7305, 0.23, 1)
 light_energy = 2.0
 light_volumetric_fog_energy = 100000.0
-
-[node name="SM_Bld_Ruins_Wall_01" parent="." instance=ExtResource("20_ianj7")]
-transform = Transform3D(-2.10159e-08, 0.498235, -0.041978, -0.5, -2.18557e-08, -9.08354e-09, -1.08864e-08, 0.041978, 0.498235, 7.82196, 0.714846, 12.7245)

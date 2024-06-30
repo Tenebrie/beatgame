@@ -2,5 +2,5 @@
 
 [ext_resource type="Script" path="res://units/behaviours/RespawningUnitBehaviour.cs" id="1_ucaji"]
 
-[node name="RespawningUnitBehaviour" type="Node3D"]
+[node name="RespawningUnitBehaviour" type="Node"]
 script = ExtResource("1_ucaji")

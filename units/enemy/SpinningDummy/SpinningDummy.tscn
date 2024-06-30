@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://b10ixegtcb4ou"]
+
+[ext_resource type="PackedScene" uid="uid://dd8hi213iqvva" path="res://units/enemy/DummyEnemy/DummyEnemy.tscn" id="1_7tb32"]
+
+[node name="SpinningDummy" instance=ExtResource("1_7tb32")]
