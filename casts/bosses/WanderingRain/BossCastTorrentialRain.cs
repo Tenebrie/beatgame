@@ -53,9 +53,9 @@ public partial class BossCastTorrentialRain : BaseCast
 			foreach (var pos in positions)
 			{
 				dropletsSpawned += 1;
-				var area = this.CreateGroundCircularArea(pos);
-				area.GrowTime = 0.5f;
-				area.Radius = 0.4f;
+				var area = this.CreateCircularTelegraph(pos);
+				area.Settings.GrowTime = 0.5f;
+				area.Settings.Radius = 0.4f;
 			}
 		}
 

@@ -31,11 +31,11 @@ public partial class CastVaporize : BaseCast
 	{
 		if (this.HasSkill<SkillManaFrenzy>())
 			Parent.Buffs.RefreshDuration<BuffManaFrenzy>();
-		var circle = this.CreateGroundCircularArea(targetData.HostileUnit.GetGroundedPosition());
-		circle.Radius = 1;
-		circle.Alliance = Parent.Alliance;
-		circle.GrowTime = 8;
-		circle.OnFinishedPerTargetCallback = (unit) =>
+		var circle = this.CreateCircularTelegraph(targetData.HostileUnit.GetGroundedPosition());
+		circle.Settings.Radius = 1;
+		circle.Settings.Alliance = Parent.Alliance;
+		circle.Settings.GrowTime = 8;
+		circle.Settings.OnFinishedPerTargetCallback = (unit) =>
 		{
 			unit.Health.Damage(BaseDamage, this);
 			for (var i = 0; i < IgniteStacks; i++)

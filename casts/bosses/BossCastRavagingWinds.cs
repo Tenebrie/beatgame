@@ -52,17 +52,17 @@ public partial class BossCastRavagingWinds : BaseCast
 	protected override void OnCastTicked(CastTargetData targetData, BeatTime time)
 	{
 		var spawns = GetSpawnPositions();
-		List<GroundAreaCircle> circleGroup = new();
+		List<CircularTelegraph> circleGroup = new();
 		foreach (var (spawn, size) in spawns)
 		{
 			var rotatedSpawn = spawn.Rotated(Vector3.Up, Rotation);
-			var circle = this.CreateGroundCircularArea(rotatedSpawn);
-			circle.Radius = size * AreaRadius;
-			circle.GrowTime = 2;
-			circle.Alliance = UnitAlliance.Hostile;
+			var circle = this.CreateCircularTelegraph(rotatedSpawn);
+			circle.Settings.Radius = size * AreaRadius;
+			circle.Settings.GrowTime = 2;
+			circle.Settings.Alliance = UnitAlliance.Hostile;
 			circleGroup.Add(circle);
 		}
-		circleGroup[0].OnFinishedCallback = () =>
+		circleGroup[0].Settings.OnFinishedCallback = () =>
 		{
 			var targets = circleGroup.SelectMany(circle => circle.GetTargets()).Distinct().Where(unit => unit.HostileTo(Parent));
 			foreach (var target in targets)

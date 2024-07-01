@@ -7,7 +7,7 @@ public partial class PowerUpLightningOrb : Node3D
 	PlayerController PlayerInRange;
 
 	Projectile EnergyOrb;
-	GroundAreaCircle GroundAreaCircle;
+	CircularTelegraph GroundAreaCircle;
 	Area3D TriggerArea;
 
 	public override void _Ready()
@@ -16,9 +16,9 @@ public partial class PowerUpLightningOrb : Node3D
 		TriggerArea = GetNode<Area3D>("TriggerArea");
 		TriggerArea.BodyEntered += OnBodyEntered;
 		TriggerArea.BodyExited += OnBodyExited;
-		GroundAreaCircle = GetNode<GroundAreaCircle>("GroundAreaCircle");
-		GroundAreaCircle.Periodic = true;
-		GroundAreaCircle.Alliance = UnitAlliance.Neutral;
+		GroundAreaCircle = GetNode<CircularTelegraph>("GroundAreaCircle");
+		GroundAreaCircle.Settings.Periodic = true;
+		GroundAreaCircle.Settings.Alliance = UnitAlliance.Neutral;
 	}
 
 	void OnBodyEntered(Node3D body)

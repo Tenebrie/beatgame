@@ -8,7 +8,7 @@ public partial class ZappingDummyEnemy : BasicEnemyController
 {
 	public float ZappingRadius = 2;
 
-	GroundAreaCircle circle;
+	CircularTelegraph circle;
 
 	public override void _Ready()
 	{
@@ -20,10 +20,11 @@ public partial class ZappingDummyEnemy : BasicEnemyController
 		CastLibrary.Register(new BossAuto(this));
 		this.CallDeferred(() =>
 		{
-			var area = this.CreateGroundCircularArea(this.SnapToGround(Position));
-			area.Radius = ZappingRadius;
-			area.Alliance = Alliance;
-			area.Periodic = true;
+			var area = this.CreateCircularTelegraph(this.SnapToGround(Position));
+			area.Settings.GrowTime = 1.0f;
+			area.Settings.Radius = ZappingRadius;
+			area.Settings.Alliance = Alliance;
+			area.Settings.Periodic = true;
 			circle = area;
 		});
 	}

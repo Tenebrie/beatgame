@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://c0rxfm0hgvaeq" path="res://casts/player/magic/Flamethrower/tokens/EffectFlamethrower.tscn" id="1_6hkb2"]
 [ext_resource type="Script" path="res://casts/player/magic/Flamethrower/tokens/EffectFlamethrowerWithHitbox.cs" id="1_yn7as"]
-[ext_resource type="PackedScene" uid="uid://d0518ise2jvew" path="res://effects/Telegraphs/GroundAreaCircle/CircleDecal.tscn" id="2_b2ko5"]
-[ext_resource type="Shader" path="res://effects/Telegraphs/GroundAreaCircle/CircleDecal.gdshader" id="4_kkqnw"]
+[ext_resource type="PackedScene" uid="uid://d0518ise2jvew" path="res://effects/Telegraphs/CircularTelegraph/CircleDecal.tscn" id="2_b2ko5"]
+[ext_resource type="Shader" path="res://effects/Telegraphs/CircularTelegraph/CircleDecal.gdshader" id="4_kkqnw"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nrq6q"]
 render_priority = 0

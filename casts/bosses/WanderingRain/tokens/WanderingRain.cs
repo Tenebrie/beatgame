@@ -6,7 +6,7 @@ namespace Project;
 public partial class WanderingRain : BasicEnemyController
 {
 	bool IsMoving = false;
-	GroundAreaCircle area;
+	CircularTelegraph area;
 
 	public override void _Ready()
 	{
@@ -15,10 +15,10 @@ public partial class WanderingRain : BasicEnemyController
 
 	public void Activate()
 	{
-		area = this.CreateGroundCircularArea(this.Position);
-		area.GrowTime = 1;
-		area.Radius = 1;
-		area.OnTargetEntered = OnImpactCallback;
+		area = this.CreateCircularTelegraph(this.Position);
+		area.Settings.GrowTime = 1;
+		area.Settings.Radius = 1;
+		area.Settings.OnTargetEntered = OnImpactCallback;
 	}
 
 	public void OnImpactCallback(BaseUnit unit)

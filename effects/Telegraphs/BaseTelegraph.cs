@@ -7,44 +7,97 @@ namespace Project;
 
 public abstract partial class BaseTelegraph : Node3D
 {
-	public bool Periodic;
+	private bool autoCleaning = true;
+	private bool periodic;
+	private Action<BaseUnit> onTargetEntered = null;
+	private Action onFinishedCallback = null;
+	private Func<BaseUnit, bool> targetValidator = null;
+	private Action<BaseUnit> onFinishedPerTargetCallback = null;
+
+	public class TelegraphSettings
+	{
+		public BaseTelegraph Parent;
+		public TelegraphSettings(BaseTelegraph parent)
+		{
+			Parent = parent;
+		}
+
+		public bool AutoCleaning
+		{
+			get => Parent.autoCleaning;
+			set => Parent.autoCleaning = value;
+		}
+
+		public bool Periodic
+		{
+			get => Parent.periodic;
+			set => Parent.periodic = value;
+		}
+
+		public UnitAlliance Alliance
+		{
+			get => Parent.alliance;
+			set
+			{
+				Parent.alliance = value;
+				Parent.UpdateColor();
+			}
+		}
+
+		public float GrowTime
+		{
+			get => Parent.growTime;
+			set
+			{
+				Parent.growTime = value;
+				Parent.finishesAt = Parent.createdAt + Music.Singleton.SecondsPerBeat * value * 1000;
+			}
+		}
+
+		public Action<BaseUnit> OnTargetEntered
+		{
+			get => Parent.onTargetEntered;
+			set => Parent.onTargetEntered = value;
+		}
+		public Action OnFinishedCallback
+		{
+			get => Parent.onFinishedCallback;
+			set => Parent.onFinishedCallback = value;
+		}
+		public Func<BaseUnit, bool> TargetValidator
+		{
+			get => Parent.targetValidator;
+			set => Parent.targetValidator = value;
+		}
+		public Action<BaseUnit> OnFinishedPerTargetCallback
+		{
+			get => Parent.onFinishedPerTargetCallback;
+			set => Parent.onFinishedPerTargetCallback = value;
+		}
+	}
+
 	protected double createdAt;
 	protected double finishesAt;
 	protected bool endReached;
 	protected bool cleaningUp;
-	protected UnitAlliance alliance = UnitAlliance.Hostile;
-	public Action<BaseUnit> OnTargetEntered = null;
-	public Action OnFinishedCallback = null;
-	public Func<BaseUnit, bool> TargetValidator = null;
-	public Action<BaseUnit> OnFinishedPerTargetCallback = null;
 	readonly List<BaseUnit> targets = new();
 
 	protected float GrowPercentage;
 
-	public UnitAlliance Alliance
-	{
-		get => alliance;
-		set
-		{
-			alliance = value;
-			UpdateColor();
-		}
-	}
-
+	protected UnitAlliance alliance = UnitAlliance.Hostile;
 	private float growTime = 1; // beats
-	public float GrowTime
+
+	private readonly TelegraphSettings settings;
+	public virtual TelegraphSettings Settings => settings;
+
+	public BaseTelegraph()
 	{
-		get => growTime;
-		set
-		{
-			growTime = value;
-			finishesAt = createdAt + Music.Singleton.SecondsPerBeat * value * 1000;
-		}
+		settings = new(this);
 	}
 
 	public override void _Ready()
 	{
-		finishesAt = createdAt + Music.Singleton.SecondsPerBeat * GrowTime * 1000;
+		finishesAt = createdAt + Music.Singleton.SecondsPerBeat * growTime * 1000;
 		UpdateColor();
 	}
 
@@ -58,16 +111,16 @@ public abstract partial class BaseTelegraph : Node3D
 			endReached = true;
 			try
 			{
-				OnFinishedCallback?.Invoke();
-				if (OnFinishedPerTargetCallback != null)
+				onFinishedCallback?.Invoke();
+				if (onFinishedPerTargetCallback != null)
 				{
 					foreach (var target in GetTargets())
-						OnFinishedPerTargetCallback(target);
+						onFinishedPerTargetCallback(target);
 				}
 			}
 			catch (Exception ex) { GD.PrintErr(ex); }
 
-			if (!Periodic)
+			if (!Settings.Periodic && Settings.AutoCleaning)
 				CleanUp();
 		}
 	}
@@ -80,8 +133,8 @@ public abstract partial class BaseTelegraph : Node3D
 		targets.Add(unit);
 		try
 		{
-			if (TargetValidator == null || TargetValidator(unit))
-				OnTargetEntered?.Invoke(unit);
+			if (targetValidator == null || targetValidator(unit))
+				onTargetEntered?.Invoke(unit);
 		}
 		catch (Exception ex)
 		{
@@ -104,7 +157,7 @@ public abstract partial class BaseTelegraph : Node3D
 
 	public List<BaseUnit> GetTargets()
 	{
-		return targets.Distinct().Where(target => target != null && IsInstanceValid(target) && TargetValidator == null || TargetValidator(target)).ToList();
+		return targets.Distinct().Where(target => target != null && IsInstanceValid(target) && targetValidator == null || targetValidator(target)).ToList();
 	}
 
 	public void SnapToGround()

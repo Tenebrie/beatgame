@@ -62,11 +62,11 @@ public partial class JumpingDummyEnemy : BasicEnemyController
 		state = State.Raising;
 		raisingTimer.Start();
 		Gravity = -BaseGravity / 10;
-		var circle = this.CreateGroundCircularArea(Position);
-		circle.GrowTime = 3.0f;
-		circle.Radius = 3;
+		var circle = this.CreateCircularTelegraph(Position);
+		circle.Settings.GrowTime = 3.0f;
+		circle.Settings.Radius = 3;
 		circle.SnapToGround();
-		circle.Alliance = UnitAlliance.Hostile;
+		circle.Settings.Alliance = UnitAlliance.Hostile;
 	}
 
 	public void DoAttackDamage()

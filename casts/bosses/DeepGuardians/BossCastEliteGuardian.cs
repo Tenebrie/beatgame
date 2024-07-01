@@ -37,25 +37,25 @@ public partial class BossCastEliteGuardian : BaseCast
 		guardian.Position = this.GetArenaEdgePosition(new Vector3(0, 0, 0), Orientation);
 		GetTree().CurrentScene.AddChild(guardian);
 
-		var rect = this.CreateGroundRectangularArea(guardian.Position);
+		var rect = this.CreateRectangularTelegraph(guardian.Position);
 
 		guardian.Rotate(Vector3.Up, this.GetArenaFacingAngle(Orientation));
 		rect.Rotate(Vector3.Up, this.GetArenaFacingAngle(Orientation));
 
 		var arenaSize = this.GetArenaSize();
-		rect.Width = arenaSize * 2;
-		rect.Length = arenaSize * 2;
-		rect.SetHeight(40);
-		rect.GrowTime = Settings.HoldTime;
-		rect.LengthOrigin = GroundAreaRect.Origin.Start;
+		rect.Settings.Width = arenaSize * 2;
+		rect.Settings.Length = arenaSize * 2;
+		rect.Settings.Height = 40;
+		rect.Settings.GrowTime = Settings.HoldTime;
+		rect.Settings.LengthOrigin = RectangularTelegraph.Origin.Start;
 
 		var forward = guardian.ForwardVector;
-		rect.TargetValidator = (target) => target.HostileTo(Parent);
-		rect.OnFinishedPerTargetCallback = (BaseUnit target) =>
+		rect.Settings.TargetValidator = (target) => target.HostileTo(Parent);
+		rect.Settings.OnFinishedPerTargetCallback = (BaseUnit target) =>
 		{
 			target.Health.Damage(10, this);
 			target.ForcefulMovement.Push(64, forward, 2f);
 		};
-		rect.OnFinishedCallback = () => guardian.QueueFree();
+		rect.Settings.OnFinishedCallback = () => guardian.QueueFree();
 	}
 }

@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://d0518ise2jvew"]
 
-[ext_resource type="Shader" path="res://effects/Telegraphs/GroundAreaCircle/CircleDecal.gdshader" id="1_mgp7j"]
-[ext_resource type="Script" path="res://effects/Telegraphs/GroundAreaCircle/CircleDecal.cs" id="1_sq4y0"]
+[ext_resource type="Shader" path="res://effects/Telegraphs/CircularTelegraph/CircleDecal.gdshader" id="1_mgp7j"]
+[ext_resource type="Script" path="res://effects/Telegraphs/CircularTelegraph/CircleDecal.cs" id="1_sq4y0"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nrq6q"]
 render_priority = 0

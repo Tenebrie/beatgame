@@ -39,6 +39,9 @@ public partial class BaseCast : Node
 		public bool ReversedCastBar = false;
 		public bool HiddenCastBar = false;
 		public float MaximumRange = Mathf.Inf;
+		public string AnimPrepare = null;
+		public string AnimCast = null;
+		public string AnimAfterCast = null;
 
 		/// <summary>Only for CastInputType.AutoRelease</summary>
 		public float PrepareTime = 0; // beats

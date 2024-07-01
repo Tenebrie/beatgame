@@ -64,12 +64,12 @@ public partial class BossCastTridents : BaseCast
 		stateMachine.Start();
 		foreach (var (position, _) in GetSpawnPositions())
 		{
-			var rect = this.CreateGroundCircularArea(position);
-			rect.Radius = 2;
-			rect.GrowTime = 8;
-			rect.Alliance = UnitAlliance.Hostile;
-			rect.TargetValidator = (unit) => unit.HostileTo(Parent);
-			rect.OnFinishedPerTargetCallback = (unit) =>
+			var rect = this.CreateCircularTelegraph(position);
+			rect.Settings.Radius = 2;
+			rect.Settings.GrowTime = 8;
+			rect.Settings.Alliance = UnitAlliance.Hostile;
+			rect.Settings.TargetValidator = (unit) => unit.HostileTo(Parent);
+			rect.Settings.OnFinishedPerTargetCallback = (unit) =>
 			{
 				unit.Health.Damage(30, this);
 				unit.ForcefulMovement.Push(2, unit.Position - rect.Position, 1);
@@ -104,16 +104,16 @@ public partial class BossCastTridents : BaseCast
 			foreach (var trident in tridents)
 			{
 				trident.SetActive(false);
-				var rect = this.CreateGroundCircularArea(trident.Position);
-				rect.Radius = 4;
-				rect.GrowTime = 8;
-				rect.Alliance = UnitAlliance.Hostile;
-				rect.OnFinishedPerTargetCallback = (unit) =>
+				var rect = this.CreateCircularTelegraph(trident.Position);
+				rect.Settings.Radius = 4;
+				rect.Settings.GrowTime = 8;
+				rect.Settings.Alliance = UnitAlliance.Hostile;
+				rect.Settings.OnFinishedPerTargetCallback = (unit) =>
 				{
 					unit.Health.Damage(30, this);
 					unit.ForcefulMovement.Push(2, unit.Position - rect.Position, 1f);
 				};
-				rect.OnFinishedCallback = () => trident.QueueFree();
+				rect.Settings.OnFinishedCallback = () => trident.QueueFree();
 			}
 		}
 	}

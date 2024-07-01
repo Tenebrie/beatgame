@@ -11,18 +11,18 @@ namespace Project;
 public static class CastUtils
 {
 
-	public static GroundAreaCircle CreateGroundCircularArea(this Node node, Vector3 point)
+	public static CircularTelegraph CreateCircularTelegraph(this Node node, Vector3 point)
 	{
-		var circle = Lib.LoadScene(Lib.Effect.GroundAreaCircle).Instantiate<GroundAreaCircle>();
+		var circle = Lib.LoadScene(Lib.Effect.GroundAreaCircle).Instantiate<CircularTelegraph>();
 		circle.Position = point;
 		node.GetTree().CurrentScene.AddChild(circle);
 		circle.EnableCulling();
 		return circle;
 	}
 
-	public static GroundAreaRect CreateGroundRectangularArea(this Node node, Vector3 point)
+	public static RectangularTelegraph CreateRectangularTelegraph(this Node node, Vector3 point)
 	{
-		var rect = Lib.LoadScene(Lib.Effect.GroundAreaRect).Instantiate<GroundAreaRect>();
+		var rect = Lib.LoadScene(Lib.Effect.GroundAreaRect).Instantiate<RectangularTelegraph>();
 		rect.Position = point;
 		node.GetTree().CurrentScene.AddChild(rect);
 		rect.EnableCulling();

@@ -1,3 +1,6 @@
-[gd_scene format=3 uid="uid://uxx8wybxag7b"]
+[gd_scene load_steps=2 format=3 uid="uid://uxx8wybxag7b"]
+
+[ext_resource type="Script" path="res://units/behaviours/MeshAnimationBehaviour.cs" id="1_i0rku"]
 
 [node name="MeshAnimationBehaviour" type="Node"]
+script = ExtResource("1_i0rku")

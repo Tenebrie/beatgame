@@ -68,29 +68,29 @@ public partial class BossCastDeepGuardians : BaseCast
 
 		GuardianCount += 1;
 
-		var rect = this.CreateGroundRectangularArea(guardian.Position);
+		var rect = this.CreateRectangularTelegraph(guardian.Position);
 
 		var angle = this.GetArenaFacingAngle(Orientation);
 		guardian.Rotate(Vector3.Up, angle);
 		rect.Rotate(Vector3.Up, angle);
 
-		rect.Width = 8;
-		rect.Length = 32;
-		rect.GrowTime = Settings.PrepareTime;
-		rect.LengthOrigin = GroundAreaRect.Origin.Start;
+		rect.Settings.Width = 8;
+		rect.Settings.Length = 32;
+		rect.Settings.GrowTime = Settings.PrepareTime;
+		rect.Settings.LengthOrigin = RectangularTelegraph.Origin.Start;
 
 		var forward = guardian.ForwardVector;
-		rect.TargetValidator = (target) => target.HostileTo(Parent);
-		rect.OnTargetEntered = (BaseUnit target) =>
+		rect.Settings.TargetValidator = (target) => target.HostileTo(Parent);
+		rect.Settings.OnTargetEntered = (BaseUnit target) =>
 		{
 			target.Health.Damage(3, this);
 		};
-		rect.OnFinishedPerTargetCallback = (BaseUnit target) =>
+		rect.Settings.OnFinishedPerTargetCallback = (BaseUnit target) =>
 		{
 			target.Health.Damage(50, this);
 			target.ForcefulMovement.Push(8, forward, 1);
 		};
-		rect.OnFinishedCallback = () =>
+		rect.Settings.OnFinishedCallback = () =>
 		{
 			guardian.QueueFree();
 		};

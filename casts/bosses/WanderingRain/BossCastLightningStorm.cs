@@ -60,10 +60,10 @@ public partial class BossCastLightningStorm : BaseCast
 		var positions = GetSpawnPositions();
 		foreach (var pos in positions)
 		{
-			var area = this.CreateGroundCircularArea(pos);
-			area.GrowTime = (float)(ImpactIndex - Music.Singleton.BeatIndex);
-			area.Radius = 1.5f;
-			area.OnFinishedPerTargetCallback = (BaseUnit unit) =>
+			var area = this.CreateCircularTelegraph(pos);
+			area.Settings.GrowTime = (float)(ImpactIndex - Music.Singleton.BeatIndex);
+			area.Settings.Radius = 1.5f;
+			area.Settings.OnFinishedPerTargetCallback = (BaseUnit unit) =>
 			{
 				unit.Health.Damage(30, this);
 				this.CreateZapEffect(pos + new Vector3(0.5f, 5, 0.5f), pos);

@@ -4,7 +4,7 @@ namespace Project;
 
 public partial class DeepGuardian : BasicEnemyController
 {
-	GroundAreaRect castRect;
+	RectangularTelegraph castRect;
 	public DeepGuardian()
 	{
 		FriendlyName = "Deep Guardian";

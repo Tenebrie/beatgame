@@ -19,12 +19,12 @@ public partial class BossCastAreaAttack : BaseCast
 	{
 		foreach (var point in targetData.MultitargetPoints)
 		{
-			var circle = this.CreateGroundCircularArea(point);
-			circle.Radius = AreaRadius;
-			circle.GrowTime = Settings.HoldTime;
-			circle.Alliance = UnitAlliance.Hostile;
-			circle.TargetValidator = (target) => target.HostileTo(Parent);
-			circle.OnFinishedPerTargetCallback = (target) =>
+			var circle = this.CreateCircularTelegraph(point);
+			circle.Settings.Radius = AreaRadius;
+			circle.Settings.GrowTime = Settings.HoldTime;
+			circle.Settings.Alliance = UnitAlliance.Hostile;
+			circle.Settings.TargetValidator = (target) => target.HostileTo(Parent);
+			circle.Settings.OnFinishedPerTargetCallback = (target) =>
 			{
 				target.Health.Damage(40, this);
 			};

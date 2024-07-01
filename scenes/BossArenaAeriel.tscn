@@ -27,9 +27,9 @@
 [ext_resource type="AudioStream" uid="uid://bvy478oihp21t" path="res://assets/audiofx/OceanWavesBeach_SFXB.123.ogg" id="25_wxp6v"]
 [ext_resource type="PackedScene" uid="uid://d0mn1jg5e5uej" path="res://objects/WaterSurface/WaterSurface200.tscn" id="27_i67cr"]
 [ext_resource type="PackedScene" uid="uid://bk2ho0p6s2wjy" path="res://objects/WaterSurface/WaterSurfaceDistant.tscn" id="27_m08vi"]
-[ext_resource type="PackedScene" uid="uid://d0518ise2jvew" path="res://effects/Telegraphs/GroundAreaCircle/CircleDecal.tscn" id="28_bvkhp"]
-[ext_resource type="Shader" path="res://effects/Telegraphs/GroundAreaCircle/CircleDecal.gdshader" id="29_j7a18"]
-[ext_resource type="PackedScene" uid="uid://tk3jful5lm6r" path="res://effects/Telegraphs/GroundAreaRect/RectDecal.tscn" id="30_0f3hd"]
+[ext_resource type="PackedScene" uid="uid://d0518ise2jvew" path="res://effects/Telegraphs/CircularTelegraph/CircleDecal.tscn" id="28_bvkhp"]
+[ext_resource type="Shader" path="res://effects/Telegraphs/CircularTelegraph/CircleDecal.gdshader" id="29_j7a18"]
+[ext_resource type="PackedScene" uid="uid://tk3jful5lm6r" path="res://effects/Telegraphs/RectangularTelegraph/RectDecal.tscn" id="30_0f3hd"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7i8b0"]
 albedo_texture = ExtResource("1_kfj03")

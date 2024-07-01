@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://tk3jful5lm6r"]
 
-[ext_resource type="Script" path="res://effects/Telegraphs/GroundAreaRect/RectDecal.cs" id="1_nsbf3"]
-[ext_resource type="Shader" path="res://effects/Telegraphs/GroundAreaRect/RectDecal.gdshader" id="1_t8vyy"]
+[ext_resource type="Script" path="res://effects/Telegraphs/RectangularTelegraph/RectDecal.cs" id="1_nsbf3"]
+[ext_resource type="Shader" path="res://effects/Telegraphs/RectangularTelegraph/RectDecal.gdshader" id="1_t8vyy"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nrq6q"]
 render_priority = 0

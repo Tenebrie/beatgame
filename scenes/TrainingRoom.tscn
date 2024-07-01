@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://bcrvev26qnfr0"]
+[gd_scene load_steps=31 format=3 uid="uid://bcrvev26qnfr0"]
 
 [ext_resource type="PackedScene" uid="uid://bly86m2hi4wkh" path="res://objects/Environment/WallStone02.tscn" id="3_fvbi3"]
 [ext_resource type="PackedScene" uid="uid://brm5ywm6ylnrg" path="res://objects/Environment/WallStone03.tscn" id="4_lh2l6"]
@@ -26,6 +26,7 @@
 [ext_resource type="PackedScene" uid="uid://b63tmrk7key7v" path="res://units/enemy/DummyEnemy/ZappingDummyEnemy.tscn" id="23_2mukf"]
 [ext_resource type="PackedScene" uid="uid://dgrskeod8a12e" path="res://objects/Interactables/world/SecretTreeChest.tscn" id="24_ax25i"]
 [ext_resource type="PackedScene" uid="uid://b6wd8lq8n0vbs" path="res://objects/Environment/ClayPot01.tscn" id="26_ktblm"]
+[ext_resource type="PackedScene" uid="uid://b10ixegtcb4ou" path="res://units/enemy/SpinningDummy/SpinningDummy.tscn" id="27_8innl"]
 
 [sub_resource type="Environment" id="Environment_nxlol"]
 ambient_light_energy = 0.91
@@ -1072,3 +1073,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.201035, 0)
 light_color = Color(1, 0.658824, 0.192157, 1)
 light_energy = 2.0
 omni_range = 1.0
+
+[node name="SpinningDummy" parent="." instance=ExtResource("27_8innl")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -7.99464, 0.00719925, -4.00609)
+Alliance = 2

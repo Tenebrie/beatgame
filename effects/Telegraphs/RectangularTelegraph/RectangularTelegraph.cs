@@ -4,7 +4,7 @@ using System.Linq;
 using Godot;
 
 namespace Project;
-public partial class GroundAreaRect : BaseTelegraph
+public partial class RectangularTelegraph : BaseTelegraph
 {
 	private RectDecal decal;
 	private Area3D hitbox;
@@ -16,43 +16,67 @@ public partial class GroundAreaRect : BaseTelegraph
 	private float rotation = 0;
 	private Origin lengthOrigin = Origin.Center;
 
-	public float Width
+	public new TelegraphSettings Settings;
+	public new class TelegraphSettings : BaseTelegraph.TelegraphSettings
 	{
-		get => width;
-		set
+		public new RectangularTelegraph Parent;
+		public TelegraphSettings(RectangularTelegraph parent) : base(parent)
 		{
-			width = value;
-			UpdateSize();
+			Parent = parent;
 		}
-	}
-	public float Length
-	{
-		get => length;
-		set
-		{
-			length = value;
-			UpdateSize();
-		}
-	}
 
-	public Origin LengthOrigin
-	{
-		get => LengthOrigin;
-		set
+		public float Width
 		{
-			lengthOrigin = value;
-			// TODO: Make that work properly
-			if (value == Origin.Start)
+			get => Parent.width;
+			set
 			{
-				decal.Position = new Vector3(decal.Position.X, decal.Position.Y, decal.Position.Z - Length / 2);
-				collisionShape.Position = new Vector3(collisionShape.Position.X, collisionShape.Position.Y, collisionShape.Position.Z - Length / 2);
+				Parent.width = value;
+				Parent.UpdateSize();
+			}
+		}
+
+		public float Length
+		{
+			get => Parent.length;
+			set
+			{
+				Parent.length = value;
+				Parent.UpdateSize();
+			}
+		}
+
+		public float Height
+		{
+			get => Parent.height;
+			set
+			{
+				Parent.height = value;
+				Parent.UpdateSize();
+			}
+		}
+
+		public Origin LengthOrigin
+		{
+			get => Parent.lengthOrigin;
+			set
+			{
+				Parent.lengthOrigin = value;
+				// TODO: Make that work properly
+				var decalPos = Parent.decal.Position;
+				var collisionShapePos = Parent.collisionShape.Position;
+				if (value == Origin.Start)
+				{
+					Parent.decal.Position = new Vector3(decalPos.X, decalPos.Y, decalPos.Z - Length / 2);
+					Parent.collisionShape.Position = new Vector3(collisionShapePos.X, collisionShapePos.Y, collisionShapePos.Z - Length / 2);
+				}
 			}
 		}
 	}
 
-	public GroundAreaRect()
+	public RectangularTelegraph()
 	{
 		createdAt = Time.GetTicksMsec();
+		Settings = new(this);
 	}
 
 	public override void _EnterTree()
@@ -93,7 +117,7 @@ public partial class GroundAreaRect : BaseTelegraph
 
 	public void SetHeight(float value)
 	{
-		this.height = value;
+		height = value;
 		UpdateSize();
 	}
 

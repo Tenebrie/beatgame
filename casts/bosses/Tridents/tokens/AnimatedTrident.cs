@@ -6,7 +6,7 @@ namespace Project;
 public partial class AnimatedTrident : BasicEnemyController
 {
 	bool IsMoving = false;
-	GroundAreaCircle area;
+	CircularTelegraph area;
 
 	public override void _Ready()
 	{
@@ -16,13 +16,13 @@ public partial class AnimatedTrident : BasicEnemyController
 
 		Targetable.Untargetable = true;
 
-		area = this.CreateGroundCircularArea(Position);
-		area.GrowTime = 0;
-		area.Radius = this.GetArenaSize() * 0.16f / 2;
-		area.Periodic = true;
-		area.Alliance = UnitAlliance.Hostile;
-		area.TargetValidator = (unit) => unit.HostileTo(this);
-		area.OnTargetEntered = OnImpactCallback;
+		area = this.CreateCircularTelegraph(Position);
+		area.Settings.GrowTime = 0;
+		area.Settings.Radius = this.GetArenaSize() * 0.16f / 2;
+		area.Settings.Periodic = true;
+		area.Settings.Alliance = UnitAlliance.Hostile;
+		area.Settings.TargetValidator = (unit) => unit.HostileTo(this);
+		area.Settings.OnTargetEntered = OnImpactCallback;
 	}
 
 	public void OnImpactCallback(BaseUnit unit)
@@ -32,11 +32,11 @@ public partial class AnimatedTrident : BasicEnemyController
 		unit.ForcefulMovement.Push(Position.FlatDistanceTo(unit.Position), vector.Flatten(unit.Position.Y), 0.5f);
 		unit.Buffs.Add(new BuffTridentTargetSlow());
 
-		var circle = this.CreateGroundCircularArea(this.GetGroundedPosition());
-		circle.Radius = 3;
-		circle.GrowTime = 2;
-		circle.TargetValidator = (unit) => unit.HostileTo(this);
-		circle.OnFinishedPerTargetCallback = (unit) =>
+		var circle = this.CreateCircularTelegraph(this.GetGroundedPosition());
+		circle.Settings.Radius = 3;
+		circle.Settings.GrowTime = 2;
+		circle.Settings.TargetValidator = (unit) => unit.HostileTo(this);
+		circle.Settings.OnFinishedPerTargetCallback = (unit) =>
 		{
 			unit.Health.Damage(75f, this);
 			unit.ForcefulMovement.AddInertia(5, Vector3.Up);

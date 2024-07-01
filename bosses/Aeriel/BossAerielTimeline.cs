@@ -7,7 +7,7 @@ namespace Project;
 
 public partial class BossAerielTimeline : BaseTimeline<BossAeriel>
 {
-	GroundAreaRect puddleRect;
+	RectangularTelegraph puddleRect;
 
 	public BossAerielTimeline(BossAeriel parent) : base(parent)
 	{
@@ -25,12 +25,12 @@ public partial class BossAerielTimeline : BaseTimeline<BossAeriel>
 
 		Act(() =>
 		{
-			var rect = this.CreateGroundRectangularArea(Vector3.Zero);
-			rect.GrowTime = 1;
-			rect.Length = 8;
-			rect.Width = 8;
-			rect.Periodic = true;
-			rect.TargetValidator = (unit) => unit.HostileTo(parent);
+			var rect = this.CreateRectangularTelegraph(Vector3.Zero);
+			rect.Settings.GrowTime = 1;
+			rect.Settings.Length = 8;
+			rect.Settings.Width = 8;
+			rect.Settings.Periodic = true;
+			rect.Settings.TargetValidator = (unit) => unit.HostileTo(parent);
 			puddleRect = rect;
 		});
 		Cast(parent.OpeningTorrentialRain);

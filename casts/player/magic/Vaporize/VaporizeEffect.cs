@@ -10,7 +10,7 @@ public partial class VaporizeEffect : BaseEffect
 	[Export] GpuParticles3D Smoke;
 	[Export] GpuParticles3D Embers;
 
-	public GroundAreaCircle Circle;
+	public CircularTelegraph Circle;
 
 	public override void _Ready()
 	{

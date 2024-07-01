@@ -58,10 +58,10 @@ public partial class BossCastTinyStorm : BaseCast
 		var positions = GetSpawnPositions();
 		foreach (var pos in positions)
 		{
-			var area = this.CreateGroundCircularArea(pos);
-			area.GrowTime = (float)(ImpactIndex - Music.Singleton.BeatIndex);
-			area.Radius = 1;
-			area.OnFinishedPerTargetCallback = (BaseUnit unit) =>
+			var area = this.CreateCircularTelegraph(pos);
+			area.Settings.GrowTime = (float)(ImpactIndex - Music.Singleton.BeatIndex);
+			area.Settings.Radius = 1;
+			area.Settings.OnFinishedPerTargetCallback = (BaseUnit unit) =>
 			{
 				unit.Health.Damage(20, this);
 				this.CreateZapEffect(pos + new Vector3(0.5f, 5, 0.5f), pos);

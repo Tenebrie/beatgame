@@ -48,11 +48,11 @@ public partial class BossCastGeysers : BaseCast
 
 		foreach (var spawn in spawns)
 		{
-			var circle = this.CreateGroundCircularArea(spawn);
-			circle.Radius = 2;
-			circle.GrowTime = Settings.PrepareTime;
-			circle.Alliance = UnitAlliance.Neutral;
-			circle.OnFinishedPerTargetCallback = (unit) =>
+			var circle = this.CreateCircularTelegraph(spawn);
+			circle.Settings.Radius = 2;
+			circle.Settings.GrowTime = Settings.PrepareTime;
+			circle.Settings.Alliance = UnitAlliance.Neutral;
+			circle.Settings.OnFinishedPerTargetCallback = (unit) =>
 			{
 				unit.Buffs.Add(new BuffGeyserLevitation()
 				{

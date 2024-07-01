@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://k0prwpoxdlwp"]
+
+[ext_resource type="PackedScene" uid="uid://cjwroydhrme57" path="res://assets/meshes/dummy01.glb" id="1_3wltk"]
+[ext_resource type="Material" uid="uid://dtiin7xhovkuw" path="res://assets/PolygonDungeon/Materials/Alternatives/Dungeon_Material_01_A.tres" id="2_ifas1"]
+
+[node name="dummy01" instance=ExtResource("1_3wltk")]
+
+[node name="Cylinder" parent="Armature/Skeleton3D" index="0"]
+surface_material_override/0 = ExtResource("2_ifas1")

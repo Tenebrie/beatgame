@@ -6,26 +6,36 @@ using Godot;
 using Project;
 
 namespace Project;
-public partial class GroundAreaCircle : BaseTelegraph
+public partial class CircularTelegraph : BaseTelegraph
 {
 	private CircleDecal decal;
 	private Area3D hitbox;
 
 	private float radius = .5f;
-
-	public float Radius
+	public new TelegraphSettings Settings;
+	public new class TelegraphSettings : BaseTelegraph.TelegraphSettings
 	{
-		get => radius;
-		set
+		public new CircularTelegraph Parent;
+		public TelegraphSettings(CircularTelegraph parent) : base(parent)
 		{
-			radius = value;
-			UpdateRadius();
+			Parent = parent;
+		}
+
+		public float Radius
+		{
+			get => Parent.radius;
+			set
+			{
+				Parent.radius = value;
+				Parent.UpdateRadius();
+			}
 		}
 	}
 
-	public GroundAreaCircle()
+	public CircularTelegraph()
 	{
 		createdAt = Time.GetTicksMsec();
+		Settings = new(this);
 	}
 
 	public override void _EnterTree()

@@ -40,17 +40,17 @@ public partial class BossCastConsumingWinds : BaseCast
 			movements.Add(onlyGroundedMovement);
 		}
 
-		var circle = this.CreateGroundCircularArea(Parent.GetGroundedPosition());
-		circle.Radius = AreaRadius;
-		circle.GrowTime = Settings.HoldTime;
-		circle.Alliance = Parent.Alliance;
-		circle.TargetValidator = (target) => target.HostileTo(Parent);
-		circle.OnFinishedPerTargetCallback = (BaseUnit target) =>
+		var circle = this.CreateCircularTelegraph(Parent.GetGroundedPosition());
+		circle.Settings.Radius = AreaRadius;
+		circle.Settings.GrowTime = Settings.HoldTime;
+		circle.Settings.Alliance = Parent.Alliance;
+		circle.Settings.TargetValidator = (target) => target.HostileTo(Parent);
+		circle.Settings.OnFinishedPerTargetCallback = (BaseUnit target) =>
 		{
 			target.Health.Damage(Damage, this);
 			target.ForcefulMovement.Push(PushDistance, (target.Position - Parent.Position).Flatten(target.Position.Y), 2);
 		};
-		circle.OnFinishedCallback = () =>
+		circle.Settings.OnFinishedCallback = () =>
 		{
 			foreach (var movement in movements)
 				movement.Stop();
