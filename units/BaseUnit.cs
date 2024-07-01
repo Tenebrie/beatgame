@@ -30,8 +30,6 @@ public abstract partial class BaseUnit : ComposableCharacterBody3D
 	public bool Grounded = true;
 	private int FramesInFlight = 0;
 
-	public bool IsBeingMoved { get => ForcefulMovement.IsBeingMoved(); }
-
 	public bool IsAlive = true;
 	public bool IsDead { get => !IsAlive; }
 
@@ -102,7 +100,6 @@ public abstract partial class BaseUnit : ComposableCharacterBody3D
 	public override void _Process(double delta)
 	{
 		ProcessInertia(delta);
-		ProcessGravity(delta);
 		base._Process(delta);
 	}
 
@@ -117,6 +114,7 @@ public abstract partial class BaseUnit : ComposableCharacterBody3D
 
 	protected virtual void ProcessInertia(double delta)
 	{
+				// TODO: Reuse vectors
 		var verticalVelocity = Velocity.Y - Gravity * (float)delta * 1.2f;
 		Velocity = new Vector3(
 			x: Velocity.X,
@@ -132,41 +130,6 @@ public abstract partial class BaseUnit : ComposableCharacterBody3D
 		Grounded = IsOnFloor();
 		Velocity -= 2.00f * new Vector3(Velocity.X, Velocity.Y, Velocity.Z).Normalized() * (float)delta;
 
-		if (Position.Y <= -30)
-		{
-			Position = new Vector3(0, 1, 0);
-		}
-	}
-
-	protected virtual void ProcessGravity(double delta)
-	{
-		return;
-		var verticalVelocity = Math.Max(TerminalVelocity, Velocity.Y - Gravity * (float)delta);
-
-		Velocity = new Vector3(
-			x: Velocity.X,
-			y: verticalVelocity,
-			z: Velocity.Z
-		);
-
-		if (Velocity.Y == 0)
-			return;
-
-		var collision = MoveAndCollide(new Vector3(0, Velocity.Y * (float)delta, 0));
-
-		var hitGround = collision != null;
-
-		if (hitGround)
-		{
-			Velocity = new Vector3(Velocity.X, 0, Velocity.Z);
-			FramesInFlight = 0;
-		}
-		else
-			FramesInFlight += 1;
-
-		Grounded = FramesInFlight <= Math.Ceiling(Engine.GetFramesPerSecond() / 40);
-
-		// Out of bounds plane snap
 		if (Position.Y <= -30)
 		{
 			Position = new Vector3(0, 1, 0);

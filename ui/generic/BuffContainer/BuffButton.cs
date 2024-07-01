@@ -64,11 +64,11 @@ public partial class BuffButton : Control
 
 	public override void _Input(InputEvent @event)
 	{
-		if (@event.IsActionPressed("MouseInteract") && IsHovered)
+		if (@event.IsActionPressed("MouseInteract".ToStringName()) && IsHovered)
 		{
 			IsPressed = true;
 		}
-		if (@event.IsActionReleased("MouseInteract") && IsPressed)
+		if (@event.IsActionReleased("MouseInteract".ToStringName()) && IsPressed)
 		{
 			IsPressed = false;
 		}
@@ -81,18 +81,18 @@ public partial class BuffButton : Control
 			return;
 
 		var progress = (time - AssociatedBuff.CreatedAt) / (AssociatedBuff.ExpiresAt - AssociatedBuff.CreatedAt);
-		ButtonMaterial.SetShaderParameter("Progress", progress);
+		ButtonMaterial.SetShaderParameter("Progress".ToStringName(), progress);
 
 		if (IsHovered || IsPressed)
 			HoveredValue = Math.Min(1, HoveredValue + (float)delta * 5);
 		else
 			HoveredValue = Math.Max(0, HoveredValue - (float)delta * 5);
-		ButtonMaterial.SetShaderParameter("HoveredValue", HoveredValue);
+		ButtonMaterial.SetShaderParameter("HoveredValue".ToStringName(), HoveredValue);
 
 		if (IsPressed)
 			PressedValue = Math.Min(1, PressedValue + (float)delta * 5);
 		else
 			PressedValue = Math.Max(0, PressedValue - (float)delta * 5);
-		ButtonMaterial.SetShaderParameter("PressedValue", PressedValue);
+		ButtonMaterial.SetShaderParameter("PressedValue".ToStringName(), PressedValue);
 	}
 }

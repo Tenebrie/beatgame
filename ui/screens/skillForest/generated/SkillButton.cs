@@ -94,21 +94,24 @@ public partial class SkillButton : Control
 
 	public override void _Input(InputEvent @event)
 	{
-		if (@event.IsActionPressed("MouseInteract") && IsHovered && !IsDisabled)
+		if (@event is InputEventMouseMotion)
+			return;
+
+		if (@event.IsActionPressed("MouseInteract".ToStringName()) && IsHovered && !IsDisabled)
 		{
 			IsPressed = true;
 		}
-		if (@event.IsActionReleased("MouseInteract") && IsPressed)
+		if (@event.IsActionReleased("MouseInteract".ToStringName()) && IsPressed)
 		{
 			IsPressed = false;
 			if (IsHovered)
 				OnInteract();
 		}
-		if (@event.IsActionPressed("MouseInteractAlt") && IsHovered && !IsDisabled)
+		if (@event.IsActionPressed("MouseInteractAlt".ToStringName()) && IsHovered && !IsDisabled)
 		{
 			IsPressedAlt = true;
 		}
-		if (@event.IsActionReleased("MouseInteractAlt") && IsPressedAlt)
+		if (@event.IsActionReleased("MouseInteractAlt".ToStringName()) && IsPressedAlt)
 		{
 			IsPressedAlt = false;
 			if (IsHovered)
@@ -118,11 +121,10 @@ public partial class SkillButton : Control
 		if (!IsHovered || PlayerController.AllPlayers.Count == 0 || AssociatedSkill.Settings.ActiveCast == null)
 			return;
 
-		List<string> CastActions = PlayerSpellcasting.GetPossibleBindings();
-
 		var player = PlayerController.AllPlayers[0];
-		foreach (var action in CastActions)
+		for (var i = 0; i < PlayerSpellcasting.CastBindingSlots.Count; i++)
 		{
+			var action = PlayerSpellcasting.CastBindingSlots[i];
 			if (@event.IsActionPressed(action, exactMatch: true))
 			{
 				player.Spellcasting.UnbindAll(AssociatedSkill.Settings.ActiveCast.CastType);
@@ -155,30 +157,30 @@ public partial class SkillButton : Control
 			HoveredValue = Math.Min(1, HoveredValue + (float)delta * 5);
 		else
 			HoveredValue = Math.Max(0, HoveredValue - (float)delta * 5);
-		OverlayMaterial.SetShaderParameter("HoveredValue", HoveredValue);
+		OverlayMaterial.SetShaderParameter("HoveredValue".ToStringName(), HoveredValue);
 
 		if (IsPressed || IsPressedAlt)
 			PressedValue = Math.Min(1, PressedValue + (float)delta * 5);
 		else
 			PressedValue = Math.Max(0, PressedValue - (float)delta * 5);
-		OverlayMaterial.SetShaderParameter("PressedValue", PressedValue);
+		OverlayMaterial.SetShaderParameter("PressedValue".ToStringName(), PressedValue);
 
 		if (IsDisabled)
 			DisabledValue = Math.Min(1, DisabledValue + (float)delta * 5);
 		else
 			DisabledValue = 0;
-		OverlayMaterial.SetShaderParameter("DisabledValue", DisabledValue);
+		OverlayMaterial.SetShaderParameter("DisabledValue".ToStringName(), DisabledValue);
 
 		if (IsSelected)
 			SelectedValue = Math.Min(1, SelectedValue + (float)delta * 5);
 		else
 			SelectedValue = Math.Max(0, SelectedValue - (float)delta * 5);
-		OverlayMaterial.SetShaderParameter("SelectedValue", SelectedValue);
+		OverlayMaterial.SetShaderParameter("SelectedValue".ToStringName(), SelectedValue);
 
 		if (IsHighlighted)
 			HighlightedValue = Math.Min(1, HighlightedValue + (float)delta * 5);
 		else
 			HighlightedValue = Math.Max(0, HighlightedValue - (float)delta * 5);
-		OverlayMaterial.SetShaderParameter("HighlightedValue", HighlightedValue);
+		OverlayMaterial.SetShaderParameter("HighlightedValue".ToStringName(), HighlightedValue);
 	}
 }

@@ -46,7 +46,7 @@ public partial class ObjectTargetable : ComposableScript
 
 	// public override void _UnhandledInput(InputEvent @event)
 	// {
-	// 	if (@event.IsActionPressed("MouseInteract") && !Input.IsActionPressed("HardCameraMove"))
+	// 	if (@event.IsActionPressed("MouseInteract".ToStringName()) && !Input.IsActionPressed("HardCameraMove".ToStringName()))
 	// 	{
 	// 		SetTargeted(false, targetedAs);
 	// 	}
@@ -54,12 +54,12 @@ public partial class ObjectTargetable : ComposableScript
 
 	private void UpdateHoverHighlight()
 	{
-		var children = Parent.GetChildren();
-		foreach (var child in children)
+		for (var i = 0; i < Parent.GetChildCount(); i++)
 		{
+			var child = Parent.GetChild(i);
 			if (child is MeshInstance3D meshChild)
 			{
-				meshChild.SetInstanceShaderParameter("hover_highlight", hoverHighlight);
+				meshChild.SetInstanceShaderParameter("hover_highlight".ToStringName(), hoverHighlight);
 			}
 		}
 	}
@@ -124,7 +124,7 @@ public partial class ObjectTargetable : ComposableScript
 
 	private void OnInputEvent(Node camera, InputEvent @event, Vector3 position, Vector3 normal, long shapeIdx)
 	{
-		if (@event.IsActionPressed("MouseInteract") && !Input.IsActionPressed("HardCameraMove"))
+		if (@event.IsActionPressed("MouseInteract".ToStringName()) && !Input.IsActionPressed("HardCameraMove".ToStringName()))
 		{
 			MakeTargeted();
 		}

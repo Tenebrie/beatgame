@@ -68,7 +68,7 @@ public partial class ObjectBuffs : ComposableScript
 
 	public bool Has<BuffClass>() where BuffClass : BaseBuff
 	{
-		return Buffs.Find(buff => buff is BuffClass) != null;
+		return Buffs.Any(buff => buff is BuffClass);
 	}
 
 	public BaseBuff Find(Type buffType)

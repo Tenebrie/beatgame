@@ -85,16 +85,16 @@ public abstract partial class InteractableObject : Area3D
 	{
 		hoverHighlight = value;
 		foreach (var mesh in meshes)
-			mesh.SetInstanceShaderParameter("hover_highlight", hoverHighlight);
+			mesh.SetInstanceShaderParameter("hover_highlight".ToStringName(), hoverHighlight);
 	}
 
 	public override void _UnhandledInput(InputEvent @event)
 	{
-		if (IsHovered && @event.IsActionPressed("MouseInteractAlt"))
+		if (IsHovered && @event.IsActionPressed("MouseInteractAlt".ToStringName()))
 		{
 			IsPressed = true;
 		}
-		if (IsPressed && @event.IsActionReleased("MouseInteractAlt"))
+		if (IsPressed && @event.IsActionReleased("MouseInteractAlt".ToStringName()))
 		{
 			IsPressed = false;
 			if (IsHovered)

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -37,9 +38,9 @@ public partial class PlayerController : BaseUnit
 		Buffs.Add(new BuffRigorMortis());
 	}
 
-	protected override void ProcessGravity(double delta)
+	protected override void ProcessInertia(double delta)
 	{
-		base.ProcessGravity(delta);
+		base.ProcessInertia(delta);
 		if (Grounded)
 			Movement.ResetJumpCount();
 	}

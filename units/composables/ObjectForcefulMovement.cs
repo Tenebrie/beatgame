@@ -57,18 +57,13 @@ public partial class ObjectForcefulMovement : ComposableScript
 
 	public override void _Process(double delta)
 	{
-		foreach (var movement in Movements)
-			movement.Apply((float)delta);
+		for (var i = 0; i < Movements.Count; i++)
+			Movements[i].Apply((float)delta);
 
-		Movements = Movements.Where(movement => movement.CoveredDistanceSquared < movement.Distance.LengthSquared()).ToList();
+		Movements.RemoveAll(movement => movement.CoveredDistanceSquared >= movement.Distance.LengthSquared());
 
-		foreach (var movement in ContinuousMovements)
-			movement.Apply((float)delta);
-	}
-
-	public bool IsBeingMoved()
-	{
-		return Movements.Where(movement => movement.Speed > 1).ToList().Count > 0;
+		for (var i = 0; i < ContinuousMovements.Count; i++)
+			ContinuousMovements[i].Apply((float)delta);
 	}
 
 	private class Movement

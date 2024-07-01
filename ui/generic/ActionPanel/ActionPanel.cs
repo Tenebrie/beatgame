@@ -71,8 +71,4 @@ public partial class ActionPanel : HBoxContainer
 			AddChild(instance);
 		}
 	}
-
-	public override void _Process(double delta)
-	{
-	}
 }

@@ -42,24 +42,24 @@ public partial class BeatBar : Control
 
 	public override void _Process(double delta)
 	{
-		if (VisualState == State.Spawning || VisualState == State.Normal)
+		if (VisualState is State.Spawning or State.Normal)
 		{
 			float dir = Mirrored ? 1 : -1;
 			var time = (long)Time.Singleton.GetTicksMsec();
-			var pos = Music.Singleton.SongDelay / 6 * (1 - (float)(time - StartsAt) / (EndsAt - StartsAt));
+			var pos = Music.Singleton.SongDelay / 6f * (1 - (float)(time - StartsAt) / (EndsAt - StartsAt));
 			Position = new Vector2(pos * dir, 0);
 		}
 
-		if (VisualState == State.Spawning)
-		{
-			DrawColor = new Color(DrawColor.R, DrawColor.G, DrawColor.B, DrawColor.A + 1 * (float)delta);
-			QueueRedraw();
+		if (VisualState != State.Spawning)
+			return;
+		
+		DrawColor = new Color(DrawColor.R, DrawColor.G, DrawColor.B, DrawColor.A + 1 * (float)delta);
+		QueueRedraw();
 
-			if (DrawColor.A >= 0.5f)
-			{
-				DrawColor = new Color(DrawColor.R, DrawColor.G, DrawColor.B, 0.5f);
-				VisualState = State.Normal;
-			}
+		if (DrawColor.A >= 0.5f)
+		{
+			DrawColor = new Color(DrawColor.R, DrawColor.G, DrawColor.B, 0.5f);
+			VisualState = State.Normal;
 		}
 	}
 

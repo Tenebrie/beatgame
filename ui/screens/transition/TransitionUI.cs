@@ -31,19 +31,19 @@ public partial class TransitionUI : Control
 
 	private void FadeOut()
 	{
-		fadePlayer.Play("fade_out");
+		fadePlayer.Play("fade_out".ToStringName());
 	}
 
 	private void FadeIn()
 	{
-		fadePlayer.Play("fade_in");
+		fadePlayer.Play("fade_in".ToStringName());
 	}
 
 	private void OnAnimationFinished(StringName name)
 	{
-		if (name == "fade_out")
+		if (name == "fade_out".ToStringName())
 			SignalBus.Singleton.EmitSignal(SignalBus.SignalName.SceneFadeOutFinished);
-		else if (name == "fade_in")
+		else if (name == "fade_in".ToStringName())
 			SignalBus.Singleton.EmitSignal(SignalBus.SignalName.SceneFadeInFinished);
 	}
 }

@@ -11,7 +11,7 @@ public partial class PlayerSpawner : Node3D
 	public Mode SpawnMode = Mode.Always;
 	Node3D Visuals;
 	private PlayerController Player;
-	private static Dictionary<string, BaseCast> SavedCastBindings;
+	private static Dictionary<StringName, BaseCast> SavedCastBindings;
 
 	public override void _Ready()
 	{

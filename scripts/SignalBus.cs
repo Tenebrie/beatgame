@@ -46,13 +46,13 @@ public partial class SignalBus : Node
 	/// </summary>
 	/// <param name="cast">Reference to the assigned cast</param>
 	/// <param name="actionName">Input name for the cast</param>
-	[Signal] public delegate void CastAssignedEventHandler(BaseCast cast, string actionName);
+	[Signal] public delegate void CastAssignedEventHandler(BaseCast cast, StringName actionName);
 	/// <summary>
 	/// Cast unassigned from a slot in PlayerSpellcasting
 	/// </summary>
 	/// <param name="cast">Reference to the unassigned cast</param>
 	/// <param name="actionName">Input name for the cast</param>
-	[Signal] public delegate void CastUnassignedEventHandler(BaseCast cast, string actionName);
+	[Signal] public delegate void CastUnassignedEventHandler(BaseCast cast, StringName actionName);
 
 	[Signal]
 	public delegate void MessageSentEventHandler(string text, float duration);
@@ -65,7 +65,7 @@ public partial class SignalBus : Node
 
 	public override void _Input(InputEvent @event)
 	{
-		if (@event.IsActionPressed("MouseInteract") && !Input.IsActionPressed("HardCameraMove"))
+		if (@event.IsActionPressed("MouseInteract".ToStringName()) && !Input.IsActionPressed("HardCameraMove".ToStringName()))
 		{
 			EmitSignal(SignalName.ObjectUntargeted);
 		}

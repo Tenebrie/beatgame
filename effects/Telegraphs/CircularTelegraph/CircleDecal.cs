@@ -14,7 +14,7 @@ public partial class CircleDecal : MeshInstance3D
 		set
 		{
 			persistent = value;
-			SetInstanceShaderParameter("PROGRESS", value ? 1.0 : 0.5);
+			SetInstanceShaderParameter("PROGRESS".ToStringName(), value ? 1.0 : 0.5);
 		}
 	}
 
@@ -27,7 +27,7 @@ public partial class CircleDecal : MeshInstance3D
 		{
 			radius = value;
 			(Mesh as PlaneMesh).Size = new Vector2(value * 2, value * 2);
-			SetInstanceShaderParameter("RADIUS", radius);
+			SetInstanceShaderParameter("RADIUS".ToStringName(), radius);
 		}
 	}
 
@@ -39,7 +39,7 @@ public partial class CircleDecal : MeshInstance3D
 		set
 		{
 			coneAngle = value;
-			SetInstanceShaderParameter("SECTOR", value);
+			SetInstanceShaderParameter("SECTOR".ToStringName(), value);
 		}
 	}
 
@@ -66,7 +66,7 @@ public partial class CircleDecal : MeshInstance3D
 		if (Engine.IsEditorHint())
 			return;
 
-		SetInstanceShaderParameter("FADE", fadeValue);
+		SetInstanceShaderParameter("FADE".ToStringName(), fadeValue);
 	}
 
 	public override void _Process(double delta)
@@ -78,7 +78,7 @@ public partial class CircleDecal : MeshInstance3D
 		{
 			fadeValue -= (float)delta * 4;
 
-			SetInstanceShaderParameter("FADE", fadeValue);
+			SetInstanceShaderParameter("FADE".ToStringName(), fadeValue);
 			if (fadeValue <= 0)
 			{
 				onFadedOut?.Invoke();
@@ -88,7 +88,7 @@ public partial class CircleDecal : MeshInstance3D
 		else if (fadingIn)
 		{
 			fadeValue += (float)delta * 4;
-			SetInstanceShaderParameter("FADE", fadeValue);
+			SetInstanceShaderParameter("FADE".ToStringName(), fadeValue);
 			if (fadeValue >= 1)
 			{
 				fadeValue = 1;
@@ -99,29 +99,29 @@ public partial class CircleDecal : MeshInstance3D
 
 	public void EnableCulling()
 	{
-		SetInstanceShaderParameter("CULL_DIST", this.GetArenaSize());
+		SetInstanceShaderParameter("CULL_DIST".ToStringName(), this.GetArenaSize());
 	}
 
 	public void SetInnerAlpha(float value)
 	{
-		SetInstanceShaderParameter("INNER_ALPHA", value);
+		SetInstanceShaderParameter("INNER_ALPHA".ToStringName(), value);
 	}
 
 	public void SetProgress(float value)
 	{
-		SetInstanceShaderParameter("PROGRESS", value);
+		SetInstanceShaderParameter("PROGRESS".ToStringName(), value);
 	}
 
 	public void SetColor(Color color)
 	{
-		SetInstanceShaderParameter("COLOR_R", color.R);
-		SetInstanceShaderParameter("COLOR_G", color.G);
-		SetInstanceShaderParameter("COLOR_B", color.B);
+		SetInstanceShaderParameter("COLOR_R".ToStringName(), color.R);
+		SetInstanceShaderParameter("COLOR_G".ToStringName(), color.G);
+		SetInstanceShaderParameter("COLOR_B".ToStringName(), color.B);
 	}
 
 	public void SetOuterWidth(float value)
 	{
-		SetInstanceShaderParameter("OUTER_WIDTH", value / 20);
+		SetInstanceShaderParameter("OUTER_WIDTH".ToStringName(), value / 20);
 	}
 
 	public void CleanUp()

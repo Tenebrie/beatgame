@@ -12,6 +12,7 @@ public partial class Visuals : Node3D
 
 	public override void _Process(double delta)
 	{
+		// TODO: Reuse vectors
 		Time += (float)delta;
 		float verticalOffset = (float)Math.Sin(Time * 2) / 25;
 		Position = new Vector3(Position.X, Position.Y - VerticalOffset + verticalOffset, Position.Z);

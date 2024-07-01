@@ -17,11 +17,10 @@ public partial class RespawningUnitBehaviour : BaseBehaviour
 	{
 		this.CallDeferred(() =>
 		{
-			var parent = (BaseUnit)GetParent();
 			spawner = new()
 			{
-				alliance = parent.Alliance,
-				transform = parent.GlobalTransform,
+				alliance = Parent.Alliance,
+				transform = Parent.GlobalTransform,
 				sceneToSpawn = sceneToSpawn
 			};
 			GetTree().CurrentScene.AddChild(spawner);
@@ -44,7 +43,7 @@ public partial class RespawningUnitBehaviour : BaseBehaviour
 			if (!IsInsideTree())
 				return;
 
-			await ToSignal(GetTree().CreateTimer(2), "timeout");
+			await ToSignal(GetTree().CreateTimer(2), "timeout".ToStringName());
 			var newUnit = Lib.LoadScene(sceneToSpawn).Instantiate<BaseUnit>();
 			newUnit.Alliance = alliance;
 			newUnit.Transform = transform;

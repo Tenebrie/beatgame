@@ -108,7 +108,7 @@ public partial class LoadingManager : Node
 		var targetScene = GD.Load<PackedScene>(Lib.Scene.ToPath(TransitioningTo));
 		GetTree().ChangeSceneToPacked(targetScene);
 		EmitSignal(SignalName.SceneTransitioned, TransitioningTo.ToVariant());
-		await ToSignal(GetTree().CreateTimer(0.5f), "timeout");
+		await ToSignal(GetTree().CreateTimer(0.5f), "timeout".ToStringName());
 		SetState(State.FadeInStarted);
 	}
 

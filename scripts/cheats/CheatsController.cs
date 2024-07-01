@@ -6,7 +6,7 @@ public partial class CheatsController : Node
 {
 	public override void _Input(InputEvent @event)
 	{
-		if (@event.IsActionPressed("GodMode", exactMatch: true))
+		if (@event.IsActionPressed("GodMode".ToStringName(), exactMatch: true))
 		{
 			var player = PlayerController.AllPlayers[0];
 			if (player.Buffs.Has<BuffDebugInvulnerability>())

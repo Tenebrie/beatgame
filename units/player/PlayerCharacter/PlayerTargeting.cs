@@ -66,7 +66,7 @@ public partial class PlayerTargeting : ComposableScript
 
 	public override void _Input(InputEvent @event)
 	{
-		if (@event.IsActionPressed("TabTargetNext", exactMatch: true))
+		if (@event.IsActionPressed("TabTargetNext".ToStringName(), exactMatch: true))
 		{
 			var enemyUnits = BaseUnit.AllUnits.FindAll(unit => unit.Alliance.HostileTo(Parent.Alliance));
 			if (enemyUnits.Count == 0)
@@ -83,7 +83,7 @@ public partial class PlayerTargeting : ComposableScript
 				enemyUnits[0].Targetable.MakeTargeted();
 			}
 		}
-		if (@event.IsActionPressed("TabTargetPrevious", exactMatch: true))
+		if (@event.IsActionPressed("TabTargetPrevious".ToStringName(), exactMatch: true))
 		{
 			var enemyUnits = BaseUnit.AllUnits.FindAll(unit => unit.Alliance.HostileTo(Parent.Alliance));
 			if (enemyUnits.Count == 0)
@@ -100,7 +100,7 @@ public partial class PlayerTargeting : ComposableScript
 				enemyUnits[^1].Targetable.MakeTargeted();
 			}
 		}
-		if (@event.IsActionPressed("TabTargetAllyNext", exactMatch: true))
+		if (@event.IsActionPressed("TabTargetAllyNext".ToStringName(), exactMatch: true))
 		{
 			var alliedUnits = BaseUnit.AllUnits.FindAll(unit => unit.Alliance == Parent.Alliance);
 			if (alliedUnits.Count == 0)

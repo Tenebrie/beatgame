@@ -67,8 +67,4 @@ public partial class SkillLinkVisual : Control
 			DrawArc(pos, 4, 0, (float)Math.PI * 2, 10, color, 1, true);
 		}
 	}
-
-	public override void _Process(double delta)
-	{
-	}
 }

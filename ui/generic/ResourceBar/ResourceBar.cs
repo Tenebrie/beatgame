@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Diagnostics;
+using System.Globalization;
 
 namespace Project;
 public partial class ResourceBar : Control
@@ -172,7 +173,7 @@ public partial class ResourceBar : Control
 
 	public override void _Process(double delta)
 	{
-		float fillSpeed = 150; // Units per second
+		const float fillSpeed = 150; // Units per second
 
 		// if (PositiveTimer.TimeLeft == 0)
 		if (true)
@@ -201,8 +202,8 @@ public partial class ResourceBar : Control
 		NegativeGhost.Value = NegativeGhostValue;
 
 		var positiveValue = Math.Round(CurrentValue - PositiveGhostValue);
-		PositiveComboLabel.Text = positiveValue > 0 ? Math.Round(positiveValue).ToString() : "";
+		PositiveComboLabel.Text = positiveValue > 0 ? Math.Round(positiveValue).ToString(CultureInfo.InvariantCulture) : "";
 		var negativeValue = Math.Round(NegativeGhostValue - CurrentValue);
-		NegativeComboLabel.Text = negativeValue > 0 ? Math.Round(negativeValue).ToString() : "";
+		NegativeComboLabel.Text = negativeValue > 0 ? Math.Round(negativeValue).ToString(CultureInfo.InvariantCulture) : "";
 	}
 }

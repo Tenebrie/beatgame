@@ -54,12 +54,12 @@ public partial class UnitCard : Control
 
 	public override void _Input(InputEvent @event)
 	{
-		if (isHovered && @event.IsActionPressed("MouseInteract"))
+		if (isHovered && @event.IsActionPressed("MouseInteract".ToStringName()))
 		{
 			isPressed = true;
 			UpdateHoverValue();
 		}
-		else if (@event.IsActionReleased("MouseInteract"))
+		else if (@event.IsActionReleased("MouseInteract".ToStringName()))
 		{
 			isPressed = false;
 			if (isHovered)
@@ -82,7 +82,7 @@ public partial class UnitCard : Control
 
 	void UpdateHoverValue()
 	{
-		var stylebox = (StyleBoxFlat)BackgroundPanel.GetThemeStylebox("panel");
+		var stylebox = (StyleBoxFlat)BackgroundPanel.GetThemeStylebox("panel".ToStringName());
 		var color = normalColor;
 		if (isTargeted && trackedUnit.Alliance != UnitAlliance.Hostile)
 			color = targetedAlliedColor;
@@ -98,7 +98,7 @@ public partial class UnitCard : Control
 			color *= 0.75f;
 
 		stylebox.BorderColor = color;
-		BackgroundPanel.AddThemeStyleboxOverride("panel", stylebox);
+		BackgroundPanel.AddThemeStyleboxOverride("panel".ToStringName(), stylebox);
 	}
 
 	public void TrackUnit(BaseUnit unit)

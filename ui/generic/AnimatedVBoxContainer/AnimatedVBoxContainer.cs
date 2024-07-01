@@ -56,26 +56,26 @@ public partial class AnimatedVBoxContainer : Control
 	public override void _Process(double delta)
 	{
 		ChildrenCumulativeHeight = 0;
-		foreach (var child in GetChildren())
+		for (var i = 0; i < GetChildCount(); i++)
 		{
-			var control = (Control)child;
+			var control = (Control)GetChild(i);
 			var result = childState.TryGetValue(control, out var state);
 			if (!result)
 				continue;
 
 			Vector2 targetPosition;
-			if (AnimationType == Animation.SlideLeft && state.IsDespawning)
+			switch (AnimationType)
 			{
-				targetPosition = new Vector2(-control.Size.X * 2 - 10, control.Position.Y);
-			}
-			else if (AnimationType == Animation.SlideRight && state.IsDespawning)
-			{
-				targetPosition = new Vector2(control.Size.X * 2 + 10, control.Position.Y);
-			}
-			else
-			{
-				targetPosition = new Vector2(0, Size.Y - ChildrenCumulativeHeight - control.Size.Y);
-				ChildrenCumulativeHeight += control.Size.Y + 5;
+				case Animation.SlideLeft when state.IsDespawning:
+					targetPosition = new Vector2(-control.Size.X * 2 - 10, control.Position.Y);
+					break;
+				case Animation.SlideRight when state.IsDespawning:
+					targetPosition = new Vector2(control.Size.X * 2 + 10, control.Position.Y);
+					break;
+				default:
+					targetPosition = new Vector2(0, Size.Y - ChildrenCumulativeHeight - control.Size.Y);
+					ChildrenCumulativeHeight += control.Size.Y + 5;
+					break;
 			}
 
 			control.Position = control.Position.Lerp(targetPosition, Math.Min(1, (float)delta * 5)).Lerp(targetPosition, Math.Min(1, (float)delta * 5));
@@ -86,7 +86,7 @@ public partial class AnimatedVBoxContainer : Control
 
 	private async void SetSize(Control control)
 	{
-		await ToSignal(GetTree().CreateTimer(0), "timeout");
+		await ToSignal(GetTree().CreateTimer(0), "timeout".ToStringName());
 		control.Size = new Vector2(Size.X, control.GetMinimumSize().Y);
 	}
 

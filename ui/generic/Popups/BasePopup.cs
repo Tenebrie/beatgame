@@ -80,7 +80,7 @@ public partial class BasePopup : Control
 
 	public async void MakeVisible()
 	{
-		await ToSignal(GetTree().CreateTimer(0), "timeout");
+		await ToSignal(GetTree().CreateTimer(0), "timeout".ToStringName());
 		Visible = true;
 
 		var mousePos = GetViewport().GetMousePosition();

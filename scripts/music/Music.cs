@@ -190,7 +190,7 @@ public partial class Music : Node
 	{
 		if (scene == PlayableScene.TrainingRoom)
 		{
-			await ToSignal(GetTree().CreateTimer(1), "timeout");
+			await ToSignal(GetTree().CreateTimer(1), "timeout".ToStringName());
 			Start();
 		}
 	}
@@ -245,7 +245,7 @@ public partial class Music : Node
 		EigthNoteTimer.Stop(-EigthNoteTimer.Calibration);
 		SixteenthNoteTimer.Stop(-SixteenthNoteTimer.Calibration);
 		VisualBeatTimer.Stop(-VisualBeatTimer.Calibration);
-		await ToSignal(GetTree().CreateTimer(LongestCalibration / 1000), "timeout");
+		await ToSignal(GetTree().CreateTimer(LongestCalibration / 1000), "timeout".ToStringName());
 		CurrentTrack.Stop();
 		CurrentTrack = null;
 		IsStarted = false;

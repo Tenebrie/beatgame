@@ -64,7 +64,7 @@ public partial class EnvironmentController : Node
 		var materials = ControlledMaterials.Where(mat => mat != null);
 		foreach (var mat in materials)
 		{
-			mat.SetShaderParameter("Leaf_Emmisive_Color", new Color(0, 1, 1));
+			mat.SetShaderParameter("Leaf_Emmisive_Color".ToStringName(), new Color(0, 1, 1));
 		}
 	}
 
@@ -81,15 +81,18 @@ public partial class EnvironmentController : Node
 			env.VolumetricFogDensity += (TargetFogDensity - env.VolumetricFogDensity) * 5.0f * (float)delta;
 		}
 
-		var materials = ControlledMaterials.Where(mat => mat != null);
-		foreach (var mat in materials)
+		for (var i = 0; i < ControlledMaterials.Count; i++)
 		{
-			var str = (float)mat.GetShaderParameter("Leaf_Emissive_Str");
+			var mat = ControlledMaterials[i];
+			if (mat == null)
+				continue;
+
+			var str = (float)mat.GetShaderParameter("Leaf_Emissive_Str".ToStringName());
 			if (str == TargetBiolumenescence)
 				continue;
 
 			str += (TargetBiolumenescence - str) * 5.0f * (float)delta;
-			mat.SetShaderParameter("Leaf_Emissive_Str", str);
+			mat.SetShaderParameter("Leaf_Emissive_Str".ToStringName(), str);
 		}
 	}
 

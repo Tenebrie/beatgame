@@ -7,7 +7,7 @@ namespace Project;
 public partial class ActionButton : Control
 {
 	public string Label;
-	public string ActionName;
+	public StringName ActionName;
 
 	private TextureRect Icon;
 	private TextureRect Overlay;
@@ -36,7 +36,7 @@ public partial class ActionButton : Control
 		ButtonMaterial = (ShaderMaterial)Overlay.Material;
 		HotkeyLabel = GetNode<Label>("Control/OverlayTextureRect/HotkeyLabel");
 		CooldownProgressBar = GetNode<ProgressBar>("Control/CooldownProgressBar");
-		HotkeyLabel.Text = Label.ToString();
+		HotkeyLabel.Text = Label;
 		Overlay.MouseEntered += OnMouseEnter;
 		Overlay.MouseExited += OnMouseLeave;
 
@@ -78,7 +78,7 @@ public partial class ActionButton : Control
 		SignalBus.Singleton.EmitSignal(SignalBus.SignalName.CastUnhovered, AssociatedCast);
 	}
 
-	private void OnCastAssigned(BaseCast cast, string actionName)
+	private void OnCastAssigned(BaseCast cast, StringName actionName)
 	{
 		if (actionName != ActionName)
 			return;
@@ -90,7 +90,7 @@ public partial class ActionButton : Control
 			Icon.Texture = GD.Load<CompressedTexture2D>(AssociatedCast.Settings.IconPath);
 	}
 
-	private void OnCastUnassigned(BaseCast cast, string actionName)
+	private void OnCastUnassigned(BaseCast cast, StringName actionName)
 	{
 		if (actionName != ActionName)
 			return;
@@ -113,13 +113,13 @@ public partial class ActionButton : Control
 		if (SkillForestUI.Singleton.Visible || AssociatedCast == null)
 			return;
 
-		if (@event.IsActionPressed("MouseInteract") && IsHovered)
+		if (@event.IsActionPressed("MouseInteract".ToStringName()) && IsHovered)
 		{
 			IsPressed = true;
 			if (PlayerController.AllPlayers.Count > 0)
 				PlayerController.AllPlayers[0].Spellcasting.CastInputPressed(AssociatedCast);
 		}
-		if (@event.IsActionReleased("MouseInteract") && IsPressed)
+		if (@event.IsActionReleased("MouseInteract".ToStringName()) && IsPressed)
 		{
 			IsPressed = false;
 			if (PlayerController.AllPlayers.Count > 0)
@@ -145,25 +145,25 @@ public partial class ActionButton : Control
 			HoveredValue = Math.Min(1, HoveredValue + (float)delta * 5);
 		else
 			HoveredValue = Math.Max(0, HoveredValue - (float)delta * 5);
-		ButtonMaterial.SetShaderParameter("HoveredValue", HoveredValue);
+		ButtonMaterial.SetShaderParameter("HoveredValue".ToStringName(), HoveredValue);
 
 		if (IsPressed)
 			PressedValue = Math.Min(1, PressedValue + (float)delta * 5);
 		else
 			PressedValue = Math.Max(0, PressedValue - (float)delta * 5);
-		ButtonMaterial.SetShaderParameter("PressedValue", PressedValue);
+		ButtonMaterial.SetShaderParameter("PressedValue".ToStringName(), PressedValue);
 
 		if (IsDisabled)
 			DisabledValue = Math.Min(1, DisabledValue + (float)delta * 5);
 		else
 			DisabledValue = 0;
-		ButtonMaterial.SetShaderParameter("DisabledValue", DisabledValue);
+		ButtonMaterial.SetShaderParameter("DisabledValue".ToStringName(), DisabledValue);
 
 		if (IsHighlighted || (AssociatedCast != null && AssociatedCast.Settings.CastTimings == BeatTime.Free))
 			HighlightedValue = Math.Min(1, HighlightedValue + (float)delta * 5);
 		else
 			HighlightedValue = Math.Max(0, HighlightedValue - (float)delta * 5);
-		ButtonMaterial.SetShaderParameter("HighlightedValue", HighlightedValue);
+		ButtonMaterial.SetShaderParameter("HighlightedValue".ToStringName(), HighlightedValue);
 
 		if (AssociatedCast == null)
 		{

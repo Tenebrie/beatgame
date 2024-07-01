@@ -103,7 +103,7 @@ public partial class RectangularTelegraph : BaseTelegraph
 	public override void _Process(double delta)
 	{
 		base._Process(delta);
-		decal.SetInstanceShaderParameter("PROGRESS", GrowPercentage);
+		decal.SetInstanceShaderParameter("PROGRESS".ToStringName(), GrowPercentage);
 	}
 
 	private void UpdateSize()
@@ -111,8 +111,8 @@ public partial class RectangularTelegraph : BaseTelegraph
 		// Scale = new Vector3(width * 2, 1, length * 2);
 		(decal.Mesh as PlaneMesh).Size = new Vector2(32, 32);
 		(collisionShape.Shape as BoxShape3D).Size = new Vector3(width, height, length);
-		decal.SetInstanceShaderParameter("SIZE_X", width / 2);
-		decal.SetInstanceShaderParameter("SIZE_Z", length / 2);
+		decal.SetInstanceShaderParameter("SIZE_X".ToStringName(), width / 2);
+		decal.SetInstanceShaderParameter("SIZE_Z".ToStringName(), length / 2);
 	}
 
 	public void SetHeight(float value)
@@ -123,9 +123,9 @@ public partial class RectangularTelegraph : BaseTelegraph
 
 	protected override void SetColor(Color color)
 	{
-		decal.SetInstanceShaderParameter("COLOR_R", color.R);
-		decal.SetInstanceShaderParameter("COLOR_G", color.G);
-		decal.SetInstanceShaderParameter("COLOR_B", color.B);
+		decal.SetInstanceShaderParameter("COLOR_R".ToStringName(), color.R);
+		decal.SetInstanceShaderParameter("COLOR_G".ToStringName(), color.G);
+		decal.SetInstanceShaderParameter("COLOR_B".ToStringName(), color.B);
 	}
 
 	public void EnableCulling()

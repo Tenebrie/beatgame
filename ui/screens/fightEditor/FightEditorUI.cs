@@ -16,30 +16,39 @@ public partial class FightEditorUI : Control
 		textEdit = GetNode<TextEdit>("TextEdit");
 	}
 
+	readonly List<StringName> castBindings = new()
+	{
+		"AutoAttack".ToStringName(),
+		"GroundAttack".ToStringName(),
+		"MARK_ONE".ToStringName(),
+		"MARK_TWO".ToStringName()
+	};
 	public override void _Input(InputEvent @event)
 	{
-		if (@event.IsActionPressed("ToggleEditor"))
+		if (@event is InputEventMouseMotion)
+			return;
+
+		if (@event.IsActionPressed("ToggleEditor".ToStringName()))
 		{
 			EditingMode = !EditingMode;
 			Visible = EditingMode;
 		}
 
 		var beatIndex = Music.Singleton.GetNearestBeatIndex(BeatTime.Quarter);
-		List<string> castBindings = new() { "AutoAttack", "GroundAttack", "MARK_ONE", "MARK_TWO" };
 
-		if (@event.IsActionPressed("EditorCast1"))
+		if (@event.IsActionPressed("EditorCast1".ToStringName()))
 		{
 			Add(beatIndex, castBindings[0]);
 		}
-		if (@event.IsActionPressed("EditorCast2"))
+		if (@event.IsActionPressed("EditorCast2".ToStringName()))
 		{
 			Add(beatIndex, castBindings[1]);
 		}
-		if (@event.IsActionPressed("EditorCast3"))
+		if (@event.IsActionPressed("EditorCast3".ToStringName()))
 		{
 			Add(beatIndex, castBindings[2]);
 		}
-		if (@event.IsActionPressed("EditorCast4"))
+		if (@event.IsActionPressed("EditorCast4".ToStringName()))
 		{
 			Add(beatIndex, castBindings[3]);
 		}

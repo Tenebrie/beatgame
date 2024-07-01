@@ -17,7 +17,7 @@ public partial class CombatUI : Control
 	{
 		GetTree().Root.ContentScaleFactor = DisplayServer.ScreenGetScale();
 		SignalBus.Singleton.Connect(SignalBus.SignalName.UnitCreated, Callable.From<BaseUnit>(OnUnitCreated), (uint)ConnectFlags.Deferred);
-		SignalBus.Singleton.Connect(SignalBus.SignalName.UnitDestroyed, Callable.From<BaseUnit>(OnUnitDestroyed), (uint)ConnectFlags.Deferred);
+		SignalBus.Singleton.UnitDestroyed += OnUnitDestroyed;
 		LoadingManager.Singleton.SceneTransitioned += OnSceneTransitioned;
 	}
 

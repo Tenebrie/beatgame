@@ -33,11 +33,11 @@ public partial class SkillForestUI : Control
 
 	public override void _Input(InputEvent @event)
 	{
-		if (@event.IsActionPressed("ToggleSkillForest"))
+		if (@event.IsActionPressed("ToggleSkillForest".ToStringName()))
 		{
 			Visible = !Visible;
 		}
-		if (@event.IsActionPressed("Escape") && Visible)
+		if (@event.IsActionPressed("Escape".ToStringName()) && Visible)
 		{
 			Visible = false;
 			GetViewport().SetInputAsHandled();

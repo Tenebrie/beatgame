@@ -8,7 +8,7 @@ namespace Project;
 
 public partial class PlayerSpellcasting : ComposableScript
 {
-	public readonly Dictionary<string, BaseCast> CastBindings = new(); // Dictionary<InputName, BaseCast>
+	public readonly Dictionary<StringName, BaseCast> CastBindings = new(); // Dictionary<InputName, BaseCast>
 
 	new readonly PlayerController Parent;
 
@@ -32,10 +32,7 @@ public partial class PlayerSpellcasting : ComposableScript
 
 	public BaseCast GetCurrentCastingSpell()
 	{
-		var castingSpells = CastBindings.Values.Where(cast => cast.IsCasting).ToList();
-		if (castingSpells.Count == 0)
-			return null;
-		return castingSpells[0];
+		return CastBindings.FirstOrDefault((entry) => entry.Value.IsCasting).Value;
 	}
 
 	// Automatically bind a new cast to a first available slot
@@ -45,11 +42,10 @@ public partial class PlayerSpellcasting : ComposableScript
 		if (skill.Settings.ActiveCast == null)
 			return;
 
-		var bindingSlots = GetPossibleBindings();
 		if (CastBindings.Values.Any(value => value.GetType() == skill.Settings.ActiveCast.CastType))
 			return;
 
-		foreach (var binding in bindingSlots)
+		foreach (var binding in CastBindingSlots)
 		{
 			var hasValue = CastBindings.TryGetValue(binding, out var _);
 			if (hasValue)
@@ -67,8 +63,7 @@ public partial class PlayerSpellcasting : ComposableScript
 		if (skill.Settings.ActiveCast == null)
 			return;
 
-		var bindingSlots = GetPossibleBindings();
-		foreach (var binding in bindingSlots)
+		foreach (var binding in CastBindingSlots)
 		{
 			var hasValue = CastBindings.TryGetValue(binding, out var value);
 			if (!hasValue || value.GetType() != skill.Settings.ActiveCast.CastType)
@@ -106,13 +101,13 @@ public partial class PlayerSpellcasting : ComposableScript
 			Bind(cast.Key, cast.Value.GetType());
 	}
 
-	public void Bind(string input, Type castType)
+	public void Bind(StringName input, Type castType)
 	{
 		var factory = CastFactory.Of(castType);
 		Bind(input, factory.Create(Parent));
 	}
 
-	public void Bind(string input, BaseCast cast)
+	public void Bind(StringName input, BaseCast cast)
 	{
 		Unbind(input);
 		CastBindings.Add(input, cast);
@@ -120,7 +115,7 @@ public partial class PlayerSpellcasting : ComposableScript
 		SignalBus.Singleton.EmitSignal(SignalBus.SignalName.CastAssigned, cast, input);
 	}
 
-	public void Unbind(string input)
+	public void Unbind(StringName input)
 	{
 		var hasPreviousBinding = CastBindings.TryGetValue(input, out var existingCast);
 		if (hasPreviousBinding)
@@ -143,7 +138,7 @@ public partial class PlayerSpellcasting : ComposableScript
 		}
 	}
 
-	public void LoadBindings(Dictionary<string, BaseCast> dict)
+	public void LoadBindings(Dictionary<StringName, BaseCast> dict)
 	{
 		foreach (var key in dict.Keys)
 		{
@@ -155,18 +150,15 @@ public partial class PlayerSpellcasting : ComposableScript
 		}
 	}
 
-	public BaseCast GetBinding(string input)
-	{
-		return CastBindings.GetValueOrDefault(input, null);
-	}
-
 	public override void _Input(InputEvent @input)
 	{
 		if (SkillForestUI.Singleton.Visible || Parent.Buffs.Has<BuffRigorMortis>())
 			return;
 
-		foreach (var key in CastBindings.Keys)
+		var keys = CastBindings.Keys;
+		for (var i = 0; i < keys.Count; i++)
 		{
+			var key = keys.ElementAt(i);
 			if (!@input.IsAction(key, true))
 				continue;
 
@@ -258,18 +250,16 @@ public partial class PlayerSpellcasting : ComposableScript
 			cast.CastFail();
 	}
 
-	public static List<string> GetPossibleBindings()
+	static readonly List<StringName> bindings = new()
 	{
-		return new()
-		{
-			"Cast1",
-			"Cast2",
-			"Cast3",
-			"Cast4",
-			"ShiftCast1",
-			"ShiftCast2",
-			"ShiftCast3",
-			"ShiftCast4",
-		};
-	}
+		"Cast1".ToStringName(),
+		"Cast2".ToStringName(),
+		"Cast3".ToStringName(),
+		"Cast4".ToStringName(),
+		"ShiftCast1".ToStringName(),
+		"ShiftCast2".ToStringName(),
+		"ShiftCast3".ToStringName(),
+		"ShiftCast4".ToStringName(),
+	};
+	public static List<StringName> CastBindingSlots => bindings;
 }

@@ -33,7 +33,7 @@ public partial class CastBar : Control
 			FadeOut((float)delta);
 	}
 
-	void UpdateBar()
+	private void UpdateBar()
 	{
 		var time = (float)Time.GetTicksMsec();
 		var value = (time - prepFinishesAt) / (castFinishesAt - prepFinishesAt);

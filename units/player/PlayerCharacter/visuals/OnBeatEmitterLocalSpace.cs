@@ -26,7 +26,7 @@ public partial class OnBeatEmitterLocalSpace : GpuParticles3D
 
 	public override void _Input(InputEvent @event)
 	{
-		if (@event.IsActionPressed("RandomizeColor"))
+		if (@event.IsActionPressed("RandomizeColor".ToStringName()))
 		{
 			RandomizeColor();
 		}

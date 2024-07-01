@@ -48,7 +48,7 @@ public partial class AccurateTimer : Node
 
 	public async void Stop(float delay)
 	{
-		await ToSignal(GetTree().CreateTimer(delay / 1000), "timeout");
+		await ToSignal(GetTree().CreateTimer(delay / 1000), "timeout".ToStringName());
 		IsStarted = false;
 	}
 

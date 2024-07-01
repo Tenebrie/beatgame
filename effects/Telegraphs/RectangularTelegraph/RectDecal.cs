@@ -12,7 +12,7 @@ public partial class RectDecal : MeshInstance3D
 
 	public override void _Ready()
 	{
-		SetInstanceShaderParameter("FADE", fadeValue);
+		SetInstanceShaderParameter("FADE".ToStringName(), fadeValue);
 	}
 
 	public override void _Process(double delta)
@@ -21,7 +21,7 @@ public partial class RectDecal : MeshInstance3D
 		{
 			fadeValue -= (float)delta * 4;
 
-			SetInstanceShaderParameter("FADE", fadeValue);
+			SetInstanceShaderParameter("FADE".ToStringName(), fadeValue);
 			if (fadeValue <= 0)
 			{
 				onFadedOut?.Invoke();
@@ -31,7 +31,7 @@ public partial class RectDecal : MeshInstance3D
 		else if (fadingIn)
 		{
 			fadeValue += (float)delta * 4;
-			SetInstanceShaderParameter("FADE", fadeValue);
+			SetInstanceShaderParameter("FADE".ToStringName(), fadeValue);
 			if (fadeValue >= 1)
 			{
 				fadeValue = 1;
@@ -42,7 +42,7 @@ public partial class RectDecal : MeshInstance3D
 
 	public void EnableCulling()
 	{
-		SetInstanceShaderParameter("CULL_DIST", this.GetArenaSize());
+		SetInstanceShaderParameter("CULL_DIST".ToStringName(), this.GetArenaSize());
 	}
 
 	public void CleanUp()

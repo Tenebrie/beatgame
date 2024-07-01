@@ -44,7 +44,7 @@ public partial class PauseUI : Control
 
 	public override void _Input(InputEvent @event)
 	{
-		if (@event.IsActionPressed("ToggleSkillForest") && Visible)
+		if (@event.IsActionPressed("ToggleSkillForest".ToStringName()) && Visible)
 		{
 			Visible = false;
 		}
@@ -52,7 +52,7 @@ public partial class PauseUI : Control
 
 	public override void _UnhandledInput(InputEvent @event)
 	{
-		if (@event.IsActionPressed("Escape"))
+		if (@event.IsActionPressed("Escape".ToStringName()))
 		{
 			Visible = !Visible;
 		}

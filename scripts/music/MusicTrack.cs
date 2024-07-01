@@ -21,7 +21,7 @@ public partial class MusicTrack : Node
 
 	public async void PlayAfterDelay(float delay, float fromPosition)
 	{
-		await ToSignal(GetTree().CreateTimer(delay), "timeout");
+		await ToSignal(GetTree().CreateTimer(delay), "timeout".ToStringName());
 
 		SignalBus.Singleton.EmitSignal(SignalBus.SignalName.TrackStarted, this);
 		Volume = Preferences.Singleton.MusicVolume;
@@ -39,7 +39,7 @@ public partial class MusicTrack : Node
 		Music.Singleton.Stop();
 		if (Loop)
 		{
-			await ToSignal(GetTree().CreateTimer(2), "timeout");
+			await ToSignal(GetTree().CreateTimer(2), "timeout".ToStringName());
 			Music.Singleton.Start();
 		}
 	}

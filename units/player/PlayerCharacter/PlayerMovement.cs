@@ -37,12 +37,12 @@ public partial class PlayerMovement : ComposableScript
 
 	public override void _UnhandledInput(InputEvent @event)
 	{
-		if (@event.IsActionPressed("SoftCameraMove"))
+		if (@event.IsActionPressed("SoftCameraMove".ToStringName()))
 		{
 			softCameraPreMoving = true;
 			softCameraMoveStart = GetWindow().GetMousePosition();
 		}
-		if (@event.IsActionReleased("SoftCameraMove"))
+		if (@event.IsActionReleased("SoftCameraMove".ToStringName()))
 		{
 			softCameraPreMoving = false;
 			softCameraMoving = false;
@@ -50,12 +50,12 @@ public partial class PlayerMovement : ComposableScript
 				Input.MouseMode = Input.MouseModeEnum.Visible;
 		}
 
-		if (@event.IsActionPressed("HardCameraMove"))
+		if (@event.IsActionPressed("HardCameraMove".ToStringName()))
 		{
 			hardCameraPreMoving = true;
 			hardCameraMoveStart = GetWindow().GetMousePosition();
 		}
-		if (@event.IsActionReleased("HardCameraMove"))
+		if (@event.IsActionReleased("HardCameraMove".ToStringName()))
 		{
 			hardCameraPreMoving = false;
 			hardCameraMoving = false;
@@ -63,16 +63,16 @@ public partial class PlayerMovement : ComposableScript
 				Input.MouseMode = Input.MouseModeEnum.Visible;
 		}
 
-		if (@event.IsActionPressed("ZoomIn"))
+		if (@event.IsActionPressed("ZoomIn".ToStringName()))
 		{
 			cameraDistance = Math.Max(0, cameraDistance - 0.15f);
 		}
-		if (@event.IsActionPressed("ZoomOut"))
+		if (@event.IsActionPressed("ZoomOut".ToStringName()))
 		{
 			cameraDistance = Math.Min(4, cameraDistance + 0.15f);
 		}
 
-		if (@event.IsActionPressed("Jump") && jumpCount < 2)
+		if (@event.IsActionPressed("Jump".ToStringName()) && jumpCount < 2)
 		{
 			if (Parent.Grounded)
 			{
@@ -98,11 +98,11 @@ public partial class PlayerMovement : ComposableScript
 		var movementSpeed = 2.5f * Parent.Buffs.State.MoveSpeedPercentage;
 
 		float movementForward = 0;
-		if (Input.IsActionPressed("MoveForward"))
+		if (Input.IsActionPressed("MoveForward".ToStringName()))
 		{
 			movementForward += 1;
 		}
-		if (Input.IsActionPressed("MoveBackward"))
+		if (Input.IsActionPressed("MoveBackward".ToStringName()))
 		{
 			movementForward -= 1;
 		}
@@ -112,28 +112,28 @@ public partial class PlayerMovement : ComposableScript
 		}
 
 		float movementRight = 0;
-		if (Input.IsActionPressed("MoveRight"))
+		if (Input.IsActionPressed("MoveRight".ToStringName()))
 		{
 			movementRight += 1;
 		}
-		if (Input.IsActionPressed("MoveLeft"))
+		if (Input.IsActionPressed("MoveLeft".ToStringName()))
 		{
 			movementRight -= 1;
 		}
-		if (Input.IsActionPressed("TurnLeft") && Input.IsActionPressed("HardCameraMove"))
+		if (Input.IsActionPressed("TurnLeft".ToStringName()) && Input.IsActionPressed("HardCameraMove".ToStringName()))
 		{
 			movementRight -= 1;
 		}
-		if (Input.IsActionPressed("TurnRight") && Input.IsActionPressed("HardCameraMove"))
+		if (Input.IsActionPressed("TurnRight".ToStringName()) && Input.IsActionPressed("HardCameraMove".ToStringName()))
 		{
 			movementRight += 1;
 		}
 
-		if (Input.IsActionJustPressed("MoveForward") || Input.IsActionJustPressed("MoveBackward"))
+		if (Input.IsActionJustPressed("MoveForward".ToStringName()) || Input.IsActionJustPressed("MoveBackward".ToStringName()))
 			autorunEnabled = false;
-		if ((Input.IsActionJustPressed("SoftCameraMove") && hardCameraMoving) || (Input.IsActionJustPressed("HardCameraMove") && softCameraMoving))
+		if ((Input.IsActionJustPressed("SoftCameraMove".ToStringName()) && hardCameraMoving) || (Input.IsActionJustPressed("HardCameraMove".ToStringName()) && softCameraMoving))
 			autorunEnabled = false;
-		if (Input.IsActionJustPressed("Autorun"))
+		if (Input.IsActionJustPressed("Autorun".ToStringName()))
 			autorunEnabled = !autorunEnabled;
 
 		if (autorunEnabled)
@@ -155,18 +155,18 @@ public partial class PlayerMovement : ComposableScript
 		Parent.Velocity = velocity;
 
 		var rotationSpeed = 2; // radians per second
-		if (Input.IsActionPressed("TurnLeft") && !hardCameraPreMoving && !hardCameraMoving)
+		if (Input.IsActionPressed("TurnLeft".ToStringName()) && !hardCameraPreMoving && !hardCameraMoving)
 		{
 			var rotation = rotationSpeed * (float)delta;
 			Parent.Rotate(Vector3.Up, rotation);
-			if (Input.IsActionPressed("SoftCameraMove"))
+			if (Input.IsActionPressed("SoftCameraMove".ToStringName()))
 				RotateCameraHorizontal(-rotation);
 		}
-		if (Input.IsActionPressed("TurnRight") && !hardCameraPreMoving && !hardCameraMoving)
+		if (Input.IsActionPressed("TurnRight".ToStringName()) && !hardCameraPreMoving && !hardCameraMoving)
 		{
 			var rotation = -rotationSpeed * (float)delta;
 			Parent.Rotate(Vector3.Up, rotation);
-			if (Input.IsActionPressed("SoftCameraMove"))
+			if (Input.IsActionPressed("SoftCameraMove".ToStringName()))
 				RotateCameraHorizontal(-rotation);
 		}
 

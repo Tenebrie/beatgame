@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -207,6 +208,18 @@ public static class CastUtils
 	public static float GetTicksSec()
 	{
 		return ((float)Time.GetTicksMsec()) / 1000;
+	}
+
+	static readonly Dictionary<string, StringName> StringNamesDict = new();
+	public static StringName ToStringName(this string plainString)
+	{
+		var hasValue = StringNamesDict.TryGetValue(plainString, out var stringName);
+		if (hasValue)
+			return stringName;
+
+		var newStringName = new StringName(plainString);
+		StringNamesDict.Add(plainString, newStringName);
+		return newStringName;
 	}
 }
 

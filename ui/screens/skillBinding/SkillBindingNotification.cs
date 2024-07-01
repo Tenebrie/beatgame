@@ -16,6 +16,7 @@ public partial class SkillBindingNotification : Control
 
 	public override void _Process(double delta)
 	{
+		// TODO: New color
 		alpha -= (float)delta;
 		Modulate = new Color(Modulate.R, Modulate.G, Modulate.B, Math.Min(1, alpha));
 		if (alpha <= 0.00f)

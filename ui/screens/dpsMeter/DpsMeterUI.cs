@@ -46,7 +46,7 @@ public partial class DpsMeterUI : Control
 
 	public override void _Input(InputEvent @event)
 	{
-		if (@event.IsActionPressed("ToggleDpsMeter"))
+		if (@event.IsActionPressed("ToggleDpsMeter".ToStringName()))
 		{
 			Visible = !Visible;
 		}

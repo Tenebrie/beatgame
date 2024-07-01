@@ -60,7 +60,7 @@ public abstract partial class BaseBuff : Node
 		if (ExpiresAt == -1)
 			return;
 
-		float time = CastUtils.GetTicksSec();
+		var time = CastUtils.GetTicksSec();
 		if (time >= ExpiresAt)
 		{
 			OnDurationExpired();

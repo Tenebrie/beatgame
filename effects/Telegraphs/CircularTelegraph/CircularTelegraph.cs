@@ -60,7 +60,7 @@ public partial class CircularTelegraph : BaseTelegraph
 	public override void _Process(double delta)
 	{
 		base._Process(delta);
-		decal.SetInstanceShaderParameter("PROGRESS", GrowPercentage);
+		decal.SetInstanceShaderParameter("PROGRESS".ToStringName(), GrowPercentage);
 	}
 
 	private void UpdateRadius()
@@ -71,9 +71,9 @@ public partial class CircularTelegraph : BaseTelegraph
 
 	protected override void SetColor(Color color)
 	{
-		decal.SetInstanceShaderParameter("COLOR_R", color.R);
-		decal.SetInstanceShaderParameter("COLOR_G", color.G);
-		decal.SetInstanceShaderParameter("COLOR_B", color.B);
+		decal.SetInstanceShaderParameter("COLOR_R".ToStringName(), color.R);
+		decal.SetInstanceShaderParameter("COLOR_G".ToStringName(), color.G);
+		decal.SetInstanceShaderParameter("COLOR_B".ToStringName(), color.B);
 	}
 
 	public void EnableCulling()

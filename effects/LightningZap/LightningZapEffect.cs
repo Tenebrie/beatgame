@@ -101,7 +101,7 @@ public partial class LightningZapEffect : Node3D
 		MeshInstance.LookAt(Target, Vector3.Up);
 		MeshInstance.RotateObjectLocal(Vector3.Up, (float)Math.PI / 2);
 
-		MeshInstance.SetInstanceShaderParameter("LENGTH", totalDistance);
+		MeshInstance.SetInstanceShaderParameter("LENGTH".ToStringName(), totalDistance);
 
 		ProgressDuration = 0.25f;
 		FadeDuration = 1.0f;
@@ -118,8 +118,8 @@ public partial class LightningZapEffect : Node3D
 			EmitSignal(SignalName.AnimationFinished);
 		}
 
-		MeshInstance.SetInstanceShaderParameter("FADE", Math.Min(1.0, fadeValue));
-		MeshInstance.SetInstanceShaderParameter("PROGRESS", progressValue);
+		MeshInstance.SetInstanceShaderParameter("FADE".ToStringName(), Math.Min(1.0, fadeValue));
+		MeshInstance.SetInstanceShaderParameter("PROGRESS".ToStringName(), progressValue);
 		if (fadeValue <= 0.00f)
 		{
 			QueueFree();
