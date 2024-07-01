@@ -117,23 +117,30 @@ public abstract partial class BaseUnit : ComposableCharacterBody3D
 
 	protected virtual void ProcessInertia(double delta)
 	{
+		var verticalVelocity = Velocity.Y - Gravity * (float)delta * 1.2f;
 		Velocity = new Vector3(
 			x: Velocity.X,
-			y: Velocity.Y,
+			y: verticalVelocity,
 			z: Velocity.Z
 		);
 
-		MoveAndCollide(new Vector3(Velocity.X, 0, Velocity.Z) * (float)delta);
+		if (Velocity.LengthSquared() <= 0.005f)
+			return;
 
-		var newVector = Velocity - 10.00f * new Vector3(Velocity.X, 0, Velocity.Z).Normalized() * (float)delta;
-		if (newVector.LengthSquared() <= 0.05f)
-			Velocity = new Vector3(0, Velocity.Y, 0);
-		else
-			Velocity = new Vector3(newVector.X, Velocity.Y, newVector.Z);
+		MoveAndSlide();
+
+		Grounded = IsOnFloor();
+		Velocity -= 2.00f * new Vector3(Velocity.X, Velocity.Y, Velocity.Z).Normalized() * (float)delta;
+
+		if (Position.Y <= -30)
+		{
+			Position = new Vector3(0, 1, 0);
+		}
 	}
 
 	protected virtual void ProcessGravity(double delta)
 	{
+		return;
 		var verticalVelocity = Math.Max(TerminalVelocity, Velocity.Y - Gravity * (float)delta);
 
 		Velocity = new Vector3(

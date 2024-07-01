@@ -60,8 +60,6 @@ public partial class AssetManager : Node
 			PreloadResource(field.GetValue(Lib.Audio));
 		foreach (var field in typeof(SceneLibrary).GetFields())
 			PreloadResource(field.GetValue(Lib.Scene));
-
-		CheckLoadingStatus();
 	}
 
 	private void PreloadResource(object value)
@@ -99,6 +97,7 @@ public partial class AssetManager : Node
 		if (Loaded)
 			return;
 
+		this.Log("Checking");
 		CheckLoadingStatus();
 	}
 
