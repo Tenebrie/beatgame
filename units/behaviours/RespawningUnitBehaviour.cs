@@ -6,7 +6,7 @@ namespace Project;
 /// When destroyed, this unit will respawn after a short delay.
 /// Expected to be used for training dummies in the hub room.
 /// </summary>
-public partial class RespawningUnitBehaviour : BaseBehaviour<BaseUnit>
+public partial class RespawningUnitBehaviour : BaseBehaviour
 {
 	[Export]
 	public string sceneToSpawn;

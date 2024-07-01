@@ -2,16 +2,16 @@ using Godot;
 
 namespace Project;
 
-public partial class BaseBehaviour<ParentT> : Node where ParentT : BaseUnit
+public partial class BaseBehaviour : Node
 {
-	protected ParentT Parent
+	protected BaseUnit Parent
 	{
 		get
 		{
 			var parent = GetParent();
-			if (parent is ParentT unit)
+			if (parent is BaseUnit unit)
 				return unit;
-			throw new System.Exception("This behaviour is not a child of expected parent");
+			throw new System.Exception("This behaviour is not a child of BaseUnit");
 		}
 	}
 }
