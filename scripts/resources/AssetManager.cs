@@ -97,7 +97,6 @@ public partial class AssetManager : Node
 		if (Loaded)
 			return;
 
-		this.Log("Checking");
 		CheckLoadingStatus();
 	}
 
