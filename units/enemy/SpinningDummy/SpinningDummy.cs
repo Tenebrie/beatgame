@@ -12,6 +12,7 @@ public partial class SpinningDummy : BasicEnemyController
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		FriendlyName = "Spinning Dummy";
 		base._Ready();
 		Whirlwind = CastLibrary.Register(new CastDummyWhirlwind(this));
 	}

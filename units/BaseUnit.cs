@@ -38,10 +38,8 @@ public abstract partial class BaseUnit : ComposableCharacterBody3D
 	public Vector3 CastAimPosition = new();
 	public Vector3 GlobalCastAimPosition { get => GlobalPosition + CastAimPosition; }
 
-	public override void _Ready()
+	public override void _EnterTree()
 	{
-		base._Ready();
-
 		Health = new(this, ObjectResourceType.Health, max: 100);
 		Mana = new(this, ObjectResourceType.Mana, max: 0);
 		Buffs = new(this);
@@ -51,7 +49,11 @@ public abstract partial class BaseUnit : ComposableCharacterBody3D
 		Animation = new(this);
 
 		Components = new(this);
+		Music.Singleton.BeatTick += ProcessBeatTick;
+	}
 
+	public override void _Ready()
+	{
 		AddChild(Buffs);
 		AddChild(Health);
 		AddChild(Mana);
@@ -59,18 +61,14 @@ public abstract partial class BaseUnit : ComposableCharacterBody3D
 		AddChild(ForcefulMovement);
 		AddChild(CastLibrary);
 		AddChild(Components);
+		AddChild(Animation);
+
 		AddChild(new ObjectReactions(this));
 
 		SignalBus.Singleton.ResourceChanged += OnResourceChanged;
 
 		AllUnits.Add(this);
 		SignalBus.Singleton.EmitSignal(SignalBus.SignalName.UnitCreated, this);
-	}
-
-	public override void _EnterTree()
-	{
-		base._EnterTree();
-		Music.Singleton.BeatTick += ProcessBeatTick;
 	}
 
 	private void OnResourceChanged(BaseUnit unit, ObjectResourceType type, float value)
@@ -114,7 +112,6 @@ public abstract partial class BaseUnit : ComposableCharacterBody3D
 
 	protected virtual void ProcessInertia(double delta)
 	{
-				// TODO: Reuse vectors
 		var verticalVelocity = Velocity.Y - Gravity * (float)delta * 1.2f;
 		Velocity = new Vector3(
 			x: Velocity.X,

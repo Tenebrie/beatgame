@@ -1,10 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://b10ixegtcb4ou"]
+[gd_scene load_steps=4 format=3 uid="uid://b10ixegtcb4ou"]
 
 [ext_resource type="PackedScene" uid="uid://dd8hi213iqvva" path="res://units/enemy/DummyEnemy/DummyEnemy.tscn" id="1_8htlm"]
 [ext_resource type="Script" path="res://units/enemy/SpinningDummy/SpinningDummy.cs" id="2_pxm88"]
+[ext_resource type="PackedScene" uid="uid://uxx8wybxag7b" path="res://units/behaviours/MeshAnimationBehaviour.tscn" id="3_cd52l"]
 
 [node name="SpinningDummy" instance=ExtResource("1_8htlm")]
 script = ExtResource("2_pxm88")
 
-[node name="RespawningUnitBehaviour" parent="." index="5"]
+[node name="MeshAnimationBehaviour" parent="." index="0" node_paths=PackedStringArray("animationPlayer") instance=ExtResource("3_cd52l")]
+animationPlayer = NodePath("../DummyVisuals/AnimationStopper/dummy01/AnimationPlayer")
+
+[node name="RespawningUnitBehaviour" parent="." index="6"]
 sceneToSpawn = "uid://b10ixegtcb4ou"
+
+[editable path="DummyVisuals"]
+[editable path="DummyVisuals/AnimationStopper/dummy01"]

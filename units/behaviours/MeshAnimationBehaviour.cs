@@ -14,6 +14,14 @@ public partial class MeshAnimationBehaviour : BaseBehaviour
 
 	public override void _Ready()
 	{
+		Parent.Animation.AnimationRequested += OnAnimationRequested;
+	}
 
+	void OnAnimationRequested(StringName animationName)
+	{
+		if (!animationPlayer.HasAnimation(animationName))
+			return;
+
+		animationPlayer.Play(animationName);
 	}
 }

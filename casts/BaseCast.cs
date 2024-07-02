@@ -39,9 +39,9 @@ public partial class BaseCast : Node
 		public bool ReversedCastBar = false;
 		public bool HiddenCastBar = false;
 		public float MaximumRange = Mathf.Inf;
-		public string AnimPrepare = null;
-		public string AnimCast = null;
-		public string AnimAfterCast = null;
+		public StringName AnimPrepare = null;
+		public StringName AnimCast = null;
+		public StringName AnimAfterCast = null;
 
 		/// <summary>Only for CastInputType.AutoRelease</summary>
 		public float PrepareTime = 0; // beats
@@ -309,7 +309,12 @@ public partial class BaseCast : Node
 	{
 		IsCasting = true;
 		if (Settings.PrepareTime > 0)
+		{
 			IsPreparing = true;
+			Parent.Animation.Play(Settings.AnimPrepare);
+		}
+		else
+			Parent.Animation.Play(Settings.AnimCast);
 
 		Parent.Health.Damage(Settings.ResourceCost[ObjectResourceType.Health], this);
 		Parent.Mana.Damage(Settings.ResourceCost[ObjectResourceType.Mana], this);
@@ -323,6 +328,7 @@ public partial class BaseCast : Node
 
 	public void CastPrepare()
 	{
+		Parent.Animation.Play(Settings.AnimCast);
 		IsPreparing = false;
 		OnPrepCompleted(CastTargetData);
 	}
@@ -334,6 +340,7 @@ public partial class BaseCast : Node
 		Flags.CastSuccessful = true;
 		OnCastCompleted(CastTargetData);
 		OnCastCompletedOrFailed(CastTargetData);
+		Parent.Animation.Play(Settings.AnimAfterCast);
 
 		EmitSignal(SignalName.Completed);
 		SignalBus.Singleton.EmitSignal(SignalBus.SignalName.CastCompleted, this);
