@@ -1,17 +1,81 @@
-[gd_scene load_steps=4 format=3 uid="uid://b10ixegtcb4ou"]
+[gd_scene load_steps=17 format=3 uid="uid://wkirwtjakyn7"]
 
 [ext_resource type="PackedScene" uid="uid://dd8hi213iqvva" path="res://units/enemy/DummyEnemy/DummyEnemy.tscn" id="1_8htlm"]
 [ext_resource type="Script" path="res://units/enemy/SpinningDummy/SpinningDummy.cs" id="2_pxm88"]
-[ext_resource type="PackedScene" uid="uid://uxx8wybxag7b" path="res://units/behaviours/MeshAnimationBehaviour.tscn" id="3_cd52l"]
 
-[node name="SpinningDummy" instance=ExtResource("1_8htlm")]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_smyhy"]
+animation = &"Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sqiw8"]
+animation = &"WhirlwindEnd"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lo7ss"]
+animation = &"Whirlwind"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_u1ak3"]
+animation = &"Whirlwind"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4tk4n"]
+animation = &"WhirlwindStart"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_c6yy1"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ytm2g"]
+advance_mode = 2
+advance_condition = &"whirlwind"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xr024"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_j87si"]
+switch_mode = 2
+advance_mode = 2
+advance_expression = "not animationTree.get(\"parameters/conditions/whirlwind\")"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xfs22"]
+priority = 2
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_lgunn"]
+priority = 2
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5h5ep"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_60i6h"]
+switch_mode = 2
+advance_mode = 2
+advance_expression = "not animationTree.get(\"parameters/conditions/whirlwind\")"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_ttj06"]
+states/End/position = Vector2(898, 82)
+states/Idle/node = SubResource("AnimationNodeAnimation_smyhy")
+states/Idle/position = Vector2(381, 82)
+states/Start/position = Vector2(181, 82)
+states/WhirlwindEnd/node = SubResource("AnimationNodeAnimation_sqiw8")
+states/WhirlwindEnd/position = Vector2(608, 232)
+states/WhirlwindLoop/node = SubResource("AnimationNodeAnimation_u1ak3")
+states/WhirlwindLoop/position = Vector2(381, 314)
+"states/WhirlwindLoop 2/node" = SubResource("AnimationNodeAnimation_lo7ss")
+"states/WhirlwindLoop 2/position" = Vector2(608, 314)
+states/WhirlwindStart/node = SubResource("AnimationNodeAnimation_4tk4n")
+states/WhirlwindStart/position = Vector2(381, 232)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_c6yy1"), "Idle", "WhirlwindStart", SubResource("AnimationNodeStateMachineTransition_ytm2g"), "WhirlwindEnd", "Idle", SubResource("AnimationNodeStateMachineTransition_xr024"), "WhirlwindLoop", "WhirlwindEnd", SubResource("AnimationNodeStateMachineTransition_j87si"), "WhirlwindLoop", "WhirlwindLoop 2", SubResource("AnimationNodeStateMachineTransition_xfs22"), "WhirlwindLoop 2", "WhirlwindLoop", SubResource("AnimationNodeStateMachineTransition_lgunn"), "WhirlwindStart", "WhirlwindLoop", SubResource("AnimationNodeStateMachineTransition_5h5ep"), "WhirlwindLoop 2", "WhirlwindEnd", SubResource("AnimationNodeStateMachineTransition_60i6h")]
+graph_offset = Vector2(-303, -19)
+
+[node name="SpinningDummy" node_paths=PackedStringArray("animationTree") instance=ExtResource("1_8htlm")]
 script = ExtResource("2_pxm88")
+animationTree = NodePath("AnimationTree")
 
-[node name="MeshAnimationBehaviour" parent="." index="0" node_paths=PackedStringArray("animationPlayer") instance=ExtResource("3_cd52l")]
-animationPlayer = NodePath("../DummyVisuals/AnimationStopper/dummy01/AnimationPlayer")
-
-[node name="RespawningUnitBehaviour" parent="." index="6"]
-sceneToSpawn = "uid://b10ixegtcb4ou"
-
-[editable path="DummyVisuals"]
-[editable path="DummyVisuals/AnimationStopper/dummy01"]
+[node name="AnimationTree" type="AnimationTree" parent="." index="8"]
+root_node = NodePath("../DummyVisuals/AnimationStopper/dummy01")
+tree_root = SubResource("AnimationNodeStateMachine_ttj06")
+advance_expression_base_node = NodePath("..")
+anim_player = NodePath("../DummyVisuals/AnimationStopper/dummy01/AnimationPlayer")
+parameters/conditions/whirlwind = false

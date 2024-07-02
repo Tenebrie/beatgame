@@ -8,12 +8,3 @@
 transform = Transform3D(-0.3, 0, -4.52987e-08, 0, 0.3, 0, 4.52987e-08, 0, -0.3, 0, 0, 0)
 
 [node name="dummy01" parent="AnimationStopper" instance=ExtResource("1_a7x72")]
-
-[node name="Skeleton3D" parent="AnimationStopper/dummy01/Armature" index="0"]
-bones/0/rotation = Quaternion(-2.98023e-08, 1.19209e-07, -2.11758e-22, 1)
-bones/1/rotation = Quaternion(0.00391739, -9.99956e-08, -0.00186837, 0.999991)
-bones/2/rotation = Quaternion(-0.00391739, -1.92123e-08, 0.00186838, 0.999991)
-bones/3/rotation = Quaternion(-0.00669622, 3.90898e-08, 0.00319372, 0.999972)
-bones/4/rotation = Quaternion(-0.000726288, -0.000814081, 0.70961, 0.704594)
-
-[editable path="AnimationStopper/dummy01"]

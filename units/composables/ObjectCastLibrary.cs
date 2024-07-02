@@ -30,4 +30,20 @@ public partial class ObjectCastLibrary : ComposableScript
 		var cast = Casts.Where(cast => cast is CastT).FirstOrDefault() ?? throw new Exception("Unable to find cast");
 		return (CastT)cast;
 	}
+
+	private readonly List<BaseCast> activeCasts = new();
+	/// <summary>
+	/// Returns all casts where IsCasting is true, which includes casts in preparation and proper casting phases.
+	/// </summary>
+	public List<BaseCast> GetActiveCasts()
+	{
+		activeCasts.Clear();
+		for (var i = 0; i < Casts.Count; i++)
+		{
+			var cast = Casts[i];
+			if (cast.IsCasting)
+				activeCasts.Add(cast);
+		}
+		return activeCasts;
+	}
 }

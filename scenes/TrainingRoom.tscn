@@ -26,7 +26,7 @@
 [ext_resource type="PackedScene" uid="uid://b63tmrk7key7v" path="res://units/enemy/DummyEnemy/ZappingDummyEnemy.tscn" id="23_2mukf"]
 [ext_resource type="PackedScene" uid="uid://dgrskeod8a12e" path="res://objects/Interactables/world/SecretTreeChest.tscn" id="24_ax25i"]
 [ext_resource type="PackedScene" uid="uid://b6wd8lq8n0vbs" path="res://objects/Environment/ClayPot01.tscn" id="26_ktblm"]
-[ext_resource type="PackedScene" uid="uid://b10ixegtcb4ou" path="res://units/enemy/SpinningDummy/SpinningDummy.tscn" id="27_8innl"]
+[ext_resource type="PackedScene" uid="uid://wkirwtjakyn7" path="res://units/enemy/SpinningDummy/SpinningDummy.tscn" id="27_8innl"]
 
 [sub_resource type="Environment" id="Environment_nxlol"]
 ambient_light_energy = 0.91
@@ -1075,5 +1075,5 @@ light_energy = 2.0
 omni_range = 1.0
 
 [node name="SpinningDummy" parent="." instance=ExtResource("27_8innl")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -7.99464, 0.00719925, -4.00609)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -8, 0, -4)
 Alliance = 2

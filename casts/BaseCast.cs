@@ -9,6 +9,8 @@ public partial class BaseCast : Node
 {
 	public const float GlobalCooldownDuration = 2f;
 
+	[Signal] public delegate void StartedEventHandler();
+	[Signal] public delegate void PreparedEventHandler();
 	[Signal] public delegate void CompletedEventHandler();
 	[Signal] public delegate void InterruptedEventHandler();
 	[Signal] public delegate void FailedEventHandler();
@@ -39,9 +41,6 @@ public partial class BaseCast : Node
 		public bool ReversedCastBar = false;
 		public bool HiddenCastBar = false;
 		public float MaximumRange = Mathf.Inf;
-		public StringName AnimPrepare = null;
-		public StringName AnimCast = null;
-		public StringName AnimAfterCast = null;
 
 		/// <summary>Only for CastInputType.AutoRelease</summary>
 		public float PrepareTime = 0; // beats
@@ -309,28 +308,27 @@ public partial class BaseCast : Node
 	{
 		IsCasting = true;
 		if (Settings.PrepareTime > 0)
-		{
 			IsPreparing = true;
-			Parent.Animation.Play(Settings.AnimPrepare);
-		}
-		else
-			Parent.Animation.Play(Settings.AnimCast);
 
 		Parent.Health.Damage(Settings.ResourceCost[ObjectResourceType.Health], this);
 		Parent.Mana.Damage(Settings.ResourceCost[ObjectResourceType.Mana], this);
 		CastStartedAt = Music.Singleton.GetNearestBeatIndex(Settings.CastTimings);
 		CastTargetData = targetData;
-		SignalBus.Singleton.EmitSignal(SignalBus.SignalName.CastStarted, this);
 		OnCastStarted(targetData);
 		if (Settings.InputType == CastInputType.Instant || (Settings.InputType == CastInputType.AutoRelease && Settings.HoldTime == 0))
 			CastComplete();
+
+		EmitSignal(SignalName.Started);
+		SignalBus.Singleton.EmitSignal(SignalBus.SignalName.CastStarted, this);
 	}
 
 	public void CastPrepare()
 	{
-		Parent.Animation.Play(Settings.AnimCast);
 		IsPreparing = false;
 		OnPrepCompleted(CastTargetData);
+
+		EmitSignal(SignalName.Prepared);
+		SignalBus.Singleton.EmitSignal(SignalBus.SignalName.CastPrepared, this);
 	}
 
 	public void CastComplete()
@@ -340,7 +338,6 @@ public partial class BaseCast : Node
 		Flags.CastSuccessful = true;
 		OnCastCompleted(CastTargetData);
 		OnCastCompletedOrFailed(CastTargetData);
-		Parent.Animation.Play(Settings.AnimAfterCast);
 
 		EmitSignal(SignalName.Completed);
 		SignalBus.Singleton.EmitSignal(SignalBus.SignalName.CastCompleted, this);

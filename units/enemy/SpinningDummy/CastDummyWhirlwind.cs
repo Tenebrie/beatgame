@@ -8,11 +8,11 @@ public partial class CastDummyWhirlwind : BaseCast
 	{
 		Settings = new()
 		{
-			PrepareTime = 4,
-			HoldTime = 12,
-			AnimCast = "Whirlwind",
+			PrepareTime = 2,
+			HoldTime = 10,
 			InputType = CastInputType.AutoRelease,
 			ChannelingTickTimings = BeatTime.EveryFullBeat,
+			RecastTime = 8,
 		};
 	}
 
@@ -20,11 +20,11 @@ public partial class CastDummyWhirlwind : BaseCast
 	{
 		circle = this.CreateCircularTelegraph(Parent.GetGroundedPosition());
 		circle.Reparent(Parent);
-		circle.Settings.GrowTime = 4;
+		circle.Settings.GrowTime = Settings.PrepareTime;
 		circle.Settings.Alliance = Parent.Alliance;
 		circle.Settings.AutoCleaning = false;
 		circle.Settings.Periodic = true;
-		circle.Settings.Radius = 3;
+		circle.Settings.Radius = 2;
 		circle.Settings.TargetValidator = (unit) => unit.HostileTo(Parent);
 	}
 

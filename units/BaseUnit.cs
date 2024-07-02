@@ -17,7 +17,6 @@ public abstract partial class BaseUnit : ComposableCharacterBody3D
 	public ObjectTargetable Targetable;
 	public ObjectForcefulMovement ForcefulMovement;
 	public ObjectCastLibrary CastLibrary;
-	public ObjectAnimation Animation;
 
 	private ObjectComponentLibrary Components;
 
@@ -46,7 +45,6 @@ public abstract partial class BaseUnit : ComposableCharacterBody3D
 		Targetable = new(this);
 		ForcefulMovement = new(this);
 		CastLibrary = new(this);
-		Animation = new(this);
 
 		Components = new(this);
 		Music.Singleton.BeatTick += ProcessBeatTick;
@@ -61,7 +59,6 @@ public abstract partial class BaseUnit : ComposableCharacterBody3D
 		AddChild(ForcefulMovement);
 		AddChild(CastLibrary);
 		AddChild(Components);
-		AddChild(Animation);
 
 		AddChild(new ObjectReactions(this));
 

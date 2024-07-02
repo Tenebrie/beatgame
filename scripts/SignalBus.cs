@@ -27,6 +27,7 @@ public partial class SignalBus : Node
 	[Signal] public delegate void ResourceRegeneratedEventHandler(BaseUnit unit, ObjectResourceType type, float value);
 	[Signal] public delegate void MaxResourceChangedEventHandler(BaseUnit unit, ObjectResourceType type, float value);
 	[Signal] public delegate void CastStartedEventHandler(BaseCast cast);
+	[Signal] public delegate void CastPreparedEventHandler(BaseCast cast);
 	[Signal] public delegate void CastCompletedEventHandler(BaseCast cast);
 	[Signal] public delegate void CastInterruptedEventHandler(BaseCast cast);
 	[Signal] public delegate void CastFailedEventHandler(BaseCast cast);
