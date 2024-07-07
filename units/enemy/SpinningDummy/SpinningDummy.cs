@@ -28,6 +28,7 @@ public partial class SpinningDummy : BasicEnemyController
 
 	public override void _ExitTree()
 	{
+		base._ExitTree();
 		SignalBus.Singleton.CastStarted -= OnCastStateChanged;
 		SignalBus.Singleton.CastPrepared -= OnCastStateChanged;
 		SignalBus.Singleton.CastPrepared -= OnCastStateChanged;

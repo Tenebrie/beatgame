@@ -26,8 +26,8 @@ public partial class BossCastRaidwide : BaseCast
 	public override void _Process(double delta)
 	{
 		base._Process(delta);
-		
-		if (IsCasting)
+
+		if (IsCasting && !IsPreparing)
 			damageExpected += DamageTotal / Settings.HoldTime * (float)delta / Music.Singleton.SecondsPerBeat;
 		if (damageExpected - damageDealt > 1)
 			ApplyDamage();

@@ -1075,5 +1075,9 @@ light_energy = 2.0
 omni_range = 1.0
 
 [node name="SpinningDummy" parent="." instance=ExtResource("27_8innl")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -8, 0, -4)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -3, 0, -8)
+Alliance = 2
+
+[node name="SpinningDummy2" parent="." instance=ExtResource("27_8innl")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 3, 0, -8)
 Alliance = 2
