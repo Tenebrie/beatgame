@@ -1,6 +1,31 @@
-[gd_scene load_steps=6 format=3 uid="uid://riy8pgt2rs8q"]
+[gd_scene load_steps=33 format=3 uid="uid://riy8pgt2rs8q"]
 
 [ext_resource type="Script" path="res://ui/screens/transition/TransitionUI.cs" id="1_lcm4o"]
+[ext_resource type="Shader" path="res://ui/screens/transition/LoadingIndicatorColor.gdshader" id="2_btpbw"]
+[ext_resource type="Texture2D" uid="uid://bclmx4jtwrods" path="res://assets/sprites/deer-loading/0000.png" id="3_mpfqx"]
+[ext_resource type="Texture2D" uid="uid://cmhfhffxcse47" path="res://assets/sprites/deer-loading/0001.png" id="4_nl81e"]
+[ext_resource type="Texture2D" uid="uid://ghwh4gpcclou" path="res://assets/sprites/deer-loading/0002.png" id="5_nlh0c"]
+[ext_resource type="Texture2D" uid="uid://dyalytu61xrim" path="res://assets/sprites/deer-loading/0003.png" id="6_4u3xu"]
+[ext_resource type="Texture2D" uid="uid://o1ngb204x11n" path="res://assets/sprites/deer-loading/0004.png" id="7_ilsvp"]
+[ext_resource type="Texture2D" uid="uid://bs0rcx2fjaedu" path="res://assets/sprites/deer-loading/0005.png" id="8_d0sxo"]
+[ext_resource type="Texture2D" uid="uid://bf0p3ejm6gwmu" path="res://assets/sprites/deer-loading/0006.png" id="9_3056v"]
+[ext_resource type="Texture2D" uid="uid://4ms5dekmyqp7" path="res://assets/sprites/deer-loading/0007.png" id="10_cjweu"]
+[ext_resource type="Texture2D" uid="uid://b8bmov8cqfa2q" path="res://assets/sprites/deer-loading/0008.png" id="11_5c8qh"]
+[ext_resource type="Texture2D" uid="uid://cr2wjhvhc06nb" path="res://assets/sprites/deer-loading/0009.png" id="12_psve3"]
+[ext_resource type="Texture2D" uid="uid://b7fod1prixhbw" path="res://assets/sprites/deer-loading/0010.png" id="13_20wfr"]
+[ext_resource type="Texture2D" uid="uid://bj0owpnfskioy" path="res://assets/sprites/deer-loading/0011.png" id="14_dktf0"]
+[ext_resource type="Texture2D" uid="uid://bkq3yq4w34uhu" path="res://assets/sprites/deer-loading/0012.png" id="15_5w84k"]
+[ext_resource type="Texture2D" uid="uid://cfg1fbeukmo22" path="res://assets/sprites/deer-loading/0013.png" id="16_q4u05"]
+[ext_resource type="Texture2D" uid="uid://bu8trl8tvf2l7" path="res://assets/sprites/deer-loading/0014.png" id="17_dcd40"]
+[ext_resource type="Texture2D" uid="uid://tdmavg1qugbd" path="res://assets/sprites/deer-loading/0015.png" id="18_1hbq5"]
+[ext_resource type="Texture2D" uid="uid://cf5u8sm5ym32w" path="res://assets/sprites/deer-loading/0016.png" id="19_rnf51"]
+[ext_resource type="Texture2D" uid="uid://by4jl8xjxhsn8" path="res://assets/sprites/deer-loading/0017.png" id="20_8fxvm"]
+[ext_resource type="Texture2D" uid="uid://duj8capcldx3j" path="res://assets/sprites/deer-loading/0018.png" id="21_1pm6x"]
+[ext_resource type="Texture2D" uid="uid://bsqyaq1h80deh" path="res://assets/sprites/deer-loading/0019.png" id="22_l84v4"]
+[ext_resource type="Texture2D" uid="uid://5pwck6b5av80" path="res://assets/sprites/deer-loading/0020.png" id="23_tn61b"]
+[ext_resource type="Texture2D" uid="uid://0j267bsijitx" path="res://assets/sprites/deer-loading/0021.png" id="24_7rdjc"]
+[ext_resource type="Texture2D" uid="uid://ccnw4ds2gexfm" path="res://assets/sprites/deer-loading/0022.png" id="25_v5nkd"]
+[ext_resource type="Texture2D" uid="uid://cbfecwf6bddsa" path="res://assets/sprites/deer-loading/0023.png" id="26_isaog"]
 
 [sub_resource type="Animation" id="Animation_i3sus"]
 resource_name = "fade_in"
@@ -31,6 +56,18 @@ tracks/0/keys = {
 "update": 0,
 "values": [Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/DeerLoading:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
 
 [sub_resource type="Animation" id="Animation_0b1aj"]
 resource_name = "fade"
@@ -55,7 +92,90 @@ _data = {
 "fade_out": SubResource("Animation_0b1aj")
 }
 
-[node name="TransitionUI" type="Control"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ihi4p"]
+shader = ExtResource("2_btpbw")
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fppff"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_mpfqx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_nl81e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_nlh0c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_4u3xu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_ilsvp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_d0sxo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_3056v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_cjweu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_5c8qh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_psve3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_20wfr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_dktf0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_5w84k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_q4u05")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_dcd40")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_1hbq5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_rnf51")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_8fxvm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_1pm6x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_l84v4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_tn61b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_7rdjc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_v5nkd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_isaog")
+}],
+"loop": true,
+"name": &"default",
+"speed": 24.0
+}]
+
+[node name="TransitionUI" type="Control" node_paths=PackedStringArray("colorRect", "fadePlayer")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -64,9 +184,27 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_lcm4o")
+colorRect = NodePath("Control/SceneTransitionRect")
+fadePlayer = NodePath("Control/AnimationPlayer")
 
-[node name="SceneTransitionRect" type="ColorRect" parent="."]
-modulate = Color(0, 0, 0, 1)
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Control"]
+root_node = NodePath("../SceneTransitionRect")
+libraries = {
+"": SubResource("AnimationLibrary_xt6gr")
+}
+autoplay = "fade_in_game_start"
+
+[node name="SceneTransitionRect" type="ColorRect" parent="Control"]
+modulate = Color(0, 0, 0, 0)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -76,8 +214,21 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="SceneTransitionRect"]
-libraries = {
-"": SubResource("AnimationLibrary_xt6gr")
-}
-autoplay = "fade_in_game_start"
+[node name="Control" type="Control" parent="Control/SceneTransitionRect"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -207.0
+offset_top = -189.0
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+
+[node name="DeerLoading" type="AnimatedSprite2D" parent="Control/SceneTransitionRect/Control"]
+material = SubResource("ShaderMaterial_ihi4p")
+sprite_frames = SubResource("SpriteFrames_fppff")
+autoplay = "default"
+frame_progress = 0.192059

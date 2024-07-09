@@ -7,16 +7,14 @@ namespace Project;
 
 public partial class TransitionUI : Control
 {
-	private ColorRect colorRect;
-	private AnimationPlayer fadePlayer;
+	[Export] private ColorRect colorRect;
+	[Export] private AnimationPlayer fadePlayer;
 
 	private PackedScene transitioningTo;
 
 	public override void _Ready()
 	{
-		colorRect = GetNode<ColorRect>("SceneTransitionRect");
 		colorRect.Modulate = new Color(1, 1, 1, 0);
-		fadePlayer = GetNode<AnimationPlayer>("SceneTransitionRect/AnimationPlayer");
 		fadePlayer.AnimationFinished += OnAnimationFinished;
 		LoadingManager.Singleton.StateChanged += OnLoadingStateChanged;
 	}

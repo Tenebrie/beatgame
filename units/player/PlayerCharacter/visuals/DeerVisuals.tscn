@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bl1w3ia6wx76f"]
+
+[ext_resource type="PackedScene" uid="uid://dywqxa4xdtfap" path="res://assets/meshes/deer01.tscn" id="1_2kkhb"]
+
+[node name="DeerVisuals" type="Node3D"]
+
+[node name="deer01" parent="." instance=ExtResource("1_2kkhb")]

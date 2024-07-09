@@ -12,6 +12,9 @@ public partial class PlayerMovement : ComposableScript
 	bool hardCameraMoving = false;
 	Vector2 hardCameraMoveStart;
 
+	public Vector2 InputVector = new();
+	public float RotationInput;
+
 	private Node3D horizontalCameraPivot;
 	private Node3D verticalCameraPivot;
 	private SpringArm3D springArm;
@@ -139,38 +142,49 @@ public partial class PlayerMovement : ComposableScript
 		if (autorunEnabled)
 			movementForward = 1;
 
-		var movementVector = new Vector2(movementRight, movementForward).Normalized() * movementSpeed;
+		InputVector = new Vector2(movementRight, movementForward).Normalized() * movementSpeed;
 		var forwardVector = -GlobalTransform.Basis.Z;
 		var rightVector = GlobalTransform.Basis.X;
 
 		var velocity = Parent.Velocity;
 		Parent.Velocity = new Vector3(
-			x: forwardVector.X * movementVector.Y + rightVector.X * movementVector.X,
+			x: forwardVector.X * InputVector.Y + rightVector.X * InputVector.X,
 			y: 0.001f,
-			z: forwardVector.Z * movementVector.Y + rightVector.Z * movementVector.X
+			z: forwardVector.Z * InputVector.Y + rightVector.Z * InputVector.X
 		);
+
+		// TODO: Replace the const with visual model scale
+		// var rootMotionVector = Parent.Animation.GetRootMotionPosition();
+		// Parent.Velocity = new Vector3(
+		// 	x: forwardVector.X * rootMotionVector.Z * 0.25f / (float)delta + rightVector.X * rootMotionVector.X * 0.25f / (float)delta,
+		// 	y: 0.001f,
+		// 	z: forwardVector.Z * rootMotionVector.Z * 0.25f / (float)delta + rightVector.Z * rootMotionVector.X * 0.25f / (float)delta
+		// );
 
 		Parent.MoveAndSlide();
 
 		Parent.Velocity = velocity;
 
 		var rotationSpeed = 2; // radians per second
+		RotationInput = 0;
 		if (Input.IsActionPressed("TurnLeft".ToStringName()) && !hardCameraPreMoving && !hardCameraMoving)
-		{
-			var rotation = rotationSpeed * (float)delta;
-			Parent.Rotate(Vector3.Up, rotation);
-			if (Input.IsActionPressed("SoftCameraMove".ToStringName()))
-				RotateCameraHorizontal(-rotation);
-		}
+			RotationInput += 1;
 		if (Input.IsActionPressed("TurnRight".ToStringName()) && !hardCameraPreMoving && !hardCameraMoving)
+			RotationInput -= 1;
+
+		if (Math.Abs(RotationInput) > 0)
 		{
-			var rotation = -rotationSpeed * (float)delta;
+			float rotation = RotationInput * rotationSpeed * (float)delta;
 			Parent.Rotate(Vector3.Up, rotation);
 			if (Input.IsActionPressed("SoftCameraMove".ToStringName()))
 				RotateCameraHorizontal(-rotation);
 		}
 
-		if (!softCameraPreMoving && !softCameraMoving && !hardCameraPreMoving && !hardCameraMoving && movementVector.Length() > 0)
+		// var rootMotionRotation = Parent.Animation.GetRootMotionRotation();
+		// var eulerRotation = rootMotionRotation.GetEuler();
+		// Parent.Rotate(Vector3.Up, eulerRotation.Z);
+
+		if (!softCameraPreMoving && !softCameraMoving && !hardCameraPreMoving && !hardCameraMoving && InputVector.Length() > 0)
 		{
 			var unrotationSpeed = 3f; // radians per second
 

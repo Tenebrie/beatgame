@@ -6,6 +6,7 @@ namespace Project;
 
 public partial class PlayerController : BaseUnit
 {
+	public PlayerAnimation Animation;
 	public PlayerMovement Movement;
 	public PlayerTargeting Targeting;
 	public PlayerSpellcasting Spellcasting;
@@ -24,10 +25,12 @@ public partial class PlayerController : BaseUnit
 		Mana.SetMinValue(-250);
 		Mana.Regeneration = 5;
 
+		Animation = new PlayerAnimation(this);
 		Movement = new PlayerMovement(this);
 		Targeting = new PlayerTargeting(this);
 		Spellcasting = new PlayerSpellcasting(this);
 
+		AddChild(Animation);
 		AddChild(Movement);
 		AddChild(Targeting);
 		AddChild(Spellcasting);

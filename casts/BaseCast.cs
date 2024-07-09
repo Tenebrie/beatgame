@@ -27,6 +27,7 @@ public partial class BaseCast : Node
 		public BeatTime castTimings = BeatTime.Free;
 		public BeatTime CastTimings
 		{
+			// TODO: Fix timings offset only in chill mode (incremental as the song continues)
 			get => Preferences.Singleton.ChillMode ? BeatTime.Free : castTimings;
 			set => castTimings = value;
 		}

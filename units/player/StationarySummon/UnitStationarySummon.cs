@@ -40,7 +40,6 @@ public partial class UnitStationarySummon : BaseUnit
 		if (lastTarget == null || !IsInstanceValid(lastTarget))
 			return;
 
-		// TODO: Reuse vectors
 		LookAt(lastTarget.GlobalCastAimPosition);
 		Rotation = new Vector3(0, Rotation.Y, 0);
 	}
