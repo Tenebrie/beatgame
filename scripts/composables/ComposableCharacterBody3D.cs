@@ -26,5 +26,10 @@ public abstract partial class ComposableCharacterBody3D : CharacterBody3D
 		{
 			return Parent.GetChildren().Where(child => child is ComposableScript script && predicate(script)).Cast<ComposableScript>().FirstOrDefault();
 		}
+
+		public ScriptT Find<ScriptT>()
+		{
+			return Parent.GetChildren().Where(child => child is ScriptT).Cast<ScriptT>().FirstOrDefault();
+		}
 	}
 }

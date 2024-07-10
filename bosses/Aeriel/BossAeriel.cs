@@ -2,7 +2,7 @@ using Godot;
 
 namespace Project;
 
-public partial class BossAeriel : BasicEnemyController
+public partial class BossAeriel : BaseBoss
 {
 	public BossAuto AutoAttack;
 	public BossCastBuster Buster;
@@ -28,10 +28,7 @@ public partial class BossAeriel : BasicEnemyController
 
 	public override void _Ready()
 	{
-		IsBoss = true;
-
 		FriendlyName = "Aeriel, Eye of the Storm";
-		Alliance = UnitAlliance.Hostile;
 
 		base._Ready();
 
@@ -108,6 +105,8 @@ public partial class BossAeriel : BasicEnemyController
 
 		HardEnrage = new(this);
 		CastLibrary.Register(HardEnrage);
+
+		AddChild(new BossAerielTimeline(this));
 	}
 
 	protected override void HandleDeath() { }

@@ -16,6 +16,7 @@ noise = SubResource("FastNoiseLite_yj7rs")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jj4np"]
 render_priority = 0
 shader = ExtResource("2_l2hm1")
+shader_parameter/SCALE = 1.0
 shader_parameter/FADE_COLOR = Color(0.240008, 0.505868, 1, 1)
 shader_parameter/ALBEDO_SAMPLER = ExtResource("3_3fph7")
 shader_parameter/FADE_NOISE = SubResource("NoiseTexture2D_foi4e")

@@ -5,12 +5,14 @@ using Godot;
 
 namespace Project;
 
-public partial class BossAerielTimeline : BaseTimeline<BossAeriel>
+public partial class BossAerielTimeline : BaseTimeline
 {
+	new BossAeriel Parent;
 	RectangularTelegraph puddleRect;
 
 	public BossAerielTimeline(BossAeriel parent) : base(parent)
 	{
+		Parent = parent;
 		GotoAbleton(1);
 
 		Mark("Start");
@@ -342,12 +344,5 @@ public partial class BossAerielTimeline : BaseTimeline<BossAeriel>
 			effect.SetLifetime(0.01f);
 			effect.Position = target.GlobalCastAimPosition;
 		}
-	}
-
-	public override void _Ready()
-	{
-		var targetIndex = GetMarkBeatIndex("Start");
-		Music.Singleton.SeekTo(targetIndex);
-		Start(targetIndex);
 	}
 }

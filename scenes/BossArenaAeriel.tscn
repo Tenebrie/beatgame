@@ -31,14 +31,14 @@
 [ext_resource type="Shader" path="res://effects/Telegraphs/CircularTelegraph/CircleDecal.gdshader" id="29_j7a18"]
 [ext_resource type="PackedScene" uid="uid://tk3jful5lm6r" path="res://effects/Telegraphs/RectangularTelegraph/RectDecal.tscn" id="30_0f3hd"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7i8b0"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_76iie"]
 albedo_texture = ExtResource("1_kfj03")
 normal_enabled = true
 normal_texture = ExtResource("2_rsvkw")
 uv1_scale = Vector3(5, 5, 5)
 
 [sub_resource type="BoxMesh" id="BoxMesh_1t4f2"]
-material = SubResource("StandardMaterial3D_7i8b0")
+material = SubResource("StandardMaterial3D_76iie")
 size = Vector3(2, 1, 2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_sgxrx"]

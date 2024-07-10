@@ -5,6 +5,8 @@ namespace Project;
 
 public partial class TimelineManager : Node
 {
+	[Signal] public delegate void FightStartingEventHandler();
+
 	bool fightStarted = false;
 
 	public override void _EnterTree()
@@ -22,11 +24,8 @@ public partial class TimelineManager : Node
 		if (fightStarted)
 			return;
 
-		var bosses = BaseUnit.AllUnits.Where(unit => unit is BossAeriel).Cast<BossAeriel>().ToList();
-		if (bosses.Count > 0)
-			AddChild(new BossAerielTimeline(bosses[0]));
-
 		fightStarted = true;
+		EmitSignal(SignalName.FightStarting);
 		Music.Singleton.Start();
 		EnvironmentController.Singleton.SetEnabled("bg_audio", false);
 	}

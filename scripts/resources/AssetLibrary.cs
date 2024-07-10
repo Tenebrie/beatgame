@@ -76,6 +76,7 @@ public class SceneLibrary
 		{ PlayableScene.MainMenu,  "res://scenes/MainMenu.tscn" },
 		{ PlayableScene.TrainingRoom,  "res://scenes/TrainingRoom.tscn" },
 		{ PlayableScene.BossArenaAeriel,  "res://scenes/BossArenaAeriel.tscn" },
+		{ PlayableScene.BossArenaCelestios,  "res://scenes/BossArenaCelestios.tscn" },
 	};
 
 	public bool Is(PlayableScene target, string scenePath)

@@ -63,10 +63,13 @@ public partial class BossCastLightningStorm : BaseCast
 			var area = this.CreateCircularTelegraph(pos);
 			area.Settings.GrowTime = (float)(ImpactIndex - Music.Singleton.BeatIndex);
 			area.Settings.Radius = 1.5f;
+			area.Settings.OnFinishedCallback = () =>
+			{
+				this.CreateZapEffect(pos + new Vector3(0.5f, 5, 0.5f), pos);
+			};
 			area.Settings.OnFinishedPerTargetCallback = (BaseUnit unit) =>
 			{
 				unit.Health.Damage(30, this);
-				this.CreateZapEffect(pos + new Vector3(0.5f, 5, 0.5f), pos);
 			};
 		}
 

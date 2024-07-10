@@ -1,0 +1,220 @@
+[gd_scene load_steps=18 format=3 uid="uid://nnd6b06l741u"]
+
+[ext_resource type="PackedScene" uid="uid://c5qjexdib0qy8" path="res://scripts/environment/EnvironmentController.tscn" id="1_aayj0"]
+[ext_resource type="Texture2D" uid="uid://0oq4x3vsrdoj" path="res://assets/PolygonTropicalJungle/Terrain/Sand_Texture_02.png" id="1_msj40"]
+[ext_resource type="Texture2D" uid="uid://7capj8gkjdma" path="res://assets/PolygonTropicalJungle/Terrain/Sand_Normals_02.png" id="2_k87e0"]
+[ext_resource type="PackedScene" uid="uid://kv2sxv7kxs57" path="res://assets/PolygonTropicalJungle/Prefabs/SM_Bld_Ruins_Column_02.tscn" id="3_d6mg0"]
+[ext_resource type="PackedScene" uid="uid://chl176ponels8" path="res://assets/PolygonTropicalJungle/Prefabs/SM_Bld_Ruins_Wall_01.tscn" id="4_5nyy1"]
+[ext_resource type="PackedScene" uid="uid://gj8xxedifnpp" path="res://assets/PolygonDungeon/Prefabs/Props/SM_Prop_Tech_Crystal_01.tscn" id="5_tgkhr"]
+[ext_resource type="Script" path="res://scripts/environment/ControllableOmniLight.cs" id="6_efh71"]
+[ext_resource type="PackedScene" uid="uid://k3tq7jb87g5b" path="res://objects/Triggers/PlayerSpawner/PlayerSpawner.tscn" id="7_sl1og"]
+[ext_resource type="PackedScene" uid="uid://lgsyp6kjimik" path="res://bosses/Celestios/BossCelestios.tscn" id="9_xsf5o"]
+[ext_resource type="PackedScene" uid="uid://bue0mn46sn4fj" path="res://objects/Triggers/FightStart/FightStartTrigger.tscn" id="10_0rev5"]
+
+[sub_resource type="Environment" id="Environment_74rdq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7i8b0"]
+albedo_texture = ExtResource("1_msj40")
+normal_enabled = true
+normal_texture = ExtResource("2_k87e0")
+uv1_scale = Vector3(5, 5, 5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_qbt8u"]
+material = SubResource("StandardMaterial3D_7i8b0")
+size = Vector3(2, 1, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5h5mv"]
+size = Vector3(2.13232, 0.01, 2.10596)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pd4b6"]
+size = Vector3(0.122681, 0.184092, 0.364746)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_stcbs"]
+size = Vector3(0.125, 0.685, 0.125)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ptica"]
+size = Vector3(96, 96, 96)
+
+[node name="BossArenaCelestios" type="Node3D"]
+
+[node name="EnvironmentController" parent="." instance=ExtResource("1_aayj0")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="EnvironmentController"]
+environment = SubResource("Environment_74rdq")
+
+[node name="Arena" type="StaticBody3D" parent="."]
+transform = Transform3D(48, 0, 0, 0, 48, 0, 0, 0, 48, 0, -0.085, 0)
+collision_layer = 17
+collision_mask = 17
+axis_lock_linear_x = true
+axis_lock_linear_y = true
+axis_lock_linear_z = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+
+[node name="Floor" type="MeshInstance3D" parent="Arena"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+layers = 1025
+mesh = SubResource("BoxMesh_qbt8u")
+
+[node name="Floor2" type="MeshInstance3D" parent="Arena"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.920417, 0)
+layers = 1025
+mesh = SubResource("BoxMesh_qbt8u")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Arena"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0054043, 0, -0.0148926)
+shape = SubResource("BoxShape3D_5h5mv")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Arena"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.02411, -0.041433, -0.523226)
+shape = SubResource("BoxShape3D_pd4b6")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Arena"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.02411, -0.0394054, 0.498506)
+shape = SubResource("BoxShape3D_pd4b6")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="Arena"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.01144, -0.0411831, -0.523226)
+shape = SubResource("BoxShape3D_pd4b6")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="Arena"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.01144, -0.0423423, 0.498506)
+shape = SubResource("BoxShape3D_pd4b6")
+
+[node name="CollisionShape3D10" type="CollisionShape3D" parent="Arena"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1, 0.25, 1)
+shape = SubResource("BoxShape3D_stcbs")
+
+[node name="CollisionShape3D11" type="CollisionShape3D" parent="Arena"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1, 0.25, -1)
+shape = SubResource("BoxShape3D_stcbs")
+
+[node name="CollisionShape3D12" type="CollisionShape3D" parent="Arena"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1, 0.25, -1)
+shape = SubResource("BoxShape3D_stcbs")
+
+[node name="CollisionShape3D13" type="CollisionShape3D" parent="Arena"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1, 0.25, 1)
+shape = SubResource("BoxShape3D_stcbs")
+
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="Arena"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.491668, -0.0413581, 0.984075)
+shape = SubResource("BoxShape3D_pd4b6")
+
+[node name="CollisionShape3D7" type="CollisionShape3D" parent="Arena"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.530064, -0.0395029, 0.984075)
+shape = SubResource("BoxShape3D_pd4b6")
+
+[node name="CollisionShape3D8" type="CollisionShape3D" parent="Arena"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.519018, -0.0451819, -1.01592)
+shape = SubResource("BoxShape3D_pd4b6")
+
+[node name="CollisionShape3D9" type="CollisionShape3D" parent="Arena"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.502714, -0.0451819, -1.01592)
+shape = SubResource("BoxShape3D_pd4b6")
+
+[node name="SM_Bld_Ruins_Column_02" parent="Arena" instance=ExtResource("3_d6mg0")]
+transform = Transform3D(0.125, 0, 0, 0, 0.125, 0, 0, 0, 0.125, 1, -0.244687, 1)
+
+[node name="SM_Bld_Ruins_Column_03" parent="Arena" instance=ExtResource("3_d6mg0")]
+transform = Transform3D(0.125, 0, 0, 0, 0.125, 0, 0, 0, 0.125, 1, -0.244687, -1)
+
+[node name="SM_Bld_Ruins_Column_04" parent="Arena" instance=ExtResource("3_d6mg0")]
+transform = Transform3D(0.125, 0, 0, 0, 0.125, 0, 0, 0, 0.125, -1, -0.244687, 1)
+
+[node name="SM_Bld_Ruins_Column_05" parent="Arena" instance=ExtResource("3_d6mg0")]
+transform = Transform3D(0.125, 0, 0, 0, 0.125, 0, 0, 0, 0.125, -1, -0.244687, -1)
+
+[node name="SM_Bld_Ruins_Wall_01" parent="Arena" instance=ExtResource("4_5nyy1")]
+transform = Transform3D(0.125, 0, 0, 0, 0.125, 0, 0, 0, 0.125, -0.485047, -0.549592, 0.989072)
+
+[node name="SM_Bld_Ruins_Wall_02" parent="Arena" instance=ExtResource("4_5nyy1")]
+transform = Transform3D(-0.125, 0, -1.09278e-08, 0, 0.125, 0, 1.09278e-08, 0, -0.125, 0.452453, -0.549592, 0.989072)
+
+[node name="SM_Bld_Ruins_Wall_03" parent="Arena" instance=ExtResource("4_5nyy1")]
+transform = Transform3D(-5.46392e-09, 0, -0.125, 0, 0.125, 0, 0.125, 0, -5.46392e-09, -1.0163, -0.549974, -0.479678)
+
+[node name="SM_Bld_Ruins_Wall_04" parent="Arena" instance=ExtResource("4_5nyy1")]
+transform = Transform3D(-5.46392e-09, 0, 0.125, 0, 0.125, 0, -0.125, 0, -5.46392e-09, -1.0163, -0.549974, 0.457822)
+
+[node name="SM_Bld_Ruins_Wall_05" parent="Arena" instance=ExtResource("4_5nyy1")]
+transform = Transform3D(-0.125, 0, -1.09278e-08, 0, 0.125, 0, 1.09278e-08, 0, -0.125, 0.480172, -0.553385, -1.01093)
+
+[node name="SM_Bld_Ruins_Wall_06" parent="Arena" instance=ExtResource("4_5nyy1")]
+transform = Transform3D(0.125, 0, 2.18557e-08, 0, 0.125, 0, -2.18557e-08, 0, 0.125, -0.457328, -0.553385, -1.01093)
+
+[node name="SM_Bld_Ruins_Wall_07" parent="Arena" instance=ExtResource("4_5nyy1")]
+transform = Transform3D(-5.46392e-09, 0, 0.125, 0, 0.125, 0, -0.125, 0, -5.46392e-09, 1.01142, -0.549982, 0.457822)
+
+[node name="SM_Bld_Ruins_Wall_08" parent="Arena" instance=ExtResource("4_5nyy1")]
+transform = Transform3D(1.63918e-08, 0, -0.125, 0, 0.125, 0, 0.125, 0, 1.63918e-08, 1.01142, -0.549982, -0.479678)
+
+[node name="SM_Prop_Tech_Crystal_01" parent="Arena" instance=ExtResource("5_tgkhr")]
+transform = Transform3D(0.625, 0, 0, 0, 0.625, 0, 0, 0, 0.625, 1, 0.380313, 1)
+
+[node name="SM_Prop_Tech_Crystal_02" parent="Arena" instance=ExtResource("5_tgkhr")]
+transform = Transform3D(0.625, 0, 0, 0, 0.625, 0, 0, 0, 0.625, -1, 0.380313, 1)
+
+[node name="SM_Prop_Tech_Crystal_03" parent="Arena" instance=ExtResource("5_tgkhr")]
+transform = Transform3D(0.625, 0, 0, 0, 0.625, 0, 0, 0, 0.625, 1, 0.380313, -1)
+
+[node name="SM_Prop_Tech_Crystal_04" parent="Arena" instance=ExtResource("5_tgkhr")]
+transform = Transform3D(0.625, 0, 0, 0, 0.625, 0, 0, 0, 0.625, -1, 0.380313, -1)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Arena"]
+transform = Transform3D(0.0208333, 0, 0, 0, 0.0208333, 0, 0, 0, 0.0208333, 1, 0.546711, 1)
+light_color = Color(0.74902, 0.913725, 0.937255, 1)
+light_energy = 5.017
+light_size = 0.189
+light_specular = 7.23
+omni_range = 36.913
+script = ExtResource("6_efh71")
+GroupName = "arena"
+EnabledByDefault = false
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="Arena"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.546711, -1)
+light_color = Color(0.74902, 0.913725, 0.937255, 1)
+light_energy = 5.017
+light_size = 0.189
+light_specular = 7.23
+omni_range = 36.913
+omni_shadow_mode = 0
+script = ExtResource("6_efh71")
+GroupName = "arena"
+EnabledByDefault = false
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="Arena"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.546711, 1)
+light_color = Color(0.74902, 0.913725, 0.937255, 1)
+light_energy = 5.017
+light_size = 0.189
+light_specular = 7.23
+omni_range = 36.913
+script = ExtResource("6_efh71")
+GroupName = "arena"
+EnabledByDefault = false
+
+[node name="OmniLight3D4" type="OmniLight3D" parent="Arena"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.546711, -1)
+light_color = Color(0.74902, 0.913725, 0.937255, 1)
+light_energy = 5.017
+light_size = 0.189
+light_specular = 7.23
+omni_range = 36.913
+script = ExtResource("6_efh71")
+GroupName = "arena"
+EnabledByDefault = false
+
+[node name="PlayerSpawner" parent="." instance=ExtResource("7_sl1og")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.154371, 0.155, 40.1497)
+
+[node name="BossCelestios" parent="." instance=ExtResource("9_xsf5o")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.4814, 0.155, 28.4326)
+
+[node name="FightStartTrigger" parent="." instance=ExtResource("10_0rev5")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FightStartTrigger"]
+shape = SubResource("BoxShape3D_ptica")

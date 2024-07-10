@@ -5,9 +5,9 @@ using System.Linq;
 using Godot;
 
 namespace Project;
-public partial class BaseTimeline<ParentT> : Node where ParentT : BaseUnit
+public partial class BaseTimeline : Node
 {
-	public ParentT Parent;
+	public BaseBoss Parent;
 
 	public List<TimelineElement> Elements = new();
 	public Dictionary<string, double> Marks = new();
@@ -17,9 +17,11 @@ public partial class BaseTimeline<ParentT> : Node where ParentT : BaseUnit
 	bool isStarted = false;
 	public CastTargetData targetData = new();
 
-	public BaseTimeline(ParentT parent)
+	public BaseTimeline(BaseBoss parent)
 	{
 		Parent = parent;
+		GotoAbleton(1);
+		Mark("Start");
 	}
 
 	public override void _EnterTree()
@@ -27,6 +29,7 @@ public partial class BaseTimeline<ParentT> : Node where ParentT : BaseUnit
 		base._EnterTree();
 		Music.Singleton.BeatTick += OnBeatTick;
 		SignalBus.Singleton.UnitCreated += OnUnitCreated;
+		TimelineManager.Singleton.FightStarting += OnFightStarting;
 	}
 
 	public override void _ExitTree()
@@ -34,6 +37,7 @@ public partial class BaseTimeline<ParentT> : Node where ParentT : BaseUnit
 		base._ExitTree();
 		Music.Singleton.BeatTick -= OnBeatTick;
 		SignalBus.Singleton.UnitCreated -= OnUnitCreated;
+		TimelineManager.Singleton.FightStarting -= OnFightStarting;
 	}
 
 	void OnUnitCreated(BaseUnit unit)
@@ -48,6 +52,14 @@ public partial class BaseTimeline<ParentT> : Node where ParentT : BaseUnit
 		if (!valueFound)
 			GD.PushWarning($"Unable to find a mark with name {name}, starting from beginning");
 		return beatIndex;
+	}
+
+	void OnFightStarting()
+	{
+		this.Log("Starting");
+		var targetIndex = GetMarkBeatIndex("Start");
+		Music.Singleton.SeekTo(targetIndex);
+		Start(targetIndex);
 	}
 
 	public void Start(double targetIndex)

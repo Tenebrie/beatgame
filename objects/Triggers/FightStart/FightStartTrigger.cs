@@ -1,7 +1,4 @@
 using Godot;
-using Project;
-using System;
-using System.Diagnostics;
 
 namespace Project;
 public partial class FightStartTrigger : Area3D

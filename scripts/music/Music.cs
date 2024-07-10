@@ -188,7 +188,7 @@ public partial class Music : Node
 
 	private async void PlaySceneSong(PlayableScene scene)
 	{
-		if (scene == PlayableScene.TrainingRoom)
+		if (scene is PlayableScene.TrainingRoom)
 		{
 			await ToSignal(GetTree().CreateTimer(1), "timeout".ToStringName());
 			Start();

@@ -1,0 +1,56 @@
+[gd_scene load_steps=13 format=3 uid="uid://lgsyp6kjimik"]
+
+[ext_resource type="PackedScene" uid="uid://bl1w3ia6wx76f" path="res://bosses/Celestios/tokens/DeerVisuals.tscn" id="1_0oho0"]
+[ext_resource type="Script" path="res://bosses/Celestios/BossCelestios.cs" id="1_jm4ur"]
+[ext_resource type="PackedScene" uid="uid://cqu5y0rbgi8pp" path="res://units/common/UnitCastAimPosition.tscn" id="2_n6sbb"]
+[ext_resource type="Material" uid="uid://hrprhmwst7jk" path="res://assets/materials/HoverableUnitMaterial.tres" id="4_7avg6"]
+[ext_resource type="Shader" path="res://effects/GhostWeaponMat.gdshader" id="4_x7k6j"]
+[ext_resource type="Texture2D" uid="uid://c5p714hmii2hg" path="res://assets/PolygonDungeon/Textures/Dungeons_Texture_01.png" id="5_s1khx"]
+[ext_resource type="Script" path="res://bosses/Celestios/FadingObjectBehaviour.cs" id="7_qbc4k"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_yj7rs"]
+noise_type = 3
+frequency = 0.0158
+fractal_octaves = 8
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_dmpwu"]
+noise = SubResource("FastNoiseLite_yj7rs")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jog15"]
+render_priority = 0
+next_pass = ExtResource("4_7avg6")
+shader = ExtResource("4_x7k6j")
+shader_parameter/SCALE = 40.0
+shader_parameter/FADE_COLOR = Color(0.796998, 0.400524, 0.117008, 1)
+shader_parameter/ALBEDO_SAMPLER = ExtResource("5_s1khx")
+shader_parameter/FADE_NOISE = SubResource("NoiseTexture2D_dmpwu")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_m8xes"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_rbe2u"]
+graph_offset = Vector2(-689, -104)
+
+[node name="BossCelestios" type="CharacterBody3D"]
+script = ExtResource("1_jm4ur")
+
+[node name="DeerVisuals" parent="." instance=ExtResource("1_0oho0")]
+transform = Transform3D(-2, 0, 3.01992e-07, 0, 2, 0, -3.01992e-07, 0, -2, 0, 0, 0)
+
+[node name="Cylinder" parent="DeerVisuals/deer01/Armature/Skeleton3D" index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_jog15")
+
+[node name="UnitCastAimPosition" parent="DeerVisuals" instance=ExtResource("2_n6sbb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0305e-07, 1.7643, 0.607695)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_m8xes")
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeBlendTree_rbe2u")
+
+[node name="FadingObjectBehaviour" type="Node" parent="." node_paths=PackedStringArray("mesh")]
+script = ExtResource("7_qbc4k")
+mesh = NodePath("../DeerVisuals/deer01/Armature/Skeleton3D/Cylinder")
+
+[editable path="DeerVisuals"]
+[editable path="DeerVisuals/deer01"]
