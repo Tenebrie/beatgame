@@ -14,10 +14,8 @@ public partial class AccurateTimer : Node
 	[Signal]
 	public delegate void BeatWindowLockEventHandler(BeatTime time);
 
-	public static float TimingWindow
-	{
-		get => Preferences.Singleton.ChillMode ? 0.1f : 0.2f; // seconds before and after beat
-	}
+	public static float TimingWindow = 0.05f; // seconds
+	public static float QueueingWindow = 30f; // seconds
 	public long Calibration = 0;
 
 	public BeatTime BeatTime;

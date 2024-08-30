@@ -20,10 +20,8 @@ public partial class CastCelestialShield : BaseCast
 			IconPath = "res://assets/icons/SpellBook06_12.png",
 			InputType = CastInputType.AutoRelease,
 			TargetType = CastTargetType.None,
-			CastTimings = BeatTime.Free,
 			HoldTime = 2,
 			RecastTime = 128,
-			GlobalCooldown = true,
 			CooldownOnCancel = false,
 		};
 	}

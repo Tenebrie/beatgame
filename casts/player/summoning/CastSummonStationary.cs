@@ -20,7 +20,6 @@ public partial class CastSummonStationary : BaseCast
 			IconPath = "res://assets/icons/SpellBook06_44.PNG",
 			InputType = CastInputType.AutoRelease,
 			TargetType = CastTargetType.Point,
-			CastTimings = BeatTime.Free,
 			HoldTime = 8,
 			RecastTime = 64,
 		};

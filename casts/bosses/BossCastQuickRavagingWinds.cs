@@ -20,13 +20,13 @@ public partial class BossCastQuickRavagingWinds : BaseCast
 			HoldTime = 10,
 			RecastTime = 0,
 			PrepareTime = 4,
-			ChannelingTickTimings = BeatTime.Whole | BeatTime.Half,
+			TickDuration = 2,
 		};
 	}
 
 	protected override void OnPrepCompleted(CastTargetData targetData)
 	{
-		OnCastTicked(targetData, BeatTime.Quarter);
+		OnCastTicked(targetData);
 	}
 
 	List<(Vector3 pos, float size)> GetSpawnPositions()
@@ -49,7 +49,7 @@ public partial class BossCastQuickRavagingWinds : BaseCast
 		return list;
 	}
 
-	protected override void OnCastTicked(CastTargetData targetData, BeatTime time)
+	protected override void OnCastTicked(CastTargetData targetData)
 	{
 		var spawns = GetSpawnPositions();
 		List<CircularTelegraph> circleGroup = new();

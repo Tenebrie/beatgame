@@ -20,7 +20,6 @@ public partial class CastFlagellation : BaseCast
 			IconPath = "res://assets/icons/SpellBook06_03.PNG",
 			InputType = CastInputType.Instant,
 			TargetType = CastTargetType.HostileUnit,
-			CastTimings = BeatTime.Whole | BeatTime.Half | BeatTime.Quarter,
 		};
 		Settings.ResourceCost[ObjectResourceType.Health] = SelfDamage;
 	}

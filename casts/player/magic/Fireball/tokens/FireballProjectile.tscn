@@ -73,7 +73,7 @@ proximity_fade_distance = 674.32
 [sub_resource type="PlaneMesh" id="PlaneMesh_725l8"]
 lightmap_size_hint = Vector2i(2, 2)
 material = SubResource("StandardMaterial3D_617ev")
-size = Vector2(3, 3)
+size = Vector2(1.5, 1.5)
 orientation = 2
 
 [sub_resource type="Curve" id="Curve_mxoxt"]
@@ -112,12 +112,12 @@ proximity_fade_distance = 674.32
 [sub_resource type="PlaneMesh" id="PlaneMesh_bplgv"]
 lightmap_size_hint = Vector2i(2, 2)
 material = SubResource("StandardMaterial3D_8k7st")
-size = Vector2(1.5, 1.5)
+size = Vector2(1, 1)
 orientation = 2
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_l3xbc"]
 emission_shape = 1
-emission_sphere_radius = 0.6
+emission_sphere_radius = 0.25
 angle_max = 360.0
 direction = Vector3(0, 0, 0)
 spread = 180.0

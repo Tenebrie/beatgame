@@ -18,12 +18,10 @@ public partial class CastParry : BaseCast
 			),
 			LoreDescription = "With a lightning-fast strike, you block the enemy attack and riposte at the same moment.",
 			IconPath = "res://assets/icons/SpellBook06_123.png",
-			InputType = CastInputType.HoldRelease,
+			InputType = CastInputType.AutoRelease,
 			TargetType = CastTargetType.None,
-			CastTimings = BeatTime.EveryFullBeat,
 			HoldTime = 1,
 			RecastTime = 4,
-			GlobalCooldown = true,
 		};
 		Settings.ResourceCost[ObjectResourceType.Mana] = 40;
 	}

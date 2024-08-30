@@ -17,7 +17,6 @@ public partial class CastRescue : BaseCast
 			IconPath = "res://assets/icons/SpellBook06_101.png",
 			InputType = CastInputType.Instant,
 			TargetType = CastTargetType.AlliedUnit,
-			CastTimings = BeatTime.Free,
 			HoldTime = 0,
 			RecastTime = 8,
 		};

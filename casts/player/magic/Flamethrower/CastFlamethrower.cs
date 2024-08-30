@@ -21,8 +21,7 @@ public partial class CastFlamethrower : BaseCast
 			IconPath = "res://assets/icons/SpellBook06_117.PNG",
 			InputType = CastInputType.AutoRelease,
 			TargetType = CastTargetType.HostileUnit,
-			CastTimings = BeatTime.Whole | BeatTime.Half,
-			ChannelingTickTimings = BeatTime.All,
+			TickDuration = 0.125f,
 			HoldTime = 8,
 			RecastTime = 16
 		};
@@ -50,7 +49,7 @@ public partial class CastFlamethrower : BaseCast
 			Parent.Buffs.Add(new BuffManaFrenzy());
 	}
 
-	protected override void OnCastTicked(CastTargetData target, BeatTime time)
+	protected override void OnCastTicked(CastTargetData target)
 	{
 		if (this.HasSkill<SkillManaFrenzy>())
 			Parent.Buffs.RefreshDuration<BuffManaFrenzy>();

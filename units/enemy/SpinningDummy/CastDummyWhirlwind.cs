@@ -11,7 +11,7 @@ public partial class CastDummyWhirlwind : BaseCast
 			PrepareTime = 2,
 			HoldTime = 10,
 			InputType = CastInputType.AutoRelease,
-			ChannelingTickTimings = BeatTime.EveryFullBeat,
+			TickDuration = 1,
 			RecastTime = 8,
 		};
 	}
@@ -28,7 +28,7 @@ public partial class CastDummyWhirlwind : BaseCast
 		circle.Settings.TargetValidator = (unit) => unit.HostileTo(Parent);
 	}
 
-	protected override void OnCastTicked(CastTargetData _, BeatTime time)
+	protected override void OnCastTicked(CastTargetData _)
 	{
 		foreach (var target in circle.GetTargets())
 		{

@@ -11,6 +11,7 @@ public partial class PlayerSpellcasting : ComposableScript
 	public readonly Dictionary<StringName, BaseCast> CastBindings = new(); // Dictionary<InputName, BaseCast>
 
 	new readonly PlayerController Parent;
+	public PlayerSpellcastingQueue CastQueue;
 
 	public PlayerSpellcasting(BaseUnit parent) : base(parent)
 	{
@@ -21,6 +22,9 @@ public partial class PlayerSpellcasting : ComposableScript
 	{
 		SkillTreeManager.Singleton.SkillUp += OnSkillUp;
 		SkillTreeManager.Singleton.SkillDown += OnSkillDown;
+
+		CastQueue = new PlayerSpellcastingQueue(Parent);
+		AddChild(CastQueue);
 	}
 
 	public override void _ExitTree()
@@ -168,12 +172,10 @@ public partial class PlayerSpellcasting : ComposableScript
 
 			if (@Input.IsActionJustPressed(key))
 				CastInputPressed(cast);
-			else if (@Input.IsActionJustReleased(key))
-				CastInputReleased(cast);
 		}
 	}
 
-	CastTargetData GetTargetData()
+	public CastTargetData GetTargetData()
 	{
 		var alliedTarget = Parent.Targeting.targetedAlliedUnit ?? (PlayerController.AllPlayers.Count > 0 ? PlayerController.AllPlayers[0] : null);
 		var hostileTarget = Parent.Targeting.targetedHostileUnit ?? BaseUnit.AllUnits.Where(unit => unit is BasicEnemyController enemy && enemy.IsBoss).FirstOrDefault();
@@ -186,45 +188,42 @@ public partial class PlayerSpellcasting : ComposableScript
 		};
 	}
 
+	bool CheckIfCastIsPossibleOrQueue(BaseCast cast, CastTargetData targetData)
+	{
+		var castQueueMode = cast.ValidateIfCastIsPossible(targetData, out var errorMessage);
+		if (castQueueMode == BaseCast.CastQueueMode.Instant && cast.Settings.GlobalCooldown == GlobalCooldownMode.Ignore)
+		{
+			return true;
+		}
+		else if (castQueueMode == BaseCast.CastQueueMode.None)
+		{
+			SignalBus.SendMessage(errorMessage);
+			return false;
+		}
+		else if (castQueueMode == BaseCast.CastQueueMode.Queue || GetCurrentCastingSpell() != null)
+		{
+			CastQueue.Enqueue(cast);
+			return false;
+		}
+
+		return true;
+	}
+
 	public void CastInputPressed(BaseCast cast)
 	{
-		if (cast.IsCasting)
-			return;
-
 		var targetData = GetTargetData();
 
 		Parent.Movement.StopAutorun();
-		if (cast.Settings.InputType != CastInputType.Instant || cast.Settings.GlobalCooldown)
+
+		var canCast = CheckIfCastIsPossibleOrQueue(cast, targetData);
+		if (!canCast)
+			return;
+
+		CastQueue.Unqueue();
+		if (cast.Settings.InputType != CastInputType.Instant || cast.Settings.GlobalCooldown.Triggers())
 			ReleaseCurrentCastingSpell();
 
-		var canCast = cast.ValidateIfCastIsPossible(targetData, out var errorMessage);
-		if (!canCast)
-		{
-			SignalBus.SendMessage(errorMessage);
-			return;
-		}
-
 		cast.CastBegin(targetData);
-	}
-
-	public void CastInputReleased(BaseCast cast)
-	{
-		if (!cast.IsCasting)
-			return;
-
-		var targetData = GetTargetData();
-
-		if (cast.Settings.InputType == CastInputType.HoldRelease)
-		{
-			var isValidTarget = cast.ValidateTarget(targetData, out var errorMessage);
-			if (!isValidTarget)
-			{
-				SignalBus.SendMessage(errorMessage);
-				return;
-			}
-
-			CastRelease(cast);
-		}
 	}
 
 	public void ReleaseCurrentCastingSpell()
@@ -234,18 +233,18 @@ public partial class PlayerSpellcasting : ComposableScript
 			CastRelease(currentCastingSpell);
 	}
 
-	public void TriggerGlobalCooldown()
+	public void TriggerGlobalCooldown(float timeAdjustment = 0)
 	{
-		foreach (var cast in CastBindings.Values.Where(cast => cast.Settings.GlobalCooldown))
+		foreach (var cast in CastBindings.Values.Where(cast => cast.Settings.GlobalCooldown.Receives()))
 		{
-			cast.StartGlobalCooldown();
+			cast.StartGlobalCooldown(timeAdjustment);
 		}
 	}
 
 	private static void CastRelease(BaseCast cast)
 	{
-		if (cast.ValidateReleaseTiming())
-			cast.CastComplete();
+		if (cast.ValidateReleaseTiming(out var timeAdjustment))
+			cast.CastComplete(timeAdjustment);
 		else
 			cast.CastFail();
 	}

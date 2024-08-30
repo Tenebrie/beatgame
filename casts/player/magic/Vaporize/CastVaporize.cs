@@ -19,8 +19,6 @@ public partial class CastVaporize : BaseCast
 			IconPath = "res://assets/icons/SpellBook06_23.PNG",
 			InputType = CastInputType.AutoRelease,
 			TargetType = CastTargetType.HostileUnit,
-			CastTimings = BeatTime.Whole,
-			ChannelingTickTimings = BeatTime.EveryFullBeat,
 			HoldTime = 4,
 			RecastTime = 16,
 		};
@@ -34,7 +32,7 @@ public partial class CastVaporize : BaseCast
 		var circle = this.CreateCircularTelegraph(targetData.HostileUnit.GetGroundedPosition());
 		circle.Settings.Radius = 1;
 		circle.Settings.Alliance = Parent.Alliance;
-		circle.Settings.GrowTime = 8;
+		circle.Settings.GrowTime = Settings.HoldTime;
 		circle.Settings.OnFinishedPerTargetCallback = (unit) =>
 		{
 			unit.Health.Damage(BaseDamage, this);
@@ -46,7 +44,7 @@ public partial class CastVaporize : BaseCast
 		};
 	}
 
-	protected override void OnCastTicked(CastTargetData _, BeatTime time)
+	protected override void OnCastTicked(CastTargetData _)
 	{
 		if (this.HasSkill<SkillManaFrenzy>())
 			Parent.Buffs.RefreshDuration<BuffManaFrenzy>();

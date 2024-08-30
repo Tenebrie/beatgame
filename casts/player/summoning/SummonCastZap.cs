@@ -11,7 +11,6 @@ public partial class SummonCastZap : BaseCast
 			IconPath = "res://assets/icons/SpellBook06_50.PNG",
 			InputType = CastInputType.Instant,
 			TargetType = CastTargetType.HostileUnit,
-			CastTimings = BeatTime.Whole,
 		};
 	}
 

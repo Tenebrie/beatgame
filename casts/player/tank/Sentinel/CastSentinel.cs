@@ -20,10 +20,9 @@ public partial class CastSentinel : BaseCast
 			IconPath = "res://assets/icons/SpellBook06_78.png",
 			InputType = CastInputType.Instant,
 			TargetType = CastTargetType.None,
-			CastTimings = BeatTime.Free,
 			RecastTime = 32,
 			Charges = 1,
-			GlobalCooldown = false,
+			GlobalCooldown = GlobalCooldownMode.Ignore,
 		};
 
 		if (this.HasSkill<SkillSentinelCharges>())

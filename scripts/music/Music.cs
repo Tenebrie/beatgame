@@ -55,6 +55,7 @@ public partial class Music : Node
 	public long SongTime { get => WholeNoteTimer.GetSongTime() + (long)(StartingFromBeat * SecondsPerBeat * 1000); }
 	public float TimingWindow { get => AccurateTimer.TimingWindow; }
 	public float TimingWindowMs { get => AccurateTimer.TimingWindow * 1000f; }
+	public float QueueingWindow { get => AccurateTimer.QueueingWindow; }
 	private BeatTime BeatTimeState = BeatTime.Free;
 	public MusicTrack CurrentTrack;
 
@@ -316,6 +317,9 @@ public partial class Music : Node
 		StartingFromBeat = beatIndex;
 	}
 
+	public static float GetBeatsPerMinute() => Singleton.BeatsPerMinute;
+	public static float GetBeatsPerSecond() => Singleton.BeatsPerSecond;
+	public static float GetSecondsPerBeat() => Singleton.SecondsPerBeat;
 	private static Music instance = null;
 	public static Music Singleton
 	{

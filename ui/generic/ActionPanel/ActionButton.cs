@@ -11,6 +11,8 @@ public partial class ActionButton : Control
 
 	private TextureRect Icon;
 	private TextureRect Overlay;
+	private TextureRect QueuedIcon;
+	private TextureRect AutoAttackIcon;
 	private Label HotkeyLabel;
 	private ShaderMaterial ButtonMaterial;
 	private ProgressBar CooldownProgressBar;
@@ -33,6 +35,8 @@ public partial class ActionButton : Control
 	{
 		Icon = GetNode<TextureRect>("Control/IconTextureRect");
 		Overlay = GetNode<TextureRect>("Control/OverlayTextureRect");
+		QueuedIcon = GetNode<TextureRect>("Control/OverlayTextureRect/QueuedIconTextureRect");
+		AutoAttackIcon = GetNode<TextureRect>("Control/OverlayTextureRect/AAIconTextureRect");
 		ButtonMaterial = (ShaderMaterial)Overlay.Material;
 		HotkeyLabel = GetNode<Label>("Control/OverlayTextureRect/HotkeyLabel");
 		CooldownProgressBar = GetNode<ProgressBar>("Control/CooldownProgressBar");
@@ -42,10 +46,16 @@ public partial class ActionButton : Control
 
 		SignalBus.Singleton.CastAssigned += OnCastAssigned;
 		SignalBus.Singleton.CastUnassigned += OnCastUnassigned;
+		SignalBus.Singleton.CastAssignedAsAuto += OnCastAssignedAsAuto;
+		SignalBus.Singleton.CastUnassignedAsAuto += OnCastUnassignedAsAuto;
+		SignalBus.Singleton.CastQueued += OnCastQueued;
+		SignalBus.Singleton.CastUnqueued += OnCastUnqueued;
 		Music.Singleton.BeatTick += OnBeatStateChanged;
 
 		IsDisabled = true;
 		Icon.Texture = GD.Load<CompressedTexture2D>("res://assets/ui/icon-skill-active-placeholder.png");
+		QueuedIcon.Visible = false;
+		AutoAttackIcon.Visible = false;
 
 		tooltipDelayTimer = new Timer()
 		{
@@ -88,6 +98,7 @@ public partial class ActionButton : Control
 
 		if (AssociatedCast.Settings.IconPath != null)
 			Icon.Texture = GD.Load<CompressedTexture2D>(AssociatedCast.Settings.IconPath);
+		AutoAttackIcon.Visible = cast.AutoAttack.IsAutoCasting;
 	}
 
 	private void OnCastUnassigned(BaseCast cast, StringName actionName)
@@ -100,9 +111,29 @@ public partial class ActionButton : Control
 		Icon.Texture = GD.Load<CompressedTexture2D>("res://assets/ui/icon-skill-active-placeholder.png");
 	}
 
+	private void OnCastAssignedAsAuto(BaseCast cast)
+	{
+		AutoAttackIcon.Visible = cast == AssociatedCast;
+	}
+
+	private void OnCastUnassignedAsAuto(BaseCast cast)
+	{
+		AutoAttackIcon.Visible = false;
+	}
+
+	private void OnCastQueued(BaseCast cast)
+	{
+		QueuedIcon.Visible = cast == AssociatedCast;
+	}
+
+	private void OnCastUnqueued(BaseCast cast)
+	{
+		QueuedIcon.Visible = false;
+	}
+
 	private void OnBeatStateChanged(BeatTime time)
 	{
-		if (AssociatedCast == null || AssociatedCast.Settings.CastTimings.HasNot(time))
+		if (AssociatedCast == null || time.HasNot(BeatTime.Whole | BeatTime.Half | BeatTime.Quarter))
 			return;
 
 		HighlightedValue = 1;
@@ -122,8 +153,11 @@ public partial class ActionButton : Control
 		if (@event.IsActionReleased("MouseInteract".ToStringName()) && IsPressed)
 		{
 			IsPressed = false;
-			if (PlayerController.AllPlayers.Count > 0)
-				PlayerController.AllPlayers[0].Spellcasting.CastInputReleased(AssociatedCast);
+		}
+
+		if (@event.IsActionPressed("MouseInteractAlt".ToStringName()) && IsHovered && AssociatedCast != null)
+		{
+			AssociatedCast.AutoAttack.Toggle();
 		}
 
 		if (@event.IsActionPressed(ActionName, exactMatch: true))
@@ -159,7 +193,7 @@ public partial class ActionButton : Control
 			DisabledValue = 0;
 		ButtonMaterial.SetShaderParameter("DisabledValue".ToStringName(), DisabledValue);
 
-		if (IsHighlighted || (AssociatedCast != null && AssociatedCast.Settings.CastTimings == BeatTime.Free))
+		if (IsHighlighted)
 			HighlightedValue = Math.Min(1, HighlightedValue + (float)delta * 5);
 		else
 			HighlightedValue = Math.Max(0, HighlightedValue - (float)delta * 5);
@@ -176,7 +210,10 @@ public partial class ActionButton : Control
 		var cooldownTimeLeft = AssociatedCast.GetCooldownTimeLeft();
 		if (cooldownTimeLeft > 0)
 			value = cooldownTimeLeft / AssociatedCast.GetCooldownWaitTime();
-		if (currentCastingSpell != null && currentCastingSpell.Settings.GlobalCooldown && AssociatedCast.Settings.GlobalCooldown
+		// If the currently casting cast will trigger a GCD that the associated cast will receive - darken the icon in advance
+		if (currentCastingSpell != null
+			&& currentCastingSpell.Settings.GlobalCooldown.Triggers()
+			&& AssociatedCast.Settings.GlobalCooldown.Receives()
 			&& (cooldownTimeLeft < BaseCast.GlobalCooldownDuration * Music.Singleton.SecondsPerBeat))
 			value = 1;
 

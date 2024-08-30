@@ -18,9 +18,8 @@ public partial class CastEtherealFocus : BaseCast
 				$"\nIf you sustain the spell for the entire duration, gain an extra {{{ManaBurst}}} Mana instantly."
 			),
 			IconPath = "res://assets/icons/SpellBook06_46.PNG",
-			InputType = CastInputType.HoldRelease,
-			CastTimings = BeatTime.Whole | BeatTime.Half,
-			ChannelingTickTimings = BeatTime.All,
+			InputType = CastInputType.AutoRelease,
+			TickDuration = 0.125f,
 			HoldTime = 4,
 			RecastTime = 2,
 		};
@@ -39,9 +38,9 @@ public partial class CastEtherealFocus : BaseCast
 		channelEffect.Attach(Parent);
 	}
 
-	protected override void OnCastTicked(CastTargetData _, BeatTime time)
+	protected override void OnCastTicked(CastTargetData _)
 	{
-		Parent.Mana.Restore(ManaPerBeat * Music.MinBeatSize, this);
+		Parent.Mana.Restore(ManaPerBeat * Settings.TickDuration, this);
 	}
 
 	protected override void OnCastCompleted(CastTargetData target)

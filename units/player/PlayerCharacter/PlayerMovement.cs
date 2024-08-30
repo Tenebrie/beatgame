@@ -195,8 +195,8 @@ public partial class PlayerMovement : ComposableScript
 		}
 
 		// If moving, release the casting spell
-		if ((movementForward != 0 || movementRight != 0) && !Parent.Buffs.Has<BuffCastWhileMoving>())
-			Parent.Spellcasting.ReleaseCurrentCastingSpell();
+		// if ((movementForward != 0 || movementRight != 0) && !Parent.Buffs.Has<BuffCastWhileMoving>())
+		// 	Parent.Spellcasting.ReleaseCurrentCastingSpell();
 	}
 
 	private void ProcessCamera(double delta)

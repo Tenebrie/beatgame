@@ -20,9 +20,7 @@ public partial class CastJuggernaut : BaseCast
 			IconPath = "res://assets/icons/SpellBook06_112.png",
 			InputType = CastInputType.Instant,
 			TargetType = CastTargetType.None,
-			CastTimings = BeatTime.Free,
 			RecastTime = 48,
-			GlobalCooldown = true,
 		};
 		Settings.ResourceCost[ObjectResourceType.Mana] = 80;
 	}

@@ -18,10 +18,9 @@ public partial class CastImmovableObject : BaseCast
 			IconPath = "res://assets/icons/SpellBook06_74.png",
 			InputType = CastInputType.Instant,
 			TargetType = CastTargetType.None,
-			CastTimings = BeatTime.Free,
 			RecastTime = 16,
 			Charges = 1,
-			GlobalCooldown = false,
+			GlobalCooldown = GlobalCooldownMode.Ignore,
 		};
 	}
 

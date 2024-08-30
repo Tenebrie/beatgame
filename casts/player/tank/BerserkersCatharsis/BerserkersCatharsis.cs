@@ -19,7 +19,6 @@ public partial class BerserkersCatharsis : BaseCast
 			IconPath = "res://assets/icons/SpellBook06_65.png",
 			InputType = CastInputType.AutoRelease,
 			TargetType = CastTargetType.HostileUnit,
-			CastTimings = BeatTime.Whole | BeatTime.Half,
 			RecastTime = 32,
 		};
 		Settings.ResourceCost[ObjectResourceType.Mana] = 50;

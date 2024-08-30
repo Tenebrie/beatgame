@@ -76,7 +76,7 @@ public partial class BuffButton : Control
 
 	public override void _Process(double delta)
 	{
-		var time = CastUtils.GetTicksSec();
+		var time = CastUtils.GetEngineTime();
 		if (AssociatedBuff == null)
 			return;
 

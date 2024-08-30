@@ -13,7 +13,7 @@ public partial class CastQuickDash : BaseCast
 			Description = $"Evade danger or dive in close. With a burst of speed, you perform a quick dash forward.",
 			IconPath = "res://assets/icons/SpellBook06_21.PNG",
 			InputType = CastInputType.Instant,
-			CastTimings = BeatTime.Free,
+			GlobalCooldown = GlobalCooldownMode.Ignore,
 			RecastTime = 8,
 		};
 		Settings.ResourceCost[ObjectResourceType.Mana] = 30;

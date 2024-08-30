@@ -15,7 +15,6 @@ public partial class NukeOfTheGreatTree : BaseCast
 			IconPath = "res://assets/icons/SpellBook06_57.png",
 			InputType = CastInputType.AutoRelease,
 			TargetType = CastTargetType.HostileUnit,
-			CastTimings = BeatTime.Free,
 			HoldTime = 8,
 		};
 	}

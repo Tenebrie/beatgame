@@ -21,9 +21,8 @@ public partial class CastAllConsumingFlame : BaseCast
 			IconPath = "res://assets/icons/SpellBook06_105.png",
 			InputType = CastInputType.Instant,
 			TargetType = CastTargetType.None,
-			CastTimings = BeatTime.Free,
 			RecastTime = 32,
-			GlobalCooldown = false,
+			GlobalCooldown = GlobalCooldownMode.Ignore,
 		};
 		Settings.ResourceCost[ObjectResourceType.Mana] = ManaCost;
 	}

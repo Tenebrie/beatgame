@@ -7,17 +7,21 @@ namespace Project;
 public partial class PlayerCastBar : Control
 {
 	private BaseCast ActiveCast;
-	private long CastStartedAt;
-	private long CastEndsAt;
+	private double CastStartedAt;
+	private double CastEndsAt;
 	private bool LastCastTimingValid;
 
 	private ProgressBar Bar;
 	private ProgressBar GreenZone;
+	private Label CastNameLabel;
+	private TextureRect CastIconTexture;
 
 	public override void _Ready()
 	{
 		Bar = GetNode<ProgressBar>("ProgressBar");
 		GreenZone = GetNode<ProgressBar>("GreenZone");
+		CastNameLabel = GetNode<Label>("ProgressBar/CastNameLabel");
+		CastIconTexture = GetNode<TextureRect>("ProgressBar/AspectRatioContainer/CastIconTexture");
 		SignalBus.Singleton.CastStarted += OnCastStarted;
 		SignalBus.Singleton.CastCompleted += OnCastCompleted;
 		SignalBus.Singleton.CastFailed += OnCastFailed;
@@ -30,27 +34,21 @@ public partial class PlayerCastBar : Control
 
 		ActiveCast = cast;
 		Bar.MaxValue = cast.Settings.HoldTime * (1f / Music.Singleton.BeatsPerMinute * 60);
-		if (cast.Settings.InputType == CastInputType.HoldRelease)
-			Bar.MaxValue *= 2;
-		CastStartedAt = (long)Time.Singleton.GetTicksMsec() + Music.Singleton.GetCurrentBeatOffset(cast.Settings.CastTimings);
-		CastEndsAt = CastStartedAt + (long)(Bar.MaxValue * 1000);
+		CastStartedAt = CastUtils.GetEngineTime();
+		CastEndsAt = CastStartedAt + Bar.MaxValue;
 
-		Bar.SetFillColor(new Color(0.7f, 0.7f, 0.7f, 1));
+		CastNameLabel.Text = cast.Settings.FriendlyName;
+		CastIconTexture.Texture = GD.Load<CompressedTexture2D>(cast.Settings.IconPath);
+
+		Bar.SetFillColor(new Color(0.4f, 0.4f, 0.6f));
 		Bar.SetBackgroundOpacity(.5f);
-		GreenZone.SetFillOpacity(.5f);
+		GreenZone.SetFillOpacity(.3f);
+		SetCastBarAlpha(1.0f);
 
 		var timingWindow = AccurateTimer.TimingWindow;
 		var totalWidth = Bar.Size.X;
-		if (cast.Settings.InputType == CastInputType.HoldRelease)
-		{
-			GreenZone.Size = new Vector2(timingWindow * 2 / (float)Bar.MaxValue * totalWidth, GreenZone.Size.Y);
-			GreenZone.Position = new Vector2(Bar.Position.X + totalWidth / 2 - GreenZone.Size.X / 2, Bar.Position.Y);
-		}
-		else
-		{
-			GreenZone.Size = new Vector2(timingWindow / (float)Bar.MaxValue * totalWidth, GreenZone.Size.Y);
-			GreenZone.Position = new Vector2(Bar.Position.X + totalWidth - GreenZone.Size.X, Bar.Position.Y);
-		}
+		GreenZone.Size = new Vector2(timingWindow / (float)Bar.MaxValue * totalWidth, GreenZone.Size.Y);
+		GreenZone.Position = new Vector2(Bar.Position.X + totalWidth - GreenZone.Size.X, Bar.Position.Y);
 		UpdateBarValue();
 	}
 
@@ -62,7 +60,7 @@ public partial class PlayerCastBar : Control
 		ActiveCast = null;
 		UpdateBarValue();
 
-		Bar.SetFillColor(new Color(0, 1, 0, Bar.GetFillColor().A));
+		Bar.SetFillColor(new Color(0.15f, 0.5f, 0.15f));
 	}
 
 	public void OnCastFailed(BaseCast cast)
@@ -70,41 +68,43 @@ public partial class PlayerCastBar : Control
 		if (cast != ActiveCast)
 			return;
 
-		ActiveCast = null;
-		UpdateBarValue();
+		var time = CastUtils.GetEngineTime();
+		if (Math.Abs(time - cast.CastStartedAt) <= Music.Singleton.TimingWindow)
+		{
+			Bar.SetFillColor(new Color(0.15f, 0.5f, 0.15f));
+		}
+		else
+			Bar.SetFillColor(new Color(0.5f, 0.15f, 0.15f));
 
-		Bar.SetFillColor(new Color(1, 0, 0, Bar.GetFillColor().A));
+		UpdateBarValue();
+		ActiveCast = null;
 	}
 
 	public override void _Process(double delta)
 	{
 		if (ActiveCast != null)
-		{
 			UpdateBarValue();
-			return;
-		}
+		else
+			SetCastBarAlpha(Modulate.A - (float)delta);
+	}
 
-		Bar.SetFillOpacity(Bar.GetFillOpacity() - delta);
-		Bar.SetBackgroundOpacity(Bar.GetBackgroundOpacity() - delta);
-		GreenZone.SetFillOpacity(GreenZone.GetFillOpacity() - delta);
+	void SetCastBarAlpha(float value)
+	{
+		float clampedValue = Math.Clamp(value, 0, 1);
+		Modulate = new Color(Modulate.R, Modulate.G, Modulate.B, clampedValue);
+		(CastIconTexture.Material as ShaderMaterial).SetShaderParameter("Modulate", clampedValue);
 	}
 
 	private void UpdateBarValue()
 	{
-		var time = (long)Time.Singleton.GetTicksMsec();
+		var time = CastUtils.GetEngineTime();
 		if (ActiveCast == null)
 			return;
 
-		var value = (float)(time - CastStartedAt) / (CastEndsAt - CastStartedAt);
+		var value = (time - CastStartedAt) / (CastEndsAt - CastStartedAt);
 		if (ActiveCast.Settings.ReversedCastBar)
-			Bar.Value = (1 - value + 0.01f) * Bar.MaxValue;
+			Bar.Value = (1 - value) * Bar.MaxValue;
 		else
-			Bar.Value = (value + 0.01f) * Bar.MaxValue;
-
-		var castEndsAt = ActiveCast.Settings.InputType == CastInputType.AutoRelease ? CastEndsAt : CastEndsAt - (CastEndsAt - CastStartedAt) / 2;
-		if (Math.Abs(castEndsAt - time) <= Music.Singleton.TimingWindowMs)
-		{
-			Bar.SetFillColor(new Color(0, 0.5f, 0, Bar.GetFillColor().A));
-		}
+			Bar.Value = value * Bar.MaxValue;
 	}
 }

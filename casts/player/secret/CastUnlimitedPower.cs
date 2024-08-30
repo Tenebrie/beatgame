@@ -17,7 +17,6 @@ public partial class CastUnlimitedPower : BaseCast
 			IconPath = "res://assets/icons/SpellBook06_119.PNG",
 			InputType = CastInputType.AutoRelease,
 			TargetType = CastTargetType.HostileUnit,
-			CastTimings = BeatTime.Free,
 			HoldTime = 8,
 		};
 	}

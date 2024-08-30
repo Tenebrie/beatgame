@@ -16,7 +16,6 @@ public partial class ShieldsUp : BaseCast
 			IconPath = "res://assets/icons/SpellBook06_09.png",
 			InputType = CastInputType.Instant,
 			TargetType = CastTargetType.None,
-			CastTimings = BeatTime.Free,
 		};
 		Settings.ResourceCost[ObjectResourceType.Mana] = 20;
 	}

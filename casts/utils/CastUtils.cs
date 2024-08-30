@@ -138,29 +138,7 @@ public static class CastUtils
 
 	public static string GetReadableCastTimings(this BaseCast.CastSettings settings)
 	{
-		var timings = settings.CastTimings;
-		if (timings == BeatTime.Free)
-			return "[color=orange]Free cast[/color]";
-
-		var builder = new StringBuilder();
-
-		List<BeatTime> timesToCheck = new()
-		{
-			BeatTime.Whole,
-			BeatTime.Half,
-			BeatTime.Quarter,
-			BeatTime.Eighth,
-			BeatTime.Sixteenth,
-		};
-
-		foreach (var time in timesToCheck)
-		{
-			var color = "gray";
-			if (timings.Has(time))
-				color = "orange";
-			builder.Append($"[color={color}]|[/color]");
-		}
-		return builder.ToString();
+		return "[color=orange]:)[/color]";
 	}
 
 	public static string MakeDescription(params string[] strings)
@@ -205,7 +183,7 @@ public static class CastUtils
 		action?.Invoke();
 	}
 
-	public static float GetTicksSec()
+	public static float GetEngineTime()
 	{
 		return ((float)Time.GetTicksMsec()) / 1000;
 	}

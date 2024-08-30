@@ -29,7 +29,6 @@ public partial class ShieldBash : BaseCast
 			IconPath = "res://assets/icons/SpellBook06_05.png",
 			InputType = CastInputType.Instant,
 			TargetType = CastTargetType.HostileUnit,
-			CastTimings = BeatTime.EveryFullBeat,
 			MaximumRange = 3.0f,
 		};
 

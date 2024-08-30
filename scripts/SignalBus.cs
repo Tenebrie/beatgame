@@ -55,6 +55,20 @@ public partial class SignalBus : Node
 	/// <param name="actionName">Input name for the cast</param>
 	[Signal] public delegate void CastUnassignedEventHandler(BaseCast cast, StringName actionName);
 
+	/// <summary>
+	/// Cast designated as an auto-attack.
+	/// </summary>
+	/// <param name="cast">Reference to the assigned cast</param>
+	[Signal] public delegate void CastAssignedAsAutoEventHandler(BaseCast cast);
+	/// <summary>
+	/// Cast auto-attack status removed.
+	/// </summary>
+	/// <param name="cast">Reference to the unassigned cast</param>
+	[Signal] public delegate void CastUnassignedAsAutoEventHandler(BaseCast cast);
+
+	[Signal] public delegate void CastQueuedEventHandler(BaseCast cast);
+	[Signal] public delegate void CastUnqueuedEventHandler(BaseCast cast);
+
 	[Signal]
 	public delegate void MessageSentEventHandler(string text, float duration);
 
@@ -75,6 +89,7 @@ public partial class SignalBus : Node
 	public static void SendMessage(string text, float duration = 2)
 	{
 		instance.EmitSignal(SignalName.MessageSent, text, duration);
+		GD.Print(text);
 	}
 
 	private static SignalBus instance = null;

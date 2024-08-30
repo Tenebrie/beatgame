@@ -15,21 +15,22 @@ public partial class Fireball : BaseCast
 			IconPath = "res://assets/icons/SpellBook06_15.PNG",
 			InputType = CastInputType.AutoRelease,
 			TargetType = CastTargetType.HostileUnit,
-			CastTimings = BeatTime.Whole | BeatTime.Half,
-			ChannelingTickTimings = BeatTime.Eighth,
-			ChannelWhileNotCasting = true,
-			HoldTime = 2,
+			TickDuration = 0.5f,
+			TickMode = CastTickMode.AlwaysResetOnCast,
+			HoldTime = 1,
+			RecastTime = 1,
+			// GlobalCooldown = GlobalCooldownMode.Receive,
 		};
-		Settings.ResourceCost[ObjectResourceType.Mana] = 25;
+		Settings.ResourceCost[ObjectResourceType.Mana] = 0;
 		if (this.HasSkill<SkillIgnitingFireball>())
 			Settings.ResourceCost[ObjectResourceType.Mana] += SkillIgnitingFireball.ExtraManaCost;
 		if (this.HasSkill<SkillTwinFireball>())
 			Settings.ResourceCost[ObjectResourceType.Mana] += SkillTwinFireball.ExtraManaCost;
 		if (this.HasSkill<SkillFireballMastery>())
 		{
-			Settings.GlobalCooldown = false;
-			Settings.HoldTime = 0;
-			Settings.RecastTime = 2;
+			Settings.GlobalCooldown = GlobalCooldownMode.Ignore;
+			Settings.HoldTime = 1;
+			Settings.RecastTime = 1;
 			Settings.InputType = CastInputType.Instant;
 		}
 	}
@@ -61,7 +62,7 @@ public partial class Fireball : BaseCast
 		fireball.ImpactDamage = damage;
 	}
 
-	protected override void OnCastTicked(CastTargetData _, BeatTime time)
+	protected override void OnCastTicked(CastTargetData _)
 	{
 		if (TwinFireballTarget == null)
 			return;

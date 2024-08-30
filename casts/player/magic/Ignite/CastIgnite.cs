@@ -17,7 +17,6 @@ public partial class CastIgnite : BaseCast
 			IconPath = "res://assets/icons/SpellBook06_29.PNG",
 			InputType = CastInputType.Instant,
 			TargetType = CastTargetType.HostileUnit,
-			CastTimings = BeatTime.Quarter | BeatTime.Eighth,
 		};
 		Settings.ResourceCost[ObjectResourceType.Mana] = 20;
 	}

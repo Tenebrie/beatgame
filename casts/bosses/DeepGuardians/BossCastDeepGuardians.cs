@@ -17,7 +17,7 @@ public partial class BossCastDeepGuardians : BaseCast
 			FriendlyName = "Deep Guardians",
 			InputType = CastInputType.AutoRelease,
 			TargetType = CastTargetType.None,
-			ChannelingTickTimings = BeatTime.Whole | BeatTime.Half,
+			TickDuration = 2,
 			TickWhilePreparing = true,
 			HoldTime = 8,
 			RecastTime = 0,
@@ -53,7 +53,7 @@ public partial class BossCastDeepGuardians : BaseCast
 		SpawnGuardian();
 	}
 
-	protected override void OnCastTicked(CastTargetData targetData, BeatTime time)
+	protected override void OnCastTicked(CastTargetData targetData)
 	{
 		if (SpawningGuardians)
 			SpawnGuardian();

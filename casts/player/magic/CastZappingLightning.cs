@@ -11,8 +11,6 @@ public partial class CastZappingLightning : BaseCast
 			FriendlyName = "Zapping Lightning",
 			InputType = CastInputType.AutoRelease,
 			TargetType = CastTargetType.HostileUnit,
-			CastTimings = BeatTime.Whole | BeatTime.Half | BeatTime.Quarter,
-			ChannelingTickTimings = BeatTime.Whole | BeatTime.Half | BeatTime.Quarter,
 			HoldTime = 8,
 		};
 	}
@@ -28,7 +26,7 @@ public partial class CastZappingLightning : BaseCast
 		Target.Health.Damage(1f, this);
 	}
 
-	protected override void OnCastTicked(CastTargetData target, BeatTime time)
+	protected override void OnCastTicked(CastTargetData target)
 	{
 		if (Target == null || !IsInstanceValid(Target))
 			return;

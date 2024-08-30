@@ -12,10 +12,9 @@ public partial class CastHealingTouch : BaseCast
 			FriendlyName = "Healing Touch",
 			Description = $"Look into yourself for reserves of inner strength. Restores [color={Colors.Health}]{HealAmount}[/color] Health to yourself.",
 			IconPath = "res://assets/icons/SpellBook06_55.png",
-			InputType = CastInputType.HoldRelease,
+			InputType = CastInputType.AutoRelease,
 			TargetType = CastTargetType.None,
 			HoldTime = 1,
-			CastTimings = BeatTime.Whole | BeatTime.Half | BeatTime.Quarter,
 		};
 		Settings.ResourceCost[ObjectResourceType.Mana] = 40;
 

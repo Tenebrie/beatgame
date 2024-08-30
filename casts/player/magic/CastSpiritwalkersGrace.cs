@@ -16,10 +16,9 @@ public partial class CastSpiritwalkersGrace : BaseCast
 			),
 			IconPath = "res://assets/icons/SpellBook06_13.png",
 			InputType = CastInputType.Instant,
-			CastTimings = BeatTime.Free,
 			HoldTime = 0,
 			RecastTime = 48,
-			GlobalCooldown = false,
+			GlobalCooldown = GlobalCooldownMode.Ignore,
 		};
 	}
 

@@ -28,7 +28,7 @@ public abstract partial class BaseBuff : Node
 
 	public BaseBuff()
 	{
-		CreatedAt = CastUtils.GetTicksSec();
+		CreatedAt = CastUtils.GetEngineTime();
 	}
 
 	public static string MakeDescription(params string[] strings) => CastUtils.MakeDescription(strings);
@@ -38,7 +38,7 @@ public abstract partial class BaseBuff : Node
 	{
 		set
 		{
-			float time = CastUtils.GetTicksSec();
+			float time = CastUtils.GetEngineTime();
 			ExpiresAt = time + value * Music.Singleton.SecondsPerBeat;
 			defaultDuration = value;
 		}
@@ -51,7 +51,7 @@ public abstract partial class BaseBuff : Node
 
 	public void RefreshDuration()
 	{
-		CreatedAt = CastUtils.GetTicksSec();
+		CreatedAt = CastUtils.GetEngineTime();
 		Duration = defaultDuration;
 	}
 
@@ -60,7 +60,7 @@ public abstract partial class BaseBuff : Node
 		if (ExpiresAt == -1)
 			return;
 
-		var time = CastUtils.GetTicksSec();
+		var time = CastUtils.GetEngineTime();
 		if (time >= ExpiresAt)
 		{
 			OnDurationExpired();

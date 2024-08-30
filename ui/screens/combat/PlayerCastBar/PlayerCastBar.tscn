@@ -1,6 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://cypyot5fi6to"]
+[gd_scene load_steps=10 format=3 uid="uid://cypyot5fi6to"]
 
 [ext_resource type="Script" path="res://ui/screens/combat/PlayerCastBar/PlayerCastBar.cs" id="1_mr540"]
+[ext_resource type="Shader" uid="uid://c6c3kalho5qhh" path="res://ui/generic/ActionPanel/ActionButtonIconShader.tres" id="2_di115"]
+[ext_resource type="Texture2D" uid="uid://br10oc75cmw0v" path="res://assets/icons/SpellBook06_01.PNG" id="3_5enll"]
+[ext_resource type="Texture2D" uid="uid://beqewy7krobrj" path="res://assets/ui/icon-skill-active-mask.png" id="3_06tc8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sia8f"]
 bg_color = Color(0.152941, 0.152941, 0.152941, 0.498039)
@@ -16,11 +19,27 @@ corner_radius_top_right = 6
 corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b6qtw"]
+resource_local_to_scene = true
+shader = ExtResource("2_di115")
+shader_parameter/Progress = 0.0
+shader_parameter/HighlightedValue = 0.0
+shader_parameter/DisabledValue = 0.0
+shader_parameter/HoveredValue = 0.0
+shader_parameter/PressedValue = 0.0
+shader_parameter/SelectedValue = 0.0
+shader_parameter/Modulate = 1.0
+shader_parameter/IconMask = ExtResource("3_06tc8")
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5t1tu"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bjqdj"]
 bg_color = Color(0, 0.988235, 0.294118, 0.494118)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
 
 [node name="PlayerCastBar" type="Control"]
 custom_minimum_size = Vector2(50, 25)
@@ -46,6 +65,36 @@ step = 2.08165e-12
 value = 50.0
 allow_lesser = true
 show_percentage = false
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="ProgressBar"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.255
+anchor_bottom = 1.0
+offset_left = -6.02
+offset_top = -4.0
+offset_right = -2.0
+offset_bottom = 4.0
+grow_vertical = 2
+alignment_horizontal = 2
+
+[node name="CastIconTexture" type="TextureRect" parent="ProgressBar/AspectRatioContainer"]
+material = SubResource("ShaderMaterial_b6qtw")
+layout_mode = 2
+texture = ExtResource("3_5enll")
+expand_mode = 1
+
+[node name="CastNameLabel" type="Label" parent="ProgressBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 9.0
+offset_right = 1.52588e-05
+grow_horizontal = 2
+grow_vertical = 2
+text = "Cast name"
+vertical_alignment = 1
 
 [node name="GreenZone" type="ProgressBar" parent="."]
 custom_minimum_size = Vector2(5, 2.08165e-12)
