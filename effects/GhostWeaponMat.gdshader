@@ -20,7 +20,7 @@ void fragment() {
 	float fadeNoiseValue = texture(FADE_NOISE, (pos.xy + pos.z) * 30.0).r;
 	if (fadeNoiseValue + FADE > 1.05)
 		ALPHA = 0.0;
-	
+
 	vec3 glowValue = max(0.0, (fadeNoiseValue + FADE - 1.00) * 50.0) * FADE_COLOR.rgb;
 	ALBEDO += glowValue;
 	EMISSION = glowValue * 2.0;

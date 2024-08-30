@@ -5,6 +5,9 @@ using Godot;
 
 namespace Project;
 
+// TODO: Dungeon ideas:
+// Collect orbs for movespeed that persist forever into this boss (global unlock)
+// Two stages of music in dungeon, chill and active with different buffs
 public partial class BossCelestiosTimeline : BaseTimeline
 {
 	new BossCelestios Parent;
@@ -13,7 +16,7 @@ public partial class BossCelestiosTimeline : BaseTimeline
 	public BossCelestiosTimeline(BossCelestios parent) : base(parent)
 	{
 		Parent = parent;
-		GotoAbleton(1);
+		GotoAbleton(2);
 
 		Mark("Start");
 
