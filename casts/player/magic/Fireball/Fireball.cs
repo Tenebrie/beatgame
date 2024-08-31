@@ -19,7 +19,6 @@ public partial class Fireball : BaseCast
 			TickMode = CastTickMode.AlwaysResetOnCast,
 			HoldTime = 1,
 			RecastTime = 1,
-			// GlobalCooldown = GlobalCooldownMode.Receive,
 		};
 		Settings.ResourceCost[ObjectResourceType.Mana] = 0;
 		if (this.HasSkill<SkillIgnitingFireball>())

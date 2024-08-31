@@ -215,7 +215,12 @@ public partial class BaseCast : Node
 	public enum CastQueueMode { Instant, Queue, None };
 	public CastQueueMode ValidateIfCastIsPossible(CastTargetData target, out string errorMessage)
 	{
-		if (Parent.Health.Current <= Settings.ResourceCost[ObjectResourceType.Health])
+		if (!ValidateTarget(target, out errorMessage))
+		{
+			return CastQueueMode.None;
+		}
+
+		else if (Parent.Health.Current <= Settings.ResourceCost[ObjectResourceType.Health])
 		{
 			errorMessage = "Not enough health";
 			return CastQueueMode.Queue;
@@ -231,25 +236,20 @@ public partial class BaseCast : Node
 			errorMessage = "No charges available";
 			return CastQueueMode.None;
 		}
-		else if (ChargesRemaining == 0 && ChargesTimerHandle.TimeLeft > Music.Singleton.TimingWindow)
-		{
-			errorMessage = "No charges available";
-			return CastQueueMode.Queue;
-		}
 		else if (GlobalCooldownTimerHandle.TimeLeft > Music.Singleton.QueueingWindow)
 		{
 			errorMessage = "Global cooldown";
 			return CastQueueMode.None;
 		}
+		else if (ChargesRemaining == 0 && ChargesTimerHandle.TimeLeft > Music.Singleton.TimingWindow)
+		{
+			errorMessage = "No charges available";
+			return CastQueueMode.Queue;
+		}
 		else if (GlobalCooldownTimerHandle.TimeLeft > Music.Singleton.TimingWindow)
 		{
 			errorMessage = "Global cooldown";
 			return CastQueueMode.Queue;
-		}
-
-		else if (!ValidateTarget(target, out errorMessage))
-		{
-			return CastQueueMode.None;
 		}
 
 		return CastQueueMode.Instant;
@@ -282,7 +282,7 @@ public partial class BaseCast : Node
 		CastTargetData = targetData;
 		OnCastStarted(targetData);
 		if (Settings.InputType == CastInputType.Instant || (Settings.InputType == CastInputType.AutoRelease && Settings.HoldTime == 0))
-			CastComplete();
+			CastComplete(timeGraceGiven);
 		else
 		{
 			if (Settings.PrepareTime > 0)
