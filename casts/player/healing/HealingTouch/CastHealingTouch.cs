@@ -29,7 +29,7 @@ public partial class CastHealingTouch : BaseCast
 			target = data.AlliedUnit;
 
 		var healImpact = Lib.LoadScene(Lib.Effect.HealImpact).Instantiate() as ProjectileImpact;
-		healImpact.AttachForDuration(target, .3f, new Vector3(0, 0.25f, 0));
+		healImpact.AttachForDuration(target, .3f, target.CastAimPosition);
 
 		var healing = Flags.CastSuccessful ? HealAmount : HealAmount / 2;
 		target.Health.Restore(healing, this);
