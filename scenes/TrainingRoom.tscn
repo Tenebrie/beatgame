@@ -1084,4 +1084,4 @@ transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 3, 0, 
 Alliance = 2
 
 [node name="HappyLarry" parent="." instance=ExtResource("28_w1tsk")]
-transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, -1.35668, 0.00719925, -1.44208)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.35668, 0.189535, -1.44208)

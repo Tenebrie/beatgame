@@ -70,6 +70,21 @@ public static class CastUtils
 			throw new Exception("Component not found");
 	}
 
+	public static List<T> GetComponents<T>(this Node parent, int depth = 0)
+	{
+		var children = parent.GetChildren();
+
+		var components = children.Where(child => child is T).Cast<T>();
+
+		foreach (var child in children)
+		{
+			var extraComponents = GetComponents<T>(child, depth + 1);
+			components = components.Concat(extraComponents);
+		}
+
+		return components.ToList();
+	}
+
 	public static float GetArenaSize(this Node _)
 	{
 		return 16;

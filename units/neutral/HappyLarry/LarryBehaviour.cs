@@ -12,26 +12,25 @@ public partial class LarryBehaviour : BaseBehaviour
 	public override void _EnterTree()
 	{
 		Parent.FriendlyName = "Larry";
-		Parent.Alliance = UnitAlliance.Hostile;
+		Parent.Alliance = UnitAlliance.Player;
+		Parent.Targetable.selectionRadius = 0.3f;
 	}
 
 	public override void _Ready()
 	{
-		AddChild(walkTimer);
-		AddChild(chillTimer);
 		walkTimer.Timeout += () =>
 		{
-			chillTimer.Start(2);
-			SignalBus.SendMessage("Chilling");
+			chillTimer.Start(2 + GD.Randf());
 		};
+		AddChild(walkTimer);
 
 		chillTimer.Timeout += () =>
 		{
-			walkTimer.Start(2);
+			walkTimer.Start(2 + GD.Randf());
 			Parent.Rotate(Vector3.Up, GD.Randf() * (float)Math.PI);
-			SignalBus.SendMessage("Walking");
 		};
-		chillTimer.Start(2);
+		AddChild(chillTimer);
+		chillTimer.Start(2 + GD.Randf());
 
 		GetComponent<AnimationController>().RegisterStateTransitions(
 			("Bite", (_) => chillTimer.TimeLeft >= 1.2),

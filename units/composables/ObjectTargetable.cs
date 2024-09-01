@@ -62,6 +62,8 @@ public partial class ObjectTargetable : ComposableScript
 				meshChild.SetInstanceShaderParameter("hover_highlight".ToStringName(), hoverHighlight);
 			}
 		}
+		// TODO: Performance fix pls
+		CastUtils.GetComponents<MeshInstance3D>(Parent).ForEach(comp => comp.SetInstanceShaderParameter("hover_highlight".ToStringName(), hoverHighlight));
 	}
 
 	private void OnObjectTargeted(BaseUnit unit, TargetedUnitAlliance alliance)
@@ -100,7 +102,7 @@ public partial class ObjectTargetable : ComposableScript
 			selectionModel.SetRadius(selectionRadius);
 			Parent.AddChild(selectionModel);
 		}
-		else if (selectionModel != null && GodotObject.IsInstanceValid(selectionModel))
+		else if (selectionModel != null && IsInstanceValid(selectionModel))
 		{
 			targetedAs = null;
 			Parent.RemoveChild(selectionModel);
@@ -111,6 +113,7 @@ public partial class ObjectTargetable : ComposableScript
 
 	public void MakeTargeted()
 	{
+		SignalBus.SendMessage("Selected");
 		// Treat neutral targets as hostile
 		var alliance = Parent.Alliance switch
 		{

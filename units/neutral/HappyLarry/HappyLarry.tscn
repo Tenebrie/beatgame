@@ -1,21 +1,25 @@
-[gd_scene load_steps=5 format=3 uid="uid://ctnw6al2cuap3"]
+[gd_scene load_steps=6 format=3 uid="uid://ctnw6al2cuap3"]
 
 [ext_resource type="Script" path="res://units/BaseUnit.cs" id="1_mm4ge"]
 [ext_resource type="PackedScene" uid="uid://lihr8jy1v2vh" path="res://assets/meshes/rat01.tscn" id="1_nykfx"]
 [ext_resource type="Script" path="res://units/neutral/HappyLarry/LarryBehaviour.cs" id="3_ff7c7"]
+[ext_resource type="PackedScene" uid="uid://cqu5y0rbgi8pp" path="res://units/common/UnitCastAimPosition.tscn" id="4_llusj"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_slonc"]
 size = Vector3(0.732269, 0.632263, 1.83057)
 
 [node name="HappyLarry" type="CharacterBody3D"]
-transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, 0, 0)
 script = ExtResource("1_mm4ge")
 
 [node name="RatLarryMesh" parent="." instance=ExtResource("1_nykfx")]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0158539, 0.322845, -0.0427246)
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, -0.0158539, 0.0539037, -0.013269)
 shape = SubResource("BoxShape3D_slonc")
 
 [node name="LarryBehaviour" type="Node" parent="."]
 script = ExtResource("3_ff7c7")
+
+[node name="UnitCastAimPosition" parent="." instance=ExtResource("4_llusj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0613784, 0)

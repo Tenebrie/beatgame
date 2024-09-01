@@ -54,7 +54,8 @@ graph_offset = Vector2(-300, -13)
 [node name="DummyMesh" instance=ExtResource("1_3wltk")]
 
 [node name="Skeleton3D" parent="Armature" index="0"]
-bones/0/rotation = Quaternion(-2.98023e-08, 1.19209e-07, -1.05879e-22, 1)
+bones/0/position = Vector3(0.0025876, -0.18056, -0.0311699)
+bones/0/rotation = Quaternion(-2.98023e-08, 3.17865e-08, 5.2108e-15, 1)
 bones/1/rotation = Quaternion(0.00391739, -9.99965e-08, -0.00186837, 0.999991)
 bones/2/rotation = Quaternion(-0.00391739, -1.92123e-08, 0.00186838, 0.999991)
 bones/3/rotation = Quaternion(-0.00669622, 3.90926e-08, 0.00319372, 0.999972)
@@ -66,7 +67,6 @@ bones/5/rotation = Quaternion(-0.000853431, 0.000928981, -0.705757, 0.708453)
 surface_material_override/0 = ExtResource("2_ifas1")
 
 [node name="AnimationTree" type="AnimationTree" parent="." index="2"]
-root_motion_track = NodePath("Armature/Skeleton3D:RootBone")
 tree_root = SubResource("AnimationNodeStateMachine_4jjpa")
 anim_player = NodePath("../AnimationPlayer")
 script = ExtResource("3_x4cjk")

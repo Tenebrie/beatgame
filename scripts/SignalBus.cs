@@ -89,7 +89,6 @@ public partial class SignalBus : Node
 	public static void SendMessage(string text, float duration = 2)
 	{
 		instance.EmitSignal(SignalName.MessageSent, text, duration);
-		GD.Print(text);
 	}
 
 	private static SignalBus instance = null;
