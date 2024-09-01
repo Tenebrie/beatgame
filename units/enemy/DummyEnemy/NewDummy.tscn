@@ -1,0 +1,41 @@
+[gd_scene load_steps=9 format=3 uid="uid://dm7sn54autipr"]
+
+[ext_resource type="Script" path="res://units/enemy/DummyEnemy/NewDummy.cs" id="1_20r6n"]
+[ext_resource type="PackedScene" uid="uid://k0prwpoxdlwp" path="res://assets/meshes/dummy01.tscn" id="2_4dnww"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mkyr4"]
+animation = &"Whirlwind"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ioda0"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2o0rt"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_dvl4l"]
+states/Start/position = Vector2(239, 107)
+states/Whirlwind/node = SubResource("AnimationNodeAnimation_mkyr4")
+states/Whirlwind/position = Vector2(495, 63)
+transitions = ["Start", "Whirlwind", SubResource("AnimationNodeStateMachineTransition_ioda0"), "Whirlwind", "End", SubResource("AnimationNodeStateMachineTransition_2o0rt")]
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_x3fk3"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_xm2jq"]
+nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_dvl4l")
+nodes/StateMachine/position = Vector2(-320, 120)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_x3fk3")
+nodes/TimeScale/position = Vector2(0, 140)
+node_connections = [&"TimeScale", 0, &"StateMachine", &"output", 0, &"TimeScale"]
+
+[node name="NewDummy" type="Node3D"]
+script = ExtResource("1_20r6n")
+
+[node name="dummy01" parent="." instance=ExtResource("2_4dnww")]
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+root_node = NodePath("../dummy01")
+tree_root = SubResource("AnimationNodeBlendTree_xm2jq")
+anim_player = NodePath("../dummy01/AnimationPlayer")
+parameters/TimeScale/scale = 1.0
+
+[editable path="dummy01"]

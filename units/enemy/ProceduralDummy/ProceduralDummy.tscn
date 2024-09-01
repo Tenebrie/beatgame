@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://uof350xx48rj"]
+
+[ext_resource type="PackedScene" uid="uid://k0prwpoxdlwp" path="res://assets/meshes/dummy01.tscn" id="1_id80b"]
+
+[node name="ProceduralDummy" type="Node3D"]
+
+[node name="DummyMesh" parent="." instance=ExtResource("1_id80b")]

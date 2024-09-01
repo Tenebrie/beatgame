@@ -5,7 +5,7 @@ using Godot;
 
 namespace Project;
 
-public abstract partial class BaseUnit : ComposableCharacterBody3D
+public partial class BaseUnit : ComposableCharacterBody3D
 {
 	[Signal] public delegate void UnitKilledEventHandler();
 	[Signal] public delegate void UnitDestroyedEventHandler();

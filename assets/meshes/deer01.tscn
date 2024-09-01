@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://b35o73m4yb3to" path="res://assets/meshes/deer01.glb" id="1_2w12b"]
 [ext_resource type="Material" uid="uid://dtiin7xhovkuw" path="res://assets/PolygonDungeon/Materials/Alternatives/Dungeon_Material_01_A.tres" id="2_p5ecy"]
 
-[node name="deer01" instance=ExtResource("1_2w12b")]
+[node name="DeerMesh" instance=ExtResource("1_2w12b")]
 
 [node name="Skeleton3D" parent="Armature" index="0"]
 bones/2/rotation = Quaternion(-3.0536e-07, -0.701661, -5.35609e-07, 0.712511)
