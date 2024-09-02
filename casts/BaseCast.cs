@@ -231,7 +231,7 @@ public partial class BaseCast : Node
 			return CastQueueMode.Queue;
 		}
 
-		else if (ChargesRemaining == 0 && ChargesTimerHandle.TimeLeft > Music.Singleton.QueueingWindow)
+		else if (ChargesRemaining <= 0 && ChargesTimerHandle.TimeLeft > Music.Singleton.QueueingWindow)
 		{
 			errorMessage = "No charges available";
 			return CastQueueMode.None;
@@ -241,7 +241,7 @@ public partial class BaseCast : Node
 			errorMessage = "Global cooldown";
 			return CastQueueMode.None;
 		}
-		else if (ChargesRemaining == 0 && ChargesTimerHandle.TimeLeft > Music.Singleton.TimingWindow)
+		else if (ChargesRemaining <= 0 && ChargesTimerHandle.TimeLeft > Music.Singleton.TimingWindow)
 		{
 			errorMessage = "No charges available";
 			return CastQueueMode.Queue;
@@ -387,8 +387,8 @@ public partial class BaseCast : Node
 		{
 			ChargesRemaining -= 1;
 
-			if (ChargesTimerHandle.IsStopped())
-				ChargesTimerHandle.Start(Settings.RecastTime * Music.Singleton.SecondsPerBeat + timeAdjustment);
+			ChargesTimerHandle.Stop();
+			ChargesTimerHandle.Start(Settings.RecastTime * Music.Singleton.SecondsPerBeat + timeAdjustment);
 			if (ChargesTimerHandle.WaitTime > GlobalCooldownTimerHandle.TimeLeft)
 				LastCooldownDuration = ChargesTimerHandle.WaitTime;
 		}

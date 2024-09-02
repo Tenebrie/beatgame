@@ -56,7 +56,6 @@ public partial class BaseTimeline : Node
 
 	void OnFightStarting()
 	{
-		this.Log("Starting");
 		var targetIndex = GetMarkBeatIndex("Start");
 		Music.Singleton.SeekTo(targetIndex);
 		Start(targetIndex);

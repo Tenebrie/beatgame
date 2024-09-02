@@ -22,6 +22,7 @@ xfade_time = 0.5
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_73msl"]
 xfade_time = 0.5
 switch_mode = 2
+advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xsdgm"]
 xfade_time = 0.5
@@ -47,15 +48,15 @@ bones/2/rotation = Quaternion(0.394126, -6.7917e-08, 0.0292726, 0.91859)
 bones/3/rotation = Quaternion(0.0290726, -0.395337, 0.918071, -0.00309974)
 bones/4/rotation = Quaternion(0.394126, 8.29191e-08, -0.0292726, 0.91859)
 bones/6/rotation = Quaternion(-6.22532e-09, -7.66876e-08, -0.741794, 0.670627)
-bones/7/rotation = Quaternion(0.0864324, -0.103178, -0.0192635, 0.990713)
+bones/7/rotation = Quaternion(-0.065301, 0.0977858, 0.0264198, 0.992711)
 bones/8/rotation = Quaternion(-9.19014e-09, -1.0482e-07, -0.0860523, 0.996291)
 bones/9/rotation = Quaternion(0.16603, -0.162533, -0.678997, 0.696405)
 bones/10/rotation = Quaternion(-0.197915, 0.0102269, 0.0609247, 0.978271)
 bones/11/rotation = Quaternion(0.678997, 0.696405, -0.16603, -0.162533)
-bones/14/rotation = Quaternion(0.191312, 0.0605499, -0.41813, 0.885946)
-bones/15/rotation = Quaternion(0.20844, 0.32387, 0.0609868, 0.920838)
-bones/16/rotation = Quaternion(0.0559156, 0.201833, 0.329221, 0.920733)
-bones/17/rotation = Quaternion(-0.0104601, -0.0110377, 0.283742, 0.95878)
+bones/14/rotation = Quaternion(0.0451046, 0.0923143, -0.438285, 0.892945)
+bones/15/rotation = Quaternion(0.0175202, 0.268008, -0.0392019, 0.962459)
+bones/16/rotation = Quaternion(-0.0910862, 0.16958, 0.150842, 0.969635)
+bones/17/rotation = Quaternion(-0.132688, 0.0259657, 0.0540589, 0.989342)
 
 [node name="Mesh" parent="Armature/Skeleton3D" index="0"]
 surface_material_override/0 = ExtResource("2_5p6ak")

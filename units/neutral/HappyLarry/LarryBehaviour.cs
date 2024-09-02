@@ -12,7 +12,6 @@ public partial class LarryBehaviour : BaseBehaviour
 	public override void _EnterTree()
 	{
 		Parent.FriendlyName = "Larry";
-		Parent.Alliance = UnitAlliance.Player;
 		Parent.Targetable.selectionRadius = 0.3f;
 	}
 

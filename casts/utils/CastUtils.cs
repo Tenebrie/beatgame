@@ -49,7 +49,12 @@ public static class CastUtils
 		return impact;
 	}
 
-	public static T GetComponent<T>(this Node parent, int depth = 0)
+	public static T GetComponent<T>(this Node parent)
+	{
+		return GetComponentOrDefault<T>(parent, 0) ?? throw new Exception("Component not found");
+	}
+
+	public static T GetComponentOrDefault<T>(this Node parent, int depth = 0)
 	{
 		var children = parent.GetChildren();
 
@@ -59,15 +64,12 @@ public static class CastUtils
 
 		foreach (var child in children)
 		{
-			var comp = GetComponent<T>(child, depth + 1);
+			var comp = GetComponentOrDefault<T>(child, depth + 1);
 			if (comp != null)
 				return comp;
 		}
 
-		if (depth > 0)
-			return default;
-		else
-			throw new Exception("Component not found");
+		return default;
 	}
 
 	public static List<T> GetComponents<T>(this Node parent, int depth = 0)

@@ -48,6 +48,12 @@ public partial class RespawningUnitBehaviour : BaseBehaviour
 			newUnit.Alliance = alliance;
 			newUnit.Transform = transform;
 			GetTree().CurrentScene.AddChild(newUnit);
+			if (newUnit.GetComponentOrDefault<RespawningUnitBehaviour>() == null)
+			{
+				var newRespawningBehaviour = Lib.LoadScene("res://units/behaviours/RespawningUnitBehaviour.tscn").Instantiate<RespawningUnitBehaviour>();
+				newRespawningBehaviour.sceneToSpawn = sceneToSpawn;
+				newUnit.AddChild(newRespawningBehaviour);
+			}
 			QueueFree();
 		}
 	}

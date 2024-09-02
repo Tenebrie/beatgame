@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://bcrvev26qnfr0"]
+[gd_scene load_steps=34 format=3 uid="uid://bcrvev26qnfr0"]
 
 [ext_resource type="PackedScene" uid="uid://bly86m2hi4wkh" path="res://objects/Environment/WallStone02.tscn" id="3_fvbi3"]
 [ext_resource type="PackedScene" uid="uid://brm5ywm6ylnrg" path="res://objects/Environment/WallStone03.tscn" id="4_lh2l6"]
@@ -8,7 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://by3brcj43nbkw" path="res://objects/Environment/FloorTiles02.tscn" id="8_4dx6v"]
 [ext_resource type="PackedScene" uid="uid://dvtkaw8gn2ovl" path="res://objects/Interactables/world/WallTorch01SecretLever.tscn" id="9_akkep"]
 [ext_resource type="PackedScene" uid="uid://dn25lar4ekepl" path="res://objects/Environment/FloorTiles03.tscn" id="9_ul8n3"]
+[ext_resource type="PackedScene" uid="uid://ctov8hk5nkmol" path="res://units/enemy/GiantRat/GiantRat.tscn" id="9_vgnnw"]
 [ext_resource type="PackedScene" uid="uid://bgk2kx421thtu" path="res://objects/Environment/FloorTiles04.tscn" id="10_5c0vb"]
+[ext_resource type="PackedScene" uid="uid://dhuqkh7rhtgsa" path="res://units/behaviours/RespawningUnitBehaviour.tscn" id="10_p7d4e"]
 [ext_resource type="PackedScene" uid="uid://bpiqe2l4wo6ft" path="res://objects/Environment/WallTorch01.tscn" id="11_hpi26"]
 [ext_resource type="PackedScene" uid="uid://lfecxfxe06u7" path="res://objects/Environment/CeilingStoneFlat01.tscn" id="12_yxogl"]
 [ext_resource type="PackedScene" uid="uid://id58q3m7ucy6" path="res://objects/Environment/CeilingStoneFlat03.tscn" id="13_grgrl"]
@@ -93,9 +95,6 @@ transform = Transform3D(-2, 0, -1.74846e-07, 0, 2, 0, 1.74846e-07, 0, -2, 6, -0.
 [node name="WallStone07" parent="Environment/Arena/Walls" instance=ExtResource("5_goo8m")]
 transform = Transform3D(-2, 0, -1.74846e-07, 0, 2, 0, 1.74846e-07, 0, -2, 4, -0.0637312, 10)
 
-[node name="WallStone08" parent="Environment/Arena/Walls" instance=ExtResource("5_goo8m")]
-transform = Transform3D(-2, 0, -1.74846e-07, 0, 2, 0, 1.74846e-07, 0, -2, 0, -0.0637312, 10)
-
 [node name="WallStone09" parent="Environment/Arena/Walls" instance=ExtResource("5_goo8m")]
 transform = Transform3D(-2, 0, -1.74846e-07, 0, 2, 0, 1.74846e-07, 0, -2, -4, -0.0637312, 10)
 
@@ -104,9 +103,6 @@ transform = Transform3D(-2, 0, -1.74846e-07, 0, 2, 0, 1.74846e-07, 0, -2, -8, -0
 
 [node name="WallStone10" parent="Environment/Arena/Walls" instance=ExtResource("3_fvbi3")]
 transform = Transform3D(-2, 0, -1.74846e-07, 0, 2, 0, 1.74846e-07, 0, -2, 8, -0.68185, 10)
-
-[node name="WallStone13" parent="Environment/Arena/Walls" instance=ExtResource("4_lh2l6")]
-transform = Transform3D(-2, 0, -1.74846e-07, 0, 2, 0, 1.74846e-07, 0, -2, 2, -0.0637312, 10)
 
 [node name="WallStone14" parent="Environment/Arena/Walls" instance=ExtResource("3_fvbi3")]
 transform = Transform3D(-2, 0, -1.74846e-07, 0, 2, 0, 1.74846e-07, 0, -2, -2, -0.0637312, 10)
@@ -342,14 +338,32 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 8)
 [node name="DungeonFloor106" parent="Environment/Arena/Walls/DungeonFloor05" instance=ExtResource("9_ul8n3")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2, 0, 11)
 
+[node name="DungeonFloor143" parent="Environment/Arena/Walls/DungeonFloor05" instance=ExtResource("9_ul8n3")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1, 0, 14)
+
+[node name="DungeonFloor140" parent="Environment/Arena/Walls/DungeonFloor05" instance=ExtResource("9_ul8n3")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2, 0, 15)
+
 [node name="DungeonFloor107" parent="Environment/Arena/Walls/DungeonFloor05" instance=ExtResource("9_ul8n3")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2, 0, 8)
+
+[node name="DungeonFloor132" parent="Environment/Arena/Walls/DungeonFloor05" instance=ExtResource("9_ul8n3")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2, 0, 12)
+
+[node name="DungeonFloor142" parent="Environment/Arena/Walls/DungeonFloor05" instance=ExtResource("9_ul8n3")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 3.57628e-07, 0, 13)
 
 [node name="DungeonFloor108" parent="Environment/Arena/Walls/DungeonFloor05" instance=ExtResource("7_114ms")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2, 0, 9)
 
+[node name="DungeonFloor136" parent="Environment/Arena/Walls/DungeonFloor05" instance=ExtResource("7_114ms")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2, 0, 13)
+
 [node name="DungeonFloor109" parent="Environment/Arena/Walls/DungeonFloor05" instance=ExtResource("7_114ms")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2, 0, 10)
+
+[node name="DungeonFloor138" parent="Environment/Arena/Walls/DungeonFloor05" instance=ExtResource("7_114ms")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2, 0, 14)
 
 [node name="DungeonFloor73" parent="Environment/Arena/Walls/DungeonFloor05" instance=ExtResource("7_114ms")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 10)
@@ -498,17 +512,47 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 10)
 [node name="DungeonFloor103" parent="Environment/Arena/Walls/DungeonFloor05" instance=ExtResource("7_114ms")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2, 0, 10)
 
+[node name="DungeonFloor145" parent="Environment/Arena/Walls/DungeonFloor05" instance=ExtResource("7_114ms")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2, 0, 14)
+
 [node name="DungeonFloor110" parent="Environment/Arena/Walls/DungeonFloor05" instance=ExtResource("9_ul8n3")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1, 0, 10)
+
+[node name="DungeonFloor144" parent="Environment/Arena/Walls/DungeonFloor05" instance=ExtResource("9_ul8n3")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1, 0, 13)
+
+[node name="DungeonFloor146" parent="Environment/Arena/Walls/DungeonFloor05" instance=ExtResource("9_ul8n3")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2.70205e-07, 0, 12)
+
+[node name="DungeonFloor147" parent="Environment/Arena/Walls/DungeonFloor05" instance=ExtResource("9_ul8n3")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1, 0, 12)
+
+[node name="DungeonFloor137" parent="Environment/Arena/Walls/DungeonFloor05" instance=ExtResource("9_ul8n3")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1, 0, 14)
 
 [node name="DungeonFloor111" parent="Environment/Arena/Walls/DungeonFloor05" instance=ExtResource("7_114ms")]
 transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 1, 0, 10)
 
+[node name="DungeonFloor133" parent="Environment/Arena/Walls/DungeonFloor05" instance=ExtResource("7_114ms")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 1, 0, 10)
+
+[node name="DungeonFloor139" parent="Environment/Arena/Walls/DungeonFloor05" instance=ExtResource("7_114ms")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 1, 0, 14)
+
 [node name="DungeonFloor112" parent="Environment/Arena/Walls/DungeonFloor05" instance=ExtResource("9_ul8n3")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1, 0, 8)
 
+[node name="DungeonFloor134" parent="Environment/Arena/Walls/DungeonFloor05" instance=ExtResource("9_ul8n3")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1, 0, 12)
+
 [node name="DungeonFloor113" parent="Environment/Arena/Walls/DungeonFloor05" instance=ExtResource("7_114ms")]
 transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 1, 0, 8)
+
+[node name="DungeonFloor135" parent="Environment/Arena/Walls/DungeonFloor05" instance=ExtResource("7_114ms")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 1, 0, 12)
+
+[node name="DungeonFloor141" parent="Environment/Arena/Walls/DungeonFloor05" instance=ExtResource("7_114ms")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 1, 0, 12)
 
 [node name="DungeonFloor104" parent="Environment/Arena/Walls/DungeonFloor05" instance=ExtResource("8_4dx6v")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 6, 0, 11)
@@ -575,6 +619,13 @@ transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 2, 0, 
 
 [node name="DungeonFloor53" parent="Environment/Arena/Walls/DungeonFloor05" instance=ExtResource("10_5c0vb")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 7)
+
+[node name="GiantRat" parent="Environment/Arena/Walls/DungeonFloor05" instance=ExtResource("9_vgnnw")]
+transform = Transform3D(-2.18557e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.18557e-08, -0.680407, 0.0218263, 13)
+Alliance = 2
+
+[node name="RespawningUnitBehaviour" parent="Environment/Arena/Walls/DungeonFloor05/GiantRat" instance=ExtResource("10_p7d4e")]
+sceneToSpawn = "res://units/enemy/GiantRat/GiantRat.tscn"
 
 [node name="WallStone41" parent="Environment/Arena/Walls" instance=ExtResource("5_goo8m")]
 transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, -10, -0.0637312, 10)
@@ -1084,4 +1135,4 @@ transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 3, 0, 
 Alliance = 2
 
 [node name="HappyLarry" parent="." instance=ExtResource("28_w1tsk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.35668, 0.189535, -1.44208)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.35668, 0.069198, -1.44208)
