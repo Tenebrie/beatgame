@@ -69,6 +69,9 @@ public class AudioLibrary
 	public string MusicTrackSpaceship = "res://assets/music/t14d-spaceship.ogg";
 	public string MusicTrackIntermission = "res://assets/music/70bpm-intermission.ogg";
 	public string MusicTrackAeriel = "res://assets/music/120bpm-tidehawk.ogg";
+
+	public string SfxMagicImpact01 = "res://assets/audiofx/MagicImpact01.ogg";
+	public string SfxMagicLaunch01 = "res://assets/audiofx/MagicLaunch01.ogg";
 }
 
 public class SceneLibrary

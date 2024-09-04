@@ -16,6 +16,7 @@ FramerateLabel = NodePath("FramerateLabel")
 
 [node name="Container" parent="." instance=ExtResource("1_ayfx4")]
 custom_minimum_size = Vector2(300, 150)
+layout_mode = 0
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0

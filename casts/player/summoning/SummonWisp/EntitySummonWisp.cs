@@ -26,6 +26,7 @@ public partial class EntitySummonWisp : Node3D
 		lifetimeTimer.Start();
 
 		Music.Singleton.BeatTick += OnBeatTick;
+		Music.Singleton.BeforeBeatTick()
 	}
 
 	public override void _ExitTree()
@@ -56,13 +57,6 @@ public partial class EntitySummonWisp : Node3D
 
 	void OnBeatTick(BeatTime time)
 	{
-		if (lifetimeTimer.IsStopped())
-		{
-			Music.Singleton.BeatTick -= OnBeatTick;
-			Cleanup();
-			return;
-		}
-
 		if (time.IsNot(BeatTime.Whole | BeatTime.Half) || !positioningTimer.IsStopped() || lifetimeTimer.IsStopped())
 			return;
 
@@ -73,14 +67,43 @@ public partial class EntitySummonWisp : Node3D
 			globalPosition: GlobalPosition,
 			damage: 5,
 			flightDuration: 1,
+			impactAudio: Lib.Audio.SfxMagicImpact01,
 			impactEffect: Lib.Effect.FireballProjectileImpact
 		);
 		projectile.FollowSource(this);
+		Audio.Play(Lib.Audio.SfxMagicLaunch01, GlobalPosition, 0.5f);
 		if (lifetimeTimer.TimeLeft <= Music.Singleton.SecondsPerBeat * 2)
 		{
 			Music.Singleton.BeatTick -= OnBeatTick;
 			Cleanup();
 		}
+	}
+
+	void OnTimeTravelBeatTick(BeatTime time, Action<Action> queue)
+	{
+		if (time.IsNot(BeatTime.Whole | BeatTime.Half) || !positioningTimer.IsStopped() || lifetimeTimer.IsStopped())
+			return;
+
+		Audio.Play(Lib.Audio.SfxMagicLaunch01, GlobalPosition, 0.5f);
+		queue(() =>
+		{
+			var projectile = Lib.LoadScene(Lib.Entity.SummonWispProjectile).Instantiate<Projectile>();
+			projectile.Initialize(
+				source: SourceCast,
+				targetUnit: TargetUnit,
+				globalPosition: GlobalPosition,
+				damage: 5,
+				flightDuration: 1,
+				impactAudio: Lib.Audio.SfxMagicImpact01,
+				impactEffect: Lib.Effect.FireballProjectileImpact
+			);
+			projectile.FollowSource(this);
+			if (lifetimeTimer.TimeLeft <= Music.Singleton.SecondsPerBeat * 2)
+			{
+				Music.Singleton.BeatTick -= OnBeatTick;
+				Cleanup();
+			}
+		});
 	}
 
 	async void Cleanup()

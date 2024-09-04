@@ -17,6 +17,7 @@ public partial class Projectile : Node3D
 	public Vector3 startingPosition;
 	public float startingEngineTime = CastUtils.GetEngineTime();
 
+	public string ImpactAudio = null;
 	public string ImpactEffect = null;
 
 	public override void _Ready()
@@ -24,7 +25,7 @@ public partial class Projectile : Node3D
 		Emitters = GetChildren().Where(child => child is GpuParticles3D).Cast<GpuParticles3D>().ToList();
 	}
 
-	public void Initialize(BaseCast source, BaseUnit targetUnit, Vector3 globalPosition, float damage, float flightDuration, string impactEffect = null)
+	public void Initialize(BaseCast source, BaseUnit targetUnit, Vector3 globalPosition, float damage, float flightDuration, string impactAudio = null, string impactEffect = null)
 	{
 		Source = source;
 		TargetUnit = targetUnit;
@@ -33,6 +34,7 @@ public partial class Projectile : Node3D
 		targetUnit.GetTree().CurrentScene.AddChild(this);
 		GlobalPosition = globalPosition;
 		startingPosition = globalPosition;
+		ImpactAudio = impactAudio;
 		ImpactEffect = impactEffect;
 	}
 
@@ -68,6 +70,9 @@ public partial class Projectile : Node3D
 		if (time >= 1 && IsEmitting)
 		{
 			CleanUp();
+
+			if (ImpactAudio != null)
+				Audio.Play(ImpactAudio, GlobalPosition);
 
 			if (ImpactEffect != null)
 			{
