@@ -12,6 +12,7 @@ public partial class BaseSkill : Node
 	{
 		public string FriendlyName;
 		public string Description;
+		// TODO: For active cast skills, pull name and icon directly from the cast
 		public string IconPath = null;
 		public CastFactory ActiveCast;
 		public List<CastFactory> AffectedCasts = new();

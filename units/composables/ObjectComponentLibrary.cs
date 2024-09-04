@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using Godot;
 namespace Project;
@@ -7,15 +8,20 @@ public partial class ObjectComponentLibrary : ComposableScript
 {
 	public ObjectComponentLibrary(BaseUnit parent) : base(parent) { }
 
-	public T Find<T>() where T : Node
-	{
-		foreach (var child in Parent.GetChildren())
-		{
-			if (child is not T correctChild)
-				continue;
+    readonly Dictionary<Type, Node> componentCache = new();
 
-			return correctChild;
+	public bool GetCachedComponent<T>(out T outputNode) where T : Node
+	{
+		if (componentCache.TryGetValue(typeof (T), out var node) && IsInstanceValid(node)) {
+			outputNode = (T)node;
+			return true;
 		}
-		throw new Exception($"No child found.");
+		outputNode = null;
+		return false;
+	}
+
+	public void CacheComponent<T>(T node) where T : Node
+	{
+		componentCache[typeof (T)] = node;
 	}
 }

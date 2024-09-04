@@ -1,0 +1,40 @@
+[gd_scene load_steps=3 format=3 uid="uid://b85d32pcjusoh"]
+
+[ext_resource type="PackedScene" uid="uid://tv4bwu6rkj5t" path="res://ui/generic/MessageList/MessageList.tscn" id="1_ayfx4"]
+[ext_resource type="Script" path="res://ui/screens/debugPanel/DebugPanelUI.cs" id="1_yhifh"]
+
+[node name="DebugPanelUI" type="Control" node_paths=PackedStringArray("FramerateLabel")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_yhifh")
+FramerateLabel = NodePath("FramerateLabel")
+
+[node name="Container" parent="." instance=ExtResource("1_ayfx4")]
+custom_minimum_size = Vector2(300, 150)
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 8.0
+offset_top = 47.0
+offset_right = 308.0
+offset_bottom = 197.0
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+
+[node name="FramerateLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 2.0
+offset_right = 119.0
+offset_bottom = 25.0
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 12
+theme_override_font_sizes/bold_font_size = 10
+bbcode_enabled = true
+text = "[b]FPS:[/b] 240"

@@ -15,7 +15,7 @@ public partial class BossCelestios : BaseBoss
 		base._Ready();
 
 		Health.SetMaxValue(25000);
-		Targetable.selectionRadius = 3;
+		Targetable.SelectionRadius = 3;
 
 		AutoAttack = new(this);
 		CastLibrary.Register(AutoAttack);

@@ -54,6 +54,7 @@ public partial class Fireball : BaseCast
 	{
 		var fireball = Lib.LoadScene(Lib.Effect.FireballProjectile).Instantiate() as Projectile;
 		GetTree().Root.AddChild(fireball);
+		fireball.ImpactEffect = Lib.Effect.FireballProjectileImpact;
 		fireball.GlobalPosition = Parent.GlobalCastAimPosition;
 		fireball.Source = this;
 		fireball.TargetUnit = target;

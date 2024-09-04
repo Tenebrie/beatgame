@@ -17,7 +17,7 @@ public partial class PlayerController : BaseUnit
 
 		FriendlyName = "The Player";
 		Alliance = UnitAlliance.Player;
-		Targetable.selectionRadius = 0.25f;
+		Targetable.SelectionRadius = 0.25f;
 
 		Health.SetBaseMaxValue(250);
 		Health.Regeneration = 1;

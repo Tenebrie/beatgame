@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
@@ -10,16 +11,43 @@ public partial class Projectile : Node3D
 	public BaseCast Source;
 	public BaseUnit TargetUnit;
 	public List<GpuParticles3D> Emitters;
+
 	public float ImpactDamage = 5;
+	public float FlightDuration = 1; // beat
+	public Vector3 startingPosition;
+	public float startingEngineTime = CastUtils.GetEngineTime();
+
+	public string ImpactEffect = null;
 
 	public override void _Ready()
 	{
 		Emitters = GetChildren().Where(child => child is GpuParticles3D).Cast<GpuParticles3D>().ToList();
 	}
 
+	public void Initialize(BaseCast source, BaseUnit targetUnit, Vector3 globalPosition, float damage, float flightDuration, string impactEffect = null)
+	{
+		Source = source;
+		TargetUnit = targetUnit;
+		ImpactDamage = damage;
+		FlightDuration = flightDuration;
+		targetUnit.GetTree().CurrentScene.AddChild(this);
+		GlobalPosition = globalPosition;
+		startingPosition = globalPosition;
+		ImpactEffect = impactEffect;
+	}
+
+	Node3D followSourceNode;
+	bool followSource = false;
+
+	public void FollowSource(Node3D sourceNode)
+	{
+		followSource = true;
+		followSourceNode = sourceNode;
+	}
+
 	public override void _Process(double delta)
 	{
-		if (TargetUnit == null)
+		if (TargetUnit == null || !IsEmitting)
 			return;
 
 		if (!IsInstanceValid(TargetUnit))
@@ -28,18 +56,25 @@ public partial class Projectile : Node3D
 			return;
 		}
 
-		var speed = 6f * (float)delta;
+		var engineTime = CastUtils.GetEngineTime();
+		var flightDurationSeconds = FlightDuration * Music.Singleton.SecondsPerBeat;
 		var targetPos = TargetUnit.GlobalCastAimPosition;
-		var direction = GlobalPosition.DirectionTo(targetPos);
 
-		Position += direction * speed;
-		if (GlobalPosition.DistanceSquaredTo(targetPos) <= 0.02f && IsEmitting)
+		var startPos = followSource ? followSourceNode.GlobalPosition : startingPosition;
+
+		var time = (float)Math.Min((engineTime - startingEngineTime) / flightDurationSeconds, 1);
+		Position = startPos + (targetPos - startPos) * time;
+
+		if (time >= 1 && IsEmitting)
 		{
 			CleanUp();
 
-			var impact = Lib.LoadScene(Lib.Effect.FireballProjectileImpact).Instantiate() as ProjectileImpact;
-			GetTree().Root.AddChild(impact);
-			impact.GlobalPosition = GlobalPosition;
+			if (ImpactEffect != null)
+			{
+				var impact = Lib.LoadScene(ImpactEffect).Instantiate() as ProjectileImpact;
+				GetTree().Root.AddChild(impact);
+				impact.GlobalPosition = GlobalPosition;
+			}
 
 			if (Source == null)
 				GD.PushError("Projectile doesn't have Source set");

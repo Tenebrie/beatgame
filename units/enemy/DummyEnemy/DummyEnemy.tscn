@@ -52,3 +52,6 @@ shape = SubResource("BoxShape3D_wk5ay")
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
 transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0.000572205, 0.576726, -0.000164032)
 shape = SubResource("BoxShape3D_5ca5l")
+
+[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="."]
+radius = 1.0

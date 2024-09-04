@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://ct45j83s2dkvg"]
+[gd_scene load_steps=13 format=3 uid="uid://ct45j83s2dkvg"]
 
 [ext_resource type="Script" path="res://ui/screens/combat/CombatUI.cs" id="1_mfjmv"]
 [ext_resource type="PackedScene" uid="uid://b7e338e230e43" path="res://ui/generic/ResourceBar/ResourceBar.tscn" id="2_vq7ps"]
@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://cypyot5fi6to" path="res://ui/screens/combat/PlayerCastBar/PlayerCastBar.tscn" id="5_5vbpp"]
 [ext_resource type="Theme" uid="uid://ss3767a5m5q7" path="res://ui/generic/ResourceBar/themes/ManaBar.tres" id="7_dxeop"]
 [ext_resource type="PackedScene" uid="uid://c2xpek74a5i4s" path="res://ui/generic/ActionPanel/ActionPanel.tscn" id="8_ukig5"]
-[ext_resource type="PackedScene" uid="uid://tv4bwu6rkj5t" path="res://ui/generic/MessageList/MessageList.tscn" id="9_aquqd"]
 [ext_resource type="PackedScene" uid="uid://cvvveopdhteji" path="res://ui/screens/combat/CastBarGroup/CastBarGroup.tscn" id="10_xqgft"]
 [ext_resource type="PackedScene" uid="uid://ci0iad02t4yvv" path="res://ui/generic/BuffContainer/BuffContainer.tscn" id="11_8grjo"]
 [ext_resource type="PackedScene" uid="uid://xcuhiveymisj" path="res://ui/generic/BuffContainer/BuffPopup.tscn" id="12_1788a"]
@@ -91,16 +90,14 @@ grow_vertical = 0
 AnimationType = 1
 
 [node name="UnitCard" parent="AllyTargeting/AnimatedVBoxContainer" index="0"]
-offset_left = 280.0
-offset_top = 664.549
-offset_right = 530.0
+offset_top = 722.0
+offset_right = 209.75
 offset_bottom = 729.549
 
 [node name="UnitCard2" parent="AllyTargeting/AnimatedVBoxContainer" index="1"]
-offset_left = 280.0
-offset_top = 664.549
-offset_right = 530.0
-offset_bottom = 729.549
+offset_top = 652.0
+offset_right = 209.75
+offset_bottom = 659.549
 
 [node name="HostileTargeting" parent="." instance=ExtResource("3_jpa8i")]
 layout_mode = 1
@@ -165,19 +162,6 @@ offset_bottom = -16.0
 grow_horizontal = 2
 grow_vertical = 0
 mouse_filter = 0
-
-[node name="Container" parent="." instance=ExtResource("9_aquqd")]
-layout_mode = 1
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 8.0
-offset_top = 8.0
-offset_right = 308.0
-offset_bottom = 162.0
-grow_horizontal = 1
-grow_vertical = 1
-mouse_filter = 2
 
 [node name="BossCastBarGroup" parent="." instance=ExtResource("10_xqgft")]
 layout_mode = 1

@@ -13,7 +13,7 @@ public partial class ObjectTargetable : ComposableScript
 	public float hoverHighlight;
 
 	public TargetingCircle selectionModel = null;
-	public float selectionRadius = 1f;
+	public float SelectionRadius = 1f;
 
 	public ObjectTargetable(BaseUnit parent) : base(parent) { }
 
@@ -63,7 +63,7 @@ public partial class ObjectTargetable : ComposableScript
 			}
 		}
 		// TODO: Performance fix pls
-		CastUtils.GetComponents<MeshInstance3D>(Parent).ForEach(comp => comp.SetInstanceShaderParameter("hover_highlight".ToStringName(), hoverHighlight));
+		Parent.GetComponentsUncached<MeshInstance3D>().ForEach(comp => comp.SetInstanceShaderParameter("hover_highlight".ToStringName(), hoverHighlight));
 	}
 
 	private void OnObjectTargeted(BaseUnit unit, TargetedUnitAlliance alliance)
@@ -99,7 +99,7 @@ public partial class ObjectTargetable : ComposableScript
 		{
 			selectionModel = Lib.LoadScene(Lib.Effect.TargetingCircle).Instantiate() as TargetingCircle;
 			selectionModel.SetAlliance(Parent.Alliance);
-			selectionModel.SetRadius(selectionRadius);
+			selectionModel.SetRadius(SelectionRadius);
 			Parent.AddChild(selectionModel);
 		}
 		else if (selectionModel != null && IsInstanceValid(selectionModel))
@@ -113,7 +113,6 @@ public partial class ObjectTargetable : ComposableScript
 
 	public void MakeTargeted()
 	{
-		SignalBus.SendMessage("Selected");
 		// Treat neutral targets as hostile
 		var alliance = Parent.Alliance switch
 		{

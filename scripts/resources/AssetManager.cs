@@ -10,7 +10,7 @@ namespace Project;
 public static class Lib
 {
 	public readonly static UnitLibrary Unit = new();
-	public readonly static TokenLibrary Token = new();
+	public readonly static EntityLibrary Entity = new();
 	public readonly static EffectLibrary Effect = new();
 	public readonly static UILibrary UI = new();
 	public readonly static AudioLibrary Audio = new();
@@ -50,8 +50,8 @@ public partial class AssetManager : Node
 	{
 		foreach (var field in typeof(UnitLibrary).GetFields())
 			PreloadResource(field.GetValue(Lib.Unit));
-		foreach (var field in typeof(TokenLibrary).GetFields())
-			PreloadResource(field.GetValue(Lib.Token));
+		foreach (var field in typeof(EntityLibrary).GetFields())
+			PreloadResource(field.GetValue(Lib.Entity));
 		foreach (var field in typeof(EffectLibrary).GetFields())
 			PreloadResource(field.GetValue(Lib.Effect));
 		foreach (var field in typeof(UILibrary).GetFields())
@@ -105,8 +105,8 @@ public partial class AssetManager : Node
 		float currentlyLoaded = 0;
 		foreach (var field in typeof(UnitLibrary).GetFields())
 			currentlyLoaded += GetResourceProgress(field.GetValue(Lib.Unit));
-		foreach (var field in typeof(TokenLibrary).GetFields())
-			currentlyLoaded += GetResourceProgress(field.GetValue(Lib.Token));
+		foreach (var field in typeof(EntityLibrary).GetFields())
+			currentlyLoaded += GetResourceProgress(field.GetValue(Lib.Entity));
 		foreach (var field in typeof(EffectLibrary).GetFields())
 			currentlyLoaded += GetResourceProgress(field.GetValue(Lib.Effect));
 		foreach (var field in typeof(UILibrary).GetFields())
@@ -133,8 +133,8 @@ public partial class AssetManager : Node
 		List<string> resources = new();
 		foreach (var field in typeof(UnitLibrary).GetFields())
 			resources.Add((string)field.GetValue(Lib.Unit));
-		foreach (var field in typeof(TokenLibrary).GetFields())
-			resources.Add((string)field.GetValue(Lib.Token));
+		foreach (var field in typeof(EntityLibrary).GetFields())
+			resources.Add((string)field.GetValue(Lib.Entity));
 		foreach (var field in typeof(EffectLibrary).GetFields())
 			resources.Add((string)field.GetValue(Lib.Effect));
 

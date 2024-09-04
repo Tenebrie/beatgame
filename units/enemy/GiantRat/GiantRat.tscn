@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://units/enemy/GiantRat/GiantRatBehaviour.cs" id="3_hk1mu"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nujrg"]
-size = Vector3(1, 0.660522, 1.42334)
+size = Vector3(0.704102, 0.660522, 1.33618)
 
 [node name="GiantRat" type="CharacterBody3D"]
 script = ExtResource("1_h7x46")
@@ -13,8 +13,12 @@ script = ExtResource("1_h7x46")
 [node name="RatLarryMesh" parent="." instance=ExtResource("2_q433e")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.327576, -0.21167)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00830078, 0.327576, -0.168091)
 shape = SubResource("BoxShape3D_nujrg")
 
 [node name="GiantRatBehaviour" type="Node" parent="."]
 script = ExtResource("3_hk1mu")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+avoidance_enabled = true
+debug_enabled = true

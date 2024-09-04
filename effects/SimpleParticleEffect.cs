@@ -5,12 +5,12 @@ namespace Project;
 
 public partial class SimpleParticleEffect : BaseEffect
 {
-	[Export]
 	public GpuParticles3D Emitter;
 
 	public override void _Ready()
 	{
 		base._Ready();
+		Emitter = this.GetComponent<GpuParticles3D>();
 		Emitter.Restart();
 	}
 

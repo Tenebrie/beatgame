@@ -34,6 +34,10 @@ public partial class Music : Node
 	{
 		get => 1 / BeatsPerSecond;
 	}
+	public float GameSpeed
+	{
+		get => BeatsPerMinute / 60;
+	}
 	bool IsStarted = false;
 	bool IsFadingOut = false;
 

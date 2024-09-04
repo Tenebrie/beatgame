@@ -193,16 +193,16 @@ public partial class BaseCast : Node
 			if ((Settings.TargetType & CastTargetType.AlliedUnit) > 0)
 			{
 				targetPoint = target.AlliedUnit.GlobalCastAimPosition;
-				selectionDistance = target.AlliedUnit.Targetable.selectionRadius;
+				selectionDistance = target.AlliedUnit.Targetable.SelectionRadius;
 			}
 			else if ((Settings.TargetType & CastTargetType.HostileUnit) > 0)
 			{
 				targetPoint = target.HostileUnit.GlobalCastAimPosition;
-				selectionDistance = target.HostileUnit.Targetable.selectionRadius;
+				selectionDistance = target.HostileUnit.Targetable.SelectionRadius;
 			}
 
 			float dist = Parent.GlobalCastAimPosition.DistanceTo(targetPoint ?? Vector3.Zero);
-			if (targetPoint != null && dist > Settings.MaximumRange + selectionDistance + Parent.Targetable.selectionRadius)
+			if (targetPoint != null && dist > Settings.MaximumRange + selectionDistance + Parent.Targetable.SelectionRadius)
 			{
 				errorMessage = "Out of range";
 				return false;

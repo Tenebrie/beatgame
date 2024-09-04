@@ -14,13 +14,15 @@ public class UnitLibrary
 	public string ZappingDummyEnemy = "uid://b63tmrk7key7v";
 }
 
-public class TokenLibrary
+public class EntityLibrary
 {
 	public string DeepGuardian = "res://casts/bosses/DeepGuardians/tokens/DeepGuardian.tscn";
 	public string AnimatedTrident = "res://casts/bosses/Tridents/tokens/AnimatedTrident.tscn";
 	public string LightningOrbsPylon = "res://casts/bosses/LightningOrbs/tokens/LightningOrbsPylon.tscn";
 	public string PowerUpLightningOrb = "res://casts/bosses/LightningOrbs/tokens/PowerUpLightningOrb.tscn";
 	public string EffectFlamethrowerWithHitbox = "uid://drx1hwgr4pt6e";
+	public string SummonWisp = "uid://b0ebi0o02e62s";
+	public string SummonWispProjectile = "uid://bd1olyyh5dr8v";
 }
 
 public class EffectLibrary

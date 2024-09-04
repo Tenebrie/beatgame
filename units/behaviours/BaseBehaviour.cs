@@ -17,5 +17,9 @@ public partial class BaseBehaviour : Node
 		}
 	}
 
-	protected T GetComponent<T>() => CastUtils.GetComponent<T>(Parent);
+	protected Vector3 Position { get => Parent.Position; }
+	protected Vector3 Velocity { get => Parent.Velocity; }
+	protected Vector3 GlobalPosition { get => Parent.GlobalPosition; }
+	protected Transform3D GlobalTransform { get => Parent.GlobalTransform; }
+	protected T GetComponent<T>() where T : Node => Parent.GetComponent<T>();
 }

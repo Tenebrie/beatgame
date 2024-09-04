@@ -18,7 +18,7 @@ public partial class BaseUnit : ComposableCharacterBody3D
 	public ObjectForcefulMovement ForcefulMovement;
 	public ObjectCastLibrary CastLibrary;
 
-	private ObjectComponentLibrary Components;
+	public ObjectComponentLibrary Components;
 
 	[Export]
 	public UnitAlliance Alliance = UnitAlliance.Neutral;

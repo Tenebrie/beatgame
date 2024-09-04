@@ -18,6 +18,8 @@ public partial class GiantRatBehaviour : BaseBehaviour
 	}
 
 	BaseUnit lockedOnTarget;
+	Vector3? movingToPosition = null;
+
 	AIState state = AIState.Idle;
 	AttackCast attackCast;
 
@@ -47,16 +49,25 @@ public partial class GiantRatBehaviour : BaseBehaviour
 			("Walk", (_) => state is AIState.Wandering or AIState.EnemySpotted),
 			("Idle", (_) => true)
 		);
+		GetComponent<NavigationAgent3D>().TargetReached += () =>
+		{
+			if (state is AIState.Leashing)
+				state = AIState.Idle;
+		};
+		GetComponent<NavigationAgent3D>().VelocityComputed += (velocity) =>
+		{
+			if (velocity == Vector3.Zero || state is not AIState.EnemySpotted and not AIState.Leashing)
+				return;
+			Parent.Velocity = velocity;
+			Parent.MoveAndSlide();
+			Parent.LookAt((GlobalPosition + velocity).Flatten(GlobalPosition.Y), Vector3.Up);
+		};
 	}
 
 	void OnAIUpdate()
 	{
 		// Agent is locked into an action, do not update
-		if (!stateLockTimer.IsStopped())
-			return;
-
-		// Agent is returning to home position after being moved too far away
-		if (state is AIState.Leashing && Parent.GlobalPosition.DistanceTo(homePosition) >= 1)
+		if (!stateLockTimer.IsStopped() || state is AIState.Leashing)
 			return;
 
 		if (Parent.GlobalPosition.DistanceTo(homePosition) >= 15)
@@ -95,6 +106,13 @@ public partial class GiantRatBehaviour : BaseBehaviour
 		}
 	}
 
+	void PathTowards(Vector3 pos)
+	{
+		var target = CastUtils.SnapToGround(Parent, pos);
+		movingToPosition = target;
+		GetComponent<NavigationAgent3D>().TargetPosition = target;
+	}
+
 	public override void _Process(double delta)
 	{
 		if (state is AIState.Attacking && lockedOnTarget != null)
@@ -110,17 +128,18 @@ public partial class GiantRatBehaviour : BaseBehaviour
 		}
 		else if (state is AIState.EnemySpotted && lockedOnTarget != null)
 		{
-			var direction = CastUtils.SnapToGround(Parent, lockedOnTarget.GlobalPosition) - CastUtils.SnapToGround(Parent, Parent.GlobalPosition);
-			Parent.Velocity = 1f * direction.Normalized();
-			Parent.MoveAndSlide();
-			Parent.LookAt(lockedOnTarget.GlobalPosition);
+			PathTowards(lockedOnTarget.GlobalPosition);
 		}
 		else if (state is AIState.Leashing)
 		{
-			var direction = CastUtils.SnapToGround(Parent, homePosition) - CastUtils.SnapToGround(Parent, Parent.GlobalPosition);
-			Parent.Velocity = 1f * direction.Normalized();
-			Parent.MoveAndSlide();
-			Parent.LookAt(homePosition);
+			PathTowards(homePosition);
+		}
+
+		if (state is AIState.EnemySpotted or AIState.Leashing)
+		{
+			var nextPosition = Parent.SnapToGround(GetComponent<NavigationAgent3D>().GetNextPathPosition());
+			var direction = nextPosition - GlobalPosition;
+			GetComponent<NavigationAgent3D>().Velocity = 1f * direction.Normalized();
 		}
 	}
 }

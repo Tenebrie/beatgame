@@ -33,7 +33,7 @@ public partial class BossAeriel : BaseBoss
 		base._Ready();
 
 		Health.SetBaseMaxValue(15000);
-		Targetable.selectionRadius = 3.00f;
+		Targetable.SelectionRadius = 3.00f;
 
 		AutoAttack = new(this);
 		CastLibrary.Register(AutoAttack);

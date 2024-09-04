@@ -23,7 +23,7 @@ public partial class UnitStationarySummon : BaseUnit
 		spinningGem = GetNode<Node3D>("SpinningGem");
 
 		Music.Singleton.BeatTick += OnBeatTick;
-		Targetable.selectionRadius = 0.3f;
+		Targetable.SelectionRadius = 0.3f;
 	}
 
 	public override void _ExitTree()

@@ -19,7 +19,7 @@ public partial class LightningOrbsPylon : BasicEnemyController
 		base._Ready();
 
 		Health.SetBaseMaxValue(5);
-		Targetable.selectionRadius = 1.00f;
+		Targetable.SelectionRadius = 1.00f;
 
 		Buffs.Add(new BuffLightningOrbsPylonInvuln());
 		BossAuto = CastLibrary.Register(new BossAuto(this));

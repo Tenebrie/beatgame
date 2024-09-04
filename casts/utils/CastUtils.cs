@@ -49,44 +49,6 @@ public static class CastUtils
 		return impact;
 	}
 
-	public static T GetComponent<T>(this Node parent)
-	{
-		return GetComponentOrDefault<T>(parent, 0) ?? throw new Exception("Component not found");
-	}
-
-	public static T GetComponentOrDefault<T>(this Node parent, int depth = 0)
-	{
-		var children = parent.GetChildren();
-
-		var component = children.Where(child => child is T).Cast<T>().FirstOrDefault();
-		if (component != null)
-			return component;
-
-		foreach (var child in children)
-		{
-			var comp = GetComponentOrDefault<T>(child, depth + 1);
-			if (comp != null)
-				return comp;
-		}
-
-		return default;
-	}
-
-	public static List<T> GetComponents<T>(this Node parent, int depth = 0)
-	{
-		var children = parent.GetChildren();
-
-		var components = children.Where(child => child is T).Cast<T>();
-
-		foreach (var child in children)
-		{
-			var extraComponents = GetComponents<T>(child, depth + 1);
-			components = components.Concat(extraComponents);
-		}
-
-		return components.ToList();
-	}
-
 	public static float GetArenaSize(this Node _)
 	{
 		return 16;

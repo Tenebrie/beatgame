@@ -54,7 +54,7 @@ public partial class BossCastLightningOrbs : BaseCast
 		var orbPositions = GetOrbsSpawnPositions();
 		foreach (var pos in orbPositions)
 		{
-			var token = Lib.LoadScene(Lib.Token.PowerUpLightningOrb).Instantiate<PowerUpLightningOrb>();
+			var token = Lib.LoadScene(Lib.Entity.PowerUpLightningOrb).Instantiate<PowerUpLightningOrb>();
 			token.Position = pos;
 			GetTree().CurrentScene.AddChild(token);
 		}
@@ -62,7 +62,7 @@ public partial class BossCastLightningOrbs : BaseCast
 		var pylonPositions = GetPylonsSpawnPositions();
 		foreach (var pos in pylonPositions)
 		{
-			var token = Lib.LoadScene(Lib.Token.LightningOrbsPylon).Instantiate<LightningOrbsPylon>();
+			var token = Lib.LoadScene(Lib.Entity.LightningOrbsPylon).Instantiate<LightningOrbsPylon>();
 			token.Position = pos;
 			GetTree().CurrentScene.AddChild(token);
 			SpawnedPylons.Add(token);
