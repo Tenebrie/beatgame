@@ -34,24 +34,24 @@ public partial class FightEditorUI : Control
 			Visible = EditingMode;
 		}
 
-		var beatIndex = Music.Singleton.GetNearestBeatIndex(BeatTime.Quarter);
+		// var beatIndex = Music.Singleton.GetNearestBeatIndex(BeatTime.Quarter);
 
-		if (@event.IsActionPressed("EditorCast1".ToStringName()))
-		{
-			Add(beatIndex, castBindings[0]);
-		}
-		if (@event.IsActionPressed("EditorCast2".ToStringName()))
-		{
-			Add(beatIndex, castBindings[1]);
-		}
-		if (@event.IsActionPressed("EditorCast3".ToStringName()))
-		{
-			Add(beatIndex, castBindings[2]);
-		}
-		if (@event.IsActionPressed("EditorCast4".ToStringName()))
-		{
-			Add(beatIndex, castBindings[3]);
-		}
+		// if (@event.IsActionPressed("EditorCast1".ToStringName()))
+		// {
+		// 	Add(beatIndex, castBindings[0]);
+		// }
+		// if (@event.IsActionPressed("EditorCast2".ToStringName()))
+		// {
+		// 	Add(beatIndex, castBindings[1]);
+		// }
+		// if (@event.IsActionPressed("EditorCast3".ToStringName()))
+		// {
+		// 	Add(beatIndex, castBindings[2]);
+		// }
+		// if (@event.IsActionPressed("EditorCast4".ToStringName()))
+		// {
+		// 	Add(beatIndex, castBindings[3]);
+		// }
 	}
 
 	private void Add(double beatIndex, string cast)

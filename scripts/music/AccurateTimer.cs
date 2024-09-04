@@ -5,14 +5,8 @@ namespace Project;
 
 public partial class AccurateTimer : Node
 {
-	[Signal]
-	public delegate void TimeoutEventHandler(BeatTime time);
-	[Signal]
-	public delegate void CatchUpTickEventHandler(BeatTime time);
-	[Signal]
-	public delegate void BeatWindowUnlockEventHandler(BeatTime time);
-	[Signal]
-	public delegate void BeatWindowLockEventHandler(BeatTime time);
+	[Signal] public delegate void TimeoutEventHandler(BeatTime time);
+	[Signal] public delegate void CatchUpTickEventHandler(BeatTime time);
 
 	public static float TimingWindow = 0.05f; // seconds
 	public static float QueueingWindow = 30f; // seconds
@@ -23,25 +17,17 @@ public partial class AccurateTimer : Node
 	private long startTime;
 	public long waitTime;
 	private long tickOffset;
-	public long LastTickedAt;
-	private bool timingWindowLocked = true;
+	public float LastTickedAt;
 	public long TickIndex = -1;
-	public float SpeedModifier;
 
-	public void Start(float bpm, float speedModifier, int halfOffsets)
+	public void Start(float bpm)
 	{
-		float ticksPerMinute = bpm * speedModifier;
 		IsStarted = true;
-		waitTime = (long)(1 / (ticksPerMinute / 60) * 1000);
-		tickOffset = 0;
-		tickOffset = (long)(waitTime / 2.0f * halfOffsets);
+		waitTime = (long)(1 / (bpm / 60) * 1000);
 		startTime = (long)Time.Singleton.GetTicksMsec();
-		LastTickedAt = startTime;
-		SpeedModifier = speedModifier;
+		LastTickedAt = CastUtils.GetEngineTime();
 
 		TickIndex = -1;
-		if (halfOffsets > 0)
-			TickIndex += 1;
 	}
 
 	public async void Stop(float delay)
@@ -69,7 +55,7 @@ public partial class AccurateTimer : Node
 			}
 
 			TickIndex = tickIndex;
-			LastTickedAt = (long)Time.Singleton.GetTicksMsec();
+			LastTickedAt = CastUtils.GetEngineTime();
 			EmitSignal(SignalName.Timeout, BeatTime.ToVariant());
 		}
 	}
@@ -82,35 +68,9 @@ public partial class AccurateTimer : Node
 		return songTime / waitTime;
 	}
 
-	public double GetNearestBeatIndex()
-	{
-		if (waitTime == 0)
-			return 0;
-
-		var deltaTime = GetTimeToNearestTick();
-		var offset = tickOffset > 0 ? 0.5f : 0;
-		if (deltaTime <= 0)
-		{
-			return (TickIndex - offset) / SpeedModifier + Music.Singleton.StartingFromBeat;
-		}
-		else
-		{
-			return (TickIndex + 1 - offset) / SpeedModifier + Music.Singleton.StartingFromBeat;
-		}
-	}
-
-	public long GetTimeToNearestTick()
-	{
-		var time = (long)Time.GetTicksMsec();
-		var expectedTickAt = LastTickedAt + waitTime;
-		if (expectedTickAt - time > time - LastTickedAt)
-			return LastTickedAt - time;
-		return expectedTickAt - time;
-	}
-
 	public long GetSongTime()
 	{
 		var time = (long)Time.Singleton.GetTicksMsec();
-		return time + tickOffset - startTime + Calibration;
+		return time - startTime + Calibration;
 	}
 }

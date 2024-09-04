@@ -5,12 +5,13 @@ namespace Project;
 [Flags]
 public enum BeatTime : ulong
 {
-	Whole = 1,
-	Half = 2,
+	Whole = 16,
+	Half = 8,
 	Quarter = 4,
-	Eighth = 8,
-	Sixteenth = 16,
-	EveryFullBeat = 7,
+	Eighth = 2,
+	Sixteenth = 1,
+
+	EveryFullBeat = 16 | 8 | 4,
 	All = 1023,
 	Free = 1024,
 }

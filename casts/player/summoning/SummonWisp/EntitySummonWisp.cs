@@ -26,12 +26,13 @@ public partial class EntitySummonWisp : Node3D
 		lifetimeTimer.Start();
 
 		Music.Singleton.BeatTick += OnBeatTick;
-		Music.Singleton.BeforeBeatTick()
+		Music.Singleton.OnBeforeBeatTick(BeatTime.Whole | BeatTime.Half, OnBeforeBeatTick, 0.08f);
 	}
 
 	public override void _ExitTree()
 	{
 		Music.Singleton.BeatTick -= OnBeatTick;
+		Music.Singleton.OffBeforeBeatTick(OnBeforeBeatTick);
 	}
 
 	public override void _Process(double delta)
@@ -71,7 +72,6 @@ public partial class EntitySummonWisp : Node3D
 			impactEffect: Lib.Effect.FireballProjectileImpact
 		);
 		projectile.FollowSource(this);
-		Audio.Play(Lib.Audio.SfxMagicLaunch01, GlobalPosition, 0.5f);
 		if (lifetimeTimer.TimeLeft <= Music.Singleton.SecondsPerBeat * 2)
 		{
 			Music.Singleton.BeatTick -= OnBeatTick;
@@ -79,35 +79,18 @@ public partial class EntitySummonWisp : Node3D
 		}
 	}
 
-	void OnTimeTravelBeatTick(BeatTime time, Action<Action> queue)
+	void OnBeforeBeatTick(BeatTime _)
 	{
-		if (time.IsNot(BeatTime.Whole | BeatTime.Half) || !positioningTimer.IsStopped() || lifetimeTimer.IsStopped())
+		if (!positioningTimer.IsStopped() || lifetimeTimer.IsStopped())
 			return;
 
 		Audio.Play(Lib.Audio.SfxMagicLaunch01, GlobalPosition, 0.5f);
-		queue(() =>
-		{
-			var projectile = Lib.LoadScene(Lib.Entity.SummonWispProjectile).Instantiate<Projectile>();
-			projectile.Initialize(
-				source: SourceCast,
-				targetUnit: TargetUnit,
-				globalPosition: GlobalPosition,
-				damage: 5,
-				flightDuration: 1,
-				impactAudio: Lib.Audio.SfxMagicImpact01,
-				impactEffect: Lib.Effect.FireballProjectileImpact
-			);
-			projectile.FollowSource(this);
-			if (lifetimeTimer.TimeLeft <= Music.Singleton.SecondsPerBeat * 2)
-			{
-				Music.Singleton.BeatTick -= OnBeatTick;
-				Cleanup();
-			}
-		});
 	}
 
 	async void Cleanup()
 	{
+		Music.Singleton.BeatTick -= OnBeatTick;
+		Music.Singleton.OffBeforeBeatTick(OnBeforeBeatTick);
 		this.GetComponent<GpuParticles3D>().Emitting = false;
 		await ToSignal(GetTree().CreateTimer(2), "timeout");
 		QueueFree();

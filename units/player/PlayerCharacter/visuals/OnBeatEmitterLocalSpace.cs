@@ -6,7 +6,7 @@ public partial class OnBeatEmitterLocalSpace : GpuParticles3D
 {
 	public override void _Ready()
 	{
-		Music.Singleton.BeatWindowUnlock += OnBeatTick;
+		Music.Singleton.BeatTick += OnBeatTick;
 		Emitting = false;
 		EmitParticle(Transform, Vector3.Zero, new Color(1, 1, 1), new Color(1, 1, 1), 0);
 		RandomizeColor();
@@ -14,7 +14,7 @@ public partial class OnBeatEmitterLocalSpace : GpuParticles3D
 
 	public override void _ExitTree()
 	{
-		Music.Singleton.BeatWindowUnlock -= OnBeatTick;
+		Music.Singleton.BeatTick -= OnBeatTick;
 	}
 
 	public void OnBeatTick(BeatTime time)
