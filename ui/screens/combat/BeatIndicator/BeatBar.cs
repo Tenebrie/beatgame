@@ -15,8 +15,8 @@ public partial class BeatBar : Control
 	public bool HalfBeat;
 	public Color DrawColor = new(255, 255, 255, 0);
 
-	public long StartsAt;
-	public long EndsAt;
+	public float StartsAt;
+	public float EndsAt;
 
 	public BeatBar(bool mirrored, bool halfBeat)
 	{
@@ -45,14 +45,14 @@ public partial class BeatBar : Control
 		if (VisualState is State.Spawning or State.Normal)
 		{
 			float dir = Mirrored ? 1 : -1;
-			var time = (long)Time.Singleton.GetTicksMsec();
-			var pos = Music.Singleton.SongDelay / 6f * (1 - (float)(time - StartsAt) / (EndsAt - StartsAt));
+			var time = CastUtils.GetEngineTime();
+			var pos = Music.Singleton.SongDelay / 6f * (1f - (time - StartsAt) / (EndsAt - StartsAt)) * 1000f;
 			Position = new Vector2(pos * dir, 0);
 		}
 
 		if (VisualState != State.Spawning)
 			return;
-		
+
 		DrawColor = new Color(DrawColor.R, DrawColor.G, DrawColor.B, DrawColor.A + 1 * (float)delta);
 		QueueRedraw();
 

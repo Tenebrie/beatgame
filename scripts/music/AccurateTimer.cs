@@ -10,12 +10,12 @@ public partial class AccurateTimer : Node
 
 	public static float TimingWindow = 0.05f; // seconds
 	public static float QueueingWindow = 30f; // seconds
-	public long Calibration = 0;
+	public float Calibration = 0;
 
 	public BeatTime BeatTime;
 	private bool IsStarted;
-	private long startTime;
-	public long waitTime;
+	private float startTime;
+	public float waitTime;
 	private long tickOffset;
 	public float LastTickedAt;
 	public long TickIndex = -1;
@@ -23,8 +23,9 @@ public partial class AccurateTimer : Node
 	public void Start(float bpm)
 	{
 		IsStarted = true;
-		waitTime = (long)(1 / (bpm / 60) * 1000);
-		startTime = (long)Time.Singleton.GetTicksMsec();
+		waitTime = 1f / ((float)bpm / 60f);
+		this.Log(waitTime);
+		startTime = CastUtils.GetEngineTime();
 		LastTickedAt = CastUtils.GetEngineTime();
 
 		TickIndex = -1;
@@ -60,17 +61,17 @@ public partial class AccurateTimer : Node
 		}
 	}
 
-	long GetInternalTickIndexAtSongTime(long songTime)
+	long GetInternalTickIndexAtSongTime(float songTime)
 	{
-		if (waitTime == 0)
+		if (waitTime <= 0)
 			return 0;
 
-		return songTime / waitTime;
+		return (long)Math.Floor(songTime / waitTime);
 	}
 
-	public long GetSongTime()
+	public float GetSongTime()
 	{
-		var time = (long)Time.Singleton.GetTicksMsec();
+		var time = CastUtils.GetEngineTime();
 		return time - startTime + Calibration;
 	}
 }

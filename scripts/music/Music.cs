@@ -14,7 +14,7 @@ public partial class Music : Node
 
 	private MusicLibrary musicLibrary = new();
 
-	public readonly long SongDelay = 2000; // ms
+	public readonly float SongDelay = 2; // seconds
 	public const float MinBeatSize = 0.25f;
 	public double StartingFromBeat = 0;
 
@@ -42,14 +42,13 @@ public partial class Music : Node
 		get => IsStarted && PreciseBeatIndex > 0;
 	}
 
-	private long LongestCalibration;
+	private float LongestCalibration;
 	public AccurateTimer BeatTimer;
 	public AccurateTimer VisualBeatTimer;
 
 	public long PreciseBeatIndex = -1;
 	public float PredictiveBeatTime = 0;
 	public double BeatIndex { get => PreciseBeatIndex * MinBeatSize; }
-	public long SongTime { get => BeatTimer.GetSongTime() + (long)(StartingFromBeat * SecondsPerBeat * 1000); }
 	public float TimingWindow { get => AccurateTimer.TimingWindow; }
 	public float TimingWindowMs { get => AccurateTimer.TimingWindow * 1000f; }
 	public float QueueingWindow { get => AccurateTimer.QueueingWindow; }
@@ -128,8 +127,8 @@ public partial class Music : Node
 				{
 					await ToSignal(GetTree().CreateTimer(upcomingBeat.timeUntil - callback.timeBefore), "timeout".ToStringName());
 					// Check if the callback was removed before the timeout
-					// if (PredictiveBeatCallbacks[upcomingBeat.beatTime].Contains(callback))
-					callback.callback(upcomingBeat.beatTime);
+					if (PredictiveBeatCallbacks[upcomingBeat.beatTime].Contains(callback))
+						callback.callback(upcomingBeat.beatTime);
 				}).Invoke();
 			}
 		}
@@ -205,7 +204,7 @@ public partial class Music : Node
 			return;
 
 		var startTime = (float)StartingFromBeat * SecondsPerBeat;
-		CurrentTrack.PlayAfterDelay((float)SongDelay / 1000, startTime);
+		CurrentTrack.PlayAfterDelay(SongDelay, startTime);
 		CurrentTrack.Volume = Preferences.Singleton.MusicVolume;
 
 		PreciseBeatIndex = (long)Math.Round(StartingFromBeat / MinBeatSize) - 1;
