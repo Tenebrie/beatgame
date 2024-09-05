@@ -72,7 +72,7 @@ public partial class Projectile : Node3D
 			CleanUp();
 
 			if (ImpactAudio != null)
-				Audio.Play(ImpactAudio, GlobalPosition);
+				Audio.Play(ImpactAudio, GlobalPosition, 1.2f);
 
 			if (ImpactEffect != null)
 			{

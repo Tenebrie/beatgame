@@ -1,4 +1,6 @@
-namespace Project;
+using Project;
+
+namespace BeatGame.scripts.music;
 public partial class MusicTrackSpaceship : MusicTrack
 {
 	public MusicTrackSpaceship()

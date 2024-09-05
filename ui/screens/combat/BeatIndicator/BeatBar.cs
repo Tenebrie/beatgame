@@ -46,7 +46,7 @@ public partial class BeatBar : Control
 		{
 			float dir = Mirrored ? 1 : -1;
 			var time = CastUtils.GetEngineTime();
-			var pos = Music.Singleton.SongDelay / 6f * (1f - (time - StartsAt) / (EndsAt - StartsAt)) * 1000f;
+			var pos = Music.Singleton.settings.SongDelay / 6f * (1f - (time - StartsAt) / (EndsAt - StartsAt)) * 1000f;
 			Position = new Vector2(pos * dir, 0);
 		}
 

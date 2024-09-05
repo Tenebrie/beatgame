@@ -37,7 +37,7 @@ public partial class SkillBerserkersRage : BaseSkill
 				return;
 
 			var time = ((float)Time.GetTicksMsec()) / 1000;
-			if (time - LastTriggerAt < Music.Singleton.SecondsPerBeat - AccurateTimer.TimingWindow)
+			if (time - LastTriggerAt < Music.Singleton.SecondsPerBeat - Music.Singleton.TimingWindow)
 				return;
 
 			LastTriggerAt = time;

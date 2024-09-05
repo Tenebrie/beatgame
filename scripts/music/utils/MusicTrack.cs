@@ -1,6 +1,7 @@
 using Godot;
+using Project;
 
-namespace Project;
+namespace BeatGame.scripts.music;
 
 public partial class MusicTrack : Node
 {

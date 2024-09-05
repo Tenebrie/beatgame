@@ -33,7 +33,7 @@ public partial class BeatIndicator : Control
 	public void OnVisualBeat(BeatTime _)
 	{
 		var time = CastUtils.GetEngineTime();
-		var endsAt = time + Music.Singleton.SongDelay;
+		var endsAt = time + Music.Singleton.settings.SongDelay;
 
 		var isHalfBeat = Music.Singleton.VisualBeatTimer.TickIndex % 2 == 1;
 		var barGroup = new List<BeatBar>();

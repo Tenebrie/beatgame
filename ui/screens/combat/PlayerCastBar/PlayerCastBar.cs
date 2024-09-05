@@ -45,9 +45,9 @@ public partial class PlayerCastBar : Control
 		GreenZone.SetFillOpacity(.3f);
 		SetCastBarAlpha(1.0f);
 
-		var timingWindow = AccurateTimer.TimingWindow;
+		var timingWindow = Music.Singleton.TimingWindow;
 		var totalWidth = Bar.Size.X;
-		GreenZone.Size = new Vector2(timingWindow / (float)Bar.MaxValue * totalWidth, GreenZone.Size.Y);
+		GreenZone.Size = new Vector2(totalWidth * timingWindow / (float)Bar.MaxValue, GreenZone.Size.Y);
 		GreenZone.Position = new Vector2(Bar.Position.X + totalWidth - GreenZone.Size.X, Bar.Position.Y);
 		UpdateBarValue();
 	}
@@ -57,8 +57,8 @@ public partial class PlayerCastBar : Control
 		if (cast != ActiveCast)
 			return;
 
+		UpdateBarValue(forceFull: true);
 		ActiveCast = null;
-		UpdateBarValue();
 
 		Bar.SetFillColor(new Color(0.15f, 0.5f, 0.15f));
 	}
@@ -95,13 +95,15 @@ public partial class PlayerCastBar : Control
 		(CastIconTexture.Material as ShaderMaterial).SetShaderParameter("Modulate", clampedValue);
 	}
 
-	private void UpdateBarValue()
+	private void UpdateBarValue(bool forceFull = false)
 	{
 		var time = CastUtils.GetEngineTime();
 		if (ActiveCast == null)
 			return;
 
 		var value = (time - CastStartedAt) / (CastEndsAt - CastStartedAt);
+		if (forceFull)
+			value = 1;
 		if (ActiveCast.Settings.ReversedCastBar)
 			Bar.Value = (1 - value) * Bar.MaxValue;
 		else

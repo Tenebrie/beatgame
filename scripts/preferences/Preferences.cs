@@ -16,6 +16,13 @@ public partial class Preferences : Node
 		}
 	}
 
+	private float audioVolume = 1.0f;
+	public float AudioVolume
+	{
+		get => audioVolume;
+		set => audioVolume = value;
+	}
+
 	private float musicVolume = 1.0f;
 	public float MusicVolume
 	{
@@ -87,6 +94,7 @@ public partial class Preferences : Node
 		var config = new ConfigFile();
 
 		config.SetValue("section", "mainVolume", MainVolume);
+		config.SetValue("section", "audioVolume", audioVolume);
 		config.SetValue("section", "musicVolume", musicVolume);
 		config.SetValue("section", "cameraHeight", CameraHeight);
 		config.SetValue("section", "chillMode", ChillMode);
@@ -101,6 +109,7 @@ public partial class Preferences : Node
 		config.Load("user://config.cfg");
 
 		mainVolume = (float)config.GetValue("section", "mainVolume", 0.5f);
+		audioVolume = (float)config.GetValue("section", "audioVolume", 1.0f);
 		musicVolume = (float)config.GetValue("section", "musicVolume", 1.0f);
 		cameraHeight = (float)config.GetValue("section", "cameraHeight", 0.25f);
 		chillMode = (bool)config.GetValue("section", "chillMode", true);

@@ -26,7 +26,7 @@ public partial class EntitySummonWisp : Node3D
 		lifetimeTimer.Start();
 
 		Music.Singleton.BeatTick += OnBeatTick;
-		Music.Singleton.OnBeforeBeatTick(BeatTime.Whole | BeatTime.Half, OnBeforeBeatTick, 0.08f);
+		Music.Singleton.OnBeforeBeatTick(BeatTime.Whole | BeatTime.Half, OnBeforeBeatTick, 0.12f);
 	}
 
 	public override void _ExitTree()
@@ -49,7 +49,7 @@ public partial class EntitySummonWisp : Node3D
 		var engineTime = CastUtils.GetEngineTime();
 
 		var rotation = PositionRadians + engineTime * Music.Singleton.GameSpeed / 4 * Math.PI % 360;
-		var offset = (Vector3.Forward.Rotated(Vector3.Up, (float)rotation) + Vector3.Up) * TargetUnit.Targetable.SelectionRadius * 1.5f;
+		var offset = (Vector3.Forward.Rotated(Vector3.Up, (float)rotation) + Vector3.Up * 1.5f) * TargetUnit.Targetable.SelectionRadius;
 		var targetPos = TargetUnit.GlobalCastAimPosition + offset;
 
 		var velocity = (targetPos - GlobalPosition) * (float)delta * 5f;
@@ -84,7 +84,7 @@ public partial class EntitySummonWisp : Node3D
 		if (!positioningTimer.IsStopped() || lifetimeTimer.IsStopped())
 			return;
 
-		Audio.Play(Lib.Audio.SfxMagicLaunch01, GlobalPosition, 0.5f);
+		Audio.Play(Lib.Audio.SfxMagicLaunch01, GlobalPosition, 1.5f);
 	}
 
 	async void Cleanup()

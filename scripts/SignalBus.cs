@@ -1,3 +1,4 @@
+using BeatGame.scripts.music;
 using Godot;
 
 namespace Project;

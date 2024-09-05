@@ -1,15 +1,14 @@
 using System;
 using Godot;
+using Project;
 
-namespace Project;
+namespace BeatGame.scripts.music;
 
 public partial class AccurateTimer : Node
 {
 	[Signal] public delegate void TimeoutEventHandler(BeatTime time);
 	[Signal] public delegate void CatchUpTickEventHandler(BeatTime time);
 
-	public static float TimingWindow = 0.05f; // seconds
-	public static float QueueingWindow = 30f; // seconds
 	public float Calibration = 0;
 
 	public BeatTime BeatTime;
@@ -24,7 +23,6 @@ public partial class AccurateTimer : Node
 	{
 		IsStarted = true;
 		waitTime = 1f / ((float)bpm / 60f);
-		this.Log(waitTime);
 		startTime = CastUtils.GetEngineTime();
 		LastTickedAt = CastUtils.GetEngineTime();
 
