@@ -138,19 +138,32 @@ public static class CastUtils
 
 	public static string GetReadableCastTimings(this BaseCast.CastSettings settings)
 	{
-		return "[color=orange]:)[/color]";
+		return string.Empty;
 	}
 
-	public static string MakeDescription(params string[] strings)
+	readonly static Regex scalingRegex = new("{\\|\\|([^|]+)\\|\\|}");
+	readonly static Regex valueRegex = new("{([^}]+)}");
+	readonly static Regex passiveRegex = new("\\(\\(([^}]+)\\)\\)");
+	public static string MakeDescription(BaseUnit unit, params string[] strings)
 	{
-		var valueRegex = new Regex("{([^}]+)}");
-		var passiveRegex = new Regex("\\(\\(([^}]+)\\)\\)");
 		return strings.Select(str =>
 		{
-			var s1 = valueRegex.Replace(str, (q) => $"{Colors.Tag(q.Groups[1])}");
-			var s2 = passiveRegex.Replace(s1, (q) => $"{Colors.Lore(q.Groups[1])}");
+			var s0 = scalingRegex.Replace(str, (q) => ParseScalingDescriptionValue(unit, q.Groups[1].Value));
+			var s1 = valueRegex.Replace(s0, (q) => Colors.Tag(q.Groups[1]));
+			var s2 = passiveRegex.Replace(s1, (q) => Colors.Lore(q.Groups[1]));
 			return s2;
 		}).ToArray().Join(" ");
+	}
+
+	static string ParseScalingDescriptionValue(BaseUnit unit, string str)
+	{
+		if (string.IsNullOrEmpty(str))
+			return string.Empty;
+
+		var unitValue = UnitValue.FromString(str);
+		var value = Colors.Tag(unitValue.GetValue(unit).ToString());
+		var explanation = Colors.Lore($"({unitValue.GetExplanation()})");
+		return $"{value} {explanation}";
 	}
 
 	public static Color GetAllianceColor(UnitAlliance alliance)

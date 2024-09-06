@@ -153,6 +153,11 @@ public partial class ObjectBuffs : ComposableScript
 				beatTickingBuffTypes.Add(buff.GetType());
 		}
 
+		foreach (UnitStat stat in (UnitStat[])Enum.GetValues(typeof(UnitStat)))
+		{
+			Parent.Stats.Set(stat, (int)Math.Max(0, visitor.Stats[stat]));
+		}
+
 		foreach (ObjectResourceType resource in (ObjectResourceType[])Enum.GetValues(typeof(ObjectResourceType)))
 		{
 			visitor.PercentageDamageTaken[resource] = Math.Clamp(visitor.PercentageDamageTaken[resource], 0, 10);

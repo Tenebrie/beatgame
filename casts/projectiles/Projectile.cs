@@ -76,8 +76,10 @@ public partial class Projectile : Node3D
 
 			if (ImpactEffect != null)
 			{
-				var impact = Lib.LoadScene(ImpactEffect).Instantiate() as ProjectileImpact;
+				var impact = Lib.LoadScene(ImpactEffect).Instantiate<Node3D>();
 				GetTree().Root.AddChild(impact);
+				var scale = TargetUnit.Targetable.SelectionRadius;
+				impact.Scale = new Vector3(scale, scale, scale);
 				impact.GlobalPosition = GlobalPosition;
 			}
 

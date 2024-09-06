@@ -69,7 +69,7 @@ public partial class EntitySummonWisp : Node3D
 			damage: 5,
 			flightDuration: 1,
 			impactAudio: Lib.Audio.SfxMagicImpact01,
-			impactEffect: Lib.Effect.FireballProjectileImpact
+			impactEffect: Lib.Effect.SummonWispProjectileImpact
 		);
 		projectile.FollowSource(this);
 		if (lifetimeTimer.TimeLeft <= Music.Singleton.SecondsPerBeat * 2)

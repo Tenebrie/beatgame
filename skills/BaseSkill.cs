@@ -72,7 +72,7 @@ public partial class BaseSkill : Node
 		}
 	}
 
-	public static string MakeDescription(params string[] strings) => CastUtils.MakeDescription(strings);
+	public static string MakeDescription(params string[] strings) => CastUtils.MakeDescription(unit: null, strings);
 
 	public enum Type
 	{

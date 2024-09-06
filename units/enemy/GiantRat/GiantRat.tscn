@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://ctov8hk5nkmol"]
+[gd_scene load_steps=6 format=3 uid="uid://ctov8hk5nkmol"]
 
 [ext_resource type="Script" path="res://units/BaseUnit.cs" id="1_h7x46"]
 [ext_resource type="PackedScene" uid="uid://lihr8jy1v2vh" path="res://assets/meshes/rat01.tscn" id="2_q433e"]
 [ext_resource type="Script" path="res://units/enemy/GiantRat/GiantRatBehaviour.cs" id="3_hk1mu"]
+[ext_resource type="PackedScene" uid="uid://cqu5y0rbgi8pp" path="res://units/common/UnitCastAimPosition.tscn" id="4_nd5qx"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nujrg"]
 size = Vector3(0.704102, 0.660522, 1.33618)
@@ -22,3 +23,6 @@ script = ExtResource("3_hk1mu")
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 avoidance_enabled = true
 debug_enabled = true
+
+[node name="UnitCastAimPosition" parent="." instance=ExtResource("4_nd5qx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.417864, 0.0268263)

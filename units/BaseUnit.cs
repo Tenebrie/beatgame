@@ -14,6 +14,7 @@ public partial class BaseUnit : ComposableCharacterBody3D
 	public ObjectResource Health;
 	public ObjectResource Mana;
 	public ObjectBuffs Buffs;
+	public ObjectStats Stats;
 	public ObjectTargetable Targetable;
 	public ObjectForcefulMovement ForcefulMovement;
 	public ObjectCastLibrary CastLibrary;
@@ -42,6 +43,7 @@ public partial class BaseUnit : ComposableCharacterBody3D
 		Health = new(this, ObjectResourceType.Health, max: 100);
 		Mana = new(this, ObjectResourceType.Mana, max: 0);
 		Buffs = new(this);
+		Stats = new(this);
 		Targetable = new(this);
 		ForcefulMovement = new(this);
 		CastLibrary = new(this);

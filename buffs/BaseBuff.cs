@@ -31,7 +31,7 @@ public abstract partial class BaseBuff : Node
 		CreatedAt = CastUtils.GetEngineTime();
 	}
 
-	public static string MakeDescription(params string[] strings) => CastUtils.MakeDescription(strings);
+	public string MakeDescription(params string[] strings) => CastUtils.MakeDescription(Parent, strings);
 
 	float defaultDuration;
 	public float Duration

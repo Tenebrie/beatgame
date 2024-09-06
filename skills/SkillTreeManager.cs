@@ -135,9 +135,10 @@ public partial class SkillTreeManager : Node
 
 			links: new()
 			{
-				Link<SkillSummonWisp, SkillSummonStationary>(),
-				Link<SkillSummonStationary, SkillSummonFireball>(),
-				Link<SkillSummonStationary, SkillRescue>(1, BuffFactory.Of<BuffSummonTreeSummonHealth>()),
+				Link<SkillSummonWisp, SkillExtraWispDamage>(),
+				// Link<SkillSummonWisp, SkillSummonStationary>(),
+				// Link<SkillSummonStationary, SkillSummonFireball>(),
+				// Link<SkillSummonStationary, SkillRescue>(1, BuffFactory.Of<BuffSummonTreeSummonHealth>()),
 				// Link<SkillSummonStationary, SkillFriendsWithShields>(3, BuffFactory.Of<BuffSummonTreeSummonHealth>()),
 			}
 		));

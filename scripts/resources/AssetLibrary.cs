@@ -45,6 +45,7 @@ public class EffectLibrary
 	public string ShieldBashImpact = "uid://c73m8sv3vj7a3";
 	public string NukeOfTheGreatTree = "uid://coyww8dlf7ojb";
 	public string Vaporize = "uid://bg8p6fjana5hg";
+	public string SummonWispProjectileImpact = "uid://covvxobulnaq0";
 }
 
 public class UILibrary

@@ -57,14 +57,10 @@ anim_speed_curve = SubResource("CurveTexture_86hov")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vkxsc"]
 transparency = 1
 blend_mode = 1
+shading_mode = 0
 vertex_color_use_as_albedo = true
 albedo_color = Color(0.231373, 0.698039, 0.937255, 1)
 albedo_texture = ExtResource("2_hno1r")
-emission_enabled = true
-emission = Color(0.00392157, 0.721569, 0.870588, 1)
-emission_energy_multiplier = 0.16
-emission_texture = ExtResource("2_hno1r")
-rim_tint = 0.0
 detail_mask = ExtResource("3_ajf0r")
 billboard_mode = 3
 billboard_keep_scale = true
