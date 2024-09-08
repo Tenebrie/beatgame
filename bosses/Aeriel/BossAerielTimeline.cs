@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using BeatGame.scripts.music;
 using Godot;
 
 namespace Project;
@@ -13,6 +14,7 @@ public partial class BossAerielTimeline : BaseTimeline
 	public BossAerielTimeline(BossAeriel parent) : base(parent)
 	{
 		Parent = parent;
+		MusicTrack = MusicLibrary.Singleton.BossArenaAeriel;
 		GotoAbleton(1);
 
 		Mark("Start");

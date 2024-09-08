@@ -6,6 +6,7 @@ public enum PlayableScene : int
 	TrainingRoom = 2,
 	BossArenaAeriel = 3,
 	BossArenaCelestios = 31,
+	DungeonRatBasement = 401,
 }
 
 public static class PlayableSceneExtensions

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://btrvvrii2jdm6"]
 
 [ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Wall_Tunnel_Entrance_01_mesh/SM_Env_Wall_Tunnel_Entrance_01_4300000.mesh" id="1_dt2te"]
-[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_dt2c1"]
+[ext_resource type="Material" uid="uid://egwfatbxefmf" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_dt2c1"]
 
 [node name="SM_Env_Wall_Tunnel_Entrance_01" type="Node3D"]
 metadata/ufile_ids = ["323c68ad1928c8847a6bd6ea4a553bc9:476094", "323c68ad1928c8847a6bd6ea4a553bc9:120114", "323c68ad1928c8847a6bd6ea4a553bc9:3334492", "323c68ad1928c8847a6bd6ea4a553bc9:2371418", "323c68ad1928c8847a6bd6ea4a553bc9:64345543633218224", "323c68ad1928c8847a6bd6ea4a553bc9:64404698089753594", "323c68ad1928c8847a6bd6ea4a553bc9:64564958297311630", "323c68ad1928c8847a6bd6ea4a553bc9:64422042705334440"]

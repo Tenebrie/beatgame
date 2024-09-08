@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using BeatGame.scripts.music;
 using Godot;
 
 namespace Project;
@@ -13,6 +14,8 @@ public partial class BaseTimeline : Node
 	public Dictionary<string, double> Marks = new();
 	public int CurrentElementIndex = 0;
 	public double EditorPointer = 0;
+
+	public MusicTrack MusicTrack;
 
 	bool isStarted = false;
 	public CastTargetData targetData = new();
@@ -67,6 +70,7 @@ public partial class BaseTimeline : Node
 		targetData.HostileUnit = PlayerController.AllPlayers[0];
 		Elements = Elements.OrderBy(el => el.BeatIndex).ThenBy(el => el.Priority).ToList();
 		FastForwardTo(targetIndex);
+		Music.Singleton.Start();
 	}
 
 	public void OnBeatTick(BeatTime time)
@@ -207,11 +211,6 @@ public partial class BaseTimeline : Node
 			},
 		};
 		Elements.Add(element);
-	}
-
-	public enum EditorMode
-	{
-
 	}
 }
 

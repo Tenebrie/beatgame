@@ -11,6 +11,8 @@ public partial class MusicLibrary : Node
 
 	public override void _EnterTree()
 	{
+		instance = this;
+
 		TrainingRoom = new MusicTrackIntermission();
 		AddChild(TrainingRoom);
 		BossArenaAeriel = new MusicTrackAeriel();
@@ -18,4 +20,7 @@ public partial class MusicLibrary : Node
 		BossArenaCelestios = new MusicTrackTest();
 		AddChild(BossArenaCelestios);
 	}
+
+	private static MusicLibrary instance = null;
+	public static MusicLibrary Singleton => instance;
 }

@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://d3o3273sfgwuk"]
+
+[ext_resource type="PackedScene" uid="uid://dgv0c73mipguy" path="res://assets/meshes/sewerWall01.glb" id="1_fl744"]
+[ext_resource type="Material" uid="uid://egwfatbxefmf" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_44dmj"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_w8mps"]
+size = Vector3(2, 1, 0.2)
+
+[node name="WallSmooth01" type="StaticBody3D"]
+collision_layer = 33
+input_ray_pickable = false
+
+[node name="sewerWall01" parent="." instance=ExtResource("1_fl744")]
+transform = Transform3D(-0.5, 0, -7.54979e-08, 0, 0.5, 0, 7.54979e-08, 0, -0.5, 0, 0, 0)
+
+[node name="Cube" parent="sewerWall01" index="0"]
+surface_material_override/0 = ExtResource("2_44dmj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_w8mps")
+
+[editable path="sewerWall01"]

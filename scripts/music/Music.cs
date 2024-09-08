@@ -99,9 +99,9 @@ public partial class Music : Node
 		ProcessPredictiveBeatCallbacks();
 	}
 
-	private void PrepareSceneSong(PlayableScene scene)
+	private void PrepareSceneSong(PlayableScene _)
 	{
-		CurrentTrack = scene == PlayableScene.BossArenaAeriel ? musicLibrary.BossArenaAeriel : musicLibrary.TrainingRoom;
+		CurrentTrack = musicLibrary.TrainingRoom;
 	}
 
 	private async void PlaySceneSong(PlayableScene scene)
@@ -111,6 +111,12 @@ public partial class Music : Node
 			await ToSignal(GetTree().CreateTimer(1), "timeout".ToStringName());
 			Start();
 		}
+	}
+
+	public void Start(MusicTrack track)
+	{
+		CurrentTrack = track;
+		Start();
 	}
 
 	public void Start()
@@ -170,8 +176,5 @@ public partial class Music : Node
 	public static float GetBeatsPerSecond() => Singleton.BeatsPerSecond;
 	public static float GetSecondsPerBeat() => Singleton.SecondsPerBeat;
 	private static Music instance = null;
-	public static Music Singleton
-	{
-		get => instance;
-	}
+	public static Music Singleton => instance;
 }

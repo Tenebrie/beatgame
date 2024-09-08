@@ -26,7 +26,7 @@ public partial class TimelineManager : Node
 
 		fightStarted = true;
 		EmitSignal(SignalName.FightStarting);
-		Music.Singleton.Start();
+		// Music.Singleton.Start();
 		EnvironmentController.Singleton.SetEnabled("bg_audio", false);
 	}
 

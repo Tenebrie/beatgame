@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://bvyaeqod8wt8p"]
+
+[ext_resource type="PackedScene" uid="uid://bpbm05xv8u4d2" path="res://assets/meshes/pipeStraight01.glb" id="1_jiumn"]
+[ext_resource type="Material" uid="uid://dkvl5yey7an67" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01_Metallic.tres" id="2_soxta"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xosia"]
+size = Vector3(0.470337, 0.476318, 4.07663)
+
+[node name="PipeStraight01" type="StaticBody3D"]
+
+[node name="pipeStraight01" parent="." instance=ExtResource("1_jiumn")]
+
+[node name="Cylinder" parent="pipeStraight01" index="0"]
+surface_material_override/0 = ExtResource("2_soxta")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00323486, -0.00231934, 0.038681)
+shape = SubResource("BoxShape3D_xosia")
+
+[editable path="pipeStraight01"]

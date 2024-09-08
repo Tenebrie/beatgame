@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://gh6erw17yyj4"]
+
+[ext_resource type="PackedScene" uid="uid://cplyflcn2r2s7" path="res://assets/meshes/sewerGrateChipped01.glb" id="1_vfwf8"]
+[ext_resource type="Material" uid="uid://egwfatbxefmf" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_hr2fn"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_sdock"]
+size = Vector3(2, 1, 0.2)
+
+[node name="WallSmoothGrateChipped01" type="StaticBody3D"]
+collision_layer = 33
+input_ray_pickable = false
+
+[node name="sewerGrateChipped01" parent="." instance=ExtResource("1_vfwf8")]
+transform = Transform3D(-0.5, 0, -4.37114e-08, 0, 0.5, 0, 4.37114e-08, 0, -0.5, 0, 0, 0)
+
+[node name="Cube" parent="sewerGrateChipped01" index="0"]
+surface_material_override/0 = ExtResource("2_hr2fn")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_sdock")
+
+[editable path="sewerGrateChipped01"]
