@@ -7,8 +7,13 @@ namespace Project;
 public enum UnitStat
 {
 	Power,
+	CastSpeed, // quantized
+	CritChance, // all abilities can crit
+	CritDamage,
+	DotSomething, // how do dots work? How to make dots scale fairly?
 	SummonPower,
 	SummonEfficiency,
+	CooldownReduction, // quantized????
 }
 
 public static class UnitStatExtensions

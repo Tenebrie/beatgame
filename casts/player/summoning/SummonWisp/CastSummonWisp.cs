@@ -34,6 +34,7 @@ public partial class CastSummonWisp : BaseCast
 		wisp.TargetUnit = target.HostileUnit;
 		wisp.PositionRadians = spawnAngleRadians;
 		wisp.SourceCast = this;
+		wisp.Damage = Unwrap(WispDamage);
 		wisp.lifeDuration = Unwrap(WispLifetime) * 2;
 		GetTree().CurrentScene.AddChild(wisp);
 		wisp.GlobalPosition = Parent.GlobalCastAimPosition;

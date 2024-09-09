@@ -18,11 +18,11 @@ public partial class BaseUnit : ComposableCharacterBody3D
 	public ObjectTargetable Targetable;
 	public ObjectForcefulMovement ForcefulMovement;
 	public ObjectCastLibrary CastLibrary;
+	public ObjectNameplate Nameplate;
 
 	public ObjectComponentLibrary Components;
 
-	[Export]
-	public UnitAlliance Alliance = UnitAlliance.Neutral;
+	[Export] public UnitAlliance Alliance = UnitAlliance.Neutral;
 
 	public const float TerminalVelocity = -30f;
 	public float BaseGravity = ProjectSettings.GetSetting("physics/3d/default_gravity").AsSingle();
@@ -47,6 +47,7 @@ public partial class BaseUnit : ComposableCharacterBody3D
 		Targetable = new(this);
 		ForcefulMovement = new(this);
 		CastLibrary = new(this);
+		Nameplate = new();
 
 		Components = new(this);
 		Music.Singleton.BeatTick += ProcessBeatTick;
@@ -61,6 +62,7 @@ public partial class BaseUnit : ComposableCharacterBody3D
 		AddChild(ForcefulMovement);
 		AddChild(CastLibrary);
 		AddChild(Components);
+		AddChild(Nameplate);
 
 		AddChild(new ObjectReactions(this));
 

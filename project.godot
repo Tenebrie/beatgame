@@ -277,8 +277,10 @@ Autorun={
 [layer_names]
 
 3d_render/layer_11="Layer 11 - Floors"
+3d_physics/layer_1="BaseLayer"
 3d_physics/layer_5="Floors"
 3d_physics/layer_6="Walls"
+3d_physics/layer_7="Ceilings"
 
 [rendering]
 

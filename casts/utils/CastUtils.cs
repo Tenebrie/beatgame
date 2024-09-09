@@ -103,22 +103,16 @@ public static class CastUtils
 		return new() { ArenaFacing.East, ArenaFacing.North, ArenaFacing.West, ArenaFacing.South };
 	}
 
-	public static Vector3 SnapToGround(this Node3D node, Vector3 fromPos)
+	public static Vector3 SnapToGround(this Node3D node, Vector3 pos)
 	{
-		var spaceState = node.GetWorld3D().DirectSpaceState;
-		var query = PhysicsRayQueryParameters3D.Create(fromPos + Vector3.Up * 5, fromPos + Vector3.Down * 10, 1 << 4);
-		var result = spaceState.IntersectRay(query);
-		if (result.Count == 0)
-			return Vector3.Zero;
-
-		return (Vector3)result["position"];
+		return Raycast.GetFirstHitPositionGlobal(node, pos + Vector3.Up * 10, pos + Vector3.Down * 10, Raycast.Layer.Floors);
 	}
 
 	public static Vector3 GetGroundedPosition(this Node3D node, float verticalOffset = 0.05f)
 	{
 		var pos = node is BaseUnit unit ? unit.GlobalCastAimPosition : node.GlobalPosition;
 		var spaceState = node.GetWorld3D().DirectSpaceState;
-		var query = PhysicsRayQueryParameters3D.Create(pos + Vector3.Up * 5, pos + Vector3.Down * 10, 1 << 4);
+		var query = PhysicsRayQueryParameters3D.Create(pos + Vector3.Up * 5, pos + Vector3.Down * 10, (uint)Raycast.Layer.Floors);
 		var result = spaceState.IntersectRay(query);
 		if (result.Count == 0)
 			return Vector3.Zero;
@@ -183,7 +177,7 @@ public static class CastUtils
 		var color = new Color(0, 0.7f, 0.7f);
 
 		if (alliance == UnitAlliance.Player)
-			color = new Color(0.7f, 0.7f, 0);
+			color = new Color(0.2f, 0.7f, 0.2f);
 		else if (alliance == UnitAlliance.Hostile)
 			color = new Color(0.7f, 0.0f, 0.0f);
 
@@ -196,7 +190,21 @@ public static class CastUtils
 		action?.Invoke();
 	}
 
+	static float PausedAt = 0;
+	static float TimeSpentPaused = 0;
+	public static void NotifyAboutPause()
+	{
+		PausedAt = GetTrueEngineTime();
+	}
+	public static void NotifyAboutUnpause()
+	{
+		TimeSpentPaused += GetTrueEngineTime() - PausedAt;
+	}
 	public static float GetEngineTime()
+	{
+		return GetTrueEngineTime() - TimeSpentPaused;
+	}
+	public static float GetTrueEngineTime()
 	{
 		return ((float)Time.GetTicksMsec()) / 1000;
 	}

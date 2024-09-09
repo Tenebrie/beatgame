@@ -17,7 +17,7 @@ public partial class MainMenuUI : Control
 		LoadGameButton.Pressed += OnNewGame;
 		SettingsButton.Pressed += OnSettings;
 		ExitButton.Pressed += () => GetTree().Quit();
-		LoadingManager.Singleton.SceneTransitioned += OnSceneTransitioned;
+		LoadingManager.Singleton.SceneChanged += OnSceneChanged;
 	}
 
 	void OnNewGame()
@@ -27,10 +27,10 @@ public partial class MainMenuUI : Control
 
 	void OnSettings()
 	{
-		
+		SignalBus.SendMessage("Settings is not implemented yet :(");
 	}
 
-	private void OnSceneTransitioned(PlayableScene scene)
+	private void OnSceneChanged(PlayableScene scene)
 	{
 		Visible = scene == PlayableScene.MainMenu;
 	}

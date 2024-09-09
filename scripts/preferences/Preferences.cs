@@ -16,13 +16,6 @@ public partial class Preferences : Node
 		}
 	}
 
-	private float audioVolume = 1.0f;
-	public float AudioVolume
-	{
-		get => audioVolume;
-		set => audioVolume = value;
-	}
-
 	private float musicVolume = 1.0f;
 	public float MusicVolume
 	{
@@ -30,7 +23,19 @@ public partial class Preferences : Node
 		set
 		{
 			musicVolume = value;
-			Music.Singleton.CurrentTrack.Volume = value;
+			AudioServer.SetBusVolumeDb(AudioServer.GetBusIndex("Music"), Mathf.LinearToDb(value));
+			SaveConfig();
+		}
+	}
+
+	private float audioVolume = 1.0f;
+	public float AudioVolume
+	{
+		get => audioVolume;
+		set
+		{
+			audioVolume = value;
+			AudioServer.SetBusVolumeDb(AudioServer.GetBusIndex("Effects"), Mathf.LinearToDb(value));
 			SaveConfig();
 		}
 	}
@@ -54,17 +59,6 @@ public partial class Preferences : Node
 		{
 			renderScale = value;
 			GetViewport().Scaling3DScale = value;
-			SaveConfig();
-		}
-	}
-
-	private bool chillMode = true;
-	public bool ChillMode
-	{
-		get => chillMode;
-		set
-		{
-			chillMode = value;
 			SaveConfig();
 		}
 	}
@@ -94,10 +88,9 @@ public partial class Preferences : Node
 		var config = new ConfigFile();
 
 		config.SetValue("section", "mainVolume", MainVolume);
-		config.SetValue("section", "audioVolume", audioVolume);
 		config.SetValue("section", "musicVolume", musicVolume);
+		config.SetValue("section", "audioVolume", audioVolume);
 		config.SetValue("section", "cameraHeight", CameraHeight);
-		config.SetValue("section", "chillMode", ChillMode);
 		config.SetValue("section", "msaaLevel", MsaaLevel);
 
 		config.Save("user://config.cfg");
@@ -109,10 +102,9 @@ public partial class Preferences : Node
 		config.Load("user://config.cfg");
 
 		mainVolume = (float)config.GetValue("section", "mainVolume", 0.5f);
-		audioVolume = (float)config.GetValue("section", "audioVolume", 1.0f);
 		musicVolume = (float)config.GetValue("section", "musicVolume", 1.0f);
+		audioVolume = (float)config.GetValue("section", "audioVolume", 1.0f);
 		cameraHeight = (float)config.GetValue("section", "cameraHeight", 0.25f);
-		chillMode = (bool)config.GetValue("section", "chillMode", true);
 		MsaaLevel = (int)config.GetValue("section", "msaaLevel", (int)Viewport.Msaa.Msaa4X);
 
 		renderScale = (float)config.GetValue("section", "renderScale", GetDefaultRenderScale());
@@ -121,6 +113,8 @@ public partial class Preferences : Node
 	public void ApplyPreferences()
 	{
 		AudioServer.SetBusVolumeDb(0, Mathf.LinearToDb(mainVolume));
+		AudioServer.SetBusVolumeDb(AudioServer.GetBusIndex("Music"), Mathf.LinearToDb(musicVolume));
+		AudioServer.SetBusVolumeDb(AudioServer.GetBusIndex("Effects"), Mathf.LinearToDb(audioVolume));
 		GetViewport().Msaa3D = (Viewport.Msaa)msaaLevel;
 		GetViewport().Scaling3DScale = renderScale;
 	}

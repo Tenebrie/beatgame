@@ -14,7 +14,7 @@ public partial class TargetingCircle : Node3D
 		decal = GetNode<CircleDecal>("CircleDecal");
 		decal.SetProgress(0);
 		decal.SetInnerAlpha(0);
-		decal.SetOuterWidth(3);
+		decal.SetOuterWidth(1);
 	}
 
 	public override void _Process(double delta)
@@ -27,6 +27,7 @@ public partial class TargetingCircle : Node3D
 	{
 		decal = GetNode<CircleDecal>("CircleDecal");
 		decal.Radius = radius;
+		decal.SetOuterWidth(decal.Radius * 7);
 	}
 	public void SetAlliance(UnitAlliance alliance)
 	{

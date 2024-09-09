@@ -18,7 +18,7 @@ public partial class CombatUI : Control
 		GetTree().Root.ContentScaleFactor = DisplayServer.ScreenGetScale();
 		SignalBus.Singleton.Connect(SignalBus.SignalName.UnitCreated, Callable.From<BaseUnit>(OnUnitCreated), (uint)ConnectFlags.Deferred);
 		SignalBus.Singleton.UnitDestroyed += OnUnitDestroyed;
-		LoadingManager.Singleton.SceneTransitioned += OnSceneTransitioned;
+		LoadingManager.Singleton.SceneChanged += OnSceneChanged;
 	}
 
 	private void OnUnitCreated(BaseUnit unit)
@@ -67,7 +67,7 @@ public partial class CombatUI : Control
 		}
 	}
 
-	private void OnSceneTransitioned(PlayableScene scene)
+	private void OnSceneChanged(PlayableScene scene)
 	{
 		Visible = scene != PlayableScene.MainMenu;
 	}

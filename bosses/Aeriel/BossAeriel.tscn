@@ -5,11 +5,6 @@
 [ext_resource type="Texture2D" uid="uid://bfq8lmy0qmd5b" path="res://assets/fire-particle.tga" id="3_te8rn"]
 [ext_resource type="PackedScene" uid="uid://cqu5y0rbgi8pp" path="res://units/common/UnitCastAimPosition.tscn" id="4_n0moj"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_5i6hr"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_0dci7"]
-size = Vector3(1, 2.07666, 1)
-
 [sub_resource type="Curve" id="Curve_aia4e"]
 max_value = 200.0
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.951852, 200), 0.0, 0.0, 0, 0]
@@ -174,19 +169,20 @@ material = SubResource("StandardMaterial3D_63ibo")
 size = Vector2(4, 4)
 orientation = 2
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_5i6hr"]
+radius = 2.45099
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0dci7"]
+size = Vector3(1, 0.736725, 1)
+
 [node name="BossAeriel" type="CharacterBody3D"]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0.146725, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.146725, 0)
 script = ExtResource("2_2251c")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00424194, 0.302639, -0.000579834)
-shape = SubResource("SphereShape3D_5i6hr")
+[node name="Visuals" type="Node3D" parent="."]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
 
-[node name="PlayerCatcherExtraCollision" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00424194, 0.840969, -0.000579834)
-shape = SubResource("BoxShape3D_0dci7")
-
-[node name="DarknessParticles" type="GPUParticles3D" parent="."]
+[node name="DarknessParticles" type="GPUParticles3D" parent="Visuals"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0931289, 0)
 amount = 200
 lifetime = 1.5
@@ -198,7 +194,7 @@ trail_lifetime = 4.24
 process_material = SubResource("ParticleProcessMaterial_3et0g")
 draw_pass_1 = SubResource("PlaneMesh_1b3dy")
 
-[node name="CoreParticles" type="GPUParticles3D" parent="."]
+[node name="CoreParticles" type="GPUParticles3D" parent="Visuals"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.33993, 0)
 amount = 100
 randomness = 0.43
@@ -209,7 +205,7 @@ trail_lifetime = 4.24
 process_material = SubResource("ParticleProcessMaterial_y86xo")
 draw_pass_1 = SubResource("PlaneMesh_bhk6t")
 
-[node name="InnerSoulParticles" type="GPUParticles3D" parent="."]
+[node name="InnerSoulParticles" type="GPUParticles3D" parent="Visuals"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.33993, 0)
 amount = 50
 randomness = 0.43
@@ -219,6 +215,14 @@ draw_order = 3
 trail_lifetime = 4.24
 process_material = SubResource("ParticleProcessMaterial_qpi01")
 draw_pass_1 = SubResource("PlaneMesh_abq3i")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00424194, 1.77993, -0.000579834)
+shape = SubResource("SphereShape3D_5i6hr")
+
+[node name="PlayerCatcherExtraCollision" type="CollisionShape3D" parent="."]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0.00424194, 1.45567, -0.000579834)
+shape = SubResource("BoxShape3D_0dci7")
 
 [node name="UnitCastAimPosition" parent="." instance=ExtResource("4_n0moj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.340124, 0)

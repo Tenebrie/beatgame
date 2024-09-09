@@ -36,7 +36,7 @@ public partial class PlayerSpellcasting : ComposableScript
 
 	public BaseCast GetCurrentCastingSpell()
 	{
-		return CastBindings.FirstOrDefault((entry) => entry.Value.IsCasting).Value;
+		return CastBindings.FirstOrDefault((entry) => IsInstanceValid(entry.Value) && entry.Value.IsCasting).Value;
 	}
 
 	// Automatically bind a new cast to a first available slot

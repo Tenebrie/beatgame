@@ -13,6 +13,7 @@ public partial class ObjectTargetable : ComposableScript
 	public float hoverHighlight;
 
 	public TargetingCircle selectionModel = null;
+
 	public float SelectionRadius = 1f;
 
 	public ObjectTargetable(BaseUnit parent) : base(parent) { }
@@ -98,9 +99,9 @@ public partial class ObjectTargetable : ComposableScript
 		if (targeted)
 		{
 			selectionModel = Lib.LoadScene(Lib.Effect.TargetingCircle).Instantiate() as TargetingCircle;
+			Parent.AddChild(selectionModel);
 			selectionModel.SetAlliance(Parent.Alliance);
 			selectionModel.SetRadius(SelectionRadius);
-			Parent.AddChild(selectionModel);
 		}
 		else if (selectionModel != null && IsInstanceValid(selectionModel))
 		{

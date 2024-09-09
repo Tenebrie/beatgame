@@ -7,7 +7,7 @@ namespace Project;
 public partial class LoadingManager : Node
 {
 	[Signal] public delegate void SceneTransitionStartedEventHandler(PlayableScene scene);
-	[Signal] public delegate void SceneTransitionedEventHandler(PlayableScene scene);
+	[Signal] public delegate void SceneChangedEventHandler(PlayableScene scene);
 	[Signal] public delegate void SceneTransitionFinishedEventHandler(PlayableScene scene);
 	[Signal] public delegate void StateChangedEventHandler(State state);
 	[Signal] public delegate void ResourceLoadingProgressedEventHandler(float current, float total);
@@ -41,7 +41,7 @@ public partial class LoadingManager : Node
 	{
 		var path = GetTree().CurrentScene.SceneFilePath;
 		var playableScene = Lib.Scene.ToEnum(path);
-		EmitSignal(SignalName.SceneTransitioned, playableScene.ToVariant());
+		EmitSignal(SignalName.SceneChanged, playableScene.ToVariant());
 	}
 
 	public void TransitionToCurrentScene()
@@ -107,7 +107,7 @@ public partial class LoadingManager : Node
 
 		var targetScene = GD.Load<PackedScene>(Lib.Scene.ToPath(TransitioningTo));
 		GetTree().ChangeSceneToPacked(targetScene);
-		EmitSignal(SignalName.SceneTransitioned, TransitioningTo.ToVariant());
+		EmitSignal(SignalName.SceneChanged, TransitioningTo.ToVariant());
 		await ToSignal(GetTree().CreateTimer(0.5f), "timeout".ToStringName());
 		SetState(State.FadeInStarted);
 	}
@@ -118,11 +118,10 @@ public partial class LoadingManager : Node
 		EmitSignal(SignalName.StateChanged, (int)state);
 	}
 
+	public PlayableScene CurrentScene => Lib.Scene.ToEnum(GetTree().CurrentScene.SceneFilePath);
+
 	private static LoadingManager instance = null;
-	public static LoadingManager Singleton
-	{
-		get => instance;
-	}
+	public static LoadingManager Singleton => instance;
 
 	public enum State : int
 	{
@@ -137,4 +136,8 @@ public partial class LoadingManager : Node
 		Music,
 		TransitionUI,
 	}
+}
+
+public static class SceneManager {
+	public static LoadingManager Singleton => LoadingManager.Singleton;
 }

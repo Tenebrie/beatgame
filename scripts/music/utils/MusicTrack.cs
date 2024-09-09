@@ -16,16 +16,16 @@ public partial class MusicTrack : Node
 	{
 		AudioStream = Lib.LoadVorbis(ResourcePath);
 		AudioPlayer.Stream = AudioStream;
+		AudioPlayer.Bus = "Music".ToStringName();
 		AddChild(AudioPlayer);
 		AudioPlayer.Finished += OnFinished;
 	}
 
 	public async void PlayAfterDelay(float delay, float fromPosition)
 	{
-		await ToSignal(GetTree().CreateTimer(delay), "timeout".ToStringName());
+		await ToSignal(GetTree().CreateTimer(delay, processAlways: false), "timeout".ToStringName());
 
 		SignalBus.Singleton.EmitSignal(SignalBus.SignalName.TrackStarted, this);
-		Volume = Preferences.Singleton.MusicVolume;
 		AudioPlayer.Play();
 		AudioPlayer.Seek(fromPosition);
 	}

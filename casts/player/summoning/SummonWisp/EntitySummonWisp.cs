@@ -7,6 +7,7 @@ public partial class EntitySummonWisp : Node3D
 {
 	public BaseUnit TargetUnit;
 	public BaseCast SourceCast;
+	public float Damage;
 	public double PositionRadians;
 	public float lifeDuration; // beats
 
@@ -66,7 +67,7 @@ public partial class EntitySummonWisp : Node3D
 			source: SourceCast,
 			targetUnit: TargetUnit,
 			globalPosition: GlobalPosition,
-			damage: 5,
+			damage: Damage,
 			flightDuration: 1,
 			impactAudio: Lib.Audio.SfxMagicImpact01,
 			impactEffect: Lib.Effect.SummonWispProjectileImpact

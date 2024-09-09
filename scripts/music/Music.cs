@@ -126,7 +126,7 @@ public partial class Music : Node
 
 		var startTime = settings.StartingFromBeat * SecondsPerBeat;
 		CurrentTrack.PlayAfterDelay(settings.SongDelay, startTime);
-		CurrentTrack.Volume = Preferences.Singleton.MusicVolume;
+		CurrentTrack.Volume = 1.0f;
 
 		PreciseBeatIndex = (long)Math.Round(settings.StartingFromBeat / MinBeatSize) - 1;
 		PredictiveBeatTime = CastUtils.GetEngineTime();
@@ -149,7 +149,7 @@ public partial class Music : Node
 		if (!IsFadingOut || CurrentTrack == null || !IsStarted)
 			return;
 
-		CurrentTrack.Volume -= Preferences.Singleton.MusicVolume * 0.5f * (float)delta;
+		CurrentTrack.Volume -= CurrentTrack.Volume * 0.5f * (float)delta;
 	}
 
 	private async void OnSceneTransitionStarted(PlayableScene scene)

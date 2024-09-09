@@ -1,11 +1,11 @@
 [gd_resource type="VisualShader" load_steps=7 format=3 uid="uid://bdf3v6knchlu"]
 
 [sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_72hkj"]
-default_input_values = [0, Vector3(0, 0, 0), 1, Vector3(0.5, 0.5, 0.5)]
+default_input_values = [0, Vector3(0, 0, 0), 1, Vector3(1, 1, 1)]
 operator = 2
 
 [sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_5yc8l"]
-constant = 0.02
+constant = 0.05
 
 [sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_lsnmv"]
 operator = 2
@@ -43,12 +43,12 @@ void fragment() {
 
 
 // VectorOp:10
-	vec3 n_in10p1 = vec3(0.50000, 0.50000, 0.50000);
+	vec3 n_in10p1 = vec3(1.00000, 1.00000, 1.00000);
 	vec3 n_out10p0 = n_out9p0 * n_in10p1;
 
 
 // FloatConstant:12
-	float n_out12p0 = 0.020000;
+	float n_out12p0 = 0.050000;
 
 
 // FloatOp:14
@@ -63,6 +63,7 @@ void fragment() {
 
 }
 "
+graph_offset = Vector2(-759.653, -115.717)
 nodes/fragment/2/node = SubResource("VisualShaderNodeFloatParameter_3233x")
 nodes/fragment/2/position = Vector2(-860, 160)
 nodes/fragment/6/node = SubResource("VisualShaderNodeColorConstant_bw3qa")
@@ -70,9 +71,9 @@ nodes/fragment/6/position = Vector2(-580, 20)
 nodes/fragment/9/node = SubResource("VisualShaderNodeVectorOp_a3r4b")
 nodes/fragment/9/position = Vector2(-300, 100)
 nodes/fragment/10/node = SubResource("VisualShaderNodeVectorOp_72hkj")
-nodes/fragment/10/position = Vector2(-120, 220)
+nodes/fragment/10/position = Vector2(-100, 140)
 nodes/fragment/12/node = SubResource("VisualShaderNodeFloatConstant_5yc8l")
 nodes/fragment/12/position = Vector2(-80, -100)
 nodes/fragment/14/node = SubResource("VisualShaderNodeFloatOp_lsnmv")
-nodes/fragment/14/position = Vector2(-240, 360)
+nodes/fragment/14/position = Vector2(-280, 380)
 nodes/fragment/connections = PackedInt32Array(9, 0, 10, 0, 6, 0, 9, 0, 2, 0, 9, 1, 10, 0, 0, 0, 6, 0, 14, 0, 2, 0, 14, 1, 14, 0, 0, 5, 12, 0, 0, 1)

@@ -12,7 +12,7 @@ public partial class LarryBehaviour : BaseBehaviour
 	public override void _EnterTree()
 	{
 		Parent.FriendlyName = "Larry";
-		Parent.Targetable.SelectionRadius = 0.3f;
+		Parent.Targetable.SelectionRadius = 0.2f;
 	}
 
 	public override void _Ready()

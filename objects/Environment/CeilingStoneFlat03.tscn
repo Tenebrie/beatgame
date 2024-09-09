@@ -1,8 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://id58q3m7ucy6"]
+[gd_scene load_steps=3 format=3 uid="uid://id58q3m7ucy6"]
 
 [ext_resource type="PackedScene" path="res://assets/PolygonDungeon/Prefabs/Environments/Walls/SM_Env_Ceiling_Stone_Flat_03.tscn" id="2_28tui"]
 
-[node name="CeilingStoneFlat03" type="Node3D"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_aabpu"]
+size = Vector3(1, 0.036377, 1)
+
+[node name="CeilingStoneFlat03" type="StaticBody3D"]
 
 [node name="SM_Env_Ceiling_Stone_Flat_03" parent="." instance=ExtResource("2_28tui")]
 transform = Transform3D(20.2, 0, 0, 0, 20.2, 0, 0, 0, 20.2, -0.01, 0, -0.01)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.00476074, 0.5)
+shape = SubResource("BoxShape3D_aabpu")

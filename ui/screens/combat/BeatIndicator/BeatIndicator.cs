@@ -11,7 +11,7 @@ public partial class BeatIndicator : Control
 	{
 		Music.Singleton.BeatTick += OnBeat;
 		Music.Singleton.VisualBeatTimer.Timeout += OnVisualBeat;
-		LoadingManager.Singleton.SceneTransitioned += OnSceneTransitioned;
+		LoadingManager.Singleton.SceneChanged += OnSceneChanged;
 	}
 
 	public void OnBeat(BeatTime time)
@@ -55,7 +55,7 @@ public partial class BeatIndicator : Control
 		BarGroups.Add(barGroup);
 	}
 
-	void OnSceneTransitioned(PlayableScene _)
+	void OnSceneChanged(PlayableScene _)
 	{
 		foreach (var barGroup in BarGroups)
 			foreach (var bar in barGroup)

@@ -340,7 +340,7 @@ transform = Transform3D(-0.393355, 0, -3.43882e-08, 0, 0.393355, 0, 3.43882e-08,
 transform = Transform3D(-5.42458e-08, 0, 1.241, 0, 1.241, 0, -1.241, 0, -5.42458e-08, -0.0666519, -16.3825, 7.62108)
 
 [node name="TestBoss" parent="." instance=ExtResource("2_wx5uw")]
-transform = Transform3D(-2.34597, 0, -4.41548, 0, 5, 0, 4.41548, 0, -2.34597, -0.00532163, -0.0024409, -0.178204)
+transform = Transform3D(-0.469194, 0, -0.883095, 0, 1, 0, 0.883095, 0, -0.469194, -0.00532163, -0.0024409, -0.178204)
 Alliance = 2
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
