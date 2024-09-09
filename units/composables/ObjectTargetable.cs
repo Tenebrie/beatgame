@@ -21,13 +21,15 @@ public partial class ObjectTargetable : ComposableScript
 	public override void _Ready()
 	{
 		Parent.InputEvent += OnInputEvent;
-		Parent.MouseEntered += OnMouseEntered;
-		Parent.MouseExited += OnMouseExited;
+		SignalBus.Singleton.ObjectHovered += OnObjectHovered;
+		SignalBus.Singleton.ObjectUnhovered += OnObjectUnhovered;
 		SignalBus.Singleton.ObjectTargeted += OnObjectTargeted;
 	}
 
 	public override void _ExitTree()
 	{
+		SignalBus.Singleton.ObjectHovered -= OnObjectHovered;
+		SignalBus.Singleton.ObjectUnhovered -= OnObjectUnhovered;
 		SignalBus.Singleton.ObjectTargeted -= OnObjectTargeted;
 	}
 
@@ -76,14 +78,19 @@ public partial class ObjectTargetable : ComposableScript
 			SetTargeted(unit == Parent, alliance);
 	}
 
-	private void OnMouseEntered()
+	private void OnObjectHovered(BaseUnit unit)
 	{
-		SignalBus.Singleton.EmitSignal(SignalBus.SignalName.ObjectHovered, Parent);
+		if (isHovered && unit != Parent)
+			isHovered = false;
+
+		if (unit != Parent)
+			return;
+
 		isHovered = true;
 		hoverHighlight = 1.0f;
 	}
 
-	private void OnMouseExited()
+	private void OnObjectUnhovered(BaseUnit _)
 	{
 		isHovered = false;
 	}

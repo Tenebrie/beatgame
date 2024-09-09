@@ -7,9 +7,15 @@ public static class Raycast
 	public enum Layer : uint
 	{
 		Base = 1 << 0,
+		Hoverable = 1 << 1,
 		Floors = 1 << 4,
 		Walls = 1 << 5,
 		Ceilings = 1 << 6,
+	}
+
+	public static uint AsUnsignedInt(this Layer layer)
+	{
+		return (uint)layer;
 	}
 
 	public static Vector3 GetFirstHitPositionGlobal(Node3D baseNode, Vector3 fromPos, Vector3 toPos, Layer layer)

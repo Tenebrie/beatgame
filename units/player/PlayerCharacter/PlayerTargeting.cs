@@ -7,8 +7,9 @@ public partial class PlayerTargeting : ComposableScript
 {
 	new readonly PlayerController Parent;
 
+	Camera3D camera;
+	ShapeCast3D raycast;
 	public BaseUnit hoveredUnit;
-	// public BaseUnit targetedUnit;
 	public BaseUnit targetedAlliedUnit;
 	public BaseUnit targetedHostileUnit;
 
@@ -19,7 +20,11 @@ public partial class PlayerTargeting : ComposableScript
 
 	public override void _Ready()
 	{
-		SignalBus.Singleton.ObjectHovered += OnObjectHovered;
+		camera = Parent.GetComponent<Camera3D>();
+		raycast = new ShapeCast3D();
+		AddChild(raycast);
+		this.Log(camera);
+		// SignalBus.Singleton.ObjectHovered += OnObjectHovered;
 		SignalBus.Singleton.ObjectTargeted += OnObjectTargeted;
 		SignalBus.Singleton.ObjectUntargeted += OnObjectUntargeted;
 		SignalBus.Singleton.UnitDestroyed += OnUnitDestroyed;
@@ -27,15 +32,61 @@ public partial class PlayerTargeting : ComposableScript
 
 	public override void _ExitTree()
 	{
-		SignalBus.Singleton.ObjectHovered -= OnObjectHovered;
+		// SignalBus.Singleton.ObjectHovered -= OnObjectHovered;
 		SignalBus.Singleton.ObjectTargeted -= OnObjectTargeted;
 		SignalBus.Singleton.ObjectUntargeted -= OnObjectUntargeted;
 		SignalBus.Singleton.UnitDestroyed -= OnUnitDestroyed;
 	}
 
-	private void OnObjectHovered(BaseUnit unit)
+	public override void _PhysicsProcess(double delta)
 	{
+		var mousePos = GetViewport().GetMousePosition();
+		var from = camera.ProjectRayOrigin(mousePos);
+		var to = from + camera.ProjectRayNormal(mousePos) * 30;
+
+		raycast.GlobalPosition = from;
+		raycast.TargetPosition = raycast.ToLocal(to);
+		raycast.CollisionMask = Raycast.Layer.Hoverable.AsUnsignedInt();
+		var shape = new SphereShape3D
+		{
+			Radius = 0.25f
+		};
+		raycast.Shape = shape;
+		raycast.ForceShapecastUpdate();
+		for (var i = 0; i < raycast.GetCollisionCount(); i++)
+		{
+			var collider = raycast.GetCollider(i);
+			if (collider is BaseUnit unit)
+			{
+				HoverUnit(unit);
+				return;
+			}
+		}
+
+		if (raycast.GetCollisionCount() == 0)
+		{
+			UnhoverUnit(hoveredUnit);
+		}
+	}
+
+	private void HoverUnit(BaseUnit unit)
+	{
+		if (hoveredUnit == unit)
+			return;
+
+		this.Log("Hover!");
 		hoveredUnit = unit;
+		SignalBus.Singleton.EmitSignal(SignalBus.SignalName.ObjectHovered, hoveredUnit);
+	}
+
+	private void UnhoverUnit(BaseUnit unit)
+	{
+		if (hoveredUnit == null)
+			return;
+
+		this.Log("Unhover!");
+		SignalBus.Singleton.EmitSignal(SignalBus.SignalName.ObjectUnhovered, hoveredUnit);
+		hoveredUnit = null;
 	}
 
 	private void OnObjectTargeted(BaseUnit unit, TargetedUnitAlliance alliance)

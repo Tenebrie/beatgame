@@ -20,6 +20,7 @@ public partial class SignalBus : Node
 	/// </summary>
 	[Signal] public delegate void UnitDestroyedEventHandler(BaseUnit unit);
 	[Signal] public delegate void ObjectHoveredEventHandler(BaseUnit unit);
+	[Signal] public delegate void ObjectUnhoveredEventHandler(BaseUnit unit);
 	[Signal] public delegate void ObjectTargetedEventHandler(BaseUnit unit, TargetedUnitAlliance alliance);
 	[Signal] public delegate void ObjectUntargetedEventHandler(TargetedUnitAlliance alliance);
 	[Signal] public delegate void DamageTakenEventHandler(BuffIncomingDamageVisitor data);

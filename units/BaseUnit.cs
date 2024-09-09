@@ -55,6 +55,10 @@ public partial class BaseUnit : ComposableCharacterBody3D
 
 	public override void _Ready()
 	{
+		// All non-player units are hoverable
+		if (this is not PlayerController)
+			CollisionLayer += Raycast.Layer.Hoverable.AsUnsignedInt();
+
 		AddChild(Buffs);
 		AddChild(Health);
 		AddChild(Mana);
