@@ -153,14 +153,6 @@ public partial class PlayerMovement : ComposableScript
 			z: forwardVector.Z * InputVector.Y + rightVector.Z * InputVector.X
 		);
 
-		// TODO: Replace the const with visual model scale
-		// var rootMotionVector = Parent.Animation.GetRootMotionPosition();
-		// Parent.Velocity = new Vector3(
-		// 	x: forwardVector.X * rootMotionVector.Z * 0.25f / (float)delta + rightVector.X * rootMotionVector.X * 0.25f / (float)delta,
-		// 	y: 0.001f,
-		// 	z: forwardVector.Z * rootMotionVector.Z * 0.25f / (float)delta + rightVector.Z * rootMotionVector.X * 0.25f / (float)delta
-		// );
-
 		Parent.MoveAndSlide();
 
 		Parent.Velocity = velocity;

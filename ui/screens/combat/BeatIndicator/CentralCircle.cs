@@ -12,7 +12,6 @@ public partial class CentralCircle : Control
 	private Color HalfBeatColor = new(0, 255, 255);
 	public override void _Draw()
 	{
-		// TODO: Is it happening every frame?..
 		// Half beat backgrounds
 		DrawArc(new Vector2(-50, 0), 20, -(float)Math.PI / 2 + 0.3f, (float)Math.PI / 2 - 0.3f, 50, BaseColor, 40, true);
 		DrawArc(new Vector2(50, 0), 20, (float)Math.PI / 2 + 0.3f, (float)Math.PI + (float)Math.PI / 2 - 0.3f, 50, BaseColor, 40, true);

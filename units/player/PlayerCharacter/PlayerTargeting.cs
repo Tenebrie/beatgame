@@ -106,7 +106,6 @@ public partial class PlayerTargeting : ComposableScript
 		if (hoveredUnit == unit)
 			return;
 
-		this.Log("Hover!");
 		hoveredUnit = unit;
 		SignalBus.Singleton.EmitSignal(SignalBus.SignalName.ObjectHovered, hoveredUnit);
 	}
@@ -116,7 +115,6 @@ public partial class PlayerTargeting : ComposableScript
 		if (hoveredUnit == null)
 			return;
 
-		this.Log("Unhover!");
 		SignalBus.Singleton.EmitSignal(SignalBus.SignalName.ObjectUnhovered, hoveredUnit);
 		hoveredUnit = null;
 	}
