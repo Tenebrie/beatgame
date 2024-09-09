@@ -20,7 +20,6 @@ public partial class ObjectTargetable : ComposableScript
 
 	public override void _Ready()
 	{
-		Parent.InputEvent += OnInputEvent;
 		SignalBus.Singleton.ObjectHovered += OnObjectHovered;
 		SignalBus.Singleton.ObjectUnhovered += OnObjectUnhovered;
 		SignalBus.Singleton.ObjectTargeted += OnObjectTargeted;
@@ -130,13 +129,5 @@ public partial class ObjectTargetable : ComposableScript
 			_ => throw new NotImplementedException(),
 		};
 		SignalBus.Singleton.EmitSignal(SignalBus.SignalName.ObjectTargeted, Parent, alliance.ToVariant());
-	}
-
-	private void OnInputEvent(Node camera, InputEvent @event, Vector3 position, Vector3 normal, long shapeIdx)
-	{
-		if (@event.IsActionPressed("MouseInteract".ToStringName()) && !Input.IsActionPressed("HardCameraMove".ToStringName()))
-		{
-			MakeTargeted();
-		}
 	}
 }

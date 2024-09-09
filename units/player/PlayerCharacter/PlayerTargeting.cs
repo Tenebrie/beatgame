@@ -1,14 +1,18 @@
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using Godot;
 
 namespace Project;
 
 public partial class PlayerTargeting : ComposableScript
 {
+	const float MaxRaycastDist = 25;
+
 	new readonly PlayerController Parent;
 
+	Timer updateHoverTimer;
 	Camera3D camera;
-	ShapeCast3D raycast;
 	public BaseUnit hoveredUnit;
 	public BaseUnit targetedAlliedUnit;
 	public BaseUnit targetedHostileUnit;
@@ -21,13 +25,18 @@ public partial class PlayerTargeting : ComposableScript
 	public override void _Ready()
 	{
 		camera = Parent.GetComponent<Camera3D>();
-		raycast = new ShapeCast3D();
-		AddChild(raycast);
-		this.Log(camera);
 		// SignalBus.Singleton.ObjectHovered += OnObjectHovered;
 		SignalBus.Singleton.ObjectTargeted += OnObjectTargeted;
 		SignalBus.Singleton.ObjectUntargeted += OnObjectUntargeted;
 		SignalBus.Singleton.UnitDestroyed += OnUnitDestroyed;
+
+		updateHoverTimer = new()
+		{
+			Autostart = true,
+			WaitTime = 0.03f
+		};
+		updateHoverTimer.Timeout += OnUpdateHover;
+		AddChild(updateHoverTimer);
 	}
 
 	public override void _ExitTree()
@@ -38,35 +47,58 @@ public partial class PlayerTargeting : ComposableScript
 		SignalBus.Singleton.UnitDestroyed -= OnUnitDestroyed;
 	}
 
-	public override void _PhysicsProcess(double delta)
+	List<Vector3> GenerateMouseCastPositions(Vector2 mousePos, int offset)
+	{
+		var diagonalOffset = offset * 1.42f;
+		return new()
+		{
+			camera.ProjectRayNormal(mousePos + new Vector2(+offset, 0)),
+			camera.ProjectRayNormal(mousePos + new Vector2(-offset, 0)),
+			camera.ProjectRayNormal(mousePos + new Vector2(0, +offset)),
+			camera.ProjectRayNormal(mousePos + new Vector2(0, -offset)),
+			camera.ProjectRayNormal(mousePos + new Vector2(+diagonalOffset, +diagonalOffset)),
+			camera.ProjectRayNormal(mousePos + new Vector2(-diagonalOffset, +diagonalOffset)),
+			camera.ProjectRayNormal(mousePos + new Vector2(-diagonalOffset, -diagonalOffset)),
+			camera.ProjectRayNormal(mousePos + new Vector2(+diagonalOffset, -diagonalOffset)),
+		};
+	}
+
+	bool ProcessRaycastResult(Vector3 cameraOrigin, Vector3 cameraNormal)
+	{
+		var targetPosition = cameraOrigin + cameraNormal * MaxRaycastDist;
+		var hitUnit = Raycast.GetFirstHitUnitGlobal(Parent, cameraOrigin, targetPosition, Raycast.Layer.Hoverable);
+		if (hitUnit == null)
+			return false;
+
+		HoverUnit(hitUnit);
+		return true;
+	}
+
+	void OnUpdateHover()
 	{
 		var mousePos = GetViewport().GetMousePosition();
-		var from = camera.ProjectRayOrigin(mousePos);
-		var to = from + camera.ProjectRayNormal(mousePos) * 30;
+		var cameraOrigin = camera.ProjectRayOrigin(mousePos);
+		var cameraNormal = camera.ProjectRayNormal(mousePos);
 
-		raycast.GlobalPosition = from;
-		raycast.TargetPosition = raycast.ToLocal(to);
-		raycast.CollisionMask = Raycast.Layer.Hoverable.AsUnsignedInt();
-		var shape = new SphereShape3D
-		{
-			Radius = 0.25f
-		};
-		raycast.Shape = shape;
-		raycast.ForceShapecastUpdate();
-		for (var i = 0; i < raycast.GetCollisionCount(); i++)
-		{
-			var collider = raycast.GetCollider(i);
-			if (collider is BaseUnit unit)
-			{
-				HoverUnit(unit);
+		if (ProcessRaycastResult(cameraOrigin, cameraNormal))
+			return;
+
+		var firstRoundPositions = GenerateMouseCastPositions(mousePos, 5);
+		foreach (var basePos in firstRoundPositions)
+			if (ProcessRaycastResult(cameraOrigin, basePos))
 				return;
-			}
-		}
 
-		if (raycast.GetCollisionCount() == 0)
-		{
-			UnhoverUnit(hoveredUnit);
-		}
+		var secondRoundPositions = GenerateMouseCastPositions(mousePos, 10);
+		foreach (var basePos in secondRoundPositions)
+			if (ProcessRaycastResult(cameraOrigin, basePos))
+				return;
+
+		var thirdRoundPositions = GenerateMouseCastPositions(mousePos, 20);
+		foreach (var basePos in thirdRoundPositions)
+			if (ProcessRaycastResult(cameraOrigin, basePos))
+				return;
+
+		UnhoverUnit(hoveredUnit);
 	}
 
 	private void HoverUnit(BaseUnit unit)
@@ -113,6 +145,17 @@ public partial class PlayerTargeting : ComposableScript
 			targetedHostileUnit = null;
 		if (unit == hoveredUnit)
 			hoveredUnit = null;
+	}
+
+	public override void _UnhandledInput(InputEvent @event)
+	{
+		if (hoveredUnit == null)
+			return;
+
+		if (@event.IsActionPressed("MouseInteract".ToStringName()) && !Input.IsActionPressed("HardCameraMove".ToStringName()))
+		{
+			hoveredUnit.GetComponent<ObjectTargetable>().MakeTargeted();
+		}
 	}
 
 	public override void _Input(InputEvent @event)
