@@ -23,6 +23,7 @@ public partial class EntitySummonWisp : Node3D
 		positioningTimer.Start();
 
 		lifetimeTimer = new() { WaitTime = prepDuration + lifeDuration * Music.Singleton.SecondsPerBeat, OneShot = true };
+		lifetimeTimer.Timeout += Cleanup;
 		AddChild(lifetimeTimer);
 		lifetimeTimer.Start();
 

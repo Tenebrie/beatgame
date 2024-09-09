@@ -15,7 +15,7 @@ public partial class ObjectNameplate : BaseBehaviour
 		{
 			Text = Parent.FriendlyName,
 			Billboard = BaseMaterial3D.BillboardModeEnum.Enabled,
-			Position = Raycast.GetFirstHitPositionRelative(Parent, Vector3.Up * 5, Vector3.Zero, Raycast.Layer.Base) + Vector3.Up * 0.15f,
+			Position = Raycast.GetFirstHitPositionRelative(Parent, Vector3.Up * 5, Vector3.Zero, Raycast.Layer.Hoverable) + Vector3.Up * 0.15f,
 			FixedSize = true,
 			FontSize = 24,
 			PixelSize = 0.0008f,
