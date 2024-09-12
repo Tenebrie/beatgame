@@ -1,13 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://cj7pjptvs0hgl"]
+[gd_scene load_steps=3 format=3 uid="uid://cj7pjptvs0hgl"]
 
 [ext_resource type="Script" path="res://ui/screens/pause/PauseUI.cs" id="1_2h6ub"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_0qe1t"]
 font_size = 32
 
-[sub_resource type="LabelSettings" id="LabelSettings_41mo3"]
-
-[node name="PauseUI" type="Control" node_paths=PackedStringArray("MainVolumeSlider", "MusicVolumeSlider", "EffectVolumeSlider", "CameraHeightSlider", "MsaaSlider", "MenuButton", "ExitButton")]
+[node name="PauseUI" type="Control" node_paths=PackedStringArray("SongNameLabel", "SongTimeLabel", "ContinueButton", "SettingsButton", "MenuButton", "ExitButton")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -18,11 +16,10 @@ grow_vertical = 2
 mouse_filter = 2
 mouse_force_pass_scroll_events = false
 script = ExtResource("1_2h6ub")
-MainVolumeSlider = NodePath("Panel/VBoxContainer/MainVolume/MainVolumeSlider")
-MusicVolumeSlider = NodePath("Panel/VBoxContainer/MusicVolume/MusicVolumeSlider")
-EffectVolumeSlider = NodePath("Panel/VBoxContainer/EffectsVolume/EffectsVolumeSlider")
-CameraHeightSlider = NodePath("Panel/VBoxContainer/CameraHeight/CameraHeightSlider")
-MsaaSlider = NodePath("Panel/VBoxContainer/MsaaLevel/MsaaLevelSlider")
+SongNameLabel = NodePath("Panel/MarginContainer/HBoxContainer/VBoxContainer/SongNameLabel")
+SongTimeLabel = NodePath("Panel/MarginContainer/HBoxContainer/VBoxContainer/SongTimeLabel")
+ContinueButton = NodePath("Panel/MarginContainer/HBoxContainer/ContinueButton")
+SettingsButton = NodePath("Panel/MarginContainer/HBoxContainer/SettingsButton")
 MenuButton = NodePath("Panel/MarginContainer/HBoxContainer/MainMenuButton")
 ExitButton = NodePath("Panel/MarginContainer/HBoxContainer/ExitGameButton")
 
@@ -33,9 +30,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -249.0
+offset_left = -125.0
 offset_top = -227.0
-offset_right = 249.0
+offset_right = 125.0
 offset_bottom = 227.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -58,163 +55,6 @@ label_settings = SubResource("LabelSettings_0qe1t")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 78.0
-offset_bottom = -83.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="MainVolume" type="Control" parent="Panel/VBoxContainer"]
-custom_minimum_size = Vector2(0, 30)
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Panel/VBoxContainer/MainVolume"]
-layout_mode = 1
-anchors_preset = 9
-anchor_bottom = 1.0
-offset_top = -1.0
-offset_right = 150.0
-offset_bottom = -1.0
-grow_vertical = 2
-mouse_filter = 1
-text = "Main Volume"
-label_settings = SubResource("LabelSettings_41mo3")
-horizontal_alignment = 2
-vertical_alignment = 1
-
-[node name="MainVolumeSlider" type="HSlider" parent="Panel/VBoxContainer/MainVolume"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 160.0
-offset_right = -18.0
-grow_horizontal = 2
-grow_vertical = 2
-value = 50.0
-
-[node name="MusicVolume" type="Control" parent="Panel/VBoxContainer"]
-custom_minimum_size = Vector2(0, 30)
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Panel/VBoxContainer/MusicVolume"]
-layout_mode = 1
-anchors_preset = 9
-anchor_bottom = 1.0
-offset_top = -1.0
-offset_right = 150.0
-offset_bottom = -1.0
-grow_vertical = 2
-mouse_filter = 1
-text = "Music Volume"
-label_settings = SubResource("LabelSettings_41mo3")
-horizontal_alignment = 2
-vertical_alignment = 1
-
-[node name="MusicVolumeSlider" type="HSlider" parent="Panel/VBoxContainer/MusicVolume"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 160.0
-offset_right = -18.0
-grow_horizontal = 2
-grow_vertical = 2
-value = 50.0
-
-[node name="EffectsVolume" type="Control" parent="Panel/VBoxContainer"]
-custom_minimum_size = Vector2(0, 30)
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Panel/VBoxContainer/EffectsVolume"]
-layout_mode = 1
-anchors_preset = 9
-anchor_bottom = 1.0
-offset_top = -1.0
-offset_right = 150.0
-offset_bottom = -1.0
-grow_vertical = 2
-mouse_filter = 1
-text = "Effect Volume"
-label_settings = SubResource("LabelSettings_41mo3")
-horizontal_alignment = 2
-vertical_alignment = 1
-
-[node name="EffectsVolumeSlider" type="HSlider" parent="Panel/VBoxContainer/EffectsVolume"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 160.0
-offset_right = -18.0
-grow_horizontal = 2
-grow_vertical = 2
-value = 50.0
-
-[node name="CameraHeight" type="Control" parent="Panel/VBoxContainer"]
-custom_minimum_size = Vector2(0, 30)
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Panel/VBoxContainer/CameraHeight"]
-layout_mode = 1
-anchors_preset = 9
-anchor_bottom = 1.0
-offset_top = -1.0
-offset_right = 150.0
-offset_bottom = -1.0
-grow_vertical = 2
-mouse_filter = 1
-text = "Camera Height"
-label_settings = SubResource("LabelSettings_41mo3")
-horizontal_alignment = 2
-vertical_alignment = 1
-
-[node name="CameraHeightSlider" type="HSlider" parent="Panel/VBoxContainer/CameraHeight"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 160.0
-offset_right = -18.0
-grow_horizontal = 2
-grow_vertical = 2
-value = 50.0
-
-[node name="MsaaLevel" type="Control" parent="Panel/VBoxContainer"]
-custom_minimum_size = Vector2(0, 30)
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Panel/VBoxContainer/MsaaLevel"]
-layout_mode = 1
-anchors_preset = 9
-anchor_bottom = 1.0
-offset_top = -1.0
-offset_right = 150.0
-offset_bottom = -1.0
-grow_vertical = 2
-mouse_filter = 1
-text = "MSAA"
-label_settings = SubResource("LabelSettings_41mo3")
-horizontal_alignment = 2
-vertical_alignment = 1
-
-[node name="MsaaLevelSlider" type="HSlider" parent="Panel/VBoxContainer/MsaaLevel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 160.0
-offset_right = -18.0
-grow_horizontal = 2
-grow_vertical = 2
-max_value = 3.0
-value = 2.0
-ticks_on_borders = true
-
 [node name="MarginContainer" type="MarginContainer" parent="Panel"]
 layout_mode = 1
 anchors_preset = 7
@@ -223,7 +63,7 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -94.0
-offset_top = -40.0
+offset_top = -386.0
 offset_right = 94.0
 grow_horizontal = 2
 grow_vertical = 0
@@ -232,10 +72,40 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer"]
+[node name="HBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 20
 alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="SongNameLabel" type="Label" parent="Panel/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Song name
+"
+
+[node name="SongTimeLabel" type="Label" parent="Panel/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "03:12 / 05:53"
+
+[node name="ContinueButton" type="Button" parent="Panel/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(150, 40)
+layout_mode = 2
+text = "Continue"
+
+[node name="SettingsButton" type="Button" parent="Panel/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(150, 40)
+layout_mode = 2
+text = "Settings
+"
+
+[node name="TrainingRoomButton" type="Button" parent="Panel/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(150, 40)
+layout_mode = 2
+text = "Training Room"
 
 [node name="MainMenuButton" type="Button" parent="Panel/MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(150, 40)

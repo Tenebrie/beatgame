@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://g3sx6iqy7c36"]
+
+[ext_resource type="Script" path="res://ui/UserInterfaceManager.cs" id="1_ajwle"]
+
+[node name="UserInterfaceManager" type="Node"]
+process_mode = 3
+script = ExtResource("1_ajwle")

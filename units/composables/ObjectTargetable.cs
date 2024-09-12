@@ -46,14 +46,6 @@ public partial class ObjectTargetable : ComposableScript
 		}
 	}
 
-	// public override void _UnhandledInput(InputEvent @event)
-	// {
-	// 	if (@event.IsActionPressed("MouseInteract".ToStringName()) && !Input.IsActionPressed("HardCameraMove".ToStringName()))
-	// 	{
-	// 		SetTargeted(false, targetedAs);
-	// 	}
-	// }
-
 	private void UpdateHoverHighlight()
 	{
 		for (var i = 0; i < Parent.GetChildCount(); i++)

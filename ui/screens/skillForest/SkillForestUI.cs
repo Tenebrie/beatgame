@@ -37,16 +37,14 @@ public partial class SkillForestUI : Control
 		{
 			Visible = !Visible;
 		}
-		if (@event.IsActionPressed("Escape".ToStringName()) && Visible)
-		{
-			Visible = false;
-			GetViewport().SetInputAsHandled();
-		}
+	}
+
+	public bool HandleEscapeKey()
+	{
+		Visible = false;
+		return true;
 	}
 
 	private static SkillForestUI instance = null;
-	public static SkillForestUI Singleton
-	{
-		get => instance;
-	}
+	public static SkillForestUI Singleton => instance;
 }

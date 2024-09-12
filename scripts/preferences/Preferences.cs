@@ -1,132 +1,85 @@
+using System;
+using BeatGame.scripts.preferences;
 using Godot;
+using Project;
 
-namespace Project;
+namespace BeatGame.scripts.preferences;
 
 public partial class Preferences : Node
 {
-	private float mainVolume = 0.5f;
-	public float MainVolume
-	{
-		get => mainVolume;
-		set
-		{
-			mainVolume = value;
-			AudioServer.SetBusVolumeDb(0, Mathf.LinearToDb(value));
-			SaveConfig();
-		}
-	}
+	[Signal] public delegate void DraftChangedEventHandler();
 
-	private float musicVolume = 1.0f;
-	public float MusicVolume
-	{
-		get => musicVolume;
-		set
-		{
-			musicVolume = value;
-			AudioServer.SetBusVolumeDb(AudioServer.GetBusIndex("Music"), Mathf.LinearToDb(value));
-			SaveConfig();
-		}
-	}
+	public SettingsContainer DraftSettings;
+	public SettingsContainer AppliedSettings;
+	public SettingsContainer SavedSettings;
 
-	private float audioVolume = 1.0f;
-	public float AudioVolume
-	{
-		get => audioVolume;
-		set
-		{
-			audioVolume = value;
-			AudioServer.SetBusVolumeDb(AudioServer.GetBusIndex("Effects"), Mathf.LinearToDb(value));
-			SaveConfig();
-		}
-	}
-
-	private float cameraHeight = 0;
-	public float CameraHeight
-	{
-		get => cameraHeight;
-		set
-		{
-			cameraHeight = value;
-			SaveConfig();
-		}
-	}
-
-	private float renderScale = 1f;
-	public float RenderScale
-	{
-		get => renderScale;
-		set
-		{
-			renderScale = value;
-			GetViewport().Scaling3DScale = value;
-			SaveConfig();
-		}
-	}
-
-	// Range: [0; 3]
-	private int msaaLevel = (int)Viewport.Msaa.Msaa4X;
-	public int MsaaLevel
-	{
-		get => msaaLevel;
-		set
-		{
-			msaaLevel = value;
-			GetViewport().Msaa3D = (Viewport.Msaa)value;
-			SaveConfig();
-		}
-	}
+	public bool ShowFps => AppliedSettings.GetSlider(SettingsKey.ShowFps).Value == 1;
+	public float MainVolume => AppliedSettings.GetSlider(SettingsKey.MainVolume).Value;
+	public float MusicVolume => AppliedSettings.GetSlider(SettingsKey.MusicVolume).Value;
+	public float AudioVolume => AppliedSettings.GetSlider(SettingsKey.EffectsVolume).Value;
+	public float CameraHeight => AppliedSettings.GetSlider(SettingsKey.CameraHeight).Value;
+	public float RenderScale => AppliedSettings.GetSlider(SettingsKey.RenderScale).Value;
+	public Antialiasing AntialiasingLevel => (Antialiasing)AppliedSettings.GetDropdown(SettingsKey.AntialiasingLevel).Selected.Value;
 
 	public override void _EnterTree()
 	{
 		instance = this;
-		LoadConfig();
+		DraftSettings = SettingsContainer.MakeDefault();
+		AppliedSettings = SettingsContainer.MakeDefault();
+		SavedSettings = SettingsContainer.MakeDefault();
+		if (PreferencesFilesystem.LoadConfig(SavedSettings))
+		{
+			DraftSettings.CopyValuesFrom(SavedSettings);
+			AppliedSettings.CopyValuesFrom(SavedSettings);
+		}
 		ApplyPreferences();
+		EnableLivePreview();
 	}
 
-	public void SaveConfig()
+	void EnableLivePreview()
 	{
-		var config = new ConfigFile();
-
-		config.SetValue("section", "mainVolume", MainVolume);
-		config.SetValue("section", "musicVolume", musicVolume);
-		config.SetValue("section", "audioVolume", audioVolume);
-		config.SetValue("section", "cameraHeight", CameraHeight);
-		config.SetValue("section", "msaaLevel", MsaaLevel);
-
-		config.Save("user://config.cfg");
-	}
-
-	public void LoadConfig()
-	{
-		var config = new ConfigFile();
-		config.Load("user://config.cfg");
-
-		mainVolume = (float)config.GetValue("section", "mainVolume", 0.5f);
-		musicVolume = (float)config.GetValue("section", "musicVolume", 1.0f);
-		audioVolume = (float)config.GetValue("section", "audioVolume", 1.0f);
-		cameraHeight = (float)config.GetValue("section", "cameraHeight", 0.25f);
-		MsaaLevel = (int)config.GetValue("section", "msaaLevel", (int)Viewport.Msaa.Msaa4X);
-
-		renderScale = (float)config.GetValue("section", "renderScale", GetDefaultRenderScale());
+		foreach (var entry in DraftSettings.Entries)
+		{
+			entry.OnApplySideEffects += TemporarilyApplyDraftSettings;
+		}
 	}
 
 	public void ApplyPreferences()
 	{
-		AudioServer.SetBusVolumeDb(0, Mathf.LinearToDb(mainVolume));
-		AudioServer.SetBusVolumeDb(AudioServer.GetBusIndex("Music"), Mathf.LinearToDb(musicVolume));
-		AudioServer.SetBusVolumeDb(AudioServer.GetBusIndex("Effects"), Mathf.LinearToDb(audioVolume));
-		GetViewport().Msaa3D = (Viewport.Msaa)msaaLevel;
-		GetViewport().Scaling3DScale = renderScale;
+		AudioServer.SetBusVolumeDb(0, Mathf.LinearToDb(MainVolume));
+		AudioServer.SetBusVolumeDb(AudioServer.GetBusIndex("Music"), Mathf.LinearToDb(MusicVolume));
+		AudioServer.SetBusVolumeDb(AudioServer.GetBusIndex("Effects"), Mathf.LinearToDb(AudioVolume));
+
+		GetViewport().Scaling3DScale = RenderScale;
+		ApplyAntialiasing();
 	}
 
-	private static float GetDefaultRenderScale()
+	public void TemporarilyApplyDraftSettings()
 	{
-		return OS.HasFeature("macos") ? 0.5f : 1;
+		EmitSignal(SignalName.DraftChanged);
+		AppliedSettings.CopyValuesFrom(DraftSettings);
+		ApplyPreferences();
+		AppliedSettings.CopyValuesFrom(SavedSettings);
+	}
+
+	public void ApplyAndSaveDraftSettings()
+	{
+		AppliedSettings.CopyValuesFrom(DraftSettings);
+		ApplyPreferences();
+		PreferencesFilesystem.SaveConfig(AppliedSettings);
+		SavedSettings.CopyValuesFrom(AppliedSettings);
+	}
+
+	public void DiscardDraftSettings()
+	{
+		DraftSettings.CopyValuesFrom(SavedSettings);
+	}
+
+	public void RestoreDefaultSettings()
+	{
+		DraftSettings.CopyValuesFrom(SettingsContainer.MakeDefault());
 	}
 
 	private static Preferences instance = null;
-	public static Preferences Singleton
-	{
-		get => instance;
-	}
+	public static Preferences Singleton => instance;
 }

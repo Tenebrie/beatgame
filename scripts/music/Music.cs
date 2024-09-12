@@ -56,7 +56,7 @@ public partial class Music : Node
 		LoadingManager.Singleton.SceneTransitionStarted += OnSceneTransitionStarted;
 		LoadingManager.Singleton.SceneTransitionFinished += PlaySceneSong;
 
-		var scene = Lib.Scene.ToEnum(GetTree().CurrentScene.SceneFilePath);
+		var scene = Lib.Scene.ToEnumOrUnknown(GetTree().CurrentScene.SceneFilePath);
 		PrepareSceneSong(scene);
 		PlaySceneSong(scene);
 	}
@@ -175,6 +175,7 @@ public partial class Music : Node
 	public static float GetBeatsPerMinute() => Singleton.BeatsPerMinute;
 	public static float GetBeatsPerSecond() => Singleton.BeatsPerSecond;
 	public static float GetSecondsPerBeat() => Singleton.SecondsPerBeat;
+	
 	private static Music instance = null;
 	public static Music Singleton => instance;
 }

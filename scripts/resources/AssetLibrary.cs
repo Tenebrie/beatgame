@@ -118,4 +118,14 @@ public class SceneLibrary
 		try { return Values.Where(entry => entry.Value == path).First().Key; }
 		catch (Exception) { throw new Exception($"Unable to find a PlayableScene with path {path}"); }
 	}
+
+	public PlayableScene ToEnumOrUnknown(string path)
+	{
+		try { return Values.Where(entry => entry.Value == path).First().Key; }
+		catch (Exception)
+		{
+			GD.PrintErr($"Unable to find a PlayableScene with path {path}");
+			return PlayableScene.Unknown;
+		}
+	}
 }

@@ -1,0 +1,130 @@
+[gd_scene load_steps=3 format=3 uid="uid://c3k75kyl2wj5h"]
+
+[ext_resource type="Script" path="res://ui/screens/settings/SettingsUI.cs" id="1_sveuu"]
+[ext_resource type="PackedScene" uid="uid://xc6j3ox7j3yn" path="res://ui/screens/settings/SettingsDirtyModalUI.tscn" id="2_gxxbg"]
+
+[node name="SettingsUI" type="Control" node_paths=PackedStringArray("TabPanelContainer", "ApplyButton", "DiscardButton", "RestoreDefaultsButton", "CloseButton", "DirtyModal")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -1.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_sveuu")
+TabPanelContainer = NodePath("CenterContainer/Control/TabPanelContainer")
+ApplyButton = NodePath("CenterContainer/Control/MarginContainer/ButtonBoxContainer/ApplyButton")
+DiscardButton = NodePath("CenterContainer/Control/MarginContainer/ButtonBoxContainer/DiscardButton")
+RestoreDefaultsButton = NodePath("CenterContainer/Control/RestoreDefaultsButton")
+CloseButton = NodePath("CenterContainer/Control/CloseButton")
+DirtyModal = NodePath("SettingsDirtyModalUI")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="CenterContainer"]
+custom_minimum_size = Vector2(600, 600)
+layout_mode = 2
+
+[node name="TabBar" type="TabBar" parent="CenterContainer/Control"]
+layout_mode = 1
+offset_left = 23.0
+offset_right = 500.0
+offset_bottom = 40.0
+current_tab = 0
+tab_count = 4
+tab_0/title = "General"
+tab_1/title = "Video"
+tab_2/title = "Audio"
+tab_3/title = "Controls"
+
+[node name="TabPanelContainer" type="PanelContainer" parent="CenterContainer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/Control/TabPanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/Control/TabPanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="SplitContainer" type="BoxContainer" parent="CenterContainer/Control/TabPanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/Control/TabPanelContainer/MarginContainer/VBoxContainer/SplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Label"
+horizontal_alignment = 3
+
+[node name="OptionButton" type="OptionButton" parent="CenterContainer/Control/TabPanelContainer/MarginContainer/VBoxContainer/SplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+selected = 0
+item_count = 1
+popup/item_0/text = "Item"
+
+[node name="^^^ Controlled programmatically" type="Node" parent="CenterContainer/Control"]
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/Control"]
+layout_mode = 2
+offset_top = 605.0
+offset_right = 600.0
+offset_bottom = 641.0
+size_flags_horizontal = 3
+
+[node name="ButtonBoxContainer" type="BoxContainer" parent="CenterContainer/Control/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="ApplyButton" type="Button" parent="CenterContainer/Control/MarginContainer/ButtonBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Apply"
+
+[node name="DiscardButton" type="Button" parent="CenterContainer/Control/MarginContainer/ButtonBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Discard"
+
+[node name="RestoreDefaultsButton" type="Button" parent="CenterContainer/Control"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -192.0
+offset_right = -42.0
+offset_bottom = 39.0
+grow_horizontal = 0
+text = "Restore defaults"
+
+[node name="CloseButton" type="Button" parent="CenterContainer/Control"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -37.0
+offset_bottom = 39.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 22
+text = "X"
+
+[node name="SettingsDirtyModalUI" parent="." instance=ExtResource("2_gxxbg")]
+layout_mode = 1

@@ -2,6 +2,7 @@ namespace Project;
 
 public enum PlayableScene : int
 {
+	Unknown = 0,
 	MainMenu = 1,
 	TrainingRoom = 2,
 	BossArenaAeriel = 3,

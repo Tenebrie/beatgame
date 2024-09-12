@@ -69,6 +69,6 @@ public partial class CombatUI : Control
 
 	private void OnSceneChanged(PlayableScene scene)
 	{
-		Visible = scene != PlayableScene.MainMenu;
+		Visible = scene is not PlayableScene.MainMenu and not PlayableScene.Unknown;
 	}
 }

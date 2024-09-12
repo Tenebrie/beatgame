@@ -40,7 +40,7 @@ public partial class LoadingManager : Node
 	public override void _Ready()
 	{
 		var path = GetTree().CurrentScene.SceneFilePath;
-		var playableScene = Lib.Scene.ToEnum(path);
+		var playableScene = Lib.Scene.ToEnumOrUnknown(path);
 		EmitSignal(SignalName.SceneChanged, playableScene.ToVariant());
 	}
 
@@ -118,7 +118,7 @@ public partial class LoadingManager : Node
 		EmitSignal(SignalName.StateChanged, (int)state);
 	}
 
-	public PlayableScene CurrentScene => Lib.Scene.ToEnum(GetTree().CurrentScene.SceneFilePath);
+	public PlayableScene CurrentScene => Lib.Scene.ToEnumOrUnknown(GetTree().CurrentScene.SceneFilePath);
 
 	private static LoadingManager instance = null;
 	public static LoadingManager Singleton => instance;
@@ -138,6 +138,7 @@ public partial class LoadingManager : Node
 	}
 }
 
-public static class SceneManager {
+public static class SceneManager
+{
 	public static LoadingManager Singleton => LoadingManager.Singleton;
 }
