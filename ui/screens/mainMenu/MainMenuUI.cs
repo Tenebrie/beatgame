@@ -27,7 +27,7 @@ public partial class MainMenuUI : Control
 
 	void OnSettings()
 	{
-		SignalBus.SendMessage("Settings is not implemented yet :(");
+		SettingsUI.Singleton.Visible = true;
 	}
 
 	private void OnSceneChanged(PlayableScene scene)

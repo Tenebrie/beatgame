@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://bntofxyj3l1jr"]
+[gd_scene load_steps=38 format=3 uid="uid://bntofxyj3l1jr"]
 
 [ext_resource type="PackedScene" uid="uid://dur06rjn7cp0y" path="res://assets/PolygonTropicalJungle/Prefabs/SM_Env_Rock_Arch_01.tscn" id="1_3cih3"]
 [ext_resource type="PackedScene" uid="uid://bmt32aexhe21t" path="res://assets/PolygonTropicalJungle/Prefabs/SM_Env_Rock_Cliff_01.tscn" id="2_evk0u"]
@@ -33,7 +33,11 @@ size = Vector2(1000, 1000)
 [sub_resource type="BoxShape3D" id="BoxShape3D_jx27h"]
 size = Vector3(1000, 0.01, 1000)
 
+[sub_resource type="Sky" id="Sky_u56d2"]
+
 [sub_resource type="Environment" id="Environment_sldfe"]
+background_mode = 2
+sky = SubResource("Sky_u56d2")
 volumetric_fog_enabled = true
 volumetric_fog_density = 0.0001
 

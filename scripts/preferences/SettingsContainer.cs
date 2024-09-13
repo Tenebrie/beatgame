@@ -133,9 +133,10 @@ public class SettingsContainer
 
 		return new SettingsContainerBuilder()
 			.SetTab("Gameplay")
-			.AddSlider(SettingsKey.CustomPlayerColor, "Custom player color", min: 0, value: 1, max: 1, step: 1)
-			.AddSlider(SettingsKey.ShowFps, "Show FPS", min: 0, value: 1, max: 1, step: 1)
-			.AddSlider(SettingsKey.CameraHeight, "Camera height", min: 0f, value: 0.5f, max: 1f, step: 0.05f, percentage: true)
+			// .AddSlider(SettingsKey.CustomPlayerColor, "Custom player color", min: 0, value: 1, max: 1, step: 1)
+			// .AddSlider(SettingsKey.ShowFps, "Show FPS", min: 0, value: 1, max: 1, step: 1)
+			.SetCategory("Camera Settings")
+			.AddSlider(SettingsKey.CameraHeight, "Height", min: 0f, value: 0.5f, max: 1f, step: 0.05f, percentage: true)
 			.SetTab("Video")
 			.SetCategory("Basic Settings")
 			.AddDropdown(SettingsKey.DisplayMode, "Display mode", new[]
@@ -168,6 +169,7 @@ public class SettingsContainer
 				("All of them", Antialiasing.ALL),
 			}, Antialiasing.MSAA_2)
 			.SetTab("Audio")
+			.SetCategory("Volume Settings")
 			.AddSlider(SettingsKey.MainVolume, "Main volume", min: 0f, value: 0.5f, max: 1f, step: 0.02f, percentage: true)
 			.AddSlider(SettingsKey.MusicVolume, "Music volume", min: 0f, value: 0.5f, max: 1f, step: 0.02f, percentage: true)
 			.AddSlider(SettingsKey.EffectsVolume, "Effects volume", min: 0f, value: 0.5f, max: 1f, step: 0.02f, percentage: true)

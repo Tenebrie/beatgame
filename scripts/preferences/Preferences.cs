@@ -13,13 +13,14 @@ public partial class Preferences : Node
 	public SettingsContainer AppliedSettings;
 	public SettingsContainer SavedSettings;
 
-	public bool ShowFps => AppliedSettings.GetSlider(SettingsKey.ShowFps).Value == 1;
-	public float MainVolume => AppliedSettings.GetSlider(SettingsKey.MainVolume).Value;
-	public float MusicVolume => AppliedSettings.GetSlider(SettingsKey.MusicVolume).Value;
-	public float AudioVolume => AppliedSettings.GetSlider(SettingsKey.EffectsVolume).Value;
-	public float CameraHeight => AppliedSettings.GetSlider(SettingsKey.CameraHeight).Value;
-	public float RenderScale => AppliedSettings.GetSlider(SettingsKey.RenderScale).Value;
-	public Antialiasing AntialiasingLevel => (Antialiasing)AppliedSettings.GetDropdown(SettingsKey.AntialiasingLevel).Selected.Value;
+	public bool ShowFps => DraftSettings.GetSlider(SettingsKey.ShowFps).Value == 1;
+	public float MainVolume => DraftSettings.GetSlider(SettingsKey.MainVolume).Value;
+	public float MusicVolume => DraftSettings.GetSlider(SettingsKey.MusicVolume).Value;
+	public float AudioVolume => DraftSettings.GetSlider(SettingsKey.EffectsVolume).Value;
+	public float CameraHeight => DraftSettings.GetSlider(SettingsKey.CameraHeight).Value;
+	public float RenderScale => DraftSettings.GetSlider(SettingsKey.RenderScale).Value;
+	public int FpsLimit => (int)Math.Round(DraftSettings.GetSlider(SettingsKey.FpsLimit).Value);
+	public Antialiasing AntialiasingLevel => (Antialiasing)DraftSettings.GetDropdown(SettingsKey.AntialiasingLevel).Selected.Value;
 
 	public override void _EnterTree()
 	{
@@ -51,6 +52,7 @@ public partial class Preferences : Node
 		AudioServer.SetBusVolumeDb(AudioServer.GetBusIndex("Effects"), Mathf.LinearToDb(AudioVolume));
 
 		GetViewport().Scaling3DScale = RenderScale;
+		Engine.Singleton.MaxFps = FpsLimit;
 		ApplyAntialiasing();
 	}
 
