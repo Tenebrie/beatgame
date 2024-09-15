@@ -1,3 +1,4 @@
+using BeatGame.scripts.navigation;
 using Godot;
 using Project;
 using System;
@@ -20,6 +21,9 @@ public partial class GiantRatBehaviour : BaseBehaviour
 	BaseUnit lockedOnTarget;
 	Vector3? movingToPosition = null;
 
+	Node3D agentContainer;
+	NavigationAgent3D navAgent;
+
 	AIState state = AIState.Idle;
 	AttackCast attackCast;
 
@@ -31,6 +35,7 @@ public partial class GiantRatBehaviour : BaseBehaviour
 	public override void _Ready()
 	{
 		Parent.FriendlyName = "Giant Rat";
+
 		attackCast = new(Parent);
 		AddChild(attackCast);
 
@@ -49,19 +54,29 @@ public partial class GiantRatBehaviour : BaseBehaviour
 			("Walk", (_) => state is AIState.Wandering or AIState.EnemySpotted),
 			("Idle", (_) => true)
 		);
-		GetComponent<NavigationAgent3D>().TargetReached += () =>
+
+		navAgent = GetComponent<NavigationAgent3D>();
+		navAgent.NavigationLayers = NavigationLayer.MediumAgent.ToMaskValue();
+		navAgent.TargetReached += () =>
 		{
 			if (state is AIState.Leashing)
 				state = AIState.Idle;
 		};
-		GetComponent<NavigationAgent3D>().VelocityComputed += (velocity) =>
+		navAgent.VelocityComputed += (velocity) =>
 		{
 			if (velocity == Vector3.Zero || state is not AIState.EnemySpotted and not AIState.Leashing)
 				return;
-			Parent.Velocity = velocity;
-			Parent.MoveAndSlide();
-			Parent.LookAt((GlobalPosition + velocity).Flatten(GlobalPosition.Y), Vector3.Up);
+			// TODO: Make it move
 		};
+
+		this.CallDeferred(() =>
+		{
+			navAgent.GetParent().RemoveChild(navAgent);
+			agentContainer = new Node3D();
+			GetTree().CurrentScene.AddChild(agentContainer);
+			agentContainer.AddChild(navAgent);
+			agentContainer.GlobalPosition = Parent.GlobalPosition;
+		});
 	}
 
 	void OnAIUpdate()
@@ -108,9 +123,12 @@ public partial class GiantRatBehaviour : BaseBehaviour
 
 	void PathTowards(Vector3 pos)
 	{
-		var target = CastUtils.SnapToGround(Parent, pos);
+		var target = NavigationServer3D.MapGetClosestPoint(navAgent.GetNavigationMap(), pos);
 		movingToPosition = target;
-		GetComponent<NavigationAgent3D>().TargetPosition = target;
+		navAgent.TargetPosition = target;
+
+		// var nextTarget = navAgent.GetNextPathPosition();
+		// agentContainer.Position = new() { X = agentContainer.GlobalPosition.X, Y = nextTarget.Y, Z = agentContainer.GlobalPosition.Z };
 	}
 
 	public override void _Process(double delta)
@@ -137,9 +155,20 @@ public partial class GiantRatBehaviour : BaseBehaviour
 
 		if (state is AIState.EnemySpotted or AIState.Leashing)
 		{
-			var nextPosition = Parent.SnapToGround(GetComponent<NavigationAgent3D>().GetNextPathPosition());
-			var direction = nextPosition - GlobalPosition;
-			GetComponent<NavigationAgent3D>().Velocity = 1f * direction.Normalized();
+			var nextPosition = navAgent.GetNextPathPosition();
+			var direction = nextPosition - agentContainer.GlobalPosition;
+			var velocity = 1f * direction.Normalized();
+			agentContainer.GlobalPosition += velocity * (float)delta;
+			nextPosition = navAgent.GetNextPathPosition();
+
+			if (navAgent.AvoidanceEnabled)
+				navAgent.Velocity = velocity;
+			else
+			{
+				Parent.GlobalPosition = Parent.SnapToGround(agentContainer.GlobalPosition);
+				if (new Vector3(velocity.X, 0, velocity.Z).LengthSquared() > 0f)
+					Parent.LookAt(nextPosition.Flatten(GlobalPosition.Y), Vector3.Up);
+			}
 		}
 	}
 }

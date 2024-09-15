@@ -1,5 +1,5 @@
 shader_type spatial;
-render_mode depth_draw_always;
+render_mode blend_add, depth_prepass_alpha;
 
 uniform vec3 albedo: source_color;
 uniform vec3 albedo2: source_color; 

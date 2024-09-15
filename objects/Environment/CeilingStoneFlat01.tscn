@@ -3,13 +3,14 @@
 [ext_resource type="PackedScene" path="res://assets/PolygonDungeon/Prefabs/Environments/Walls/SM_Env_Ceiling_Stone_Flat_01.tscn" id="1_4n7j8"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yy7bi"]
-size = Vector3(1, 0.036377, 1)
+size = Vector3(1, 0.088501, 1)
 
 [node name="CeilingStoneFlat01" type="StaticBody3D"]
+collision_layer = 65
 
 [node name="SM_Env_Ceiling_Stone_Flat_01" parent="." instance=ExtResource("1_4n7j8")]
 transform = Transform3D(20.2, 0, 0, 0, 20.2, 0, 0, 0, 20.2, -0.01, 0, -0.01)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.00476074, 0.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.0308227, 0.5)
 shape = SubResource("BoxShape3D_yy7bi")

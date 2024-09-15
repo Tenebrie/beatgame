@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://ddxtosrij0e6u"]
+[gd_scene load_steps=11 format=3 uid="uid://ddxtosrij0e6u"]
 
 [ext_resource type="PackedScene" uid="uid://bnxky1wwi6ji0" path="res://assets/meshes/sewerBridge.glb" id="1_opanm"]
 [ext_resource type="Material" uid="uid://egwfatbxefmf" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_54nyj"]
@@ -9,15 +9,27 @@ size = Vector3(2.36316, 0.463341, 5.14999)
 [sub_resource type="BoxShape3D" id="BoxShape3D_uksmh"]
 size = Vector3(2.36316, 0.951072, 1.29932)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_y6y8c"]
+size = Vector3(0.377014, 0.803306, 1.76378)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_dun21"]
-size = Vector3(0.377014, 0.803306, 1.77919)
+size = Vector3(0.377014, 0.803306, 1.7678)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4jxs1"]
+size = Vector3(0.377014, 0.803306, 1.76232)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_31uun"]
+size = Vector3(0.377014, 0.803306, 1.76427)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wo6u5"]
+size = Vector3(0.377014, 0.754965, 4.36696)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_brg6l"]
-size = Vector3(0.377014, 0.754965, 4.34954)
+size = Vector3(0.377014, 0.754965, 4.36308)
 
 [node name="BridgeStone" type="StaticBody3D"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
-collision_layer = 33
+collision_layer = 17
 input_ray_pickable = false
 
 [node name="sewerBridge" parent="." instance=ExtResource("1_opanm")]
@@ -38,27 +50,27 @@ transform = Transform3D(1, 4.80251e-08, 1.43726e-08, -4.80252e-08, 0.835597, 0.5
 shape = SubResource("BoxShape3D_uksmh")
 
 [node name="CollisionRailing01" type="CollisionShape3D" parent="."]
-transform = Transform3D(-1, 0, -8.74228e-08, -5.07567e-08, 0.814197, 0.580589, 7.11793e-08, 0.580589, -0.814197, -1.01303, 0.126436, 2.66782)
-shape = SubResource("BoxShape3D_dun21")
+transform = Transform3D(-1, 0, -8.74228e-08, -5.07567e-08, 0.814197, 0.580589, 7.11793e-08, 0.580589, -0.814197, -1.01303, 0.12527, 2.66945)
+shape = SubResource("BoxShape3D_y6y8c")
 
 [node name="CollisionRailing02" type="CollisionShape3D" parent="."]
-transform = Transform3D(-1, 0, -8.74228e-08, -5.07567e-08, 0.814197, 0.580589, 7.11793e-08, 0.580589, -0.814197, 1.03718, 0.126436, 2.66782)
+transform = Transform3D(-1, 0, -8.74228e-08, -5.07567e-08, 0.814197, 0.580589, 7.11793e-08, 0.580589, -0.814197, 1.03718, 0.123128, 2.67246)
 shape = SubResource("BoxShape3D_dun21")
 
 [node name="CollisionRailing03" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 5.96046e-08, 2.98023e-08, -4.356e-08, 0.814197, 0.580589, 2.98023e-08, -0.580589, 0.814196, 1.03718, 0.126436, -2.66337)
-shape = SubResource("BoxShape3D_dun21")
+transform = Transform3D(1, 5.96046e-08, 2.98023e-08, -4.356e-08, 0.814197, 0.580589, 2.98023e-08, -0.580589, 0.814196, 1.03718, 0.124845, -2.6656)
+shape = SubResource("BoxShape3D_4jxs1")
 
 [node name="CollisionRailing04" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 5.96046e-08, 2.98023e-08, -4.356e-08, 0.814197, 0.580589, 2.98023e-08, -0.580589, 0.814196, -1.01303, 0.126436, -2.66337)
-shape = SubResource("BoxShape3D_dun21")
+transform = Transform3D(1, 5.96046e-08, 2.98023e-08, -4.356e-08, 0.814197, 0.580589, 2.98023e-08, -0.580589, 0.814196, -1.01303, 0.125412, -2.66481)
+shape = SubResource("BoxShape3D_31uun")
 
 [node name="CollisionRailing05" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.01303, 0.586962, -0.00293983)
-shape = SubResource("BoxShape3D_brg6l")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.01303, 0.586962, -0.000996957)
+shape = SubResource("BoxShape3D_wo6u5")
 
 [node name="CollisionRailing06" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.03052, 0.586962, -0.00293983)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.03052, 0.586962, 0.00167357)
 shape = SubResource("BoxShape3D_brg6l")
 
 [editable path="sewerBridge"]
