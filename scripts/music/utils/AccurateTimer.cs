@@ -6,12 +6,11 @@ namespace BeatGame.scripts.music;
 
 public partial class AccurateTimer : Node
 {
-	[Signal] public delegate void TimeoutEventHandler(BeatTime time);
-	[Signal] public delegate void CatchUpTickEventHandler(BeatTime time);
+	[Signal] public delegate void TimeoutEventHandler();
+	[Signal] public delegate void CatchUpTickEventHandler();
 
 	public float Calibration = 0;
 
-	public BeatTime BeatTime;
 	private bool IsStarted;
 	private float startTime;
 	public float waitTime;
@@ -31,7 +30,7 @@ public partial class AccurateTimer : Node
 
 	public async void Stop(float delay)
 	{
-		await ToSignal(GetTree().CreateTimer(delay / 1000), "timeout".ToStringName());
+		await ToSignal(GetTree().CreateTimer(delay), "timeout".ToStringName());
 		IsStarted = false;
 	}
 
@@ -50,12 +49,12 @@ public partial class AccurateTimer : Node
 		{
 			for (var i = 0; i < tickIndex - TickIndex - 1; i++)
 			{
-				EmitSignal(SignalName.CatchUpTick, BeatTime.ToVariant());
+				EmitSignal(SignalName.CatchUpTick);
 			}
 
 			TickIndex = tickIndex;
 			LastTickedAt = CastUtils.GetEngineTime();
-			EmitSignal(SignalName.Timeout, BeatTime.ToVariant());
+			EmitSignal(SignalName.Timeout);
 		}
 	}
 

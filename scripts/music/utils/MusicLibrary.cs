@@ -5,6 +5,7 @@ namespace BeatGame.scripts.music;
 
 public partial class MusicLibrary : Node
 {
+	public MusicTrack MainMenu;
 	public MusicTrack TrainingRoom;
 	public MusicTrack BossArenaAeriel;
 	public MusicTrack BossArenaCelestios;
@@ -13,9 +14,11 @@ public partial class MusicLibrary : Node
 	{
 		instance = this;
 
+		MainMenu = new MusicTrackTime();
+		AddChild(MainMenu);
 		TrainingRoom = new MusicTrackIntermission();
 		AddChild(TrainingRoom);
-		BossArenaAeriel = new MusicTrackAeriel();
+		BossArenaAeriel = new MusicTrackTidehawk();
 		AddChild(BossArenaAeriel);
 		BossArenaCelestios = new MusicTrackTest();
 		AddChild(BossArenaCelestios);

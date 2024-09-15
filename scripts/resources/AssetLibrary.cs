@@ -67,9 +67,10 @@ public class UILibrary
 public class AudioLibrary
 {
 	public string MusicTrackTest = "res://assets/music/120bpm-test-track.ogg";
-	public string MusicTrackSpaceship = "res://assets/music/t14d-spaceship.ogg";
+	public string MusicTrackTime = "res://assets/music/80bpm-time.ogg";
 	public string MusicTrackIntermission = "res://assets/music/70bpm-intermission.ogg";
-	public string MusicTrackAeriel = "res://assets/music/120bpm-tidehawk.ogg";
+	public string MusicTrackSpaceship = "res://assets/music/t14d-spaceship.ogg";
+	public string MusicTrackTidehawk = "res://assets/music/120bpm-tidehawk.ogg";
 
 	public string SfxMagicImpact01 = "res://assets/audiofx/MagicImpact01.ogg";
 	public string SfxMagicLaunch01 = "res://assets/audiofx/MagicLaunch01.ogg";

@@ -1,21 +1,34 @@
-[gd_resource type="AudioBusLayout" load_steps=2 format=3 uid="uid://c76qy8c3u3v8f"]
+[gd_resource type="AudioBusLayout" load_steps=3 format=3 uid="uid://c76qy8c3u3v8f"]
+
+[sub_resource type="AudioEffectReverb" id="AudioEffectReverb_gg8c0"]
+resource_name = "Reverb"
+dry = 0.0
+wet = 1.0
 
 [sub_resource type="AudioEffectLowPassFilter" id="AudioEffectLowPassFilter_7f710"]
 resource_name = "LowPassFilter"
 cutoff_hz = 1800.0
 
 [resource]
-bus/1/name = &"Music"
+bus/1/name = &"MusicPauseEcho"
 bus/1/solo = false
 bus/1/mute = false
 bus/1/bypass_fx = false
 bus/1/volume_db = 0.0
 bus/1/send = &"Master"
-bus/2/name = &"Effects"
+bus/1/effect/0/effect = SubResource("AudioEffectReverb_gg8c0")
+bus/1/effect/0/enabled = true
+bus/2/name = &"Music"
 bus/2/solo = false
 bus/2/mute = false
 bus/2/bypass_fx = false
 bus/2/volume_db = 0.0
 bus/2/send = &"Master"
-bus/2/effect/0/effect = SubResource("AudioEffectLowPassFilter_7f710")
-bus/2/effect/0/enabled = true
+bus/3/name = &"Effects"
+bus/3/solo = false
+bus/3/mute = false
+bus/3/bypass_fx = false
+bus/3/volume_db = 0.0
+bus/3/send = &"Master"
+bus/3/effect/0/effect = SubResource("AudioEffectLowPassFilter_7f710")
+bus/3/effect/0/enabled = true

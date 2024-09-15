@@ -61,7 +61,11 @@ public partial class LoadingManager : Node
 		TransitioningTo = playableScene;
 		SetState(State.FadeOutStarted);
 		ReadyComponents.Clear();
-		EmitSignal(SignalName.SceneTransitionStarted, playableScene.ToVariant());
+		try
+		{
+			EmitSignal(SignalName.SceneTransitionStarted, playableScene.ToVariant());
+		}
+		catch (Exception) { }
 	}
 
 	void MarkComponentAsReady(FadeOutComponent component)

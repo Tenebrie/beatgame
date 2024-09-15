@@ -30,7 +30,7 @@ public partial class BeatIndicator : Control
 		BarGroups.RemoveAt(0);
 	}
 
-	public void OnVisualBeat(BeatTime _)
+	public void OnVisualBeat()
 	{
 		var time = CastUtils.GetEngineTime();
 		var endsAt = time + Music.Singleton.settings.SongDelay;

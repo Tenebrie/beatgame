@@ -5,6 +5,7 @@ namespace BeatGame.scripts.music;
 
 public partial class MusicTrack : Node
 {
+	public string FullName = "Unknown track";
 	public int BeatsPerMinute;
 	public string ResourcePath;
 	public bool Loop;
@@ -40,10 +41,13 @@ public partial class MusicTrack : Node
 		Music.Singleton.Stop();
 		if (Loop)
 		{
-			await ToSignal(GetTree().CreateTimer(2), "timeout".ToStringName());
+			await ToSignal(GetTree().CreateTimer(2, processAlways: false), "timeout".ToStringName());
 			Music.Singleton.Start();
 		}
 	}
+
+	public float CurrentTime => (float)(AudioPlayer.GetPlaybackPosition() + AudioServer.GetTimeSinceLastMix());
+	public float Length => (float)AudioStream.GetLength();
 
 	public float Volume
 	{

@@ -22,12 +22,6 @@ public partial class BossCastBuster : BaseCast
 		};
 	}
 
-	public override void _Process(double delta)
-	{
-		base._Process(delta);
-		// TODO: Move effect to a top target in the aggro table
-	}
-
 	protected override void OnCastStarted(CastTargetData targetData)
 	{
 		targetData.HostileUnit.Buffs.Add(new BuffBusterTarget(this));

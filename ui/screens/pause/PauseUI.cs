@@ -68,11 +68,34 @@ public partial class PauseUI : Control
 		}
 	}
 
+	void OnMusicUpdate()
+	{
+		if (!Visible)
+			return;
+
+		var track = Music.Singleton.CurrentTrack;
+		if (track is null)
+			return;
+
+		SongNameLabel.Text = $"{track.FullName} ({track.BeatsPerMinute} BPM)";
+		SongTimeLabel.Text = $"{SecondsToTimeString(track.CurrentTime)} / {SecondsToTimeString(track.Length)}";
+	}
+
+	static string SecondsToTimeString(float seconds)
+	{
+		var minutes = (int)(seconds / 60);
+		var remainingSeconds = (int)(seconds % 60);
+		return $"{minutes:00}:{remainingSeconds:00}";
+	}
+
 	public bool HandleEscapeKey()
 	{
 		Visible = !Visible;
 		if (Visible)
+		{
 			PauseManager.Singleton.PauseGame();
+			OnMusicUpdate();
+		}
 		else
 			PauseManager.Singleton.UnpauseGame();
 		return true;
