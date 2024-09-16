@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://kb3whb6e30lc"]
+
+[ext_resource type="PackedScene" uid="uid://bkkq6gudhy8xe" path="res://assets/meshes/pipeBend90.glb" id="1_6jet1"]
+[ext_resource type="Material" uid="uid://dkvl5yey7an67" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01_Metallic.tres" id="2_pp5eb"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xosia"]
+size = Vector3(0.509583, 0.545776, 1.21918)
+
+[node name="PipeBend90_01" type="StaticBody3D"]
+collision_layer = 33
+
+[node name="pipeBend90" parent="." instance=ExtResource("1_6jet1")]
+transform = Transform3D(0.617311, 0, 0, 0, 0.617311, 0, 0, 0, 0.617311, 0, 0, 0)
+
+[node name="Body" parent="pipeBend90" index="0"]
+surface_material_override/0 = ExtResource("2_pp5eb")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.340896, 0.0107393, 0.00879612)
+shape = SubResource("BoxShape3D_xosia")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0163879, 0.00885015, 0.384889)
+shape = SubResource("BoxShape3D_xosia")
+
+[editable path="pipeBend90"]

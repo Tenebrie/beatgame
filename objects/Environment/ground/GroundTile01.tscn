@@ -1,0 +1,24 @@
+[gd_scene load_steps=6 format=3 uid="uid://ea6b6a4ymw6d"]
+
+[ext_resource type="Texture2D" uid="uid://badimb18koss5" path="res://assets/PolygonTropicalJungle/Terrain/Rock_Texture_01.png" id="1_222xi"]
+[ext_resource type="Texture2D" uid="uid://dum6m1d7jmx1w" path="res://assets/PolygonTropicalJungle/Terrain/Rock_Normals_01.png" id="2_08j11"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_css8u"]
+albedo_texture = ExtResource("1_222xi")
+normal_enabled = true
+normal_texture = ExtResource("2_08j11")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_r7ecc"]
+material = SubResource("StandardMaterial3D_css8u")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ochnd"]
+size = Vector3(2, 0.103394, 2)
+
+[node name="GroundTile01" type="StaticBody3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_r7ecc")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0516357, 0)
+shape = SubResource("BoxShape3D_ochnd")

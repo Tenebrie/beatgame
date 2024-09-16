@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://ci21idu6kwex5"]
+[gd_scene load_steps=7 format=3 uid="uid://ci21idu6kwex5"]
 
 [ext_resource type="Script" path="res://units/player/PlayerCharacter/PlayerController.cs" id="1_2gcyd"]
 [ext_resource type="PackedScene" uid="uid://cb7pqs6irplea" path="res://units/player/PlayerCharacter/PlayerCharacterVisuals.tscn" id="2_84qw8"]
@@ -7,8 +7,11 @@
 [sub_resource type="BoxMesh" id="BoxMesh_moeg2"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_n1txi"]
-radius = 0.15
-height = 0.5
+radius = 0.0798974
+height = 0.160842
+
+[sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_pq0bx"]
+length = 0.181016
 
 [node name="CharacterBody3D" type="CharacterBody3D"]
 floor_block_on_wall = false
@@ -20,8 +23,12 @@ visible = false
 mesh = SubResource("BoxMesh_moeg2")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000244141, 0.24463, 0.00130759)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000244141, 0.255929, 0.00130759)
 shape = SubResource("CapsuleShape3D_n1txi")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.181079, 0)
+shape = SubResource("SeparationRayShape3D_pq0bx")
 
 [node name="Visuals" parent="." instance=ExtResource("2_84qw8")]
 

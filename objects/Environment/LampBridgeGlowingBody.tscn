@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://c16xdcehs06sc"]
+
+[ext_resource type="PackedScene" uid="uid://iqb25fba6cd" path="res://assets/meshes/lampStreetGlowing.glb" id="1_oa6v7"]
+[ext_resource type="Material" uid="uid://egwfatbxefmf" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_fppvf"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_h0myw"]
+radius = 0.083164
+height = 0.237382
+
+[node name="LampBridgeGlowingBody" type="RigidBody3D"]
+collision_layer = 0
+
+[node name="lampStreetGlowing" parent="." instance=ExtResource("1_oa6v7")]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, -0.125762, 0)
+
+[node name="InnerLamp" parent="lampStreetGlowing" index="0"]
+layers = 32768
+surface_material_override/0 = ExtResource("2_fppvf")
+
+[node name="LampMetal" parent="lampStreetGlowing" index="1"]
+layers = 32768
+surface_material_override/0 = ExtResource("2_fppvf")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.125762, 0)
+shape = SubResource("CapsuleShape3D_h0myw")
+
+[editable path="lampStreetGlowing"]

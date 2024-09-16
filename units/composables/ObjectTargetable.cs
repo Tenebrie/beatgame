@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using Godot;
 namespace Project;
 
@@ -14,7 +16,13 @@ public partial class ObjectTargetable : ComposableScript
 
 	public TargetingCircle selectionModel = null;
 
-	public float SelectionRadius = 1f;
+	public float selectionRadius = 1f;
+
+	public float SelectionRadius
+	{
+		get => selectionRadius * Math.Max(Parent.Scale.X, Math.Max(Parent.Scale.Y, Parent.Scale.Z));
+		set => selectionRadius = value;
+	}
 
 	public ObjectTargetable(BaseUnit parent) : base(parent) { }
 
@@ -56,7 +64,6 @@ public partial class ObjectTargetable : ComposableScript
 				meshChild.SetInstanceShaderParameter("hover_highlight".ToStringName(), hoverHighlight);
 			}
 		}
-		// TODO: Performance fix pls
 		Parent.GetComponentsUncached<MeshInstance3D>().ForEach(comp => comp.SetInstanceShaderParameter("hover_highlight".ToStringName(), hoverHighlight));
 	}
 
@@ -98,6 +105,7 @@ public partial class ObjectTargetable : ComposableScript
 		{
 			selectionModel = Lib.LoadScene(Lib.Effect.TargetingCircle).Instantiate() as TargetingCircle;
 			Parent.AddChild(selectionModel);
+			selectionModel.SetDisableScale(true);
 			selectionModel.SetAlliance(Parent.Alliance);
 			selectionModel.SetRadius(SelectionRadius);
 		}

@@ -47,7 +47,8 @@ public static class NodeExtensions
 
 	public static T GetComponentOrDefault<T>(this Node parent, int depth = 0) where T : Node
 	{
-		if (parent is BaseUnit unit && unit.Components.GetCachedComponent<T>(out var cachedComponent)) {
+		if (parent is BaseUnit unit && unit.Components.GetCachedComponent<T>(out var cachedComponent))
+		{
 			return cachedComponent;
 		}
 

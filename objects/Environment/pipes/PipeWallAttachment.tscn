@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://bv6k2vwtm7yvm"]
+
+[ext_resource type="PackedScene" uid="uid://bhphk1vlgyvk7" path="res://assets/meshes/pipeWallAttachment.glb" id="1_ifm6y"]
+[ext_resource type="Material" uid="uid://dkvl5yey7an67" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01_Metallic.tres" id="2_pwgtw"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_yf718"]
+height = 0.384357
+radius = 0.336923
+
+[node name="PipeWallAttachment" type="StaticBody3D"]
+collision_layer = 33
+
+[node name="pipeWallAttachment" parent="." instance=ExtResource("1_ifm6y")]
+
+[node name="Body" parent="pipeWallAttachment" index="0"]
+surface_material_override/0 = ExtResource("2_pwgtw")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.00323486, -0.00231934, -0.0105382)
+shape = SubResource("CylinderShape3D_yf718")
+
+[editable path="pipeWallAttachment"]

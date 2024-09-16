@@ -1,33 +1,81 @@
-[gd_scene load_steps=5 format=3 uid="uid://c7jthdp0nxr1"]
+[gd_scene load_steps=12 format=3 uid="uid://c7jthdp0nxr1"]
 
-[ext_resource type="PackedScene" uid="uid://dbf2efeob2fd" path="res://assets/meshes/lampBridgeGlowing.glb" id="1_hvn4q"]
+[ext_resource type="PackedScene" uid="uid://b7f23slklqu0k" path="res://assets/meshes/lampBridgeStickOnly.glb" id="1_lhu1t"]
+[ext_resource type="Script" path="res://objects/Environment/LampBridgeGlowing.cs" id="1_mnabp"]
+[ext_resource type="PackedScene" uid="uid://c16xdcehs06sc" path="res://objects/Environment/LampBridgeGlowingBody.tscn" id="1_mqql6"]
 [ext_resource type="Material" uid="uid://egwfatbxefmf" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_3bg0o"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ocql4"]
-size = Vector3(0.258911, 1.00381, 0.803284)
+size = Vector3(0.137482, 0.55503, 0.103493)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fjulx"]
+size = Vector3(0.132111, 0.894268, 0.12012)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cryvq"]
+size = Vector3(0.132111, 0.227462, 0.125012)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yrfog"]
+size = Vector3(0.132111, 0.340324, 0.11073)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8t4my"]
-size = Vector3(0.132111, 0.781971, 0.3918)
+size = Vector3(0.132111, 0.559538, 0.146265)
 
-[node name="LampBridgeGlowing" type="StaticBody3D"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_pmma5"]
+size = Vector3(0.132111, 0.217771, 0.11073)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kdg86"]
+size = Vector3(0.01, 0.01, 0.01)
+
+[node name="LampBridgeGlowing" type="StaticBody3D" node_paths=PackedStringArray("LampRigidBody")]
+script = ExtResource("1_mnabp")
+LampRigidBody = NodePath("Visuals/LampBridgeGlowingBody")
 
 [node name="Visuals" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000647407, 0.00172782, -0.0889946)
 
-[node name="lampBridgeGlowing" parent="Visuals" instance=ExtResource("1_hvn4q")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+[node name="LampBridgeGlowingBody" parent="Visuals" instance=ExtResource("1_mqql6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.59374, 0.0838147)
+mass = 250.0
 
-[node name="InnerLamp" parent="Visuals/lampBridgeGlowing" index="0"]
-surface_material_override/0 = ExtResource("2_3bg0o")
+[node name="lampBridgeStickOnly" parent="Visuals" instance=ExtResource("1_lhu1t")]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
 
-[node name="LamdAndStick" parent="Visuals/lampBridgeGlowing" index="1"]
+[node name="Stick" parent="Visuals/lampBridgeStickOnly" index="0"]
 surface_material_override/0 = ExtResource("2_3bg0o")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000305176, 1.28993, -0.110504)
+transform = Transform3D(0.5, 0, 0, 0, 0.482963, 0.12941, 0, -0.12941, 0.482963, 0.00126758, 0.742521, -0.0479495)
 shape = SubResource("BoxShape3D_ocql4")
 
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.467741, 0.176688, 0, -0.176688, 0.467741, -0.00263105, 0.317126, -0.242563)
+shape = SubResource("BoxShape3D_fjulx")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.00163923, 0.0587051, -0.155266)
+shape = SubResource("BoxShape3D_cryvq")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.322129, -0.382405, 0, 0.382405, 0.322129, -0.00163923, 0.819926, -0.249843)
+shape = SubResource("BoxShape3D_yrfog")
+
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000991821, 0.396143, -0.241005)
+transform = Transform3D(0.5, 0, 0, 0, 0.499401, -0.0244597, 0, 0.0244597, 0.499401, -0.00114332, 0.657268, -0.308367)
 shape = SubResource("BoxShape3D_8t4my")
 
-[editable path="Visuals/lampBridgeGlowing"]
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, -0.0849328, -0.492734, 0, 0.492734, -0.0849328, -0.00263105, 0.856049, -0.152941)
+shape = SubResource("BoxShape3D_pmma5")
+
+[node name="PinJoint3D" type="PinJoint3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.596818, -0.00521081)
+node_a = NodePath("../AttachmentPoint")
+node_b = NodePath("../Visuals/LampBridgeGlowingBody")
+
+[node name="AttachmentPoint" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.596667, -0.00543767)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AttachmentPoint"]
+shape = SubResource("BoxShape3D_kdg86")
+
+[editable path="Visuals/lampBridgeStickOnly"]
