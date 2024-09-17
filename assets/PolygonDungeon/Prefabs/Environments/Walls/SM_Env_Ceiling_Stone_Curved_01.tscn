@@ -1,12 +1,11 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=3 format=3 uid="uid://0ibgkayol45u"]
 
 [ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Ceiling_Stone_Curved_01_mesh/SM_Env_Ceiling_Stone_Curved_01_4300000.mesh" id="1_wy4c8"]
-[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_h7u72"]
+[ext_resource type="Material" uid="uid://egwfatbxefmf" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_h7u72"]
 
 [node name="SM_Env_Ceiling_Stone_Curved_01" type="Node3D"]
 metadata/ufile_ids = ["fd479d726efdf3d4da9cb024a97137e4:409580", "fd479d726efdf3d4da9cb024a97137e4:180038", "fd479d726efdf3d4da9cb024a97137e4:3314378", "fd479d726efdf3d4da9cb024a97137e4:2337974", "fd479d726efdf3d4da9cb024a97137e4:64405056156630574", "fd479d726efdf3d4da9cb024a97137e4:64077213170340206", "fd479d726efdf3d4da9cb024a97137e4:64497448447481450"]
 
 [node name="_mesh" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.85, 0, 0.55)
 mesh = ExtResource("1_wy4c8")
 surface_material_override/0 = ExtResource("2_h7u72")

@@ -12,8 +12,10 @@ public partial class LampBridgeGlowing : StaticBody3D
 		var lights = this.GetComponentsUncached<Light3D>();
 		foreach (var light in lights)
 		{
+			var oldPos = light.GlobalPosition;
 			RemoveChild(light);
 			LampRigidBody.AddChild(light);
+			light.GlobalPosition = oldPos;
 		}
 	}
 }

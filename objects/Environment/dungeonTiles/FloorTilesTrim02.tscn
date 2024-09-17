@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://c2d8mqxtd0cxx"]
+
+[ext_resource type="PackedScene" path="res://assets/PolygonDungeon/Prefabs/Environments/Walls/SM_Env_Wall_Trim_Floor_02.tscn" id="1_gtsos"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2dm0l"]
+size = Vector3(1.00348, 0.0859375, 0.143311)
+
+[node name="FloorTilesTrim02_01" type="StaticBody3D"]
+collision_layer = 17
+
+[node name="SM_Env_Wall_Trim_Floor_02" parent="." instance=ExtResource("1_gtsos")]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0.493122, 0, 0.0573397)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.495453, 0.0419922, 0.0623779)
+shape = SubResource("BoxShape3D_2dm0l")

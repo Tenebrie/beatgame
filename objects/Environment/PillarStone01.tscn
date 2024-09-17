@@ -4,7 +4,7 @@
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_peecm"]
 height = 1.0
-radius = 0.12
+radius = 0.0916152
 
 [node name="PillarStone01" type="StaticBody3D"]
 collision_layer = 33

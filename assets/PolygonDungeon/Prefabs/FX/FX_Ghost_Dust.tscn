@@ -1,5 +1,0 @@
-[gd_scene format=3]
-
-[node name="FX_Ghost_Dust" type="Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.243, 0)
-metadata/ufile_ids = ["51d0bce681305ad4ca9b83d5bb46c48d:461844", "51d0bce681305ad4ca9b83d5bb46c48d:139124", "51d0bce681305ad4ca9b83d5bb46c48d:19852390", "51d0bce681305ad4ca9b83d5bb46c48d:19980708"]

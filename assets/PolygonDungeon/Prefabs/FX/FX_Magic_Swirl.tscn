@@ -1,5 +1,0 @@
-[gd_scene format=3]
-
-[node name="FX_Magic_Swirl" type="Node3D"]
-transform = Transform3D(1, 0, 0, 0, 2.32458e-06, -1, 0, 1, 2.32458e-06, 0, 0, 0)
-metadata/ufile_ids = ["bf0e56a097b1e8e41819c3d039977632:427768", "bf0e56a097b1e8e41819c3d039977632:157402", "bf0e56a097b1e8e41819c3d039977632:19896612", "bf0e56a097b1e8e41819c3d039977632:19905376"]

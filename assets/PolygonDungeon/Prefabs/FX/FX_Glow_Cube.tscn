@@ -1,4 +1,0 @@
-[gd_scene format=3]
-
-[node name="FX_Glow_Cube" type="Node3D"]
-metadata/ufile_ids = ["9844404222ea7574cbdd3fe075ea2560:418590", "9844404222ea7574cbdd3fe075ea2560:188748", "9844404222ea7574cbdd3fe075ea2560:19884642", "9844404222ea7574cbdd3fe075ea2560:19956260"]

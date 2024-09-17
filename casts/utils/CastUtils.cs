@@ -105,7 +105,7 @@ public static class CastUtils
 
 	public static Vector3 SnapToGround(this Node3D node, Vector3 pos)
 	{
-		return Raycast.GetFirstHitPositionGlobal(node, pos + Vector3.Up * 10, pos + Vector3.Down * 10, Raycast.Layer.Floors | Raycast.Layer.Walls);
+		return Raycast.GetFirstHitPositionGlobal(node, pos + Vector3.Up * 10, pos + Vector3.Down * 10, Raycast.Layer.Floors);
 	}
 
 	public static Vector3 GetGroundedPosition(this Node3D node, float verticalOffset = 0.05f)

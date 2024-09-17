@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dt8dosq4yhn3b"]
+
+[ext_resource type="PackedScene" path="res://assets/PolygonDungeon/Prefabs/Environments/Walls/SM_Env_Wall_06.tscn" id="2_d1twd"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g2po7"]
+size = Vector3(1, 1, 0.1)
+
+[node name="WallStone05_01" type="StaticBody3D"]
+collision_layer = 33
+
+[node name="SM_Env_Wall_06" parent="." instance=ExtResource("2_d1twd")]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.5, 0)
+shape = SubResource("BoxShape3D_g2po7")

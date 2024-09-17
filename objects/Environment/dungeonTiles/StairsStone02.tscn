@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://c6fwg0y3oj83k"]
+
+[ext_resource type="PackedScene" path="res://assets/PolygonDungeon/Prefabs/Environments/Floors/SM_Env_Stairs_02.tscn" id="1_epvp3"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1fma0"]
+size = Vector3(1, 0.170694, 0.137691)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g2po7"]
+size = Vector3(1, 0.150917, 1.01364)
+
+[node name="StairsStone02_01" type="StaticBody3D"]
+collision_layer = 17
+
+[node name="SM_Env_Stairs_02" parent="." instance=ExtResource("1_epvp3")]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 1, 0, 1)
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.497149, 0.439893, 0.0678692)
+shape = SubResource("BoxShape3D_1fma0")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.887011, -0.461749, 0, 0.461749, 0.887011, 0.490129, 0.204279, 0.530537)
+shape = SubResource("BoxShape3D_g2po7")
