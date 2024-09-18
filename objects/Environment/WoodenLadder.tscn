@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://go56dqudnn08"]
+
+[ext_resource type="PackedScene" uid="uid://dwcwmowocxxd5" path="res://assets/meshes/woodenLadder.glb" id="1_aqvlw"]
+[ext_resource type="Material" uid="uid://egwfatbxefmf" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_000s4"]
+
+[node name="WoodenLadder" type="Node3D"]
+
+[node name="Node3D" type="Node3D" parent="."]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+
+[node name="woodenLadder" parent="Node3D" instance=ExtResource("1_aqvlw")]
+
+[node name="Stick" parent="Node3D/woodenLadder" index="0"]
+surface_material_override/0 = ExtResource("2_000s4")
+
+[editable path="Node3D/woodenLadder"]

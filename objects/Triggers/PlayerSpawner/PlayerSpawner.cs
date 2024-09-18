@@ -25,6 +25,7 @@ public partial class PlayerSpawner : Node3D
 	{
 		var player = Lib.LoadScene(Lib.Unit.PlayerCharacter).Instantiate<PlayerController>();
 		player.Position = GlobalPosition;
+		player.Rotation = GlobalRotation;
 		GetTree().CurrentScene.AddChild(player);
 
 		if (SavedCastBindings != null)

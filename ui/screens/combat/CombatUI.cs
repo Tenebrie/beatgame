@@ -71,4 +71,12 @@ public partial class CombatUI : Control
 	{
 		Visible = scene is not PlayableScene.MainMenu and not PlayableScene.Unknown;
 	}
+
+    public override void _UnhandledKeyInput(InputEvent @event)
+    {
+        if (@event.IsActionPressed("ToggleUI".ToStringName()))
+		{
+			Visible = !Visible;
+		}
+    }
 }

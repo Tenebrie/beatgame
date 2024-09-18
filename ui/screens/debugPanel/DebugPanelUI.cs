@@ -9,15 +9,29 @@ public partial class DebugPanelUI : Control
 {
 	[Export] public RichTextLabel FramerateLabel;
 
-	readonly List<double> frameTimes = new();
+	int lastSeenFrameCount = 0;
+	readonly List<double> latestFrameTimes = new();
 
-	public override void _PhysicsProcess(double delta)
+	public override void _Process(double delta)
 	{
-		frameTimes.Add(Engine.GetFramesPerSecond());
-		if (frameTimes.Count > 20)
-			frameTimes.RemoveAt(0);
+		var frameDelta = Engine.GetFramesDrawn() - lastSeenFrameCount;
+		lastSeenFrameCount = Engine.GetFramesDrawn();
+		var currentFrameRate = frameDelta / delta;
 
-		double average = frameTimes.Average();
-		FramerateLabel.Text = $"[b]FPS:[/b] {average:0}";
+		latestFrameTimes.Add(currentFrameRate);
+		if (latestFrameTimes.Count > 100)
+			latestFrameTimes.RemoveAt(0);
+
+		double average = latestFrameTimes.Average();
+		double min = latestFrameTimes.Min();
+		FramerateLabel.Text = $"[b]Avg. FPS:[/b] {average:0}, [b]Min FPS:[/b] {min:0}";
+	}
+
+	public override void _UnhandledKeyInput(InputEvent @event)
+	{
+		if (@event.IsActionPressed("ToggleUI".ToStringName()))
+		{
+			Visible = !Visible;
+		}
 	}
 }

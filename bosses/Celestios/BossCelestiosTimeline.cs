@@ -27,8 +27,8 @@ public partial class BossCelestiosTimeline : BaseTimeline
 
 		Act(() =>
 		{
-			Parent.Composables.Find<FadingObjectBehaviour>().SetFade(1.05f);
-			Parent.Composables.Find<FadingObjectBehaviour>().FadeIn(5);
+			// Parent.Composables.Find<FadingObjectBehaviour>().SetFade(1.05f);
+			// Parent.Composables.Find<FadingObjectBehaviour>().FadeIn(5);
 		});
 	}
 

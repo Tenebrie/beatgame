@@ -29,7 +29,7 @@ public class SettingsContainerBuilder
 		return this;
 	}
 
-	SettingsContainerBuilder AddEntry(SettingsKey id, SettingsEntry entry)
+	private SettingsContainerBuilder AddEntry(SettingsKey id, SettingsEntry entry)
 	{
 		entry.Key = id;
 		entry.Tab = editedTab;
@@ -37,6 +37,31 @@ public class SettingsContainerBuilder
 		container.AddEntry(entry);
 		entryMap[entry.Key] = entry;
 		return this;
+	}
+
+	public SettingsContainerBuilder AddToggle(SettingsKey id, string name, bool value)
+	{
+		var entry = new ToggleSettingsEntry
+		{
+			Name = name,
+			Value = value,
+		};
+		return AddEntry(id, entry);
+	}
+
+	public SettingsContainerBuilder AddSlider(SettingsKey id, string name, float min, float value, float max, float step, bool percentage = false, Func<float, string> textConverter = null)
+	{
+		var entry = new SliderSettingsEntry
+		{
+			Name = name,
+			Min = min,
+			Max = max,
+			Value = value,
+			Step = step,
+			Percentage = percentage,
+			TextConverter = textConverter,
+		};
+		return AddEntry(id, entry);
 	}
 
 	public SettingsContainerBuilder AddDropdown<T>(SettingsKey id, string name, (string Label, T Value)[] options, T selected)
@@ -47,20 +72,6 @@ public class SettingsContainerBuilder
 			Name = name,
 			Options = plainOptions,
 			Selected = plainOptions.First(o => o.Value.Equals(Convert.ToInt32(selected))),
-		};
-		return AddEntry(id, entry);
-	}
-
-	public SettingsContainerBuilder AddSlider(SettingsKey id, string name, float min, float value, float max, float step, bool percentage = false)
-	{
-		var entry = new SliderSettingsEntry
-		{
-			Name = name,
-			Min = min,
-			Max = max,
-			Value = value,
-			Step = step,
-			Percentage = percentage,
 		};
 		return AddEntry(id, entry);
 	}

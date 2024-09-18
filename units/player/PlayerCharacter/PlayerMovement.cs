@@ -214,7 +214,7 @@ public partial class PlayerMovement : ComposableScript
 			var mouseDelta = mousePos - hardCameraMoveStart;
 			Input.WarpMouse(hardCameraMoveStart * GetTree().Root.ContentScaleFactor);
 			Parent.Rotate(Vector3.Up, -mouseDelta.X / 500);
-			var rotation = (float)Math.Min(Math.PI / 4, Math.Max(-Math.PI / 2 + 0.01f, verticalCameraPivot.Rotation.X - mouseDelta.Y / 500));
+			var rotation = (float)Math.Min(Math.PI / 2, Math.Max(-Math.PI / 2 + 0.01f, verticalCameraPivot.Rotation.X - mouseDelta.Y / 500));
 			verticalCameraPivot.Rotation = new Vector3(rotation, 0, 0);
 		}
 		else if (softCameraPreMoving)
@@ -235,7 +235,7 @@ public partial class PlayerMovement : ComposableScript
 			var mouseDelta = mousePos - softCameraMoveStart;
 			Input.WarpMouse(softCameraMoveStart * GetTree().Root.ContentScaleFactor);
 			RotateCameraHorizontal(-mouseDelta.X / 500);
-			var verticalRotation = (float)Math.Min(Math.PI / 4, Math.Max(-Math.PI / 2 + 0.01f, verticalCameraPivot.Rotation.X - mouseDelta.Y / 500));
+			var verticalRotation = (float)Math.Min(Math.PI / 2, Math.Max(-Math.PI / 2 + 0.01f, verticalCameraPivot.Rotation.X - mouseDelta.Y / 500));
 			verticalCameraPivot.Rotation = new Vector3(verticalRotation, 0, 0);
 		}
 
@@ -254,6 +254,9 @@ public partial class PlayerMovement : ComposableScript
 
 		horizontalCameraPivot.Position = new Vector3(0, effectiveHeight, 0);
 		springArm.SpringLength = cameraDistance;
+
+		// horizontalCameraPivot.Position += new Vector3(0, (effectiveHeight - horizontalCameraPivot.Position.Y) * 15 * (float)delta, 0);
+		// springArm.SpringLength += (cameraDistance - springArm.SpringLength) * 15 * (float)delta;
 	}
 
 	private void RotateCameraHorizontal(float radians, bool snapping = false)

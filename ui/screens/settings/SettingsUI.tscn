@@ -80,6 +80,19 @@ selected = 0
 item_count = 1
 popup/item_0/text = "Item"
 
+[node name="SplitContainer2" type="BoxContainer" parent="CenterContainer/Control/TabPanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/Control/TabPanelContainer/MarginContainer/VBoxContainer/SplitContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Label"
+horizontal_alignment = 3
+
+[node name="CheckButton" type="CheckButton" parent="CenterContainer/Control/TabPanelContainer/MarginContainer/VBoxContainer/SplitContainer2"]
+layout_mode = 2
+
 [node name="^^^ Controlled programmatically" type="Node" parent="CenterContainer/Control"]
 
 [node name="MarginContainer" type="MarginContainer" parent="CenterContainer/Control"]
@@ -127,4 +140,5 @@ theme_override_font_sizes/font_size = 22
 text = "X"
 
 [node name="SettingsDirtyModalUI" parent="." instance=ExtResource("2_gxxbg")]
+visible = false
 layout_mode = 1

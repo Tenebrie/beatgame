@@ -92,8 +92,8 @@ public partial class ResourceBar : Control
 
 	public void TrackUnit(BaseUnit unit, ObjectResourceType resourceType)
 	{
-		var resource = (ObjectResource)unit.Composables.Find(script => script is ObjectResource resource && resource.Type == resourceType)
-			?? throw new Exception("The requested resource does not exist on this unit.");
+		var resources = unit.GetComponentsUncached<ObjectResource>();
+		var resource = resources.Find(resource => resource.Type == resourceType) ?? throw new Exception("The requested resource does not exist on this unit.");
 
 		TrackedUnit = unit;
 		TrackedResource = resource;

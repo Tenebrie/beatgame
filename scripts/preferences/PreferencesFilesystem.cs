@@ -42,7 +42,9 @@ public static class PreferencesFilesystem
 		{
 			GD.Print("Saving entry: " + entry.Key + " = " + entry);
 			var key = entry.Key.ToString();
-			if (entry is SliderSettingsEntry slider)
+			if (entry is ToggleSettingsEntry toggle)
+				config.SetValue("userPreferences", key, toggle.Value);
+			else if (entry is SliderSettingsEntry slider)
 				config.SetValue("userPreferences", key, slider.Value);
 			else if (entry is DropdownSettingsEntry dropdown)
 				config.SetValue("userPreferences", key, dropdown.Selected.Value);

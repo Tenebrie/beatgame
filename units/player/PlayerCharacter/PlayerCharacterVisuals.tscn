@@ -140,5 +140,6 @@ mesh = SubResource("PlaneMesh_2yssi")
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25024, 0)
 light_energy = 0.1
+light_volumetric_fog_energy = 10000.0
 light_specular = 0.0
 omni_range = 2.0

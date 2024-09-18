@@ -1,9 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Godot;
 
 namespace Project;
 
+[GlobalClass]
 public partial class PlayerController : BaseUnit
 {
 	public PlayerMovement Movement;

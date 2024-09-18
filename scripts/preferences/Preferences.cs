@@ -13,6 +13,7 @@ public partial class Preferences : Node
 	public SettingsContainer AppliedSettings;
 	public SettingsContainer SavedSettings;
 
+	public DisplayServer.VSyncMode VSyncMode => DraftSettings.GetToggle(SettingsKey.VSync).Value ? DisplayServer.VSyncMode.Enabled : DisplayServer.VSyncMode.Disabled;
 	public bool ShowFps => DraftSettings.GetSlider(SettingsKey.ShowFps).Value == 1;
 	public float MainVolume => DraftSettings.GetSlider(SettingsKey.MainVolume).Value;
 	public float MusicVolume => DraftSettings.GetSlider(SettingsKey.MusicVolume).Value;
@@ -52,7 +53,8 @@ public partial class Preferences : Node
 		AudioServer.SetBusVolumeDb(AudioServer.GetBusIndex("Effects"), Mathf.LinearToDb(AudioVolume));
 
 		GetViewport().Scaling3DScale = RenderScale;
-		Engine.Singleton.MaxFps = FpsLimit;
+		Engine.Singleton.MaxFps = FpsLimit <= 240 ? FpsLimit : 1000;
+		DisplayServer.Singleton.WindowSetVsyncMode(VSyncMode);
 		ApplyAntialiasing();
 	}
 

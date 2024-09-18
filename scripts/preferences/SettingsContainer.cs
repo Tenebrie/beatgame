@@ -12,6 +12,7 @@ public enum SettingsKey
 	ShowFps,
 	CameraHeight,
 	DisplayMode,
+	VSync,
 	Resolution,
 	RenderScale,
 	FpsLimit,
@@ -19,60 +20,6 @@ public enum SettingsKey
 	MainVolume,
 	MusicVolume,
 	EffectsVolume,
-}
-
-public abstract class SettingsEntry
-{
-	public int Tab;
-	public int Category;
-	public SettingsKey Key;
-	public string Name;
-
-	public Action OnApplySideEffects;
-	public void ApplySideEffects()
-	{
-		OnApplySideEffects?.Invoke();
-	}
-
-	public Action OnUpdateUI;
-	public void UpdateUI()
-	{
-		OnUpdateUI?.Invoke();
-	}
-}
-
-public class SliderSettingsEntry : SettingsEntry
-{
-	public float Min;
-	public float Max;
-	public float Value;
-	public float Step;
-	public bool Percentage;
-
-	public string TextValue => Percentage ? Math.Round(Value * 100) + "%" : Value.ToString();
-
-	public void SetValue(double value)
-	{
-		Value = (float)value;
-		ApplySideEffects();
-	}
-}
-
-public class DropdownSettingsEntry : SettingsEntry
-{
-	public (string Label, int Value) Selected;
-	public (string Label, int Value)[] Options;
-
-	public void SetValue(int value)
-	{
-		Selected = Options.First((o) => o.Value.Equals(value));
-		ApplySideEffects();
-	}
-}
-
-public class InputSettingsEntry : SettingsEntry
-{
-
 }
 
 public class SettingsContainer
@@ -88,6 +35,11 @@ public class SettingsContainer
 		EntryMap[entry.Key] = entry;
 	}
 
+	public ToggleSettingsEntry GetToggle(SettingsKey id)
+	{
+		return (ToggleSettingsEntry)EntryMap[id];
+	}
+
 	public SliderSettingsEntry GetSlider(SettingsKey id)
 	{
 		return (SliderSettingsEntry)EntryMap[id];
@@ -101,17 +53,19 @@ public class SettingsContainer
 	public void SetValue(SettingsKey key, Variant value)
 	{
 		var target = EntryMap[key];
-		if (target is DropdownSettingsEntry dropdown && value.VariantType is Variant.Type.Int)
+		switch (target)
 		{
-			dropdown.SetValue(value.AsInt32());
-		}
-		else if (target is SliderSettingsEntry slider && value.VariantType is Variant.Type.Float)
-		{
-			slider.SetValue(value.AsSingle());
-		}
-		else
-		{
-			throw new ArgumentException($"Invalid value type for key {key} ({value.VariantType})");
+			case ToggleSettingsEntry toggle:
+				toggle.SetValue(value.AsBool());
+				break;
+			case SliderSettingsEntry slider:
+				slider.SetValue(value.AsSingle());
+				break;
+			case DropdownSettingsEntry dropdown:
+				dropdown.SetValue(value.AsInt32());
+				break;
+			default:
+				throw new ArgumentException($"Invalid value type for key {key} ({value.VariantType})");
 		}
 		target.UpdateUI();
 	}
@@ -120,10 +74,20 @@ public class SettingsContainer
 	{
 		foreach (var baseEntry in source.Entries)
 		{
-			if (baseEntry is SliderSettingsEntry slider)
-				SetValue(baseEntry.Key, slider.Value);
-			else if (baseEntry is DropdownSettingsEntry dropdown)
-				SetValue(baseEntry.Key, dropdown.Selected.Value);
+			switch (baseEntry)
+			{
+				case ToggleSettingsEntry toggle:
+					SetValue(baseEntry.Key, toggle.Value);
+					break;
+				case SliderSettingsEntry slider:
+					SetValue(baseEntry.Key, slider.Value);
+					break;
+				case DropdownSettingsEntry dropdown:
+					SetValue(baseEntry.Key, dropdown.Selected.Value);
+					break;
+				default:
+					throw new ArgumentException($"Invalid entry type {baseEntry.GetType()}");
+			}
 		}
 	}
 
@@ -144,6 +108,7 @@ public class SettingsContainer
 				("Borderless", 0),
 				("Windowed", 1),
 			}, 0)
+			.AddToggle(SettingsKey.VSync, "VSync", value: true)
 			.AddDropdown(SettingsKey.Resolution, "Resolution", new[]
 			{
 				("2560x1440", 0),
@@ -156,7 +121,7 @@ public class SettingsContainer
 				("640x480", 7),
 			}, 0)
 			.AddSlider(SettingsKey.RenderScale, "Render scale", min: 0.25f, value: defaultRenderScale, max: 1f, step: 0.05f, percentage: true)
-			.AddSlider(SettingsKey.FpsLimit, "Max FPS", min: 15, value: 165, max: 240, step: 15)
+			.AddSlider(SettingsKey.FpsLimit, "Max FPS", min: 15, value: 165, max: 255, step: 15, textConverter: (v) => v > 240 ? "Inf" : v.ToString())
 			.SetCategory("Advanced Settings")
 			.AddDropdown(SettingsKey.AntialiasingLevel, "Anti Aliasing", new[]
 			{

@@ -95,25 +95,39 @@ public partial class SettingsUI : Control
 			SizeFlagsHorizontal = SizeFlags.ExpandFill,
 		});
 
-		if (entry is DropdownSettingsEntry dropdown)
+		if (entry is ToggleSettingsEntry toggle)
 		{
-			var dropdownControl = new OptionButton
+			var subcontainer = new HBoxContainer()
 			{
-				Text = dropdown.Name,
-				Selected = dropdown.Options.ToList().IndexOf(dropdown.Selected),
+				SizeFlagsVertical = SizeFlags.ExpandFill,
 				SizeFlagsHorizontal = SizeFlags.ExpandFill,
 			};
-			dropdown.Options
-				.ToList()
-				.ForEach((option) =>
-				{
-					dropdownControl.AddItem(option.Label);
-				});
+			var toggleControl = new CheckButton
+			{
+				Name = toggle.Name,
+				ButtonPressed = toggle.Value,
+				SizeFlagsVertical = SizeFlags.ExpandFill,
+				SizeFlagsHorizontal = SizeFlags.ExpandFill,
+			};
+			var sliderValue = new Label
+			{
+				Text = toggle.TextValue,
+				HorizontalAlignment = HorizontalAlignment.Right,
+				CustomMinimumSize = new Vector2(50, 0),
+				SizeFlagsHorizontal = SizeFlags.ShrinkCenter,
+			};
 
-			dropdown.OnUpdateUI += () => dropdownControl.Selected = dropdown.Options.ToList().IndexOf(dropdown.Selected);
-			dropdownControl.ItemSelected += (index) => dropdown.SetValue(dropdown.Options[index].Value);
-			container.AddChild(dropdownControl);
-			dropdownControl.Selected = dropdown.Options.ToList().IndexOf(dropdown.Selected);
+			toggle.OnUpdateUI += () => toggleControl.ButtonPressed = toggle.Value;
+			toggleControl.Toggled += (value) =>
+			{
+				toggle.SetValue(value);
+				sliderValue.Text = toggle.TextValue;
+			};
+			subcontainer.AddChild(toggleControl);
+			subcontainer.AddChild(sliderValue);
+			container.AddChild(subcontainer);
+			// Godot bug, requires force updating the slider value again for it to render properly
+			toggleControl.ButtonPressed = toggle.Value;
 		}
 		else if (entry is SliderSettingsEntry slider)
 		{
@@ -151,6 +165,26 @@ public partial class SettingsUI : Control
 			container.AddChild(subcontainer);
 			// Godot bug, requires force updating the slider value again for it to render properly
 			sliderControl.Value = slider.Value;
+		}
+		else if (entry is DropdownSettingsEntry dropdown)
+		{
+			var dropdownControl = new OptionButton
+			{
+				Text = dropdown.Name,
+				Selected = dropdown.Options.ToList().IndexOf(dropdown.Selected),
+				SizeFlagsHorizontal = SizeFlags.ExpandFill,
+			};
+			dropdown.Options
+				.ToList()
+				.ForEach((option) =>
+				{
+					dropdownControl.AddItem(option.Label);
+				});
+
+			dropdown.OnUpdateUI += () => dropdownControl.Selected = dropdown.Options.ToList().IndexOf(dropdown.Selected);
+			dropdownControl.ItemSelected += (index) => dropdown.SetValue(dropdown.Options[index].Value);
+			container.AddChild(dropdownControl);
+			dropdownControl.Selected = dropdown.Options.ToList().IndexOf(dropdown.Selected);
 		}
 		else if (entry is InputSettingsEntry input)
 		{

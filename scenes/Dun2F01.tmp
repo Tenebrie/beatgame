@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=3 uid="uid://bfqjxf71pmtx4"]
+[gd_scene load_steps=51 format=3 uid="uid://bfqjxf71pmtx4"]
 
 [ext_resource type="PackedScene" uid="uid://cgo34wa3ccmn5" path="res://objects/Environment/dungeonTiles/FloorTiles01.tscn" id="1_rdjdx"]
 [ext_resource type="PackedScene" uid="uid://by3brcj43nbkw" path="res://objects/Environment/dungeonTiles/FloorTiles02.tscn" id="2_r3l01"]
@@ -19,7 +19,6 @@
 [ext_resource type="PackedScene" uid="uid://c6m5d0kua5xoi" path="res://objects/Environment/moldy/WallSmoothGrateChipped01Moldy.tscn" id="9_lfqfk"]
 [ext_resource type="PackedScene" uid="uid://d1hgk3pk7ww6g" path="res://objects/Environment/PillarStone02.tscn" id="10_8skxx"]
 [ext_resource type="PackedScene" uid="uid://dg46vvdph42d7" path="res://objects/Environment/moldy/WallSmoothGrateChipped02Moldy.tscn" id="10_ify07"]
-[ext_resource type="PackedScene" uid="uid://b6wd8lq8n0vbs" path="res://objects/Environment/ClayPot01.tscn" id="10_u3n4h"]
 [ext_resource type="PackedScene" uid="uid://c0aagkf5yer15" path="res://objects/Environment/moldy/WallSmoothGrateDamagedMoldy.tscn" id="11_e2eoy"]
 [ext_resource type="PackedScene" uid="uid://c2d8mqxtd0cxx" path="res://objects/Environment/dungeonTiles/FloorTilesTrim02.tscn" id="11_elq3m"]
 [ext_resource type="PackedScene" uid="uid://cp5yb31qe0foy" path="res://objects/Environment/dungeonTiles/StairsStone01.tscn" id="12_fotpy"]
@@ -42,18 +41,6 @@
 [ext_resource type="PackedScene" uid="uid://ea6b6a4ymw6d" path="res://objects/Environment/ground/GroundTile01.tscn" id="29_edtks"]
 [ext_resource type="PackedScene" uid="uid://ceqx76vu6bckg" path="res://objects/Environment/dungeonTiles/FloorTilesTrim01.tscn" id="31_0sefj"]
 [ext_resource type="PackedScene" uid="uid://dvbl5wpm0payh" path="res://objects/Environment/dungeonTiles/WallStoneDoor01.tscn" id="36_x2m3c"]
-[ext_resource type="PackedScene" uid="uid://go56dqudnn08" path="res://objects/Environment/WoodenLadder.tscn" id="37_5rrl0"]
-[ext_resource type="PackedScene" path="res://assets/PolygonDungeon/Prefabs/Environments/Floors/SM_Env_GroundMound_Corner_01.tscn" id="43_e5xb2"]
-[ext_resource type="PackedScene" uid="uid://cap2k7njsnxey" path="res://objects/Environment/dust/DustPileCorner01.tscn" id="44_vw4su"]
-
-[sub_resource type="BoxOccluder3D" id="BoxOccluder3D_2rkfq"]
-size = Vector3(0.14688, 9.22034, 14.5925)
-
-[sub_resource type="BoxOccluder3D" id="BoxOccluder3D_5i501"]
-size = Vector3(0.14688, 9.22034, 14.5925)
-
-[sub_resource type="BoxOccluder3D" id="BoxOccluder3D_mn4c1"]
-size = Vector3(0.14688, 6.4615, 2.88753)
 
 [sub_resource type="GDScript" id="GDScript_mboue"]
 resource_name = "StartingRoomArea"
@@ -61,35 +48,18 @@ script/source = "extends Area3D
 
 @export var lightToTurnOff: Light3D
 
-var lightIntensity
-
+# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	lightIntensity = lightToTurnOff.light_energy
-
-func _on_body_entered(body: Node3D) -> void:
-	if body is not PlayerController:
-		pass
-	lightToTurnOff.light_energy = lightIntensity
-
-func _on_body_exited(body: Node3D) -> void:
 	lightToTurnOff.light_energy = 0
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
 "
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hexww"]
-size = Vector3(9.94641, 4.2041, 8.14703)
-
-[sub_resource type="Animation" id="Animation_u1i8n"]
-resource_name = "SpotLightFade"
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_0nrwl"]
-_data = {
-"SpotLightFade": SubResource("Animation_u1i8n")
-}
-
-[sub_resource type="FogMaterial" id="FogMaterial_e7xn8"]
-density = 0.01
-albedo = Color(0.251671, 0.39872, 2.88785e-07, 1)
-emission = Color(0.7, 1, 0.875, 1)
+size = Vector3(9.9248, 4.2041, 8.14703)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_m43bh"]
 size = Vector3(2, 0.005, 2)
@@ -99,24 +69,6 @@ albedo_color = Color(0.0470588, 0.176471, 0.0666667, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_pk3aq"]
 material = SubResource("StandardMaterial3D_epumf")
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_wxiw2"]
-noise_type = 3
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_w4fpm"]
-noise = SubResource("FastNoiseLite_wxiw2")
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_5adfg"]
-noise = SubResource("FastNoiseLite_wxiw2")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wjjv5"]
-albedo_texture = SubResource("NoiseTexture2D_w4fpm")
-emission_enabled = true
-emission = Color(0, 0.0799999, 0.96, 1)
-emission_texture = SubResource("NoiseTexture2D_5adfg")
-
-[sub_resource type="BoxMesh" id="BoxMesh_rxtlc"]
-material = SubResource("StandardMaterial3D_wjjv5")
 
 [sub_resource type="Environment" id="Environment_g61pj"]
 background_mode = 2
@@ -128,9 +80,8 @@ sdfgi_read_sky_light = false
 glow_strength = 2.0
 glow_bloom = 0.05
 volumetric_fog_enabled = true
-volumetric_fog_density = 0.0001
+volumetric_fog_density = 0.0003
 volumetric_fog_emission_energy = 1024.0
-volumetric_fog_length = 16.0
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_g6t3p"]
 vertices = PackedVector3Array(26.15, 0.4, -14.65, 25.95, 0.4, -13.25, 25.95, 0.4, -12.85, 32.15, 0.4, -12.85, 29.15, 0.4, -14.25, 31.95, 0.4, -17.05, 29.95, 0.4, -17.05, 29.95, 0.4, -15.05, 28.55, 0.4, -14.65, -8.85, 0.8, -12.65, -9.05, 0.8, -11.45, -8.05, 0.8, -11.65, -7.85, 0.6, -13.05, -10.25, 0.4, -14.25, -13.85, 0.4, -14.85, -13.85, 0.4, -13.05, -9.25, 0.6, -13.05, -1.45, 0.4, -15.65, -3.65, 0.4, -15.65, -3.25, 0.4, -14.85, -1.65, 0.4, -14.65, -3.85, 0.4, -14.25, -4.45, 0.4, -14.65, -9.65, 0.4, -14.65, -0.25, 0.4, -13.05, -1.05, 0.4, -14.25, -10.45, 0.4, -14.65, -4.45, 3.4, -15.05, -4.25, 3.4, -14.65, -3.65, 3.4, -14.85, -3.85, 3.4, -15.45, -1.25, 3.4, -15.45, -1.25, 3.4, -14.65, -0.65, 3.4, -14.85, -0.849999, 3.4, -15.45, -10.25, 3.4, -14.65, -9.65, 3.4, -14.85, -9.85, 3.4, -15.25, -10.45, 3.4, -15.05, 4.75, 3.4, -14.65, 5.35, 3.4, -14.85, 5.15, 3.4, -15.25, 4.55, 3.4, -15.05, 10.75, 3.4, -14.65, 11.35, 3.4, -14.85, 11.15, 3.4, -15.25, 10.55, 3.4, -15.05, 16.75, 3.4, -14.65, 17.35, 3.4, -14.85, 17.15, 3.4, -15.25, 16.55, 3.4, -15.05, 22.75, 3.4, -14.65, 23.35, 3.4, -14.85, 23.15, 3.4, -15.25, 22.55, 3.4, -15.05, 28.75, 3.4, -14.65, 29.35, 3.4, -14.85, 29.15, 3.4, -15.25, 28.55, 3.4, -15.05, 1.95, 1.4, -6.65, 1.95, 1.4, -7.85, 1.35, 1.4, -7.85, 1.35, 1.4, -4.45, -0.65, 0.4, -14.65, 2.95, 0.6, -12.85, 4.55, 0.4, -14.65, 6.15, 0.4, -13.05, 5.95, 0.4, -14.65, 4.75, 0.4, -14.25, 4.15, 0.6, -13.05, 2.75, 1.2, -6.65, 2.75, 0.4, -8.05, 2.35, 0.4, -8.05, 2.35, 1.2, -6.65, 3.75, 0.8, -12.65, 4.75, 1.4, -7.85, 3.15, 1.4, -7.85, 3.15, 1.4, -6.65, 4.75, 1.4, -4.45, 2.95, 0.8, -10.25, 0.550001, 0.4, -10.05, 0.950001, 0.4, -8.25, 3.75, 0.8, -10.25, 2.95, 0.8, -11.9833, 6.15, 0.4, -8.45, 6.15, 0.4, -10.05, -2.45, 0.8, -8.45, -2.45, 0.8, -9.25, -3.85, 0.6, -9.45, -4.05, 0.6, -8.25, -3.15, 0.8, -9.35, -5.65, 0.4, -6.45, -4.05, 0.4, -6.45, -5.85, 0.4, -8.25, -4.05, 0.4, -10.05, -7.85, 0.6, -10.05, -9.05, 0.6, -10.05, -15.85, 0.4, -9.85, -15.85, 0.4, -8.05, -1.05, 0.6, 0.750002, -1.05, 0.4, 1.55, -0.449999, 0.4, 1.75, -1.25, 0.8, -9.45, -1.05, 0.6, -8.25, -1.85, 0.8, -9.35, 6.75, 0.4, -7.65, 5.35, 0.4, -7.65, 5.35, 0.4, -3.45, 6.75, 0.4, -0.25, -2.45, 0.8, -0.25, -2.45, 0.8, 0.550001, -1.05, 0.6, -0.65, -1.75, 0.8, -0.449999, 0.75, 0.4, -2.65, 1.35, 0.4, -3.25, 0.75, 0.4, -3.25, -1.05, 0.4, -10.05, 0.550001, 0.4, -6.05, -0.65, 0.4, 3.75, 0.550001, 0.4, 3.75, 0.35, 0.4, 1.75, 5.35, 0.4, -2.65, 0.75, 0.4, 1.55, 5.35, 0.4, -0.25, 1.55, 0.4, -3.65, 13.95, 0.4, -8.25, 15.15, 0.4, -8.05, 15.15, 0.4, -9.85, 8.95, 0.4, -10.05, 7.35, 0.4, -8.25, 9.15, 0.6, -8.45, 9.15, 0.6, -9.45, 7.35, 0.4, -6.65, 8.95, 0.4, -6.65, 11.95, 0.6, -8.25, 11.75, 0.8, -9.45, 11.0167, 0.8, -8.31667, 10.0167, 0.8, -9.45, 11.95, 0.4, -10.05, 23.95, 0.4, -8.05, 24.15, 0.4, -4.85, 26.15, 0.4, -4.85, 26.15, 0.4, -10.05, 11.95, 0.6, 0.750002, 11.95, 0.4, 1.55, 12.55, 0.4, 1.75, 12.35, 0.4, 2.95, 13.55, 0.4, 2.95, 10.55, 0.8, -0.449999, 10.55, 0.8, 0.550001, 11.95, 0.6, -0.65, 8.35, 0.4, 1.75, 8.95, 0.4, 1.55, 9.15, 0.6, 0.550001, 8.95, 0.6, -0.65, 7.35, 0.4, 5.55, 7.75, 0.4, 5.75, 14.35, 0.4, 7.95, 14.35, 0.4, 6.35, 13.35, 0.4, 6.35, 12.35, 0.4, 6.55, 7.75, 0.4, 6.35, 6.95, 0.4, 6.55, 6.75, 0.4, 7.95, 8.95, 0.4, 7.95, 9.15, 0.6, 7.55, 8.35, 0.4, 6.35, 11.23, 0.8, 7.71, 12.27, 0.4, 7.79, 11.35, 0.8, 6.5, 9.35, 0.8, 6.4, -4.65, 0.4, 1.75, -4.05, 0.4, 1.55, -4.05, 0.6, 0.750002, -4.05, 0.6, -0.65, -3.25, 0.8, -0.449999, -5.65, 0.4, 3.75, -4.45, 0.4, 3.75, -16.65, 0.4, -5.65, -16.65, 0.4, 1.75, -13.05, 0.4, 1.55, -13.05, 0.4, -5.65, -11.05, 0.4, 1.55, -9.45, 0.4, 1.75, -9.45, 0.4, -5.65, -11.05, 0.4, -5.65, 24.35, 0.4, -0.0499992, 25.55, 0.4, -0.0499992, 25.75, 0.4, -1.25, 26.35, 0.4, -3.05, 31.95, 0.4, -1.05, 32.15, 0.4, -3.05, -13.05, 1.4, 2.35, -13.05, 1.4, 8.15, -11.05, 1.4, 8.15, -11.05, 1.4, 2.35, -6.05, 2.4, 2.35, -6.05, 2.4, 3.95, -4.05, 2.4, 3.95, -4.05, 2.4, 2.35, -1.05, 2.4, 2.35, -1.05, 2.4, 3.95, 0.950001, 2.4, 3.95, 0.950001, 2.4, 2.35, 6.95, 2.4, 2.35, 6.95, 2.4, 6.15, 8.95, 2.4, 6.15, 8.95, 2.4, 2.35, 11.95, 2.4, 2.35, 11.95, 2.4, 3.75, 12.35, 2.4, 3.95, 13.95, 2.4, 2.35, 11.95, 2.4, 4.35, 11.95, 2.4, 6.15, 13.95, 2.4, 6.15, 6.75, 0.4, 6.15, 1.15, 0.4, 6.15, 2.95, 0.4, 8.15, 1.15, 0.4, 17.55, 1.55, 0.4, 17.95, 2.95, 0.4, 17.95, 9.15, 0.6, 25.55, 11.95, 0.6, 25.55, 9.15, 0.6, 24.55, 10.0833, 0.8, 25.55, 18.15, 0.4, 8.15, 18.15, 0.4, 23.95, 19.95, 0.4, 25.55, 19.95, 0.4, 6.15, -13.05, 0.4, 8.55, -13.45, 0.4, 8.15, -14.85, 0.4, 8.15, -14.85, 0.4, 13.95, -13.05, 0.4, 11.35, -11.05, -0.4, 10.15, -12.85, -0.4, 10.15, -12.65, 0.2, 11.35, -11.05, 0.4, 11.35, -16.65, 0.4, 14.15, -16.65, 0.4, 17.95, -9.05, 0.4, 14.15, -8.65, 0.4, 13.95, -9.25, 0.4, 17.95, -10.65, 0.4, 8.15, -1.05, 0.4, 13.95, -1.05, 0.4, 8.15, 7.55, 0.4, 12.15, 7.55, 0.4, 19.95, 13.35, 0.4, 19.95, 13.35, 0.4, 12.15, -9.05, 1.4, 17.95, -9.05, 1.4, 19.95, 1.15, 1.4, 19.95, 1.15, 1.4, 17.95, -16.65, 0.4, 21.95, -9.05, 0.4, 21.95, -9.05, 0.4, 20.35, -16.65, 0.4, 20.15, 3.95, -0.4, 22.15, 3.15, -0.4, 22.15, 3.35, 0.2, 23.35, 4.15, 0.4, 24.15, 8.95, 0.4, 24.15, 1.15, 0.4, 25.55, 2.95, 0.4, 23.35, 2.95, 0.4, 20.15, 1.35, 0.4, 20.15, 16.35, 0.4, 24.15, 12.2357, 0.4, 24.3786, 11.2071, 0.8, 24.4357)
@@ -164,28 +115,6 @@ agent_radius = 0.6
 
 [node name="DungeonRatBasement" type="Node3D"]
 
-[node name="Occluders" type="Node3D" parent="."]
-
-[node name="OccluderInstance3D" type="OccluderInstance3D" parent="Occluders"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.55995, 0, 0)
-occluder = SubResource("BoxOccluder3D_2rkfq")
-
-[node name="OccluderInstance3D3" type="OccluderInstance3D" parent="Occluders"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.559948, 0, 5)
-occluder = SubResource("BoxOccluder3D_5i501")
-
-[node name="OccluderInstance3D5" type="OccluderInstance3D" parent="Occluders"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.4401, 0, 3)
-occluder = SubResource("BoxOccluder3D_mn4c1")
-
-[node name="OccluderInstance3D4" type="OccluderInstance3D" parent="Occluders"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 21.4401, 0, 0)
-occluder = SubResource("BoxOccluder3D_5i501")
-
-[node name="OccluderInstance3D2" type="OccluderInstance3D" parent="Occluders"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -14.5599, 0, -7)
-occluder = SubResource("BoxOccluder3D_5i501")
-
 [node name="Scripts" type="Node" parent="."]
 
 [node name="StartingRoomArea" type="Area3D" parent="Scripts" node_paths=PackedStringArray("lightToTurnOff")]
@@ -194,22 +123,16 @@ script = SubResource("GDScript_mboue")
 lightToTurnOff = NodePath("SpotLight3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Scripts/StartingRoomArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.71039, 1.60205, -1.99332)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.72119, 1.60205, -1.99332)
 shape = SubResource("BoxShape3D_hexww")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="Scripts/StartingRoomArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0574282, 8.19687)
-visible = false
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0574282, 8.39458)
 light_color = Color(0.016, 0.2784, 0.4, 1)
-light_energy = 0.3
-light_volumetric_fog_energy = 1e+07
-spot_range = 6.17598
-spot_angle = 13.38
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Scripts/StartingRoomArea"]
-libraries = {
-"": SubResource("AnimationLibrary_0nrwl")
-}
+light_energy = 4.102
+light_volumetric_fog_energy = 1.6e+07
+spot_range = 8.27426
+spot_angle = 5.77804
 
 [node name="WaterGate" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, -11)
@@ -231,60 +154,6 @@ transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 18.0134,
 
 [node name="WallSmoothBaseMoldy17" parent="WaterGate" instance=ExtResource("6_6hlv2")]
 transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 18.0134, -2, 1)
-
-[node name="FogVolume" type="FogVolume" parent="."]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -12.0216, -0.509277, 2.47998)
-size = Vector3(16.7598, 0.981445, 1.89673)
-material = SubResource("FogMaterial_e7xn8")
-
-[node name="OmniLight3D" type="OmniLight3D" parent="FogVolume"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.10418, 0.431902, 0)
-light_energy = 0.01
-light_volumetric_fog_energy = 1.6e+06
-omni_range = 2.0
-omni_attenuation = 0.0
-
-[node name="OmniLight3D6" type="OmniLight3D" parent="FogVolume"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.10418, 0.431902, 0)
-light_energy = 0.01
-light_volumetric_fog_energy = 1.6e+06
-omni_range = 2.0
-omni_attenuation = 0.0
-
-[node name="OmniLight3D5" type="OmniLight3D" parent="FogVolume"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.737487, 0.431902, 0)
-light_energy = 0.01
-light_volumetric_fog_energy = 1.6e+06
-omni_range = 2.0
-omni_attenuation = 0.0
-
-[node name="OmniLight3D2" type="OmniLight3D" parent="FogVolume"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.62256, 0.431902, 0)
-light_energy = 0.01
-light_volumetric_fog_energy = 1.6e+06
-omni_range = 2.0
-omni_attenuation = 0.0
-
-[node name="OmniLight3D3" type="OmniLight3D" parent="FogVolume"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.62256, 0.431902, 0)
-light_energy = 0.01
-light_volumetric_fog_energy = 1.6e+06
-omni_range = 2.0
-omni_attenuation = 0.0
-
-[node name="OmniLight3D7" type="OmniLight3D" parent="FogVolume"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.07619, 0.431902, 0)
-light_energy = 0.01
-light_volumetric_fog_energy = 1.6e+06
-omni_range = 2.0
-omni_attenuation = 0.0
-
-[node name="OmniLight3D4" type="OmniLight3D" parent="FogVolume"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.62256, 0.431902, -9.53674e-07)
-light_energy = 0.01
-light_volumetric_fog_energy = 1.6e+06
-omni_range = 2.0
-omni_attenuation = 0.0
 
 [node name="UnderwaterFloors" type="Node3D" parent="."]
 
@@ -1130,6 +999,12 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -13, 3, -2)
 [node name="CeilingStoneFlat87" parent="Ceiling" instance=ExtResource("23_byiud")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -13, 3, 0)
 
+[node name="CeilingStoneFlat88" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -18, 2, -6)
+
+[node name="CeilingStoneFlat89" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -18, 2, -4)
+
 [node name="CeilingStoneFlat90" parent="Ceiling" instance=ExtResource("23_byiud")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -18, 2, -2)
 
@@ -1210,23 +1085,6 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -14, 2
 
 [node name="CeilingStoneCurved01_03" parent="Ceiling" instance=ExtResource("5_3jrm0")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -14, 2, -5)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Ceiling"]
-transform = Transform3D(1, 0, 0, 0, 0.1, 0, 0, 0, 1, -16.5, 6, -3.5)
-mesh = SubResource("BoxMesh_rxtlc")
-
-[node name="SpotLight3D" type="SpotLight3D" parent="Ceiling/MeshInstance3D"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 6.53074, 0)
-light_energy = 1.8
-light_volumetric_fog_energy = 1.6e+07
-spot_range = 5.17505
-
-[node name="SpotLight3D2" type="SpotLight3D" parent="Ceiling/MeshInstance3D"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -27.1602, 0)
-light_energy = 1.8
-light_volumetric_fog_energy = 1.6e+07
-spot_range = 3.67697
-spot_angle = 19.6875
 
 [node name="Pipes" type="Node3D" parent="."]
 
@@ -1357,33 +1215,6 @@ transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 13.571
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="EnvironmentController"]
 environment = SubResource("Environment_g61pj")
-
-[node name="PipeStraight01" parent="EnvironmentController" instance=ExtResource("24_vfd6p")]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -9.06228, 0.601109, -4.49647)
-
-[node name="PipeStraight02" parent="EnvironmentController" instance=ExtResource("24_vfd6p")]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -9.06228, 0.601109, 0.503533)
-
-[node name="PipeWallAttachment" parent="EnvironmentController" instance=ExtResource("24_eejqi")]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -9.0807, 2.07883, -4.49002)
-
-[node name="PipeWallAttachment2" parent="EnvironmentController" instance=ExtResource("24_eejqi")]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -9.0807, 2.07883, 0.509984)
-
-[node name="PipeWallAttachment3" parent="EnvironmentController" instance=ExtResource("24_eejqi")]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -9.0807, -0.0539619, 0.509984)
-
-[node name="PipeWallAttachment4" parent="EnvironmentController" instance=ExtResource("24_eejqi")]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -9.0807, -0.0539615, -4.49002)
-
-[node name="ClayPot01_01" parent="EnvironmentController" instance=ExtResource("10_u3n4h")]
-transform = Transform3D(0.976019, 0.217683, 0, -0.217683, 0.976019, 0, 0, 0, 1, -9.21743, 0.057384, -5.78539)
-
-[node name="ClayPot01_02" parent="EnvironmentController" instance=ExtResource("10_u3n4h")]
-transform = Transform3D(0.390959, -0.356935, -0.678118, 0.178307, 0.782747, -0.309207, 0.745287, -3.0401e-05, 0.4297, -9.15186, 0.0272677, -5.64596)
-
-[node name="ClayPot01_03" parent="EnvironmentController" instance=ExtResource("10_u3n4h")]
-transform = Transform3D(0.410679, 0.253172, -0.712279, -0.12643, 0.822191, 0.219344, 0.745287, -3.04127e-05, 0.4297, -9.66372, -0.0508946, -5.78971)
 
 [node name="NavMeshManager" parent="." instance=ExtResource("4_evai0")]
 
@@ -3108,7 +2939,7 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6, 0,
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6, 0, -2)
 
 [node name="WallStone364" parent="NavMeshManager/Walls" instance=ExtResource("18_4uc07")]
-transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, -16, 0, -4)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -15, 0, -3)
 
 [node name="WallStone371" parent="NavMeshManager/Walls" instance=ExtResource("18_4uc07")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -17, 2, -1)
@@ -3117,13 +2948,13 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -17, 2
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -15, 0, 0)
 
 [node name="WallStone369" parent="NavMeshManager/Walls" instance=ExtResource("18_4uc07")]
-transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, -16, 1, -4)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -15, 1, -3)
 
 [node name="WallStone365" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -15, 0, -1)
 
 [node name="WallStone373" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -15, 1, -2)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -15, 1, -2)
 
 [node name="WallStone368" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -15, 1, 0)
@@ -3132,10 +2963,10 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -15, 1
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -17, 2, -3)
 
 [node name="WallStone382" parent="NavMeshManager/Walls" instance=ExtResource("18_4uc07")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -16, 0, -2)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -16, 0, 2)
 
 [node name="WallStone383" parent="NavMeshManager/Walls" instance=ExtResource("18_4uc07")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -16, 1, -2)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -16, 1, 2)
 
 [node name="WallStone384" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -16, 2, 2)
@@ -3156,28 +2987,16 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -9, 1,
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -9, 2, 2)
 
 [node name="WallStone366" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -15, 0, -2)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -15, 0, -2)
 
 [node name="WallStone374" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -16, 2, -3)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -17, 2, -2)
 
 [node name="WallStone388" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -16, 1, -3)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 1, -6)
 
 [node name="WallStone389" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -16, 0, -3)
-
-[node name="WallStone429" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
-transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -16, 3, -4)
-
-[node name="WallStone430" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
-transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -16, 2, -4)
-
-[node name="WallStone433" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
-transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -16, 5, -4)
-
-[node name="WallStone434" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
-transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -16, 4, -4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 0, -6)
 
 [node name="WallStone390" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 2, -6)
@@ -3292,30 +3111,6 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -15, 0
 
 [node name="WallStone378" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -15, 1, -5)
-
-[node name="WallStone425" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -17, 0, -3)
-
-[node name="WallStone426" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -17, 1, -3)
-
-[node name="WallStone431" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -17, 4, -3)
-
-[node name="WallStone432" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -17, 5, -3)
-
-[node name="WallStone427" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -17, 3, -3)
-
-[node name="WallStone428" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -16, 3, -3)
-
-[node name="WallStone435" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -16, 4, -3)
-
-[node name="WallStone436" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -16, 5, -3)
 
 [node name="WallStone391" parent="NavMeshManager/Walls" instance=ExtResource("18_4uc07")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 2, -6)
@@ -4095,22 +3890,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 1, -6)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 2, -6)
 
 [node name="WallStone05_07" parent="NavMeshManager/Walls" instance=ExtResource("28_1jexq")]
-transform = Transform3D(1, 0, 2.13163e-14, 0, 1, 0, -2.13163e-14, 0, 1, -17, 0, -4)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -15, 0, 2)
 
 [node name="WallStone05_08" parent="NavMeshManager/Walls" instance=ExtResource("28_1jexq")]
-transform = Transform3D(1, 0, 2.13163e-14, 0, 1, 0, -2.13163e-14, 0, 1, -17, 1, -4)
-
-[node name="WallStone05_36" parent="NavMeshManager/Walls" instance=ExtResource("28_1jexq")]
-transform = Transform3D(1, 0, 2.13163e-14, 0, 1, 0, -2.13163e-14, 0, 1, -17, 2, -4)
-
-[node name="WallStone05_37" parent="NavMeshManager/Walls" instance=ExtResource("28_1jexq")]
-transform = Transform3D(1, 0, 2.13163e-14, 0, 1, 0, -2.13163e-14, 0, 1, -17, 3, -4)
-
-[node name="WallStone05_38" parent="NavMeshManager/Walls" instance=ExtResource("28_1jexq")]
-transform = Transform3D(1, 0, 2.13163e-14, 0, 1, 0, -2.13163e-14, 0, 1, -17, 4, -4)
-
-[node name="WallStone05_39" parent="NavMeshManager/Walls" instance=ExtResource("28_1jexq")]
-transform = Transform3D(1, 0, 2.13163e-14, 0, 1, 0, -2.13163e-14, 0, 1, -17, 5, -4)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -15, 1, 2)
 
 [node name="WallStone05_09" parent="NavMeshManager/Walls" instance=ExtResource("28_1jexq")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -15, 2, 2)
@@ -4267,15 +4050,6 @@ transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 22.9921, 0, -15)
 [node name="PillarStone10" parent="NavMeshManager/Decorations" instance=ExtResource("10_8skxx")]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 28.9921, 0, -15)
 
-[node name="WoodenLadder" parent="NavMeshManager/Decorations" instance=ExtResource("37_5rrl0")]
-transform = Transform3D(0.962275, -0.0428204, 0.268688, 0, 0.987538, 0.157382, -0.272079, -0.151445, 0.950283, -16.4793, 0.05, -3.5951)
-
-[node name="WoodenLadder2" parent="NavMeshManager/Decorations" instance=ExtResource("37_5rrl0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.5, 2.05, -3.928)
-
-[node name="WoodenLadder3" parent="NavMeshManager/Decorations" instance=ExtResource("37_5rrl0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.5, 3.836, -3.928)
-
 [node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="NavMeshManager"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.91487, 2.05043, -2.98327)
 vertices = PackedVector3Array(2.08627, 0, 1.01273, 2.04879, 0, -1.19323, -1.79148, 0, -1.16387, -1.76194, 0, 1.00379)
@@ -4303,7 +4077,7 @@ visible = false
 transform = Transform3D(0.0795377, 0.719052, -0.69039, 7.51528e-09, 0.692584, 0.721337, 0.996832, -0.0573735, 0.0550865, 0, 6.14869, 8.18433)
 
 [node name="PlayerSpawner" parent="." instance=ExtResource("4_rorbm")]
-transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -15.502, -0.00979981, -3.53668)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, -0.00979981, -1.997)
 
 [node name="GiantRat" parent="." instance=ExtResource("16_6734t")]
 transform = Transform3D(-0.5, 0, 7.54979e-08, 0, 0.5, 0, -7.54979e-08, 0, -0.5, -4.68643, 0.025, -13.8164)
@@ -4519,12 +4293,3 @@ transform = Transform3D(-2, 0, 3.01992e-07, 0, 2, 0, -3.01992e-07, 0, -2, 26, 0,
 
 [node name="WallStoneDoor02" parent="." instance=ExtResource("36_x2m3c")]
 transform = Transform3D(-2, 0, 3.01992e-07, 0, 2, 0, -3.01992e-07, 0, -2, -11, 0, 14)
-
-[node name="SM_Env_GroundMound_Corner_01" parent="." instance=ExtResource("43_e5xb2")]
-transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, -14.6124, 0.05, -5.55291)
-
-[node name="DustPileCorner01_01" parent="." instance=ExtResource("44_vw4su")]
-transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -9, 0, -6)
-
-[connection signal="body_entered" from="Scripts/StartingRoomArea" to="Scripts/StartingRoomArea" method="_on_body_entered"]
-[connection signal="body_exited" from="Scripts/StartingRoomArea" to="Scripts/StartingRoomArea" method="_on_body_exited"]
