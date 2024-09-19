@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://tvhqlq32gma1"]
+
+[ext_resource type="PackedScene" path="res://assets/PolygonDungeon/Prefabs/Environments/Walls/SM_Env_Door_Large_Frame_01.tscn" id="1_lw01w"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g2po7"]
+size = Vector3(0.153271, 1, 0.252478)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5m3vm"]
+size = Vector3(1.20857, 0.199139, 0.1)
+
+[node name="WallStoneDoorFrame01" type="StaticBody3D"]
+collision_layer = 33
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00601842, 0.5, 0.000592042)
+shape = SubResource("BoxShape3D_g2po7")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.992454, 0.5, 0)
+shape = SubResource("BoxShape3D_g2po7")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.490515, 0.986362, 0)
+shape = SubResource("BoxShape3D_5m3vm")
+
+[node name="SM_Env_Door_Large_Frame_01" parent="." instance=ExtResource("1_lw01w")]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0.5, 0, 0)

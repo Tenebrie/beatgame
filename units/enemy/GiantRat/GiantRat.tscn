@@ -23,7 +23,6 @@ script = ExtResource("3_hk1mu")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 path_desired_distance = 0.1
-debug_enabled = true
 
 [node name="UnitCastAimPosition" parent="." instance=ExtResource("4_nd5qx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.417864, 0.0268263)
