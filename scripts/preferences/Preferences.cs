@@ -13,15 +13,19 @@ public partial class Preferences : Node
 	public SettingsContainer AppliedSettings;
 	public SettingsContainer SavedSettings;
 
+	public float CameraHeight => DraftSettings.GetSlider(SettingsKey.CameraHeight).Value;
+
 	public DisplayServer.VSyncMode VSyncMode => DraftSettings.GetToggle(SettingsKey.VSync).Value ? DisplayServer.VSyncMode.Enabled : DisplayServer.VSyncMode.Disabled;
+	public float RenderScale => DraftSettings.GetSlider(SettingsKey.RenderScale).Value;
+	public int FpsLimit => (int)Math.Round(DraftSettings.GetSlider(SettingsKey.FpsLimit).Value);
 	public bool ShowFps => DraftSettings.GetSlider(SettingsKey.ShowFps).Value == 1;
+
+	public Antialiasing AntialiasingLevel => (Antialiasing)DraftSettings.GetDropdown(SettingsKey.AntialiasingLevel).Selected.Value;
+	public bool AmbientOcclusion => DraftSettings.GetToggle(SettingsKey.AmbientOcclusion).Value;
+
 	public float MainVolume => DraftSettings.GetSlider(SettingsKey.MainVolume).Value;
 	public float MusicVolume => DraftSettings.GetSlider(SettingsKey.MusicVolume).Value;
 	public float AudioVolume => DraftSettings.GetSlider(SettingsKey.EffectsVolume).Value;
-	public float CameraHeight => DraftSettings.GetSlider(SettingsKey.CameraHeight).Value;
-	public float RenderScale => DraftSettings.GetSlider(SettingsKey.RenderScale).Value;
-	public int FpsLimit => (int)Math.Round(DraftSettings.GetSlider(SettingsKey.FpsLimit).Value);
-	public Antialiasing AntialiasingLevel => (Antialiasing)DraftSettings.GetDropdown(SettingsKey.AntialiasingLevel).Selected.Value;
 
 	public override void _EnterTree()
 	{
@@ -55,6 +59,11 @@ public partial class Preferences : Node
 		GetViewport().Scaling3DScale = RenderScale;
 		Engine.Singleton.MaxFps = FpsLimit <= 240 ? FpsLimit : 1000;
 		DisplayServer.Singleton.WindowSetVsyncMode(VSyncMode);
+		var environment = EnvironmentController.Singleton;
+		if (environment != null && environment.WorldEnvironment != null)
+		{
+			environment.WorldEnvironment.Environment.SsaoEnabled = AmbientOcclusion;
+		}
 		ApplyAntialiasing();
 	}
 

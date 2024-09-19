@@ -15,6 +15,7 @@ public enum SettingsKey
 	VSync,
 	Resolution,
 	RenderScale,
+	AmbientOcclusion,
 	FpsLimit,
 	AntialiasingLevel,
 	MainVolume,
@@ -133,6 +134,7 @@ public class SettingsContainer
 				("8x MSAA", Antialiasing.MSAA_8),
 				("All of them", Antialiasing.ALL),
 			}, Antialiasing.MSAA_2)
+			.AddToggle(SettingsKey.AmbientOcclusion, "Ambient Occlusion (SSAO)", value: false)
 			.SetTab("Audio")
 			.SetCategory("Volume Settings")
 			.AddSlider(SettingsKey.MainVolume, "Main volume", min: 0f, value: 0.5f, max: 1f, step: 0.02f, percentage: true)

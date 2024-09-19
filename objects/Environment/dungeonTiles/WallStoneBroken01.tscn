@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://chks76gsppjfa"]
+
+[ext_resource type="PackedScene" path="res://assets/PolygonDungeon/Prefabs/Environments/Walls/SM_Env_Wall_Broken_Edge_01.tscn" id="3_enkca"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g2po7"]
+size = Vector3(0.324219, 1, 0.1)
+
+[node name="WallStoneBroken01_01" type="StaticBody3D"]
+collision_layer = 33
+input_ray_pickable = false
+
+[node name="SM_Env_Wall_Broken_Edge_01" parent="." instance=ExtResource("3_enkca")]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.162109, 0.5, 0)
+shape = SubResource("BoxShape3D_g2po7")

@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://dethp53vteun6"]
+
+[ext_resource type="PackedScene" uid="uid://dj28dufd5sqk3" path="res://assets/meshes/dirtPileWall03.glb" id="1_x7w0i"]
+[ext_resource type="Material" uid="uid://egwfatbxefmf" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_xentc"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_17qxf"]
+points = PackedVector3Array(-0.545, 0, 0, 0, 0, -0.53, 0.57, 0, 0, 0, 0.29, 0)
+
+[node name="DirtPileWall03_01" type="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00963568, -0.0373382)
+collision_layer = 17
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_17qxf")
+
+[node name="dirtPileWall03" parent="." instance=ExtResource("1_x7w0i")]
+transform = Transform3D(-0.8, 0, 1.20797e-07, 0, 0.8, 0, -1.20797e-07, 0, -0.8, 0, 0, -0.760177)
+
+[node name="Plane" parent="dirtPileWall03" index="0"]
+surface_material_override/0 = ExtResource("2_xentc")
+
+[editable path="dirtPileWall03"]

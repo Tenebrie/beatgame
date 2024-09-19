@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://dcyqsuexddwlw"]
+
+[ext_resource type="PackedScene" uid="uid://di32kxqimnq45" path="res://assets/meshes/dirtWall02.glb" id="1_fj8jq"]
+[ext_resource type="Material" uid="uid://egwfatbxefmf" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_gnj37"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_uduhb"]
+size = Vector3(1, 1, 0.238525)
+
+[node name="DirtWall02_01" type="StaticBody3D"]
+collision_layer = 33
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.5, 0.0679932)
+shape = SubResource("BoxShape3D_uduhb")
+
+[node name="dirtWall02" parent="." instance=ExtResource("1_fj8jq")]
+transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, -0.5, 0, 0)
+
+[node name="Plane" parent="dirtWall02" index="0"]
+surface_material_override/0 = ExtResource("2_gnj37")
+
+[editable path="dirtWall02"]

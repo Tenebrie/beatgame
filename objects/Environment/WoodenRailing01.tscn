@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://ds1aaq8jeidui"]
+
+[ext_resource type="PackedScene" uid="uid://dcbwoel1g6s6f" path="res://assets/meshes/woodenRailing.glb" id="1_flkql"]
+[ext_resource type="Material" uid="uid://egwfatbxefmf" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_w2ngu"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rrhwp"]
+size = Vector3(1, 0.248535, 0.0478516)
+
+[node name="WoodenRailing01_01" type="StaticBody3D"]
+
+[node name="Node3D" type="Node3D" parent="."]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+
+[node name="woodenRailing" parent="Node3D" instance=ExtResource("1_flkql")]
+
+[node name="Stick" parent="Node3D/woodenRailing" index="0"]
+transform = Transform3D(-4.37114e-09, -2.5, 0, 0.1, -1.09278e-07, 0, 0, 0, 0.1, -2.49826, 1.1455, 0)
+surface_material_override/0 = ExtResource("2_w2ngu")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.124268, -0.000488281)
+shape = SubResource("BoxShape3D_rrhwp")
+
+[editable path="Node3D/woodenRailing"]

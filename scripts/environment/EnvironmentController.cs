@@ -97,8 +97,5 @@ public partial class EnvironmentController : Node
 	}
 
 	private static EnvironmentController instance = null;
-	public static EnvironmentController Singleton
-	{
-		get => instance;
-	}
+	public static EnvironmentController Singleton => instance;
 }

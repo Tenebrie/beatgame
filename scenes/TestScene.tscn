@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://diunorbv7pbd8"]
+
+[ext_resource type="PackedScene" uid="uid://cgo34wa3ccmn5" path="res://objects/Environment/dungeonTiles/FloorTiles01.tscn" id="1_uubqg"]
+[ext_resource type="PackedScene" uid="uid://by3brcj43nbkw" path="res://objects/Environment/dungeonTiles/FloorTiles02.tscn" id="2_fiwin"]
+[ext_resource type="PackedScene" uid="uid://dn25lar4ekepl" path="res://objects/Environment/dungeonTiles/FloorTiles03.tscn" id="3_k8h8c"]
+
+[sub_resource type="Environment" id="Environment_0hxer"]
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.0001
+
+[sub_resource type="FogMaterial" id="FogMaterial_nk12p"]
+density = 1.6842
+
+[node name="TestScene" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_0hxer")
+
+[node name="DungeonFloor01" parent="." instance=ExtResource("1_uubqg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -1)
+
+[node name="DungeonFloor04" parent="." instance=ExtResource("1_uubqg")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1, 0, 1)
+
+[node name="DungeonFloor02" parent="." instance=ExtResource("2_fiwin")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="DungeonFloor03" parent="." instance=ExtResource("3_k8h8c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
+
+[node name="FogVolume2" type="FogVolume" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.437204, -0.417577, 0.71972)
+size = Vector3(4.3894, 2.35093, 3.39484)
+material = SubResource("FogMaterial_nk12p")
