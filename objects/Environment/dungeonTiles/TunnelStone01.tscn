@@ -20,6 +20,9 @@ collision_layer = 33
 [node name="SM_Env_Wall_Tunnel_01" parent="." instance=ExtResource("1_xcasy")]
 transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 1)
 
+[node name="_mesh" parent="SM_Env_Wall_Tunnel_01" index="0"]
+layers = 3
+
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.065, 0.5, 0)
 shape = SubResource("BoxShape3D_g2po7")
@@ -43,11 +46,26 @@ shape = SubResource("BoxShape3D_5m3vm")
 [node name="SM_Env_Wall_01" parent="." instance=ExtResource("2_0fnrk")]
 transform = Transform3D(-8.74228e-07, 0, 20, 0, 20, 0, -20, 0, -8.74228e-07, 1, 0, 1)
 
+[node name="_mesh" parent="SM_Env_Wall_01" index="0"]
+layers = 3
+
 [node name="SM_Env_Wall_02" parent="." instance=ExtResource("2_0fnrk")]
 transform = Transform3D(-8.74228e-07, 0, -20, 0, 20, 0, 20, 0, -8.74228e-07, 0, 0, 0)
+
+[node name="_mesh" parent="SM_Env_Wall_02" index="0"]
+layers = 3
 
 [node name="SM_Env_Tiles_010" parent="." instance=ExtResource("3_bt1un")]
 transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 1, 0)
 
+[node name="_mesh" parent="SM_Env_Tiles_010" index="0"]
+layers = 3
+
 [node name="SM_Env_Wall_Tunnel_Entrance_01" parent="." instance=ExtResource("4_ey46b")]
 transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
+
+[editable path="SM_Env_Wall_Tunnel_01"]
+[editable path="SM_Env_Wall_01"]
+[editable path="SM_Env_Wall_02"]
+[editable path="SM_Env_Tiles_010"]
+[editable path="SM_Env_Wall_Tunnel_Entrance_01"]

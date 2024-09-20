@@ -284,6 +284,8 @@ Autorun={
 
 [layer_names]
 
+3d_render/layer_1="Visual Layer"
+3d_render/layer_2="Occluder"
 3d_render/layer_11="Layer 11 - Floors"
 3d_physics/layer_1="BaseLayer"
 3d_physics/layer_2="Hoverable"

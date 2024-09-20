@@ -11,6 +11,11 @@ collision_layer = 33
 [node name="SM_Env_Wall_04" parent="." instance=ExtResource("1_os0iv")]
 transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
 
+[node name="_mesh" parent="SM_Env_Wall_04" index="0"]
+layers = 3
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.5, 0)
 shape = SubResource("BoxShape3D_g2po7")
+
+[editable path="SM_Env_Wall_04"]

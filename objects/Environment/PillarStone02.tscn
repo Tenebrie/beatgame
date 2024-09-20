@@ -15,3 +15,8 @@ shape = SubResource("CylinderShape3D_peecm")
 
 [node name="SM_Env_Pillar_Round_02" parent="." instance=ExtResource("2_koyoq")]
 transform = Transform3D(26.8, 0, 0, 0, 26.8, 0, 0, 0, 26.8, 0, 0, 0)
+
+[node name="_mesh" parent="SM_Env_Pillar_Round_02" index="0"]
+layers = 3
+
+[editable path="SM_Env_Pillar_Round_02"]

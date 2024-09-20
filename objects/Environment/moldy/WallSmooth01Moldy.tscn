@@ -14,6 +14,7 @@ input_ray_pickable = false
 transform = Transform3D(-0.5, 0, 7.54979e-08, 0, 0.5, 0, -7.54979e-08, 0, -0.5, 0, 0, 0)
 
 [node name="Cube" parent="sewerWall01Moldy" index="0"]
+layers = 3
 surface_material_override/0 = ExtResource("2_76bdb")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

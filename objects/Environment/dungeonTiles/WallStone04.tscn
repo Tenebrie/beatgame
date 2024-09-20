@@ -1,8 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://cdqup1km3gmq8"]
+[gd_scene load_steps=3 format=3 uid="uid://cdqup1km3gmq8"]
 
 [ext_resource type="PackedScene" path="res://assets/PolygonDungeon/Prefabs/Environments/Walls/SM_Env_Wall_05.tscn" id="1_71e34"]
-[ext_resource type="PackedScene" path="res://assets/PolygonDungeon/Prefabs/Environments/Walls/SM_Env_Wall_06.tscn" id="2_loxg4"]
-[ext_resource type="PackedScene" path="res://assets/PolygonDungeon/Prefabs/Environments/Walls/SM_Env_Wall_07.tscn" id="3_xyfmk"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_g2po7"]
 size = Vector3(1, 1, 0.1)
@@ -13,12 +11,11 @@ collision_layer = 33
 [node name="SM_Env_Wall_05" parent="." instance=ExtResource("1_71e34")]
 transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
 
-[node name="SM_Env_Wall_06" parent="." instance=ExtResource("2_loxg4")]
-transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
-
-[node name="SM_Env_Wall_07" parent="." instance=ExtResource("3_xyfmk")]
-transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
+[node name="_mesh" parent="SM_Env_Wall_05" index="0"]
+layers = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.5, 0)
 shape = SubResource("BoxShape3D_g2po7")
+
+[editable path="SM_Env_Wall_05"]

@@ -1,12 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://cs48mue8u7m8r"]
 
 [ext_resource type="ArrayMesh" path="res://assets/PolygonDungeon/Models/SM_Env_Tiles_01_mesh/SM_Env_Tiles_01_4300000.mesh" id="1_nf16b"]
-[ext_resource type="Material" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_yluq8"]
+[ext_resource type="Material" uid="uid://egwfatbxefmf" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_yluq8"]
 
 [node name="SM_Env_Tiles_01" type="Node3D"]
 metadata/ufile_ids = ["9830f561f80768b4f92139c1c15bc835:450008", "9830f561f80768b4f92139c1c15bc835:137298", "9830f561f80768b4f92139c1c15bc835:3398666", "9830f561f80768b4f92139c1c15bc835:2303236", "9830f561f80768b4f92139c1c15bc835:65952194506493392"]
 
 [node name="_mesh" type="MeshInstance3D" parent="."]
-layers = 1025
 mesh = ExtResource("1_nf16b")
 surface_material_override/0 = ExtResource("2_yluq8")

@@ -17,6 +17,7 @@ shape = SubResource("BoxShape3D_uduhb")
 transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, -0.5, 0, 0)
 
 [node name="Plane" parent="dirtWall01" index="0"]
+layers = 3
 surface_material_override/0 = ExtResource("2_6u3it")
 
 [editable path="dirtWall01"]
