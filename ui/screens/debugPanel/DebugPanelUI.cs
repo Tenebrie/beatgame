@@ -19,7 +19,7 @@ public partial class DebugPanelUI : Control
 		var currentFrameRate = frameDelta / delta;
 
 		latestFrameTimes.Add(currentFrameRate);
-		if (latestFrameTimes.Count > 100)
+		if (latestFrameTimes.Count > 300)
 			latestFrameTimes.RemoveAt(0);
 
 		double average = latestFrameTimes.Average();

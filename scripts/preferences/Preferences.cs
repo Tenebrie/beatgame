@@ -22,6 +22,7 @@ public partial class Preferences : Node
 
 	public Antialiasing AntialiasingLevel => (Antialiasing)DraftSettings.GetDropdown(SettingsKey.AntialiasingLevel).Selected.Value;
 	public bool AmbientOcclusion => DraftSettings.GetToggle(SettingsKey.AmbientOcclusion).Value;
+	public FogQuality FogQualityLevel => (FogQuality)DraftSettings.GetDropdown(SettingsKey.FogQuality).Selected.Value;
 
 	public float MainVolume => DraftSettings.GetSlider(SettingsKey.MainVolume).Value;
 	public float MusicVolume => DraftSettings.GetSlider(SettingsKey.MusicVolume).Value;
@@ -64,6 +65,7 @@ public partial class Preferences : Node
 		{
 			environment.WorldEnvironment.Environment.SsaoEnabled = AmbientOcclusion;
 		}
+		ApplyFogQuality();
 		ApplyAntialiasing();
 	}
 

@@ -18,6 +18,7 @@ public enum SettingsKey
 	AmbientOcclusion,
 	FpsLimit,
 	AntialiasingLevel,
+	FogQuality,
 	MainVolume,
 	MusicVolume,
 	EffectsVolume,
@@ -135,6 +136,13 @@ public class SettingsContainer
 				("All of them", Antialiasing.ALL),
 			}, Antialiasing.MSAA_2)
 			.AddToggle(SettingsKey.AmbientOcclusion, "Ambient Occlusion (SSAO)", value: false)
+			.AddDropdown(SettingsKey.FogQuality, "Fog Quality", new[]
+			{
+				("Low", FogQuality.Low),
+				("Medium", FogQuality.Medium),
+				("High", FogQuality.High),
+				("Ultra", FogQuality.Ultra),
+			}, FogQuality.Medium)
 			.SetTab("Audio")
 			.SetCategory("Volume Settings")
 			.AddSlider(SettingsKey.MainVolume, "Main volume", min: 0f, value: 0.5f, max: 1f, step: 0.02f, percentage: true)
