@@ -1,3 +1,4 @@
+using System;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using Godot;
@@ -6,6 +7,7 @@ namespace Project;
 
 public static class Raycast
 {
+	[Flags]
 	public enum Layer : uint
 	{
 		Base = 1 << 0,

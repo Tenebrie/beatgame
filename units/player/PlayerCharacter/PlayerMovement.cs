@@ -18,7 +18,7 @@ public partial class PlayerMovement : ComposableScript
 
 	private Node3D horizontalCameraPivot;
 	private Node3D verticalCameraPivot;
-	private SpringArm3D springArm;
+	private BetterSpringArm3D springArm;
 
 	bool autorunEnabled = false;
 	float cameraDistance = 1.5f;
@@ -36,7 +36,7 @@ public partial class PlayerMovement : ComposableScript
 	{
 		horizontalCameraPivot = Parent.GetNode<Node3D>("HCameraPivot");
 		verticalCameraPivot = Parent.GetNode<Node3D>("HCameraPivot/VCameraPivot");
-		springArm = Parent.GetNode<SpringArm3D>("HCameraPivot/VCameraPivot/SpringArm3D");
+		springArm = Parent.GetComponent<BetterSpringArm3D>();
 	}
 
 	public override void _UnhandledInput(InputEvent @event)
@@ -173,10 +173,6 @@ public partial class PlayerMovement : ComposableScript
 				RotateCameraHorizontal(-rotation);
 		}
 
-		// var rootMotionRotation = Parent.Animation.GetRootMotionRotation();
-		// var eulerRotation = rootMotionRotation.GetEuler();
-		// Parent.Rotate(Vector3.Up, eulerRotation.Z);
-
 		if (!softCameraPreMoving && !softCameraMoving && !hardCameraPreMoving && !hardCameraMoving && InputVector.Length() > 0)
 		{
 			var unrotationSpeed = 3f; // radians per second
@@ -186,10 +182,6 @@ public partial class PlayerMovement : ComposableScript
 				rotation = -horizontalCameraPivot.Rotation.Y;
 			RotateCameraHorizontal(rotation, true);
 		}
-
-		// If moving, release the casting spell
-		// if ((movementForward != 0 || movementRight != 0) && !Parent.Buffs.Has<BuffCastWhileMoving>())
-		// 	Parent.Spellcasting.ReleaseCurrentCastingSpell();
 	}
 
 	private void ProcessCamera(double delta)
@@ -252,11 +244,11 @@ public partial class PlayerMovement : ComposableScript
 				break;
 		}
 
-		horizontalCameraPivot.Position = new Vector3(0, effectiveHeight, 0);
+		var currentHeight = horizontalCameraPivot.Position.Y;
+		horizontalCameraPivot.Position = new Vector3(0, currentHeight + (effectiveHeight - currentHeight) * 5 * (float)delta, 0);
 		springArm.SpringLength = cameraDistance;
 
-		// horizontalCameraPivot.Position += new Vector3(0, (effectiveHeight - horizontalCameraPivot.Position.Y) * 15 * (float)delta, 0);
-		// springArm.SpringLength += (cameraDistance - springArm.SpringLength) * 15 * (float)delta;
+		Parent.Visible = horizontalCameraPivot.Position.Y - Parent.CastAimPosition.Y > 0.01;
 	}
 
 	private void RotateCameraHorizontal(float radians, bool snapping = false)

@@ -24,7 +24,7 @@ public partial class PlayerController : BaseUnit
 		Health.Regeneration = 1;
 		Mana.SetBaseMaxValue(100);
 		Mana.SetMinValue(-250);
-		Mana.Regeneration = 5;
+		Mana.Regeneration = 4;
 
 		Movement = new PlayerMovement(this);
 		Targeting = new PlayerTargeting(this);

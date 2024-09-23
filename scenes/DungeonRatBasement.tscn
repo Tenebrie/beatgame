@@ -5400,6 +5400,10 @@ navigation_layers = 4
 
 [node name="PlayerSpawner" parent="Others" instance=ExtResource("4_rorbm")]
 transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -15.502, -0.00979981, -3.53668)
+SpawnMode = 0
+
+[node name="PlayerSpawnerDebug" parent="Others" instance=ExtResource("4_rorbm")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -12.002, -0.00979981, 12.4633)
 
 [node name="WallStoneDoorFrame01" parent="." instance=ExtResource("55_brh14")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.5, 0, 14.0364)

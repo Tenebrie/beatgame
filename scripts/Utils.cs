@@ -40,6 +40,21 @@ public static class ObjectExtensions
 
 public static class NodeExtensions
 {
+	public static T GetParent<T>(this Node node) where T : Node
+	{
+		return node.GetParent<T>() ?? throw new Exception("Parent not found");
+	}
+
+	public static T GetParentOrDefault<T>(this Node node) where T : Node
+	{
+		var parent = node.GetParent();
+		if (parent is T t)
+			return t;
+		if (parent == null)
+			return default;
+		return parent.GetParentOrDefault<T>();
+	}
+
 	public static T GetComponent<T>(this Node parent) where T : Node
 	{
 		return GetComponentOrDefault<T>(parent, 0) ?? throw new Exception("Component not found");

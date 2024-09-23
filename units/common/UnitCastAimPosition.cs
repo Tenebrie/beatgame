@@ -12,6 +12,6 @@ public partial class UnitCastAimPosition : Node3D
 		{
 			unit.CastAimPosition = Position;
 		}
-		QueueFree();
+		Visible = false;
 	}
 }

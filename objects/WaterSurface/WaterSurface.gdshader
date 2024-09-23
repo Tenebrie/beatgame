@@ -2,7 +2,7 @@ shader_type spatial;
 render_mode blend_add, depth_prepass_alpha;
 
 uniform vec3 albedo: source_color;
-uniform vec3 albedo2: source_color; 
+uniform vec3 albedo2: source_color;
 uniform float metallic: hint_range(0.0, 1.0) = 0;
 uniform float roughness: hint_range(0.0, 1.0) = 0.02;
 uniform sampler2D wave;
@@ -30,7 +30,7 @@ uniform sampler2D SCREEN_TEXTURE: hint_screen_texture, filter_linear_mipmap;
 uniform sampler2D DEPTH_TEXTURE: hint_depth_texture, filter_linear_mipmap;
 
 varying float height;
-varying vec3 world_pos; 
+varying vec3 world_pos;
 
 void vertex() {
 	world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
@@ -56,27 +56,27 @@ void fragment() {
 	float depth_blend = exp((depth + VERTEX.z + depth_offset) * -beers_law);
 	depth_blend = clamp(1.0 - depth_blend, 0.0, 1.0);
 	float depth_blend_power = clamp(pow(depth_blend, 2.0), 0.0, 1.0);
-	
+
 	vec3 screen_color = textureLod(SCREEN_TEXTURE, SCREEN_UV, depth_blend_power * 2.5).rgb;
 	vec3 depth_color = mix(color_shallow.rgb, color_deep.rgb, depth_blend_power);
 	vec3 color = mix(screen_color * depth_color, depth_color * 0.25, depth_blend_power * 0.5);
-	
+
 	float z_depth = edge(texture(DEPTH_TEXTURE, SCREEN_UV).x);
 	float z_pos = edge(FRAGCOORD.z);
 	float z_diff = z_depth - z_pos;
-	
+
 	vec2 time = (TIME * wave_direction) * time_scale;
 	vec2 time2 = (TIME * wave_direction2) * time_scale;
-	
+
 	vec3 normal1 = texture(texture_normal, world_pos.xz + time).rgb;
 	vec3 normal2 = texture(texture_normal2, world_pos.xz + time2).rgb;
 	vec3 normal_blend = mix(normal1, normal2, 0.5);
-	
+
 	float fr = fresnel(5.0, NORMAL, VIEW);
 	vec3 surface_color = mix(albedo, albedo2, fr);
 	//vec3 depth_color_adj = mix(edge_color, color, step(edge_scale, z_diff));
 	vec3 depth_color_adj = vec3(0.0);
-	
+
 	ALBEDO = clamp(surface_color + depth_color_adj, vec3(0.0), vec3(1.0));
 	METALLIC = metallic;
 	ROUGHNESS = roughness;

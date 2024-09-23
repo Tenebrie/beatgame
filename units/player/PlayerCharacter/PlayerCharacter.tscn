@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://ci21idu6kwex5"]
+[gd_scene load_steps=7 format=3 uid="uid://ci21idu6kwex5"]
 
 [ext_resource type="Script" path="res://units/player/PlayerCharacter/PlayerController.cs" id="1_2gcyd"]
 [ext_resource type="PackedScene" uid="uid://cb7pqs6irplea" path="res://units/player/PlayerCharacter/PlayerCharacterVisuals.tscn" id="2_84qw8"]
+[ext_resource type="Script" path="res://units/player/PlayerCharacter/betterSpringArm3D/BetterSpringArm3D.cs" id="4_56kn4"]
 [ext_resource type="PackedScene" uid="uid://cqu5y0rbgi8pp" path="res://units/common/UnitCastAimPosition.tscn" id="5_kvutq"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_n1txi"]
@@ -11,7 +12,7 @@ height = 0.160842
 [sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_pq0bx"]
 length = 0.181016
 
-[node name="CharacterBody3D" type="CharacterBody3D"]
+[node name="PlayerCharacter" type="CharacterBody3D"]
 floor_block_on_wall = false
 script = ExtResource("1_2gcyd")
 
@@ -35,11 +36,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 0.5, 2.08165e-12
 [node name="VCameraPivot" type="Node3D" parent="HCameraPivot"]
 transform = Transform3D(1, -4.3906e-16, 3.36902e-16, 3.36902e-16, 0.965926, 0.258819, -4.3906e-16, -0.258819, 0.965926, 0, 0, 0)
 
-[node name="SpringArm3D" type="SpringArm3D" parent="HCameraPivot/VCameraPivot"]
-collision_mask = 112
-spring_length = 10.0
-margin = 1.0
+[node name="BetterSpringArm3D" type="Node3D" parent="HCameraPivot/VCameraPivot" node_paths=PackedStringArray("RootNode", "HeightNode")]
+transform = Transform3D(1, -7.94093e-23, 2.64698e-23, 0, 1, -1.49012e-08, -2.64698e-23, 1.49012e-08, 1, 0, 0, 0)
+script = ExtResource("4_56kn4")
+RootNode = NodePath("../../../UnitCastAimPosition")
+HeightNode = NodePath("../..")
+Margin = 0.08
 
-[node name="MainCamera" type="Camera3D" parent="HCameraPivot/VCameraPivot/SpringArm3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.234285, 0)
+[node name="MainCamera" type="Camera3D" parent="HCameraPivot/VCameraPivot/BetterSpringArm3D"]
+transform = Transform3D(1, 6.08805e-22, 9.26442e-22, 0, 1, 0, -7.94093e-23, 0, 1, 0, 0.234285, 0)
 current = true
