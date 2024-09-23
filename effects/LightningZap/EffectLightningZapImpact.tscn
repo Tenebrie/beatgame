@@ -80,9 +80,8 @@ material = SubResource("StandardMaterial3D_dj0gl")
 size = Vector2(0.1, 0.1)
 orientation = 2
 
-[node name="EffectLightningZapImpact" type="Node3D" node_paths=PackedStringArray("Emitter")]
+[node name="EffectLightningZapImpact" type="Node3D"]
 script = ExtResource("1_16v1k")
-Emitter = NodePath("GPUParticles3D")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
 amount = 25

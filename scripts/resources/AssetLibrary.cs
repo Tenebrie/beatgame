@@ -37,6 +37,7 @@ public class EffectLibrary
 	public string AerielDarknessRelease = "uid://br0yb56fj0miy";
 	public string AerielDeathExplosion = "uid://bp2m0gdtuw71k";
 	public string LightningZap = "res://effects/LightningZap/LightningZapEffect.tscn";
+	public string DoubleJump = "uid://yh5jfgt1wroj";
 	public string LightningZapImpact = "uid://cx2fo4dymkanp";
 	public string BusterTarget = "uid://bd1pneojwsjum";
 	public string EtherealFocusBurst = "uid://bsdk74dv5et2a";

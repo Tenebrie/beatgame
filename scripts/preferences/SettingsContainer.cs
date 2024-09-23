@@ -24,6 +24,19 @@ public enum SettingsKey
 	EffectsVolume,
 }
 
+static class SettingsKeyExtensions
+{
+	public static bool Has(this SettingsKey[] time, params SettingsKey[] comparator)
+	{
+		return comparator.Any(val => time.Any(val2 => val2 == val));
+	}
+
+	public static bool HasNot(this SettingsKey[] time, params SettingsKey[] comparator)
+	{
+		return !Has(time, comparator);
+	}
+}
+
 public class SettingsContainer
 {
 	public string[] Tabs = Array.Empty<string>();
@@ -50,6 +63,12 @@ public class SettingsContainer
 	public DropdownSettingsEntry GetDropdown(SettingsKey id)
 	{
 		return (DropdownSettingsEntry)EntryMap[id];
+	}
+
+	public void ApplySideEffects(SettingsKey id, Action sideEffect)
+	{
+		var entry = EntryMap[id];
+		entry.OnApplySideEffects += sideEffect;
 	}
 
 	public void SetValue(SettingsKey key, Variant value)

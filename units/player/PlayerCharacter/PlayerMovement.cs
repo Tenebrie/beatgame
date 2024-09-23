@@ -24,6 +24,7 @@ public partial class PlayerMovement : ComposableScript
 	float cameraDistance = 1.5f;
 
 	float jumpCount = 0;
+	float jumpingFor = 0; // seconds
 
 	new readonly PlayerController Parent;
 
@@ -78,7 +79,7 @@ public partial class PlayerMovement : ComposableScript
 
 		if (@event.IsActionPressed("Jump".ToStringName()) && jumpCount < 2)
 		{
-			if (Parent.Grounded)
+			if (jumpingFor < 0.1f)
 			{
 				jumpCount = 1;
 				Parent.Velocity = new Vector3(Velocity.X, 4f, Velocity.Z);
@@ -87,14 +88,31 @@ public partial class PlayerMovement : ComposableScript
 			{
 				jumpCount = 2;
 				Parent.Velocity = new Vector3(Velocity.X, 5f, Velocity.Z);
+				var effect = Lib.LoadScene(Lib.Effect.DoubleJump).Instantiate<SimpleParticleEffect>();
+				Parent.GetTree().CurrentScene.AddChild(effect);
+				effect.SetLifetime(2);
+				effect.GlobalPosition = Parent.GlobalCastAimPosition;
+				effect.Emitter.DrawPass1.SurfaceSetMaterial(0, Parent.GetComponent<Visuals>().GetMaterial());
 			}
 		}
 	}
 
 	public override void _Process(double delta)
 	{
+		ProcessJumping(delta);
 		ProcessMovement(delta);
 		ProcessCamera(delta);
+	}
+
+	private void ProcessJumping(double delta)
+	{
+		if (Parent.Grounded)
+		{
+			jumpingFor = 0;
+			return;
+		}
+
+		jumpingFor += (float)delta;
 	}
 
 	private void ProcessMovement(double delta)

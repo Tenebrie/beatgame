@@ -1,0 +1,49 @@
+[gd_scene load_steps=8 format=3 uid="uid://yh5jfgt1wroj"]
+
+[ext_resource type="Script" path="res://effects/SimpleParticleEffect.cs" id="1_ab6kt"]
+[ext_resource type="Texture2D" uid="uid://dyh7yd6ess6bk" path="res://assets/particles/circle_05.png" id="1_k5vey"]
+
+[sub_resource type="Curve" id="Curve_7jw6n"]
+_data = [Vector2(0, 1), 0.0, 0.016181, 0, 0, Vector2(0.442623, 1), 0.0, 0.0, 0, 0, Vector2(0.990164, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_iy78i"]
+curve = SubResource("Curve_7jw6n")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ak1vq"]
+spread = 180.0
+flatness = 1.0
+initial_velocity_min = 0.4
+initial_velocity_max = 2.0
+gravity = Vector3(0, -5, 0)
+damping_min = 2.0
+damping_max = 3.0
+scale_curve = SubResource("CurveTexture_iy78i")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u2lbb"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.494118, 1, 1, 1)
+albedo_texture = ExtResource("1_k5vey")
+disable_receive_shadows = true
+billboard_mode = 1
+billboard_keep_scale = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_e5lhx"]
+material = SubResource("StandardMaterial3D_u2lbb")
+size = Vector2(0.1, 0.1)
+orientation = 2
+
+[node name="DoubleJumpEffect" type="Node3D"]
+script = ExtResource("1_ab6kt")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+emitting = false
+amount = 200
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.85
+process_material = SubResource("ParticleProcessMaterial_ak1vq")
+draw_pass_1 = SubResource("PlaneMesh_e5lhx")

@@ -17,4 +17,9 @@ public partial class Visuals : Node3D
 		Position = new Vector3(Position.X, Position.Y - VerticalOffset + verticalOffset, Position.Z);
 		VerticalOffset = verticalOffset;
 	}
+
+	public StandardMaterial3D GetMaterial()
+	{
+		return GetNode<GpuParticles3D>("OnBeatEmitterLocalSpace").DrawPass1.SurfaceGetMaterial(0) as StandardMaterial3D;
+	}
 }

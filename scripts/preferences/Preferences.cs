@@ -39,7 +39,7 @@ public partial class Preferences : Node
 			DraftSettings.CopyValuesFrom(SavedSettings);
 			AppliedSettings.CopyValuesFrom(SavedSettings);
 		}
-		ApplyPreferences();
+		ApplyPreferences(applyAll: true);
 		EnableLivePreview();
 	}
 
@@ -47,40 +47,43 @@ public partial class Preferences : Node
 	{
 		foreach (var entry in DraftSettings.Entries)
 		{
-			entry.OnApplySideEffects += TemporarilyApplyDraftSettings;
+			if (entry.OnApplySideEffects is not null)
+				continue;
+
+			entry.OnApplySideEffects += () => TemporarilyApplyDraftSettings(entry.Key);
 		}
 	}
 
-	public void ApplyPreferences()
+	public void ApplyPreferences(bool applyAll, params SettingsKey[] keys)
 	{
-		AudioServer.SetBusVolumeDb(0, Mathf.LinearToDb(MainVolume));
-		AudioServer.SetBusVolumeDb(AudioServer.GetBusIndex("Music"), Mathf.LinearToDb(MusicVolume));
-		AudioServer.SetBusVolumeDb(AudioServer.GetBusIndex("Effects"), Mathf.LinearToDb(AudioVolume));
-
-		GetViewport().Scaling3DScale = RenderScale;
-		Engine.Singleton.MaxFps = FpsLimit <= 240 ? FpsLimit : 1000;
-		DisplayServer.Singleton.WindowSetVsyncMode(VSyncMode);
-		var environment = EnvironmentController.Singleton;
-		if (environment != null && environment.WorldEnvironment != null)
-		{
-			environment.WorldEnvironment.Environment.SsaoEnabled = AmbientOcclusion;
-		}
-		ApplyFogQuality();
-		ApplyAntialiasing();
+		if (applyAll || keys.Has(SettingsKey.MainVolume, SettingsKey.MusicVolume, SettingsKey.EffectsVolume))
+			ApplyAudioVolume();
+		if (applyAll || keys.Has(SettingsKey.RenderScale))
+			ApplyRenderScale();
+		if (applyAll || keys.Has(SettingsKey.FpsLimit))
+			ApplyFramerateLimit();
+		if (applyAll || keys.Has(SettingsKey.AmbientOcclusion))
+			ApplyAmbientOcclusion();
+		if (applyAll || keys.Has(SettingsKey.VSync))
+			ApplyVSync();
+		if (applyAll || keys.Has(SettingsKey.FogQuality))
+			ApplyFogQuality();
+		if (applyAll || keys.Has(SettingsKey.AntialiasingLevel))
+			ApplyAntialiasing();
 	}
 
-	public void TemporarilyApplyDraftSettings()
+	public void TemporarilyApplyDraftSettings(params SettingsKey[] keys)
 	{
 		EmitSignal(SignalName.DraftChanged);
 		AppliedSettings.CopyValuesFrom(DraftSettings);
-		ApplyPreferences();
+		ApplyPreferences(applyAll: false, keys);
 		AppliedSettings.CopyValuesFrom(SavedSettings);
 	}
 
 	public void ApplyAndSaveDraftSettings()
 	{
 		AppliedSettings.CopyValuesFrom(DraftSettings);
-		ApplyPreferences();
+		ApplyPreferences(applyAll: true);
 		PreferencesFilesystem.SaveConfig(AppliedSettings);
 		SavedSettings.CopyValuesFrom(AppliedSettings);
 	}
