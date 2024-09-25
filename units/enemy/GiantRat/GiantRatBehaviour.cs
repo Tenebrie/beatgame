@@ -166,8 +166,12 @@ public partial class GiantRatBehaviour : BaseBehaviour
 			else
 			{
 				Parent.GlobalPosition = Parent.SnapToGround(agentContainer.GlobalPosition);
-				if (new Vector3(velocity.X, 0, velocity.Z).LengthSquared() > 0f)
-					Parent.LookAt(nextPosition.Flatten(GlobalPosition.Y), Vector3.Up);
+				try
+				{
+					if (new Vector3(velocity.X, 0, velocity.Z).LengthSquared() > 0f)
+						Parent.LookAt(nextPosition.Flatten(GlobalPosition.Y), Vector3.Up);
+				}
+				catch (Exception) {}
 			}
 		}
 	}

@@ -1,0 +1,43 @@
+[gd_scene load_steps=8 format=3 uid="uid://nog2vim38qpc"]
+
+[ext_resource type="PackedScene" uid="uid://rhx5i6k27jqv" path="res://assets/meshes/sewerGrateAttachmentSimple.glb" id="1_8joul"]
+[ext_resource type="PackedScene" uid="uid://ctneopwfbx2yp" path="res://assets/meshes/sewerGrateAttachmentFront.glb" id="1_h13s4"]
+[ext_resource type="Material" uid="uid://egwfatbxefmf" path="res://assets/PolygonDungeon/Materials/Dungeon_Material_01.tres" id="2_jovdp"]
+[ext_resource type="PackedScene" uid="uid://xn62aw3sehsp" path="res://assets/meshes/sewerGrateAttachmentBack.glb" id="3_df0xc"]
+[ext_resource type="Texture2D" uid="uid://c5p714hmii2hg" path="res://assets/PolygonDungeon/Textures/Dungeons_Texture_01.png" id="4_lnhpo"]
+[ext_resource type="Texture2D" uid="uid://m8iyb5ny6l6e" path="res://assets/PolygonDungeon/Textures/Emmisive/Emmisive_01.png" id="5_rfux5"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u774w"]
+resource_name = "Dungeon_Material_01"
+no_depth_test = true
+albedo_texture = ExtResource("4_lnhpo")
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_operator = 1
+emission_texture = ExtResource("5_rfux5")
+
+[node name="PipeGrateWallAttachment" type="Node3D"]
+
+[node name="sewerGrateAttachmentFront" parent="." instance=ExtResource("1_h13s4")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+visible = false
+
+[node name="GrateMesh" parent="sewerGrateAttachmentFront" index="0"]
+surface_material_override/0 = ExtResource("2_jovdp")
+
+[node name="sewerGrateAttachmentBack" parent="." instance=ExtResource("3_df0xc")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+visible = false
+
+[node name="OverlayMesh" parent="sewerGrateAttachmentBack" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_u774w")
+
+[node name="sewerGrateAttachmentSimple" parent="." instance=ExtResource("1_8joul")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+
+[node name="GrateMesh" parent="sewerGrateAttachmentSimple" index="0"]
+surface_material_override/0 = ExtResource("2_jovdp")
+
+[editable path="sewerGrateAttachmentFront"]
+[editable path="sewerGrateAttachmentBack"]
+[editable path="sewerGrateAttachmentSimple"]

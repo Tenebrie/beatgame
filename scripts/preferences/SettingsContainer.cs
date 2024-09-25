@@ -160,6 +160,7 @@ public class SettingsContainer
 				("Low", FogQuality.Low),
 				("Medium", FogQuality.Medium),
 				("High", FogQuality.High),
+				("Very High", FogQuality.VeryHigh),
 				("Ultra", FogQuality.Ultra),
 			}, FogQuality.Medium)
 			.SetTab("Audio")

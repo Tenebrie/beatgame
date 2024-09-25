@@ -1,4 +1,4 @@
-[gd_scene load_steps=78 format=3 uid="uid://bfqjxf71pmtx4"]
+[gd_scene load_steps=80 format=3 uid="uid://bfqjxf71pmtx4"]
 
 [ext_resource type="ArrayOccluder3D" uid="uid://fx5twp3p8t4" path="res://scenes/DungeonRatBasement.occ" id="1_he0n2"]
 [ext_resource type="PackedScene" uid="uid://cgo34wa3ccmn5" path="res://objects/Environment/dungeonTiles/FloorTiles01.tscn" id="1_rdjdx"]
@@ -44,6 +44,7 @@
 [ext_resource type="PackedScene" uid="uid://d3o3273sfgwuk" path="res://objects/Environment/WallSmooth01.tscn" id="26_s8lci"]
 [ext_resource type="PackedScene" uid="uid://dt8dosq4yhn3b" path="res://objects/Environment/dungeonTiles/WallStone05.tscn" id="28_1jexq"]
 [ext_resource type="PackedScene" uid="uid://ceqx76vu6bckg" path="res://objects/Environment/dungeonTiles/FloorTilesTrim01.tscn" id="31_0sefj"]
+[ext_resource type="PackedScene" uid="uid://nog2vim38qpc" path="res://objects/Environment/pipes/PipeGrateWallAttachment.tscn" id="32_lnphl"]
 [ext_resource type="PackedScene" uid="uid://dvbl5wpm0payh" path="res://objects/Environment/dungeonTiles/WallStoneDoor01.tscn" id="36_x2m3c"]
 [ext_resource type="PackedScene" uid="uid://go56dqudnn08" path="res://objects/Environment/WoodenLadder.tscn" id="37_5rrl0"]
 [ext_resource type="PackedScene" uid="uid://cap2k7njsnxey" path="res://objects/Environment/dust/DirtPileCorner01.tscn" id="44_vw4su"]
@@ -56,6 +57,7 @@
 [ext_resource type="PackedScene" uid="uid://c5u1a5wlnh7wc" path="res://objects/Environment/dungeonTiles/WallStoneBroken02.tscn" id="51_vlsfx"]
 [ext_resource type="PackedScene" uid="uid://dcyqsuexddwlw" path="res://objects/Environment/dust/DirtWall02.tscn" id="52_qblko"]
 [ext_resource type="PackedScene" uid="uid://cdqup1km3gmq8" path="res://objects/Environment/dungeonTiles/WallStone04.tscn" id="53_ltdjo"]
+[ext_resource type="PackedScene" uid="uid://daaqbuq3g7pcj" path="res://objects/Environment/crystals/CrystalLarge.tscn" id="54_s88t5"]
 [ext_resource type="PackedScene" uid="uid://tvhqlq32gma1" path="res://objects/Environment/dungeonTiles/WallStoneDoorFrame01.tscn" id="55_brh14"]
 
 [sub_resource type="GDScript" id="GDScript_mboue"]
@@ -123,6 +125,7 @@ ambient_light_source = 2
 ambient_light_color = Color(0.605305, 0.458338, 0.194189, 1)
 ambient_light_energy = 0.1
 ssil_radius = 5.09
+sdfgi_use_occlusion = true
 sdfgi_read_sky_light = false
 glow_strength = 2.0
 glow_bloom = 0.05
@@ -130,7 +133,7 @@ volumetric_fog_enabled = true
 volumetric_fog_density = 0.0002
 volumetric_fog_emission_energy = 1024.0
 volumetric_fog_length = 24.0
-volumetric_fog_temporal_reprojection_amount = 0.99
+volumetric_fog_temporal_reprojection_amount = 0.97
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xwtre"]
 size = Vector3(0.97, 0.005, 9.178)
@@ -207,7 +210,7 @@ libraries = {
 "": SubResource("AnimationLibrary_0nrwl")
 }
 
-[node name="Ceiling" type="Node" parent="."]
+[node name="Ceiling" type="Node3D" parent="."]
 
 [node name="CeilingStoneFlat01" parent="Ceiling" instance=ExtResource("23_byiud")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -6, 3, -6)
@@ -374,6 +377,279 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 6, 3, -14)
 [node name="CeilingStoneFlat79" parent="Ceiling" instance=ExtResource("23_byiud")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 6, 3, -16)
 
+[node name="CeilingStoneFlat97" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 8, 3, -10)
+
+[node name="CeilingStoneFlat98" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 8, 3, -12)
+
+[node name="CeilingStoneFlat99" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 8, 3, -14)
+
+[node name="CeilingStoneFlat100" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 8, 3, -16)
+
+[node name="CeilingStoneFlat108" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 10, 3, -10)
+
+[node name="CeilingStoneFlat116" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 10, 3, -12)
+
+[node name="CeilingStoneFlat117" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 10, 3, -14)
+
+[node name="CeilingStoneFlat118" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 10, 3, -16)
+
+[node name="CeilingStoneFlat119" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 12, 3, -10)
+
+[node name="CeilingStoneFlat120" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 12, 3, -12)
+
+[node name="CeilingStoneFlat121" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 12, 3, -14)
+
+[node name="CeilingStoneFlat122" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 12, 3, -16)
+
+[node name="CeilingStoneFlat123" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 14, 3, -10)
+
+[node name="CeilingStoneFlat124" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 14, 3, -12)
+
+[node name="CeilingStoneFlat125" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 14, 3, -14)
+
+[node name="CeilingStoneFlat126" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 14, 3, -16)
+
+[node name="CeilingStoneFlat127" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 16, 3, -10)
+
+[node name="CeilingStoneFlat128" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 16, 3, -12)
+
+[node name="CeilingStoneFlat129" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 16, 3, -14)
+
+[node name="CeilingStoneFlat130" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 16, 3, -16)
+
+[node name="CeilingStoneFlat131" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 18, 3, -10)
+
+[node name="CeilingStoneFlat132" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 18, 3, -12)
+
+[node name="CeilingStoneFlat133" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 18, 3, -14)
+
+[node name="CeilingStoneFlat134" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 18, 3, -16)
+
+[node name="CeilingStoneFlat135" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 20, 3, -10)
+
+[node name="CeilingStoneFlat136" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 20, 3, -12)
+
+[node name="CeilingStoneFlat137" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 20, 3, -14)
+
+[node name="CeilingStoneFlat138" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 20, 3, -16)
+
+[node name="CeilingStoneFlat139" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 22, 3, -10)
+
+[node name="CeilingStoneFlat140" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 22, 3, -12)
+
+[node name="CeilingStoneFlat141" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 22, 3, -14)
+
+[node name="CeilingStoneFlat142" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 22, 3, -16)
+
+[node name="CeilingStoneFlat143" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 24, 3, -10)
+
+[node name="CeilingStoneFlat144" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 24, 3, -12)
+
+[node name="CeilingStoneFlat145" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 24, 3, -14)
+
+[node name="CeilingStoneFlat146" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 24, 3, -16)
+
+[node name="CeilingStoneFlat147" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 26, 3, -10)
+
+[node name="CeilingStoneFlat148" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 26, 3, -12)
+
+[node name="CeilingStoneFlat149" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 26, 3, -14)
+
+[node name="CeilingStoneFlat150" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 26, 3, -16)
+
+[node name="CeilingStoneFlat151" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 28, 3, -10)
+
+[node name="CeilingStoneFlat152" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 28, 3, -12)
+
+[node name="CeilingStoneFlat153" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 28, 3, -14)
+
+[node name="CeilingStoneFlat154" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 28, 3, -16)
+
+[node name="CeilingStoneFlat155" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 30, 3, -10)
+
+[node name="CeilingStoneFlat156" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 30, 3, -12)
+
+[node name="CeilingStoneFlat157" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 30, 3, -14)
+
+[node name="CeilingStoneFlat158" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 30, 3, -16)
+
+[node name="CeilingStoneFlat159" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 32, 3, -10)
+
+[node name="CeilingStoneFlat160" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 32, 3, -12)
+
+[node name="CeilingStoneFlat161" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 32, 3, -14)
+
+[node name="CeilingStoneFlat162" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 32, 3, -16)
+
+[node name="CeilingStoneFlat163" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 34, 3, -10)
+
+[node name="CeilingStoneFlat164" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 34, 3, -12)
+
+[node name="CeilingStoneFlat165" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 34, 3, -14)
+
+[node name="CeilingStoneFlat166" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 34, 3, -16)
+
+[node name="CeilingStoneFlat167" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 36, 3, -10)
+
+[node name="CeilingStoneFlat171" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 24, 3, -8)
+
+[node name="CeilingStoneFlat172" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 26, 3, -8)
+
+[node name="CeilingStoneFlat173" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 28, 3, -8)
+
+[node name="CeilingStoneFlat174" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 30, 3, -8)
+
+[node name="CeilingStoneFlat175" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 32, 3, -8)
+
+[node name="CeilingStoneFlat176" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 34, 3, -8)
+
+[node name="CeilingStoneFlat177" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 36, 3, -8)
+
+[node name="CeilingStoneFlat178" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 24, 3, -6)
+
+[node name="CeilingStoneFlat179" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 26, 3, -6)
+
+[node name="CeilingStoneFlat180" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 28, 3, -6)
+
+[node name="CeilingStoneFlat181" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 30, 3, -6)
+
+[node name="CeilingStoneFlat182" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 32, 3, -6)
+
+[node name="CeilingStoneFlat183" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 34, 3, -6)
+
+[node name="CeilingStoneFlat184" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 36, 3, -6)
+
+[node name="CeilingStoneFlat185" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 24, 3, -4)
+
+[node name="CeilingStoneFlat186" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 26, 3, -4)
+
+[node name="CeilingStoneFlat187" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 28, 3, -4)
+
+[node name="CeilingStoneFlat188" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 30, 3, -4)
+
+[node name="CeilingStoneFlat189" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 32, 3, -4)
+
+[node name="CeilingStoneFlat190" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 34, 3, -4)
+
+[node name="CeilingStoneFlat191" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 36, 3, -4)
+
+[node name="CeilingStoneFlat192" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 24, 3, -2)
+
+[node name="CeilingStoneFlat199" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 24, 2, -1)
+
+[node name="CeilingStoneFlat200" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 24, 1, 0)
+
+[node name="CeilingStoneFlat201" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 26, 1, 0)
+
+[node name="CeilingStoneFlat193" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 26, 3, -2)
+
+[node name="CeilingStoneFlat194" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 28, 3, -2)
+
+[node name="CeilingStoneFlat195" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 30, 3, -2)
+
+[node name="CeilingStoneFlat196" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 32, 3, -2)
+
+[node name="CeilingStoneFlat197" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 34, 3, -2)
+
+[node name="CeilingStoneFlat198" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 36, 3, -2)
+
+[node name="CeilingStoneFlat168" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 36, 3, -12)
+
+[node name="CeilingStoneFlat169" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 36, 3, -14)
+
+[node name="CeilingStoneFlat170" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 36, 3, -16)
+
 [node name="CeilingStoneFlat05" parent="Ceiling" instance=ExtResource("23_byiud")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -6, 3, -4)
 
@@ -387,31 +663,73 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -2, 3, -4)
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 5, 1, -2)
 
 [node name="CeilingStoneFlat54" parent="Ceiling" instance=ExtResource("23_byiud")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 7, 3, -2)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 8, 3, -4)
 
 [node name="CeilingStoneFlat55" parent="Ceiling" instance=ExtResource("23_byiud")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 7, 3, -4)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 8, 3, -6)
 
 [node name="CeilingStoneFlat56" parent="Ceiling" instance=ExtResource("23_byiud")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 7, 3, -6)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 8, 3, -8)
 
 [node name="CeilingStoneFlat59" parent="Ceiling" instance=ExtResource("23_byiud")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 9, 3, -2)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 10, 3, -4)
 
 [node name="CeilingStoneFlat60" parent="Ceiling" instance=ExtResource("23_byiud")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 9, 3, -4)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 10, 3, -6)
 
 [node name="CeilingStoneFlat61" parent="Ceiling" instance=ExtResource("23_byiud")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 9, 3, -6)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 10, 3, -8)
 
 [node name="CeilingStoneFlat62" parent="Ceiling" instance=ExtResource("23_byiud")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 11, 3, -2)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 12, 3, -4)
+
+[node name="CeilingStoneFlat202" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 8, 3, -2)
+
+[node name="CeilingStoneFlat203" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 10, 3, -2)
+
+[node name="CeilingStoneFlat204" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 12, 3, -2)
+
+[node name="CeilingStoneFlat209" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 8, 3, 0)
+
+[node name="CeilingStoneFlat212" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 6, 3, -4)
+
+[node name="CeilingStoneFlat213" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 6, 3, -6)
+
+[node name="CeilingStoneFlat214" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 6, 3, -2)
+
+[node name="CeilingStoneFlat215" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 6, 3, 0)
+
+[node name="CeilingStoneFlat210" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 10, 3, 0)
+
+[node name="CeilingStoneFlat211" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 12, 3, 0)
 
 [node name="CeilingStoneFlat63" parent="Ceiling" instance=ExtResource("23_byiud")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 11, 3, -4)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 12, 3, -6)
 
 [node name="CeilingStoneFlat64" parent="Ceiling" instance=ExtResource("23_byiud")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 11, 3, -6)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 12, 3, -8)
+
+[node name="CeilingStoneFlat205" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 14, 3, -4)
+
+[node name="CeilingStoneFlat206" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 14, 3, -2)
+
+[node name="CeilingStoneFlat207" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 14, 3, -6)
+
+[node name="CeilingStoneFlat208" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 14, 3, -8)
 
 [node name="CeilingStoneFlat58" parent="Ceiling" instance=ExtResource("23_byiud")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 5, 2, -4)
@@ -455,14 +773,17 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -13, 3, -2)
 [node name="CeilingStoneFlat87" parent="Ceiling" instance=ExtResource("23_byiud")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -13, 3, 0)
 
-[node name="CeilingStoneFlat88" parent="Ceiling" instance=ExtResource("23_byiud")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -13, 3, 2)
-
 [node name="CeilingStoneFlat89" parent="Ceiling" instance=ExtResource("23_byiud")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -13, 3, 4)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -13, 4, 4)
+
+[node name="CeilingStoneFlat216" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 4, 3)
+
+[node name="CeilingStoneFlat217" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 4, 3)
 
 [node name="CeilingStoneFlat96" parent="Ceiling" instance=ExtResource("23_byiud")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -15, 3, 4)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -15, 4, 4)
 
 [node name="CeilingStoneFlat90" parent="Ceiling" instance=ExtResource("23_byiud")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -18, 2, -2)
@@ -536,6 +857,12 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -10, 2
 [node name="CeilingStoneCurved03_06" parent="Ceiling" instance=ExtResource("3_cc3j2")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -10, 2, 0)
 
+[node name="CeilingStoneCurved02_20" parent="Ceiling" instance=ExtResource("4_kebm0")]
+transform = Transform3D(1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, -12, 3, 2)
+
+[node name="CeilingStoneCurved03_11" parent="Ceiling" instance=ExtResource("3_cc3j2")]
+transform = Transform3D(1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, -13, 3, 2)
+
 [node name="CeilingStoneCurved03_07" parent="Ceiling" instance=ExtResource("3_cc3j2")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -14, 2, 1)
 
@@ -596,6 +923,12 @@ transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, -3, 4,
 [node name="CeilingStoneFlat114" parent="Ceiling" instance=ExtResource("23_byiud")]
 transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, -3, 4, 13)
 
+[node name="CeilingStoneFlat218" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, -1, 4, 11)
+
+[node name="CeilingStoneFlat219" parent="Ceiling" instance=ExtResource("23_byiud")]
+transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, -1, 4, 13)
+
 [node name="CeilingStoneCurved02_08" parent="Ceiling" instance=ExtResource("4_kebm0")]
 transform = Transform3D(1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, -2, 3, 8)
 
@@ -640,6 +973,9 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -12, 3
 
 [node name="CeilingStoneCurved02_15" parent="Ceiling" instance=ExtResource("4_kebm0")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -15, 3, 14)
+
+[node name="CeilingStoneCurved02_21" parent="Ceiling" instance=ExtResource("4_kebm0")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -16, 3, 14)
 
 [node name="CeilingStoneCurved03_16" parent="Ceiling" instance=ExtResource("3_cc3j2")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -14, 3, 14)
@@ -736,10 +1072,10 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 18, -2
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 18, -2, -1)
 
 [node name="WallSmoothBaseMoldy16" parent="WaterGate" instance=ExtResource("6_6hlv2")]
-transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 18.0134, -2, -1)
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 18.1, -2, -1)
 
 [node name="WallSmoothBaseMoldy17" parent="WaterGate" instance=ExtResource("6_6hlv2")]
-transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 18.0134, -2, 1)
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 18.1, -2, 1)
 
 [node name="FogVolumes" type="Node" parent="."]
 
@@ -758,6 +1094,16 @@ transform = Transform3D(1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 9.8369, 
 size = Vector3(20.5, 3.97256, 24.5)
 material = SubResource("FogMaterial_e7xn8")
 
+[node name="FogVolume4" type="FogVolume" parent="FogVolumes"]
+transform = Transform3D(1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 4.5869, -2.49516, -11.2483)
+size = Vector3(43, 3.90494, 8)
+material = SubResource("FogMaterial_e7xn8")
+
+[node name="FogVolume5" type="FogVolume" parent="FogVolumes"]
+transform = Transform3D(1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 31.5869, -2.85116, -7.9983)
+size = Vector3(11, 2.73157, 10.5)
+material = SubResource("FogMaterial_e7xn8")
+
 [node name="OutsideFogVolume1" type="FogVolume" parent="FogVolumes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.7606, 3.1224, -3.73584)
 material = SubResource("FogMaterial_c1ujt")
@@ -771,6 +1117,7 @@ material = SubResource("FogMaterial_c1ujt")
 
 [node name="DebugLight3D" type="DirectionalLight3D" parent="LightSources"]
 transform = Transform3D(0.0795377, 0.719052, -0.69039, 7.51528e-09, 0.692584, 0.721337, 0.996832, -0.0573735, 0.0550865, 0, 6.14869, 8.18433)
+visible = false
 
 [node name="DebugLight3D" type="DirectionalLight3D" parent="LightSources/DebugLight3D"]
 transform = Transform3D(0.0795377, 0.719052, -0.69039, 7.51528e-09, 0.692584, 0.721337, 0.996832, -0.0573735, 0.0550865, 0, 6.14869, 8.18433)
@@ -886,7 +1233,7 @@ light_energy = 0.25
 omni_range = 2.0
 
 [node name="WallTorch16" parent="LightSources" instance=ExtResource("17_aa603")]
-transform = Transform3D(-1, 0, -2.08616e-07, 0, 1, 0, 2.08616e-07, 0, -1, -13.5092, 2, 5)
+transform = Transform3D(-1, 0, -2.08616e-07, 0, 1, 0, 2.08616e-07, 0, -1, -13.5092, 2, 6)
 metadata/_edit_group_ = true
 
 [node name="OmniLight3D" type="OmniLight3D" parent="LightSources/WallTorch16"]
@@ -952,91 +1299,28 @@ metadata/_edit_group_ = true
 [node name="OmniLight3D" type="OmniLight3D" parent="LightSources/WallTorch04"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.597878, 0.155317)
 light_color = Color(1, 0.439216, 0.141176, 1)
-light_energy = 0.25
-omni_range = 2.0
-
-[node name="LampBridgeGlowing" parent="LightSources" instance=ExtResource("22_smcmy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.5642, 0.366635, -0.396459)
-metadata/_edit_group_ = true
-
-[node name="OmniLight3D" type="OmniLight3D" parent="LightSources/LampBridgeGlowing"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00645924, 0.489632, -0.00426137)
-light_color = Color(0.580392, 0.4, 0, 1)
-light_volumetric_fog_energy = 160000.0
-
-[node name="LampBridgeGlowing3" parent="LightSources" instance=ExtResource("22_smcmy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.5642, 0.366635, 6.60354)
-metadata/_edit_group_ = true
-
-[node name="OmniLight3D" type="OmniLight3D" parent="LightSources/LampBridgeGlowing3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00645924, 0.489632, -0.00426137)
-light_color = Color(0.580392, 0.4, 0, 1)
-light_volumetric_fog_energy = 160000.0
-
-[node name="LampBridgeGlowing5" parent="LightSources" instance=ExtResource("22_smcmy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.9387, 0.367, -3.396)
-metadata/_edit_group_ = true
-
-[node name="OmniLight3D" type="OmniLight3D" parent="LightSources/LampBridgeGlowing5"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00645924, 0.489632, -0.00426137)
-light_color = Color(0.580392, 0.4, 0, 1)
-light_volumetric_fog_energy = 160000.0
+light_energy = 0.4
 omni_range = 3.0
 
-[node name="LampBridgeGlowing7" parent="LightSources" instance=ExtResource("22_smcmy")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -14.8908, 0.367, 19.0512)
+[node name="WallTorch23" parent="LightSources" instance=ExtResource("17_aa603")]
+transform = Transform3D(1, 0, 1.6292e-07, 0, 1, 0, -1.6292e-07, 0, 1, -0.996305, 0.5, -14.7382)
 metadata/_edit_group_ = true
 
-[node name="OmniLight3D" type="OmniLight3D" parent="LightSources/LampBridgeGlowing7"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00645924, 0.489632, -0.00426137)
-light_color = Color(0.580392, 0.4, 0, 1)
-light_volumetric_fog_energy = 160000.0
+[node name="OmniLight3D" type="OmniLight3D" parent="LightSources/WallTorch23"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.597878, 0.155317)
+light_color = Color(1, 0.439216, 0.141176, 1)
+light_energy = 0.4
 omni_range = 3.0
 
-[node name="LampBridgeGlowing6" parent="LightSources" instance=ExtResource("22_smcmy")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -5.10553, 1.00619, 10.9772)
+[node name="WallTorch24" parent="LightSources" instance=ExtResource("17_aa603")]
+transform = Transform3D(1, 0, 1.6292e-07, 0, 1, 0, -1.6292e-07, 0, 1, -4.0008, 0.5, -14.7434)
 metadata/_edit_group_ = true
 
-[node name="OmniLight3D" type="OmniLight3D" parent="LightSources/LampBridgeGlowing6"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00645924, 0.489632, -0.00426137)
-light_color = Color(0.580392, 0.4, 0, 1)
-light_volumetric_fog_energy = 160000.0
-
-[node name="LampBridgeGlowing8" parent="LightSources" instance=ExtResource("22_smcmy")]
-transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -13.8049, 0.00618553, 10.9904)
-metadata/_edit_group_ = true
-
-[node name="OmniLight3D" type="OmniLight3D" parent="LightSources/LampBridgeGlowing8"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00645924, 0.489632, -0.00426137)
-light_color = Color(0.580392, 0.4, 0, 1)
-light_volumetric_fog_energy = 160000.0
-
-[node name="LampBridgeGlowing4" parent="LightSources" instance=ExtResource("22_smcmy")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 10.4941, 0.366635, 25.3942)
-metadata/_edit_group_ = true
-
-[node name="OmniLight3D" type="OmniLight3D" parent="LightSources/LampBridgeGlowing4"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00645924, 0.489632, -0.00426137)
-light_color = Color(0.580392, 0.4, 0, 1)
-light_volumetric_fog_energy = 160000.0
-
-[node name="LampBridgeGlowing9" parent="LightSources" instance=ExtResource("22_smcmy")]
-transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 1.64827, 0.366635, 18.9741)
-metadata/_edit_group_ = true
-
-[node name="OmniLight3D" type="OmniLight3D" parent="LightSources/LampBridgeGlowing9"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00645924, 0.489632, -0.00426137)
-light_color = Color(0.580392, 0.4, 0, 1)
-light_volumetric_fog_energy = 160000.0
-
-[node name="LampBridgeGlowing2" parent="LightSources" instance=ExtResource("22_smcmy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.5642, 0.376234, -9.36808)
-metadata/_edit_group_ = true
-
-[node name="OmniLight3D2" type="OmniLight3D" parent="LightSources/LampBridgeGlowing2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.468111, -0.00220889)
-light_color = Color(0.580392, 0.4, 0, 1)
-light_volumetric_fog_energy = 160000.0
+[node name="OmniLight3D" type="OmniLight3D" parent="LightSources/WallTorch24"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.597878, 0.155317)
+light_color = Color(1, 0.439216, 0.141176, 1)
+light_energy = 0.4
+omni_range = 3.0
 
 [node name="WallTorch05" parent="LightSources" instance=ExtResource("17_aa603")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 7.05333, 0, -5)
@@ -1124,6 +1408,38 @@ light_cull_mask = 4293918720
 omni_range = 19.707
 omni_attenuation = 0.0
 
+[node name="OmniLight3D12" type="OmniLight3D" parent="LightSources"]
+transform = Transform3D(1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 18.7098, -6.41311, -11.4874)
+light_energy = 0.01
+light_volumetric_fog_energy = 1.6e+06
+light_cull_mask = 4293918720
+omni_range = 8.04749
+omni_attenuation = 0.0
+
+[node name="OmniLight3D15" type="OmniLight3D" parent="LightSources"]
+transform = Transform3D(1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 31.7098, -0.077375, -9.4874)
+light_energy = 0.01
+light_volumetric_fog_energy = 1.6e+06
+light_cull_mask = 4293918720
+omni_range = 6.5
+omni_attenuation = 0.0
+
+[node name="OmniLight3D13" type="OmniLight3D" parent="LightSources"]
+transform = Transform3D(1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 6.7098, -6.41311, -11.4874)
+light_energy = 0.01
+light_volumetric_fog_energy = 1.6e+06
+light_cull_mask = 4293918720
+omni_range = 6.5
+omni_attenuation = 0.0
+
+[node name="OmniLight3D14" type="OmniLight3D" parent="LightSources"]
+transform = Transform3D(1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, -6.2902, -6.41311, -11.4874)
+light_energy = 0.01
+light_volumetric_fog_energy = 1.6e+06
+light_cull_mask = 4293918720
+omni_range = 9.45562
+omni_attenuation = 0.0
+
 [node name="OmniLight3D10" type="OmniLight3D" parent="LightSources"]
 transform = Transform3D(1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, -1.36755, -0.077375, 19.0126)
 light_energy = 0.01
@@ -1138,10 +1454,10 @@ omni_attenuation = 0.0
 transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, -11, 2, 2)
 
 [node name="DungeonFloor263" parent="ExcludedFromNavigationFloors" instance=ExtResource("1_rdjdx")]
-transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, -11, 2, 3.5)
+transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, -11, 2, 4)
 
 [node name="DungeonFloor264" parent="ExcludedFromNavigationFloors" instance=ExtResource("1_rdjdx")]
-transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, -13, 2, 3.5)
+transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, -13, 2, 4)
 
 [node name="Pipes" type="Node" parent="."]
 
@@ -1217,8 +1533,38 @@ transform = Transform3D(1, -3.82137e-15, -1.74846e-07, 1.74846e-07, 4.37114e-08,
 [node name="PipeStraight25" parent="Pipes" instance=ExtResource("24_vfd6p")]
 transform = Transform3D(-1, 0, 8.74228e-08, 8.74228e-08, -4.37114e-08, 1, 3.82137e-15, 1, 4.37114e-08, -1.60009, 0.529799, -15.5186)
 
+[node name="PipeStraight35" parent="Pipes" instance=ExtResource("24_eejqi")]
+transform = Transform3D(-1, 0, 8.74228e-08, -8.74228e-08, -4.37114e-08, -1, 3.82137e-15, -1, 4.37114e-08, 9.65382, -0.119069, -15.5132)
+
+[node name="PipeStraight36" parent="Pipes" instance=ExtResource("24_eejqi")]
+transform = Transform3D(1, -3.82137e-15, -1.74846e-07, 1.74846e-07, 4.37114e-08, 1, 3.82137e-15, -1, 4.37114e-08, 9.65556, 3.06019, -15.5132)
+
+[node name="PipeStraight37" parent="Pipes" instance=ExtResource("24_vfd6p")]
+transform = Transform3D(-1, 0, 8.74228e-08, 8.74228e-08, -4.37114e-08, 1, 3.82137e-15, 1, 4.37114e-08, 9.64679, 1.52847, -15.5186)
+
+[node name="PipeStraight38" parent="Pipes" instance=ExtResource("24_eejqi")]
+transform = Transform3D(-1, 0, 8.74228e-08, -8.74228e-08, -4.37114e-08, -1, 3.82137e-15, -1, 4.37114e-08, 10.521, -0.119069, -15.5132)
+
+[node name="PipeStraight39" parent="Pipes" instance=ExtResource("24_eejqi")]
+transform = Transform3D(1, -3.82137e-15, -1.74846e-07, 1.74846e-07, 4.37114e-08, 1, 3.82137e-15, -1, 4.37114e-08, 10.5228, 3.06019, -15.5132)
+
+[node name="PipeStraight40" parent="Pipes" instance=ExtResource("24_vfd6p")]
+transform = Transform3D(-1, 0, 8.74228e-08, 8.74228e-08, -4.37114e-08, 1, 3.82137e-15, 1, 4.37114e-08, 10.514, 1.00878, -15.5186)
+
+[node name="PipeStraight41" parent="Pipes" instance=ExtResource("24_eejqi")]
+transform = Transform3D(-1, 0, 8.74228e-08, -8.74228e-08, -4.37114e-08, -1, 3.82137e-15, -1, 4.37114e-08, 11.4069, -0.119069, -15.5132)
+
+[node name="PipeStraight42" parent="Pipes" instance=ExtResource("24_eejqi")]
+transform = Transform3D(1, -3.82137e-15, -1.74846e-07, 1.74846e-07, 4.37114e-08, 1, 3.82137e-15, -1, 4.37114e-08, 11.4087, 3.06019, -15.5132)
+
+[node name="PipeStraight43" parent="Pipes" instance=ExtResource("24_vfd6p")]
+transform = Transform3D(-1, 0, 8.74228e-08, 8.74228e-08, -4.37114e-08, 1, 3.82137e-15, 1, 4.37114e-08, 11.3999, 0.529799, -15.5186)
+
 [node name="PipeStraight26" parent="Pipes" instance=ExtResource("24_vfd6p")]
 transform = Transform3D(-1, 0, 8.74228e-08, 8.74228e-08, -4.37114e-08, 1, 3.82137e-15, 1, 4.37114e-08, -1.60009, 4.5298, -15.5186)
+
+[node name="PipeStraight44" parent="Pipes" instance=ExtResource("24_vfd6p")]
+transform = Transform3D(-1, 0, 8.74228e-08, 8.74228e-08, -4.37114e-08, 1, 3.82137e-15, 1, 4.37114e-08, 11.3999, 4.5298, -15.5186)
 
 [node name="PipeBend90_04" parent="Pipes" instance=ExtResource("25_wapvv")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 12.9135, 2.51357, -4.43996)
@@ -1394,50 +1740,20 @@ transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, 6, 0, -7
 [node name="DungeonFloor202" parent="NavMeshManager/Floor" instance=ExtResource("3_dakcl")]
 transform = Transform3D(-2.18557e-07, 0, -1, 0, 1, 0, 1, 0, -2.18557e-07, 7, 0, -8)
 
-[node name="DungeonFloor55" parent="NavMeshManager/Floor" instance=ExtResource("1_rdjdx")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.997672, 0, -13.021)
-
 [node name="DungeonFloor60" parent="NavMeshManager/Floor" instance=ExtResource("1_rdjdx")]
-transform = Transform3D(1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, -0.997672, 0, -15.021)
+transform = Transform3D(2, 0, -2.13162e-14, 0, 2, 0, 2.13162e-14, 0, 2, 2.00233, 0, -15.021)
 
 [node name="DungeonFloor63" parent="NavMeshManager/Floor" instance=ExtResource("1_rdjdx")]
-transform = Transform3D(1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 3.00233, 0, -14.021)
-
-[node name="DungeonFloor66" parent="NavMeshManager/Floor" instance=ExtResource("1_rdjdx")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.997672, 0, -15.021)
-
-[node name="DungeonFloor69" parent="NavMeshManager/Floor" instance=ExtResource("1_rdjdx")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3.00233, 0, -14.021)
-
-[node name="DungeonFloor70" parent="NavMeshManager/Floor" instance=ExtResource("2_r3l01")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4.99767, 0, -13.021)
-
-[node name="DungeonFloor71" parent="NavMeshManager/Floor" instance=ExtResource("2_r3l01")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.99767, 0, -13.021)
-
-[node name="DungeonFloor72" parent="NavMeshManager/Floor" instance=ExtResource("2_r3l01")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3.00233, 0, -14.021)
-
-[node name="DungeonFloor73" parent="NavMeshManager/Floor" instance=ExtResource("2_r3l01")]
-transform = Transform3D(-0.999975, 0, 0.00703353, 0, 1, 0, -0.00703353, 0, -0.999975, -4.99767, 0, -14.021)
-
-[node name="DungeonFloor74" parent="NavMeshManager/Floor" instance=ExtResource("2_r3l01")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2.00233, 0, -14.021)
-
-[node name="DungeonFloor75" parent="NavMeshManager/Floor" instance=ExtResource("2_r3l01")]
-transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 5.00233, 0, -15.021)
-
-[node name="DungeonFloor76" parent="NavMeshManager/Floor" instance=ExtResource("2_r3l01")]
-transform = Transform3D(1, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 1, -3.99767, 0, -14.021)
+transform = Transform3D(2, 0, -2.13162e-14, 0, 2, 0, 2.13162e-14, 0, 2, 6.00233, 0, -15.021)
 
 [node name="DungeonFloor77" parent="NavMeshManager/Floor" instance=ExtResource("3_dakcl")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4.99767, 0, -14.021)
+transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, -1.99767, 0, -13.021)
 
 [node name="DungeonFloor78" parent="NavMeshManager/Floor" instance=ExtResource("3_dakcl")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.99767, 0, -14.021)
+transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, 0.00233006, 0, -13.021)
 
 [node name="DungeonFloor79" parent="NavMeshManager/Floor" instance=ExtResource("3_dakcl")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.0023317, 0, -14.021)
+transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, 10.0023, 0, -13.021)
 
 [node name="DungeonFloor257" parent="NavMeshManager/Floor" instance=ExtResource("1_rdjdx")]
 transform = Transform3D(1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, -2.99767, 0, -16.021)
@@ -1448,104 +1764,98 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.997
 [node name="DungeonFloor259" parent="NavMeshManager/Floor" instance=ExtResource("3_dakcl")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.99767, 0, -15.021)
 
-[node name="DungeonFloor80" parent="NavMeshManager/Floor" instance=ExtResource("3_dakcl")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.00233, 0, -13.021)
+[node name="DungeonFloor264" parent="NavMeshManager/Floor" instance=ExtResource("1_rdjdx")]
+transform = Transform3D(1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 10.0023, 0, -16.021)
 
-[node name="DungeonFloor81" parent="NavMeshManager/Floor" instance=ExtResource("3_dakcl")]
-transform = Transform3D(1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, -2.99767, 0, -14.021)
+[node name="DungeonFloor266" parent="NavMeshManager/Floor" instance=ExtResource("1_rdjdx")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 10.0023, 0, -16.021)
 
-[node name="DungeonFloor82" parent="NavMeshManager/Floor" instance=ExtResource("3_dakcl")]
-transform = Transform3D(1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 2.00233, 0, -15.021)
-
-[node name="DungeonFloor83" parent="NavMeshManager/Floor" instance=ExtResource("3_dakcl")]
-transform = Transform3D(-0.00703366, 0, -0.999975, 0, 1, 0, 0.999975, 0, -0.00703366, -4.99767, 0, -14.021)
-
-[node name="DungeonFloor84" parent="NavMeshManager/Floor" instance=ExtResource("3_dakcl")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1.00233, 0, -14.021)
-
-[node name="DungeonFloor85" parent="NavMeshManager/Floor" instance=ExtResource("3_dakcl")]
-transform = Transform3D(-1, 0, 8.74226e-08, 0, 1, 0, -8.74226e-08, 0, -1, -2.99767, 0, -14.021)
+[node name="DungeonFloor267" parent="NavMeshManager/Floor" instance=ExtResource("3_dakcl")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 11.0023, 0, -15.021)
 
 [node name="DungeonFloor86" parent="NavMeshManager/Floor" instance=ExtResource("3_dakcl")]
-transform = Transform3D(-1, 0, 8.74226e-08, 0, 1, 0, -8.74226e-08, 0, -1, 2.00233, 0, -13.021)
-
-[node name="DungeonFloor211" parent="NavMeshManager/Floor" instance=ExtResource("1_rdjdx")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 26.0023, 0, -13.021)
-
-[node name="DungeonFloor212" parent="NavMeshManager/Floor" instance=ExtResource("1_rdjdx")]
-transform = Transform3D(1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 26.0023, 0, -15.021)
-
-[node name="DungeonFloor214" parent="NavMeshManager/Floor" instance=ExtResource("1_rdjdx")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 6.00233, 0, -15.021)
-
-[node name="DungeonFloor215" parent="NavMeshManager/Floor" instance=ExtResource("1_rdjdx")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 30.0023, 0, -14.021)
+transform = Transform3D(-2, 0, 1.74845e-07, 0, 2, 0, -1.74845e-07, 0, -2, 6.00233, 0, -13.021)
 
 [node name="DungeonFloor216" parent="NavMeshManager/Floor" instance=ExtResource("2_r3l01")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.00233, 0, -13.021)
-
-[node name="DungeonFloor218" parent="NavMeshManager/Floor" instance=ExtResource("2_r3l01")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 29.0023, 0, -14.021)
-
-[node name="DungeonFloor220" parent="NavMeshManager/Floor" instance=ExtResource("3_dakcl")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 27.0023, 0, -14.021)
-
-[node name="DungeonFloor222" parent="NavMeshManager/Floor" instance=ExtResource("3_dakcl")]
-transform = Transform3D(1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 29.0023, 0, -15.021)
-
-[node name="DungeonFloor223" parent="NavMeshManager/Floor" instance=ExtResource("3_dakcl")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 28.0023, 0, -14.021)
-
-[node name="DungeonFloor224" parent="NavMeshManager/Floor" instance=ExtResource("3_dakcl")]
-transform = Transform3D(-1, 0, 8.74226e-08, 0, 1, 0, -8.74226e-08, 0, -1, 29.0023, 0, -13.021)
-
-[node name="DungeonFloor99" parent="NavMeshManager/Floor" instance=ExtResource("1_rdjdx")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -8.99767, 0, -13.021)
-
-[node name="DungeonFloor100" parent="NavMeshManager/Floor" instance=ExtResource("1_rdjdx")]
-transform = Transform3D(1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, -8.99767, 0, -15.021)
+transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, 8, 0, -13)
 
 [node name="DungeonFloor101" parent="NavMeshManager/Floor" instance=ExtResource("1_rdjdx")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -8.99767, 0, -15.021)
-
-[node name="DungeonFloor102" parent="NavMeshManager/Floor" instance=ExtResource("2_r3l01")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -12.9976, 0, -13.021)
-
-[node name="DungeonFloor103" parent="NavMeshManager/Floor" instance=ExtResource("2_r3l01")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -9.99762, 0, -13.021)
+transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, -3.99767, 0, -15.021)
 
 [node name="DungeonFloor104" parent="NavMeshManager/Floor" instance=ExtResource("2_r3l01")]
-transform = Transform3D(-0.999975, 0, 0.00703353, 0, 1, 0, -0.00703353, 0, -0.999975, -12.9976, 0, -14.021)
+transform = Transform3D(-1.99995, 0, 0.0140671, 0, 2, 0, -0.0140671, 0, -1.99995, -7.9976, 0, -13.021)
 
-[node name="DungeonFloor105" parent="NavMeshManager/Floor" instance=ExtResource("2_r3l01")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -5.99767, 0, -14.021)
-
-[node name="DungeonFloor106" parent="NavMeshManager/Floor" instance=ExtResource("2_r3l01")]
-transform = Transform3D(1, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 1, -11.9976, 0, -14.021)
-
-[node name="DungeonFloor107" parent="NavMeshManager/Floor" instance=ExtResource("3_dakcl")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -12.9976, 0, -14.021)
+[node name="DungeonFloor211" parent="NavMeshManager/Floor" instance=ExtResource("2_r3l01")]
+transform = Transform3D(-1.99995, 0, 0.0140671, 0, 2, 0, -0.0140671, 0, -1.99995, -15.9976, 0, -13.021)
 
 [node name="DungeonFloor108" parent="NavMeshManager/Floor" instance=ExtResource("3_dakcl")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -10.9976, 0, -14.021)
+transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, -7.9976, 0, -13.021)
 
 [node name="DungeonFloor109" parent="NavMeshManager/Floor" instance=ExtResource("3_dakcl")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -7.99767, 0, -14.021)
+transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, -3.99767, 0, -13.021)
 
-[node name="DungeonFloor110" parent="NavMeshManager/Floor" instance=ExtResource("3_dakcl")]
-transform = Transform3D(1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, -10.9976, 0, -14.021)
+[node name="DungeonFloor107" parent="NavMeshManager/Floor" instance=ExtResource("3_dakcl")]
+transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, -11.9977, 0, -13.021)
 
-[node name="DungeonFloor111" parent="NavMeshManager/Floor" instance=ExtResource("3_dakcl")]
-transform = Transform3D(-0.00703366, 0, -0.999975, 0, 1, 0, 0.999975, 0, -0.00703366, -12.9976, 0, -14.021)
-
-[node name="DungeonFloor112" parent="NavMeshManager/Floor" instance=ExtResource("3_dakcl")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -6.99767, 0, -14.021)
-
-[node name="DungeonFloor113" parent="NavMeshManager/Floor" instance=ExtResource("3_dakcl")]
-transform = Transform3D(-1, 0, 8.74226e-08, 0, 1, 0, -8.74226e-08, 0, -1, -10.9976, 0, -14.021)
+[node name="DungeonFloor113" parent="NavMeshManager/Floor" instance=ExtResource("1_rdjdx")]
+transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, -13.9977, 0, -15.021)
 
 [node name="DungeonFloor114" parent="NavMeshManager/Floor" instance=ExtResource("3_dakcl")]
-transform = Transform3D(-1, 0, 8.74226e-08, 0, 1, 0, -8.74226e-08, 0, -1, -5.99767, 0, -13.021)
+transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, -13.9977, 0, -13.021)
+
+[node name="DungeonFloor66" parent="NavMeshManager/Floor" instance=ExtResource("1_rdjdx")]
+transform = Transform3D(2, 0, -2.13162e-14, 0, 2, 0, 2.13162e-14, 0, 2, 20.0023, 0, -15.021)
+
+[node name="DungeonFloor69" parent="NavMeshManager/Floor" instance=ExtResource("1_rdjdx")]
+transform = Transform3D(2, 0, -2.13162e-14, 0, 2, 0, 2.13162e-14, 0, 2, 24.0023, 0, -15.021)
+
+[node name="DungeonFloor80" parent="NavMeshManager/Floor" instance=ExtResource("3_dakcl")]
+transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, 16.0023, 0, -13.021)
+
+[node name="DungeonFloor81" parent="NavMeshManager/Floor" instance=ExtResource("3_dakcl")]
+transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, 18.0023, 0, -13.021)
+
+[node name="DungeonFloor82" parent="NavMeshManager/Floor" instance=ExtResource("3_dakcl")]
+transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, 28.0023, 0, -13.021)
+
+[node name="DungeonFloor99" parent="NavMeshManager/Floor" instance=ExtResource("3_dakcl")]
+transform = Transform3D(-2, 0, 1.74845e-07, 0, 2, 0, -1.74845e-07, 0, -2, 24.0023, 0, -13.021)
+
+[node name="DungeonFloor218" parent="NavMeshManager/Floor" instance=ExtResource("2_r3l01")]
+transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, 26, 0, -13)
+
+[node name="DungeonFloor102" parent="NavMeshManager/Floor" instance=ExtResource("1_rdjdx")]
+transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, 14.0023, 0, -15.021)
+
+[node name="DungeonFloor110" parent="NavMeshManager/Floor" instance=ExtResource("3_dakcl")]
+transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, 14.0023, 0, -13.021)
+
+[node name="DungeonFloor83" parent="NavMeshManager/Floor" instance=ExtResource("3_dakcl")]
+transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, 34.0023, 0, -13.021)
+
+[node name="DungeonFloor84" parent="NavMeshManager/Floor" instance=ExtResource("3_dakcl")]
+transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, 36.0023, 0, -13.021)
+
+[node name="DungeonFloor103" parent="NavMeshManager/Floor" instance=ExtResource("1_rdjdx")]
+transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, 32.0023, 0, -15.021)
+
+[node name="DungeonFloor111" parent="NavMeshManager/Floor" instance=ExtResource("3_dakcl")]
+transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, 32.0023, 0, -13.021)
+
+[node name="DungeonFloor85" parent="NavMeshManager/Floor" instance=ExtResource("3_dakcl")]
+transform = Transform3D(2, 0, 2.13163e-14, 0, 2, 0, -2.13163e-14, 0, 2, 36.0023, 0, -13.0002)
+
+[node name="DungeonFloor100" parent="NavMeshManager/Floor" instance=ExtResource("3_dakcl")]
+transform = Transform3D(2, 0, 2.13163e-14, 0, 2, 0, -2.13163e-14, 0, 2, 36.0023, 0, -7.00019)
+
+[node name="DungeonFloor105" parent="NavMeshManager/Floor" instance=ExtResource("3_dakcl")]
+transform = Transform3D(2, 0, 2.13163e-14, 0, 2, 0, -2.13163e-14, 0, 2, 36.0023, 0, -5.00019)
+
+[node name="DungeonFloor106" parent="NavMeshManager/Floor" instance=ExtResource("1_rdjdx")]
+transform = Transform3D(-2, 0, 1.74846e-07, 0, 2, 0, -1.74846e-07, 0, -2, 38.0023, 0, -9.00019)
+
+[node name="DungeonFloor112" parent="NavMeshManager/Floor" instance=ExtResource("3_dakcl")]
+transform = Transform3D(2, 0, 2.13163e-14, 0, 2, 0, -2.13163e-14, 0, 2, 36.0023, 0, -9.00019)
 
 [node name="DungeonFloor91" parent="NavMeshManager/Floor" instance=ExtResource("1_rdjdx")]
 transform = Transform3D(2, 0, -2.13162e-14, 0, 2, 0, 2.13162e-14, 0, 2, 2.99951, 0, -10.008)
@@ -1598,65 +1908,20 @@ transform = Transform3D(-1, 0, 8.74226e-08, 0, 1, 0, -8.74226e-08, 0, -1, 3.9995
 [node name="DungeonFloor203" parent="NavMeshManager/Floor" instance=ExtResource("1_rdjdx")]
 transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, 6.99951, 0, -10.008)
 
-[node name="DungeonFloor237" parent="NavMeshManager/Floor" instance=ExtResource("2_r3l01")]
-transform = Transform3D(0.00703357, 0, 0.999975, 0, 1, 0, -0.999975, 0, 0.00703357, -15, 0, -8)
-
-[node name="DungeonFloor238" parent="NavMeshManager/Floor" instance=ExtResource("3_dakcl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0, -10)
-
 [node name="DungeonFloor239" parent="NavMeshManager/Floor" instance=ExtResource("3_dakcl")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -15, 0, -10)
-
-[node name="DungeonFloor240" parent="NavMeshManager/Floor" instance=ExtResource("3_dakcl")]
-transform = Transform3D(-0.999975, 0, 0.00703371, 0, 1, 0, -0.00703371, 0, -0.999975, -15, 0, -8)
-
-[node name="DungeonFloor241" parent="NavMeshManager/Floor" instance=ExtResource("1_rdjdx")]
-transform = Transform3D(1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, -12.0005, 0, -9.00798)
-
-[node name="DungeonFloor242" parent="NavMeshManager/Floor" instance=ExtResource("1_rdjdx")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -12.0005, 0, -9.00798)
+transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, -14, 0, -10)
 
 [node name="DungeonFloor243" parent="NavMeshManager/Floor" instance=ExtResource("2_r3l01")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -12.0005, 0, -9.00798)
+transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, -12, 0, -8)
 
 [node name="DungeonFloor244" parent="NavMeshManager/Floor" instance=ExtResource("2_r3l01")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -13.0005, 0, -9.00798)
-
-[node name="DungeonFloor245" parent="NavMeshManager/Floor" instance=ExtResource("2_r3l01")]
-transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -10.0005, 0, -10.008)
-
-[node name="DungeonFloor246" parent="NavMeshManager/Floor" instance=ExtResource("3_dakcl")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -11.0005, 0, -8.00798)
-
-[node name="DungeonFloor247" parent="NavMeshManager/Floor" instance=ExtResource("3_dakcl")]
-transform = Transform3D(1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, -13.0005, 0, -10.008)
-
-[node name="DungeonFloor248" parent="NavMeshManager/Floor" instance=ExtResource("3_dakcl")]
-transform = Transform3D(-1, 0, 8.74226e-08, 0, 1, 0, -8.74226e-08, 0, -1, -13.0005, 0, -8.00798)
-
-[node name="DungeonFloor249" parent="NavMeshManager/Floor" instance=ExtResource("1_rdjdx")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -8.00049, 0, -9.00798)
-
-[node name="DungeonFloor250" parent="NavMeshManager/Floor" instance=ExtResource("2_r3l01")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -9.00049, 0, -9.00798)
+transform = Transform3D(-2, 0, -3.01992e-07, 0, 2, 0, 3.01992e-07, 0, -2, -12, 0, -8.008)
 
 [node name="DungeonFloor251" parent="NavMeshManager/Floor" instance=ExtResource("3_dakcl")]
-transform = Transform3D(1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, -9.00049, 0, -10.008)
-
-[node name="DungeonFloor252" parent="NavMeshManager/Floor" instance=ExtResource("3_dakcl")]
-transform = Transform3D(-1, 0, 8.74226e-08, 0, 1, 0, -8.74226e-08, 0, -1, -9.00049, 0, -8.00798)
+transform = Transform3D(2, 0, -2.13162e-14, 0, 2, 0, 2.13162e-14, 0, 2, -10, 0, -10)
 
 [node name="DungeonFloor253" parent="NavMeshManager/Floor" instance=ExtResource("1_rdjdx")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -6.00049, 0, -9.00798)
-
-[node name="DungeonFloor254" parent="NavMeshManager/Floor" instance=ExtResource("2_r3l01")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -7.00049, 0, -9.00798)
-
-[node name="DungeonFloor255" parent="NavMeshManager/Floor" instance=ExtResource("3_dakcl")]
-transform = Transform3D(1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, -7.00049, 0, -10.008)
-
-[node name="DungeonFloor256" parent="NavMeshManager/Floor" instance=ExtResource("3_dakcl")]
-transform = Transform3D(-1, 0, 8.74226e-08, 0, 1, 0, -8.74226e-08, 0, -1, -7.00049, 0, -8.00798)
+transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, -6, 0, -10)
 
 [node name="DungeonFloor44" parent="NavMeshManager/Floor" instance=ExtResource("1_rdjdx")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 4, 0, -2)
@@ -1681,6 +1946,12 @@ transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, -4, 0,
 
 [node name="DungeonFloor54" parent="NavMeshManager/Floor" instance=ExtResource("2_r3l01")]
 transform = Transform3D(1.50996e-07, 0, -2, 0, 2, 0, 2, 0, 1.50996e-07, -4, 0, -8)
+
+[node name="DungeonFloor237" parent="NavMeshManager/Floor" instance=ExtResource("1_rdjdx")]
+transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, -18, 0, -8)
+
+[node name="DungeonFloor238" parent="NavMeshManager/Floor" instance=ExtResource("2_r3l01")]
+transform = Transform3D(2, 0, 2.38419e-07, 0, 2, 0, -2.38419e-07, 0, 2, -20, 0, -10)
 
 [node name="DungeonFloor58" parent="NavMeshManager/Floor" instance=ExtResource("3_dakcl")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -6, 0, -4)
@@ -1726,10 +1997,16 @@ transform = Transform3D(-2.18557e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.18557e-08, 
 transform = Transform3D(-2.18557e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.18557e-08, -2.50595, -0.0515918, -9)
 
 [node name="BridgeStone3" parent="NavMeshManager/Floor" instance=ExtResource("22_hyhfg")]
-transform = Transform3D(-0.5, 0, 4.37114e-08, 0, 0.5, 0, -4.37114e-08, 0, -0.5, 3.49405, -0.0515918, -11.4737)
+transform = Transform3D(-0.5, 0, 4.37114e-08, 0, 0.5, 0, -4.37114e-08, 0, -0.5, 3.99405, -0.0515918, -11.4737)
+
+[node name="BridgeStone13" parent="NavMeshManager/Floor" instance=ExtResource("22_hyhfg")]
+transform = Transform3D(-0.5, 0, 4.37114e-08, 0, 0.5, 0, -4.37114e-08, 0, -0.5, 16.994, -0.0515918, -11.4737)
+
+[node name="BridgeStone14" parent="NavMeshManager/Floor" instance=ExtResource("22_hyhfg")]
+transform = Transform3D(-0.5, 0, 4.37114e-08, 0, 0.5, 0, -4.37114e-08, 0, -0.5, 24.994, -0.0515918, -11.4737)
 
 [node name="BridgeStone4" parent="NavMeshManager/Floor" instance=ExtResource("22_hyhfg")]
-transform = Transform3D(-0.5, 0, 4.37114e-08, 0, 0.5, 0, -4.37114e-08, 0, -0.5, -8.50595, -0.0515918, -11.4737)
+transform = Transform3D(-0.5, 0, 4.37114e-08, 0, 0.5, 0, -4.37114e-08, 0, -0.5, -9.00595, -0.0515918, -11.4737)
 
 [node name="FloorTilesTrim01" parent="NavMeshManager/Floor" instance=ExtResource("31_0sefj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -10.097)
@@ -1824,17 +2101,47 @@ transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 4, -1,
 [node name="StairsStone01_04" parent="NavMeshManager/Floor" instance=ExtResource("12_fotpy")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 4, -0.5, 24)
 
-[node name="StairsStone01_05" parent="NavMeshManager/Floor" instance=ExtResource("12_fotpy")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -12, -1, 11)
+[node name="StairsStone01_13" parent="NavMeshManager/Floor" instance=ExtResource("12_fotpy")]
+transform = Transform3D(2, 0, -4.26326e-14, 0, 2, 0, 4.26326e-14, 0, 2, -17, -0.0296892, 14)
 
-[node name="StairsStone01_06" parent="NavMeshManager/Floor" instance=ExtResource("12_fotpy")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -12, -0.5, 12)
+[node name="StairsStone01_14" parent="NavMeshManager/Floor" instance=ExtResource("12_fotpy")]
+transform = Transform3D(2, 0, -4.26326e-14, 0, 2, 0, 4.26326e-14, 0, 2, -17, 0.970311, 12)
 
-[node name="StairsStone01_07" parent="NavMeshManager/Floor" instance=ExtResource("12_fotpy")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -11, -1, 11)
+[node name="StairsStone01_18" parent="NavMeshManager/Floor" instance=ExtResource("12_fotpy")]
+transform = Transform3D(-1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, -10, -0.525672, -2)
 
-[node name="StairsStone01_08" parent="NavMeshManager/Floor" instance=ExtResource("12_fotpy")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -11, -0.5, 12)
+[node name="StairsStone01_20" parent="NavMeshManager/Floor" instance=ExtResource("12_fotpy")]
+transform = Transform3D(-1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, -10, -0.525672, -1)
+
+[node name="StairsStone01_21" parent="NavMeshManager/Floor" instance=ExtResource("12_fotpy")]
+transform = Transform3D(-1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, -11, -1.02567, -2)
+
+[node name="StairsStone01_22" parent="NavMeshManager/Floor" instance=ExtResource("12_fotpy")]
+transform = Transform3D(-1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, -11, -1.02567, -1)
+
+[node name="StairsStone01_26" parent="NavMeshManager/Floor" instance=ExtResource("12_fotpy")]
+transform = Transform3D(-1, 0, 2.06632e-07, 0, 1, 0, -2.06632e-07, 0, -1, -11, -0.50952, 12.0187)
+
+[node name="StairsStone01_27" parent="NavMeshManager/Floor" instance=ExtResource("12_fotpy")]
+transform = Transform3D(-1, 0, 2.06632e-07, 0, 1, 0, -2.06632e-07, 0, -1, -12, -0.50952, 12.0187)
+
+[node name="StairsStone01_28" parent="NavMeshManager/Floor" instance=ExtResource("12_fotpy")]
+transform = Transform3D(-1, 0, 2.06632e-07, 0, 1, 0, -2.06632e-07, 0, -1, -11, -1.00952, 11.0187)
+
+[node name="StairsStone01_29" parent="NavMeshManager/Floor" instance=ExtResource("12_fotpy")]
+transform = Transform3D(-1, 0, 2.06632e-07, 0, 1, 0, -2.06632e-07, 0, -1, -12, -1.00952, 11.0187)
+
+[node name="StairsStone01_19" parent="NavMeshManager/Floor" instance=ExtResource("12_fotpy")]
+transform = Transform3D(2.50343e-07, 0, 1, 0, 1, 0, -1, 0, 2.50343e-07, -14, -0.525672, 0)
+
+[node name="StairsStone01_23" parent="NavMeshManager/Floor" instance=ExtResource("12_fotpy")]
+transform = Transform3D(2.50343e-07, 0, 1, 0, 1, 0, -1, 0, 2.50343e-07, -14, -0.525672, -1)
+
+[node name="StairsStone01_24" parent="NavMeshManager/Floor" instance=ExtResource("12_fotpy")]
+transform = Transform3D(2.50343e-07, 0, 1, 0, 1, 0, -1, 0, 2.50343e-07, -13, -1.02567, 5.96046e-08)
+
+[node name="StairsStone01_25" parent="NavMeshManager/Floor" instance=ExtResource("12_fotpy")]
+transform = Transform3D(2.50343e-07, 0, 1, 0, 1, 0, -1, 0, 2.50343e-07, -13, -1.02567, -1)
 
 [node name="StairsStone01_09" parent="NavMeshManager/Floor" instance=ExtResource("12_fotpy")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4, 0, 8)
@@ -1951,10 +2258,22 @@ transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, 22, 0,
 transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, 28, 0, -3)
 
 [node name="DungeonFloor47" parent="NavMeshManager/Floor" instance=ExtResource("2_r3l01")]
-transform = Transform3D(1.99995, 0, -0.0140673, 0, 2, 0, 0.0140673, 0, 1.99995, 30, 0, -3)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 30.0154, 0, -3)
 
 [node name="DungeonFloor49" parent="NavMeshManager/Floor" instance=ExtResource("3_dakcl")]
 transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, 30, 0, -3)
+
+[node name="DungeonFloor73" parent="NavMeshManager/Floor" instance=ExtResource("3_dakcl")]
+transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, 28, 0, 0)
+
+[node name="DungeonFloor55" parent="NavMeshManager/Floor" instance=ExtResource("2_r3l01")]
+transform = Transform3D(2.62268e-07, 0, 2, 0, 2, 0, -2, 0, 2.62268e-07, 36.0003, 0, -1)
+
+[node name="DungeonFloor70" parent="NavMeshManager/Floor" instance=ExtResource("2_r3l01")]
+transform = Transform3D(-1.99995, 0, 0.0140675, 0, 2, 0, -0.0140675, 0, -1.99995, 34.0003, 0, -1)
+
+[node name="DungeonFloor71" parent="NavMeshManager/Floor" instance=ExtResource("3_dakcl")]
+transform = Transform3D(2.62268e-07, 0, 2, 0, 2, 0, -2, 0, 2.62268e-07, 34.0003, 0, -1)
 
 [node name="DungeonFloor19" parent="NavMeshManager/Floor" instance=ExtResource("3_dakcl")]
 transform = Transform3D(-2, 0, 1.74846e-07, 0, 2, 0, -1.74846e-07, 0, -2, 16, 0, -8)
@@ -2007,6 +2326,9 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -11, 0, 20)
 [node name="DungeonFloor171" parent="NavMeshManager/Floor" instance=ExtResource("1_rdjdx")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -15, 0, 14)
 
+[node name="DungeonFloor212" parent="NavMeshManager/Floor" instance=ExtResource("1_rdjdx")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -17, 2, 10)
+
 [node name="DungeonFloor118" parent="NavMeshManager/Floor" instance=ExtResource("2_r3l01")]
 transform = Transform3D(1.50996e-07, 0, -2, 0, 2, 0, 2, 0, 1.50996e-07, -9, 0, 14)
 
@@ -2043,6 +2365,18 @@ transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, -17, 0
 [node name="DungeonFloor167" parent="NavMeshManager/Floor" instance=ExtResource("2_r3l01")]
 transform = Transform3D(-2, 0, -6.35732e-08, 0, 2, 0, 6.35732e-08, 0, -2, -11, 0, 16)
 
+[node name="DungeonFloor214" parent="NavMeshManager/Floor" instance=ExtResource("1_rdjdx")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -17, 2, 8)
+
+[node name="DungeonFloor215" parent="NavMeshManager/Floor" instance=ExtResource("2_r3l01")]
+transform = Transform3D(1.50996e-07, 0, -2, 0, 2, 0, 2, 0, 1.50996e-07, -15, 2, 6)
+
+[node name="DungeonFloor220" parent="NavMeshManager/Floor" instance=ExtResource("1_rdjdx")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -19, 2, 6)
+
+[node name="DungeonFloor222" parent="NavMeshManager/Floor" instance=ExtResource("2_r3l01")]
+transform = Transform3D(-2, 0, -6.35732e-08, 0, 2, 0, 6.35732e-08, 0, -2, -15, 2, 6)
+
 [node name="DungeonFloor169" parent="NavMeshManager/Floor" instance=ExtResource("2_r3l01")]
 transform = Transform3D(1.50996e-07, 0, -2, 0, 2, 0, 2, 0, 1.50996e-07, -13, 0, 20)
 
@@ -2077,7 +2411,7 @@ transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, -14.99
 transform = Transform3D(2, 0, -2.13163e-14, 0, 2, 0, 2.13163e-14, 0, 2, -16.991, 0, -6)
 
 [node name="DungeonFloor208" parent="NavMeshManager/Floor" instance=ExtResource("2_r3l01")]
-transform = Transform3D(2.38496e-08, 0, 2, 0, 2, 0, -2, 0, 2.38496e-08, -14.991, 0, 0)
+transform = Transform3D(2.38496e-08, 0, 2, 0, 2, 0, -2, 0, 2.38496e-08, -15.991, 0, 0)
 
 [node name="DungeonFloor209" parent="NavMeshManager/Floor" instance=ExtResource("3_dakcl")]
 transform = Transform3D(3.89415e-07, 0, 2, 0, 2, 0, -2, 0, 3.89415e-07, -16.991, 0, -2)
@@ -2089,7 +2423,7 @@ transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, -9, 0,
 transform = Transform3D(-2, 0, 1.74846e-07, 0, 2, 0, -1.74846e-07, 0, -2, -9, 0, -4)
 
 [node name="DungeonFloor217" parent="NavMeshManager/Floor" instance=ExtResource("2_r3l01")]
-transform = Transform3D(2.38496e-08, 0, 2, 0, 2, 0, -2, 0, 2.38496e-08, -11, 0, 0)
+transform = Transform3D(2.38496e-08, 0, 2, 0, 2, 0, -2, 0, 2.38496e-08, -10, 0, 0)
 
 [node name="DungeonFloor219" parent="NavMeshManager/Floor" instance=ExtResource("3_dakcl")]
 transform = Transform3D(3.89415e-07, 0, 2, 0, 2, 0, -2, 0, 3.89415e-07, -11, 0, -2)
@@ -2145,8 +2479,14 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -3, 1, 8)
 [node name="DungeonFloor193" parent="NavMeshManager/Floor" instance=ExtResource("1_rdjdx")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -3, 1, 12)
 
+[node name="DungeonFloor223" parent="NavMeshManager/Floor" instance=ExtResource("1_rdjdx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, 11)
+
 [node name="DungeonFloor194" parent="NavMeshManager/Floor" instance=ExtResource("2_r3l01")]
 transform = Transform3D(-2, 0, -6.35732e-08, 0, 2, 0, 6.35732e-08, 0, -2, -1, 1, 12)
+
+[node name="DungeonFloor224" parent="NavMeshManager/Floor" instance=ExtResource("2_r3l01")]
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0, 1, 11)
 
 [node name="DungeonFloor191" parent="NavMeshManager/Floor" instance=ExtResource("3_dakcl")]
 transform = Transform3D(-2, 0, 3.01992e-07, 0, 2, 0, -3.01992e-07, 0, -2, -5, 0, 14)
@@ -2165,6 +2505,12 @@ transform = Transform3D(1.50996e-07, 0, -2, 0, 2, 0, 2, 0, 1.50996e-07, 14, 0, 2
 
 [node name="DungeonFloor207" parent="NavMeshManager/Floor" instance=ExtResource("1_rdjdx")]
 transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, 13.9995, 0, 3.992)
+
+[node name="DungeonFloor263" parent="NavMeshManager/Floor" instance=ExtResource("2_r3l01")]
+transform = Transform3D(1.50996e-07, 0, -2, 0, 2, 0, 2, 0, 1.50996e-07, 9, 0, 26)
+
+[node name="DungeonFloor265" parent="NavMeshManager/Floor" instance=ExtResource("2_r3l01")]
+transform = Transform3D(1.50996e-07, 0, -2, 0, 2, 0, 2, 0, 1.50996e-07, 14, 0, 26)
 
 [node name="DungeonFloor88" parent="NavMeshManager/Floor" instance=ExtResource("3_dakcl")]
 transform = Transform3D(-2, 0, 3.01992e-07, 0, 2, 0, -3.01992e-07, 0, -2, 9, 0, 8)
@@ -2192,6 +2538,9 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 24, 0, -4)
 
 [node name="DungeonFloor57" parent="NavMeshManager/Floor" instance=ExtResource("2_r3l01")]
 transform = Transform3D(1.50996e-07, 0, -2, 0, 2, 0, 2, 0, 1.50996e-07, 26, 0, -6)
+
+[node name="DungeonFloor72" parent="NavMeshManager/Floor" instance=ExtResource("2_r3l01")]
+transform = Transform3D(1.50996e-07, 0, -2, 0, 2, 0, 2, 0, 1.50996e-07, 26, 0, 0)
 
 [node name="DungeonFloor61" parent="NavMeshManager/Floor" instance=ExtResource("3_dakcl")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 24, 0, -2)
@@ -2307,11 +2656,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, -6)
 [node name="FloorTilesTrim01_02" parent="NavMeshManager/Floor" instance=ExtResource("31_0sefj")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -13, 0, -3)
 
-[node name="FloorTilesTrim01_03" parent="NavMeshManager/Floor" instance=ExtResource("31_0sefj")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -13, 0, -0.5)
-
 [node name="FloorTilesTrim01_04" parent="NavMeshManager/Floor" instance=ExtResource("31_0sefj")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -13, 0, 1.5)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -13, 0, 2)
+
+[node name="FloorTilesTrim01_06" parent="NavMeshManager/Floor" instance=ExtResource("31_0sefj")]
+transform = Transform3D(1, 0, 5.96046e-08, 0, 1, 0, -5.96046e-08, 0, 1, -14, 0.00183314, 0.0220823)
 
 [node name="FloorTilesTrim01_12" parent="NavMeshManager/Floor" instance=ExtResource("31_0sefj")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -13, 0, 9)
@@ -2322,8 +2671,14 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -13, 0
 [node name="FloorTilesTrim01_05" parent="NavMeshManager/Floor" instance=ExtResource("31_0sefj")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -11, 0, 1)
 
+[node name="FloorTilesTrim01_15" parent="NavMeshManager/Floor" instance=ExtResource("31_0sefj")]
+transform = Transform3D(1, 0, -5.96046e-08, 0, 1, 0, 5.96046e-08, 0, 1, -11, 0, 0.00576699)
+
 [node name="FloorTilesTrim02_25" parent="NavMeshManager/Floor" instance=ExtResource("11_elq3m")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -11, 0, 0)
+
+[node name="FloorTilesTrim02_26" parent="NavMeshManager/Floor" instance=ExtResource("11_elq3m")]
+transform = Transform3D(1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, -11, 0.0170432, -2.13539)
 
 [node name="FloorTilesTrim01_10" parent="NavMeshManager/Floor" instance=ExtResource("31_0sefj")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -11, 0, 9)
@@ -2337,17 +2692,11 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -11, 0
 [node name="FloorTilesTrim02_31" parent="NavMeshManager/Floor" instance=ExtResource("11_elq3m")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -11, 0, 10)
 
-[node name="FloorTilesTrim01_06" parent="NavMeshManager/Floor" instance=ExtResource("31_0sefj")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -11, 0, -1)
-
 [node name="FloorTilesTrim02_29" parent="NavMeshManager/Floor" instance=ExtResource("11_elq3m")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -12, 2, 2.01648)
 
 [node name="FloorTilesTrim01_09" parent="NavMeshManager/Floor" instance=ExtResource("31_0sefj")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -11, 2, 2.01648)
-
-[node name="FloorTilesTrim02_26" parent="NavMeshManager/Floor" instance=ExtResource("11_elq3m")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -11, 0, -2)
 
 [node name="FloorTilesTrim01_07" parent="NavMeshManager/Floor" instance=ExtResource("31_0sefj")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -11, 0, -3)
@@ -2363,6 +2712,12 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -11, 0
 
 [node name="WoodenRailing01_01" parent="NavMeshManager/Floor" instance=ExtResource("22_34ga0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 2, 2)
+
+[node name="WoodenRailing01_03" parent="NavMeshManager/Floor" instance=ExtResource("22_34ga0")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -15, 2, 10)
+
+[node name="WoodenRailing01_04" parent="NavMeshManager/Floor" instance=ExtResource("22_34ga0")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -15, 2, 11)
 
 [node name="WoodenRailing01_02" parent="NavMeshManager/Floor" instance=ExtResource("22_34ga0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 2, 2)
@@ -2384,6 +2739,12 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -8, 0.
 
 [node name="DirtPileWall01_02" parent="NavMeshManager/Floor" instance=ExtResource("49_o27k7")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -8.5, -0.0237364, 7)
+
+[node name="PipeGrateWallAttachment" parent="NavMeshManager/Floor" instance=ExtResource("32_lnphl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.0301, -1, -12)
+
+[node name="PipeGrateWallAttachment2" parent="NavMeshManager/Floor" instance=ExtResource("32_lnphl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.0301, -1, -11)
 
 [node name="Walls" type="Node3D" parent="NavMeshManager"]
 
@@ -2429,6 +2790,9 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 5.2247
 [node name="WallSmooth02Moldy4" parent="NavMeshManager/Walls" instance=ExtResource("7_yvqy8")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 32.7757, -2, -13)
 
+[node name="WallSmooth02Moldy28" parent="NavMeshManager/Walls" instance=ExtResource("7_yvqy8")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 25.2757, -2, -13)
+
 [node name="WallSmooth02Moldy10" parent="NavMeshManager/Walls" instance=ExtResource("7_yvqy8")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 36, -2, -8)
 
@@ -2465,14 +2829,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, -1, -10)
 [node name="WallSmoothBaseMoldy5" parent="NavMeshManager/Walls" instance=ExtResource("6_6hlv2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, -1, -10)
 
-[node name="WallSmoothBaseMoldy12" parent="NavMeshManager/Walls" instance=ExtResource("6_6hlv2")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 29, -1, -13)
-
-[node name="WallSmoothBaseMoldy13" parent="NavMeshManager/Walls" instance=ExtResource("6_6hlv2")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 35, -1, -13)
-
 [node name="WallSmoothBaseMoldy14" parent="NavMeshManager/Walls" instance=ExtResource("6_6hlv2")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 34.7757, -2, -13)
+
+[node name="WallSmoothBaseMoldy45" parent="NavMeshManager/Walls" instance=ExtResource("6_6hlv2")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 27.2757, -2, -13)
 
 [node name="WallSmoothBaseMoldy20" parent="NavMeshManager/Walls" instance=ExtResource("6_6hlv2")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 36.7757, -2, -13)
@@ -2481,7 +2842,7 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 36.775
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 36, -2, -12)
 
 [node name="WallSmoothBaseMoldy11" parent="NavMeshManager/Walls" instance=ExtResource("6_6hlv2")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 9, -1, -14)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 9, -1, -13)
 
 [node name="WallSmooth01Moldy9" parent="NavMeshManager/Walls" instance=ExtResource("5_yi1ld")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, -1, -10)
@@ -2522,20 +2883,38 @@ transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 25, -1
 [node name="WallSmoothBaseMoldy16" parent="NavMeshManager/Walls" instance=ExtResource("6_6hlv2")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 15, -1, -13)
 
+[node name="WallSmoothBaseMoldy49" parent="NavMeshManager/Walls" instance=ExtResource("6_6hlv2")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 11, -1, -13)
+
 [node name="WallSmooth01Moldy19" parent="NavMeshManager/Walls" instance=ExtResource("5_yi1ld")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 23, -1, -13)
 
 [node name="WallSmoothBaseMoldy18" parent="NavMeshManager/Walls" instance=ExtResource("6_6hlv2")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 21, -1, -13)
 
+[node name="WallSmoothGrateChipped01Moldy14" parent="NavMeshManager/Walls" instance=ExtResource("9_lfqfk")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 17, -1, -10)
+
+[node name="WallSmoothGrateChipped02Moldy10" parent="NavMeshManager/Walls" instance=ExtResource("10_ify07")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 19, -1, -10)
+
+[node name="WallSmooth02Moldy29" parent="NavMeshManager/Walls" instance=ExtResource("7_yvqy8")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 23, -1, -10)
+
+[node name="WallSmoothBaseMoldy46" parent="NavMeshManager/Walls" instance=ExtResource("6_6hlv2")]
+transform = Transform3D(1, 0, -2.13163e-14, 0, 1, 0, 2.13163e-14, 0, 1, 21, -1, -10)
+
+[node name="WallSmoothBaseMoldy48" parent="NavMeshManager/Walls" instance=ExtResource("6_6hlv2")]
+transform = Transform3D(1, 0, -2.13163e-14, 0, 1, 0, 2.13163e-14, 0, 1, 25, -1, -10)
+
+[node name="WallSmoothBaseMoldy47" parent="NavMeshManager/Walls" instance=ExtResource("6_6hlv2")]
+transform = Transform3D(1, 0, -2.13163e-14, 0, 1, 0, 2.13163e-14, 0, 1, 15, -1, -10)
+
 [node name="WallSmoothBaseMoldy7" parent="NavMeshManager/Walls" instance=ExtResource("6_6hlv2")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -11, -1, -13)
 
 [node name="WallSmooth01Moldy12" parent="NavMeshManager/Walls" instance=ExtResource("5_yi1ld")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 7, -1, -13)
-
-[node name="WallSmooth01Moldy17" parent="NavMeshManager/Walls" instance=ExtResource("5_yi1ld")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 33, -1, -13)
 
 [node name="WallSmooth01Moldy16" parent="NavMeshManager/Walls" instance=ExtResource("5_yi1ld")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 29.2247, -2, -13)
@@ -2565,13 +2944,13 @@ transform = Transform3D(1, 0, 2.13163e-14, 0, 1, 0, -2.13163e-14, 0, 1, 29, -2, 
 transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, 27, -2, -3)
 
 [node name="WallSmooth02Moldy12" parent="NavMeshManager/Walls" instance=ExtResource("7_yvqy8")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 26, -2, -4)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 26.1, -2, -4)
 
 [node name="WallSmoothBaseMoldy24" parent="NavMeshManager/Walls" instance=ExtResource("6_6hlv2")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 26, -2, -6)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 26.1, -2, -6)
 
 [node name="WallSmooth01Moldy31" parent="NavMeshManager/Walls" instance=ExtResource("5_yi1ld")]
-transform = Transform3D(-2.18557e-07, 0, -1, 0, 1, 0, 1, 0, -2.18557e-07, 26, -2, -8)
+transform = Transform3D(-2.18557e-07, 0, -1, 0, 1, 0, 1, 0, -2.18557e-07, 26.1, -2, -8)
 
 [node name="WallSmoothBaseMoldy8" parent="NavMeshManager/Walls" instance=ExtResource("6_6hlv2")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 5, -1, -13)
@@ -2825,12 +3204,6 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -7, 1,
 [node name="WallStone97" parent="NavMeshManager/Walls" instance=ExtResource("18_4uc07")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -12, 1, -8)
 
-[node name="WallStone23" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 1, -15)
-
-[node name="WallStone24" parent="NavMeshManager/Walls" instance=ExtResource("18_4uc07")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 1, -15)
-
 [node name="WallStoneWindow03" parent="NavMeshManager/Walls" instance=ExtResource("20_g302q")]
 transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, 6, 0, -8)
 
@@ -2875,6 +3248,12 @@ transform = Transform3D(-2, 0, -1.74846e-07, 0, 2, 0, 1.74846e-07, 0, -2, 9, 0, 
 
 [node name="TunnelStone18" parent="NavMeshManager/Walls" instance=ExtResource("21_awv72")]
 transform = Transform3D(2, 0, 2.13163e-14, 0, 2, 0, -2.13163e-14, 0, 2, 7, 0, 2)
+
+[node name="TunnelStone20" parent="NavMeshManager/Walls" instance=ExtResource("21_awv72")]
+transform = Transform3D(2, 0, 2.13163e-14, 0, 2, 0, -2.13163e-14, 0, 2, 12, 0, 26)
+
+[node name="TunnelStone22" parent="NavMeshManager/Walls" instance=ExtResource("21_awv72")]
+transform = Transform3D(2, 0, 2.13163e-14, 0, 2, 0, -2.13163e-14, 0, 2, 7, 0, 26)
 
 [node name="TunnelStone09" parent="NavMeshManager/Walls" instance=ExtResource("21_awv72")]
 transform = Transform3D(2, 0, 2.13163e-14, 0, 2, 0, -2.13163e-14, 0, 2, -6, 0, 2)
@@ -2989,9 +3368,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, -15)
 
 [node name="WallStone142" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -15)
-
-[node name="WallStone143" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, -15)
 
 [node name="WallStone144" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, -15)
@@ -3170,17 +3546,38 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -11, 1
 [node name="WallStone424" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
 transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -11, 2, 2)
 
+[node name="WallStone571" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -11, 3, 3)
+
+[node name="WallStone523" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -11, 2, 5)
+
+[node name="WallStone573" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -11, 3, 5)
+
 [node name="WallStone439" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
-transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -11, 2, 3)
+transform = Transform3D(-4.37112e-08, 0, 1, 0, 1, 0, -1, 0, -4.37112e-08, -13, 2, 4)
 
 [node name="WallStone440" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
 transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -11, 2, 4)
 
+[node name="WallStone524" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -11, 3, 2)
+
 [node name="WallStone441" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -11, 2, 5)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -13, 2, 6)
 
 [node name="WallStone442" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -12, 2, 5)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -12, 2, 6)
+
+[node name="WallStone574" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -11, 3, 6)
+
+[node name="WallStone577" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -12, 3, 6)
+
+[node name="WallStone896" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -14, 3, 6)
 
 [node name="WallStone418" parent="NavMeshManager/Walls" instance=ExtResource("18_4uc07")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -9, 0, 2)
@@ -3246,13 +3643,19 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -12, 1
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -13, 2, 3)
 
 [node name="WallStone437" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -13, 2, 4)
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -11, 2, 3)
+
+[node name="WallStone572" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -11, 3, 4)
 
 [node name="WallStone438" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -13, 2, 5)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -11, 2, 6)
+
+[node name="WallStone578" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -13, 3, 6)
 
 [node name="WallStone443" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -14, 2, 5)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -14, 2, 6)
 
 [node name="WallStone370" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -15, 1, -1)
@@ -3473,6 +3876,144 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -8, 1,
 [node name="WallStone199" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -11, 1, -8)
 
+[node name="WallStone673" parent="NavMeshManager/Walls" instance=ExtResource("18_4uc07")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -17, 0, -8)
+
+[node name="WallStone904" parent="NavMeshManager/Walls" instance=ExtResource("18_4uc07")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -34.5, 6, -8)
+
+[node name="WallStone674" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -15, 0, -8)
+
+[node name="WallStone675" parent="NavMeshManager/Walls" instance=ExtResource("18_4uc07")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -13, 0, -8)
+
+[node name="WallStone676" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -16, 2, -8)
+
+[node name="WallStone687" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -15, 2, -8)
+
+[node name="WallStone677" parent="NavMeshManager/Walls" instance=ExtResource("18_4uc07")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -14, 2, -8)
+
+[node name="WallStone678" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -14, 1, -8)
+
+[node name="WallStone679" parent="NavMeshManager/Walls" instance=ExtResource("18_4uc07")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -17, 1, -8)
+
+[node name="WallStone680" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -16, 0, -8)
+
+[node name="WallStone681" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -14, 0, -8)
+
+[node name="WallStone682" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -17, 2, -8)
+
+[node name="WallStone683" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -13, 2, -8)
+
+[node name="WallStone684" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -15, 1, -8)
+
+[node name="WallStone685" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -13, 1, -8)
+
+[node name="WallStone686" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -16, 1, -8)
+
+[node name="WallStone143" parent="NavMeshManager/Walls" instance=ExtResource("18_4uc07")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -18, 0, -15)
+
+[node name="WallStone205" parent="NavMeshManager/Walls" instance=ExtResource("18_4uc07")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -18, 1, -15)
+
+[node name="WallStone206" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -18, 2, -15)
+
+[node name="WallStone700" parent="NavMeshManager/Walls" instance=ExtResource("18_4uc07")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -13, 0, -15)
+
+[node name="WallStone701" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -15, 0, -15)
+
+[node name="WallStone702" parent="NavMeshManager/Walls" instance=ExtResource("18_4uc07")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -17, 0, -15)
+
+[node name="WallStone703" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -14, 2, -15)
+
+[node name="WallStone704" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -15, 2, -15)
+
+[node name="WallStone705" parent="NavMeshManager/Walls" instance=ExtResource("18_4uc07")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -16, 2, -15)
+
+[node name="WallStone706" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -16, 1, -15)
+
+[node name="WallStone707" parent="NavMeshManager/Walls" instance=ExtResource("18_4uc07")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -13, 1, -15)
+
+[node name="WallStone708" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -14, 0, -15)
+
+[node name="WallStone709" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -16, 0, -15)
+
+[node name="WallStone710" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -13, 2, -15)
+
+[node name="WallStone711" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -17, 2, -15)
+
+[node name="WallStone712" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -15, 1, -15)
+
+[node name="WallStone713" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -17, 1, -15)
+
+[node name="WallStone714" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -14, 1, -15)
+
+[node name="WallStone688" parent="NavMeshManager/Walls" instance=ExtResource("18_4uc07")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -18, 0, -7)
+
+[node name="WallStone689" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -18, 2, -8)
+
+[node name="WallStone690" parent="NavMeshManager/Walls" instance=ExtResource("18_4uc07")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -18, 1, -7)
+
+[node name="WallStone691" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -18, 0, -8)
+
+[node name="WallStone692" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -18, 2, -7)
+
+[node name="WallStone693" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -18, 1, -8)
+
+[node name="WallStone694" parent="NavMeshManager/Walls" instance=ExtResource("18_4uc07")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -18, 0, -16)
+
+[node name="WallStone695" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -18, 2, -17)
+
+[node name="WallStone696" parent="NavMeshManager/Walls" instance=ExtResource("18_4uc07")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -18, 1, -16)
+
+[node name="WallStone697" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -18, 0, -17)
+
+[node name="WallStone698" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -18, 2, -16)
+
+[node name="WallStone699" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -18, 1, -17)
+
 [node name="WallStone200" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, -15)
 
@@ -3486,10 +4027,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, -15)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, -15)
 
 [node name="WallStone29" parent="NavMeshManager/Walls" instance=ExtResource("18_4uc07")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, -15)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 9, 0, -15)
 
 [node name="WallStone109" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 2, -15)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 9, 2, -15)
 
 [node name="WallStone150" parent="NavMeshManager/Walls" instance=ExtResource("18_4uc07")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 2, -15)
@@ -3498,7 +4039,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 2, -15)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 2, -15)
 
 [node name="WallStone234" parent="NavMeshManager/Walls" instance=ExtResource("18_4uc07")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 2, -15)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 2, -16)
 
 [node name="WallStone235" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 1, -15)
@@ -3513,7 +4054,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -15)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, -15)
 
 [node name="WallStone239" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, -15)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, -16)
 
 [node name="WallStone240" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 2, -15)
@@ -3522,7 +4063,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 2, -15)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 2, -15)
 
 [node name="WallStone242" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 1, -15)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 9, 1, -15)
 
 [node name="WallStone243" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1, -15)
@@ -3531,7 +4072,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1, -15)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 1, -15)
 
 [node name="WallStone245" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 1, -15)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 1, -16)
 
 [node name="WallStone246" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0, -15)
@@ -3549,7 +4090,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 2, -15)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 2, -15)
 
 [node name="WallStone251" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 2, -15)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 12, 2, -16)
 
 [node name="WallStone252" parent="NavMeshManager/Walls" instance=ExtResource("18_4uc07")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 2, -15)
@@ -3561,7 +4102,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 1, -15)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 1, -15)
 
 [node name="WallStone255" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, -15)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 12, 0, -16)
 
 [node name="WallStone256" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, -15)
@@ -3575,11 +4116,29 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 2, -15)
 [node name="WallStone259" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 2, -15)
 
+[node name="WallStone890" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, -16)
+
+[node name="WallStone891" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 1, -16)
+
+[node name="WallStone892" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 2, -16)
+
+[node name="WallStone893" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, -16)
+
+[node name="WallStone894" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 1, -16)
+
+[node name="WallStone895" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 2, -16)
+
 [node name="WallStone260" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 1, -15)
 
 [node name="WallStone261" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 1, -15)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 12, 1, -16)
 
 [node name="WallStone262" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 1, -15)
@@ -3641,6 +4200,507 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 1, -15)
 [node name="WallStone281" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 1, -15)
 
+[node name="WallStone715" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 17, 0, -8)
+
+[node name="WallStone716" parent="NavMeshManager/Walls" instance=ExtResource("18_4uc07")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 19, 0, -8)
+
+[node name="WallStone717" parent="NavMeshManager/Walls" instance=ExtResource("18_4uc07")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 16, 0, -8)
+
+[node name="WallStone718" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 16, 2, -8)
+
+[node name="WallStone719" parent="NavMeshManager/Walls" instance=ExtResource("18_4uc07")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 18, 2, -8)
+
+[node name="WallStone720" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 20, 2, -8)
+
+[node name="WallStone721" parent="NavMeshManager/Walls" instance=ExtResource("18_4uc07")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 15, 2, -8)
+
+[node name="WallStone722" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 17, 1, -8)
+
+[node name="WallStone723" parent="NavMeshManager/Walls" instance=ExtResource("18_4uc07")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 19, 1, -8)
+
+[node name="WallStone724" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 20, 0, -8)
+
+[node name="WallStone725" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 18, 0, -8)
+
+[node name="WallStone726" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 15, 0, -8)
+
+[node name="WallStone727" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 19, 2, -8)
+
+[node name="WallStone728" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 17, 2, -8)
+
+[node name="WallStone729" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 16, 1, -8)
+
+[node name="WallStone730" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 20, 1, -8)
+
+[node name="WallStone731" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 18, 1, -8)
+
+[node name="WallStone732" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 15, 1, -8)
+
+[node name="WallStone839" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 23, 0, -8)
+
+[node name="WallStone869" parent="NavMeshManager/Walls" instance=ExtResource("18_4uc07")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 22, 0, -8)
+
+[node name="WallStone879" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 22, 2, -8)
+
+[node name="WallStone880" parent="NavMeshManager/Walls" instance=ExtResource("18_4uc07")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 24, 2, -8)
+
+[node name="WallStone881" parent="NavMeshManager/Walls" instance=ExtResource("18_4uc07")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 21, 2, -8)
+
+[node name="WallStone882" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 23, 1, -8)
+
+[node name="WallStone883" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 24, 0, -8)
+
+[node name="WallStone884" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 21, 0, -8)
+
+[node name="WallStone885" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 23, 2, -8)
+
+[node name="WallStone886" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 22, 1, -8)
+
+[node name="WallStone887" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 24, 1, -8)
+
+[node name="WallStone888" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 21, 1, -8)
+
+[node name="WallStone733" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 24, 0, -5)
+
+[node name="WallStone838" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 24, 0, 1)
+
+[node name="WallStone734" parent="NavMeshManager/Walls" instance=ExtResource("18_4uc07")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 24, 0, -3)
+
+[node name="WallStone735" parent="NavMeshManager/Walls" instance=ExtResource("18_4uc07")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 24, 0, -6)
+
+[node name="WallStone736" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 24, 2, -6)
+
+[node name="WallStone737" parent="NavMeshManager/Walls" instance=ExtResource("18_4uc07")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 24, 2, -4)
+
+[node name="WallStone738" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 24, 2, -2)
+
+[node name="WallStone739" parent="NavMeshManager/Walls" instance=ExtResource("18_4uc07")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 24, 2, -7)
+
+[node name="WallStone740" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 24, 1, -5)
+
+[node name="WallStone741" parent="NavMeshManager/Walls" instance=ExtResource("18_4uc07")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 24, 1, -3)
+
+[node name="WallStone742" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 24, 0, -2)
+
+[node name="WallStone743" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 24, 0, -4)
+
+[node name="WallStone744" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 24, 0, -7)
+
+[node name="WallStone745" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 24, 2, -3)
+
+[node name="WallStone746" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 24, 2, -5)
+
+[node name="WallStone824" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 24, 0, -1)
+
+[node name="WallStone830" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 24, 1, -1)
+
+[node name="WallStone836" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 24, 2, -1)
+
+[node name="WallStone747" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 24, 1, -6)
+
+[node name="WallStone748" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 24, 1, -2)
+
+[node name="WallStone868" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 24, 0, 2)
+
+[node name="WallStone749" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 24, 1, -4)
+
+[node name="WallStone832" parent="NavMeshManager/Walls" instance=ExtResource("18_4uc07")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 25, 1, 0)
+
+[node name="WallStone833" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 26.0139, 1, 0)
+
+[node name="WallStone835" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 25, 0, 0)
+
+[node name="WallStone750" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 24, 1, -7)
+
+[node name="WallStone751" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 29, 0, -1)
+
+[node name="WallStone752" parent="NavMeshManager/Walls" instance=ExtResource("18_4uc07")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 31, 0, -1)
+
+[node name="WallStone753" parent="NavMeshManager/Walls" instance=ExtResource("18_4uc07")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 28, 0, -1)
+
+[node name="WallStone754" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 28, 2, -1)
+
+[node name="WallStone755" parent="NavMeshManager/Walls" instance=ExtResource("18_4uc07")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 30, 2, -1)
+
+[node name="WallStone756" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 32, 2, -1)
+
+[node name="WallStone757" parent="NavMeshManager/Walls" instance=ExtResource("18_4uc07")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 27, 2, -1)
+
+[node name="WallStone758" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 29, 1, -1)
+
+[node name="WallStone759" parent="NavMeshManager/Walls" instance=ExtResource("18_4uc07")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 31, 1, -1)
+
+[node name="WallStone760" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 32, 0, -1)
+
+[node name="WallStone761" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 30, 0, -1)
+
+[node name="WallStone762" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 27, 0, -1)
+
+[node name="WallStone763" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 31, 2, -1)
+
+[node name="WallStone764" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 29, 2, -1)
+
+[node name="WallStone765" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 28, 1, -1)
+
+[node name="WallStone766" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 32, 1, -1)
+
+[node name="WallStone767" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 30, 1, -1)
+
+[node name="WallStone768" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 27, 1, -1)
+
+[node name="WallStone870" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 27, 0, 2)
+
+[node name="WallStone871" parent="NavMeshManager/Walls" instance=ExtResource("18_4uc07")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 26, 0, 2)
+
+[node name="WallStone873" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 28, 0, 2)
+
+[node name="WallStone872" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 28, 0, 1)
+
+[node name="WallStone875" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 28, 0, 0)
+
+[node name="WallStone876" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 27, 0, 0.0556386)
+
+[node name="WallStone877" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 26, 0, 0.0556386)
+
+[node name="WallStone874" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 25, 0, 2)
+
+[node name="WallStone878" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 24.0139, 0, 0.0551008)
+
+[node name="WallStone769" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 35, 0, -1)
+
+[node name="WallStone770" parent="NavMeshManager/Walls" instance=ExtResource("18_4uc07")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 37, 0, -1)
+
+[node name="WallStone771" parent="NavMeshManager/Walls" instance=ExtResource("18_4uc07")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 34, 0, -1)
+
+[node name="WallStone772" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 34, 2, -1)
+
+[node name="WallStone773" parent="NavMeshManager/Walls" instance=ExtResource("18_4uc07")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 36, 2, -1)
+
+[node name="WallStone774" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 38, 2, -1)
+
+[node name="WallStone775" parent="NavMeshManager/Walls" instance=ExtResource("18_4uc07")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 33, 2, -1)
+
+[node name="WallStone776" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 35, 1, -1)
+
+[node name="WallStone777" parent="NavMeshManager/Walls" instance=ExtResource("18_4uc07")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 37, 1, -1)
+
+[node name="WallStone778" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 38, 0, -1)
+
+[node name="WallStone779" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 36, 0, -1)
+
+[node name="WallStone780" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 33, 0, -1)
+
+[node name="WallStone781" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 37, 2, -1)
+
+[node name="WallStone782" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 35, 2, -1)
+
+[node name="WallStone783" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 34, 1, -1)
+
+[node name="WallStone784" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 38, 1, -1)
+
+[node name="WallStone785" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 36, 1, -1)
+
+[node name="WallStone786" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 33, 1, -1)
+
+[node name="WallStone787" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 38, 0, -4)
+
+[node name="WallStone788" parent="NavMeshManager/Walls" instance=ExtResource("18_4uc07")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 38, 0, -6)
+
+[node name="WallStone789" parent="NavMeshManager/Walls" instance=ExtResource("18_4uc07")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 38, 0, -3)
+
+[node name="WallStone790" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 38, 2, -3)
+
+[node name="WallStone791" parent="NavMeshManager/Walls" instance=ExtResource("18_4uc07")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 38, 2, -5)
+
+[node name="WallStone792" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 38, 2, -7)
+
+[node name="WallStone793" parent="NavMeshManager/Walls" instance=ExtResource("18_4uc07")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 38, 2, -2)
+
+[node name="WallStone794" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 38, 1, -4)
+
+[node name="WallStone795" parent="NavMeshManager/Walls" instance=ExtResource("18_4uc07")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 38, 1, -6)
+
+[node name="WallStone796" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 38, 0, -7)
+
+[node name="WallStone797" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 38, 0, -5)
+
+[node name="WallStone798" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 38, 0, -2)
+
+[node name="WallStone799" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 38, 2, -6)
+
+[node name="WallStone800" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 38, 2, -4)
+
+[node name="WallStone801" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 38, 1, -3)
+
+[node name="WallStone802" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 38, 1, -7)
+
+[node name="WallStone803" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 38, 1, -5)
+
+[node name="WallStone804" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 38, 1, -2)
+
+[node name="WallStone805" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 38, 0, -10)
+
+[node name="WallStone806" parent="NavMeshManager/Walls" instance=ExtResource("18_4uc07")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 38, 0, -12)
+
+[node name="WallStone807" parent="NavMeshManager/Walls" instance=ExtResource("18_4uc07")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 38, 0, -9)
+
+[node name="WallStone808" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 38, 2, -9)
+
+[node name="WallStone809" parent="NavMeshManager/Walls" instance=ExtResource("18_4uc07")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 38, 2, -11)
+
+[node name="WallStone810" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 38, 2, -13)
+
+[node name="WallStone811" parent="NavMeshManager/Walls" instance=ExtResource("18_4uc07")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 38, 2, -8)
+
+[node name="WallStone812" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 38, 1, -10)
+
+[node name="WallStone813" parent="NavMeshManager/Walls" instance=ExtResource("18_4uc07")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 38, 1, -12)
+
+[node name="WallStone814" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 38, 0, -13)
+
+[node name="WallStone815" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 38, 0, -11)
+
+[node name="WallStone816" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 38, 0, -8)
+
+[node name="WallStone817" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 38, 2, -12)
+
+[node name="WallStone818" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 38, 2, -10)
+
+[node name="WallStone819" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 38, 1, -9)
+
+[node name="WallStone820" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 38, 1, -13)
+
+[node name="WallStone821" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 38, 1, -11)
+
+[node name="WallStone822" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 38, 1, -8)
+
+[node name="WallStone825" parent="NavMeshManager/Walls" instance=ExtResource("18_4uc07")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 38, 0, -15)
+
+[node name="WallStone826" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 38, 2, -15)
+
+[node name="WallStone829" parent="NavMeshManager/Walls" instance=ExtResource("18_4uc07")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 38, 2, -14)
+
+[node name="WallStone834" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 38, 0, -14)
+
+[node name="WallStone837" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 38, 1, -15)
+
+[node name="WallStone840" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 38, 1, -14)
+
+[node name="WallStone841" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 35, 0, -15)
+
+[node name="WallStone842" parent="NavMeshManager/Walls" instance=ExtResource("18_4uc07")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 33, 0, -15)
+
+[node name="WallStone843" parent="NavMeshManager/Walls" instance=ExtResource("18_4uc07")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 36, 0, -15)
+
+[node name="WallStone844" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 36, 2, -15)
+
+[node name="WallStone845" parent="NavMeshManager/Walls" instance=ExtResource("18_4uc07")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 34, 2, -15)
+
+[node name="WallStone846" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 32, 2, -15)
+
+[node name="WallStone847" parent="NavMeshManager/Walls" instance=ExtResource("18_4uc07")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 37, 2, -15)
+
+[node name="WallStone848" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 35, 1, -15)
+
+[node name="WallStone849" parent="NavMeshManager/Walls" instance=ExtResource("18_4uc07")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 33, 1, -15)
+
+[node name="WallStone850" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 32, 0, -15)
+
+[node name="WallStone851" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 34, 0, -15)
+
+[node name="WallStone852" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 37, 0, -15)
+
+[node name="WallStone853" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 33, 2, -15)
+
+[node name="WallStone854" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 35, 2, -15)
+
+[node name="WallStone855" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 36, 1, -15)
+
+[node name="WallStone859" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 30, 0, -15)
+
+[node name="WallStone860" parent="NavMeshManager/Walls" instance=ExtResource("18_4uc07")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 31, 0, -15)
+
+[node name="WallStone861" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 31, 2, -15)
+
+[node name="WallStone862" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 30, 1, -15)
+
+[node name="WallStone863" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 30, 2, -15)
+
+[node name="WallStone864" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 31, 1, -15)
+
+[node name="WallStone856" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 32, 1, -15)
+
+[node name="WallStone857" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 34, 1, -15)
+
+[node name="WallStone858" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 37, 1, -15)
+
 [node name="WallStone282" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26, 0, -15)
 
@@ -3686,6 +4746,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26, 2, -15)
 [node name="WallStone296" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27, 1, -15)
 
+[node name="WallStone865" parent="NavMeshManager/Walls" instance=ExtResource("18_4uc07")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29, 0, -15)
+
+[node name="WallStone866" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29, 2, -15)
+
+[node name="WallStone867" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29, 1, -15)
+
 [node name="WallStone297" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23, 1, -15)
 
@@ -3697,12 +4766,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28, 1, -15)
 
 [node name="WallStone204" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 1, -15)
-
-[node name="WallStone205" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 1, -15)
-
-[node name="WallStone206" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 1, -15)
 
 [node name="WallSmoothGrateChipped01Moldy6" parent="NavMeshManager/Walls" instance=ExtResource("9_lfqfk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, -1, 2)
@@ -3762,7 +4825,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27, -1, -3)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35, -1, -3)
 
 [node name="WallSmoothBase6" parent="NavMeshManager/Walls" instance=ExtResource("24_8jcdh")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 36, -1, -8)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 36, -1, -10)
 
 [node name="WallSmoothBase7" parent="NavMeshManager/Walls" instance=ExtResource("24_8jcdh")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 36, -1, -6)
@@ -3774,7 +4837,19 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 36, -1
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 36, -1, -12)
 
 [node name="WallSmooth11" parent="NavMeshManager/Walls" instance=ExtResource("26_s8lci")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 36, -1, -10)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 36, -1, -8)
+
+[node name="WallSmoothBase8" parent="NavMeshManager/Walls" instance=ExtResource("24_8jcdh")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 33, -1, -13)
+
+[node name="WallSmooth12" parent="NavMeshManager/Walls" instance=ExtResource("26_s8lci")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 35, -1, -13)
+
+[node name="WallSmoothBase9" parent="NavMeshManager/Walls" instance=ExtResource("24_8jcdh")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 27, -1, -13)
+
+[node name="WallSmooth13" parent="NavMeshManager/Walls" instance=ExtResource("26_s8lci")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 29, -1, -13)
 
 [node name="WallSmooth01Moldy13" parent="NavMeshManager/Walls" instance=ExtResource("5_yi1ld")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 12, -1, 1)
@@ -3866,8 +4941,23 @@ transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -12, -
 [node name="WallSmooth02Moldy13" parent="NavMeshManager/Walls" instance=ExtResource("7_yvqy8")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -13, -1, 1)
 
+[node name="WallSmooth02Moldy30" parent="NavMeshManager/Walls" instance=ExtResource("7_yvqy8")]
+transform = Transform3D(1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, -13.9072, -1, 0.0927454)
+
+[node name="WallSmooth02Moldy31" parent="NavMeshManager/Walls" instance=ExtResource("7_yvqy8")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -13.9077, -1, -2.09368)
+
 [node name="WallSmoothBaseMoldy26" parent="NavMeshManager/Walls" instance=ExtResource("6_6hlv2")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -11, -1, 1)
+
+[node name="WallSmoothBaseMoldy42" parent="NavMeshManager/Walls" instance=ExtResource("6_6hlv2")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -12, -1, 18)
+
+[node name="WallSmoothBaseMoldy43" parent="NavMeshManager/Walls" instance=ExtResource("6_6hlv2")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -16, -1, 18)
+
+[node name="WallSmoothBaseMoldy44" parent="NavMeshManager/Walls" instance=ExtResource("6_6hlv2")]
+transform = Transform3D(1, 0, 1.42109e-14, 0, 1, 0, -1.42109e-14, 0, 1, -12, -1, 20)
 
 [node name="WallSmooth02Moldy14" parent="NavMeshManager/Walls" instance=ExtResource("7_yvqy8")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -11, -1, -5)
@@ -3876,19 +4966,22 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -11, -
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -11, -1, -7)
 
 [node name="WallSmooth02Moldy15" parent="NavMeshManager/Walls" instance=ExtResource("7_yvqy8")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -11, -1, -1)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -10.0924, -1, -2.09288)
+
+[node name="WallSmooth02Moldy32" parent="NavMeshManager/Walls" instance=ExtResource("7_yvqy8")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -10.089, -1, 0.0896068)
 
 [node name="WallSmoothGrateChipped01Moldy11" parent="NavMeshManager/Walls" instance=ExtResource("9_lfqfk")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -13, -1, -3)
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -11, -1, -3)
+
+[node name="WallSmoothGrateChipped01Moldy13" parent="NavMeshManager/Walls" instance=ExtResource("9_lfqfk")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -17, -1, 19)
 
 [node name="WallSmoothGrateChipped01Moldy12" parent="NavMeshManager/Walls" instance=ExtResource("9_lfqfk")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -12, -1, -5.9767)
 
-[node name="WallSmoothGrateChipped02Moldy6" parent="NavMeshManager/Walls" instance=ExtResource("10_ify07")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -13, -1, -1)
-
 [node name="WallSmoothGrateChipped02Moldy7" parent="NavMeshManager/Walls" instance=ExtResource("10_ify07")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -11, -1, -3)
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -13, -1, -3)
 
 [node name="WallSmoothBaseMoldy41" parent="NavMeshManager/Walls" instance=ExtResource("6_6hlv2")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -11, -1, 13)
@@ -3916,6 +5009,21 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -13, -
 
 [node name="WallSmoothGrateChipped02Moldy8" parent="NavMeshManager/Walls" instance=ExtResource("10_ify07")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -11, -1, 9)
+
+[node name="WallSmooth02Moldy24" parent="NavMeshManager/Walls" instance=ExtResource("7_yvqy8")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -14, -1, 18)
+
+[node name="WallSmooth02Moldy25" parent="NavMeshManager/Walls" instance=ExtResource("7_yvqy8")]
+transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, -16, -1, 20)
+
+[node name="WallSmooth02Moldy27" parent="NavMeshManager/Walls" instance=ExtResource("7_yvqy8")]
+transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, -10, -1, 20)
+
+[node name="WallSmooth02Moldy26" parent="NavMeshManager/Walls" instance=ExtResource("7_yvqy8")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -10, -1, 18)
+
+[node name="WallSmoothGrateChipped02Moldy9" parent="NavMeshManager/Walls" instance=ExtResource("10_ify07")]
+transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, -14, -1, 20)
 
 [node name="WallStone56" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 14, 0, -2)
@@ -4020,13 +5128,28 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 14, 2,
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 14, 0, -6)
 
 [node name="WallStone354" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
-transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, 26, 0, -1)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 26, 0, -1)
+
+[node name="WallStone823" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 26, 1, -1)
+
+[node name="WallStone827" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 26, 2, -1)
+
+[node name="WallStone828" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 25, 2, -1)
+
+[node name="WallStone831" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 24, 1, 0)
 
 [node name="WallStone313" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 14, 1, -4)
 
+[node name="WallStone889" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 14, 2, -8)
+
 [node name="WallStone353" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
-transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, 24, 0, 1)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 24, 0, 0)
 
 [node name="WallStone314" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 14, 2, -2)
@@ -4145,11 +5268,53 @@ transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 10, 0, 4
 [node name="WallStone356" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 11, 2, 4)
 
+[node name="WallStone654" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(1.31135e-07, 0, -1, 0, 1, 0, 1, 0, 1.31135e-07, 12, 2, 5)
+
+[node name="WallStone655" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 12, 2, 6)
+
+[node name="WallStone656" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 13, 2, 6)
+
 [node name="WallStone357" parent="NavMeshManager/Walls" instance=ExtResource("18_4uc07")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 11, 1, 4)
 
 [node name="WallStone358" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 9, 2, 4)
+
+[node name="WallStone649" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(-2.18557e-07, 0, 1, 0, 1, 0, -1, 0, -2.18557e-07, 9, 2, 5)
+
+[node name="WallStone650" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(-2.18557e-07, 0, 1, 0, 1, 0, -1, 0, -2.18557e-07, 9, 2, 6)
+
+[node name="WallStone657" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(-2.18557e-07, 0, 1, 0, 1, 0, -1, 0, -2.18557e-07, 9, 1, 5)
+
+[node name="WallStone658" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(-2.18557e-07, 0, 1, 0, 1, 0, -1, 0, -2.18557e-07, 9, 1, 6)
+
+[node name="WallStone659" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(-2.18557e-07, 0, 1, 0, 1, 0, -1, 0, -2.18557e-07, 9, 0, 5)
+
+[node name="WallStone660" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(-2.18557e-07, 0, 1, 0, 1, 0, -1, 0, -2.18557e-07, 9, 0, 6)
+
+[node name="WallStone661" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(1.31135e-07, 0, -1, 0, 1, 0, 1, 0, 1.31135e-07, 12, 1, 5)
+
+[node name="WallStone662" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(1.31135e-07, 0, -1, 0, 1, 0, 1, 0, 1.31135e-07, 12, 1, 4)
+
+[node name="WallStone664" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(1.31135e-07, 0, -1, 0, 1, 0, 1, 0, 1.31135e-07, 12, 0, 4)
+
+[node name="WallStone651" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 8, 2, 6)
+
+[node name="WallStone652" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 7, 2, 6)
 
 [node name="WallStone359" parent="NavMeshManager/Walls" instance=ExtResource("18_4uc07")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 9, 1, 4)
@@ -4159,6 +5324,12 @@ transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 11, 0, 4
 
 [node name="WallStone361" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 10, 2, 4)
+
+[node name="WallStone653" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(1.31135e-07, 0, -1, 0, 1, 0, 1, 0, 1.31135e-07, 12, 2, 4)
+
+[node name="WallStone663" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(1.31135e-07, 0, -1, 0, 1, 0, 1, 0, 1.31135e-07, 12, 0, 5)
 
 [node name="WallStone362" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 10, 1, 4)
@@ -4431,7 +5602,10 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -9, 0,
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -9, 0, -2)
 
 [node name="WallStoneDoor01" parent="NavMeshManager/Walls" instance=ExtResource("36_x2m3c")]
-transform = Transform3D(-2, 0, 3.01992e-07, 0, 2, 0, -3.01992e-07, 0, -2, 26, 0, 0)
+transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, 26, 0, 0)
+
+[node name="WallStoneDoor02" parent="NavMeshManager/Walls" instance=ExtResource("36_x2m3c")]
+transform = Transform3D(1, 0, -6.3573e-08, 0, 1, 0, 6.3573e-08, 0, 1, 25.0139, 0, 0.0551008)
 
 [node name="WallStoneBroken01_01" parent="NavMeshManager/Walls" instance=ExtResource("50_6yv08")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -9, 0, -2)
@@ -4515,28 +5689,46 @@ transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, -1, 1, 8)
 transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, -1, 2, 8)
 
 [node name="WallStone532" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
-transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, -1, 3, 10)
+transform = Transform3D(1, 0, 4.37114e-08, 0, 1, 0, -4.37114e-08, 0, 1, -1, 3, 10)
 
 [node name="WallStone533" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
 transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, -1, 3, 8)
+
+[node name="WallStone897" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 0, 1, 10)
+
+[node name="WallStone898" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 0, 2, 10)
+
+[node name="WallStone899" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 0, 3, 10)
+
+[node name="WallStone900" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 0, 1, 11)
+
+[node name="WallStone901" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 0, 2, 11)
+
+[node name="WallStone902" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 0, 3, 11)
 
 [node name="WallStone466" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
 transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, -1, 1, 13)
 
 [node name="WallStone475" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
-transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, -1, 1, 11)
+transform = Transform3D(-1, 0, 4.37114e-08, 0, 1, 0, -4.37114e-08, 0, -1, 0, 1, 12)
 
 [node name="WallStone477" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
-transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, -1, 1, 10)
+transform = Transform3D(1, 0, 4.37114e-08, 0, 1, 0, -4.37114e-08, 0, 1, -1, 1, 10)
 
 [node name="WallStone467" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
 transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, -1, 2, 13)
 
 [node name="WallStone468" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
-transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, -1, 2, 11)
+transform = Transform3D(-1, 0, 4.37114e-08, 0, 1, 0, -4.37114e-08, 0, -1, 0, 2, 12)
 
 [node name="WallStone469" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
-transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, -1, 2, 10)
+transform = Transform3D(1, 0, 4.37114e-08, 0, 1, 0, -4.37114e-08, 0, 1, -1, 2, 10)
 
 [node name="WallStone470" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 8)
@@ -4592,17 +5784,11 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -15, 0
 [node name="WallStone05_41" parent="NavMeshManager/Walls" instance=ExtResource("28_1jexq")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -15, 1, 12)
 
-[node name="WallStone05_42" parent="NavMeshManager/Walls" instance=ExtResource("28_1jexq")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -15, 2, 12)
-
 [node name="WallStone05_71" parent="NavMeshManager/Walls" instance=ExtResource("28_1jexq")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -15, 0, 11)
 
 [node name="WallStone05_72" parent="NavMeshManager/Walls" instance=ExtResource("28_1jexq")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -15, 1, 11)
-
-[node name="WallStone05_73" parent="NavMeshManager/Walls" instance=ExtResource("28_1jexq")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -15, 2, 11)
 
 [node name="WallStone05_74" parent="NavMeshManager/Walls" instance=ExtResource("28_1jexq")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -15, 3, 12)
@@ -4677,7 +5863,7 @@ transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -3, 2,
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1, 3, 13)
 
 [node name="WallStone535" parent="NavMeshManager/Walls" instance=ExtResource("18_4uc07")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1, 3, 11)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 3, 12)
 
 [node name="WallStone497" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -2, 1, 14)
@@ -4779,88 +5965,79 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -15, 3
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -13.5, 0, 14)
 
 [node name="WallStone512" parent="NavMeshManager/Walls" instance=ExtResource("18_4uc07")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -12.5, 2, 14)
-
-[node name="WallStone513" parent="NavMeshManager/Walls" instance=ExtResource("18_4uc07")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -10.5, 1, 14)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -13, 2, 14)
 
 [node name="WallStone514" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -12.5, 0, 14)
 
 [node name="WallStone515" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -12.5, 1, 14)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -13, 1, 14)
 
 [node name="WallStone516" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -9.5, 1, 14)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -10, 1, 14)
 
 [node name="WallStone517" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -9.5, 0, 14)
 
 [node name="WallStone518" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -9.5, 2, 14)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -10, 2, 14)
 
 [node name="WallStone519" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -8.78548, 1, 14.0355)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -8.98985, 1, 14.0153)
 
 [node name="WallStone520" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -8.78548, 0, 14.0355)
 
 [node name="WallStone521" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -8.78548, 2, 14.0355)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -8.98985, 2, 14.0153)
 
 [node name="WallStone522" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -14.5, 0, 14)
-
-[node name="WallStone523" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -14.5, 1, 14)
-
-[node name="WallStone524" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -14.5, 2, 14)
 
 [node name="WallStone525" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -10.5, 0, 14)
 
 [node name="WallStone526" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -10.5, 2, 14)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -11, 2, 14)
 
 [node name="WallStone527" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -11.5, 1, 14)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -12, 1, 14)
+
+[node name="WallStone903" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -11, 1, 14)
 
 [node name="WallStone528" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -13.5, 1, 14)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -14, 1, 14)
 
 [node name="WallStone529" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -13.5, 2, 14)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -14, 2, 14)
 
 [node name="WallStone530" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -11.5, 2, 14)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -12, 2, 14)
 
 [node name="WallStone538" parent="NavMeshManager/Walls" instance=ExtResource("18_4uc07")]
 transform = Transform3D(1, 0, 2.13163e-14, 0, 1, 0, -2.13163e-14, 0, 1, -10.5, 0, 14.0677)
 
 [node name="WallStone539" parent="NavMeshManager/Walls" instance=ExtResource("18_4uc07")]
-transform = Transform3D(1, 0, 2.13163e-14, 0, 1, 0, -2.13163e-14, 0, 1, -11.5, 2, 14.0677)
+transform = Transform3D(1, 0, 2.13163e-14, 0, 1, 0, -2.13163e-14, 0, 1, -12, 2, 14.0677)
 
 [node name="WallStone540" parent="NavMeshManager/Walls" instance=ExtResource("18_4uc07")]
-transform = Transform3D(1, 0, 2.13163e-14, 0, 1, 0, -2.13163e-14, 0, 1, -13.5, 1, 14.0677)
+transform = Transform3D(1, 0, 2.13163e-14, 0, 1, 0, -2.13163e-14, 0, 1, -14, 1, 14.0677)
 
 [node name="WallStone541" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
 transform = Transform3D(1, 0, 2.13163e-14, 0, 1, 0, -2.13163e-14, 0, 1, -11.5, 0, 14.0677)
 
-[node name="WallStone574" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
-transform = Transform3D(1, 0, 2.13163e-14, 0, 1, 0, -2.13163e-14, 0, 1, -16.5, 1, 14.0677)
-
 [node name="WallStone542" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
-transform = Transform3D(1, 0, 2.13163e-14, 0, 1, 0, -2.13163e-14, 0, 1, -11.5, 1, 14.0677)
+transform = Transform3D(1, 0, 2.13163e-14, 0, 1, 0, -2.13163e-14, 0, 1, -12, 1, 14.0677)
 
 [node name="WallStone543" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
-transform = Transform3D(1, 0, 2.13163e-14, 0, 1, 0, -2.13163e-14, 0, 1, -14.5, 1, 14.0677)
+transform = Transform3D(1, 0, 2.13163e-14, 0, 1, 0, -2.13163e-14, 0, 1, -15, 1, 14.0677)
 
 [node name="WallStone544" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
 transform = Transform3D(1, 0, 2.13163e-14, 0, 1, 0, -2.13163e-14, 0, 1, -14.5, 0, 14.0677)
 
 [node name="WallStone545" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
-transform = Transform3D(1, 0, 2.13163e-14, 0, 1, 0, -2.13163e-14, 0, 1, -14.5, 2, 14.0677)
+transform = Transform3D(1, 0, 2.13163e-14, 0, 1, 0, -2.13163e-14, 0, 1, -15, 2, 14.0677)
 
 [node name="WallStone564" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -9, 1, 15.0677)
@@ -4878,7 +6055,7 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -9, 2,
 transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, -13.5, 0, 14.0677)
 
 [node name="WallStone547" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
-transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, -13.5, 2, 14.0677)
+transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, -14, 2, 14.0677)
 
 [node name="WallStone575" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
 transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, -16.5, 0, 14.0677)
@@ -4905,22 +6082,22 @@ transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, -9.5, 0,
 transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, -9.5, 2, 14.0677)
 
 [node name="WallStone555" parent="NavMeshManager/Walls" instance=ExtResource("18_4uc07")]
-transform = Transform3D(1, 0, 2.13163e-14, 0, 1, 0, -2.13163e-14, 0, 1, -9.5, 1, 14.0677)
+transform = Transform3D(1, 0, 2.13163e-14, 0, 1, 0, -2.13163e-14, 0, 1, -10, 1, 14.0677)
 
 [node name="WallStone556" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
 transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, -9.5, 0, 14.0677)
 
 [node name="WallStone557" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
-transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, -9.5, 2, 14.0677)
+transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, -10, 2, 14.0677)
 
 [node name="WallStone548" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
-transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, -12.5, 1, 14.0677)
+transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, -13, 1, 14.0677)
 
 [node name="WallStone549" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
-transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, -10.5, 1, 14.0677)
+transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, -11, 1, 14.0677)
 
 [node name="WallStone550" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
-transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, -10.5, 2, 14.0677)
+transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, -11, 2, 14.0677)
 
 [node name="WallStone558" parent="NavMeshManager/Walls" instance=ExtResource("18_4uc07")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -9, 0, 14.0677)
@@ -4947,28 +6124,13 @@ transform = Transform3D(-2.18557e-07, 0, -1, 0, 1, 0, 1, 0, -2.18557e-07, -9, 1,
 transform = Transform3D(-2.18557e-07, 0, -1, 0, 1, 0, 1, 0, -2.18557e-07, -9, 1, 19.0677)
 
 [node name="WallStone551" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
-transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, -12.5, 2, 14.0677)
+transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, -13, 2, 14.0677)
 
 [node name="WallStone570" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
 transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, -15.5, 0, 14.0677)
 
-[node name="WallStone571" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
-transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, -15.5, 2, 14.0677)
-
-[node name="WallStone572" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
-transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, -15.5, 1, 14.0677)
-
 [node name="WallStone576" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
 transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, -17.5, 0, 14.0677)
-
-[node name="WallStone577" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
-transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, -17.5, 2, 14.0677)
-
-[node name="WallStone578" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
-transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, -17.5, 1, 14.0677)
-
-[node name="WallStone573" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
-transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, -16.5, 2, 14.0677)
 
 [node name="WallStone581" parent="NavMeshManager/Walls" instance=ExtResource("18_4uc07")]
 transform = Transform3D(-1, 0, 8.9407e-08, 0, 1, 0, -8.9407e-08, 0, -1, -15, 0, 22)
@@ -5189,6 +6351,102 @@ transform = Transform3D(1, 8.74228e-08, -8.74228e-08, 8.74228e-08, -1, -7.64274e
 [node name="DirtWall01_01" parent="NavMeshManager/Walls" instance=ExtResource("50_b73t5")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -8.5, 0, 7)
 
+[node name="WallStone444" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1, 0, 18)
+
+[node name="WallStone665" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 9, 0, 28)
+
+[node name="WallStone666" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 8, 0, 28)
+
+[node name="WallStone667" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 9, 1, 28)
+
+[node name="WallStone668" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 8, 1, 28)
+
+[node name="WallStone669" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 14, 0, 28)
+
+[node name="WallStone670" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 13, 0, 28)
+
+[node name="WallStone671" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 14, 1, 28)
+
+[node name="WallStone672" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 13, 1, 28)
+
+[node name="WallStone638" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1, 2, 18)
+
+[node name="WallStone639" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1, 2, 17)
+
+[node name="WallStone641" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1, 2, 16)
+
+[node name="WallStone642" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1, 1, 17)
+
+[node name="WallStone643" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1, 1, 16)
+
+[node name="WallStone647" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1, 2, 8)
+
+[node name="WallStone648" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1, 1, 8)
+
+[node name="WallStone645" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1, 0, 16)
+
+[node name="WallStone646" parent="NavMeshManager/Walls" instance=ExtResource("5_ym070")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1, 0, 15)
+
+[node name="WallStone449" parent="NavMeshManager/Walls" instance=ExtResource("18_4uc07")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1, 1, 18)
+
+[node name="WallStone637" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1, 0, 17)
+
+[node name="WallStone644" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1, 1, 15)
+
+[node name="WallStone640" parent="NavMeshManager/Walls" instance=ExtResource("5_51hlv")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1, 2, 15)
+
+[node name="WallStone04_02" parent="NavMeshManager/Walls" instance=ExtResource("53_ltdjo")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1, 0, 8)
+
+[node name="WallStone05_110" parent="NavMeshManager/Walls" instance=ExtResource("28_1jexq")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1, 0, 14)
+
+[node name="WallStone05_111" parent="NavMeshManager/Walls" instance=ExtResource("28_1jexq")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1, 1, 14)
+
+[node name="WallStone05_112" parent="NavMeshManager/Walls" instance=ExtResource("28_1jexq")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1, 2, 14)
+
+[node name="WallStone05_113" parent="NavMeshManager/Walls" instance=ExtResource("28_1jexq")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1, 0, 9)
+
+[node name="WallStone05_114" parent="NavMeshManager/Walls" instance=ExtResource("28_1jexq")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1, 1, 9)
+
+[node name="WallStone05_115" parent="NavMeshManager/Walls" instance=ExtResource("28_1jexq")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1, 2, 9)
+
+[node name="WallStone05_116" parent="NavMeshManager/Walls" instance=ExtResource("28_1jexq")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1, 0, 7)
+
+[node name="WallStone05_117" parent="NavMeshManager/Walls" instance=ExtResource("28_1jexq")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1, 1, 7)
+
+[node name="WallStone05_118" parent="NavMeshManager/Walls" instance=ExtResource("28_1jexq")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1, 2, 7)
+
 [node name="Decorations" type="Node3D" parent="NavMeshManager"]
 
 [node name="LampBridgeGlowing" parent="NavMeshManager/Decorations" instance=ExtResource("22_smcmy")]
@@ -5197,7 +6455,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.43576, 0.366635, -0.396459
 [node name="OmniLight3D" type="OmniLight3D" parent="NavMeshManager/Decorations/LampBridgeGlowing"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00645924, 0.489632, -0.00426137)
 light_color = Color(0.580392, 0.4, 0, 1)
-light_volumetric_fog_energy = 160000.0
+light_volumetric_fog_energy = 80000.0
+omni_range = 4.0
 
 [node name="LampBridgeGlowing2" parent="NavMeshManager/Decorations" instance=ExtResource("22_smcmy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.43576, 0.376234, -9.36808)
@@ -5205,39 +6464,170 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.43576, 0.376234, -9.36808)
 [node name="OmniLight3D2" type="OmniLight3D" parent="NavMeshManager/Decorations/LampBridgeGlowing2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.468111, -0.00220889)
 light_color = Color(0.580392, 0.4, 0, 1)
-light_volumetric_fog_energy = 160000.0
+light_volumetric_fog_energy = 80000.0
+omni_range = 4.0
 
 [node name="LampBridgeGlowing3" parent="NavMeshManager/Decorations" instance=ExtResource("22_smcmy")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -8.88351, 0.376234, -10.4226)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -9.38351, 0.376234, -10.4226)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="NavMeshManager/Decorations/LampBridgeGlowing3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.468111, -0.00220889)
 light_color = Color(0.580392, 0.4, 0, 1)
-light_volumetric_fog_energy = 160000.0
+light_volumetric_fog_energy = 80000.0
+omni_range = 4.0
 
 [node name="LampBridgeGlowing6" parent="NavMeshManager/Decorations" instance=ExtResource("22_smcmy")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -8.88351, 0.376234, -12.5419)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -9.38351, 0.376234, -12.5419)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="NavMeshManager/Decorations/LampBridgeGlowing6"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.468111, -0.00220889)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10.6704, -0.00220871)
 light_color = Color(0.580392, 0.4, 0, 1)
-light_volumetric_fog_energy = 160000.0
+light_volumetric_fog_energy = 80000.0
+omni_range = 4.0
 
 [node name="LampBridgeGlowing4" parent="NavMeshManager/Decorations" instance=ExtResource("22_smcmy")]
-transform = Transform3D(7.54979e-08, 0, -1, 0, 1, 0, 1, 0, 7.54979e-08, 3.86296, 0.376234, -10.4118)
+transform = Transform3D(7.54979e-08, 0, -1, 0, 1, 0, 1, 0, 7.54979e-08, 4.36296, 0.376234, -10.4118)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="NavMeshManager/Decorations/LampBridgeGlowing4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.468111, -0.00220889)
 light_color = Color(0.580392, 0.4, 0, 1)
-light_volumetric_fog_energy = 160000.0
+light_volumetric_fog_energy = 80000.0
+omni_range = 4.0
 
 [node name="LampBridgeGlowing7" parent="NavMeshManager/Decorations" instance=ExtResource("22_smcmy")]
-transform = Transform3D(7.54979e-08, 0, -1, 0, 1, 0, 1, 0, 7.54979e-08, 3.86296, 0.376234, -12.5045)
+transform = Transform3D(7.54979e-08, 0, -1, 0, 1, 0, 1, 0, 7.54979e-08, 4.36296, 0.376234, -12.5045)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="NavMeshManager/Decorations/LampBridgeGlowing7"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.468111, -0.00220889)
 light_color = Color(0.580392, 0.4, 0, 1)
-light_volumetric_fog_energy = 160000.0
+light_volumetric_fog_energy = 80000.0
+omni_range = 4.0
+
+[node name="LampBridgeGlowing5" parent="NavMeshManager/Decorations" instance=ExtResource("22_smcmy")]
+transform = Transform3D(7.54979e-08, 0, -1, 0, 1, 0, 1, 0, 7.54979e-08, 17.363, 0.376234, -10.4118)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="NavMeshManager/Decorations/LampBridgeGlowing5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.468111, -0.00220889)
+light_color = Color(0.580392, 0.4, 0, 1)
+light_volumetric_fog_energy = 80000.0
+omni_range = 4.0
+
+[node name="LampBridgeGlowing8" parent="NavMeshManager/Decorations" instance=ExtResource("22_smcmy")]
+transform = Transform3D(7.54979e-08, 0, -1, 0, 1, 0, 1, 0, 7.54979e-08, 17.363, 0.376234, -12.5045)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="NavMeshManager/Decorations/LampBridgeGlowing8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.468111, -0.00220889)
+light_color = Color(0.580392, 0.4, 0, 1)
+light_volumetric_fog_energy = 80000.0
+omni_range = 4.0
+
+[node name="LampBridgeGlowing9" parent="NavMeshManager/Decorations" instance=ExtResource("22_smcmy")]
+transform = Transform3D(7.54979e-08, 0, -1, 0, 1, 0, 1, 0, 7.54979e-08, 25.363, 0.376234, -10.4118)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="NavMeshManager/Decorations/LampBridgeGlowing9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.468111, -0.00220889)
+light_color = Color(0.580392, 0.4, 0, 1)
+light_volumetric_fog_energy = 80000.0
+omni_range = 4.0
+
+[node name="LampBridgeGlowing10" parent="NavMeshManager/Decorations" instance=ExtResource("22_smcmy")]
+transform = Transform3D(7.54979e-08, 0, -1, 0, 1, 0, 1, 0, 7.54979e-08, 25.363, 0.376234, -12.5045)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="NavMeshManager/Decorations/LampBridgeGlowing10"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.468111, -0.00220889)
+light_color = Color(0.580392, 0.4, 0, 1)
+light_volumetric_fog_energy = 80000.0
+omni_range = 4.0
+
+[node name="LampBridgeGlowing11" parent="NavMeshManager/Decorations" instance=ExtResource("22_smcmy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.5642, 0.366635, -0.396459)
+metadata/_edit_group_ = true
+
+[node name="OmniLight3D" type="OmniLight3D" parent="NavMeshManager/Decorations/LampBridgeGlowing11"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00645924, 0.489632, -0.00426137)
+light_color = Color(0.580392, 0.4, 0, 1)
+light_volumetric_fog_energy = 80000.0
+omni_range = 4.0
+
+[node name="LampBridgeGlowing12" parent="NavMeshManager/Decorations" instance=ExtResource("22_smcmy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.5642, 0.366635, 6.60354)
+metadata/_edit_group_ = true
+
+[node name="OmniLight3D" type="OmniLight3D" parent="NavMeshManager/Decorations/LampBridgeGlowing12"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00645924, 0.489632, -0.00426137)
+light_color = Color(0.580392, 0.4, 0, 1)
+light_volumetric_fog_energy = 80000.0
+omni_range = 4.0
+
+[node name="LampBridgeGlowing13" parent="NavMeshManager/Decorations" instance=ExtResource("22_smcmy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.9387, 0.367, -3.396)
+metadata/_edit_group_ = true
+
+[node name="OmniLight3D" type="OmniLight3D" parent="NavMeshManager/Decorations/LampBridgeGlowing13"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00645924, 0.489632, -0.00426137)
+light_color = Color(0.580392, 0.4, 0, 1)
+light_volumetric_fog_energy = 80000.0
+omni_range = 4.0
+
+[node name="LampBridgeGlowing14" parent="NavMeshManager/Decorations" instance=ExtResource("22_smcmy")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -14.8908, 0.367, 19.0512)
+metadata/_edit_group_ = true
+
+[node name="OmniLight3D" type="OmniLight3D" parent="NavMeshManager/Decorations/LampBridgeGlowing14"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00645924, 0.489632, -0.00426137)
+light_color = Color(0.580392, 0.4, 0, 1)
+light_volumetric_fog_energy = 80000.0
+omni_range = 4.0
+
+[node name="LampBridgeGlowing15" parent="NavMeshManager/Decorations" instance=ExtResource("22_smcmy")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -5.10553, 1.00619, 10.9772)
+metadata/_edit_group_ = true
+
+[node name="OmniLight3D" type="OmniLight3D" parent="NavMeshManager/Decorations/LampBridgeGlowing15"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00645924, 0.489632, -0.00426137)
+light_color = Color(0.580392, 0.4, 0, 1)
+light_volumetric_fog_energy = 80000.0
+omni_range = 4.0
+
+[node name="LampBridgeGlowing16" parent="NavMeshManager/Decorations" instance=ExtResource("22_smcmy")]
+transform = Transform3D(-4.37112e-08, 0, -1, 0, 1, 0, 1, 0, -4.37112e-08, -11.6865, 0.310893, 14.0423)
+metadata/_edit_group_ = true
+
+[node name="OmniLight3D" type="OmniLight3D" parent="NavMeshManager/Decorations/LampBridgeGlowing16"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00645924, 0.489632, -0.00426137)
+light_color = Color(0.580392, 0.4, 0, 1)
+light_volumetric_fog_energy = 80000.0
+omni_range = 4.0
+
+[node name="LampBridgeGlowing17" parent="NavMeshManager/Decorations" instance=ExtResource("22_smcmy")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 10.4941, 0.366635, 25.3942)
+metadata/_edit_group_ = true
+
+[node name="OmniLight3D" type="OmniLight3D" parent="NavMeshManager/Decorations/LampBridgeGlowing17"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00645924, 0.489632, -0.00426137)
+light_color = Color(0.580392, 0.4, 0, 1)
+light_volumetric_fog_energy = 80000.0
+omni_range = 4.0
+
+[node name="LampBridgeGlowing18" parent="NavMeshManager/Decorations" instance=ExtResource("22_smcmy")]
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 1.64827, 0.366635, 18.9741)
+metadata/_edit_group_ = true
+
+[node name="OmniLight3D" type="OmniLight3D" parent="NavMeshManager/Decorations/LampBridgeGlowing18"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00645924, 0.489632, -0.00426137)
+light_color = Color(0.580392, 0.4, 0, 1)
+light_volumetric_fog_energy = 80000.0
+omni_range = 4.0
+
+[node name="LampBridgeGlowing19" parent="NavMeshManager/Decorations" instance=ExtResource("22_smcmy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.5642, 0.376234, -9.36808)
+metadata/_edit_group_ = true
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="NavMeshManager/Decorations/LampBridgeGlowing19"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.468111, -0.00220889)
+light_color = Color(0.580392, 0.4, 0, 1)
+light_volumetric_fog_energy = 80000.0
+omni_range = 4.0
 
 [node name="PillarStone02" parent="NavMeshManager/Decorations" instance=ExtResource("10_8skxx")]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -1.00792, 0, -15)
@@ -5248,11 +6638,26 @@ transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -4.00792, 0, -15)
 [node name="PillarStone06" parent="NavMeshManager/Decorations" instance=ExtResource("10_8skxx")]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -10.0079, 0, -15)
 
+[node name="PillarStone11" parent="NavMeshManager/Decorations" instance=ExtResource("10_8skxx")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -18.0079, 0, -15)
+
+[node name="PillarStone13" parent="NavMeshManager/Decorations" instance=ExtResource("10_8skxx")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -18.0079, 0, -8)
+
+[node name="PillarStone14" parent="NavMeshManager/Decorations" instance=ExtResource("10_8skxx")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -14.0079, 0, -8)
+
+[node name="PillarStone12" parent="NavMeshManager/Decorations" instance=ExtResource("10_8skxx")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -14.0079, 0, -15)
+
 [node name="PillarStone03" parent="NavMeshManager/Decorations" instance=ExtResource("10_8skxx")]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 4.99208, 0, -15)
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 3.99208, 0, -15)
+
+[node name="PillarStone04" parent="NavMeshManager/Decorations" instance=ExtResource("10_8skxx")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 8.99208, 0, -15)
 
 [node name="PillarStone07" parent="NavMeshManager/Decorations" instance=ExtResource("10_8skxx")]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 10.9921, 0, -15)
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 11.9921, 0, -15)
 
 [node name="PillarStone08" parent="NavMeshManager/Decorations" instance=ExtResource("10_8skxx")]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 16.9921, 0, -15)
@@ -5262,6 +6667,36 @@ transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 22.9921, 0, -15)
 
 [node name="PillarStone10" parent="NavMeshManager/Decorations" instance=ExtResource("10_8skxx")]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 28.9921, 0, -15)
+
+[node name="PillarStone15" parent="NavMeshManager/Decorations" instance=ExtResource("10_8skxx")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 32.9921, 0, -15)
+
+[node name="PillarStone16" parent="NavMeshManager/Decorations" instance=ExtResource("10_8skxx")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 37.9921, 0, -15)
+
+[node name="PillarStone23" parent="NavMeshManager/Decorations" instance=ExtResource("10_8skxx")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 37.9921, 0, -8)
+
+[node name="PillarStone17" parent="NavMeshManager/Decorations" instance=ExtResource("10_8skxx")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 37.9921, 0, -1)
+
+[node name="PillarStone18" parent="NavMeshManager/Decorations" instance=ExtResource("10_8skxx")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 31.9921, 0, -1)
+
+[node name="PillarStone19" parent="NavMeshManager/Decorations" instance=ExtResource("10_8skxx")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 25.9921, 0, -1)
+
+[node name="PillarStone20" parent="NavMeshManager/Decorations" instance=ExtResource("10_8skxx")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 23.9921, 0, -1)
+
+[node name="PillarStone21" parent="NavMeshManager/Decorations" instance=ExtResource("10_8skxx")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 23.9921, 0, -8)
+
+[node name="PillarStone24" parent="NavMeshManager/Decorations" instance=ExtResource("10_8skxx")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 18.9921, 0, -8)
+
+[node name="PillarStone22" parent="NavMeshManager/Decorations" instance=ExtResource("10_8skxx")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 13.9921, 0, -8)
 
 [node name="WoodenLadder" parent="NavMeshManager/Decorations" instance=ExtResource("37_5rrl0")]
 transform = Transform3D(0.962275, -0.0428204, 0.268688, 0, 0.987538, 0.157382, -0.272079, -0.151445, 0.950283, -16.4793, 0.05, -3.5951)
@@ -5306,13 +6741,13 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -13, 0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, -6)
 
 [node name="FloorTilesTrim02_02" parent="NavMeshManager/Decorations" instance=ExtResource("11_elq3m")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -13, 0, -1.5)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -13, 0, -2)
 
 [node name="FloorTilesTrim02_03" parent="NavMeshManager/Decorations" instance=ExtResource("11_elq3m")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -13, 0, 0.5)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -13, 0, 1)
 
 [node name="FloorTilesTrim02_04" parent="NavMeshManager/Decorations" instance=ExtResource("11_elq3m")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -13, 0, 2.5)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -13, 0.0110139, -2.01096)
 
 [node name="FloorTilesTrim02_05" parent="NavMeshManager/Decorations" instance=ExtResource("11_elq3m")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -13, 0, 10)
@@ -5403,7 +6838,7 @@ transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -15.502,
 SpawnMode = 0
 
 [node name="PlayerSpawnerDebug" parent="Others" instance=ExtResource("4_rorbm")]
-transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -12.002, -0.00979981, 12.4633)
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -0.00199986, -0.00979981, 0.4633)
 
 [node name="WallStoneDoorFrame01" parent="." instance=ExtResource("55_brh14")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.5, 0, 14.0364)
@@ -5431,6 +6866,33 @@ transform = Transform3D(-1, -3.82137e-15, -8.74228e-08, -8.74228e-08, 4.37114e-0
 
 [node name="PipeWallAttachment8" parent="." instance=ExtResource("24_eejqi")]
 transform = Transform3D(-1, -3.82137e-15, -8.74228e-08, -8.74228e-08, 4.37114e-08, 1, 0, 1, -4.37114e-08, -4.52312, 3.94399, 13.7425)
+
+[node name="PipeStraight05" parent="." instance=ExtResource("24_vfd6p")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.384227, 2.04262, 11.6581)
+
+[node name="PipeWallAttachment9" parent="." instance=ExtResource("24_eejqi")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.380556, 0.891982, 11.6587)
+
+[node name="PipeWallAttachment10" parent="." instance=ExtResource("24_eejqi")]
+transform = Transform3D(-1, -3.82137e-15, -8.74228e-08, -8.74228e-08, 4.37114e-08, 1, 0, 1, -4.37114e-08, -0.380556, 4.05029, 11.6587)
+
+[node name="PipeStraight06" parent="." instance=ExtResource("24_vfd6p")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.384227, 2.98828, 10.3441)
+
+[node name="PipeWallAttachment11" parent="." instance=ExtResource("24_eejqi")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.380556, 0.891982, 10.3447)
+
+[node name="PipeWallAttachment12" parent="." instance=ExtResource("24_eejqi")]
+transform = Transform3D(-1, -3.82137e-15, -8.74228e-08, -8.74228e-08, 4.37114e-08, 1, 0, 1, -4.37114e-08, -0.380556, 4.05029, 10.3447)
+
+[node name="PipeStraight07" parent="." instance=ExtResource("24_vfd6p")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.384227, 2.50516, 11.0029)
+
+[node name="PipeWallAttachment13" parent="." instance=ExtResource("24_eejqi")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.380556, 0.891982, 11.0035)
+
+[node name="PipeWallAttachment14" parent="." instance=ExtResource("24_eejqi")]
+transform = Transform3D(-1, -3.82137e-15, -8.74228e-08, -8.74228e-08, 4.37114e-08, 1, 0, 1, -4.37114e-08, -0.380556, 4.05029, 11.0035)
 
 [node name="PipeWallAttachment3" parent="." instance=ExtResource("24_eejqi")]
 transform = Transform3D(-1, 8.74228e-08, -7.64274e-15, -3.82137e-15, -1.31134e-07, -1, -8.74228e-08, -1, 1.31134e-07, -8.52522, 0, 13.7425)
@@ -5463,6 +6925,35 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -7, 0,
 
 [node name="DirtPileCorner02_02" parent="." instance=ExtResource("21_q5nyb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0.0171545, 7)
+
+[node name="WallStoneDoor01" parent="." instance=ExtResource("36_x2m3c")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -19, 2, 8)
+
+[node name="SpiritCrystalContainer" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 0, -11.5)
+
+[node name="SpiritCrystal" parent="SpiritCrystalContainer" instance=ExtResource("54_s88t5")]
+transform = Transform3D(-5.23329e-05, 0, -1, 0, 1, 0, 1, 0, -5.23329e-05, 0, 0, 0)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="SpiritCrystalContainer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.718152, 2.075, -0.846732)
+light_color = Color(0, 1, 1, 1)
+omni_range = 3.169
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="SpiritCrystalContainer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.827635, 2.075, -0.946733)
+light_color = Color(0, 1, 1, 1)
+omni_range = 3.021
+
+[node name="OmniLight3D4" type="OmniLight3D" parent="SpiritCrystalContainer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.075, 0)
+light_color = Color(0, 1, 1, 1)
+omni_range = 3.683
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="SpiritCrystalContainer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.075, 1)
+light_color = Color(0, 1, 1, 1)
+omni_range = 3.324
 
 [connection signal="body_entered" from="Scripts/StartingRoomArea" to="Scripts/StartingRoomArea" method="_on_body_entered"]
 [connection signal="body_exited" from="Scripts/StartingRoomArea" to="Scripts/StartingRoomArea" method="_on_body_exited"]

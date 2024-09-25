@@ -3,20 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cdp3pu08u54uu"
-path.s3tc="res://.godot/imported/Emmisive_02.png-f77905356e0a4b803f951ea8430b247f.s3tc.ctex"
+path="res://.godot/imported/Emmisive_02.png-f77905356e0a4b803f951ea8430b247f.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://assets/PolygonDungeon/Textures/Emmisive/Emmisive_02.png"
-dest_files=["res://.godot/imported/Emmisive_02.png-f77905356e0a4b803f951ea8430b247f.s3tc.ctex"]
+dest_files=["res://.godot/imported/Emmisive_02.png-f77905356e0a4b803f951ea8430b247f.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

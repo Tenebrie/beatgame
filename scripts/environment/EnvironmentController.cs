@@ -27,6 +27,10 @@ public partial class EnvironmentController : Node
 	{
 		WorldEnvironment = GetNode<WorldEnvironment>("WorldEnvironment");
 		TargetFogDensity = WorldEnvironment.Environment.VolumetricFogDensity;
+		var t = new Timer();
+		AddChild(t);
+		t.Timeout += UpdateTimers;
+		t.Start(10f);
 	}
 
 	public void RegisterControllable(IControllableEnvironment light, string groupName)
@@ -93,6 +97,21 @@ public partial class EnvironmentController : Node
 
 			str += (TargetBiolumenescence - str) * 5.0f * (float)delta;
 			mat.SetShaderParameter("Leaf_Emissive_Str".ToStringName(), str);
+		}
+	}
+
+	public void UpdateTimers()
+	{
+		var player = PlayerController.AllPlayers.FirstOrDefault();
+		if (player is null)
+			return;
+
+		var lights = GetTree().CurrentScene.GetComponentsUncached<Light3D>();
+		foreach (var light in lights)
+		{
+			var distToPlayer = light.GlobalPosition.DistanceSquaredTo(player.GlobalPosition);
+			// 24 ^ 2
+			light.Visible = distToPlayer < 576;
 		}
 	}
 

@@ -39,6 +39,7 @@ public partial class Preferences : Node
 			DraftSettings.CopyValuesFrom(SavedSettings);
 			AppliedSettings.CopyValuesFrom(SavedSettings);
 		}
+		GetTree().Root.UseOcclusionCulling = true;
 		ApplyPreferences(applyAll: true);
 		EnableLivePreview();
 	}

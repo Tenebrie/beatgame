@@ -8,7 +8,8 @@ public enum FogQuality : int
 	Low = 0,
 	Medium = 1,
 	High = 2,
-	Ultra = 3,
+	VeryHigh = 3,
+	Ultra = 4,
 }
 
 public partial class Preferences : Node
@@ -31,9 +32,13 @@ public partial class Preferences : Node
 				fogSize = 128;
 				fogDepth = 64;
 				break;
-			case FogQuality.Ultra:
+			case FogQuality.VeryHigh:
 				fogSize = 192;
 				fogDepth = 92;
+				break;
+			case FogQuality.Ultra:
+				fogSize = 256;
+				fogDepth = 128;
 				break;
 		}
 

@@ -1,12 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://fdapp871b7tb"]
+[gd_scene load_steps=7 format=3 uid="uid://fdapp871b7tb"]
 
 [ext_resource type="PackedScene" uid="uid://b6copd8h21abo" path="res://assets/PolygonDungeon/Prefabs/Environments/Walls/SM_Env_Wall_Tunnel_01.tscn" id="1_xcasy"]
-[ext_resource type="PackedScene" path="res://assets/PolygonDungeon/Prefabs/Environments/Walls/SM_Env_Wall_01.tscn" id="2_0fnrk"]
-[ext_resource type="PackedScene" path="res://assets/PolygonDungeon/Prefabs/Environments/Floors/SM_Env_Tiles_010.tscn" id="3_bt1un"]
 [ext_resource type="PackedScene" uid="uid://btrvvrii2jdm6" path="res://assets/PolygonDungeon/Prefabs/Environments/Walls/SM_Env_Wall_Tunnel_Entrance_01.tscn" id="4_ey46b"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_g2po7"]
 size = Vector3(0.2, 1, 0.2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_op07x"]
+size = Vector3(0.0802124, 1, 0.298291)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_kphlw"]
 size = Vector3(0.12, 1, 1)
@@ -27,6 +28,14 @@ layers = 3
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.065, 0.5, 0)
 shape = SubResource("BoxShape3D_g2po7")
 
+[node name="CollisionShape3D7" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.766044, -1.02265e-08, -0.642788, -0.642788, -2.80971e-08, -0.766044, -1.02265e-08, 1, -2.80971e-08, 0.0964105, 0.712224, 0.5)
+shape = SubResource("BoxShape3D_op07x")
+
+[node name="CollisionShape3D8" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.766044, -1.02265e-08, 0.642788, 0.642788, 2.80971e-08, -0.766044, -1.02265e-08, 1, 2.80971e-08, 0.870627, 0.741979, 0.5)
+shape = SubResource("BoxShape3D_op07x")
+
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.925, 0.5, 0)
 shape = SubResource("BoxShape3D_g2po7")
@@ -43,29 +52,8 @@ shape = SubResource("BoxShape3D_kphlw")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.925, 0.45)
 shape = SubResource("BoxShape3D_5m3vm")
 
-[node name="SM_Env_Wall_01" parent="." instance=ExtResource("2_0fnrk")]
-transform = Transform3D(-8.74228e-07, 0, 20, 0, 20, 0, -20, 0, -8.74228e-07, 1, 0, 1)
-
-[node name="_mesh" parent="SM_Env_Wall_01" index="0"]
-layers = 3
-
-[node name="SM_Env_Wall_02" parent="." instance=ExtResource("2_0fnrk")]
-transform = Transform3D(-8.74228e-07, 0, -20, 0, 20, 0, 20, 0, -8.74228e-07, 0, 0, 0)
-
-[node name="_mesh" parent="SM_Env_Wall_02" index="0"]
-layers = 3
-
-[node name="SM_Env_Tiles_010" parent="." instance=ExtResource("3_bt1un")]
-transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 1, 0)
-
-[node name="_mesh" parent="SM_Env_Tiles_010" index="0"]
-layers = 3
-
 [node name="SM_Env_Wall_Tunnel_Entrance_01" parent="." instance=ExtResource("4_ey46b")]
 transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
 
 [editable path="SM_Env_Wall_Tunnel_01"]
-[editable path="SM_Env_Wall_01"]
-[editable path="SM_Env_Wall_02"]
-[editable path="SM_Env_Tiles_010"]
 [editable path="SM_Env_Wall_Tunnel_Entrance_01"]
