@@ -2,6 +2,8 @@ using BeatGame.scripts.music;
 using Godot;
 
 namespace Project;
+
+[GlobalClass]
 public partial class SignalBus : Node
 {
 	[Signal] public delegate void CameraMovingStartedEventHandler();
@@ -43,6 +45,8 @@ public partial class SignalBus : Node
 	[Signal] public delegate void SceneTransitionMusicReadyEventHandler();
 	[Signal] public delegate void SceneFadeOutFinishedEventHandler();
 	[Signal] public delegate void SceneFadeInFinishedEventHandler();
+	[Signal] public delegate void CameraSoftLockedEventHandler(Node3D target);
+	[Signal] public delegate void CameraSoftUnlockedEventHandler();
 
 	/// <summary>
 	/// Cast assigned to a slot in PlayerSpellcasting

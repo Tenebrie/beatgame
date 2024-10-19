@@ -23,7 +23,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-SignalBus="*res://scripts/SignalBus.cs"
+SignalBusInstance="*res://scripts/SignalBus.cs"
 Preferences="*res://scripts/preferences/Preferences.cs"
 AssetManager="*res://scripts/resources/AssetManager.cs"
 LoadingManager="*res://scripts/resources/LoadingManager.cs"
@@ -286,6 +286,7 @@ Autorun={
 
 3d_render/layer_1="Visual Layer"
 3d_render/layer_2="Occluder"
+3d_render/layer_3="Casts Shadow"
 3d_render/layer_11="Layer 11 - Floors"
 3d_physics/layer_1="BaseLayer"
 3d_physics/layer_2="Hoverable"
@@ -300,8 +301,9 @@ Autorun={
 
 [rendering]
 
-lights_and_shadows/directional_shadow/soft_shadow_filter_quality=4
-lights_and_shadows/positional_shadow/soft_shadow_filter_quality=4
+lights_and_shadows/directional_shadow/soft_shadow_filter_quality=3
+lights_and_shadows/directional_shadow/16_bits=false
+lights_and_shadows/positional_shadow/soft_shadow_filter_quality=3
 textures/default_filters/anisotropic_filtering_level=4
 environment/volumetric_fog/volume_size=128
 anti_aliasing/quality/msaa_3d=2

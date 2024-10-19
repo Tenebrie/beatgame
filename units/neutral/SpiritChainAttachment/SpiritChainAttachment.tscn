@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://cucnjope3o4bx"]
+
+[ext_resource type="Script" path="res://units/BaseUnit.cs" id="1_5uept"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_m622m"]
+size = Vector3(0.5, 1, 0.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_8c0q4"]
+
+[node name="SpiritChainAttachment" type="CharacterBody3D"]
+script = ExtResource("1_5uept")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_m622m")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 1, 0, 0, 0, 0.5, 0, 0.5, 0)
+mesh = SubResource("BoxMesh_8c0q4")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.594169, 0)
+light_color = Color(0.192157, 1, 1, 1)
+light_energy = 0.75
+omni_range = 3.0

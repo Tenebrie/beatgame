@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cw51s1vh1g3jy"]
+
+[ext_resource type="PackedScene" path="res://assets/PolygonDungeon/Prefabs/Props/SM_Prop_Door_Metal_02.tscn" id="2_pfg8c"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g2po7"]
+size = Vector3(0.325, 0.578613, 0.0695312)
+
+[node name="DoorMetal01" type="StaticBody3D"]
+collision_layer = 33
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.180326, 0.289307, -0.0152344)
+shape = SubResource("BoxShape3D_g2po7")
+
+[node name="SM_Prop_Door_Metal_02" parent="." instance=ExtResource("2_pfg8c")]
+transform = Transform3D(27, 0, 0, 0, 27, 0, 0, 0, 27, 0.00130823, 0, -0.0108951)

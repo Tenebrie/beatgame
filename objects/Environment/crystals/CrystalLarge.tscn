@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://daaqbuq3g7pcj"]
+[gd_scene load_steps=9 format=3 uid="uid://daaqbuq3g7pcj"]
 
 [ext_resource type="PackedScene" uid="uid://00d3a00e65k5" path="res://assets/meshes/crystalLarge.glb" id="1_63uk3"]
 [ext_resource type="Texture2D" uid="uid://cnrkgbc0l3p06" path="res://assets/PolygonDungeon/Textures/Dungeons_Texture_02.png" id="2_7nxu8"]
@@ -20,12 +20,9 @@ emission_enabled = true
 emission = Color(0, 1, 1, 1)
 emission_operator = 1
 emission_texture = ExtResource("3_huht7")
-clearcoat_enabled = true
 clearcoat_roughness = 1.0
 clearcoat_texture = SubResource("NoiseTexture2D_s2o4h")
-anisotropy_enabled = true
 anisotropy = 0.57
-subsurf_scatter_enabled = true
 subsurf_scatter_strength = 0.87
 subsurf_scatter_skin_mode = true
 subsurf_scatter_transmittance_depth = 8.0
@@ -33,35 +30,20 @@ subsurf_scatter_transmittance_boost = 1.0
 backlight = Color(0, 0.87451, 1, 1)
 refraction_scale = 0.53
 
-[sub_resource type="Sky" id="Sky_3dlsc"]
-
-[sub_resource type="Environment" id="Environment_ar4th"]
-background_mode = 2
-background_color = Color(1, 1, 1, 1)
-sky = SubResource("Sky_3dlsc")
-ambient_light_source = 2
-ambient_light_color = Color(0.605305, 0.458338, 0.194189, 1)
-ambient_light_energy = 0.1
-ssil_radius = 5.09
-sdfgi_read_sky_light = false
-glow_strength = 2.0
-glow_bloom = 0.05
-volumetric_fog_enabled = true
-volumetric_fog_density = 0.0002
-volumetric_fog_emission_energy = 1024.0
-volumetric_fog_length = 24.0
-volumetric_fog_temporal_reprojection_amount = 0.99
-adjustment_contrast = 4.65
-adjustment_saturation = 4.4
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_k1e26"]
+radius = 0.616155
+height = 3.49408
 
 [node name="CrystalLarge" type="StaticBody3D"]
+collision_layer = 33
 
 [node name="crystalLarge" parent="." instance=ExtResource("1_63uk3")]
 
 [node name="CrystalMesh" parent="crystalLarge" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_kdc58")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_ar4th")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.74973, 0)
+shape = SubResource("CapsuleShape3D_k1e26")
 
 [editable path="crystalLarge"]

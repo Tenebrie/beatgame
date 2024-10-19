@@ -4,7 +4,8 @@ using Godot;
 
 namespace Project;
 
-public partial class BaseBehaviour : Node
+[GlobalClass]
+public abstract partial class BaseBehaviour : Node
 {
 	protected BaseUnit Parent
 	{

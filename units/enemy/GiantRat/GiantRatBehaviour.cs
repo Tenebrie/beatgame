@@ -1,36 +1,21 @@
-using BeatGame.scripts.navigation;
 using Godot;
-using Project;
-using System;
 using System.Linq;
 
 namespace Project;
 
 public partial class GiantRatBehaviour : BaseBehaviour
 {
-	enum AIState
-	{
-		Idle,
-		Wandering,
-		EnemySpotted,
-		Attacking,
-		Resting,
-		Leashing,
-	}
-
-	BaseUnit lockedOnTarget;
-	Vector3? movingToPosition = null;
-
-	Node3D agentContainer;
+	EnemyAIBehaviour enemyAI;
 	NavigationAgent3D navAgent;
 
-	AIState state = AIState.Idle;
 	AttackCast attackCast;
+	RangedAttackCast rangedAttackCast;
 
-	Timer aiTickTimer;
-	Timer stateLockTimer;
-
-	Vector3 homePosition;
+	AIState State
+	{
+		get => GetComponent<EnemyAIBehaviour>().State;
+		set => GetComponent<EnemyAIBehaviour>().State = value;
+	}
 
 	public override void _Ready()
 	{
@@ -38,58 +23,23 @@ public partial class GiantRatBehaviour : BaseBehaviour
 
 		attackCast = new(Parent);
 		AddChild(attackCast);
-
-		homePosition = Parent.GlobalPosition;
-
-		aiTickTimer = new() { WaitTime = 0.1f };
-		aiTickTimer.Timeout += OnAIUpdate;
-		AddChild(aiTickTimer);
-		aiTickTimer.Start();
-
-		stateLockTimer = new() { OneShot = true };
-		AddChild(stateLockTimer);
+		rangedAttackCast = new(Parent);
+		AddChild(rangedAttackCast);
 
 		GetComponent<AnimationController>().RegisterStateTransitions(
-			("Bite", (_) => state == AIState.Attacking),
-			("Walk", (_) => state is AIState.Wandering or AIState.EnemySpotted),
+			("Bite", (_) => State == AIState.Attacking),
+			("Walk", (_) => State is AIState.Wandering or AIState.EnemySpotted),
 			("Idle", (_) => true)
 		);
 
-		navAgent = GetComponent<NavigationAgent3D>();
-		navAgent.NavigationLayers = NavigationLayer.MediumAgent.ToMaskValue();
-		navAgent.TargetReached += () =>
-		{
-			if (state is AIState.Leashing)
-				state = AIState.Idle;
-		};
-		navAgent.VelocityComputed += (velocity) =>
-		{
-			if (velocity == Vector3.Zero || state is not AIState.EnemySpotted and not AIState.Leashing)
-				return;
-			// TODO: Make it move
-		};
-
-		this.CallDeferred(() =>
-		{
-			navAgent.GetParent().RemoveChild(navAgent);
-			agentContainer = new Node3D();
-			GetTree().CurrentScene.AddChild(agentContainer);
-			agentContainer.AddChild(navAgent);
-			agentContainer.GlobalPosition = Parent.GlobalPosition;
-		});
+		enemyAI = GetComponent<EnemyAIBehaviour>();
+		enemyAI.AgentMaxSpeed = 2f;
+		enemyAI.UpdateTick += OnAIUpdate;
 	}
 
 	void OnAIUpdate()
 	{
-		// Agent is locked into an action, do not update
-		if (!stateLockTimer.IsStopped() || state is AIState.Leashing)
-			return;
-
-		if (Parent.GlobalPosition.DistanceTo(homePosition) >= 15)
-		{
-			state = AIState.Leashing;
-		}
-		else if (state is AIState.Idle or AIState.EnemySpotted or AIState.Attacking)
+		if (enemyAI.TargetEnemy == null)
 		{
 			// TODO: Optimize
 			var targets = BaseUnit.AllUnits
@@ -98,81 +48,54 @@ public partial class GiantRatBehaviour : BaseBehaviour
 				.Where(tuple => tuple.distance <= 7)
 				.OrderBy(a => a.distance);
 
-			var (unit, distance) = targets.FirstOrDefault();
+			var (unit, _) = targets.FirstOrDefault();
 			if (unit == null)
-			{
-				lockedOnTarget = null;
-				state = AIState.Idle;
-
 				return;
-			}
 
-			lockedOnTarget = unit;
-
-			if (distance <= 1.5f)
-			{
-				stateLockTimer.Start(2f);
-				state = AIState.Attacking;
-			}
-			else
-			{
-				state = AIState.EnemySpotted;
-			}
+			enemyAI.TargetEnemy = unit;
 		}
-	}
 
-	void PathTowards(Vector3 pos)
-	{
-		var target = NavigationServer3D.MapGetClosestPoint(navAgent.GetNavigationMap(), pos);
-		movingToPosition = target;
-		navAgent.TargetPosition = target;
+		var directDistance = enemyAI.TargetEnemy.GlobalPosition.DistanceTo(Parent.GlobalPosition);
+		var distance = enemyAI.PathDistanceTo(enemyAI.TargetEnemy.GlobalPosition);
+		this.Log($"Direct distance: {directDistance}, Path distance: {distance}");
 
-		// var nextTarget = navAgent.GetNextPathPosition();
-		// agentContainer.Position = new() { X = agentContainer.GlobalPosition.X, Y = nextTarget.Y, Z = agentContainer.GlobalPosition.Z };
-	}
-
-	public override void _Process(double delta)
-	{
-		if (state is AIState.Attacking && lockedOnTarget != null)
+		if (directDistance <= 1.5f)
 		{
+			enemyAI.MakeBusy(2f);
+			State = AIState.Attacking;
 			var castTargetData = new CastTargetData()
 			{
-				HostileUnit = lockedOnTarget,
+				HostileUnit = enemyAI.TargetEnemy,
 			};
 			if (attackCast.ValidateIfCastIsPossible(castTargetData, out _) is BaseCast.CastQueueMode.Instant)
 			{
 				attackCast.CastBegin(castTargetData);
 			}
 		}
-		else if (state is AIState.EnemySpotted && lockedOnTarget != null)
+		else if (distance >= 7 && directDistance <= 5)
 		{
-			PathTowards(lockedOnTarget.GlobalPosition);
-		}
-		else if (state is AIState.Leashing)
-		{
-			PathTowards(homePosition);
-		}
-
-		if (state is AIState.EnemySpotted or AIState.Leashing)
-		{
-			var nextPosition = navAgent.GetNextPathPosition();
-			var direction = nextPosition - agentContainer.GlobalPosition;
-			var velocity = 1f * direction.Normalized();
-			agentContainer.GlobalPosition += velocity * (float)delta;
-			nextPosition = navAgent.GetNextPathPosition();
-
-			if (navAgent.AvoidanceEnabled)
-				navAgent.Velocity = velocity;
-			else
+			enemyAI.MakeBusy(2f);
+			State = AIState.Attacking;
+			var castTargetData = new CastTargetData()
 			{
-				Parent.GlobalPosition = Parent.SnapToGround(agentContainer.GlobalPosition);
-				try
-				{
-					if (new Vector3(velocity.X, 0, velocity.Z).LengthSquared() > 0f)
-						Parent.LookAt(nextPosition.Flatten(GlobalPosition.Y), Vector3.Up);
-				}
-				catch (Exception) {}
+				HostileUnit = enemyAI.TargetEnemy,
+			};
+			if (rangedAttackCast.ValidateIfCastIsPossible(castTargetData, out _) is BaseCast.CastQueueMode.Instant)
+			{
+				rangedAttackCast.CastBegin(castTargetData);
 			}
+		}
+		else
+		{
+			State = AIState.EnemySpotted;
+		}
+	}
+
+	public override void _Process(double delta)
+	{
+		if (State is AIState.EnemySpotted && enemyAI.TargetEnemy != null)
+		{
+			enemyAI.PathTowards(enemyAI.TargetEnemy.GlobalPosition);
 		}
 	}
 }
@@ -191,5 +114,23 @@ partial class AttackCast : BaseCast
 	protected override void OnCastCompleted(CastTargetData targetData)
 	{
 		targetData.HostileUnit.Health.Damage(10f, this);
+	}
+}
+
+partial class RangedAttackCast : BaseCast
+{
+	public RangedAttackCast(BaseUnit parent) : base(parent)
+	{
+		Settings = new()
+		{
+			PrepareTime = 0.5f,
+			RecastTime = 2,
+		};
+	}
+
+	protected override void OnCastCompleted(CastTargetData targetData)
+	{
+		targetData.HostileUnit.Health.Damage(10f, this);
+		this.CreateZapEffect(Parent.GlobalCastAimPosition, targetData.HostileUnit.GlobalCastAimPosition);
 	}
 }

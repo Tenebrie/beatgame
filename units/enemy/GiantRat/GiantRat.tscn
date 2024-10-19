@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://ctov8hk5nkmol"]
+[gd_scene load_steps=7 format=3 uid="uid://ctov8hk5nkmol"]
 
 [ext_resource type="Script" path="res://units/BaseUnit.cs" id="1_h7x46"]
 [ext_resource type="PackedScene" uid="uid://lihr8jy1v2vh" path="res://assets/meshes/rat01.tscn" id="2_q433e"]
 [ext_resource type="Script" path="res://units/enemy/GiantRat/GiantRatBehaviour.cs" id="3_hk1mu"]
+[ext_resource type="Script" path="res://units/behaviours/EnemyAIBehaviour.cs" id="3_o31so"]
 [ext_resource type="PackedScene" uid="uid://cqu5y0rbgi8pp" path="res://units/common/UnitCastAimPosition.tscn" id="4_nd5qx"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nujrg"]
@@ -17,6 +18,9 @@ script = ExtResource("1_h7x46")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.328, 0)
 shape = SubResource("BoxShape3D_nujrg")
+
+[node name="EnemyAIBehaviour" type="Node" parent="."]
+script = ExtResource("3_o31so")
 
 [node name="GiantRatBehaviour" type="Node" parent="."]
 script = ExtResource("3_hk1mu")

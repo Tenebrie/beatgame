@@ -55,5 +55,8 @@ shape = SubResource("BoxShape3D_5m3vm")
 [node name="SM_Env_Wall_Tunnel_Entrance_01" parent="." instance=ExtResource("4_ey46b")]
 transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
 
+[node name="_mesh" parent="SM_Env_Wall_Tunnel_Entrance_01" index="0"]
+layers = 3
+
 [editable path="SM_Env_Wall_Tunnel_01"]
 [editable path="SM_Env_Wall_Tunnel_Entrance_01"]
